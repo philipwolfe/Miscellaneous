@@ -1,0 +1,37 @@
+<%
+  function GetStylesheet( strUIName )
+  {
+    var sSheet = "/msdn-online/" + strUIName + "/css/";
+    if (("Mac" == oBD.platform || "PPC" == oBD.platform || "68K" == oBD.platform) && oBD.majorVer < 5) return sSheet + "mac.css";
+    if ("MSIE" == oBD.browser)
+    {
+      if (3 == oBD.majorVer) return sSheet + "ie3.css";
+      else return sSheet + "ie4.css";
+    }
+    else if ("Nav" == oBD.browser)
+    {
+      if (oBD.majorVer==5) return sSheet + "op3.css"; /* Mozilla 5 */
+      else // note Nav is not contained in Nav 4.5 userAgent string
+      return sSheet + "nn4.css";
+    }
+    else if ("Opera" == oBD.browser) return sSheet + "op3.css";
+    else return "ie3.css";
+  }
+  
+  var strLevel = "down";
+  if( oBD.getsNavBar ) strLevel = "ie5";
+  
+  Response.Write('<LINK REL="stylesheet" TYPE="text/css" HREF="' + GetStylesheet( "shared" ) + '" />\n');
+  Response.Write('<LINK REL="stylesheet" TYPE="text/css" HREF="/msdn-online/shared/comments/css/' + strLevel + '.css" />\n');
+
+    if (5 == oBD.majorVer &&  "Mac" != oBD.platform)
+    {
+      Response.Write('\n<STYLE TYPE="text/css"><!--\n\n\tPRE.clsCode { font-size:110%; } \n\n\tPRE.clsSyntax { font-size:100%; }  \n\n--></STYLE>\n');
+    }
+
+    if ("Nav" == oBD.browser && 4 == oBD.majorVer &&  "X11" == oBD.platform)
+    {
+      Response.Write('\n<STYLE TYPE="text/css"><!--\n\n\tTD, TH { font-family:verdana,helvetica,arial,sans-serif; font-size:75%; } \n\n--></STYLE>\n');
+    }
+%>
+

@@ -1,0 +1,357 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Servin' It Up: Fight Fire with Firewalls</TITLE>
+
+<META NAME="Description" CONTENT="SBN Magazine: Tom Moran column on server issues, firewalls and other security issues" />
+<META NAME="Keywords" CONTENT="Proxy server; firewalls; security" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Tom Moran" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="09/30/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg07336.htm#/workshop/server/proxy/server072798.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg07336.htm#/workshop/server/proxy/server072798.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg07335.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="top" IDX_TYPES="sbngen" IDX_CONCEPT="stopindex; Java objects, server-side">Fight Fire with Firewalls</A></H1>
+<HR SIZE="1" />
+<P>Tom Moran
+        <BR>Microsoft Corporation
+<P>July 27, 1998
+<P>
+<a href="server0898.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" BORDER=0 ALT="Download">Download Microsoft Word (.DOC) format of this document (zipped, 16.3K)</A>
+</P>
+<P><i>The following article was originally published in the Site Builder Network Magazine &quot;<a href="../../../sitebuilder/magazine/server.htm" TARGET="_top">Servin' It Up</a>" column. The questions and answers that appeared with it can be found in <a href="../../../workshop/server/feature/morqa.htm">Ask Tom: Server Q &amp; A</a>.</i>
+</P>
+<P>
+So I guess that fat, bald guy in the picture is supposed to be me.  I swear that's not the picture they showed me.
+</P>
+<P>Enough frivolity. I want to talk about a very serious subject, and my hair doesn't quite qualify.  After my first column on security, I received several questions asking about firewalls.  It's surprising how many people still think of firewalls -- if they think of them at all -- simply as routers.  In an ideal world, most people wouldn't have to think of them, because to most people they would be totally transparent.</P>
+
+<H2>Firewall Basics
+</H2>
+<P>You might have guessed that the term firewall didn't originate with network security, but, like many other terms in our industry, was borrowed from another industry -- in this case, firefighting.  Years ago during disaster-skills and firefighting training, the first thing we were taught is that you remove part of the fire triangle (fuel, oxygen, heat), and fire dies.  This is how a firewall works, and has been working all over Florida this past month.  Remove or clear an area of fuel, and, when the fire gets there, it can't go anywhere else.  Of course, the firefighters can still get through because their protocol -- in their case, the ground to walk on  -- is still available.  The firewall on your network works in much the same way.  You want the good guys to get through and have what they need, but you want to prevent the evildoers from getting through.</P>
+<P>Firewalls today are very complex, and provide many features besides the traditional packet-filtering function.  They provide multiple layers of protection, from looking at IP addresses to examining the actual content being passed to you.  They have sophisticated ways to identify potential intrusions, to log those activities, and to proactively notify the right people.  Some have features, such as content-caching, to improve performance, support for Virtual Private Networks (VPNs), Web-based administration, authentication, and so on.</P>
+<P>In a nutshell, a firewall is what stands between you and the outside world.</P>
+<P><img src="server0898.gif"
+WIDTH="300" HEIGHT="100" ALT="Firewall architecture"></P>
+<P>Of course, the picture above is very simplistic.  In actuality, a firewall consists of a variety of things, including host (called a bastion host), routers, and services. Depending on your situation, you may have multiple firewalls, multiple internal networks, VPNs, extranets and perimeter networks.  You also may have a variety of connection types, such as TCP and UDP, audio or video streaming, and downloading of applets.  You also might have additional routers, hosts, and other machines that make up your firewall.  There are many ways to set up a firewall, and the above picture definitely does not represent the most secure.
+</P>
+<H2>Firewall Features
+</H2>
+
+
+<H3>Packet Filtering
+</H3>
+<P>
+There are three basic approaches or services that a firewall uses to protect your network.  The first is known as packet filtering.  In their first incarnation, firewalls really were just nothing more than specialized routers.  The firewall performed a very basic function,  to examine each network packet as it came down the wire to ensure that the address was appropriate.  This is still an integral part of a firewall strategy.  It has the benefit that it is very efficient and speedy, since it is just looking at a header and making no changes, simply allowing or denying entry.  It does this by looking at the header and verifying the IP address, the port, or both.  For example, if it finds an IP address in a header that should be an internal IP address, but it is coming across the public Internet, that is a danger sign.  Packet filtering can be either inbound or outbound.  An additional benefit of packet filtering is that it generally requires no knowledge or cooperation from the user.
+</P>
+
+<H3>Circuit Proxy
+</H3>
+<P>
+The second approach is through the use of what is called a circuit proxy.  The difference between this and the packet filter is that the circuit proxy forces all communicators (client or server) to address their packets to the circuit proxy, not directly to the intended target.  So the proxy gets a packet addressed to it, and then changes the address to represent the internal target.  As you can imagine, performance is not quite as good as plain packet filtering, although it's not much of a difference, since you are simply replacing header information.  The main advantage is that it hides the real IP address, which, to someone trying to gain access to your system, is one of the most important information tidbits.  Look for support of both SOCKS and WinSock proxy.
+</P>
+
+<H3>Application Proxy
+</H3>
+<P>
+The third approach uses what is known as an application proxy.  The application proxy understands the application protocol and data, and intercepts any information intended for that application.  A mail server is a good example of this.  The application proxy can do such things as authenticate users, instead of simply relying on IP addresses, and even determine if the actual data represents something that could be harmful.  Of course, this is much more intensive than packet filtering; often users or clients must be reconfigured to use them, so you lose some of the transparency we talked about earlier.
+</P>
+
+<H3>Caching
+</H3>
+<P>
+Caching, while not traditionally part of a firewall, is becoming an increasingly important feature for a firewall solution.  The idea: Since all traffic comes through the firewall, that is the ideal place to check for frequently accessed content.  So, for example, the second time a popular Web page is accessed by anyone in your company, it is already there, resulting in a huge performance increase.
+</P>
+<H2>Testing Firewalls
+</H2>
+<P>Testing your firewall is tough.  You need to understand security concepts, have an in-depth understanding of TCP/IP, and be familiar with various methods of attack, such is IP spoofing, denial of service, information theft, and the list goes on.  It is critical to test a firewall because even a minor mistake in configuration can lead to holes in your network.  One of the most infamous tools for testing networks is SATAN.  It is designed to expose problems in your security, and let you know what they are.  In the  SBN Bookstore, I found the following book, which explains how to use this tool:
+<A HREF="http://www.clbooks.com/sqlnut/SP/search/gtsumt?isbn=1565924258">Protecting Networks With SATAN</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> by Martin Freiss (O'Reilly &amp; Associates).
+</P>
+
+<H3>Logging &amp; Alerts
+</H3>
+<P>
+An important feature of a firewall solution is to be able to log events, determine whether certain usage is appropriate, and notify someone in authority.  It does little good if your network is hacked and you don't find out for several weeks.  It is also important that your logs be both very secure and very accessible, which might seem a little like opposing forces.  You certainly don't want logs to accessible, since they are a favorite target of hackers trying to cover up their activities.  On the other hand, you want the right people to be able to view them easily.  The other thing to consider is the security.  Is the log on a PC in a locked room?  Is it being written to a non-modifiable device?  Can the system generate an alert and page you in real time if the network is under attack?  These are the types of questions you have to ask yourself.
+</P>
+
+<H3>Management
+</H3>
+<P>
+Obviously, management and operational overhead are issues.  Management ranges from command line to HTML-based remote access.  Keep in mind that if you are going to use remote access to administer your firewall, you had better not have a user account of admin with a blank password.  Make sure the remote-access method is secure.
+</P>
+<H3>Virtual Private Networks
+</H3>
+<P>
+This has pretty much been the hot topic lately.  Basically, you want to use the public Internet to access your secure network, or connect two private networks.  This is obviously a heck of a lot cheaper than using a WAN.  Of course, there are serious security implications.  Which is why VPNs were created.  A typical scenario might be: User dials up his or her ISP from a laptop.  The information is encrypted, sent over the public network to a known PPTP server, then decrypted, allowed through the firewall, and access is granted.  You might also use a VPN when connecting a remote office to a main campus, each with its own private network.  I'm not going to talk much more about this, since the topic has been covered some in the press lately.
+</P>
+<H3>Microsoft Proxy Server
+</H3>
+<P>
+Of course, I have to say something about the Microsoft solution.  It has all of the features I've listed and many more.  It obviously integrates well with Windows NT and is very affordable.  What I appreciate most, since I surf the Web a lot, is the content caching, which can really make a difference.  If you already have a basic firewall, Proxy Server is designed to work with it.  If you don't have one, Proxy Server can fill that need.  The current version is 2.0, and information including reviewer's guide, trial downloads, white papers, can be found on the  <A HREF="http://www.microsoft.com/proxy/">Microsoft Proxy Server site</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+</P>
+<H3>The Law
+</H3>
+<P>
+Thankfully, I am not a lawyer.  And I don't play one on TV.  So what I tell you here should be ignored, and you should get the advice of a legal professional.  By not having a firewall presence, and possibly by not doing it very well, you can expose yourself to liability and claims from a variety of sources.  For example, say you have not acted with due diligence by protecting your network properly with a firewall.  Competitor steals information, builds a great product before you do, and your stock goes down.  Stockholders sue you and all sorts of nastiness ensue.  You may also have privacy issues, since you are logging what your employees are doing.  There are many other potential scenarios, as well as specific requirements concerning admissibility as evidence of computer logs.  Again, get a good consultant and make sure you are aware of the issues <i>before</i> something happens.  Did I mention I'm not a lawyer?
+</P>
+
+<H3>Security in general
+</H3>
+<P>
+Keep in mind that most security breaches are not from some great genius trying to get into your network, but rather from some great idiot trying to get out.  Imagine a hypothetical coworker, we'll call him Rafael, who sits down the hall and has a phone line.  Rafael decides to buy a $30 modem and connect that to the phone line and then dial up his ISP.  Not a good idea -- there is now an unauthorized hole into your network.  Or, take this hypothetical Rafael again, and imagine that he has to log-in multiple times with unique strong passwords, which are difficult to remember.  So he keeps them in his wallet, which gets stolen and has his building access card with his name on it.  Hacker finds the wallet, and you've got problems.  A firewall solution must work within your existing security policies, and you must balance security concerns with realism.  The best firewall in the world won't help you if all your doors are unlocked.</P>
+<P>Thanks for reading.</P>
+
+<P><I><B>Tom Moran</B> is a program manager with Microsoft Developer Support and spends a lot of time hanging out with the Site Builder Network folks.  Outside of work, he practices kenpo (although sometimes necessary at work), tries out original recipes on his family (Lisa, Aidan, and Sydney), leads white-water trips, or studies tax law (boring, but true).</i>
+
+
+<P>
+<HR>
+<h4>Other firewall resources</h4>
+<UL>
+<LI>  <A HREF="http://www.microsoft.com/proxy/">Microsoft Proxy Server Reviewer Guide</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">: If you can make it through the 80-plus pages in this without falling asleep, you've earned the right to call yourself "geek".
+<LI> Third-party consultants: Setting up a firewall is a hugely important decision and the issues are complex.  If you don't have a security expert on staff, and you're working with sensitive information, find a good security-consulting firm.
+<LI>  <A HREF="http://www.infosecuritymag.com/">Information Security Magazine</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-ms link">: July's issue has an article called &quot;Firewalls: Built to Last?&quot;
+<LI>  <A HREF="http://www.tbg.com/">The Burton Group</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-ms link">: Provides in-depth network strategy, overview, white papers on a variety of related topics, including VPNs and firewall implementation.
+<LI>  <A HREF="http://www.microsoft.com/sbnmember/freebies/books.asp">SBN Bookstore</A>: There are several good books on computer security, firewalls, TCP/IP.
+<LI>  <A HREF="http://www.cert.org/">CERT</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-ms link">: Part of the Software Engineering Institute at Carnegie-Mellon University, and probably your best Internet resource for general security issues and incidents.
+<LI>  <A HREF="http://www.clbooks.com/sqlnut/SP/search/gtsumt?isbn=1565921240">Building Internet Firewalls</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-ms link"> by D. Brent Chapman and Elizabeth D. Zwicky<i>:  </i>I drove down to my local bookstore, grabbed a stack of security books and a triple-grande (nonfat, extra-foam), and sat down for a couple hours.  Still didn't find anything I liked as well as this definitive 1995 work, which is what I have on my shelf.
+<LI><A HREF="http://www.microsoft.com/products/developer/tech/com/wpaper/dcomfw-f.htm">Using DCOM with Firewalls</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> by Michael Nelson:  For you programmers who want to use DCOM, this paper from the Microsoft site describes how to configure your firewall.
+<BR><I>-- Tom Moran</I>
+</UL>
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg05226.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="server072798.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

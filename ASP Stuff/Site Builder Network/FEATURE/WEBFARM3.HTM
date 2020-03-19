@@ -1,0 +1,487 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Managing Session State on a Web Farm</TITLE>
+
+<META NAME="Description" CONTENT="Managing Session State on a Web Farm" />
+<META NAME="Keywords" CONTENT="Web farm, session state, cookie" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Dennis Angeline" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg08575.htm#/workshop/server/feature/webfarm3.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg08575.htm#/workshop/server/feature/webfarm3.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg08575.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="SESSION" IDX_TYPE="task" IDX_CONCEPT="stopindex;Managing session state in a Web farm">Managing Session State in a Web Farm</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="Session state, managing in a Web farm;Web farm, managing session state in"></A></H6>
+<P>Dennis Angeline<br>
+       Principal Consultant,<br>
+       Microsoft Consulting Services
+<P>March 11, 1998
+        <p>
+        <a href="webfarm.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word format (zipped, 31K)</a>.
+        <P><b>Contents</b>
+        <BR><A HREF="webfarm3.htm#back">Background</a>
+        <BR><A HREF="webfarm3.htm#cookie">Maintaining State with Cookies</A>
+        <BR><A HREF="webfarm3.htm#multiple">Managing Session State Across Multiple Servers</A>
+        <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="webfarm3.htm#stateless">Building Stateless Web Applications</A>
+        <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="webfarm3.htm#client">Managing Session State on the Client</A>
+        <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="webfarm3.htm#balance">Session-Aware Load Balancing</A>
+        <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="webfarm3.htm#central">Centralized State Management</A>
+        <BR><A HREF="webfarm3.htm#conclude">Conclusion</A>
+        <P>
+        <h2><a name="back"></a>Background
+        </h2>
+        <P>When users surf the Internet using a Web browser, they are usually pleasantly unaware of the details of the Hypertext Transport Protocol that makes it all possible. HTTP is a connectionless specification for how a Web browser communicates with a Web server.  While connectionless protocols have a number of advantages, they do present a problem when it comes to maintaining information (or &quot;state&quot;) about users visiting a Web site.
+        <P>From the perspective of the Web server, each HTTP request appears as though it is a separate and distinct request, unrelated to any previous requests. That means that the information a user enters on one page (through a form, for example) is not automatically available on the next page requested, unless the Web server takes steps to make that happen. The challenge, of course, is to somehow identify which requests, out of the thousands of requests received by the Web server, come from the same user. One way  is to use cookies.
+        <P>
+        <h2><A NAME="cookie" IDX_TYPE="sbngen" IDX_CONCEPT="Session state, maintaining with cookies;Cookies, maintaining state with">Maintaining State with Cookies</A>
+        </h2>
+        <P>A cookie is a piece of information that the client stores on behalf of the server. In this case, the information stored in the cookie originates at the server, and is returned to the client as part of the server's response to an HTTP request. A client may have many cookies stored at any given time, and each cookie may be associated with a particular Web site (or page). Each time the client visits that site, the browser packages the cookie with the HTTP request. The Web server can then use the information in the cookie to identify the user, and, depending on the nature of the information collected, possibly personalize the appearance of the Web page. It can also add or change the information within the cookie before returning it.
+        <P>All cookies have an expiration date. If a cookie's expiration date is explicitly set to sometime in the future, the browser will automatically save the cookie to the client's disk. Cookies that do not have an explicit expiration date are only good for the life of the browser session; as soon as the browser is closed, the cookie is erased from the computer's memory.
+        <P>Because a cookie is sent back to the server with each new request, cookies are an ideal way to identify a series of requests that come from the same user. When a request is received from a known user, the unique identifier can be extracted from the cookie and used to retrieve additional user information, which is often more sensitive or private, from a database. That way, the user's private data is kept safely on the server, and not in the cookie where it could be hacked. The cookie only contains the key to the private data stored on the server. When a request is received with no cookie, or with a cookie that does not contain the necessary identifier, the request is assumed to be from a new user. In that case, a new identifier is generated before the response is sent back to the client, and a new record added to the server's user database.
+        <P>A typical Web server maintains information about the users that visit the site in its user database. This may be personalization information that remains fairly constant over time, such as the user's name or e-mail address, or it may be information that has a very short lifetime, such as the number of items that have been purchased during the current visit.
+        <P>In Internet terminology, the word &quot;session&quot; refers to the time during which a specific user is actively viewing the contents of a Web site. A session starts when the user visits the first page on the site, and ends when they leave the site. A site can also be explicitly abandoned by an application running at the Web site. The pieces of user-specific information relevant to a particular session are collectively known as the &quot;session state.&quot; Some kind of cookie technique is often used to identify which requests are part of the same user session. (Note:  Each browser that a user opens will establish a new session that uniquely identifies not only the user and the browser instance).
+        <P>Microsoft&#174; Internet Information Server (IIS) provides a built-in mechanism for managing session state. The IIS Session object uses the cookie technique described above to monitor session state. How it works is hidden from Web developers, allowing them to focus on content development rather than the details of maintaining session state.
+        <P><A HREF="webfarm3.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+        <p>
+        <h2><A NAME="multiple" IDX_TYPE="sbngen" IDX_CONCEPT="Session state, four options for managing in a Web farm;Web farm, four options for managing session state">Managing Session State Across Multiple Servers</A>
+        </h2>
+        <P>In a Web farm, two or more servers are used to host the same site.  Multiple servers often become necessary when a site attracts a larger number of users. HTTP requests are usually routed to each server in a round-robin fashion, to distribute load and allow the site to handle more requests.
+        <P>While the IIS Session object works well in a single-Web-server environment, it is not very useful in a Web farm because it tracks information solely in the Web server that handles the request. As additional requests are routed to other servers in the farm, information stored during the first request is not available because it resides in another server. This is especially problematic when a single-server site using the Session object grows to a multi-server Web farm. There are four ways to address the problem of session management in a Web farm:
+        <ul>
+        <li> Build stateless Web applications
+        <li> Maintain all session state on the client
+        <li> Use session-aware load balancing
+        <li> Maintain session state on a central computer
+        </ul>
+        <P>We'll discuss each of these solutions in turn.
+
+        <P>
+        <h3><A NAME="stateless"></A>Building Stateless Web Applications
+        </h3>
+        <P>
+        Stateless applications have no notion of state built into them. They handle every request as though it came from a different and distinct user. This type of application is ideally suited to the stateless HTTP protocol. Not all applications fit nicely into the stateless model, but there are some significant advantages to building Web applications this way. For starters, stateless applications scale and distribute extremely well. Because each transaction can be considered separate and distinct, a particular transaction is free to execute on any available server. This allows additional computing resources to be freely added as the demand increases. A discussion of building stateless applications is beyond the scope of this article. For further information, see <A HREF="http://www.microsoft.com/msdn/news/devnews/sepoct97/apscale.htm" TARGET="_top">Design Strategies for Scalable Active Server Applications</a><IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH=17 HEIGHT=11 ALT="Non-SBN link"> by Steve Kirk in the September 2, 1997 issue of Microsoft Developer Network News.
+        <P>
+        <h3><A NAME="client"></A>Managing Session State on the Client
+        </h3>
+        <P>
+        If state information can't be maintained on the Web server, a common alternative is to maintain state on the client. This approach is appealing because it shifts the storage burden from the server to the client. That way, the server is not responsible for devoting potentially large amounts of storage to users that may never return. From the perspective of the server, the application appears to be stateless, and thus inherits all the advantages of a stateless application (namely scalability).
+        <P>The disadvantages of maintaining state on the client are the security and size limitations it presents. Because state is stored in a known location, the information therein can potentially be sniffed or stolen by another application. (In reality, the information is usually not worth stealing and, when it is, can easily be encrypted.) A more significant problem is the size limitation. The maximum allowable size of a cookie varies with different browsers, but all browsers support cookies of at least 4,096 bytes.
+        <P>With IIS, cookies can be accessed through the Request and Response objects. Both contain a cookies collection. The Request object cookie collection contains a read-only list of the names and values of all cookies sent to the server as part of the current request. For example, to get the EMailAddress cookie out of the incoming cookie collection (assuming it was stored as part of a previous response), you could use the following Active Server Page script:
+        <P>
+<PRE class=clsCode>Email = Request.Cookies(&quot;EmailAddress&quot;)
+        </PRE>
+        <P>To add or change the EmailAddress cookie, set the value in the Response object's cookie collection:
+        <P>
+<PRE class=clsCode>Response.Cookies(&quot;EmailAddress&quot;) = dennis@microsoft.com
+</PRE>
+        <P>If the EMailAddress cookie already exits in the response's cookie collection, the above statement will change the cookie's value. If a cookie with the name EmailAddress did not already exist, a new cookie will be created.
+        <P>The cookies collection can also support keys, or what some people call sub-cookies. For example, a list of a user's favorite links could be stored in a client-side cookie using the following ASP script:
+        <P>
+<PRE class=clsCode>Response.Cookies(&quot;Link&quot;)(&quot;1&quot;) = &quot;www.microsoft.com&quot;
+Response.Cookies(&quot;Link&quot;)(&quot;2&quot;) = &quot;www.intel.com&quot;
+Response.Cookies(&quot;Link&quot;)(&quot;3&quot;) = &quot;www.discovery.com&quot;
+</PRE>
+        <P>Internet Explorer will not write a cookie to disk unless you explicitly specify an expiration date. You set a cookie's expiration date using the <b>Expires</b> property:
+        <P>
+<PRE class=clsCode>Response.Cookies(&quot;EmailAddress&quot;) = dennis@microsoft.com
+Response.Cookies(&quot;EmailAddress&quot;).Expires = &quot;June 1, 1999&quot;
+</PRE>
+        <P>Supplying an expiration date causes the browser to save the cookie on the client computer. Once the cookie is written to disk, the cookie will be offered back to the server as part of any HTTP request to the same host until it expires. If an expiration date is not specified, the cookie lives only for that browser session. Once the user exits the browser, the cookie is gone.
+        <P>Cookies also have <b>Path</b> and <b>Domain</b> properties. If a cookie's domain is unspecified, the domain portion of the requested URL is used. The cookie is then offered along with any future HTTP request on that domain. By setting the <b>Domain</b> property to something other than the default, a cookie can be created in one domain, and offered along with HTTP requests on another.
+        <P>If <b>Path</b> is unspecified, the path to the current ASP application is used. On a large Web site, where different developers are responsible for different areas, it is difficult to share the same cookie namespaces across all content areas. By setting the cookie path to a specific area within a site, the namespace can be narrowed.
+        <P>For example, a company may have two separate sites, one for marketing and one for research. The marketing Web located at www.someones53company.com/marketing may use a cookie called Count to track the number of products a visitor is interested in receiving e-mail about. The research Web, located at www.someones53company.com/research, may also use a cookie called Count to track the number of products the user has researched. Both cookies are called Count, but are independent. (Please read this <a href="webfarm3.htm#disclaim">disclaimer about fictitious site URLs</a>.) Because they share a common cookie namespace, the marketing cookie would overwrite the research cookie each time the user visited the marketing Web, and vice versa.
+        <P>To solve this problem, use the <b>Path</b> property. By setting the cookie path, you tell the browser that the cookie should only be offered along with HTTP requests on that path.
+        <P>
+        <PRE class=clsCode>' on the marketing Web
+Response.Cookies(&quot;Count&quot;) = 5
+Response.Cookies(&quot;Count&quot;).Expires = &quot;June 1, 1999&quot;
+Response.Cookies(&quot;Count&quot;).Path = &quot;/marketing&quot;
+
+' on the research Web
+Response.Cookies(&quot;Count&quot;) = 2
+Response.Cookies(&quot;Count&quot;).Expires = &quot;April 6, 1998&quot;
+Response.Cookies(&quot;Count&quot;).Path = &quot;/research&quot;
+        </PRE>
+        <P>This allows both cookies to share the same domain without overwriting each other. Any cookies common to marketing and research can be created without a path, and would still be available in each site.
+        <P>Note that beginning with Internet Explorer 4.0, the cookie path is case sensitive. Thus, if the cookie path is set to &quot;/research&quot; and the URL contains /Research (uppercase R), Internet Explorer 4.0 will not offer the cookie to the server.
+        <P>Up to 4,096 bytes of information can be safely stored in a client cookie, which often limits their usefulness. One solution is to compress the data before stashing it in the cookie. By compressing the data first, you are able to increase the cookie's capacity while reducing the time it takes to transfer it to the client.
+        <P>Another major concern with cookies is security. Since the entire contents of the cookie are sent to the server with each request, cookies are not suitable for storing sensitive user information. If you use Secure Sockets Layer (SSL), you can encrypt the contents of the HTTP request and response (including the cookie), but using SSL can have a significant impact on performance. In addition, since the cookie might be needed on every page within a site, SSL would also have to be enabled on every page.
+        <P>
+        <h3><A NAME="balance"></A>Session-Aware Load Balancing
+        </h3>
+        <P>While there are plenty of cases where cookies alone can be used to maintain session state, sophisticated Web sites often need to store information that cannot be accommodated by cookies. In those cases, session-aware load balancing may be the answer. Session-aware load balancing refers to the practice of routing all HTTP requests from a particular session to the same Web server. As long as the same server handles all requests for a given session, IIS' Session object can handle state-management simply and efficiently.  Session-aware load balancing can be accomplished either through software or hardware techniques.
+        <P>There are several advantages to the session-aware load-balancing approach:
+        <UL>
+        <LI> IIS' built-in session-management techniques can be used, and applications that rely on them can be migrated to a Web farm easily.
+        <LI> Session state is maintained on the Web server handling the HTTP request, so access to session information is fast and efficient.
+        <LI> The information maintained in session state can be of any data type, including object references. Other techniques that require persistence may not be able to store object references (this is particularly useful when storing references to Active Server components, for example).
+        <LI> The task of maintaining state is distributed among all servers in the Web farm, so no one computer can become a bottleneck.
+
+        </UL>Session-aware load-balancing also has some disadvantages:
+        <UL>
+        <LI> It is difficult or impossible to consolidate state information across all servers in the farm. For example, if the state information contained each visitor's hometown, it would be very difficult to generate a consolidated demographics report of the user population.
+        <LI> HTTP requests are not evenly balanced among all servers. Once a user makes an initial request to a particular Web site, all subsequent requests are handled by the server that handled the first request. This continues until the session expires or the user closes their browser. (This is usually not that big an issue, because over time each server will get an equal distribution of users.)
+        <LI> Users that &quot;bookmark&quot; their favorite sites will end up marking a specific server in the farm, rather than the site itself. This presents a problem if the server that the user has bookmarked happens to be down. Instead of being routed to a different Web server in the farm, the user will get a &quot;Host not found&quot; error (although this will not occur when session-aware load balancing is handled with a <A HREF="webfarm3.htm#sesshw">special router</A>).
+
+        </UL>
+        <h4>Session-aware load balancing with software
+        </h4>
+        <P>
+        There are a number of ways to implement session-aware load balancing with software. This section describes one approach that forces all requests for a given session to be handled by the same Web server.
+        <P>A typical Web farm consists of two or more servers that service a common logical-DNS host name. A DNS round-robin scheme balances the request load among the servers in the farm. For example, the DNS name home.microsoft.com might be resolved to one of five different Web servers named home1.microsoft.com, home2.microsoft.com, &#133;, home5.microsoft.com.
+        <P>When the HTTP request is received at one of the physical hosts, the server  redirects the request to itself (or, alternatively, uses an Active Server component to route the request to the server with the lowest CPU utilization) using its physical host name (home3.microsoft.com) rather than the logical host name of the Web farm (home.microsoft.com). All subsequent requests to relative URLs by that browser are handled by the same physical host (home3.microsoft.com). As long as all hyperlinks reference relative URLs, the browser will assume the URL is on the same host, and will submit the request to that host for processing.
+        <P>This technique requires a site to use only relative-URL hyperlinks within its documents. Once an absolute URL is encountered, the browser may then go back to the DNS server to resolve the host name again. Depending on how long it's been since the initial request, the client may still have the original host still in its cache. If the client does go back to the DNS server, though, it's back to round-robin name resolution, and, unless the user is lucky enough to have the DNS name resolved to the same physical host, their session information is lost.
+        <P>The best place to handle the redirection from logical host to physical host is in the <b>Session_OnStart</b> event. The <b>Session_OnStart</b> event handler can be added to an application's Global.asa file. This event handler is called each time a new session is started by ASP. Within the <b>Session_OnStart</b> event, the HTTP request can be redirected using the <b>Response.Redirect</b> method. For example:
+        <P>
+<PRE class=clsCode>&lt;% Response.Redirect(Request.ServerVariables(&quot;SERVER_NAME&quot;)%&gt;
+</PRE>
+        Once redirected, it's business as usual until an absolute URL is encountered. Of course, hyperlinks to other hosts should still use absolute URL hyperlinks. Only hyperlinks on the same logical host are restricted to using relative URL hyperlinks.
+        <P>At first glance, this approach may seem somewhat restrictive. After all, it requires Web developers to strictly adhere to the relative-URL rule. In the long run, however, the simplicity of this solution, and the fact that IIS' Session object can be used, make this solution very appealing.
+        <P>For more information on session-aware load balancing, see <A HREF="../../../workshop/server/asp/active.htm">ASP and Web Session Management</A> by Michael Levy.
+        <P>
+        <A NAME="sesshw"></A><h4>Session-aware load balancing with hardware
+        </h4>
+        <P>
+        Another way to accomplish session-aware load balancing is with the help of an intelligent router (such as <a href="http://www.cisco.com/warp/public/751/lodir/index.shtml" TARGET="_top">Cisco's LocalDirector</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH=17 HEIGHT=11 ALT="Non-SBN link">).
+        <P>Intelligent routers allow a group of servers to appear as a single virtual server. The IP address of the virtual server is registered with the DNS server, while the IP addresses of the servers themselves remain unpublished. When the virtual server receives incoming requests, the router distributes the requests to one of them. The entire group of servers thus appear to the client as a single server.
+        <P>These routers also support fail-over and a variety of sophisticated session-distribution algorithms. One feature of Cisco's LocalDirector, for example, is the ability to establish &quot;sticky&quot; connections. Sticky connections ensure that the same client gets the same server for multiple connections. Using the <b>sticky</b> command, the router can be configured to allow connections to remain sticky for a certain period of time. If the sticky interval is set to 5 minutes, then all requests from a specific client will be routed to the same server until the client is idle for a period of 5 minutes. Once the 5-minute sticky interval has elapsed, any new connections from that client are routed to whatever server is selected, based on the distribution algorithm in effect.
+        <P>Using sticky connections, clients are automatically routed to the same server in the Web farm until the sticky interval has elapsed. This allows Web developers to again use the IIS' Session object, even though their application resides in a Web farm.
+        <P>One precaution should be mentioned with this approach. When Cisco's LocalDirector is used in combination with IIS for session-aware load-balancing in a Web farm, it is important to make sure that the sticky interval for the router matches or exceeds the timeout interval for the Session object. By default, the Session object timeout is set to 20 minutes. The timeout interval can be changed to 15 minutes by adding the following line to the Global.asa file.
+        <P>
+        <PRE class=clsCode>&lt;% Session.Timeout = 15 %&gt;
+        </PRE>
+        <P>The sticky interval on the router can be changed with the <b>sticky</b> command.
+        <P>For more information, contact Cisco directly, or visit the <a href="http://www.cisco.com/warp/public/751/lodir/index.shtml" TARGET="_top">LocalDirector</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH=17 HEIGHT=11 ALT="Non-SBN link"> site.
+
+        <P><A HREF="webfarm3.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+        <p>
+        <h3><A NAME="central"></A>Centralized State Management
+        </h3>
+        <P>
+        The only true server-side-only solution to the session-state problem is to move session management to a server accessible by all the other servers in the farm. Maintaining state on such a central server can take a few different forms.
+        <P>One approach is to maintain state information in a separate relational-database server such as Microsoft SQL Server. Each user would have a unique identifier stored in a client-side cookie. The unique identifier serves as a key to the user's information in the database. When a browser makes a request from the site, the Web server uses the key stored in the cookie to retrieve the user's state information from the database server. When a new user visits the site for the first time, the Web server detects the absence of the cookie, generates a new key, and creates the necessary database record.
+        <P>The Microsoft Personalization system uses another approach. Instead of using a  database, the Personalization System uses the file system on the central server.
+
+        <P>
+        <h4>Microsoft Personalization System
+        </h4>
+        <P>
+        A more sophisticated way to maintain state information in a Web farm is to use the Personalization System that comes with Microsoft <A HREF="http://www.microsoft.com/siteserver/default.asp" TARGET="_top">Site Server</a>.  The Personalization System has a User Property Database that stores information specific to particular users. This database is a good place to store session state, as session state is typically  short-lived.
+        <P>Unlike the Session object exposed by Active Server Pages, the User Property Database is a persistent store written to disk on a common network share. In the case of a single Web server, the User Property Database can be housed in the same physical server as the Web server. A typical configuration in a Web farm calls for a dedicated server to house the User Property Database. As demand increases, the User Property Database can be partitioned across multiple servers to distribute load.
+        <P>The Personalization System also supports &quot;hot backup&quot; of the User Property Database. In the event of a failure on the server containing the User Property Database, the backup unit can immediately take over.
+        <p><img src="updiag.gif" width="282" height="360">
+        <p>
+        <b>Figure 1. Multiple Web servers with User Property Database partitioned across multiple file servers</b>
+        <P>Developers access the User Property Database through the User Property Database component placed on each Web server when the Personalization System is installed. The User Property Database component is an ASP component that exposes the necessary methods for accessing and updating information in the User Property Database. A User Property Database object must be created on any ASP page that needs access to the database. Once created, all user information previously saved in the User Property Database is available to the ASP page. Any user information added or updated during the course of processing the ASP request is automatically written back to the User Property Database.
+        <P>The User Property Database object uniquely identifies each user by automatically generating a globally unique identifier (GUID) for all users on their initial visit. The GUID is then used as a key for storing information in the User Property Database. The GUID is returned to the client as part of the HTTP response, and is stored as a cookie on the client's machine. When the user returns to the same host, the browser automatically packages the cookie in the header of the HTTP request. The User Property Database object on the server checks for the existence of the cookie in the HTTP request to determine if the request is from a new or existing user. If the cookie is present, the request is from an existing user, and the object is initialized with the information specific to that user. If the cookie is missing, then ASP assumes the request is from a new user, and a new GUID is generated. In all cases, the process of identifying the user and initializing the User Property Database object is hidden from the ASP developer. The User Property Database object handles the mapping internally. If developers have another way to identify users, the Personalization System allows them to specify their own key instead.
+        <P><img src="updiag2.gif" width="426" height="317"><p>
+        <b>Figure 2. Two Web servers handling successive HTTP requests from the same user</b>
+        <P>Figure 2 above demonstrates how the User Property Database object handles back-to-back HTTP requests from the same user. When the Web server receives the initial request, the script within the ASP page on the server creates a User Property Database object. Once created, the object reads the user's information from the server containing the database. During processing, the script may add or update information in the object. When the page finishes executing, the object writes the information back to the database. A different Web server within the Web farm may handle a subsequent request by the same user. When the other Web server receives the subsequent request, ASP creates another instance of the User Property Database object. Once again, the object is initialized with the updated information from the server containing the database. The information exposed by this instance of the object reflects any changes made in the previous request. Additional changes may be made within the scripts that are again written back to the database when the page finishes executing.
+        <P>
+        <h4>Using the User Property Database
+        </h4>
+        <P>
+        To access the User Property Database, a developer must first create an instance of the User Property Database object. This is done by calling the <b>Server.CreateObject()</b> method, and passing it <b>MSP.PropertyDatabase</b> as the ProgId:
+        <P>
+<PRE class=clsCode>&lt;% &#133; Set UPD = Server.CreateObject(&quot;MSP.PropertyDatabase&quot;) %&gt;
+        </PRE>
+        <P>Once created, information can be obtained from the User Property Database object by accessing its item collection:
+        <P>
+<PRE class=clsCode>&lt;%
+ If UPD.Item(&quot;BeenHere&quot;) Then
+ Response.Write &quot;Welcome back &quot; &amp; UPD.Item(&quot;UserName&quot;)
+ Else
+ Response.Redirect(&quot;Register.asp&quot;)
+ End If
+%&gt;
+       </PRE>
+        <P>Information can be added or updated in the User Property Database simply by setting values in the objects item collection:
+        <P>
+<PRE class=clsCode>&lt;%
+ UPD.Item(&quot;fname&quot;) = Request.Form(&quot;fname&quot;)
+ UPD.Item(&quot;lname&quot;) = Request.Form(&quot;lname&quot;)
+ UPD.Item(&quot;address&quot;) = Request.Form(&quot;address&quot;)
+%&gt;
+</PRE>
+        <P>Database fields can be assigned a default value with the following syntax:
+        <P>
+        <PRE class=clsCode>&lt;% UPD.Defaults(&quot;bkg=ffbb88&quot;) %&gt;
+&lt;body bgcolor = &lt;% =UPD(&quot;bkg&quot;) %&gt;
+</PRE>
+        <P>As long as the names of the form fields match the field names in the User Property Database, values entered in response to a form can be added to the User Property Database with one call to the <b>LoadFromString()</b> method.
+        <P>
+        <PRE class=clsCode>&lt;% UPD.LoadFromString(Request.Form) %&gt;
+        </PRE>
+        <P>The Item collection can also be used to store multivalue properties. For example, a list of favorite links might be stored in the user property database like this:
+        <P>
+        <PRE class=clsCode>&lt;%
+ FavoriteLinksCount = UPD.Item(&quot;FavoriteLinks&quot;).Count
+ For i = 1 To FavoriteLinks.Count
+%&gt;
+ &lt;A href = &quot;&lt;%= UPD.Item(&quot;FavoriteLinks&quot;)(i) %&gt; &quot;&gt;
+ &lt;%= UPD.Item(&quot;FavoriteLinks&quot;)(i) %&gt; &lt;/A&gt;
+&lt;%
+ Next
+%&gt;
+</PRE>
+        <P>As is the case with any distributed solution, there is a latency issue to deal with. If the User Property Database resides on a dedicated file server, access to the information may not be as fast as it would be if the data were kept locally. One way to reduce the latency is to access the User Property Database less often. There also is the latency associated with having to create a new instance of the User Property Database component on every page that needs to access the state information. Unlike IIS's Session object, the User Property Database is not intrinsic, and therefore has to be created before it can be used. Some large sites have found that storing state information in cookies temporarily, and then periodically writing that information to the User Property Database, works best.
+
+        <P>
+        <h3>More information about Site Server
+        </h3>
+        <P>
+        The User Property Database is just one feature of the Personalization System. The Personalization System also includes components for sending mail and site-wide voting. Likewise, Site Server contains much more than just the Personalization System. Site Server also includes a content replication system, Web publishing tools, and a set of advanced site-analysis tools. For more information about Site Server, visit the <A HREF="http://www.microsoft.com/siteserver/default.asp" TARGET="_top">Site Server product site</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH=17 HEIGHT=11 ALT="Non-SBN link">.
+        <P><A HREF="webfarm3.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+        <p>
+        <h2><A NAME="conclude"></A>Conclusion
+        </h2>
+        <P>In this paper, we've discussed state management in a Web farm where two or more servers are used to host a single site. We've looked at several possible approaches to managing session state, including building stateless applications, storing session state on the client, using session-aware load-balancing, and storing session state on a central computer using Microsoft's Personalization System.
+        <P>
+        <a name="disclaim"><b>Disclaimer</b><br>The names of companies, products, people, characters, and/or data mentioned herein are fictitious and are in no way intended to represent any real individual, company, product, or event, unless otherwise noted.
+        <P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg08574.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="webfarm3.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

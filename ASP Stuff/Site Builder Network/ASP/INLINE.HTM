@@ -1,0 +1,626 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: The In-Line HTML Editor</TITLE>
+
+<META NAME="Description" CONTENT="The In-Line HTML Editor serves as a tutorial for learning the concepts of ASP and VBScript, and writing components using DLLs written in Visual Basic." />
+<META NAME="Keywords" CONTENT="ASP, HTML, in-line editor" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Kannan Ramasubramanian" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg04379.htm#/workshop/server/asp/inline.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg04379.htm#/workshop/server/asp/inline.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg04379.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="EDITOR" IDX_TYPE="task" IDX_CONCEPT="stopindex;Using in-line HTML editor to preview and edit HTML">In-Line HTML Editor</A></H1>
+<HR SIZE="1" />
+<h4>A sample Active Server Pages (ASP) application that allows content developers to use HTTP to preview and edit HTML</h4>
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP applications, in-line HTML editor"></A></H6>
+
+<P>Kannan Ramasubramanian
+<br>
+Aslan Computing, Inc.
+<P>April 3, 1997
+
+<P>
+<a href="inline.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word format (zipped, 154K)</a>.
+<P><h2>Abstract</h2>
+<P>The In-line HTML Editor is an application based on the Active Server Pages (ASP) technology. The Editor serves as a tutorial for learning the concepts of ASP and Visual Basic&#174; Scripting Edition (VBScript), and writing components using DLLs written in Visual Basic. It is also a complete application that can be deployed on a small Internet/intranet Web site to edit and preview HTML content on the Web server.
+<P><b><A NAME="top"></A>Contents</b>
+<br><A HREF="inline.htm#INTRO">Introduction</A>
+<BR> <A HREF="inline.htm#APP">The Application</A>
+<BR> <A HREF="inline.htm#COMM">The Communication Process</A>
+<BR> <A HREF="inline.htm#BUILD">Building the Application</A>
+<BR> &nbsp;&nbsp;&nbsp;<A HREF="inline.htm#ASP">The ASP and HTML Files</A>
+<BR> &nbsp;&nbsp;&nbsp;<A HREF="inline.htm#VB">The Visual Basic Files</A>
+<BR> <A HREF="inline.htm#IMPROVE">Potential for Improvement</A>
+<BR> &nbsp;&nbsp;&nbsp;<A HREF="inline.htm#REFRESH">Refreshing the Right Frame</A>
+<BR> &nbsp;&nbsp;&nbsp;<A HREF="inline.htm#SECURITY">Improving Security</A>
+<BR> &nbsp;&nbsp;&nbsp;<A HREF="inline.htm#CONTROLS">Adding ActiveX Controls</A>
+<BR> &nbsp;&nbsp;&nbsp;<A HREF="inline.htm#ERROR">Error Checking</A>
+<BR> <A HREF="inline.htm#INSTALL">Installing the In-line HTML Editor</A>
+<P><h2><A NAME="INTRO" IDX_TYPE="sbngen" IDX_CONCEPT="In-line HTML editor, overview">Introduction</A></h2>
+<P>Web content developers certainly appreciate feature-rich client-side applications (such as Microsoft&#174; FrontPage&#153;) that help them create functionally sophisticated pages. However, it is also often desirable to have a simple, scaled-down application that allows developers to edit Web pages on the Web server itself. I built the In-line HTML Editor with this goal in mind, based on my experiences as a Webmaster who needed to provide a way for HTML developers to edit existing content on a Web site. Moving the bulk of the editing work from the client to the server allowed me to implement this functionality, thereby providing an open client access mechanism.
+<P>The In-line HTML Editor allows a content developer to request a URL in the form &quot;http://<i>internet-name</i>/sample.htm&quot;.
+ The browser displays a standard HTML form that prompts the content developer for the URL of the file that needs editing, for example, /whatsnew/index.htm. The server then launches a frames-based HTML page that shows the requested Web page in the right frame and the HTML code for the page in the left frame. The developer can edit the HTML code on the left, press the Save File button, and preview the changes made by refreshing the frame on the right. 
+<P>The In-Line HTML Editor uses Active Server Pages (ASP) in conjunction with Internet Information Server (IIS) version 3.0. The server-side application also includes an OLE Automation server for file functions that are not natively provided by the ASP technology. 
+<P>In addition to serving as a worthwhile exercise in ASP, Visual Basic&#174; Scripting Edition (VBScript), and OLE Automation, the In-Line HTML Editor is a simple but useful application. All you need is a browser that supports frames, and voila! You can fix HTML bugs on a Web site while sitting in a caf&#233;, sipping cappuccino -- blissfully unaware of FTP and network drive connection hassles!
+<P>To install the In-line HTML Editor, follow the  <A HREF="inline.htm#INSTALL">instructions</A> provided at the end of this article.
+<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2><A NAME="APP"></A>The Application</h2>
+<P>The In-line HTML Editor resides on the Web server, along with your CGI and ISAPI scripts. The application allows content developers to edit HTML content residing on the server using only a frames-capable browser, without having to download the HTML files locally to their machines.
+<P>In Figure 1, the left frame shows the HTML code for the page shown on the right. The content developer enters the Web server relative path to the file that needs editing.
+<P>
+<IMG SRC="screen.gif" BORDER="0" WIDTH="450" HEIGHT="401" ALT="In-line HTML Editor Screen">
+<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2><A NAME="COMM" IDX_TYPE="sbngen" IDX_CONCEPT="In-line HTML editor, editing process">The Communication Process</A></h2>
+<P>The editing process (shown in Figure 2) consists of ten steps:<OL><LI>   The whole process begins with a frames-capable browser requesting a URL in the form &quot;http://<i>internet-name</i>/edit.asp?/mydoc.htm&quot;, where &quot;mydoc.htm&quot; is the URL of the HTML file that needs to be edited.<LI>   This request is received by IIS, which calls the Active Server Pages service because of the filename extension (.ASP). <LI>   The ASP service parses edit.asp and executes the script embedded in the file. <LI>   During the process, the ASP service communicates with our FileProps OLE server (written in Visual Basic 4.0) to execute some basic file I/O operations. <LI>   Once the ASP service has determined that the requested file (mydoc.htm) does indeed exist and is accessible for write operations, it retrieves the file from the disk.<LI>   The ASP service then creates a frames-based HTML page in which the left frame contains a text box with the HTML code, and the right frame renders the requested file (mydoc.htm). <LI>   The ASP service then passes the processed edit.asp file to IIS. (By this time, all the scripts have been parsed and the resulting file is plain old HTML.)<LI>   IIS sends the generated HTML file to the browser. <LI>   At this point, the content developer can edit the HTML code in the text box and press the Save File button.<LI>    As a last step, the content developer refreshes the frame on the right (by right-clicking in the frame and choosing &quot;Refresh&quot;). Abracadabra! The change is reflected in the right frame.
+</OL>
+<P>
+<IMG SRC="flow.gif" BORDER="0" WIDTH="479" HEIGHT="289"  ALT="In-line HTML Editor Screen">
+<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2><A NAME="BUILD" IDX_TYPE="sbngen" IDX_CONCEPT="In-line HTML editor, building">Building the Application</A></h2>
+<P>Let's take a closer look at the files involved in the application to understand how the In-line HTML Editor works.
+<P><h3><A NAME="ASP"></A>The ASP and HTML Files</h3>
+<P>
+<TABLE CLASS=clsRef WIDTH=75% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE>
+<TH BGCOLOR=#A6CAF0 ALIGN=LEFT><B>Filename</B></TH>
+<TH BGCOLOR=#A6CAF0 ALIGN=LEFT><B>Purpose</B></TH>
+</TR>
+
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b><b>Filename</b></b></TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Purpose</b></TD></TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>global.asa</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>The global declarations file for ASP.
+</TD></TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>edit.htm</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>The initial forms-based HTML file that accepts the URL to edit.
+</TD></TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>index.asp</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ASP application file for creating frames-based HTML.
+</TD></TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>main.asp</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>The main application file that retrieves the source to the HTML file to edit, displays it in the textbox for editing, and saves it when the user clicks the Save File button.
+</TD></TR>
+</TABLE><P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h4><A NAME="GLOBAL" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, global declarations file for">global.asa</A></h4><P>As in any other programming language, one of the most important files in an application that uses server-side scripting is the global declarations file. This file <b>must</b> be called global.asa and reside in the same directory with all the other application pages. This file is used to declare all global, session-wide, and application-wide variables. It also houses function modules that allow us to insert code to do housekeeping tasks when the application or a session starts and stops.<P>The code listing below shows the variable declarations necessary for our application. We have declared three variables -- <i>filename_value</i>, <i>URL_tofile</i>, and <i>myText </i>-- as session variables. We placed these variables in the <b>Session_OnStart()</b> subroutine so they would be initialized to empty strings every time a session starts.<P><b>Listing 1: global.asa</b><P><PRE class=clsCode>
+&lt;SCRIPT LANGUAGE=VBScript RUNAT=Server&gt;
+ SUB Session_OnStart
+ 
+   session(&quot;filename_value&quot;)=&quot;&quot;
+   session(&quot;URL_tofile&quot;)=&quot;&quot;
+   session(&quot;myText&quot;)=&quot;&quot;
+
+ END SUB
+&lt;/script&gt;
+</PRE><P>A complete explanation of session and application variables is beyond the scope of this article. More information is available in the online documentation (Active Server Pages Roadmap) provided with Internet Information Server (IIS) version 3.0. Suffice it to say that these variables are made available to our application across various ASP pages on a &quot;per-session&quot; instance. I'll explain the use of these variables in detail in the sections below.<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h4><A NAME="EDIT"></A>edit.htm</h4><P>This is the initial file that serves as the entry point into the application. The user invokes this file to start editing content on the server. <P>A cursory glance at Listing 2 below reveals a humble HTML form page with a text box that accepts a string into a variable named <i>URLname</i>. The ACTION parameter is set to &quot;index.asp". Note the .ASP extension. This is the cue for IIS to invoke the Active Server Pages component. We will dissect the index.asp file later in this article. Note the hidden variable <i>calledFromEdit</i> that is being passed from the form. This is our application's little flag that gets passed on just to make sure that the application is being called the right way, from the correct entry points.<P><b>Listing 2: edit.htm </b><P><PRE class=clsCode>
+&lt;HTML&gt;
+&lt;TITLE&gt;In-line HTML editor&lt;/TITLE&gt;
+
+&lt;FORM METHOD=POST ACTION=&quot;index.asp&quot;&gt;
+
+&lt;P&gt;
+&lt;HR&gt;
+&lt;B&gt;Please type in the Web-relative pathname of the file
+you want to edit (for example: /in-line/result.htm).&lt;/B&gt;
+&lt;P&gt;
+&lt;INPUT TYPE=HIDDEN NAME=&quot;calledFromEdit&quot; VALUE=&quot;True&quot;&gt;
+&lt;INPUT TYPE=TEXT NAME=&quot;URLname&quot; SIZE=50&gt;&lt;P&gt;
+&lt;P&gt;
+&lt;INPUT TYPE=SUBMIT VALUE=&quot;Edit and View&quot;&gt;
+&lt;P&gt;
+&lt;HR&gt;
+
+&lt;/FORM&gt;
+
+&lt;/HTML&gt;
+</PRE><P>The next file of interest is index.asp, which is called to ACTION by the form above.<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h4><A NAME="INDEX"></A>index.asp</h4><P>
+
+
+<P>In index.asp (see listing 3.a), we see the NULL error handler, which tells the ASP component to ignore any errors in execution and proceed. The first execution block in the application checks the value of the <i>calledFromEdit</i> variable, which we passed from edit.htm with a value of True. This check tells the application whether it has been invoked correctly. If the check returns False, we use the META tag in HTML to redirect the browser back to edit.htm. The application then proceeds to store the URL of the file (after forcing a leading /) and the absolute path of the file (using the <b>mappath()</b> method of the server component) as session variables, thus making them accessible to the entire application.<P>
+<b>Listing 3.a: index.asp </b><P>
+<PRE class=clsCode>
+&lt;% 
+   on error resume next
+%&gt;
+
+&lt;HTML&gt;
+&lt;TITLE&gt;In-line HTML editor&lt;/TITLE&gt;
+
+&lt;%
+   REM Make sure that index.asp is called only by edit.htm.
+   if Request.Form(&quot;calledFromEdit&quot;) &lt;&gt; &quot;True&quot; then %&gt;
+      &lt;B&gt;&lt;I&gt;
+&lt;%
+   REM If not, print out a message and automatically point 
+   REM the browser to edit.htm.
+   response.write(&quot;Beg your pardon. You cannot enter unescorted. Please wait.&quot;)
+   REM The following line is necessary for browsers that do not
+   REM support META tags.
+   response.write(&quot; &lt;BR %\&gt;Or click &lt;A HREF=edit.htm %\&gt;here&lt;/A %\&gt;.&quot;)
+   response.write(&quot;&lt;META HTTP-EQUIV=REFRESH CONTENT=3;URL=edit.htm %\&gt;&quot;)
+%&gt;
+      &lt;/B&gt;&lt;/I&gt;
+&lt;%
+      response.end
+   end if
+%&gt;
+
+&lt;%
+      REM Get the URLname field from the previous form into a 
+      REM local variable.
+      temp_file=Request.Form(&quot;URLname&quot;)
+
+      ' force a leading slash
+      if left(temp_file,1) &lt;&gt; &quot;/&quot; then
+         temp_file = &quot;/&quot; &amp; temp_file
+      end if
+      REM Store the variable as a session variable so that
+      REM we can have access to it across the entire
+      REM application.
+      session(&quot;URL_tofile&quot;)=temp_file
+      REM Get the absolute drive mapped path to the URL
+      REM into a session variable.
+      session(&quot;filename_value&quot;)=server.mappath(temp_file)
+%&gt;
+</PRE>
+
+
+
+<P>We then add several features that are not provided by ASP to the application (see 
+    listing 3.b). For example, we need a method to verify the existence of a file on the server. The component-based architecture of IIS and ASP allows us to make our own components using other tools and development environments (for example, Visual C++&#174; or Visual Basic) and call these components from our application, so that's precisely what we did. Using Visual Basic 4.0, we created an OLE server called fileprops.dll and registered it on the server. The OLE server makes our own file functions that are not included in ASP's built-in component list available to the application. We shall learn more about the OLE server as we proceed.
+
+<P><b>Listing 3.b: index.asp, cont'd </b>
+<P><PRE class=clsCode>
+&lt;%
+   REM Call FileProps OLE server to check if file exists.
+   Set FileProps = Server.CreateObject(&quot;MS.FileProps&quot;) 
+   findOut=FileProps.FindFile(session(&quot;filename_value&quot;)) 
+   if findOut = 0 then %&gt;
+      &lt;B&gt;&lt;I&gt;
+&lt;%
+      REM If the file does not exist, take the browser back to
+      REM edit.htm to choose another file to edit.
+      response.write(&quot;The file &quot;)
+      session(&quot;filename_value&quot;)
+      response.write(&quot; does not exist. Please wait while you are taken back&quot;)
+      response.write(&quot; &lt;BR %\&gt;or you may click &lt;A HREF=edit.htm %\&gt;here&lt;/A %\&gt;.&quot;)
+      response.write(&quot;&lt;META HTTP-EQUIV=REFRESH CONTENT=3;URL=edit.htm %\&gt;&quot;)
+%&gt;
+      &lt;/B&gt;&lt;/I&gt;
+&lt;%
+      response.end
+   end if
+%&gt;
+</PRE>
+
+
+
+<P>Once the check for the existence of the requested file has been carried out, we either point the browser back to edit.htm or proceed with the application, depending on the result of the check.<P>
+<P>The last step (Listing 3.c below) is to create the frames-based HTML page with two frames appearing side by side. We call the URL for the requested file so that it appears in the right frame, and we invoke main.asp to display in the left frame.<P><b>Listing 3.c: index.asp, cont'd </b><P><PRE class=clsCode>
+&lt;% 
+REM If the file does exist and is accessible, create the frames 
+REM page with the URL to the file on the right, and our 
+REM main.asp application page on the left.
+%&gt;
+
+&lt;FRAMESET COLS=&quot;50%,50%&quot;&gt;
+  &lt;FRAME SRC=&quot;main.asp&quot; NAME=&quot;left-frame&quot;&gt;
+  &lt;FRAME SRC= &quot;&lt;%= session(&quot;URL_tofile&quot;)%&gt;&quot; NAME=&quot;right-frame&quot;&gt;
+&lt;/FRAMESET&gt;
+&lt;/HTML&gt;
+</PRE><P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h4><A NAME="MAIN"></A>main.asp</h4><P>
+<P>Listing 4.a starts off with a check for a variable named <i>myhname</i>. This check tells us whether this application is being invoked by itself (that is, if we have already been through this particular application page) or not. If the check evaluates to False, we use the "textstream" component of ASP to open the requested HTML file for "read" access and read in the contents of the file, line by line, into a session variable named <i>myText</i>.
+<P><b>Listing 4.a: main.asp </b>
+<P><PRE class=clsCode>
+&lt;%
+On Error Resume Next
+
+If Request.Form(&quot;myhname&quot;) = &quot;&quot; Then
+
+   REM If this is the first time the form is being invoked, then read 
+   REM contents of HTML file into variable.
+   session(&quot;myText&quot;) = &quot;&quot;
+
+   REM Open the URL specified in the earlier edit.htm file for 
+   REM reading.
+   Set FileObject = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;)
+   Set InStream = FileObject.OpenTextFile(session(&quot;filename_value&quot;), 1, FALSE, FALSE)
+
+   REM Read the entire contents of that file into a variable.
+   session(&quot;myText&quot;) = InStream.ReadLine
+   do while not InStream.AtEndOfStream
+      session(&quot;myText&quot;) = session(&quot;myText&quot;) &amp; chr(10) &amp; Instream.ReadLine
+   loop
+   REM Close the file.
+   Set Instream=Nothing
+%&gt;
+</PRE>
+
+<P>After reading in the content, we create a standard form-based HTML page (Listing 4.b) with a text area, and fill in the text area with the <i>myText</i> variable, which now contains the content of the HTML page to be edited. The form also has a button called "Save File" of type "Submit" (a standard HTML feature), which invokes the application specified in the &lt;FORM ACTION&gt; tag, which, in our case, is the current application (main.asp). This is typical of ASP: By calling an application within itself, we can respond to different triggers and actions, thus creating completely dynamic content.
+<P>Note that when we need to display HTML tags within an HTML page (in our application, we show the contents of an HTML file within the text area of another HTML page), we need to code special characters such as "&lt;" and "&gt;" to make sure that the browser does not treat them as actual HTML tags. This is the reason we translated all instances of "&lt;" and "&gt;" to "&amp;lt;" and "&amp;gt;" in the code below.<P>Because this application serves both as the form and as the action, we pass the hidden variable <i>myhname</i> to indicate which pass we are currently on.<P>
+<b>Listing 4.b: main.asp, cont'd </b>
+<P><PRE class=clsCode>
+&lt;HTML&gt;
+&lt;TITLE&gt;In-line HTML editor&lt;/TITLE&gt;
+
+&lt;FORM METHOD=POST ACTION=&quot;main.asp&quot;&gt;
+
+Here is the HTML of 
+&lt;B&gt;
+&lt;%response.write(session(&quot;URL_tofile&quot;))%&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+&lt;/B&gt;
+&lt;P&gt;
+
+&lt;TEXTAREA NAME=&quot;Text_Area&quot; Rows=&quot;10&quot; COLS=&quot;60&quot; &gt;
+&lt;%
+REM Read the text one character at a time and write into HTML
+REM with necessary formatting for handling special characters.
+
+%&gt;
+&lt;% for i = 1 to len(session(&quot;myText&quot;))
+   if mid(session(&quot;myText&quot;),i,1)=&quot;&gt;&quot; then
+      myChar=&quot;&amp;gt;&quot;
+   else
+      if mid(session(&quot;myText&quot;),i,1)=&quot;&lt;&quot; then
+         myChar=&quot;&amp;lt;&quot;
+      else
+         myChar=mid(session(&quot;myText&quot;),i,1)
+      end if
+   end if
+   response.write(myChar)
+   next 
+%&gt;
+&lt;/TEXTAREA&gt;
+&lt;P&gt;
+&lt;INPUT TYPE=HIDDEN NAME=&quot;myhname&quot; VALUE=&quot;hvalue&quot;&gt;&lt;BR&gt;
+&lt;P&gt;
+&lt;INPUT TYPE=SUBMIT VALUE=&quot;Save file&quot;&gt;
+&lt;P&gt;
+&lt;HR&gt;
+Go &lt;A HREF=&quot;edit.htm&quot; target=&quot;_parent&quot;&gt;back&lt;/A&gt; 
+   and edit another file.
+&lt;/FORM&gt;
+&lt;/HTML&gt;
+</PRE>
+<P>If the <i>myhname</i> variable check evaluates to True (see 
+Listing 4.c), we know that the user has pressed the Save File button on our form. We then proceed to read in the contents of the text area, which the user may have modified, open the requested HTML file for write access, and write in the contents of the text area, which has been modified and submitted by the user. We can now refresh the frame on the right to see the new version of the HTML file with all the editing changes implemented.
+ <P><P><b>Listing 4.c: main.asp, cont'd </b></FONT>
+<P><PRE class=clsCode>
+
+Else
+
+   REM If form has been submitted previously,
+   REM reset the hidden variable to make Active Server think 
+   REM that the form has not been submitted.
+   response.form(&quot;myhname&quot;)=&quot;&quot;
+
+   REM Check to see if the text area is blank.
+
+   If Request.Form(&quot;Text_Area&quot;) = &quot;&quot; Then 
+      REM If it is, just substitute empty content with 
+      REM &lt;HTML&gt;&lt;/HTML&gt;.
+      text_area_content=&quot;&lt;HTML&gt;&lt;/HTML&gt;&quot;
+   Else
+      REM Otherwise, get the text from the text area into a 
+      REM variable.
+      text_area_content=request.form(&quot;Text_area&quot;)
+   End if
+
+
+      session(&quot;myText&quot;) = text_area_content
+
+      REM Write the contents of the text area to the actual HTML 
+      REM file that is being displayed in the right frame.
+      REM Open the absolute filename for writing in ASCII. 
+      REM Overwrite if it exists.
+
+      Set MyFileObject = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;)
+      Set OutStream = MyFileObject.CreateTextFile(session(&quot;filename_value&quot;), TRUE, FALSE)
+
+      REM Write in the contents of the text area.
+      OutStream.WriteLine text_area_content
+      REM Close the text file.
+      Set Outstream=Nothing
+End If 
+%&gt;
+
+</PRE>
+
+ <P>
+ <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h3><A NAME="VB"></A>The Visual Basic Files</h3><P>In addition to the four files we described above, the In-line HTML Editor has a Visual Basic OLE server component called fileprops.dll.<P><h4><A NAME="FILEPROPS"></A>fileprops.cls</h4><P>The most important and almost only piece of code in the FileProps OLE server is the <b>FileProps </b>class module (fileprops.cls).<P>As is evident from Listing 5 below, this is probably the most simple and scaled-down DLL one can possibly develop. We simply create a function called <b>FindFile</b>, which calls the Visual Basic <b>Dir() </b>function to check for the existence of a file on the system. If the check evaluates to NULL (that is, if the file does not exist), the function returns 0; else it returns 1. This function can now be called from any application as long as we can make a DLL out of our <b>FileProps</b> application and register it on the server.<P><b>Listing 5: fileprops.cls </b><P><PRE class=clsCode>
+Public Function FindFile(fileName As String)
+    If Dir(fileName) = &quot;&quot; Then
+        FindFile = 0
+    Else
+        FindFile = 1
+    End If
+    
+End Function
+ </pre>
+<P>When we tie all the components discussed above together, we have a complete application that can be implemented on any server running IIS 3.0.
+<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2><A NAME="IMPROVE" IDX_TYPE="sbngen" IDX_CONCEPT="In-line HTML editor, add-ons">Potential for Improvement</A></h2>
+<P>Although we managed to build a fairly simple, yet useful application in a relatively short period of time, we barely scratched the surface of the Active Server Pages technology. The following ideas are provided as suggestions for application developers who wish to build on top of our current In-line HTML Editor application.
+<P><h3><A NAME="REFRESH"></A>Refreshing the Right Frame</h3>
+<P>When you use the In-line HTML Editor, you will run into a bug I never got around to fixing: When you edit the HTML file and press the Save File button, the right frame does not change. In other words, you need to do a manual browser refresh in the right frame to reflect the editing changes you made. This fix is left as an exercise for the reader.
+<P><b>Tip:</b> You could use the HTML &lt;META&gt; tag or maybe some scripting to change this behavior.
+<P><h3><A NAME="SECURITY"></A>Improving Security</h3>
+<P>A key feature that should be added to this application before you use it in a production environment is enhanced security. Currently, the In-line HTML Editor uses native IIS user privileges, which rely on the Windows NT&#174; user database for security. Since the In-line HTML Editor allows content developers to edit content directly on the server, security has to be foremost in the minds of system administrators. You will need to ensure that users who aren't responsible for changing or deleting content on the site do not have access to the application.
+<P><h3><A NAME="CONTROLS"></A>Adding ActiveX Controls</h3>
+<P>What's a site without an ActiveX&#153; control or two? ActiveX controls make a site dynamic and more appealing to users. This application could really use some ActiveX controls to spice it up. Here are my recommendations:
+<P><b>Search.</b> Since we are trying to replace content developers' favorite HTML editing mechanism (Notepad), it is only fair that we provide them with nearly everything that Notepad includes. The major features of Notepad that are missing from our application are Find, Find Next, and Replace. With a little bit of VBScripting and a button/menu control, you could add these features to our little editor and provide nearly complete Notepad functionality.
+<P><b>Text box control.</b> Another good touch would be to dispense with the TEXTAREA box provided by HTML and replace it with a regular text box control, to provide resizing, menu bars, pop-up menus, and other features.
+<P><b>File browser.</b> One final change I'd recommend is to add a tree/browser control that would allow users to choose the file that needs to be edited (instead of prompting the user for a URL). This way, the user does not need to know the URL to the file to be edited, and the application becomes easier to use.
+<P><A NAME="ERROR"><h3></A>Error Checking</h3>
+<P>Error checking and recovery are extremely important in a Web application developed using ASP, as they are to any other application. The current In-line HTML Editor contains almost no error-handling routines. Before you deploy the application in a production environment, I would recommend adding extensive error checking and recovery mechanisms using VBScript's inherent error-trapping features (for example, ON ERROR).
+<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2><A NAME="INSTALL" IDX_TASK="sbngen" IDX_CONCEPT="In-line HTML editor, installing">Installing the In-line HTML Editor</A></h2>
+<P>Follow these steps to install the In-line HTML Editor on your system:
+<OL><LI>   Make sure you are running IIS 3.0 (or IIS 2.0 with ASP).
+<P>
+<LI>   Download the self-extracting archive from the Aslan Computing Inc. Web site at  <A HREF="http://www.aslaninc.com/" target="_top">http://www.aslaninc.com</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">.
+<P>
+<LI>   Create a directory called <b>in-line</b> under the Web root of your Web server machine.
+<P>
+<LI>   Copy the downloaded file to that directory and execute the file.
+<P>This will create the .ASP, .ASA, and .HTM files in the directory. It will also create two subdirectories -- <b>FileProps </b>and <b>Source</b> -- under the <b>in-line</b> directory. The <b>FileProps </b>directory contains the installation files for the OLE server, and the <b>Source</b> directory contains the Visual Basic project source files for the OLE server. 
+<P>
+<LI>   From the FileProps directory, run setup.exe.
+<P>This will install and register the FileProps DLL on your server.
+<P>
+<LI>   Point your browser to http://<i>Your-server-name-or-IP-address</i>/in-line/edit.htm.
+</OL>Now you're all set to use the In-line HTML Editor.
+<P> <A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2>Comments?</h2>
+<P>Please send comments and suggestions about the In-line HTML Editor to  <A HREF="mailto:kanna@aslaninc.com">kanna@aslaninc.com</A>. I would also like to hear about other modifications and feature additions that you decide to make to the application.
+
+<i>Kannan Ramasubramanian graduated from the Government College of Technology, India, with a B.S. in Computer Technology. Currently working with Aslan Computing Inc. located in Palo Alto, CA, as a network consultant, he provides Internet/intranet solutions and Web-related development and services to clients.</i>
+<P>
+<P>
+
+<P>
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00270.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="inline.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

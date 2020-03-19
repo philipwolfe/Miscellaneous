@@ -1,0 +1,49 @@
+[version]
+signature	= "$CHICAGO$"
+AdvancedINF=2.5,"IE4 or greater is required for these web accessories"
+
+[DefaultInstall]
+CopyFiles 	= HtmFiles,InfFiles
+AddReg  	= MenuExtReg,UninstallReg
+
+[DefaultUninstall]
+DelFiles 	= HtmFiles,InfFiles,DefFiles
+DelReg   	= MenuExtReg,UninstallReg,UninstallKeys
+
+[DestinationDirs]
+HtmFiles    = 10,web
+InfFiles    = 10,inf
+DefFiles    = 10,inf
+
+[SourceDisksNames]
+55="Install Directory","",1
+
+[SourceDisksFiles]
+wdtools.htm=55
+wdtools.inf=55
+
+[HtmFiles]
+wdtools.htm
+
+[InfFiles]
+wdtools.inf
+
+[MenuExtReg]
+HKCU,"Software\Microsoft\Internet Explorer\MenuExt\%MenuTitle%",,,"%10%\web\wdtools.htm"
+
+; menu keys
+HKLM, "Software\Microsoft\Internet Explorer\Extensions\{438AFBA1-B1CB-11d2-9214-00104B3BCE5F}","CLSID",,"{1FBA04EE-3024-11D2-8F1F-0000F87ABD16}"
+HKLM, "Software\Microsoft\Internet Explorer\Extensions\{438AFBA1-B1CB-11d2-9214-00104B3BCE5F}","MenuText",,%MenuTitle%
+HKLM, "Software\Microsoft\Internet Explorer\Extensions\{438AFBA1-B1CB-11d2-9214-00104B3BCE5F}","MenuStatusBar",,%UninstallName%
+HKLM, "Software\Microsoft\Internet Explorer\Extensions\{438AFBA1-B1CB-11d2-9214-00104B3BCE5F}","Script",,"%10%\web\wdtools.htm"
+
+[UninstallReg]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\wdtools","DisplayName",,"%UninstallName%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\wdtools","UninstallString",,"rundll32.exe advpack.dll,LaunchINFSection %10%\inf\wdtools.inf,DefaultUninstall"
+
+[UninstallKeys]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_view"
+
+[Strings]
+MenuTitle = "Web Dev Tool Frame"
+UninstallName = "Web Developer Tool Frame"

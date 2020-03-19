@@ -1,0 +1,647 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: ASP Feature Overview</TITLE>
+
+<META NAME="Description" CONTENT="An overview of features of ASP technology with links to more detailed information." />
+<META NAME="Keywords" CONTENT="IIS, ASP, Web applications" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Ron Wodaski" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="08/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg00569.htm#/workshop/server/asp/aspfeat.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg00569.htm#/workshop/server/asp/aspfeat.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg00568.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="top1" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, feature overview">ASP Technology Feature Overview</A></H1>
+<HR SIZE="1" />
+
+<P>Ron Wodaski
+<BR>Microsoft Corporation
+<P>August 27, 1998
+<P><a href="aspfeat.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 55.5K)</a>.
+<P> <b>Contents</b>
+<br> <A HREF="aspfeat.htm#intro">Introduction</A>
+<BR> <A HREF="aspfeat.htm#topic1">Language Independence</A>
+<BR> <A HREF="aspfeat.htm#topic3">Development with Scripts </A>
+<BR> <A HREF="aspfeat.htm#topic5">Built-in and Installable Objects</A>
+<BR> <A HREF="aspfeat.htm#topic6">Databases and Cookies</A>
+<BR> <A HREF="aspfeat.htm#topic8">Transactions on the Web</A>
+<BR> <A HREF="aspfeat.htm#topic9">Isolated Processes</A>
+<BR> <A HREF="aspfeat.htm#topic4">Security</A>
+<BR> <A HREF="aspfeat.htm#topic7">Creating Client/Server Web Applications</A>
+<BR>
+<P>
+<H2><A NAME="intro"></A>Introduction 
+</H2>
+This article provides an overview of Active Server Pages (ASP) technology, a technology made available by Internet Information Server (IIS). The ASP features described in this article are available in IIS version 4.0. After walking through the highlights of ASP features, I provide a section on how those features fit together to create client/server Web applications.
+<P>Although links to further information are provided in each section, I recommend further reading overall in the  <A HREF="http://www.microsoft.com/isapi/goprem.asp?TARGET=/msdn/library/sdkdoc/iishelp/iis/htm/sdk/eadg_7f90.htm" target="_top">IIS 4.0 SDK documentation</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (click "view in frame").
+<H2><A NAME="topic1"></A>Language Independence 
+</H2>
+Active Server Pages (ASP) technology is language-independent. Two of the most common scripting languages are supported right out of the box: VBScript and JScript&#153;. Support for other scripting languages, such as Perl, is available. Whatever scripting language you use, you can simply enclose script statements in special delimiters for ASP. The starting delimiter is <b>&lt;%</b>, and the closing delimiter is <b>%&gt;</b>. Delimiters are discussed further in  <A HREF="aspfeat.htm#topic3">Development with Scripts</A>.
+<P>
+<H3>VBScript
+</H3>
+<P>Using VBScript on the server in an ASP page isn't very different from using it in applications or on ordinary Web pages. Nearly all of the VBScript commands are available for use on the server. VBScript commands that interact with the user, however, are not available. For example, imagine a command that opens a dialog box on the server. No one is around to dismiss it, and the system can do nothing until someone dismisses it!
+<P>The VBScript statements that present user interface elements are <b>InputBox</b> and <b>MsgBox</b>. In addition, the VBScript function <b>CreateObject</b> is replaced by a method of the <b>Server</b> object. This is necessary to track the object instances on the server side. You can add comments to your script just as you normally do. However, you cannot add comments inside an output expression. An output expression is an expression or value that is evaluated and written to the Web page. It is contained within the delimiters <b>&lt;%=</b> and <b>%&gt;</b>.
+<P>
+<H3>JScript
+</H3>
+<P>The rules for using JScript are very similar to those for VBScript. The delimiters are the same, for example. As with VBScript, you cannot use user interface statements such as the Alert statement. 
+<P>The way you use JScript on the server side is nearly identical to the way you use it on the client side. As on the client side, JScript on the server is case-sensitive. The rules for case in server-side scripts are:
+<UL>
+
+
+<LI> The names of objects must be capitalized 
+<LI> Method and property names can be any case 
+<LI> When in doubt, use the case shown in the references in the  <A HREF="../../../workshop/author/default.htm" TARGET="_top">DHTML, HTML & CSS area of SBN Workshop</A> (click &quot;show contents&quot; on the home page). 
+
+</UL>You can also add support for other scripting languages, such as Perl, to IIS. See the  <A HREF="http://www.microsoft.com/isapi/goprem.asp?TARGET=/msdn/library/sdkdoc/iishelp/iis/htm/sdk/eadg_7f90.htm" target="_top">IIS SDK documentation</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (click "view in frame").
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic3"></A>Development with Scripts  
+</H2>
+Scripting languages are great for creating applications quickly. Compared to formal programming languages, you generally need far fewer lines of script to accomplish a task. Now that  <A HREF="../../../workshop/author/default.htm" TARGET="_top">Dynamic HTML</A> and the  <A HREF="../../../workshop/author/om/dom.htm">Document Object Model</A> have arrived, you can even combine server-side and client-side scripting to quickly develop a prototype of your ideas.
+<P>Or perhaps you simply want to serve Web pages that are sensitive to the features supported by a particular browser version. This applies to different versions of a single browser (Internet Explorer 3.
+<i>x</i> and 4.0, for example), different operating systems (Windows&#174; and UNIX, for example), and to completely different browsers (such as Navigator and Internet Explorer). You can create scripts that are appropriate for each browser, and invoke the appropriate commands to serve pages uniquely suited to the features of any browser. The Browser Capabilities object provides detailed information about the features supported for each browser version. For example, you can design an application for Internet Explorer 4.0 that displays different HTML code for down-level browsers such as Internet Explorer 3.02, or for alternate browsers, such as Netscape Navigator. This enables you to maintain one set of content pages, with conditional browser detection for features on different browsers built right into each page.
+<P>You can do a lot of development with scripts. You can incorporate business rules, for example, into a complete client/server or multitiered business application such as a telemarketing sales application. Or you can simply verify that a visitor has been to your site before and recall preferences for that user.
+<P>
+<H3>HTML to the Rescue
+</H3>
+<P>One way to think about ASP pages is that they are really just HTML pages with extra stuff added. You can develop your basic pages the way you always have -- as Web pages, and add the appropriate scripting for whatever browsers or business rules you require. You can:
+<UL>
+
+
+<LI> Create Web pages that detect the browser in use, and display properly for that particular browser or browser version 
+<LI> Re-use HTML on a variety of pages, and avoid duplication of effort 
+<LI> Develop complete applications that work over the Web using forms and the advanced scripting potential of ASP 
+
+</UL>
+<H3>Converting to ASP
+</H3>
+<P>It couldn't be easier to convert an existing HTML page to an ASP page -- just change the extension from .htm/.html to .asp. Of course, it won't be a <i>meaningful</i> ASP page until you add some scripting commands. The .asp filename extension enables IIS to parse and execute the scripts in your files.
+<P>Keep in mind that IIS and ASP run on Windows NT&#174; Server. You can create an intranet that functions in your local area network, or serve pages across the Internet by connecting your server to the Internet. You can integrate any of the IIS 4.0 features into your ASP pages, such as using Microsoft Transaction Server to safely commit or abort transactions that span multiple computers.
+<P>
+<H3>Easy Delimiters for Several Languages
+</H3>
+<P>If you have any experience with Visual Basic&#174;, Visual Basic for Applications, Visual Basic Scripting Edition (VBScript), JScript, or JavaScript, you can build Active Server Pages with a scripting language you already know. This means you can be up and running with ASP quickly. The key is to place ASP scripts in delimiters:
+<UL>
+
+
+<LI> Embed your script commands within the delimiters: <b>&lt;%</b> and <b>%&gt;</b> 
+<LI> Feed variables to the page using a special form of the starting delimiter:<b>&lt;%=</b> 
+
+</UL>For example, to add the current date and time to a page:
+<P>
+<PRE><FONT FACE="COURIER" SIZE="2">&lt;HTML&gt;
+&lt;BODY&gt;
+&lt;P&gt;The current date and time on the server: &lt;%= Now %&gt;.&lt;/P&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+</FONT></PRE>
+<P>The result will look like this: 
+<P>The current date and time on the server: 8/24/98 11:40:02 AM.
+<P>You can use various script statements to control what appears on the Web page. The following example shows how to change the output based on the time of day, but you can use any conditional statement with whatever criteria (user's name, current database record, script language supported by the visitor's browser, and so forth) to control output to the Web page.
+<P>
+<PRE><FONT FACE="COURIER" SIZE="2">&lt;%
+If Time &gt;= #12:00:00 AM# And Time &lt; #12:00:00 PM# Then
+strGreeting = &quot;Good Morning!&quot;
+Else
+strGreeting = &quot;Hello!&quot;
+End If
+%&gt;
+&lt;P&gt;&lt;%= strGreeting %&gt;&lt;/P&gt;
+</FONT></PRE>
+<P>Two styles for using delimiters are shown in the above code sample. The five lines of code that constitute the If statement are set off from the delimiters using line breaks. The variable <i>strGreeting</i> in the last line of the sample is a single line, and is enclosed within delimiters on the same line. As a general rule, your code will be more readable if you follow these two style rules:
+<UL>
+
+
+<LI> If there is more than one line of script, put the starting and ending delimiters on separate lines. Indent the code from the left margin at least two spaces for clarity. 
+<LI> If there is only one line of script, put the starting and ending delimiters on the same line. Leave a space before and after the script for clarity. 
+
+</UL>For more information, see  <A HREF="aspconv.htm">ASP Programming Conventions</A> in the SBN Workshop.
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic5"></A>Built-In and Installable Objects 
+</H2>
+Most of the functionality you can build into an ASP page comes from objects on the server. IIS 4.0 comes with some built-in objects, as well as a number of installable objects. You can also use objects created by a developer you know, or create and use your own objects.
+<P>
+<H3>Built-In Objects
+</H3>
+<P>Six objects come built-in with IIS 4.0. These objects enable your pages to communicate effectively with the server, the application, the current session, and the user:
+<UL>
+
+
+<LI> <b>Request object</b> -- Gets information from the user. You can get FORM data, read cookies, and so forth. 
+<LI> <b>Response object</b> -- Sends information to the user. You can send text to the page, redirect to another URL, and set cookies. 
+<LI> <b>Server object</b> -- Interacts with the server. You can access a database, read files, and find out about the capabilities of the browser. 
+<LI> <b>Session object</b> -- Enables you to manage information about the current session (each user has one session per open browser). 
+<LI> <b>Application object</b> -- Will store information for all sessions. 
+<LI> <b>ObjectContext object</b> -- Used for committing and aborting transactions (new in IIS 4.0)
+
+</UL>
+<H3>Using Built-In Objects
+</H3>
+<P>Use the built-in objects just like any other object in a script; by accessing properties, methods, and events. For example, the general format for using the Request object looks like this:
+<P>
+<PRE><FONT FACE="COURIER" SIZE="2">Request[.Collection](variable)
+</FONT></PRE>
+<P>Here is the Request object in action, being used to write a form field's value on a Web page:
+<P>
+<PRE><FONT FACE="COURIER" SIZE="2">&lt;P&gt;The value of 'strFirstName' is
+&lt;%= Request.Form(&quot;strFirstName&quot;) %&gt;&lt;/P&gt;
+</FONT></PRE>
+<P>The collections available for the Request object are:
+<UL>
+
+
+<LI> <b>ClientCertificate</b> -- The values of fields stored in the client certificate that is sent in the HTTP request 
+<LI> <b>Cookies</b> -- The values of cookies sent in the HTTP request 
+<LI> <b>Form</b> -- The values of form elements in the HTTP request body 
+<LI> <b>QueryString</b> -- The values of variables in the HTTP query string 
+<LI> <b>ServerVariables</b> -- The values of predetermined environment variables 
+
+</UL>
+<H3>Installable Objects
+</H3>
+<P>IIS 4.0 comes with a variety of installable objects, and you can also use your own custom objects on the server side. The installable objects include:
+<UL>
+
+
+<LI> <b>Ad Rotator</b> -- Rotates advertisements displayed on a page using a schedule 
+<LI> <b>Browser Capabilities</b> -- Gives you access to information about the client browser's capabilities, type, and version 
+<LI> <b>Database Access</b> -- Provides access to databases using ADO (ActiveX&#174; Data Objects) 
+<LI> <b>Content Linking</b> -- Creates tables of contents for Web pages, and links them sequentially like the pages of a book 
+<LI> <b>File Access</b> -- Provides access to file input and output 
+<LI> <b>Collaboration Data Objects for Windows NT Server</b> -- Provides the ability to send and receive messages from your Web page 
+
+</UL>
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic6"></A>Databases and Cookies 
+</H2>
+
+<H3>Data-Driven Web Pages
+</H3>
+<P>IIS 4.0 and ASP make it easy to access data and put it on a Web page. You can simply display data from an ODBC-compliant database, or you can use ASP to make decisions about what to display on Web pages. Here's the process:
+<OL>
+
+<LI>   <b>Create an ODBC Data Source</b> -- Specify a Data Source Name (DSN) in the server registry or in a file, and grant access to all users, specific users, or groups. 
+<LI>   <b>Make the Connection</b> -- Use the Connection object to point to a DSN, and create a Recordset object to gain interactive access to data. 
+<LI>   <b>Execute Queries</b> -- You can construct queries using standard SQL syntax. You can submit queries using Connection methods, Recordset methods, or with the Command object. 
+<LI>   <b>Reissue Queries</b> -- You can use the Command object to change query parameters and quickly resubmit the query. For example, you can INSERT a record into your database with a set of values, reset the values for the next record, insert it, and so on. The Command object makes it easy to construct valid queries, too, because it uses a parameter-driven interface that is easy to set up and maintain. 
+<LI>   <b>Access Data Using Forms</b> -- With forms, your users can perform queries, read data, change data, add records, and so forth. Thus you can create a complete client-server solution. Using the transaction features built into IIS 4.0, you can even create multitier business solutions on the Internet. 
+
+</OL>
+<H3>Cookies
+</H3>
+<P>You can use cookies, as well as session and application variables, to store and retrieve information. IIS makes cookie values available to you with the Request object's Cookies collection. You can set cookie values with the Response object. Because IIS sends all header information before the document content, you must set cookies before the &lt;HTML&gt; tag. For example, to check the value of a cookie, you can use this code:
+<P>
+<PRE><FONT FACE="COURIER" SIZE="2">&lt;%
+Dim strNameCookie
+strNameCookie = Request.Cookies(&quot;nameCookie&quot;)
+%&gt;
+</FONT></PRE>
+<P>and then set some session variables based on the cookie value. You can use default values if there is no <b>nameCookie</b>, or the existing cookie values if there is a <b>nameCookie</b>:
+<P>
+<PRE><FONT FACE="COURIER" SIZE="2">&lt;%
+If strNameCookie = &quot;&quot; Then
+Session(&quot;strDefaultPage&quot;) = &quot;&quot;
+Session(&quot;strDefaultLevel&quot;) = &quot;1&quot;
+Else
+Session(&quot;strDefaultPage&quot;) = Request.Cookies(&quot;pageCookie&quot;)
+Session(&quot;strDefaultLevel&quot;) = Request.Cookies(&quot;levelCookie&quot;)
+End If
+%&gt;
+</FONT></PRE>
+<P>For more information, see  <A HREF="../../../workshop/essentials/wteched98/dbwebapps.htm">Data-Driven Web Applications</A>.
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic8"></A>Transactions on the Web 
+</H2>
+PCs have become much more powerful recently, and so have servers. This makes multitier client/server computing possible. By arranging functionality into neat packages called transactions, it is possible to involve more than just the client and server computers in the process.  Thus the key to using the Internet for major application development is support for these transactions. This isn't easy to do, because transactions typically involve processes on multiple computers, and a method is needed to coordinate all those computers safely and reliably.
+<P>
+<H3>Transactions Explained
+</H3>
+<P>In very simple terms, a transaction acts like an international diplomat. For anything to happen in a transaction, every single party to the transaction has to agree that it is okay to proceed. The following table shows the parallels between the components that make up Microsoft Transaction Server and international diplomacy.
+<P>
+<TABLE WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><FONT FACE="ARIAL" SIZE=2><b>MTS Feature </b></FONT>
+</TD>
+
+<TD><FONT FACE="ARIAL" SIZE=2><b>Description </b></FONT>
+</TD>
+
+<TD><FONT FACE="ARIAL" SIZE=2><b>Diplomatic Equivalent</b> </FONT>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>IIS 4.0 and Microsoft Transaction Server </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Provide a runtime environment for transaction processing. </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Deciding on the negotiation location and size of the table to be used for the negotiations on the new treaty. </FONT>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Distributed Transaction Coordinator (DTC) </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Setting up coordinator software to oversee transactions. </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Selecting a diplomat to chair the meetings about the treaty. </FONT>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Distributed Processing </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Checking to make sure that every computer involved is ready to process a transaction. </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Robert's Rules of Order. </FONT>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Transaction List in the DTC </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Monitoring transactions to make sure they process correctly. </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Sending diplomatic pouches to and fro. </FONT>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Forcing transaction completion </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Manually committing or aborting transactions. </FONT>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><FONT FACE="ARIAL" SIZE=2>Shuttle Diplomacy used when talks break down and confusion reigns. </FONT>
+</TD>
+</TR>
+
+</TABLE>
+<H3>Transactions on the Internet
+</H3>
+<P>Transactions are the key to client/server and multitier applications on the Web. Microsoft Transaction Server monitors all aspects of a transaction, across all of the computers that are involved in the transaction. The Distributed Transaction Coordinator (DTC) monitors every aspect of every transaction on every computer involved. This two-way communication insures that the transaction gets completed, and that records of the transaction agree across all computers.
+<P>For example, consider an order entry system consisting of these key parts:
+<UL>
+
+
+<LI> <b>Database Server</b> -- A computer with the database describing the current inventory for a large, midwestern wholesale company. The computer is physically located at company headquarters in Indianapolis, IN. 
+<LI> <b>Transaction Server</b> -- A computer running Microsoft Transaction Server and IIS 4.0. The computer is physically located at the company's development satellite office in Peekskill, NY. 
+
+<LI> <b>Business Rules #1</b> -- A computer that runs the company's accounting and shipping software, as well as software to interface with the inventory database. The computer is physically located at the New York City offices of a firm that processes the company's financial information. 
+
+<LI> <b>Business Rules #2</b> -- A computer that serves the ASP Web pages as well as several software programs that interact with the inventory database, the accounting software, and the shipping software. The computer is physically located at the company's development satellite office in Peekskill, NY. 
+<LI> <b>Data Entry</b> -- There are over 250 computers used for data entry. The computers are physically located at multiple sites, including laptops carried by salespeople on the road. 
+<LI> <b>Data Monitoring</b> -- A computer on the desk of the CEO, which accesses data across a wide variety of databases and synthesizes the data into digestible summaries. The computer is physically located at company headquarters in Indianapolis, IN. 
+
+</UL>In the past, such a system would require extensive development time and installation of a variety of networking connections. By using Microsoft Transaction Server, IIS 4.0, ASP, and the Internet, development time and costs are greatly reduced. Cost reductions result from:
+<UL>
+
+
+<LI> <b>Simplified coding</b> -- ASP pages and scripts enable the company's existing developers to create the bulk of the functionality required. At the same time, interfaces to specialized software are built using conventional Windows technology. IIS 4.0 ties all the pieces together. 
+<LI> <b>Reduced interconnection hardware</b> -- The Internet supplies ready-made connectivity. 
+<LI> <b>Simplified maintenance</b> -- ASP and components work cooperatively, enabling you to script or program each portion of the solution using the appropriate tool. 
+<LI> <b>Quicker prototyping</b> -- The combination of scripting and Web pages enables the development team to deliver prototypes to the management team on a regular basis. Changes are integrated almost immediately. 
+
+</UL>For more information, see  <A HREF="../../../workshop/server/nextgen/iismts.htm">IIS 4.0 and MTS 2.0</A>.
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic9"></A>Isolated Processes 
+</H2>
+IIS 4.0 enables you to run each of your Web applications in an isolated process on the server. To isolate an application, select &quot;Run in separate memory space&quot; on the application directory's property box.  
+<P>
+<H3>What Does Isolation Do?
+</H3>
+<P>An isolated application runs in its own memory space on the server. This memory is available only to that specific application; no other application can access that memory space. If a problem develops in the application, there is no way for it to &quot;invade&quot; the memory space of other applications, or of any other software running on the server. Isolation prevents one application from dragging down other applications (or the server) if it crashes. It's a little like having multiple computers -- virtual machines -- running on one server.
+<P>
+<H3>Performance
+</H3>
+<P>Using isolated processes affects the performance of your applications. There are four scenarios available for process isolation: 
+<P><img src="asp3564b.gif" WIDTH="480" HEIGHT="320" ALT="[ASP3564B  43870 bytes ]">
+<P><b>Figure 1.  Process isolation options</b>
+<P>For more information, see the Active Server Components articles in the Server Technologies section and  <A HREF="../../../workshop/components/default.htm">Component Development</A> (click &quot;show contents&quot; from default.asp) section of SBN Workshop.
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic4"></A>Security 
+</H2>
+With the Security features of Windows NT and IIS, you can implement a security plan that is customized and very safe. 
+<P>
+<H3>Access and Identification
+</H3>
+<P>Windows NT Server 4.0 provides a high level of security for your Web services. The access permissions of Windows NT File System (NTFS) provides the foundation for Web security. You can define access for individual users or for groups of users, and provide a default level of access for general users. With NTFS, you can:
+<UL>
+
+
+<LI> <b>Secure Your Files</b> -- Create user accounts and assign users to groups 
+<LI> <b>Set Access Permissions</b> -- Set access permissions to files and folders for appropriate users and groups 
+<LI> <b>Configure Anonymous Access</b> -- Determine how anonymous users will interact with your site 
+<LI> <b>Grant and Deny Access</b> -- Determine which computers, groups of computers, or domains will have access to your site, folders, and/or files 
+<LI> <b>Set Web Server Permissions</b> -- Determine how users will interact with specific FTP and Web sites 
+<LI> <b>Use ASP for Access Control</b> -- Enable basic authentication, and use scripting to log on users 
+<LI> <b>Control Database Access</b> -- Use features of your database software and NTFS to control access to your database content 
+
+</UL>In addition, you can provide content ratings to warn users about objectionable content, and configure your Web server to use the powerful security features of Secure Sockets Layer (SSL).
+<P>
+<H3>Authentication
+</H3>
+<P>Once you have set permissions for your site, folders, and files, there are several ways to authenticate visitors to your Web site.
+<UL>
+
+
+<LI> <b>Basic Authentication</b> -- An industry-standard technique involving a browser-generated dialog for user authentication. While supported, this is not, in itself, a secure method of protecting your content. It is often used when only simple security measures are deemed necessary. 
+<LI> <b>Challenge/Response Authentication</b> -- Supported by Internet Explorer version 2.0 and later, this method verifies users without requiring the actual transmission of names and passwords across a network. This method works well on an intranet. 
+<LI> <b>SSL Client Certificates</b> -- Secure Sockets Layer 3.0 supports authentication by checking the contents of an encrypted digital ID (also called a certificate). The browser submits the ID during the logon process. 
+<LI> <b>Certificate Mapping</b> -- Windows NT Server 4.0 can map a client certificate to a Windows NT logon ID. 
+<LI> <b>Certificates for Anonymous Users</b> -- You can use certificates to determine which users are allowed an anonymous logon ID to the server. 
+<LI> <b>FTP Authentication</b> -- Set up user name/password for logging on via FTP. 
+
+</UL>
+<H3>Encryption
+</H3>
+<P>Encryption is a process that scrambles your content so that it is very, very difficult to unscramble -- unless you have a key, in which case it's easy and straightforward. When a user establishes a secure connection with your server, encryption is used to make the content unreadable to anyone who might be able to intercept it. This allows private information to stay private as it moves back and forth between client and server. You can use the Key Manager to create, import, and export SSL (Secure Sockets Layer) encryption keys.
+<P>For more information on security, see the  <A HREF="../../../workshop/security/default.htm" TARGET="_top">Security Technologies</A> (click &quot;show contents&quot; on default.asp) area of SBN Workshop and the  <A HREF="http://www.microsoft.com/security/" TARGET="_top">Microsoft Security Advisor site</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. For more information on IIS security, see  <A HREF="http://www.microsoft.com/seminar/98/iissecurity/portal.htm">IIS Security</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> and the  <A HREF="http://www.microsoft.com/seminar/98/iissupport/portal.htm">IIS Security FAQ</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P>
+<P><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+
+<H2><A NAME="topic7"></A>Creating Client/Server Web Applications 
+</H2>
+ASP technology makes it easy to create complete Web-based applications. You don't have to use the full breadth of ASP technology on your Web pages, of course; you can simply use ASP as a template language to create flexible, easy-to-maintain Web pages. Or you can create a client/server application: define a directory for the application, and all files in that directory (and in all of its sub-directories) exist as an application. Pages can communicate with each other, or with the application object. This is possible because you can persist selected information across a user session and/or the entire application as needed.
+<P>A typical application can include Web pages, databases, controls, server-side scripts, client-side scripts, multiple servers, and transactions. The first visitor to the application starts the application, and each visitor has a unique session. You can create just about any kind of application because of the multiple levels of control available to you: scripts, built-in ActiveX components, third-party components, custom components of your own, databases, and transactions.
+<P>Other key features of applications include:
+<UL>
+
+
+<LI> <b>Start/End Events</b> -- You can start and end applications as needed, with complete control over what occurs at both events. You can define subs or functions that run at the start and end of an application, enabling you to configure the application automatically each time it starts, or clean up each time it ends. 
+<LI> <b>Isolated Processes</b> -- You can run each application in its own process on the server. This protects applications from each other -- should one application go down, it would not take the server or other applications with it. 
+<LI> <b>Application Object</b> -- The Application object has its own properties and methods. You can set or read properties and use methods on any page that is part of the application. You can set variables with application scope when the application starts, and change them at run time as needed to indicate the application's current state. For example, you could store the number of current sessions in the Application object, and increment/decrement it as visitors come and go from your site. 
+
+</UL>For more information, see  <A HREF="../../../workshop/essentials/wteched98/dbwebapps.htm">Data-Driven Web Applications</A>.
+<P>
+<H3>Sessions and Web Applications
+</H3>
+<P>The Session object enables you to communicate effectively between the pages of your application, and to store information about visitors so you can easily retrieve it on their next visit.
+<P>Each visitor to your site has a Session object with a unique session ID. You can use the Session object to maintain information about that user during the session. The session ID is stored in a cookie, and you can add/read your own cookies as needed. You can use the session ID cookie to rebuild session information from one session to the next. For example, if a user visits your site and establishes preferences that you store in a database, you can use the session ID cookie to read the correct database information every time that visitor returns to your site. This makes it easy to create a &quot;personalized&quot; Web site.
+<P>You can store variables in the Session object that have session scope. That means you can access the variable from any page in the application that the user visits. You can also establish handlers for the session start and end events, integrate forms into your sessions, and so forth.
+<P>For more information, see  <A HREF="../../../workshop/server/feature/webfarm3.htm">Managing Session State in a Web Farm</A>.
+<P>
+
+<P>
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00567.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="aspfeat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

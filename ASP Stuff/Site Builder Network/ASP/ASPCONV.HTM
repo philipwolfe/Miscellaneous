@@ -1,0 +1,941 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: ASP Conventions</TITLE>
+
+<META NAME="Description" CONTENT="ASP Conventions for performance and efficiency" />
+<META NAME="Keywords" CONTENT="ASP, authoring conventions" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="IIS Resource Kit Team" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg00566.htm#/workshop/server/asp/aspconv.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg00566.htm#/workshop/server/asp/aspconv.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg00565.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="ASP" IDX_TYPE="task" IDX_CONCEPT="stopindex;Authoring efficient ASP code">ASP Conventions</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, authoring conventions"></A></H6>
+<P>IIS Resource Kit Team
+<BR>Microsoft Corporation
+<P>Posted March 17, 1998
+<P><P><a href="aspconv.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 13.6K)</a>.
+<P> 
+<P><b>Contents</b>
+<br> <A HREF="aspconv.htm#intro">Introduction</A>
+<BR> <A HREF="aspconv.htm#topic1">Using ASP in IIS</A>
+<BR> <A HREF="aspconv.htm#topic2">ASP Application Directory Structure</A>
+<BR> <A HREF="aspconv.htm#topic3">Filename Extension Standards</A>
+<BR> <A HREF="aspconv.htm#topic4">Connection Pooling</A>
+<BR> <A HREF="aspconv.htm#topic5">Visual Basic Applications as DLLs</A>
+<BR> <A HREF="aspconv.htm#topic6">Object and Variable Initiation</A>
+<BR> <A HREF="aspconv.htm#topic7">VBScript Conventions</A>
+<BR> <A HREF="aspconv.htm#topic8">HTML Conventions for ASP Pages</A>
+<P>
+<h2><A NAME="intro"></A>Introduction
+</h2>
+<P>The authors of the IIS Resource Kit have produced this document on ASP authoring conventions for Web developers. These conventions for developing Active Server Pages (ASP) promote script efficiency (fast application execution), efficient use of server resources, and consistent styles. These conventions are adapted from Appendix B, "ASP Standards" of the  <A HREF="http://mspress.microsoft.com/order/bookpage.asp?title_id=1398" target="_top">Internet Information Server Resource Kit</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">, published by Microsoft Press, 1998. The Resource Kit provides a wealth of information on ASP application development.
+<P>The ASP standards document (in HTML and Word format) is offered to assist with the adoption of ASP in your organization. If you have requirements to create standards before deploying new technologies, you can edit this document to fit your specific standards styles and adapt it to fit your in-house standards documentation.
+
+<P>Please send comments and suggestions for improving the next version of the Resource Kit to <a href="mailto:rkinput@microsoft.com">rkinput@microsoft.com</a>.
+
+<P>
+<P><A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+<h2><A NAME="topic1" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, using ASP in IIS: conventions for">Using ASP in IIS</A>
+</h2>
+<P>To make the most efficient use of your server resources, you should use the .asp filename extension only for pages that contain scripts.
+<P>
+<h3>Writing Scripts for Browsers
+</h3>
+<P>When possible, write scripts to be executed by the browser, rather than the server. By using the client platform to perform tasks such as data validation, edit-checking, and selecting simple conditional output, you can reserve server resources for those tasks requiring ASP.
+<P> <A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><P>
+<h2><A NAME="topic2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, application directory structure for">ASP Application Directory Structure</A>
+</h2>
+<P>The directory and file conventions suggested in this section optimize ASP application directory structure for consistency, clarity, and ease of use.
+<P>The directories and files described are listed here:
+<P>/Application_Root
+<P>Default.htm
+<P>Global.asa
+<P>/Classes
+<P>/Content
+<P>/Media
+<P>/Themes
+<P>/Data
+<P>/DLLs
+<P>/Helpers (not in the Web site directories identifiable to users)
+<P>
+<h3>Application Root Directory
+</h3>
+<P>For readability and clarity, the application root directory should be named in a way that conveys what the site is about. For example, a site about financial research might be named /FinancialResearch or /FR. Avoid application root names that might be misidentified as standard subdirectories of a site, such as /Media or /Content. Also, avoid names that sound like part numbers or codes, such as /FR98346A.
+<P>While the site is being developed, the application root directory should be stored under /InetPub/Wwwroot.
+<P>The root directory of every application should contain at least these files:
+<UL>
+
+
+<LI> Default.htm
+<LI> Global.asa
+
+</UL>Default.htm or Default.asp should be the default home page for the site, and the server default should be set accordingly. This combination enables users to find sites in your organization consistently, by typing the server address plus the application root directory name.
+<P>Global.asa contains scripts that affect the <b>Application</b> object and <b>Session</b> object. For example, Global.asa scripts make application- and session-scope variables available at startup. Global.asa should be present at the application root level for every ASP application.
+<P>
+<h3>/Classes Directory
+</h3>
+<P>The /Classes directory holds Java classes used by the application.
+<P>
+<h3>/Content Directory
+</h3>
+<P>The /Content directory holds all .htm files and all .asp files that may be run by a user of the site. The /Content directory has execute permissions. Keeping all scripted pages in this directory branch simplifies permissions management.
+<P>
+<h3>/Media Sub-directory
+</h3>
+<P>A sub-directory of the /Content directory, Media should contain sub-directories for sounds, images, animation files, .avi files, and similar items. An /Images sub-directory should contain bullets, buttons, icons, and others that are used throughout the application independently of changing themes.
+<P>
+<h3>/Themes Sub-directory
+</h3>
+<P>The /Themes directory is a sub-directory of the /Content directory. Establish a convention of using the /Themes directory to enable application-wide changes to the look of a site. The directory should contain style sheets, bullets, buttons, icons, rules, and similar items organized so that you can change the look of an application by changing any or all the theme-related items easily. Each item in the /Theme directory can be linked dynamically by setting an application variable to the image's virtual path. Themes are stored in Options.txt and assigned to the <b>Application</b> object in Global.asa.
+<P>
+<h3>/Data Directory
+</h3>
+<P>This directory should contain all database access information such as SQL scripts, file-based dataset names or other data needed by the application.
+<P>
+<h3>/DLLs Directory
+</h3>
+<P>This directory should contain COM server components and Visual Basic 5.0 run-time DLLs, such as Vbrun500.dll and Msvbvm50.dll.
+<P>
+<h3>Helper Files
+</h3>
+<P>Helper files are include files or text files that make information available across the application. For security reasons the directory containing helper files should not be stored in the published Web space (the Web site directories identifiable to users).
+<P> <A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><P>
+<h2><A NAME="topic3" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, filename extension standards for">Filename Extension Standards</A>
+</h2>
+<P>This section suggests conventions for standardizing on filename extensions, accounting for the types of files containing scripts, or HTML and scripts (VBScript or JScript) together.
+<P>
+<h3>Extensions for Page Files
+</h3>
+<P>Standards:
+<UL>
+
+
+<LI> .asp--for pages containing ASP scripts
+<LI> .htm--for straight HTML pages
+
+</UL>You must use the .asp extension for pages that contain ASP scripts. To save time and resources when serving pages, use the .htm extension for files that don't require server-side script execution.
+<P>
+<h3>Extensions for Included Files
+</h3>
+<P>Standards:
+<UL>
+
+
+<LI> .inc--for large amounts of data, with scripting, to be included in a page
+<LI> .txt--for text-formatted data files, without scripting, to be included in a page
+
+</UL>For consistency, use include files to make specific information available to more than one referring page (changes to include files are distributed to all the pages that include them).
+<P> <A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><P>
+<h2><A NAME="topic4" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, connection pooling conventions">Connection Pooling</A>
+</h2>
+<P>One of the potential bottlenecks in ASP application performance is connection management. If not managed properly, the opening and closing of connections can happen too frequently and can cause reduced server performance. Windows NT Server 4.0 features built-in support for Connection Pooling, maintaining connections optimally to achieve faster application performance and graceful timeout management with less coding effort.
+<P>To use ODBC connection pooling:
+<UL>
+
+
+<LI> Configure the driver for the database to which you are establishing a connection.
+<LI> Check the Windows NT registry to verify that Connection Pooling is on, and let it handle the connection logic.
+<LI> If Connection Pooling is off, use Regedit32 to turn it on in the Windows NT registry.
+<LI> Open individual connections--in your ADO code--just before you need data access on each individual page.
+<LI> Close your connections when the data access activities are complete.
+
+</UL>Enabling connection pooling involves setting the <b>CPTimeout</b> property. For descriptions and examples on how to configure the <b>CPTimeout</b> property in the registry, see <i>Internet Information Server Resource Kit,</i> Chapter 6, "Data Access and Transactions."
+<P> <A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><P>
+<h2><A NAME="topic5" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, Visual Basic applications as DLLs for">Visual Basic Applications as DLLs</A>
+</h2>
+<P>When you convert Visual Basic applications for use in ASP, they should be run as DLLs (components), rather than being converted to VBScript. Visual Basic DLLs will generally run more efficiently than scripts written in any scripting language. Encapsulate the Visual Basic code in DLLs and use <b>Server.CreateObject()</b>.
+<P>Visual Basic 5.0 should be used to create an ActiveX DLL that has its project properties set to Run in <b>Unattended Mode</b>, <b>Apartment Model Threaded</b>, and <b>Multi-instance</b>.
+<P> <A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><P>
+<h2><A NAME="topic6" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, object and variable initiation for">Object and Variable Initiation</A>
+</h2>
+<P>The following discussion focuses on initializing and setting dimensions for objects and variables to achieve speed of execution and efficient use of server resources.
+<P>
+<h3>Application-Wide Scope for Convenience
+</h3>
+<P>Information stored in variables with application-wide scope is in memory and is cached for access by any page in the application. Establish a convention to give application scope to variables used often within an application if the values do not change frequently.
+<P>Whatever the potential benefits, use caution in deciding whether or not to give application scope to an object. It can potentially affect performance and decrease reliability (your application could hang). For best results, use application scope for objects with threading marked BOTH, aggregating the <b>FreeThreadedMarshaler</b>.
+<P>
+<h3>Declaring Objects with the &lt;OBJECT&gt; Tag
+</h3>
+<P>For objects that may or may not be used in an application, it's often most efficient to declare the objects without instantiating them until the need to use them arises (until they are referenced). To declare an object without actually creating it, use the &lt;OBJECT&gt; tag on the page instead of <b>Server.CreateObject()</b>.
+<P>Another advantage to bear in mind is that the &lt;OBJECT&gt; tag uses CLASSIDs, which are unique and tend to eliminate name collisions. The PROGIDs used by <b>Server.Create.Object()</b> do not force unique names, creating the possibility of name collisions.
+<P>Also, the &lt;OBJECT&gt; tag is supported in Global.asa and can be used to define scope using SCOPE or SESSION as values.
+<P> <A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><P>
+<h2><A NAME="topic7" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, VBScript conventions for">VBScript Conventions</A>
+</h2>
+<P>The following suggested conventions apply to the development of ASP scripts written in Microsoft Visual Basic Scripting Edition (VBScript) and are designed to enhance consistency, performance, and reliability.
+<P>
+<h3>Comments in Scripts
+</h3>
+<P>Write consistent comment blocks near the top of each page listing, such as the filename, the group developing the file (not the person--e-mail should go to a group alias), the date developed, the HTML standard, and clear descriptions of all changes made.
+<P>Scripts that are commented out should be deleted unless they are placeholders, in which case they should be labeled as such.
+<P>Use comments to explain obscure or complex code. Do not leave a phrase such as the following without a comment:
+<P>
+<PRE class=clsCode>If Err = -214983642 Then
+</PRE>
+<P>Use comments to explain empty statements used as placeholders, such as:
+<P>
+<PRE class=clsCode>If...Then...Else...Endif
+</PRE>
+<P>
+<h3>Constant Names
+</h3>
+<P>To clearly distinguish constants from other elements, use all uppercase when naming them. An underscore can be used to separate terms when necessary.  Example:
+<P>
+<PRE class=clsCode>Const MIN_QUAL = 25
+</PRE>
+<P>
+<h3>Minimize Context Switching
+</h3>
+<P>For readability, try to minimize context-switching between HTML and scripts. When possible, use a few large blocks of script on a page instead of several scattered fragments.
+<P>
+<h3>Dictionary Object: Speed Access to Information
+</h3>
+<P>The VBScript <b>Dictionary</b> object enables fast lookup of arbitrary key/data pairs. Because the <b>Dictionary</b> object gives you access to array items by key, it is faster for finding items that are not in contiguous memory since you are specifying a key, rather than knowing where in the array the item is located.
+<P>Use the <b>Dictionary</b> object when you have set a high priority on fast searches of nonlinear data.
+<P>
+<h3>Delimiting Lines of Script for Readability
+</h3>
+<P>Lines of script should be blocked between a pair of delimiters, rather than written with delimiters on each line.
+<P>Instead of this:
+<P>
+<PRE class=clsCode>&lt;% strEmail = Session(&quot;Email&quot;) %&gt;
+&lt;% strFirstName = Request.Form (&quot;FirstName&quot;) %&gt;
+&lt;% strLastName = Request.Form (&quot;LastName&quot;) %&gt;
+</PRE>
+<P>Do this:
+<P>
+<PRE class=clsCode>&lt;%
+ strEmail = Session(&quot;Email&quot;)
+ strFirstName = Request.Form (&quot;FirstName&quot;)
+ strLastName = Request.Form (&quot;LastName&quot;)
+%&gt;
+</PRE>
+<P>For a single stand-alone line of script, keep the delimiters on the same line as the script.  Example:
+<P>
+<PRE class=clsCode>&lt;% strEmail = Session(&quot;Email&quot;) %&gt;
+</PRE>
+<P>If the line of script consists of an equal sign and a variable, make the equal sign part of the delimiter.  Example:
+<P>
+<PRE class=clsCode>&lt;%= strSubscrLName %&gt;
+</PRE>
+<P>Similarly, if the line of script specifies an ASP declarative, include the @ sign as part of the opening delimiter.  Example:
+<P>
+<PRE class=clsCode>&lt;%@ LANGUAGE = VBScript %&gt;
+</PRE>
+<P>
+<h3>Enable Session State Directive
+</h3>
+<P>Using the Enable Session State directive (set in Internet Services Manager) for your site enables the detailed tracking of user requests.
+<P>Save the resources used by IIS to process scripts for pages not using session state information by setting the Enable Session State directive to FALSE for those pages:
+<P>
+<PRE class=clsCode>&lt;%@ ENABLESESSIONSTATE = False %&gt;
+</PRE>
+<P>
+<h3>Language Default
+</h3>
+<P>Override the scripting language being used as the server's default language (VBScript) by using the @ language directive. For example, to ensure that the default language is JScript, put the following code at the top of each ASP page:
+<P>
+<PRE class=clsCode>&lt;%@ LANGUAGE = JScript %&gt;
+</PRE>
+<P>
+<h3>Layout Order of Scripts in ASP Pages
+</h3>
+<P>The following list summarizes the layout of VBScript scripts in an .asp file, <i>in order</i> <i>from</i> <i>top to bottom</i>.
+<UL>
+
+
+<LI> Specify language.
+<LI> Use <b>Option Explicit</b> statement.
+<LI> List function library includes.
+<LI> Declare page-scoped variables.
+<LI> Assign values to page-scoped variables.
+<LI> Code HTML and in-line scripting.
+<LI> List functions called by in-line scripts.
+
+</UL>The first two script statements should specify declaratives and <b>Option Explicit</b> to force explicit variable declaration.
+<P>Inline scripts with HTML markup should call objects of functions placed at the bottom of the page. The inline scripts should be short and readable, even if this requires splitting out procedures to be placed at the bottom of the page.
+<P>
+<h3>Blank Lines in Files
+</h3>
+<P>In general, use blank lines sparingly. You should remove all blank lines at the beginnings and ends of files, but may want to include one blank line between statements, to increase readability.
+<P>
+<h3>Object and Procedure Call Names
+</h3>
+<P>To clearly distinguish object names and procedure calls from elements such as variables, begin each object name or procedure call with a verb. Use initial capitalization for each term within an object name or procedure call. The following list suggests some naming conventions that could be used to name objects for some typical activities.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Name</b>
+</TD>
+
+<TD><b>Function</b>
+</TD>
+
+<TD><b>Example</b>
+</TD>
+<P>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>AddNew
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>add new records
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.AddNew</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Update
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>edit records
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.Update</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Remove
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>delete records
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.Remove</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Get
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>return row from database
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.GetNewest</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>List
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>return multiple rows
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.GetNew</b>
+</TD>
+</TR>
+
+</TABLE>
+<P>To limit criteria for methods that return information, use <b>From</b> and <b>For</b> with a method or function name.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Name</b>
+</TD>
+
+<TD><b>Function</b>
+</TD>
+
+<TD><b>Example</b>
+</TD>
+<P>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>GetFor
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>returns criteria-based row
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.GetForName</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ListFor
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>returns criteria-based multiple rows
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>Customer.ListForPeriod</b>
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<h3>Object Naming
+</h3>
+<P>As with variables and statements, used mixed case in naming objects, and in spelling out names of intrinsic objects. Capitalize the first letter of each term.
+<P>Use descriptive names for objects, even though this requires more characters per name.
+<P>The following example conforms to this convention (cnn prefixes an ADO connection variable, see "Variable Names" below):
+<P>
+<PRE class=clsCode>Set cnnSQL = Server.CreateObject(&quot;ADODB.Connection&quot;)
+Set cnnSQLServer = Server.CreateObject(&quot;ADODB.Connection&quot;)
+</PRE>
+<P>These do not conform:
+<P>
+<PRE class=clsCode>Set cnnS = Server.CreateObject(&quot;ADODB.Connection&quot;)
+Set cnnsql = Server.CreateObject(&quot;ADODB.Connection&quot;)
+</PRE>
+<P>
+<h3>Paths, using MapPath
+</h3>
+<P>Consider using <b>MapPath</b> instead of literal paths in ASP applications. The ASP <b>Server.MapPath</b> method allows you to physically relocate an ASP application without recoding scripts. This saves program modification and maintenance effort.
+<P>Performance is affected slightly, because every time you use <b>MapPath</b> in a script, IIS must retrieve the current server path. Consider placing the result of the method call in an application variable to avoid retrieving the server path.
+<P>
+<h3>Select Case Statement for Readability
+</h3>
+<P>For readability and efficiency, use the <b>Select Case</b> statement in place of <b>If...Else</b> to repeatedly check for the same variable for different values.  For example:
+<P>
+<PRE class=clsCode>Select Case intYrsService
+ Case 0 to 5
+  strMessage = &quot;You have ten days paid leave this year.&quot;
+ Case 6 to 15
+  strMessage = &quot;You have fifteen days paid leave this year.&quot;
+ Case 15 to 30
+  strMessage = &quot;You have twenty days paid leave this year.&quot;
+ Case 30 to 100
+  strMessage = &quot;Will you never leave?&quot;
+End Select
+</PRE>
+<P>
+<h3>Spaces in Scripts
+</h3>
+<P>To enhance script readability, use spaces consistently:
+<UL>
+
+
+<LI> Before and after operators, such as plus and equal.
+<LI> After commas, as when passing parameters.
+<LI> Exception: do not use spaces between arguments in ADO connection strings.
+
+</UL>
+<h3>Statement Styles
+</h3>
+<P>Each scripting language has its own conventions for capitalization, indentation, and other style-related characteristics. Since VBScript is case-insensitive, capitalization conventions can be created to improve readability, as the following suggestions illustrate.
+<P><b>If...Then...Else...End If </b>statements:
+<UL>
+
+
+<LI> Capitalize the first letter of If, Then, Else, and End If.
+<LI> Indent the clauses two spaces, or one tab.
+<LI> Put spaces at each end of an equal sign.
+<LI> Avoid using unnecessary parentheses.
+
+</UL>Correct example:
+<P>
+<PRE class=clsCode>&lt;%
+If Request(&quot;FName&quot;) = &quot;&quot; Then
+ Response.Clear
+ Response.Redirect &quot;test.html&quot;
+Else
+ Response.Write Request(&quot;FName&quot;)
+End If
+%&gt;
+</PRE>
+<P>Similarly, capitalize the first letters of function and subroutine statements, and indent their definitions 2 spaces.  Example:
+<P>
+<PRE class=clsCode>Sub SessionOnStart
+ Set Session(&quot;MyId&quot;) = Request.ServerVariables(...)
+End Sub
+</PRE>
+<P>As with variable names, use mixed case, capitalizing the first letter in each term in a name. Avoid underscores. Example:
+<P>
+<PRE class=clsCode>FirstName
+</PRE>
+<P>
+<h3>String Concatenation
+</h3>
+<P>For the sake of consistency and to achieve more self-documenting scripts, use the string concatenator (&amp;), instead of a plus (+) sign.
+<P>
+<h3>String Function
+</h3>
+<P>Use the <b>String()</b> function to create a string consisting of repeated characters. Example: a string of non-breaking spaces (&amp;nbsp;). The <b>String()</b> function is more readable and elegant than, for example: 
+<P>
+<PRE class=clsCode>For I = 0 to 11 . . .
+</PRE>
+<P>
+<h3>Case Values
+</h3>
+<P>Keep case consistent in both variable assignment and logical tests by using <b>UCase()</b> or <b>LCase()</b>. This is especially important when assigning and logically testing HTML intrinsic form controls, such as check boxes and radio buttons.
+<P>
+<h3>Trimming Values
+</h3>
+<P>Be consistent in trimming values. For example, consider always trimming values before putting them in state. This will eliminate errors in processing caused by inconsistencies in trimming schemes.
+<P>
+<h3>Variable Declaration
+</h3>
+<P>Declaring variables explicitly helps expose errors, such as misspelled variable names. To make code more reliable and readable use the <b>Option Explicit</b> statement in VBScript.
+<P>When you want to use strong variable typing, the logic should be programmed into a component built with a language that supports it, such as Visual Basic 5.0 or Visual J++. Loosely typed variables, such as Variants in VBScript, can affect performance, especially when mathematical computations are involved.
+<P>
+<h3>Variable Names for Consistency
+</h3>
+<P>For consistency in naming variables, use initial capital letters in variable names (do not capitalize prefixes).
+<P>To make the intended use of a variable clear to others reading your script, use three-character prefixes to indicate data type. Even though explicit typing is not supported in VBScript, the use of prefixes is recommended to denote the intended data type.
+<P>Table B.1    Suggested Prefixes for Indicating the Data Type of a Variable
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Data Type</b>
+</TD>
+
+<TD><b>Prefix</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Boolean
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>bln
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Byte
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>byt
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Collection object
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>col
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Currency
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cur
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Date-time
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>dtm
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Double
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>dbl
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Error
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>err
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Integer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>int
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Long
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>lng
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Object
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>obj
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Single
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>sng
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>String
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>str
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>User-defined type
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>udt
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Variant
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>vnt
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ADO command
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cmd<br><i>Jul 17, 1998 editor's note: This was previously published as cmn in the Resouce Kit; we now recommend cmd.</i>  
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ADO connection
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cnn
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ADO field
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>fld
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ADO parameter
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>prm
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ADO recordset
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>rst
+</TD>
+</TR>
+
+</TABLE>
+<P>To keep variable name lengths reasonable, use standardized abbreviations. For clarity, keep abbreviations consistent throughout an application, or group of related applications.
+<P>Instead of:
+<P>
+<PRE class=clsCode>strSocialSecurityNumber
+</PRE>
+<P>Use:
+<P>
+<PRE class=clsCode>strSSN
+</PRE>
+<P>
+<h3>Variable Scope for Performance
+</h3>
+<P>Use local scope (within subroutines and functions) for variables unless you have a compelling reason to use global scope. Local variables are resolved into table lookups when compiled, enabling fast execution at run time.
+<P>Declare global variables using the <b>Dim</b> statement before using them. This saves valuable first-use time by eliminating a search of the entire variable list.
+<P>
+<P><A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+<h2><A NAME="topic8" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, HTML conventions for">HTML Conventions for ASP Pages</A>
+</h2>
+<P>ASP applications serve dynamic information in standard HTML format. This means that you can customize information for a wide range of users.
+<P>
+<h3>Support Text-Only Browsing
+</h3>
+<P>Many users browse the Web in text-only mode in order to speed up the display of information to their browsers. To ensure that you present as much content as possible to these users, take the following steps to support text-only display:
+<UL>
+
+
+<LI> Include text-only navigation objects, such as menus.
+<LI> Include the alternative (ALT) parameter with each image tag to provide information about images.
+
+</UL>
+<BLOCKQUOTE>&lt;IMG SRC=&quot;gravity.jpg&quot; ALT=&quot;Picture of apple falling&quot;&gt;
+</BLOCKQUOTE>
+<UL>
+
+
+<LI> When providing client-side imagemaps, add a text-only list of the mapped areas, with links to the information that would have been loaded if the user had clicked on a map link.
+
+</UL>
+<h3>Checking HTML Files
+</h3>
+<P>You should check and debug your HTML code formally, using either a dedicated HTML checker or an HTML editor that includes a checker.
+<UL>
+
+
+<LI> Choose an HTML checker that helps enforce your HTML version standard.
+<LI> Debug each new HTML file as it is developed. Then debug your files again after each time they are modified.
+
+</UL>To debug an HTML page that contains ASP scripts:
+<UL>
+
+
+<LI> Run the page that contains ASP scripts.
+<LI> View the source.
+<LI> Save the output, which is pure HTML.
+<LI> Run the saved output through an HTML checker.
+
+</UL>This process is especially important for ASP pages that include forms. In these cases, HTML errors may corrupt the <b>Request</b> object sent from the browser to the server and cause a run-time error.
+<P>
+<h3>Using the 216-Color Palette
+</h3>
+<P>Color palette mismatches are ever-present concerns when you are creating images for a multi-platform Web. Even images in formats that require compact palettes, such as GIF (256 colors max), often display disparate colors when displayed on different platforms, such as Mac OS, Windows 95, and UNIX.
+<P>To ensure that your images display the same colors in different browsers on diverse platforms, use the 216-color palette--also called the safety pallete, or the 6x6x6 palette. This allows nearly as many colors as a GIF image can display, and displays consistent colors across systems.
+<P>
+<h3>Designing for Small Screens
+</h3>
+<P>Small-screen formats are still the standard for many users. Although larger formats are making progress, even 800 by 600 is too large to fit on millions of displays. For example, there are about ten million Macintoshes currently in use, many of which display 640 by 480 pixels.
+<P>To accommodate a broad spectrum of users, including those with small screens, design for 640 by 480 pixels.
+<P>For usability with small screens, keep the average line of text to approximately 12 words.
+<P>
+<h3>Displaying Standard Error Messages
+</h3>
+<P>For consistency and to make error messages informative, use standard <b>Response.Status</b> values, such as "401 Unauthorized - Logon failed" and other IIS standard responses in your pages. You can customize error messages in cases where additional information is needed.
+<P>
+<h3>Using Object Statements with Embed Statements
+</h3>
+<P>To use interactive objects delivered to multiple browsers you must code for browsers that do not support the HTML &lt;OBJECT&gt; tag.
+<P>To script the use of interactive objects, ActiveX Controls, or Java applets in HTML pages designed for a wide range of browsers:
+<UL>
+
+
+<LI> Use the &lt;OBJECT&gt; tag to place the object on the page.
+<LI> Add the &lt;EMBED&gt; tag to support browsers that do not support the &lt;OBJECT&gt; tag.
+<LI> Add a display object using the &lt;NOEMBED&gt; tag for browsers that cannot "play" the object.
+
+</UL>The following example places a Shockwave control onto a page, and provides for the contingencies in the preceding sections:
+<P>
+<PRE class=clsCode>&lt;OBJECT ID=&quot;ShockedPMDauntless&quot;&gt;
+  CLASSID=&quot;clsid:59CCB4A0-727D-11CF-AC36-00AA00A47DD2&quot;
+  CODEBASE=&quot;http://www.fabrikam.com/marketing/movers/...&quot;
+  WIDTH=180 HEIGHT=120
+  &gt;
+&lt;PARAM NAME=&quot;swURL&quot; VALUE=&quot;dauntless.dcr&quot;&gt;
+&lt;EMBED SRC=&quot;dauntless.dcr&quot; ALT=&quot;Movie of Fabrikam <br>Dauntless model in action&quot; WIDTH=180 HEIGHT=120&gt;
+&lt;/EMBED&gt;
+&lt;NOEMBED&gt;
+&lt;IMG SRC=&quot;dauntless.gif&quot; ALT=&quot;Picture of Fabrikam <br>Dauntless model in action&quot; WIDTH=180 HEIGHT=120&gt;
+&lt;/NOEMBED&gt;
+&lt;/OBJECT&gt;
+
+</PRE>
+<P><P>
+<P>
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00564.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="aspconv.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

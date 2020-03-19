@@ -1,0 +1,350 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: ASP Overview</TITLE>
+
+<META NAME="Description" CONTENT="Active Server Pages (ASP) Overview" />
+<META NAME="Keywords" CONTENT="ASP" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Nancy Cluts" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="08/11/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg00570.htm#/workshop/server/asp/aspover.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg00570.htm#/workshop/server/asp/aspover.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg00570.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="ABC" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex;ASP, overview">An ASP You Can Grasp: The ABCs of Active Server Pages</A></H1>
+<HR SIZE="1" />
+
+<P>Nancy Winnick Cluts
+<BR>Developer Technology Engineer<br>Microsoft Corporation 
+<P>Updated: May 28, 1997
+
+<P><a href="aspover.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download">Download this document in Microsoft Word (.DOC) format (zipped, 8.4K)</a>.
+<P> 
+<P><b>Contents</b>
+<br><a href="aspover.htm#WHAT">What Is an ASP File?</a>
+<br><a href="aspover.htm#HARD">Is It Hard to Use?</a>
+<br><a href="aspover.htm#OBJECT">Aw, Mom. Not Another Object Model!</a>
+<br><a href="aspover.htm#WHERETO">Where to Find More Information on ASP</a>
+
+<P>
+<i>Active Server Pages is an open, compile-free application environment in which you can combine HTML, scripts, and reusable ActiveX server components to create dynamic and powerful Web-based business solutions. Active Server Pages enables server side scripting for IIS with native support for both VBScript and Jscript.
+<P> -- <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" target="_top">Microsoft Internet Information Server Web site</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"></i>
+<P>
+That's what they say, at least. When I read that paragraph, I want to know what this means to me as a developer, whether the Active Server Pages (ASP) technology is easy to use, and, most of all, how it works. So, I took a look at the documentation, attended a couple of presentations at Tech*Ed 97, surfed the Internet, and came up with some answers about what Active Server Pages really is, the technology's complexity level, and where you can find more detailed information (lots of links!).
+<P><h2><A NAME="WHAT" IDX_TYPE="sbngen" IDX_CONCEPT="ASP file, what is">What Is an ASP File?</A></h2>
+<P>Files created with Active Server Pages have the extension .ASP. This story is an example; take a look at the address above. With ASP files, you can activate your Web site using any combination of HTML, scripting--such as JavaScript or Visual Basic&#174; Scripting Edition (VBScript)--and components written in any language. This means your ASP file is simply a file that can contain any combination of HTML, scripting, and calls to components. When you make a change on the ASP file on the server, you need only save the changes to the file&#151;the next time the Web page is loaded, the script will automatically be compiled.
+
+
+
+How does this happen? It works because ASP technology is built directly into Microsoft Web servers, and is thus supported on all Microsoft Web servers: Windows NT Internet Information Server (IIS) 3.0, Windows NT Workstation, and Windows 95 Personal Web Server. 
+
+<P>A few examples of the use of Active Server Pages with IIS 3.0:<UL>
+
+<LI> Put your employee handbook online, rather than printing copies that are soon obsolete. An added benefit is the reduction of administrative costs when employees can access and update their own records, such as address and health-plan benefits. I know of several administrative assistants who would love this one!<LI> Tie your online store to your existing inventory database and order-processing system.<LI> Give every visitor to your site a personalized view of just the information he or she seeks, and automatically flag what is new since the last visit.
+</UL>I know what you're thinking: &quot;So what? I can write CGI scripts right now that will let me update information and have it reloaded next time the page is loaded.&quot; That's true, but ASP runs as a service of the Web server and is optimized for multiple threads and multiple users. This means that it's fast, and it's easy to implement. If you use ASP, you can separate the design of your Web page from the nitty-gritty details of programming access to databases and applications. This frees up the programmer to do what she does best--code like crazy--and, conversely, frees the designer to worry about just the design rather than the database.<P>It all works together via scripting.<P>An example is a form that is used to pass a ticker symbol request in the URL to the ASP files. The first part of the ASP file calls a component that talks to a stock-price server. Properties of this object, such as opening and closing price, can then be easily inserted in the HTML. The programmer can work in any language, and need worry only about how to talk to the stock-price server. The HTML author need know only how to script the component, and does not care how the stock-price server works.
+<P> <A HREF="aspover.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="HARD" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, using">Is It Hard to Use?</A></h2>
+<P>I don't know about you, but whenever people start talking about doing things on the server, I start to get nervous. I think a lot about threading issues, synchronization, and generally stuff without a user interface. I assume it's going to be hard to do. Well, using ASP is about as easy as anything I've come across in years. <P>If you're an experienced programer, you don't even have to learn a new language to create ASP files--you can use any language that supports ActiveX scripting. If you already develop with Visual Basic, using VBScript is a snap!
+<P>Or, if you know how to author pages in HTML, you're probably ready to advance your skills a notch&#151;and ASP is the perfect reason. Learning  <A HREF="http://www.microsoft.com/VBSCRIPT/" target="_top">VBScript</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> is not hard. Neither is  <A HREF="http://www.microsoft.com/JSCRIPT/" target="_top">JScript</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">, Microsoft's implementation of JavaScript.
+<P>You don't even have to write your own controls to start using Active Server Pages. You can use any off-the-shelf-control that can be run on a server and has no user interface The reason it should not have a user interface becomes obvious when you picture some hapless computer operator sitting in front of the server, dismissing dialog boxes meant for the user's machine. I mean, why should the operator care whether you've logged on successfully? User interfaces are for client applications (applications that the user is running)--not for server-side scripting.
+<P> <A HREF="aspover.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="OBJECT" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, object model">Aw, Mom. Not Another Object Model!</A></h2>
+<P>I really hate doing this to you, but I'm going to have to use that overused and overcomplex term "object model" again. Here's how it works. When a browser requests an ASP file from your Web server, your Web server calls Active Server Pages to read through the ASP file, executing any of the commands contained within and sending the resulting HTML page to the browser. An ASP file can contain any combination of HTML, script, or commands. The script can assign values to variables, request information from the server, or combine any set of commands into procedures.<P>ASP uses the delimiters (better known to you and me as "thing-a-ma-bobs that specify the beginning and end") "&lt;%" and "%&gt;" to enclose script commands. For example, the code below sets the value of the variable "MyFavTVShow" in the user cookie to "I Dream of Jeannie."<P>
+<PRE class=clsCode>&lt;%Response.Cookies("MyFavTVShow")="I Dream of Jeannie"%&gt;
+</PRE><P>The scripting languages supported by ASP in turn support use of the If-Then-Else construct (something that will undoubtedly warm the hearts of all coders out there). Finally, you can embed some real logic into your HTML. For example, the following code from the IIS documentation shows how you can set the greeting shown based upon the time of day.  <P>
+<PRE class=clsCode>&lt;FONT COLOR=&quot;GREEN&quot;&gt;
+&lt;%If Time &gt;= #12:00:00 AM# And Time &lt; #12:00:00 PM# Then%&gt; 
+Good Morning!
+&lt;%Else%&gt;
+Hello!
+&lt;%End If%&gt; 
+&lt;/FONT&gt;
+</PRE>
+<P>I'm sure that you can think of something more interesting for your Web site&#151;I'd hate to have to come up with <i>all</i> of the clever ideas. 
+<P><h3>Built-in Objects</h3>
+<P>ASP includes five standard objects for global use:<UL>
+
+<LI> <b>Request</b>&#151;to get information from the user<LI> <b>Response</b>&#151;to send information to the user<LI> <b>Server</b>&#151;to control the Internet Information Server<LI> <b>Session</b>&#151;to store information about and change settings for the user's current Web-server session<LI> <b>Application</b>&#151;to share application-level information and control settings for the lifetime of the application
+</UL>The Request and Response objects contain <i>collections</i> (bits of information that are accessed in the same way). Objects use <i>methods</i> to do some type of procedure (if you know any object-oriented programming language, you know already what a method is) and <i>properties</i> to store any of the object's attributes (such as color, font, or size).
+<P><h4>The Request object</h4>
+<P>The Request object is used to get information from the user that is passed along in an HTTP request. As I mentioned earlier, the Request and Response objects support collections:<UL>
+
+<LI> <b>ClientCertificate</b>&#151;to get the certification fields from the request issued by the Web browser. The fields that you can request are specified in the X.509 standard<LI> <b>QueryString</b>&#151;to get text such as a name, such as my favorite TV sitcom above<LI> <b>Form</b>&#151;to get data from an HTML form<LI> <b>Cookies</b>&#151;to get the value of application-defined cookie<LI> <b>ServerVariables</b>&#151;to get HTTP information such as the server name
+</UL><h4>The Response object</h4>
+<P>The Response object is used to send information to the user. The Response object supports only Cookies as a <i>collection</i> (to set cookie values). The Response object also supports a number of properties and methods. <i>Properties</i> currently supported are:<UL>
+
+<LI> <b>Buffer</b>&#151;set to buffer page output at the server. When this is set to true, the server will not send a response until all of the server scripts on the current page have been processed, or until the Flush or End method has been called.<LI> <b>ContentType</b>&#151;to set the type of content (i.e: text/HTML, Excel, etc.)<LI> <b>Expires</b>&#151;sets the expiration (when the data in the user's cache for this Web page is considered invalid) based on minutes (i.e.: expires in 10 minutes).<LI> <b>ExpiresAbsolute</b>&#151;allows you to set the expiration date to an absolute date and time.<LI> <b>Status</b>&#151;returns the status line (defined in the  <A HREF="http://www.w3.org/Protocols/" target="_top">HTTP specification</A> &nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> for the server).
+</UL>The following <i>methods</i> are supported by the Response object:<UL>
+
+<LI> <b>AddHeader</b>&#151;Adds an HTML header with a specified value<LI> <b>AppendToLog</b>&#151;Appends a string to the end of the Web server log file<LI> <b>BinaryWrite</b>&#151;writes binary data (i.e, Excel spreadsheet data)<LI> <b>Clear</b>&#151;clears any buffered HTML output.<LI> <b>End</b>&#151;stops processing of the script.<LI> <b>Flush</b>--sends all of the information in the buffer.<LI> <b>Redirect</b>&#151;to redirect the user to a different URL<LI> <b>Write</b>&#151;to write into the HTML stream. This can be done by using the construct 
+<PRE class=clsCode>Response.write("hello") 
+</PRE>
+
+<p>or the shortcut command
+<PRE class=clsCode>&lt;%="hello"%&gt;
+</PRE></UL><h4>The Server object</h4>
+<P>The Server object supports one property, ScriptTimeout, which allows you to set the value for when the script processing will time out, and the following methods:<UL>
+
+<LI> <b>CreateObject</b>&#151;to create an instance of a server component. This component can be any component that you have installed on your server (such as an ActiveX ).<LI> <b>HTMLEncode</b>&#151;to encode the specified string in HTML.<LI> <b>MapPath</b>&#151;to map the current virtual path to a physical directory structure. You can then pass that path to a component that creates the specified directory or file on the server.<LI> <b>URLEncode</b>&#151;applies URL encoding to a specified string.
+</UL><h4>The Session object</h4>
+<P>The Session object is used to store information about the current user's Web-server session. Variables stored with this object exist as long as the user's session is active, even if more than one application is used. This object supports one method, <b>Abandon</b>, which (believe it or not!) abandons the current Web-server session, destroying any objects, and supports two properties, <b>SessionID</b>, containing the identifier for the current session, and <b>Timeout</b>, specifying a time-out value for the session. One thing to bear in mind about the session identifier: It's not a GUID. It's only good as long as the current Web-server session is running. If you shut down the Web-server service, the identifiers will start all over again. So don't use it to create logon IDs, or you'll have a bunch of duplicates and one heck of a headache.
+<P><h4>The Application object</h4>
+<P>The Application object can store information that persists for the entire lifetime of an application (a group of pages with a common root). Generally, this is the whole time that the IIS server is running. This makes it a great place to store information that has to exist for more than one user (such as a page counter). The downside of this is that since this object isn't created anew for each user, errors that may not show up when the code is called once may show up when it is called 10,000 times in a row. In addition, because the Application object is shared by all the users, threading can be a nightmare to implement.
+
+<P> <A HREF="aspover.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+
+<h2><A NAME="WHERETO"></a>Where to Find More Information on ASP</h2>
+<P>There's already a lot more information about Active Server Pages technology readily available. The trick, of course, is knowing where to find it and what to look for.
+<P> The place to start is at the <A HREF="http://www.microsoft.com/ntserver/nts/web/exec/default.asp" target="_top">documentation</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. (I can hear you groaning already. Stop it! Read, why don't you?)
+<P> Then take a look at the  <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" target="_top">Internet Information Server Web site</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. I suggest clicking on the cascading menus on the left-hand pane. Click the Learn About IIS header and highlight Active Server Pages. 
+<P>If you are a developer, click on the box labeled  <A HREF="http://www.microsoft.com/isapi/gobackoffice.asp?TARGET=/downtrial/moreinfo/iissamples.asp" TARGET="_top">Developer Tools & Samples</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> to see a host of samples written in different languages. The Developer Sample download shows you how one sample looks when written using Visual Basic 4.0, Visual Basic 5.0, Visual J++ 1.0, and Visual C++ 4.2 ( MFC and ATL 1.1). This is particularly nice if you are trying to learn the different technologies.
+<P>The Microsoft IIS team has created a set of  <A HREF="../../../workshop/server/default.htm" TARGET="_top">articles</A> in the Server section of our Site Builder Network Workshop. These articles go into detail about the technologies associated with IIS and ASP. Armed with these articles, you can learn to  <A HREF="comp.htm">create an active server component using ATL</A>, how to  <A HREF="active.htm">manage sessions</A> using ASP, how to  <A HREF="../../../workshop/server/nextgen/nextgen.htm">use ASP in your international pages</A>, and how to  <A HREF="../../../workshop/server/bugzap/tshoot.htm" TARGET="_top">troubleshoot your ASP files</A>.
+<P>The IIS team recommends the first book on ASP and IIS, <i>Working with Active Server Pages</i> (QUE Corporation, US$39.99), available through  <A HREF="http://www.mcp.com/" target="_top">QUE's Web site</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">.
+
+
+
+
+<P>
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00562.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="aspover.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

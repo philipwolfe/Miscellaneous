@@ -1,0 +1,8 @@
+<OBJECT ID="objCounters" RUNAT="SERVER" SCOPE="Application" PROGID="MSWC.Counters">
+</OBJECT>
+<SCRIPT RUNAT="SERVER" LANGUAGE="VBScript">
+Sub Application_OnStart
+   objCounters.Set "Wrox", 0
+   objCounters.Set "ASPToday", 0
+End Sub
+</SCRIPT>

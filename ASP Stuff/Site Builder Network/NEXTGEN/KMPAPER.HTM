@@ -1,0 +1,637 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Getting the Most Out of Site Server Knowledge Manager</TITLE>
+
+<META NAME="Description" CONTENT="Site Server feature: Tips on how to get the most out of Site Server Knowledge Manager" />
+<META NAME="Keywords" CONTENT="Site Server, Site Server 3.0, Knowledge Manager" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Microsoft Corporation" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg04784.htm#/workshop/server/nextgen/kmpaper.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg04784.htm#/workshop/server/nextgen/kmpaper.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg04783.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><a name="title" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex; Site Server, Knowledge Manager; Knowledge Manager, getting the most out of">Getting the Most Out of Site Server Knowledge Manager</A></H1>
+<HR SIZE="1" />
+<h6><a name="title2" IDX_TYPE="task" IDX_CONCEPT="Get the most out of Knowledge Manager"></a></h6>
+<P>Drew DeBruyne
+<BR>Microsoft Corporation
+<P>April 27, 1998
+
+
+<P><a href="kmpaper.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word format (zipped, 20.9K)</a>.
+<P>
+<a name="top"></a><P><b>Contents</b>
+<br> <A HREF="kmpaper.htm#topic1">Introduction</A>
+<BR> <A HREF="kmpaper.htm#topic2">Constructing a Site Vocabulary</A>
+<BR> <A HREF="kmpaper.htm#topic3">Integrating Knowledge Manager with Site Server Content Management</A>
+<BR> <A HREF="kmpaper.htm#topic4">Building Content Sources and Search Catalogs</A>
+<BR> <A HREF="kmpaper.htm#topic5">Integrating Knowledge Manager with Exchange Public Folders</A>
+<BR> <A HREF="kmpaper.htm#topic6">Integrating Knowledge Manager with Site Server Content Deployment</A>
+<P><b>Return to Site Server 3.0 Feature pages</b>
+<br><a href="siteservfeat.htm">Go to SBN Overview page</a>
+<br><A HREF="http://www.microsoft.com/msdn/news/feature/042798/ssummary.htm" TARGET="_top">Go to MSDN Summary page</a> <A HREF="http://www.microsoft.com/msdn/" TARGET="_top"><IMG src="/msdn/art/msdn50x25.gif" border="0" width="50" height="25" alt="MSDN Online"></A>
+
+<br><A HREF="http://www.microsoft.com/msdn/news/feature/042798/default.htm" TARGET="_top">Go to MSDN Overview page</a> <A HREF="http://www.microsoft.com/msdn/" TARGET="_top"><IMG src="/msdn/art/msdn50x25.gif" border="0" width="50" height="25" alt="MSDN Online"></A>
+
+
+
+
+<P><b>Editor's Note:</b> Many examples used in this article are contained in the Site Server 3.0 documentation. To get the most out of this collection of tutorials,  <A HREF="http://www.microsoft.com/siteserver/default.asp" TARGET="_top">download Site Server 3.0</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> and follow along as you read.
+<P>
+<h2><A NAME="topic1"></A>Introduction
+</h2>
+<P>Site Server Knowledge Manager, a Web application built on top Site Server's Push, Personalization, and Search features, provides a great knowledge management solution that you can tailor to your organization's needs.  From the start, Knowledge Manager enables members of an organization to browse heterogeneous information sources through one interface, save frequently used searches in personal "knowledge briefs," share knowledge briefs with other members in the organization, and have knowledge brief updates delivered on a daily basis by e-mail or via a channel.  Knowledge Manager is designed to be the one place people go for information.
+<P>As an administrator, there are numerous ways you can maximize the effectiveness of Knowledge Manager for your organization.  This document contains a collection of strategies, how-to instructions, and tips for effectively deploying Knowledge Manager on your organization's Web site. This article describes how to do the following:
+<UL>
+
+
+<LI> Construct a site vocabulary that enables users to easily search for and browse information
+<LI> Integrate Knowledge Manager with Site Server Content Management
+<LI> Build content sources and search catalogs for maximum efficiency
+<LI> Integrate Knowledge Manager with Exchange Public Folders
+<LI> Integrate Knowledge Manager with Site Server Content Deployment
+
+</UL>Setting up a good site vocabulary, which is the set of categories through which your users can browse for information, is essential for Knowledge Manager to be effective.  The first section will help you create a good site vocabulary.  The second section will help you configure Knowledge Manager to view information published to your site through Site Server Content Management.  The third section describes how you can divide the information that you present to your users through Knowledge Manager into multiple content sources for more effective searching. The fourth section describes some advanced techniques for integrating Knowledge Manager with Exchange Public Folders.  Finally, the last section will describe how to replicate content from one location to another and display the information in Knowledge Manager.
+<P> <A HREF="kmpaper.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic2" IDX_TYPE="sbngen" IDX_CONCEPT="Site vocabulary, constructing with Site Server">Constructing a Site Vocabulary</A>
+</h2>
+<P>Site Server 3.0 exposes a powerful tool for organizing content on your intranet site: the <i>site vocabulary</i>.  The site vocabulary provides a centrally managed taxonomy of terms that can be applied to content as metadata. Because the site vocabulary is stored in the Site Server membership directory, the administrator must use the Membership Directory Manager to create and maintain the site vocabulary.  Then, when users look for information on your site, they can simply browse through the site vocabulary terms using the Knowledge Manager Web application.  Each vocabulary term becomes a "category" in Knowledge Manager in which your users can find information.
+<P>Along with content sources, a fundamental way to organize information in Knowledge Manager is by constructing a good site vocabulary.  A good site vocabulary will have an intuitive organizational structure, will contain clues for your users about where information can be found, and will be structured so that you can easily add terms without disrupting your users.  Indeed, putting some thought into your site vocabulary early on will ensure that your Knowledge Manager deployment is useful to your users.
+<P>If you have not done so already, it may be useful for you to look at the Knowledge Manager interface.  After installing Site Server 3.0 and following the Knowledge Manager configuration steps listed in the Site Server documentation, use a Web browser to open http://your_machine/siteserver/knowledge, where "your_machine" is the name of the machine on which Site Server is installed.  On the opening page, look at the category browser tree control.  The hierarchy shown in the tree control <i>is</i> the site vocabulary.  This section provides tips and tricks for building a good site vocabulary for use with Knowledge Manager.
+<P>
+<h3>Creating a Basic Site Vocabulary
+</h3>
+<P>Before moving forward, it is important to present and define some terms that will be used throughout this section:
+<UL>
+
+
+<LI> <i>Site Vocabulary</i>.  As mentioned above, the site vocabulary is a taxonomy of terms that the administrator creates and through which users can browse information in Knowledge Manager. Each term in the site vocabulary is sometimes referred to as a <i>category</i>.
+<LI> <i>Content source</i>.  All information in the Knowledge Manager Search Center is actually contained in an underlying Site Server Search catalog. The content source "wraps" the Search catalog with additional metadata that Knowledge Manager uses.  Content sources are most easily defined and managed using the Web-based Membership Directory Manager, which can be found at http://your_machine/siteserver/admin.
+
+</UL>The site vocabulary that you create for Knowledge Manager depends heavily on how you want to organize the content that your site presents.  Dividing content into well-organized subjects is important because it makes browsing and searching the content easier for your users.  For example, let's say you work at an automobile company and use Knowledge Manager in your workgroup to present information about internal projects.  You may want to set up a site vocabulary like this:
+<P>Projects
+<P>&nbsp;&nbsp;&nbsp;Cars
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Flame
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Zoom
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Screech
+<P>&nbsp;&nbsp;&nbsp;Trucks
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Big
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Bigger
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Huge
+<P>In this site vocabulary, information is organized by project.  On the other hand, you may want to organize the same information by job type, depending on the structure of your organization.  For example, you might have the following vocabulary:
+<P>Projects
+<P>&nbsp;&nbsp;&nbsp;Sales Force
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Datasheets
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Flame
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Zoom
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Screech
+<P>Engineering
+<P>&nbsp;&nbsp;&nbsp;Specifications
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Big
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Bigger
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Huge
+<P>Keep in mind that your users will find content in a category only if:
+<OL>
+
+<LI>   The content has been explicitly tagged with that category.  Using the Site Server Tag Tool, it is easy to tag HTML documents with terms from the site vocabulary.  For more information on the Tag Tool, consult your Site Server documentation.
+<LI>   You have created an <i>associated category query</i> for the category using the Site Server Web-based vocabulary editor.  When a user browses to a category, the associated category query is executed.  For example, you may define a "Shampoo" category in the site vocabulary and associate the query "shampoo or conditioner" with it.  All content in the underlying Search catalog that contains either "shampoo" or "conditioner" will then be displayed. The associated query is executed when the user browses to a category.  This is especially useful for two reasons.  First, in some cases it will be impossible to tag documents because you will not have write access to them.  This is true of most external site content that you catalog.  Second, you may want to take advantage of additional document metadata.  This is explained in more detail in  <A HREF="kmpaper.htm#topic3">Integrating Knowledge Manager with Site Server Content Management</A>.
+
+</OL>The key point here is that you should organize your site vocabulary -- and thus your content -- in a way that makes sense for your users, the people who will be browsing for information.  Keep in mind that your users might want to save a particular category into their private knowledge briefs and then have category updates delivered to them.  You want to create categories that would allow individual users to have the most appropriate content delivered to them if they choose to subscribe to a category.
+<P>The steps for maintaining and augmenting the site vocabulary are explained in the Site Server documentation, but it is useful to walk through the steps here.  Here's how to create two simple site vocabulary terms:
+<OL>
+
+<LI>   Start your Web browser and open http://your_machine/siteserver/admin, where "your_machine" is the name of the machine on which Site Server is installed.
+<LI>   Click Membership Directory Manager and then log on to your membership directory using administrator credentials.
+<LI>   Click Edit Site Vocabulary in the left pane.
+<LI>   In the right pane, you should see the existing site vocabulary.  You can delete subtrees in the vocabulary by selecting the parent node and clicking Delete.
+<LI>   To add a vocabulary term -- or "category" -- select the vocabulary term that you want to be the <i>container </i>of your new term.  Then click Add.
+<LI>   On the next screen, supply a category name (which will show up in Knowledge Manager), a short description (which does not show up in Knowledge Manager), and an associated category query (or Query String, as the interface shows).  As described above, the associated category query will be executed whenever a user browses to the category that you are defining.  It is particularly useful when you cannot directly tag documents that you want to appear in a particular category.
+<LI>   Click Submit.  You should now be returned to the main site vocabulary editing screen, where you will see that your new category has been added.
+<LI>   As a spot-check, go to Knowledge Manager (http://your_machine/siteserver/knowledge) and you'll see the new category in the category browser.
+
+</OL>
+<h3>Using a Different Vocabulary for Each Content Source
+</h3>
+<P>In some cases, it will make sense to have a single site vocabulary for every content source you have defined.  For example, suppose you are employing Knowledge Manager in your workgroup to keep track of emerging technologies in the computer industry.  You have configured a separate content source for each of a number of technological think tanks, university engineering departments, and competitors' Web sites.  Because all of the information across all the content sources relates to emerging technologies, using a single site vocabulary for all the content sources is appropriate.
+<P>In other cases, however, you will find that the information in each of your content sources is sufficiently different to justify having a separate vocabulary for each one.  (Note: as will be described later, Knowledge Manager uses a single site vocabulary internally, but you can make it seem like there are multiple vocabularies in use.)  For example, say you have a content source that contains classified ads posted on your intranet, and another that contains human resources policy documents.  A vocabulary term such as "TVs and VCRs," which makes sense for classified ads, does not make sense for human resources information.  For your users to see "TVs and VCRs" while they're browsing the human resources content source would be very confusing.
+<P>In cases such as this, where the information in one content source is very different from the information in others, you will want to consider maintaining a separate vocabulary for each.  This gives you the ability to present disparate information on your Knowledge Manager site while still giving your users a focused searching and browsing experience.  In the example given above, the human resources content source would have a different vocabulary (with terms like "guidelines" and "jobs available") than the classified ads content source (which would have terms like "TVs and VCRs" and "Rocking Chairs").
+<P>Internally, Knowledge Manager can use only one site vocabulary.  However, by <i>anchoring</i> your content sources to specific terms in your site vocabulary, you can give the appearance of multiple vocabularies to your users.  For example, suppose you have separate content sources for HR documents and classified ads, as above.  For the HR documents, you want your users to see this vocabulary:
+<P>Guidelines
+<P>&nbsp;&nbsp;&nbsp;Work Regulations
+<P>&nbsp;&nbsp;&nbsp;Performance Reviews
+<P>Jobs Available
+<P>&nbsp;&nbsp;&nbsp;Engineering
+<P>&nbsp;&nbsp;&nbsp;Management
+<P>&nbsp;&nbsp;&nbsp;Sales
+<P>And for the classified ads, you want your users to see this vocabulary:
+<P>Electronics
+<P>&nbsp;&nbsp;&nbsp;TVs and VCRs
+<P>&nbsp;&nbsp;&nbsp;Computers
+<P>&nbsp;&nbsp;&nbsp;Stereos
+<P>Furniture
+<P>&nbsp;&nbsp;&nbsp;Couches
+<P>&nbsp;&nbsp;&nbsp;Beds
+<P>&nbsp;&nbsp;&nbsp;Chairs
+<P>Rentals
+<P>&nbsp;&nbsp;&nbsp;Vacation
+<P>&nbsp;&nbsp;&nbsp;Home
+<P>&nbsp;&nbsp;&nbsp;Apartments
+<P>You would still need to create one central site vocabulary by using the standard Site Server Web-based vocabulary editor.  You would lay out the vocabulary by combining the vocabularies for each content source as follows:
+<P>Human Resources
+<P>&nbsp;&nbsp;&nbsp;Guidelines
+<P>&nbsp;&nbsp;&nbsp;...
+<P>Classified Ads
+<P>&nbsp;&nbsp;&nbsp;Electronics
+<P>&nbsp;&nbsp;&nbsp;Furniture
+<P>&nbsp;&nbsp;&nbsp;...
+<P>(The ellipses indicate additional categories that are not shown here.)
+<P>In this example, two top-level nodes have been added: one for "Human Resources" and another for "Classified Ads."
+<P>The next step would be to anchor each content source to the relevant term in the single site vocabulary -- the classifieds content source would be anchored to "Classified Ads," and the HR content source to "Human Resources."  To anchor a content source, you must perform the following steps:
+<OL>
+
+<LI>   Open the Site Server Administration console by selecting then Start menu, then choosingMicrosoft Site Server, then Administration, then Site Server Service Admin (MMC).  (Note that this assumes you accepted the default program group name when you installed Site Server.)
+<LI>   Open the Membership Directory Manager container.  (You may want to confirm that MDM is pointing at the correct membership directory by right-clicking it and selecting Properties. You should see the machine name and port of your membership directory.  The machine name "localhost" refers to the local machine.)
+<LI>   In the left pane, expand ou=Admin, then ou=Other, and select ou=ContentClasses.  In the right pane you should see a list of all the content sources that you have created and those installed by default with Site Server.
+<LI>   Double-click the content source that you want to anchor. In this example, you should use just one of the default content sources, <i>KnowledgeManagerSampleSource1</i> or <i>KnowledgeManagerSampleSource2</i>.  Note that if you have already deleted these sample content sources, you should choose a content source that you have already created.  The content source must be of type <b>netLibrarySource</b>, which means it wraps a Search catalog.  Only content sources of type <b>netLibrarySource</b> will show up in Knowledge Manager.  If you have deleted the sample content sources and not created any of your own, consult the Site Server Knowledge Manager documentation for instructions on creating a new content source.  In the next dialog, click Add Attribute.  This will enable you to add the <i>anchor</i> attribute. In the next dialog, you should see the Anchor attribute.  (If you double-clicked a content source that was not already anchored, you will need to click Add Attribute and select Anchor to add the attribute to the content source.) The <i>anchor</i> attribute simply points to the term in the vocabulary that should be the top-level term for the content source that you are anchoring.
+<LI>   Click the Select button in the value field of Anchor and use the tree control to find the vocabulary term where the content source should be anchored.  In the example given above, the classifieds content source would be anchored to the term "Classified Ads." Because you probably do not have your own "Classified Ads" category in your site vocabulary, select any vocabulary term and click OK.
+<LI>   Click OK to exit the content source Property page.
+
+</OL>Now, to see that your content source was anchored correctly, go to Knowledge Manager using a Web browser and select the content source that you just anchored from the "Search for documents in" drop-down list.  You should see that the vocabulary associated with your content source now starts at the vocabulary term anchor, and not at the root node of the entire site vocabulary.
+<P> <A HREF="kmpaper.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic3" IDX_TYPE="sbngen" IDX_CONCEPT="Knowledge Manager, integrating with Site Server content management; Site Server, content management: integrating with Knowledge Manager">Integrating Knowledge Manager with Site Server Content Management</A>
+</h2>
+<P>With Site Server Content Management, you can enable your users to post content directly to a site. They can simply go to a Web page and complete a simple document submission process. You can make it easy to navigate through published documents by cataloging them with Site Server Search and then creating a suitable site vocabulary for use in Knowledge Manager.  This section points out some effective ways to create a site vocabulary for documents published through Site Server Content Management.
+<P>In Content Management, all published documents are kept in <i>content stores</i>.  Thus, a content store is simply a container for published documents.  Each content store can contain multiple <i>content types</i>.  A content type is just a list of information that the user must fill out when publishing a document.  For example, the Content Management sample site, CMSample, contains eight different content types by default.  Each content type contains a list of <i>content attributes</i> -- or content metadata -- that the user must fill out when submitting content.  The default "White papers" content type, for instance, contains such attributes as Author, Editor, Topic, and Abstract.  When Site Server Search catalogs published documents, it picks up all the metadata that the user filled out and makes it searchable.  This makes it possible to, for example, find all documents whose Author field contains "Joe." Overall, then, a content store contains content types that contain content attributes.  More information on these concepts can be found in the Content Management section of the Site Server documentation.
+<P>After setting up your own content store and content types per the instructions in the Site Server documentation, you may wonder how you can make it easy for your users to find documents once they are published.  One simple way is to create a site vocabulary that groups published content into categories that are meaningful to your users.  Furthermore, by presenting it through Knowledge Manager, you also enable your users to directly search the published content.  So, to make published content available in Knowledge Manager, you need to do two things: you must catalog the content using Site Server Search and you must create a site vocabulary that organizes the content for your users.  These two steps are described in detail in this section.
+<P>[Note that the Publishing features of Site Server must be installed for the following steps to work.  To install Site Server Publishing, use the setup program on the Site Server CD.  By default, Site Server Publishing is included in the "Typical" installation. You can check to see that Publishing is installed by going to http://your_machine/siteserver/admin.  If the link to "Publishing" is live, Publishing is installed.]
+<P>
+<h3>Creating a Search Catalog for Published Content
+</h3>
+<P>Because Knowledge Manager displays information kept in Site Server Search catalogs, you must create a Search catalog definition for the documents that your users will submit for publication.  After creating the catalog, it will be necessary to create a Content Source, which provides meta-information about the catalog to Knowledge Manager.
+<OL>
+
+<LI>   Make sure you have already created a content store and content types for the documents that your users will submit. If you have not created your own content store, you can use the default CMSample content store.  To publish documents to the CMSample content store, use the CMSample Web site, which can be found at http://your_machine/cmsample.  For more information on creating content stores and content types, consult your Site Server Content Management documentation.
+<LI>   Create a new catalog definition with a start address of http://your_machine/content_store/alldocs.asp, where "your_machine" is the name of your Site Server machine, and "content_store" is the name of the Content Management content store that you created in step 1.  The catalog should be limited to a crawl depth of one page.  Alldocs.asp is an Active Server Page that automatically links to all the documents in a particular content store, and is created automatically when you create a new content store.  It is used as the start address for the catalog definition precisely because it links to all documents in the store.  More information on creating Search catalogs can be found in the Site Server Search documentation.
+<LI>   You will now create a content source for your new Search catalog so that it shows up in Knowledge Manager. On the Start menu, select Programs, select Microsoft Site Server, select Administration, and then click Site Server Service Admin (HTML).
+<LI>   Click Membership Directory Manager.
+<LI>   Select Intranet (Windows NT Authentication) Membership Server.
+<LI>   Type your user name in the format <i>domain\user_name</i>, and then type your password.
+
+
+<li>Click Content, click Content Sources, and then click Create. Type a Content Source Name that will make sense to your users.  Also provide a description of the content source.  Both of these strings will be displayed in the Knowledge Manager user interface.
+<BR>NOTE: Do not change the default type of content source: only Search catalogs can be used with Knowledge Manager.
+
+
+
+<LI>   Click Next.
+<LI>   Select the Search catalog you created in step 1, and then click Next.
+<LI>   In the Content Types box, select Web Documents.  Strictly speaking, it does not matter which content type you choose if you are only using the content source for Knowledge Manager.
+<LI>    Click Finish.
+
+</OL>As a spot check, you may want to verify that the content source shows up in the Knowledge Manager interface.  To do this, launch your Web browser, go to Knowledge Manager (http://your_machine/siteserver/knowledge), and click the "Search for all content in" drop-down list box.  You should see your new content source listed there.
+<P>
+<h3>Creating a Site Vocabulary for Published Content
+</h3>
+<P>One of the key benefits of using Site Server Content Management is that it enables you to collect arbitrary metadata for each document that a user publishes to your site.  Because this metadata is cataloged by Site Server Search, you can then create a site vocabulary that helps your users browse through published documents <i>by way of the document metadata</i>.  Two examples help illustrate this important point:
+<UL>
+
+
+<LI> Say you have created a content store in Content Management with three content types: white paper, specification, and test plan.  When a user publishes a document to this content store, the document will automatically be tagged with the content type that the user specifies, as well as with the rest of the attributes that are appropriate to that content type.  That is to say, "content type" will become one of the metadata fields on the published document.  Then, for navigating the content in Knowledge Manager, an easy and logical way to structure your site vocabulary might be by content type.  You would have three top-level categories corresponding to the three content types in the content store.  Users would be able to find all the white papers published to your site by looking in the "white papers" category.
+
+<LI> Suppose all the content types in a given content store contain the attribute "project."  You may want to use this attribute as a way for people to browse through your content.  That is, the categories in your site vocabulary would directly correspond to the different projects in progress at your company.  For example, you may have categories like "Fusion Car," "Fission Car," and "Rocking Chair," each of which is an ongoing project at your company.
+
+</UL>You might even combine the two examples given above in your site vocabulary.  Your top-level categories would be something like "Content by Type" and "Content by Project."  The subcategories of "Content by Type" would then correspond to the content types that you have defined; the subcategories of "Content by Project" would correspond to the current projects at your company.  This would render a site vocabulary structure like the following:
+<P>Content by Type
+<P>&nbsp;&nbsp;&nbsp;White papers
+<P>&nbsp;&nbsp;&nbsp;Specifications
+<P>&nbsp;&nbsp;&nbsp;Test Plans
+<P>Content by Project
+<P>&nbsp;&nbsp;&nbsp;Fusion Car
+<P>&nbsp;&nbsp;&nbsp;Fission Car
+<P>&nbsp;&nbsp;&nbsp;Rocking Chair
+<P>The great part about a structure like this is that content will show up in multiple categories.  For example, a white paper about the Fusion Car project would show up in both "White papers" and "Fusion Car."  Because there are multiple paths to the same information, your users to will find it easier to locate documents because each user may have her own mental model for where a particular document will be found.
+<P>Now that you have created a Search catalog and content source for your published content, and thought a little about how to structure a site vocabulary that is appropriate to the content, the next step is to actually create the site vocabulary.  To do this, you should use the Web-based Membership Directory Manager as you did in the previous section on creating site vocabulary.  Each category in your vocabulary needs to be associated somehow with documents published to your content store, so that documents show up in the appropriate category.  While there is not any implicit link between a category in the site vocabulary and published documents, an explicit link can be made through the mechanism of the associated category query.  This is simply a search query that executes whenever someone browses to that category. Because it can be expressed with all the power of the standard Site Server Search query syntax, the associated query can zero in on particular metadata fields such as "content type" or "author."
+<P>So, suppose you wanted to enable the first example given above, where your users can browse through published content by content type.  Each category would have an associated query that searches for documents tagged with the appropriate content type.  More specifically, this would require that the associated query for a given category would be "@Meta_ContentType <i>ContentType</i>", where <i>ContentType</i> is the name you have given to the content type for that category.  The "@Meta_ContentType" part of the query means you are limiting your search to the "Meta_ContentType" metadata field.  (Note that Site Server Content Management automatically tags published documents with their content type in the ContentType meta field.)
+<P>Enabling the second example would be just as easy.  Rather than limiting the associated category queries to the "ContentType" field, though, you would use the "project" field.  For instance, the "Fusion Car" category would have an associated category query like the following: "@meta_project Fusion Car."  Note again the use of standard Site Server Search query syntax.  Here we are just searching for documents that have "Fusion Car" in the project field.  All metadata fields in documents published through Content Management are cataloged by Site Server Search, which implies that you can utilize those fields in Knowledge Manager to create different "slices" through your published content.  The metadata fields are searchable using the "meta_" syntax.  For example, if you have a metadata field in your content type called "foo," you can limit searches to that field by using "@meta_foo <i>string</i>", where <i>string</i> is the text for which you are searching.  To see which attributes are defined for your content type, you can use Site Server Web-based administration as follows:
+<OL><li> On the Start menu, select Programs, select Microsoft Site Server, select Administration, and then click Site Server Service Admin (HTML).
+<li> Click Publishing.
+<li> Click Content Management in the left pane and log on to your membership server.  (You have to log on because content types are stored in the Membership directory.)
+<li> Select the content store that you are using from the list and click Properties.
+<li> Click Content Types.  The next page will show a list of all the content types that your content store contains.
+<li> Select any content type from the list and click Properties.
+<li>You should now see an Attributes list in the Specify attributes section of the page.  These are the attributes that are used as metadata when a user publishes a document of this content type.  If, for example, there is an attribute called "category", then the user would have to fill out the "category" field on the document submission form.  You would be able to search the category field in tagged documents by using "@meta_category <i>string</i>", where <i>string</i> is the text for which you are searching.
+</ol>
+<P>For more information on content type metadata fields and the way they are searched, consult your Site Server Search and Content Management documentation.
+<P>For a published document to show up in a category in Knowledge Manager, it must have already been cataloged by Site Server Search. This highlights an important point: because content will not show up in Knowledge Manager until it has been cataloged, you need to configure your Search catalog to run on a schedule.  For example, if you configure your catalog to be rebuilt every hour, content will show up in a category a maximum of one hour after it is submitted.  If your site contains a lot of content, it may be more appropriate to use a longer catalog refresh interval because cataloging is a computer resource-intensive process.  If you notice that your Search machine is constantly cataloging information -- that is, by the time it finishes one cataloging run it is already time to start another -- you should increase the catalog rebuild interval.
+<P>There is one last issue of which you should be aware.  Content Management tags different file formats in different ways.  For HTML documents, Content Management simply writes the metadata into the file as HTML Meta tags.  For OLE documents such as Microsoft Word or Microsoft Excel documents, Content Management writes the metadata into the OLE property stream.  Because the metadata is written into the <b>HTMLMetaPropertySet</b> of the OLE document, it is still searchable using the "@meta_" syntax.  For non-OLE, non-HTML documents such as executables, bitmaps, JPEGs, and so on, Content Management actually creates a "stub" file that contains the metadata.  The stub file has a .stub file extension, is formatted in HTML, and contains a Web browser redirect to the actual published document.  Thus, when a user does a search on metadata with a non-OLE, non-HTML document published through Content Management, the stub file is returned in the results list.  When the user clicks on that particular result, the stub file is opened by the browser, but the browser is immediately redirected to the actual published file.  Now, here's the rub: For Site Server Search to catalog the stub files created by Content Management, the .stub file extension must be added to the catalog definition's crawled file types.  To add .stub files to the crawled file types for your catalogs, do the following:
+<ol>
+<li> Open the Site Server Administration console by selecting the Start menu, then choosingMicrosoft Site Server, then Administration, then Site Server Service Admin (MMC).  (Note that this assumes you accepted the default program group name when you installed Site Server.)
+<li> Locate your Search catalog definition by expanding the Search subtree in the left pane.  Expand "your_machine," and then expand "Catalog Build Server."  Right-click your catalog definition and select Properties.
+
+<li> In the Properties dialog, select the File Types tab.
+
+<li> Click Add.
+
+<li> Use the ensuing wizard to add the "stub" file extension to the crawled file types.
+</ol>
+<P>After your next crawl, your Search catalog will contain the stub files that Content Management produces.
+
+<P>To summarize, you can make your published documents browsable in Knowledge Manager through a carefully constructed site vocabulary.  Furthermore, through the site vocabulary, you can make the same document available in multiple categories, which may make it easier for your users to find information.  There are two main steps to integrating Content Management documents with Knowledge Manager:
+<OL>
+
+<LI>   Assuming you have already created a content store and content types in Content Management, create a Search catalog for all the documents in the content store.  Also create a content source that wraps your Search catalog and allows the information in the catalog to be searched from within Knowledge Manager.
+<LI>   Create a site vocabulary that utilizes the document metadata applied during the document publishing process.  Categories in the site vocabulary are associated with published content by way of the associated category query.
+
+</OL>
+<P> <A HREF="kmpaper.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic4" IDX_TYPE="sbngen" IDX_CONCEPT="Search catalogs, and content sources: building; Content sources, and search catalogs: building">Building Content Sources and Search Catalogs</A>
+</h2>
+<P>In Site Server 3.0, sources of information are represented by what's called a <i>content source</i>.  A content source describes the underlying information source, which can be open database connectivity (ODBC) databases, Index Server indices, or Site Server Search catalogs.  It adds meta-information about the content that is not contained in the underlying information source.  For example, the content sources that Knowledge Manager uses to describe Site Server Search catalogs contain additional information about site vocabulary anchors.
+<P>Searchable information can be divided into multiple content sources in Knowledge Manager.  For example, you may want to configure one content source so that it contains information from sources external to your company, like Internet news sites.  You may want to configure a separate content source that contains internal information.  Then, when users come to your Knowledge Manager site, they will be able to narrow their searches to the type of information they want by simply choosing the right content source.  This section contains suggestions for building effective content sources.
+<P>
+<h3>Dividing Information into Multiple Content Sources
+</h3>
+<P>All searchable information available in Knowledge Manager comes from Site Server Search catalogs.  That is, Knowledge Manager can only use content sources based on Search catalogs.  As such, the catalogs that you build with Search define the entire space of information that Knowledge Manager users can access.  For this reason, it is important that you carefully plan the Search catalogs so that people can easily find the information they need.
+<P>If your site is small and you do not plan on offering a multitude of heterogeneous information to your users, you may consider having just one Search catalog.  This simplifies the search experience for your users because they do not have to decide which catalog to search; they always search the single catalog that you have defined.  In this scenario, you would add all crawl start addresses to the same catalog definition in Site Server Search, and then create one content source that makes the Search catalog available in Knowledge Manager.
+<P>If you are running a larger Knowledge Manager site, you will probably want to segment the information your site offers into multiple Search catalogs.  There are numerous ways to divide information into multiple Search catalogs:
+<UL>
+
+
+<LI> <i>Divide the information by theme.</i>  In this scenario, you make a separate Search catalog for each broad information topic.  For example, say you have an internal Web site that contains competitive reports and a local file system directory that contains product specifications.  You may want to segment these two information sources into separate Search catalogs so that your users can more effectively narrow their searches.
+<LI> <i>Divide the information by location</i>.  Larger Knowledge Manager sites will typically include information from sources both within and outside of the corporation.  For example, in addition to internal competitive reports, you may also want to build Search catalogs based on external news sites or competitors' sites.  In some cases you will want to separate the internal from the external content and thereby provide another way for your users to target their searches.
+<LI> <i>Divide the information by update frequency.</i>  Some information that you will offer -- daily news, for example -- will change frequently, while other kinds of information will change infrequently.  For frequently changing information, you will want to set up a corresponding Search catalog that gets rebuilt often, say on a nightly basis.  On the other hand, you don't want to waste computer time incrementally re-cataloging information that changes infrequently, if at all.  For this reason, you may want to consider dividing your information into multiple Search catalogs based on the frequency with which it changes.
+
+</UL>There is one caveat to mention.  If you typically run queries against multiple catalogs at once, Search performance degrades as you add more catalogs.  This is because Search must collate results from all catalogs that you Search against.  This is an issue in Knowledge Manager because the default search scope is "All Content," which means all the catalogs are searched.  So, although the Search system supports a maximum of 32 catalogs on one machine, you will probably want to use just a handful for maximum efficiency.
+<P>
+<h3>Scheduling Site Server Search Crawls for Optimum Performance
+</h3>
+<P>In Site Server Search, the process of building a catalog is separate from the process of searching a catalog.  These processes, in fact, can occur on different machines altogether.  If you are running a large Knowledge Manager site in which you have multiple Search catalogs and periodic re-crawls, you may want to consider the following to optimize the performance of your site:
+<OL>
+
+
+<LI>   Schedule all crawls for times when few people are accessing the site.  Site Server Search crawls are CPU-, disk-, and network-intensive.  If you are building catalogs and running Knowledge Manager on the same machine, your users will notice performance degradation when a catalog build is in progress.  For this reason, you may want to schedule periodic catalog rebuilds for late in the evening or on weekends, when traffic on your site is low.
+<LI>   Build catalogs on a machine separate from the Knowledge Manager machine.  Site Server Search makes it easy to build catalogs on one machine and search them on another.  While you must be running the search process on your Knowledge Manager machine, you have the option of building the catalogs that Knowledge Manager uses on a different machine.  In this configuration, users will never notice performance degradation in Knowledge Manager because the catalog build process will occur on a different machine.  This configuration also gives you more flexibility in setting the schedule of catalog rebuilds because you do not have to worry about disrupting your users.  Please consult your Site Server documentation for more information on setting up Site Server Search on multiple machines.
+
+</OL>
+<P> <A HREF="kmpaper.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic5" IDX_TYPE="sbngen" IDX_CONCEPT="Site Server Knowledge Manager, integrating with Exchange public folders; Knowledge Manager, integrating with Exchange public folders">Integrating Knowledge Manager with Exchange Public Folders</A>
+</h2>
+<P>Site Server Search can index Microsoft Exchange Public Folders.  Therefore, because Knowledge Manager is, in part, built on top of Search, you can give your users the ability to search Public Folders (PFs) from Knowledge Manager.  This makes the following fictitious scenarios possible (The example companies, organizations, products, people and events depicted herein are fictitious.  No association with any real company, organization, product, person or event is intended or should be inferred):
+<UL>
+
+
+<LI> An administrator at the Inspired Technologies Corp. has set up a PF for discussions about business on the Internet.  Because the topic of the PF is very broad, people tend to post messages about many disparate issues, many of which are irrelevant to most people.  John, who is responsible for monitoring the PF for discussion about e-commerce vendors, must return each day to check for new messages that might be relevant.  Usually he is disappointed.  What if, instead, all of the PF contents were cataloged daily, and John saved a search for "e-commerce" in Knowledge Manager?  This search would automatically become part of his personal knowledge brief, and he could have updates sent to him by e-mail or channel.  This way, the system would tell John when someone had made a post about "e-commerce," instead of John continually returning to the PF to read through the messages himself to find relevant information.
+<LI> The A. Datum Corporation has set up a PF for classified ads.  Employees use the PF in two simple ways: to find items to buy and to sell items.  Lucy, the intern coordinator at A. Datum, is looking for a good VCR, but does not want to pay store prices, so each day she checks the PF to see if anyone has advertised a new VCR for sale.  She usually spends 10 minutes a day sifting through the new ads.  If her administrator had configured Site Server Search so that the classified ads were being cataloged each day and available for searching in Knowledge Manager, Lucy could save a search for "VCR" and have search updates sent to her by e-mail.  Then, rather than manually checking every day, Lucy could just wait for Knowledge Manager to notify her that the VCR she's been dreaming about is for sale.
+
+</UL>There is a common thread to these scenarios: the administrator has configured Site Server Search to catalog Exchange Public Folders, and Knowledge Manager to use the resulting catalogs. To enable similar scenarios on your own intranet, you will need to ensure that some key pieces are in place:
+<OL>
+
+<LI>   You must have a valid administrator account for the Exchange service to catalog public folders.  In addition, the Search service must run with the same account information as the Exchange service.  This can be configured in the Services control panel.  Consult the Site Server Search documentation for further information.
+<LI>   If you do not have the administrator account for the Exchange server that you would like to catalog, you may consider setting up your own local Exchange server and then taking the public folder messages as an NNTP newsfeed.  You do not need to know the administrator password of the source Exchange server to do this.  Once the public folder messages have been copied to your local Exchange server via NNTP newsfeed, you can catalog them as you would any other Exchange public folder.  Consult your Exchange documentation for more information on newsfeed configuration.  The one caveat of which you should be aware is that the security access control information for each public folder message that you pull via NNTP is lost.  Thus, be sure to only catalog public folders replicated via NNTP that everyone using your Knowledge Manager site should be able to see.  This caveat does not apply to Public Folders replicated via Exchange replication; in that case, all security information is retained.
+<LI>   You need to decide how your users should view Exchange public folder messages once they have been clicked-on in search results pages.  There are two options: If you have Exchange 5.5 or greater, you can use Outlook Web Access to display public folder messages in a Web page; or, you can have messages displayed in the Windows version of Outlook, provided it is version 8.03 or greater.  By default, the Knowledge Manager search results page links to Outlook Web Access to display Exchange public folder messages.  If you want to use Outlook in Windows instead, you will need to change the Knowledge Manager search page (SearchRight.asp) to conform to guidelines set out in the Site Server Search documentation.  The section that describes how to display public folder messages in Outlook can be found by looking in the documentation index for "Exchange messages, searching."
+
+</OL>Once you have worked through the issues above, you should be able to set up a new Search catalog definition for the public folder messages as usual.  Your Site Server Search documentation describes the full process for setting up a catalog for public folders.
+<P>After creating the catalog, just define a content source using the new catalog as usual, and the public folder that you cataloged will then be searchable in Knowledge Manager.
+<P> <A HREF="kmpaper.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic6" IDX_TYPE="sbngen" IDX_CONCEPT="Site Server Knowledge Manager, integrating with Content Deployment feature; Knowledge Manager, integrating with Content Deployment feature">Integrating Knowledge Manager with Site Server Content Deployment</A>
+</h2>
+<P>Companies will often make arrangements with electronic content providers to have content delivered periodically.  Many newsfeeds work in this manner.  For example, a company might arrange for a business news source to upload a compressed archive of all financial stories each business day.  Typically, the electronic content company will upload the content via FTP. Alternatively, the content company may just make the content available via FTP on their own site without actually uploading it to the customer.  In either case, it is the customer's responsibility to retrieve the information.  Once it is retrieved and uncompressed, companies will typically want to make the information searchable by employees in Web applications such as Knowledge Manager. This entire process can be automated by coupling Knowledge Manager with Site Server Content Deployment (CD). Though the newsfeed scenario is used as the driving example in this section, the information contained herein applies to any situation where you are replicating content from location A to location B, and want to provide browsing and searching of the content in location B.
+<P>Information typically gets from the content provider to your users in four main phases:
+<OL>
+
+<LI>   The content provider uploads the content to your FTP site using security credentials that you worked out with the provider independently.  (As described above, the content provider may not actually upload the content to your site and instead may just give you the password for retrieving the content from their site.)
+<LI>   You retrieve the content from the FTP site, either yours or the content provider's.  Often, because the content is compressed, you will need to decompress the content before your users can see it.
+<LI>   You catalog the content using Site Server Search.
+<LI>   Your users browse and search the content in Knowledge Manager.  This assumes, of course, that you have set up a content source and an appropriate vocabulary for the content.
+
+</OL>In this cycle, the key phases to automate are phases 2 and 3; the content provider is responsible for phase 1, and phase 4 happens "automatically" when the Search catalog based on the new content has been created.  The following sections describe exactly how to automate phases 2 and 3. Note that the Publishing features of Site Server must be installed for the following steps to work.  To install Site Server Publishing, use the setup program on the Site Server CD.
+<P>
+<h3>Automatically Retrieving Content from an FTP Site Using Site Server Content Deployment
+</h3>
+<P>This section describes how to automatically copy content from your FTP site to a location where it can be cataloged by Site Server Search.
+<OL>
+
+<LI>   Create a directory on your machine to hold the content once it has been replicated.  For example, if you are retrieving a newsfeed, you may want to make a directory called c:\newsfeed.  Because the contents of this directory will be cataloged, ensure that this directory is accessible by the Search crawler's account.
+<LI>   Open the Site Server Administration console from the Start menu by selecting Microsoft Site Server, then Administration, thenSite Server Service Admin (MMC) on your Site Server machine.  (Note that this assumes you accepted the default Start menu program group name when you installed Site Server.)
+<LI>   Expand the Publishing container by clicking the "+" sign next to it.  Then expand the container that corresponds to your Site Server machine.
+<LI>   Right-click on Projects and select Project, then New.
+<LI>   Give the project a descriptive name.  Select "Internet retrieval project" and click OK.
+<LI>   You should now see a project Property dialog with six tabs.  Select the Project tab.
+<LI>   In the "Source URL" field, type the expected FTP location of the incoming content.  For example, if the content provider will be uploading the content to ftp://yoursite.com/outside/content.zip, type that URL in this field.  Note that if the content provider uploads multiple files, you will want to specify just the directory name.
+<LI>   Configure "Levels deep" so it corresponds to the content supplied by your provider.  For example, if the content provider uploads only one file, set "Levels deep" to 1 level.  If your content provider uploads an entire directory hierarchy, you will need to set "Levels deep" to the depth of that hierarchy.
+<LI>   Specify the directory that you created in step 1 as the &quot;Destination directory."
+<LI>    Select the E-mail tab.  If you have already configured Site Server Publishing with an SMTP server and wish to have notifications sent to an e-mail account, specify that account on this page.  Note: Consult your Site Server documentation for more information on configuring Site Server Publishing with an SMTP server.
+<LI>    The content replication can be run automatically on a scheduled basis.  To set this, select the Schedule tab and click Add.  Use the ensuing dialog to set the replication schedule.  You will typically want to configure the replication schedule so that replication occurs after new content has been uploaded by your content provider.  For example, if your content provider uploads new content every night at 11:30, you may want to schedule the content replication for 11:50.
+<LI>    After setting the replication schedule, you can set any necessary security parameters on the Connection tab.  For example, if the FTP site from which you are retrieving the content requires a user name and password, you can fill that in here.
+<LI>    Click OK when you are done configuring your new project.
+
+</OL>
+</BLOCKQUOTE>
+<h3>Special Case: You Are Replicating an Archive from the FTP Site
+</h3>
+<P>
+Rather than supplying an entire directory hierarchy of files, your provider may supply the content in a one-file archive designed to be uncompressed after retrieval.  In this case, special care must be taken to correctly configure Content Deployment and Search to work together.   Later in this example, you will configure Search so that it updates its catalog every time a new file is replicated.  If you are only replicating one file -- that is, the content archive -- only one notification will be sent to Search, when in reality Search needs to get notifications for all the new files <i>after</i> the archive has been decompressed.  To set up Content Deployment in a situation like this, do the following:
+<OL>
+
+<LI>   Open the Properties tab for the Content Deployment project that you created by right-clicking the project and selecting Properties.
+<LI>   Select the Scripts tab.  On this tab you can specify customized scripts that you want to automatically run at various stages of content deployment.  In many cases, your provider will deliver content in the form of a ZIP file.  Your provider may also deliver a TAR file, or a file in another compression/archive format.  Your main task is to write a batch file that Content Deployment can run after the content has replicated that decompresses or unarchives the content, so it can be cataloged by Site Server Search.  For example, if the content arrives in ZIP format, you might want to use a batch file that contains the following:
+<BR>
+
+
+<PRE class=clsCode>      cd c:\newsfeed
+      pkunzip -o -d content.zip
+
+</PRE>
+
+
+<LI>   Now that you have created the batch file that decompresses the content, you can specify the name of the file, including any necessary arguments, in the "After all content is received" field on the Scripts tab.  Be sure to specify the full path -- for example, c:\scripts\decompress.bat rather than just decompress.bat -- so that Content Deployment knows where to find it.
+
+</OL>
+<h3>Setting up a Search Catalog for the Incoming Content
+</h3>
+<P>Once the incoming content has been received (and decompressed, if necessary), it can be cataloged by Site Server Search. Creating a Search catalog (and a content source to wrap it) for the incoming content makes it searchable in Knowledge Manager.  Additionally, you may want to configure the Search catalog to be rebuilt on a schedule.  Say, for example, you retrieve and decompress the content every night at 11 p.m. using Content Deployment.  You know that the retrieval process typically takes 15 minutes or so, and that it takes just a few extra minutes to decompress the content.  Based on this knowledge, you could set up your Search catalog to crawl your content every night at midnight, after the new content has been received.  In this section, we explain how to set up the Search catalog and corresponding content source correctly.
+<OL>
+
+<LI>   Start the Site Server Administration console in MMC.
+<LI>   Expand the Search subtree by clicking the "+" next to Search.  Then expand the container that corresponds to your Site Server Search machine.
+<LI>   Right-click on the Catalog Build Server and select New Catalog Definition.
+<LI>   Give the catalog a name that corresponds to the kind of content you will be cataloging.
+<LI>   To add the Start address for this catalog, click the Add button.
+
+
+<BLOCKQUOTE>
+<UL>
+
+<LI> In the ensuing wizard, specify the kind of crawl you would like.  Note that if you select a Web link crawl, the content that you have replicated should have a page that links to all the remaining content; without this page, there will be no way to crawl all the content. Click Next.
+<LI> Specify the Start address for the crawl as well as any crawl depth limits. Click Finish.
+
+</UL>
+</BLOCKQUOTE>
+
+
+<LI>   On the Propagation tab, select the appropriate Search server hosts where the catalog will be propagated.  This should be the same machine on which you have Knowledge Manager running.
+<LI>   Use the Schedule Builds tab to specify the schedule on which your catalog should be rebuilt.  As noted above, if your content is replicated on a schedule, you may want to make sure that the catalog build schedule meshes well with the Content Deployment schedule.  For example, if your content arrives at 12 a.m., you will probably want to catalog the content at a later time -- like 1 a.m.
+<LI>   Finally, if you are crawling a file system directory but want your users to access the content through a virtual Web directory, you will need to create an Access Location-to-Display Location mapping on the URLs tab.  For example, if you are crawling c:\newsfeed but want your users to access the content through http://server/newsfeed, you will need to map c:\newsfeed to http://server/newsfeed.
+<LI>   Click OK.  You have now created the catalog.
+
+</OL>To make this catalog available in Knowledge Manager, you must create a content source that describes the catalog.  Consult your Site Server documentation for more information on creating content sources.
+<P>
+<h3>Testing Your Configuration
+</h3>
+<P>You have now configured your system to automatically retrieve new content, catalog it, and then present it to your users in Knowledge Manager.  You may now want to test your system.
+<P>A good way to ensure correct configuration is to manually start your Content Management project.  To do this, start the Site Server Administration console as you did above and locate your project in the Publishing subtree.  Right-click your project and select Start.  In the next dialog, click Start Replication.
+<P>After doing this, two indicators will be particularly helpful in monitoring the ongoing process: the status field in the Projects container under Publishing, and the Status field corresponding to your Search catalog under Catalog Build Server.  After the process is complete, you can use the Replication Reports in Publishing and the Gatherer Logs in Search to check for any errors.  If everything went well, you can manually start the catalog build process to ensure that the replicated content gets cataloged correctly.  You can use Gatherer Logs in MMC- or Web-based administration to confirm that the catalog process went smoothly.  If the catalog process proceeded without a hitch, and you have set up a content source for your new Search catalog per the instructions above, you should now be able to search and browse through the content in Knowledge Manager.
+<P>
+
+<P>
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg01282.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="kmpaper.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

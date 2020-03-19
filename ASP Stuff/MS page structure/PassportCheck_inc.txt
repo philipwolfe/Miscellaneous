@@ -1,0 +1,85 @@
+<!-- #include virtual="/Shared/Includes/locale.inc" -->
+<%
+
+Dim objPassportMgr
+
+Const SysInfo_PUID_Found = 0
+Const SysInfo_PUID_NotFound = 1
+
+'this is a low volume site so we don't need the Passport.Factory objects in the global.asa
+'create an instance of the Passport Manager object
+Set objPassportMgr = Server.CreateObject("Passport.Manager.1")
+
+' Response.Header setting to ensure client uses UTF-8 character encoding
+Session.CodePage = 65001
+Response.CharSet = "utf-8"
+
+'if the user has no ticket (fyi: HasTicket is a call to IsAuthenticated with a TimeWindow of 0)
+
+'If (not objPassportMgr.HasTicket) Or (Request.Cookies("Consent")("Consent") <> "1") Then
+If (not objPassportMgr.IsAuthenticated(3600, True)) Or (Request.Cookies("Consent")("Consent") <> "1") Then
+	'redirect to the registered sign-in page for Passport
+	'NOTE - ForceLogin parameter MUST be set to TRUE or else we'd need a page in the middle
+
+	'Redirection to Passport to sign-in
+	'Response.Redirect(objPassportMgr.AuthURL(Server.URLEncode("http://" & Request.ServerVariables("SERVER_NAME") & Request.ServerVariables("SCRIPT_NAME")), , True, , GetLocaleID()))
+	'Response.Redirect(objPassportMgr.AuthURL(, , True, , GetLocaleID()))
+
+	' User not logged in, unable to use GetLocaleID()
+	Response.Redirect(objPassportMgr.AuthURL(Server.URLEncode("https://" & Request.ServerVariables("SERVER_NAME") & "/Public/PassportReturn.asp"), 3600, True, , GetLocaleID(), , ,True))
+Else
+	'the user has a valid ticket, so see if they exist in the Registration database
+	If ((Session("MemberIDHigh") = "") Or (Session("MemberIDLow") = "")) Then
+
+		'store the PUID parts in Session variables
+		Session("MemberIDHigh") = objPassportMgr.Profile("MemberIDHigh")
+		Session("MemberIDLow") = objPassportMgr.Profile("MemberIDLow")
+
+		'Check for PUID existence in the Xena database
+
+Dim oSysInfo
+Dim lPPRetVal
+		Set oSysInfo = Application("SysInfo")
+		If Err.Number <> 0 Then
+			Set oSysInfo = Nothing
+			LogError 2, "Check whether System Info object created Successfully", Request.ServerVariables("URL"), "Application(SysInfo)", "",Err.Number, Err.Description, Err.Source
+			Response.Redirect "/Public/" & GetLocaleID() & "/SystemError.asp?ERR=" & ERROR_SYSINFO_NOT_AVAILABLE
+		End If
+
+		'if the PUID does not exist then take them to the Migration page
+		
+		lPPRetVal = oSysInfo.PUIDExist(Session("MemberIDHigh") & Session("MemberIDLow"))
+		If Err.Number <> 0 Then
+			Set oSysInfo = Nothing
+			LogError 2, "Check for PUID existence", Request.ServerVariables("URL"), "Application(SysInfo)", "", Err.Number, Err.Description, Err.Source
+			Response.Redirect "/Public/" & GetLocaleID() & "/SystemError.asp?ERR=" & ERROR_SYSINFO_NOT_AVAILABLE
+		End If
+
+		Select Case lPPRetVal
+			Case SysInfo_PUID_Found
+				'Nothing to do here - just role on through
+			Case SysInfo_PUID_NotFound	'(which is 1)
+				'need logic here for the switch off of migration option so make it an include file perhaps
+				Set oSysInfo = Nothing
+				'****************************************************
+				'* pbrodz
+				'* The first redirect is for the migration scenrio from Highlander
+				Response.Redirect "/Registration/" & GetLocaleID() & "/Registered.asp"
+				'* This second redirect is the no migration allowed Highlander scenario
+				'* Simply comment out the Redirect above and uncomment this one below
+				'Response.Redirect "/Registration/" & GetLocaleID() & "/AccountInfo.asp"
+				'****************************************************
+			Case Else	'(and this is 99)
+				Set oSysInfo = Nothing
+				LogError 2, "Check for PUID existence", Request.ServerVariables("URL"), "Application(SysInfo)", "", Err.Number, Err.Description, Err.Source
+				Response.Redirect "/Public/" & GetLocaleID() & "/SystemError.asp?ERR=" & ERROR_SYSINFO_NOT_AVAILABLE
+		End Select
+
+		'proceed as normal
+
+		Set oSysInfo = Nothing
+
+	End If
+End If
+%>
+

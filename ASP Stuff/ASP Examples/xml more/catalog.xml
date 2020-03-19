@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="sample.xsl"?>
+<Catalog>
+   <Book>
+      <Title>XML in IE5 Programmer's Reference</Title>
+      <Code>1576</Code>
+      <Authors>
+         <Author>Alex Homer</Author>
+      </Authors>
+      <Cover>XmlIE5.png</Cover>
+   </Book>
+   <Book>
+      <Title>Professional ASP 3.0</Title>
+      <Code>2610</Code>
+      <Authors>
+         <Author>Alex Homer</Author>
+         <Author>Dave Sussman</Author>
+         <Author>Brian Francis</Author>
+      </Authors>
+      <Cover>ProASP3.png</Cover>
+   </Book>
+   <Book>
+      <Title>Instant Netscape Dynamic HTML</Title>
+      <Code>1193</Code>
+      <Authors>
+         <Author>Alex Homer</Author>
+         <Author>Chris Ullman</Author>
+      </Authors>
+      <Cover>NCDHTML.png</Cover>
+   </Book>
+</Catalog>

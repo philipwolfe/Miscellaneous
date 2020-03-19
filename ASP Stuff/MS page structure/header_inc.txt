@@ -1,0 +1,70 @@
+<!-- #include virtual="/msdn-online/shared/inc/cmtfuncs.asp"    -->
+<!-- #include virtual="/library/include/server4js.asp"          -->
+
+<%    
+
+if( "object" == typeof( oMD ) && oMD.articleID )
+{
+    InitializeArticle( oMD.articleID );
+    Response.Write( '<META NAME="CRID" CONTENT="_' + oMD.articleID + '">\r\n' );
+}
+
+
+if( "object" == typeof( oMD ) && oMD.author) Response.Write('<META NAME="Author" CONTENT="' + oMD.author + '" />');
+
+// HackURL()
+// Called from a number of other include files.
+function HackURL(sURL)
+{
+    //return sURL = sURL.substring(0,sURL.indexOf("#")) + "?" + new Date().getTime() + sURL.substring(sURL.indexOf("#"));
+    return sURL;
+}
+%>
+
+<!-- #include virtual="/msdn-online/shared/inc/browdata.inc" -->
+<!-- #include virtual="/msdn-online/shared/inc/docdata.inc" -->
+<!-- #include virtual="/msdn-online/shared/inc/styles.inc" -->
+
+
+<%
+    if (oBD.getsNavBar)
+    {
+        Response.Write('<SCRIPT LANGUAGE="JavaScript" SRC="/msdn-online/shared/js/navlinks.js"></SCRIPT>');
+
+%>
+
+<SCRIPT LANGUAGE="JScript"><!--
+
+    function CommonLoad()
+    {
+        if ("function" == typeof(InitNavLinks)) InitNavLinks();
+        if ("function" == typeof(CheckToTop)) CheckToTop();
+        if ("function" == typeof(RemoveLastPipe)) RemoveLastPipe();
+        if ("function" == typeof(process_button))
+        {
+            with( document )
+            {
+                ondblclick = onmousedown = onmouseup = onmouseover = onmouseout = onkeyup = onclick = onselectstart = process_button;
+            }
+        }
+        if( "function" == typeof( doOutline ) )
+        {
+            document.onclick = doOutline;
+        }
+    }
+
+    function setCookie(cName, Props , Years) 
+    {
+        var today = new Date();
+        var expiration = new Date(today.getTime() + ( Years * 365 * 24 * 60 * 60 * 1000 ));
+        document.cookie = escape(cName) + "=" + Props + "; path=/; expires=" + expiration.toGMTString();
+    }
+    
+    
+    //-->
+    </SCRIPT>
+
+<%
+    }
+%>
+

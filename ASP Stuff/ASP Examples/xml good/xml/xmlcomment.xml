@@ -1,0 +1,8 @@
+<Book>
+  <!-- The start of the book, -->
+  <title>A title</title> <!-- A comment on the title -->
+  <Content>Some content</Content>	<!-- A comment on the content -->
+  <Chapter>Chapter 1</Chapter>		<!-- A comment on the Chapter 1, -->
+  <Chapter>Chapter 2</Chapter>		<!-- A comment on the Chapter 2, -->
+  <!-- This book needs more chapters -->
+</Book>

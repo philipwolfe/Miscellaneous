@@ -1,0 +1,453 @@
+
+<HTML>
+<HEAD>
+<TITLE>Q285339 - HOWTO: Create a RealTimeData Server for Excel 2002</TITLE>
+<META HTTP-EQUIV="CONTENT-Type" CONTENT="text/html; charset=iso-8859-1" />
+<META HTTP-EQUIV="PICS-Label" CONTENT="(PICS-1.1 &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true comment &quot;RSACi North America Server&quot; by &quot;Inet@microsoft.com&quot; for &quot;http://support.microsoft.com&quot; on &quot;1998.02.17T12:28-0800&quot; r (n 0 s 0 v 0 l 0))" />
+<META NAME="ms.locale" CONTENT="EN-US" />
+<META NAME="Category" CONTENT="Support; KB Article" />
+<META NAME="Premium" CONTENT="Support" />
+<META NAME="KBArea" CONTENT="Support; KB; OffDev; kbVBSearch; kbExcelSearch; kbAudDeveloper; kbPTNotAssigned; kbExcel2002; kbZNotKeyword2; kbExcel2002Search; kbWord600Mac; " />
+<META NAME="KBID" CONTENT="Q285339" />
+<META NAME="KBTitle" CONTENT="HOWTO: Create a RealTimeData Server for Excel 2002" />
+<META NAME="Description" CONTENT="Microsoft Excel 2002 provides a new worksheet function, RTD, that allows you to call a Component Object Model (COM) Automation server for the purpose of retrieving data real-time.  This article describes how to use Visual Basic to create a " />
+<META NAME="Product" CONTENT="OffDev" />
+<META NAME="KBCreate" CONTENT="January 15, 2001" />
+<META NAME="KBModify" CONTENT="April 3, 2001" />
+<META NAME="EditDate" CONTENT="February 6, 2001" />
+<META NAME="Question" CONTENT="" />
+<META NAME="Versions" CONTENT=":6.0" />
+<META NAME="Component" CONTENT="" />
+<META NAME="Technology" CONTENT="kbVBSearch kbExcelSearch kbAudDeveloper kbPTNotAssigned kbExcel2002 kbZNotKeyword2 kbExcel2002Search kbWord600Mac" />
+<META NAME="Links" CONTENT="" />
+<META NAME="Keywords" CONTENT="kbAutomation kbExcel kbVBp kbVBp600 kbGrpDSO kbDSupport" />
+<META NAME="Platform" CONTENT="" />
+<META NAME="Hardware" CONTENT="" />
+<META NAME="SolutionType" CONTENT="" />
+<META NAME="IssueType" CONTENT="kbhowto" />
+<META NAME="BoilerPlate" CONTENT="xref2 credit artxref" />
+<META NAME="ProducedView" CONTENT="" />
+
+</HEAD>
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="/support/include/style.css" />
+<BODY BGCOLOR="#FFFFFF" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" RIGHTMARGIN="0" TOPMARGIN="0">
+<!-- Do not redirect KB Articles to the XMLStore at this time -->
+
+<!-- Placeholder for KB Survey -->
+<!--TOOLBAR_START-->
+<A NAME="TOP" />
+<A NAME="TOP"></A>
+<!-- Start: ToolBar V2.0-->
+
+<!--TOOLBAR_EXEMPT-->
+<SCRIPT LANGUAGE="JavaScript" SRC="/isapi/gosupport.asp?target=/library/toolbar/toolbar.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="/isapi/gosupport.asp?target=/library/toolbar/EN-US/global.js "></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="/isapi/gosupport.asp?target=/include/toolbar/EN-US_local.js"></SCRIPT>
+
+<!-- Start: ToolBar for down-level browsers-->
+<SPAN ID="TBDownLevelDiv">
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0" BGCOLOR="#FFFFFF">
+<TR>
+	<TD VALIGN="TOP" HEIGHT="60" ROWSPAN="2" WIDTH="100%"><A HREF="/isapi/gosupport.asp?target=/directory/default.asp"><IMG SRC="/isapi/gosupport.asp?target=/library/images/support/pss_EN-US.gif" BORDER=0 ALT="Microsoft Product Support Services"></A></TD>
+	<TD VALIGN="TOP" HEIGHT="20" ALIGN="RIGHT"><IMG SRC="/isapi/gosupport.asp?target=/library/toolbar/images/curve.gif" WIDTH=18 HEIGHT=20 BORDER=0 ALT=""></TD>
+
+<!--Start Global Toolbar Section-->
+<TD BGCOLOR="#000000" HEIGHT="20" VALIGN="MIDDLE" ALIGN="RIGHT" NOWRAP COLSPAN="2">
+  <FONT COLOR="#FFFFFF" FACE="Verdana, Arial" SIZE="1">
+  <B>
+   &nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gomscom.asp?target=/products/" TARGET="_top"><FONT COLOR="#FFFFFF">All Products</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+   &nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gosupport.asp?target=/directory/default.asp?fr=0&sd=gn" TARGET="_top"><FONT COLOR="#FFFFFF">Support</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+   &nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gosearch.asp?target=/" TARGET="_top"><FONT COLOR="#FFFFFF">Search</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+   &nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gomscom.asp?target=/" TARGET="_top"><FONT COLOR="#FFFFFF">microsoft.com Home</FONT></A>&nbsp;&nbsp;
+  </B>
+  </FONT></TD>
+<!--End Global Toolbar Section-->
+
+</TR>
+<TR>
+	<TD VALIGN="TOP" HEIGHT=40 WIDTH=19><IMG SRC="/isapi/gosupport.asp?target=/library/images/gifs/homepage/1ptrans.gif" WIDTH=19 HEIGHT=40 BORDER=0></TD>
+	<TD VALIGN="TOP" HEIGHT=40 ALIGN="RIGHT" NOWRAP COLSPAN=2><A HREF="/isapi/gomscom.asp?target=/" TARGET="_top"><IMG SRC="/isapi/gosupport.asp?target=/library/toolbar/images/mslogo.gif" WIDTH=112 HEIGHT=40 ALT="microsoft.com" BORDER=0></A></TD>
+</TR>
+<!-- Start: Black Line Spacer  -->
+<TR>
+	<TD BGCOLOR="#000000" HEIGHT=1 NOWRAP COLSPAN=4></TD>
+</TR>
+<!-- End: Black Line Spacer -->
+<TR>
+	<!-- Start: Local menus -->
+	<TD BGCOLOR="#000000" HEIGHT=20 VALIGN="MIDDLE" NOWRAP COLSPAN=4>
+		<FONT COLOR="#FFFFFF" FACE="Verdana, Arial" SIZE=1><B>
+
+			&nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gosupport.asp?target=/directory/default.asp" TARGET="_top" TITLE="Home"><FONT COLOR="#FFFFFF">Support Home</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+
+			&nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gosupport.asp?target=/directory/self.asp?ln=en-us&sd=gn&amp;fr=0" TARGET="_top" TITLE="Find a Solution"><FONT COLOR="#FFFFFF">Find a Solution</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+
+			&nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gosupport.asp?target=/directory/directory.asp?ln=en-us&sd=gn&amp;fr=0" TARGET="_top" TITLE="Request Support"><FONT COLOR="#FFFFFF">Request Support</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+
+			&nbsp;&nbsp;<A STYLE="color:#FFFFFF;text-decoration:none;" HREF="/isapi/gosupport.asp?target=/directory/customer.asp?sd=gn&amp;fr=0" TARGET="_top" TITLE="Comprehensive support customized by customer type"><FONT COLOR="#FFFFFF">Custom Support</FONT></A>&nbsp;&nbsp;<FONT COLOR="#FFFFFF">|</FONT>
+
+
+		</B></FONT></TD>
+	<!-- End: Local menus -->
+</TR>
+<!-- Start: Black Line Spacer  -->
+<TR>
+	<TD BGCOLOR="#000000" HEIGHT=1 NOWRAP COLSPAN=4></TD>
+</TR>
+<!-- End: Black Line Spacer -->
+</TABLE>
+</SPAN>
+<!-- End: ToolBar For down-level browsers-->
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--// Hide from old browsers
+	var ToolBar_Supported = ToolBar_Supported;
+	if (ToolBar_Supported != null && ToolBar_Supported == true)
+	{
+		TBDownLevelDiv.style.display = "none";
+		drawToolbar();
+	}
+//-->
+</SCRIPT>
+<!-- End: ToolBar V2.0-->
+<!--TOOLBAR_END-->
+
+<!--TOOLBAR_END-->
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+<TR>
+<TD VALIGN="top">
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TD VALIGN="top">
+<FONT FACE="Verdana, Arial, Helvetica" SIZE="2">
+<TABLE>
+<TR><TD><H2>
+HOWTO: Create a RealTimeData Server for Excel 2002</H2></TD></TR>
+</TABLE>
+
+<HR />
+The information in this article applies to:<BR />
+<UL><LI>
+Microsoft Excel 2002</LI>
+<LI>
+Microsoft Visual Basic Professional Edition for Windows, version  6.0</LI></UL>
+<HR />
+<BR /><H2>SUMMARY</H2><P>
+Microsoft Excel 2002 provides a new worksheet function, RTD, that allows you to call a Component Object Model (COM) Automation server for the purpose of retrieving data real-time.  This article describes how to use Visual Basic to create a RealTimeData Server for use with Excel's RTD function.
+</P>
+<BR /><H2>MORE INFORMATION</H2><P>
+The RTD worksheet function has the following syntax: 
+<BLOCKQUOTE><B>=RTD(<I>ProgID,Server,String1,</I></B><I>[String2],...</I><B>)</B></BLOCKQUOTE>
+The first argument, <I>ProgID</I>, represents the Programmatic Identifier (ProgID) of the RealTimeData server. The <I>Server</I> argument indicates the name of the machine on which the RealTimeData server is run; this argument can be a null string or omitted if the RealTimeData server is to run locally. The remaining arguments simply represent parameters to send to the RealTimeData server; each unique combination of these parameters represents one "topic," which has an associated "topic id." Parameters are case-sensitive. For example, the following illustrates calls to the RTD server that would result in three separate topic ids: 
+<BLOCKQUOTE>
+=RTD("ExcelRTD.RTDFunctions",,"AAA", "10")<BR />
+<BR />
+
+=RTD("ExcelRTD.RTDFunctions",,"AAA", "5")<BR />
+<BR />
+
+=RTD("ExcelRTD.RTDFunctions",,"aaa", "5")<BR />
+</BLOCKQUOTE>
+In order for a COM Automation Server to be a RealTimeData Server for use with Excel's RTD function, it must implement the <B>IRTDServer</B> interface. The server must implement all of the methods of <B>IRTDServer</B>:<BR />
+<BR />
+<B>ServerStart</B><BLOCKQUOTE>Called when Excel requests the first RTD topic for the server. <B>ServerStart</B> should return a 1 on success, and a negative value or 0 on failure. The first parameter of the <B>ServerStart</B> method is a callback object that the RealTimeData server uses to notify Excel when it should gather updates from the RealTimeData server.</BLOCKQUOTE><B>ServerTerminate</B><BLOCKQUOTE>Called when Excel no longer requires RTD topics from the RealTimeData server.</BLOCKQUOTE><B>ConnectData</B><BLOCKQUOTE>Called whenever Excel requests a new RTD topic from the RealTimeData server.</BLOCKQUOTE><B>DisconnectData</B><BLOCKQUOTE>Called whenever Excel no longer requires a specific topic. </BLOCKQUOTE><B>HeartBeat</B><BLOCKQUOTE>Called by Excel if a given interval has elapsed since the last time Excel was notified of updates from the RealTimeData server.</BLOCKQUOTE><B>RefreshData</B><BLOCKQUOTE>Called when Excel is requesting a refresh on topics. <B>RefreshData</B> is called after the server notifies Excel that updates exist, and it returns a count of the topics to update along with the topic id and value for each topic.</BLOCKQUOTE><H4>Create a Sample RealTimeData Server</H4>
+
+The following sample demonstrates how to create and use a RealTimeData server with Microsoft Excel 2002. This server simply provides a counter that is updated every 10 seconds on a worksheet. The server accepts up to two topic strings. The first topic string can be AAA, BBB, and CCC; any other topic string is considered invalid and the server returns #VALUE! to the RTD function. The second string is a numeric value that represents how the return value should be incremented. If the second string is omitted, the increment value defaults to 1. If the second string is not numeric, the server returns #NUM! to the RTD function.
+
+<OL><LI>Start a new ActiveX DLL project in Visual Basic.</LI><BR /><BR /><LI>On the <B>Project</B> menu, click <B>References</B>, select <B>Microsoft Excel 10.0 Object Library</B>, and then click <B>OK</B>.</LI><BR /><BR /><LI>On the <B>Project</B> menu, click <B>Project1 Properties</B>. Change the <B>Project Name</B> to <B>ExcelRTD</B>, and then click <B>OK</B>.</LI><BR /><BR /><LI>Change the <B>Name</B> property of the class module <B>Class1</B> to <B>RTDFunctions</B>. Add the following code to <B>RTDFunctions</B>:</LI><BR /><BR /><PRE CLASS="CODESAMP">
+Option Explicit
+
+Implements IRtdServer  'Interface allows Excel to contact this RealTimeData server
+
+Private m_colTopics As Collection
+    
+Private Function IRtdServer_ConnectData(ByVal TopicID As Long, Strings() As Variant, GetNewValues As Boolean) As Variant
+    '** ConnectData is called whenever a new RTD topic is requested
+    
+    'Create a new topic class with the given TopicId and string and add it to the
+    'm_colTopics collection
+    Dim oTopic As New Topic
+    m_colTopics.Add oTopic, CStr(TopicID)
+    oTopic.TopicID = TopicID
+    oTopic.TopicString = Strings(0)
+    If UBound(Strings) &gt;= 1 Then oTopic.SetIncrement Strings(1)
+    
+    'For this example, the initial value for a new topic is always 0
+    IRtdServer_ConnectData = oTopic.TopicValue
+    
+    Debug.Print "ConnectData", TopicID
+End Function
+
+Private Sub IRtdServer_DisconnectData(ByVal TopicID As Long)
+   '** DisconnectData is called whenever a specific topic is not longer needed
+   
+   'Remove the topic from the collection
+   m_colTopics.Remove CStr(TopicID)
+   
+   Debug.Print "DisconnectData", TopicID
+End Sub
+
+Private Function IRtdServer_Heartbeat() As Long
+    '** Called by Excel if the heartbeat interval has elapsed since the last time
+    '   Excel was called with UpdateNotify.
+    Debug.Print "HeartBeat"
+End Function
+
+Private Function IRtdServer_RefreshData(TopicCount As Long) As Variant()
+    '** Called when Excel is requesting a refresh on topics. RefreshData will be called
+    '   after an UpdateNotify has been issued by the server. This event should:
+    '   - supply a value for TopicCount (number of topics to update)
+    '   - return a two dimensional variant array containing the topic ids and the
+    '     new values of each.
+   
+    Dim oTopic As Topic, n As Integer
+    ReDim aUpdates(0 To 1, 0 To m_colTopics.Count - 1) As Variant
+    For Each oTopic In m_colTopics
+        oTopic.Update
+        aUpdates(0, n) = oTopic.TopicID
+        aUpdates(1, n) = oTopic.TopicValue
+        n = n + 1
+    Next
+    TopicCount = m_colTopics.Count
+    IRtdServer_RefreshData = aUpdates
+   
+   Debug.Print "RefreshData", TopicCount &amp; " topics updated"
+End Function
+
+Private Function IRtdServer_ServerStart(ByVal CallbackObject As Excel.IRTDUpdateEvent) As Long
+    '** ServerStart is called when the first RTD topic is requested
+    
+    Set oCallBack = CallbackObject
+    Set m_colTopics = New Collection
+    g_TimerID = SetTimer(0, 0, TIMER_INTERVAL, AddressOf TimerCallback)
+    If g_TimerID &gt; 0 Then IRtdServer_ServerStart = 1       'Any value &lt;1 indicates failure.
+    
+    Debug.Print "ServerStart"
+End Function
+
+Private Sub IRtdServer_ServerTerminate()
+    '** ServerTerminate is called when no more topics are needed by Excel.
+    
+    KillTimer 0, g_TimerID
+
+    '** Cleanup any remaining topics. This is done here since 
+    '   IRtdServer_DisconnectData is only called if a topic is disconnected 
+    '   while the book is open. Items left in the collection when we terminate
+    '   are those topics left running when the workbook was closed.
+
+    Dim oTopic As Topic
+    For Each oTopic In m_colTopics
+        m_colTopics.Remove CStr(oTopic.TopicID)
+        Set oTopic = Nothing
+    Next
+
+    Debug.Print "ServerTerminate"
+  
+End Sub
+ </PRE><LI>On the <B>Project</B> menu, click <B>Add Class Module</B>. Change the class module <B>Name</B> property to <B>Topic</B> and change the <B>Instancing</B> property to <B>Private</B>. Add the following code to the <B>Topic</B> class module:</LI><BR /><BR /><PRE CLASS="CODESAMP">
+Option Explicit
+
+Private m_TopicID As Long
+Private m_TopicString As String
+Private m_Value As Variant
+Private m_IncrementVal As Long
+
+Private Sub Class_Initialize()
+    m_Value = 0
+    m_IncrementVal = 1
+End Sub
+
+Friend Property Let TopicID(ID As Long)
+    m_TopicID = ID
+End Property
+
+Friend Property Get TopicID() As Long
+    TopicID = m_TopicID
+End Property
+
+Friend Property Let TopicString(s As String)
+    s = UCase(s)
+    If s = "AAA" Or s = "BBB" Or s = "CCC" Then
+        m_TopicString = s
+    Else
+        m_Value = CVErr(xlErrValue) 'Return #VALUE if not one of the listed topics
+    End If
+End Property
+
+Friend Sub Update()
+    On Error Resume Next 'the next operation will fail if m_Value is an error (like #NUM or #VALUE)
+    m_Value = m_Value + m_IncrementVal
+End Sub
+
+Friend Sub SetIncrement(v As Variant)
+    On Error Resume Next
+    m_IncrementVal = CLng(v)
+    If Err &lt;&gt; 0 Then
+        m_Value = CVErr(xlErrNum) 'Return #NUM if Increment value is not numeric
+    End If
+End Sub
+
+Friend Property Get TopicValue() As Variant
+    If Not (IsError(m_Value)) Then
+        TopicValue = m_TopicString &amp; ": " &amp; m_Value
+    Else
+        TopicValue = m_Value
+    End If
+End Property </PRE><LI>On the <B>Project</B> menu, select <B>Add Module</B>. Add the following code to the new module:
+</LI><BR /><BR /><PRE CLASS="CODESAMP">
+Public Declare Function SetTimer Lib "user32" (ByVal hWnd As Long, _
+ByVal nIDEvent As Long, ByVal uElapse As Long, ByVal lpTimerFunc As Long) As Long
+
+Public Declare Function KillTimer Lib "user32" (ByVal hWnd As Long, ByVal nIDEvent As Long) As Long
+
+Public Const TIMER_INTERVAL = 5000
+Public oCallBack As Excel.IRTDUpdateEvent
+Public g_TimerID As Long
+
+Public Sub TimerCallback(ByVal hWnd As Long, ByVal uMsg As Long, ByVal idEvent As Long, ByVal dwTime As Long)
+    oCallBack.UpdateNotify
+End Sub </PRE><LI>On the <B>File</B> menu, click <B>Make ExcelRTD.dll</B> to build the component.</LI><BR /><BR /></OL>
+<H4>Use the RTD Server in Excel</H4>
+<OL><LI>Start a new workbook in Microsoft Excel.</LI><BR /><BR /><LI>In cell A1, enter the following formula, and then press the ENTER key:</LI><BR /><BR /><BLOCKQUOTE>
+=RTD("ExcelRTD.RTDFunctions",,"AAA", 5)
+</BLOCKQUOTE> 
+The initial return value is "AAA: 0". After five seconds, the value updates to "AAA: 10" and after 10 seconds, the value updates to "AAA:15," and so on.<BR />
+<BR />
+<LI>In cell A2, enter the following formula and press ENTER:</LI><BR /><BR /><BLOCKQUOTE>
+=RTD("ExcelRTD.RTDFunctions",,"BBB", 3)
+</BLOCKQUOTE>
+The initial return value is "BBB: 0". Every five seconds the cell value  increments by 3.<BR />
+<BR />
+<LI>In cell A3, enter the following formula and press ENTER:</LI><BR /><BR /><BLOCKQUOTE>
+=RTD("ExcelRTD.RTDFunctions",,"AAA", 5)
+</BLOCKQUOTE>
+The initial return value matches the contents of cell A1 because this is the same "topic" that is used in A1.<BR />
+<BR />
+<LI>In cell A4, enter the following formula and press Enter:</LI><BR /><BR /><BLOCKQUOTE>
+=RTD("ExcelRTD.RTDFunctions",,"AAA", 10)
+</BLOCKQUOTE> 
+The initial return value is "AAA: 0." Every five seconds the cell value increments as do the other cells. Note that the return value does not match the contents of cell A1 or A3 because the combination of parameters passed to the server is different. 
+</OL>
+
+For this illustration, the RTD server was compiled and Excel was using the run-time version of the component. For debugging purposes, RTD servers can be run from the Visual Basic IDE. <BR />
+<BR />
+
+To run in debug mode: 
+<OL><LI>Quit Microsoft Excel and switch to the project in Visual Basic.</LI><BR /><BR /><LI>Press F5 to start the component. If the <B>Project Properties</B> dialog box appears, click <B>OK</B> to select the default option of <B>Wait for components to be created</B>.</LI><BR /><BR /><LI>Make sure that the Immediate window in Visual Basic is displayed. As you enter formulas in the cells and as the cells are updated, examine the contents of the Immediate window in Visual Basic to see which actions are triggering the different events. </LI><BR /><BR /></OL>
+<B>Note Regarding the DisconnectData Event</B><BR />
+<BR />
+
+While Excel is a subscriber to your RTD server, it triggers the <B>DisconnectData</B> event when it no longer needs a topic (for example, when you delete or clear an RTD formula in a cell). However, Excel does not call <B>DisconnectData</B> on each topic for the RTD server when the workbook is closed or Excel quits; instead, Excel calls only <B>ServerTerminate</B>. When you are creating an RTD server, you should code for any necessary clean-up of topics or other objects when the <B>ServerTerminate</B> event fires.<BR />
+<BR />
+(c) Microsoft Corporation 2001, All Rights Reserved. Contributions by Lori B. Turner, Microsoft Corporation.<BR />
+<BR />
+</P>
+<BR /><H2>REFERENCES</H2><P>For additional information, click the article number below 
+to view the article in the Microsoft Knowledge Base:
+
+<BLOCKQUOTE><A CLASS="LINK" HREF="/support/kb/articles/Q284/8/83.ASP">Q284883</A> PRB: RTD Server Does Not Send Update Notifications to Multiple Excel Instances
+</BLOCKQUOTE></P>
+<P>Additional query words: 
+</P>
+</FONT><FONT FACE="Verdana, Arial, Helvetica" SIZE="1">
+<P>
+Keywords          : kbAutomation kbExcel kbVBp kbVBp600 kbGrpDSO kbDSupport <BR />
+Issue type        : kbhowto <BR />
+Technology        : kbVBSearch kbExcelSearch kbAudDeveloper kbPTNotAssigned kbExcel2002 kbZNotKeyword2 kbExcel2002Search kbWord600Mac </P>
+<!--CONVLEGACY DELIMITER-->
+</FONT>
+</TD>
+</TR>
+</TABLE>
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+<TR>
+<TD VALIGN="top">
+<CENTER>
+<BR />
+<FONT FACE="Verdana, Arial, Helvetica" SIZE="1">
+
+Last Reviewed: April 3, 2001<BR />
+<A HREF="/support/misc/cpyright.asp">
+&copy;
+2001
+Microsoft Corporation. All rights reserved. Terms of Use.</A><BR />
+</FONT>
+</CENTER>
+</TD>
+</TR>
+</TABLE>
+</P>
+</CENTER>
+</TD>
+<TD BGCOLOR="#003399" VALIGN="top" WIDTH="1"><IMG BORDER="0" HEIGHT="100%" SRC="/library/images/support/1ptrans.gif" WIDTH="1" /></TD>
+<TD VALIGN="top" WIDTH="135">
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD VALIGN="top">
+<FONT FACE="Verdana, Arial, Helvetica" SIZE="1">
+<BR />
+<P>
+						Article ID: Q285339</P>
+<P>
+<B>Last Reviewed:</B><BR />
+April 3, 2001
+</P>
+
+<P>
+<A HREF="mailto:?subject=Microsoft Knowledge Base Article - Q285339&body=This article pointer was forwarded to you from the Microsoft Online Support site. http://support.microsoft.com/support/kb/articles/Q285/3/39.ASP" TITLE="Send this article to a friend"><IMG ALIGN="absmiddle" BORDER="0" HEIGHT="10" SRC="/library/images/support/icoEmail.gif" WIDTH="18">Send to a friend</A><BR><BR>
+<P>
+Provided by<BR><A HREF="/directory/default.asp" TARGET="_top">Microsoft Product Support Services</A>
+<P>
+<HR />
+<FORM ACTION="/support/contentvoting/voting_idc.asp" METHOD="post" NAME="VOTED" ONSUBMIT="return votingsubmit();">
+<INPUT NAME="KBID" TYPE="hidden" VALUE="Q285339">
+<INPUT NAME="PROD" TYPE="hidden" VALUE="Support; KB; OffDev">
+<INPUT NAME="KBAREA" TYPE="hidden" VALUE="Support; KB; OffDev">
+<INPUT NAME="SRV" TYPE="hidden" VALUE="support.microsoft.com">
+<INPUT NAME="URL" TYPE="hidden" VALUE="/support/kb/articles/Q285/3/39.ASP">
+
+Did the information in this article help answer your question?
+<P>
+<INPUT NAME="VOTE" TYPE="radio" VALUE="1">Yes<BR>
+<INPUT NAME="VOTE" TYPE="radio" VALUE="2">No<BR>
+<INPUT NAME="VOTE" TYPE="radio" VALUE="3">Did not apply
+<P>
+Please provide additional comments about this information.<BR>
+(255 character max)
+<BR><BR>
+<TEXTAREA COLS="17" ID="COMMENTS" MAXLENGTH="255" NAME="COMMENTS" ROWS="5" STYLE="font:xx-small" WRAP="virtual"></TEXTAREA>
+<BR>
+<CENTER>
+<INPUT ALT="Submit" BORDER="0" HEIGHT="32" SRC="/library/images/support/votesubmit.gif" TYPE="image" WIDTH="88">
+</CENTER>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--//
+function votingsubmit()
+{
+	if((document.VOTED.VOTE[0].checked == false) && (document.VOTED.VOTE[1].checked == false) && (document.VOTED.VOTE[2].checked == false)){
+		alert("Please choose a voting option.");
+		return false;}
+	if(document.VOTED.COMMENTS.value.length > 255){
+		alert("Your comment has exceeded the 255 character limit.\nPlease reduce the number of characters in your comment.");
+		document.forms[0].COMMENTS.focus();
+		return false;}
+	else return true;
+}
+//-->
+</SCRIPT>
+</FORM>
+</P>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

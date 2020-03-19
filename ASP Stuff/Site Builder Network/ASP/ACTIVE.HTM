@@ -1,0 +1,399 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: ASP and Web Session Management</TITLE>
+
+<META NAME="Description" CONTENT="ASP and Web Session Management. Using the Session object, one of the intrinsic objects supported by ASP, for a Web session management solution" />
+<META NAME="Keywords" CONTENT="ASP, session management, cookie, encryption, security, Web farm" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Michael Levy" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg00285.htm#/workshop/server/asp/active.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg00285.htm#/workshop/server/asp/active.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg00284.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="ASP" IDX_TYPE="task" IDX_CONCEPT="stopindex;Managing session state with ASP">ASP and Web Session Management</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, session management with;Session management, with ASP"></A></H6>
+<P>Michael P. Levy
+<BR>Senior Consultant, <A HREF="http://www.microsoft.com/msconsult/" target="_top">
+Microsoft Consulting Services</a>
+
+
+<P><P>April 2, 1997<P>
+<P><!-- Insert Article here -->
+<a name="top"></a><B>Contents</B>
+<br><a href="active.htm#intro">Introduction</a>
+<BR><a href="active.htm#cookie-based">ASP Sessions Are Cookie-based</a>
+<BR><a href="active.htm#man_asp">Managing ASP Sessions</a>
+<BR><a href="active.htm#events">Session Events</a>
+<BR><a href="active.htm#sent">When Are Session Cookies Sent by ASP</a>?
+<BR><a href="active.htm#encryption">ASP Session ID Encryption and Session Security</a>
+<BR><a href="active.htm#SSL">SSL Encryption</a>
+<BR><a href="active.htm#guess">Hard-to-Guess Cookie Values</a>
+<BR><a href="active.htm#auth">User Authentication</a>
+<BR><a href="active.htm#web_farms">Web Farms and ASP Session State</a>
+<BR><a href="active.htm#load-balance">ASP Session Aware Load-Balancing</a>
+<h2><A NAME="intro" IDX_TYPE="sbngen" IDX_CONCEPT="Session object, in ASP">Introduction</A></h2>
+<P>One of the challenges faced by Web developers is how to create a coherent application out of a series of independent HTML pages. This problem is a particular concern in Web development because HTTP is a stateless protocol. Each browser request to a Web server is independent, and the server retains no memory of a browser's past requests. The HTTP 1.0 protocol did not provide a mechanism to maintain state information between requests from a browser.
+<p>
+To overcome this limitation, application developers require a technique to provide consistent user sessions on the Web. 
+Active Server Pages (ASP) provides powerful and flexible Web session management that requires no special programming. The Session object, one of the intrinsic objects supported by ASP, provides a developer with a complete Web session management solution.
+<p>
+The Session object supports a dynamic associative array that a script can use to store information. Scalar variables and object references can be stored in the session object. A script simply assigns a value to a named entry in the array:
+<p>
+<pre class=clsCode>Session ("UserName") = "JohnH"
+</pre><p>
+would store the string "JohnH" in the Session object and give it the name "UserName." This value can be retrieved from the Session object by referencing the Session object by name, as in the following:
+<P>
+<pre class=clsCode>Welcome back &lt;% = Session("UserName") %&gt;
+</pre><p>
+Object references are stored using the SET keyword of VBScript, for example:
+<p>
+<pre class=clsCode>Set Session("MyAd") = Server.CreateObject("MSWC.Adrotator") 
+</pre><p>
+This is similar to the normal Dictionary objects supported by Visual Basic&#174; Scripting Edition (VBScript). However, the Session object will maintain its values for the lifetime of a user's logical Web session. For each ASP page requested by a user, the Session object will preserve the information stored for the user's session.  This session information is stored in memory on the server. The user is provided with a unique session ID that ASP uses to match user requests with the information specific to that user's session. In this way, the Session object can be thought of as a locker that a script uses to store information for the user. The session ID is a unique key given to the user that ASP uses to open that locker and retrieve that user's private session information.
+<p>
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+
+<h2><a name="cookie-based" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, session state and cookies;Cookies, with ASP">ASP Sessions Are Cookie-based</a></h2>
+ASP uses HTTP cookies to send users their unique session keys. For example, an ASP application that is using sessions would respond to a user's request with an HTTP header such as:
+<p>
+<pre class=clsCode>Set-Cookie: ASPSESSIONID=PUYQGHUMEAAJPUYL; path=/Webapp
+</pre><p>
+Each subsequent request by this browser to this server, in the virtual directory /Webapp, would include the HTTP cookie header:
+<p>
+<pre class=clsCode>Cookie: ASPSESSIONID=PUYQGHUMEAAJPUYL
+</pre><p>
+ASP automatically processes this cookie and uses it to restore the values saved in the Session object. 
+The cookie that is sent by ASP as a session ID does not provide an expiration time. Cookies with no expiration specified are only valid until the browser is closed. In this way the cookie is flushed when the user exits the browser.
+<p>
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<a name="man_asp"></a><h2>Managing ASP Sessions</h2>
+
+The server will maintain a user's session data for the lifetime of the session. A script can end a session programmatically by calling the Abandon method of the Session object. When a user completes an application and a session is no longer needed, the script can simply call <b>Session.Abandon</b> to end the session and free the server resources used by that session.  A session can also end if the user does not make any HTTP requests to the ASP application for a specified time-out period. This period defaults to 20 minutes, but can be adjusted by setting the Timeout property of the Session object. If a user begins a session, but stops making requests to the Web application, ASP will time out the session after the specified idle period expires.  The Session object also exposes a SessionID property. SessionID is a LONG datatype that uniquely identifies the user session.
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<p>
+<a name="events"></a><h2>Session Events</h2>
+ASP also provides session-specific events that can trigger your own session initialization and clean up code. Each time a new session begins, the procedure <b>Session_OnStart</b> is called. An ASP program can use this event to perform any required session initialization tasks. Any time a session ends, whether it was timed out by the server, or killed by calling <b>Session.Abandon</b>, the procedure <b>Session_OnEnd</b> is called. An ASP program can use this event to perform any session cleanup that is required.
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P><p>
+<a name="sent"></a><h2>When Are Session Cookies Sent by ASP?</h2>
+By default, ASP does not buffer responses. This means that as a script runs, its response output is sent to the client. Since the output is not buffered, all required HTTP headers must be sent to the browser before any HTML is sent. With no buffering, ASP must create a session cookie and send it as an HTTP header before the ASP script generates any HTML output. Even though an ASP script may not require session management, a Session ID cookie is sent for every browser request.
+In other words, a Session ID cookie is placed in the HTTP headers just in case there is going to be Session state defined in the processing of the ASP file. If no Session state is defined, then the next ASP file request has the same potential to start a Session by storing something in the Session object, so another Session ID Cookie is sent to the browser.
+ASP will send a different Session ID cookie for each and every ASP file that is requested until Session state is used. Once a script begins a session, by storing a value in the Session object, the Session ID is fixed for that user for the life of the session and no new session ID cookies will be sent.
+<p>
+This behavior may cause some confusion, because ASP applications that don't require session management send out session cookies. If you don't plan to use session management for any applications on the server, then you may use the Registry to turn it off for all applications. You can also turn on ASP buffering to prevent unnecessary cookies. When buffering is used, the ASP response generated by the script is stored in memory and sent all at once. When buffered in memory, ASP can determine whether a session cookie is required before the completed response is sent, and a session cookie header will only be included when it is required.
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P><p>
+<h2><a name="encryption" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, session ID encryption;Session management, security with ASP">ASP Session ID Encryption and Session Security</a></h2>
+Once an ASP session begins, a browser request is identified only by its session ID cookie. Any HTTP request with a matching cookie is assumed to have come from the same browser that originated the session. This simple session management approach could open a potential security problem.  If a hacker were able to capture, or guess, the session ID cookie in use by an active session, he or she could submit valid HTTP requests that included this cookie. In this manner a hacker could hijack, or steal, a user's active session. For example, if a user had supplied valid credit card information, and an ASP script stored this information in the Session object, a hacker who managed to hijack the session could make purchases using the stolen session.
+If an application requires strong security, a number of techniques can be employed. 
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P><p>
+<a name="ssl"></a><h2>SSL Encryption</h2>
+Encrypting all communications between the browser and the server will prevent hackers from capturing the session cookie. Using SSL, all traffic&#151;including the session cookies&#151;are encrypted. A hacker sniffing or monitoring the network will not be able to see the private cookies in use.  When using SSL encryption, remember that all browser requests to the Web application directory will include the session ID cookie. Even requests for static HTML content in the same directory tree as the ASP pages will include the session ID cookie. All requests to the virtual directory, not just for ASP files, must be encrypted.
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P><p>
+<h2><a name="guess" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, hard-to-guess cookie values;Session management, hard-to-guess values with ASP">Hard-to-Guess Cookie Values</a></h2>
+
+Using encryption prevents hackers from capturing valid cookies. However, a hacker could conceivably guess an active Session ID. ASP Session ID values are selected from a huge range, and are then encrypted. This makes it hard to guess an active cookie.   You can obtain higher security by implementing cookies longer than 16 characters and matching them with session variables.  Also, keep in mind that if someone does manage to guess a valid cookie once, this will not help them guess another valid cookie.
+<p>
+The following steps are taken when generating ASP session cookies:
+<br>
+<ul>
+<li>Session ID values are 32-bit long integers. 
+<li>Each time the Web server is restarted, a random Session ID starting value is selected. 
+<li>For each ASP session that is created, this Session ID value is incremented.
+<li>The 32-bit Session ID is mixed with random data and encrypted to generate a 16-character cookie string.  Later, when a cookie is received, the Session ID can be restored from the 16-character cookie string (ASPSESSIONID).
+<li>The encryption key used is randomly selected each time the Web server is restarted.
+</ul>
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<a name="auth"></a><h2>User Authentication</h2>
+If the combination of SSL encryption and the complexity of the ASP cookie generation algorithm do not meet your security requirements, user authentication and client certificates can be used in conjunction with session management to provide secure Web applications with client authentication.
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P><p>
+<h2><a name="web_farms" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, session state and Web farms">Web Farms and ASP Session State</a></h2>
+
+ASP session information is stored in memory on the Web server, which creates a challenge for using Active Server Pages in a Web farm environment, where requests are load balanced among a number of Web servers. In order to use the ASP Session object, the same Web server must handle all requests from a user for the life of the session. Most load balancing schemes do not ensure that requests return to the same server.
+<p>
+To use ASP in a load-balanced environment, there are a number of options available, some of which are outlined below:
+<OL>
+<LI> Do not use the session management provided by ASP. You can write your own session management logic that keeps session state in a centralized place, such as a database server. This is a good solution; however, you lose the benefits of ASP session management.
+<p>
+<LI> Use a third-party session management ActiveX component. Because ASP can support ActiveX components, it is feasible that a commercial component will be available for ASP that supports session management in a Web farm.
+<p>
+<LI> Load-balance all new requests across your server farm; but once a session begins, make sure that all subsequent requests for that session return to the same server. This technique allows you to load-balance at a logical session level rather than load-balancing each individual request, and is sometimes called "ASP session aware load-balancing."
+</OL>
+<P> <A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><a name="load-balance" IDX_TYPE="sbngen" IDX_CONCEPT="Session management, load balancing with ASP;ASP, session-aware load balancing">ASP Session Aware Load-Balancing</a></h2>
+
+There are a number of possibilities to implement ASP session aware load-balancing. One simple technique is to load-balance all new requests using current load-balancing mechanisms (for example, round-robin DNS or dedicated IP load balancers). The load balancer will distribute all requests to a site's well known URL. For example, a site could be known by a DNS name such as example.microsoft.com. Any Web requests to this site will be load balanced among the active servers in the Web farm. In the <b>Session_OnStart</b> event that is fired for each new session, the ASP script can use the ASP Response object to send the user an HTTP redirect response. This response can redirect the browser to request an ASP page from the specific server that the user's session is running on. For instance, the redirect URL could specify the IP address, or unique name, of the machine on which the user's session was running. Then all future requests based on relative URLs would return to the machine specified by the redirect.
+<p>
+When a user first comes to a Web application by clicking  a hyperlink, or typing a URL such as http://example.microsoft.com/Webapp/, 
+a load balancer routes the request to a specific machine in the Web farm. For example, the load balancer selects a machine named w10.asite.com to handle this request. ASP will create a new session for the request running on this specific machine.
+In the <b>Session_OnStart</b> event, the ASP script can redirect the user,
+<p>
+<pre class=clsCode>&lt;% Response.Redirect("http://w10.sample.com/Webapp/firstpage.asp" %&gt;</pre>
+<p>
+The browser will request the specified page, and can run the application. The only requirement is that all URLs embedded in each page (as hyperlinks or form actions) should be relative URLs, for example:
+<p>
+<pre class=clsCode>&lt;FORM METHOD="POST" ACTION="ProcessForm.ASP"&gt;&lt;/FORM&gt;
+</pre><p>
+<pre class=clsCode>&lt;A HREF="nextpage.asp"&gt;</A>
+</pre><p>
+While the user is using the application, all requests will return to the same Web server on which the session is running.
+This technique may not be appropriate for all Web applications. If users save URLs using favorites or bookmarks, they may save a URL to a specific machine and when they return for a new session, they will not be properly load-balanced. The <b>Session_OnStart</b> logic can choose to accept these requests or intelligently return the user to the well-known URL (http://example.microsoft.com/Webapp/) for load-balancing.  This is only an example technique to allow ASP session management to work in a Web farm. Other methods are available. You don't have to do it using a redirect; you can get the same effect by using full URLs in your start page that specify the server the session is on.</span>
+
+
+<p><i>Michael P. Levy specializes in  Internet and client-server 
+application development. His current focus is helping Microsoft's New York customers design and 
+deploy Internet and intranet solutions.</i>
+<P>
+
+<P>
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00283.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="active.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

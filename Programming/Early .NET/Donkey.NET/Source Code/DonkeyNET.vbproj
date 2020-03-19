@@ -1,0 +1,350 @@
+<VisualStudioProject>
+    <VisualBasic
+        ProjectType = "Local"
+        ProductVersion = "7.0.9466"
+        SchemaVersion = "1.0"
+        ProjectGuid = "{6FE6A25C-4378-4BDA-B74F-7B1E73E6BBE9}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                AssemblyKeyContainerName = ""
+                AssemblyName = "DonkeyNET"
+                AssemblyOriginatorKeyFile = ""
+                AssemblyOriginatorKeyMode = "None"
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "WinExe"
+                OptionCompare = "Binary"
+                OptionExplicit = "On"
+                OptionStrict = "Off"
+                RootNamespace = "DonkeyNET"
+                StartupObject = "DonkeyNET.Viewer"
+            >
+                <Config
+                    Name = "Debug"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    IncrementalBuild = "true"
+                    Optimize = "false"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+                <Config
+                    Name = "Release"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "false"
+                    DefineTrace = "true"
+                    DebugSymbols = "false"
+                    IncrementalBuild = "false"
+                    Optimize = "false"
+                    OutputPath = "bin\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                />
+                <Reference
+                    Name = "DxVBLibA"
+                    Guid = "{E1211242-8E94-11D1-8808-00C04FC2C603}"
+                    VersionMajor = "1"
+                    VersionMinor = "0"
+                    Lcid = "0"
+                    WrapperTool = "tlbimp"
+                />
+                <Reference
+                    Name = "stdole"
+                    Guid = "{00020430-0000-0000-C000-000000000046}"
+                    VersionMajor = "2"
+                    VersionMinor = "0"
+                    Lcid = "0"
+                    WrapperTool = "tlbimp"
+                />
+                <Reference
+                    Name = "Microsoft.VisualBasic"
+                    AssemblyName = "Microsoft.VisualBasic"
+                />
+                <Reference
+                    Name = "System.Web.Services"
+                    AssemblyName = "System.Web.Services"
+                />
+                <Reference
+                    Name = "Revolution3D8080"
+                    Guid = "{EC0E5B25-4EDD-11D5-BF71-0080AD46A04D}"
+                    VersionMajor = "1"
+                    VersionMinor = "0"
+                    Lcid = "0"
+                    WrapperTool = "tlbimp"
+                />
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                    HintPath = "..\..\..\..\..\..\WINNT\Microsoft.NET\Framework\v1.0.3705\System.dll"
+                />
+            </References>
+            <Imports>
+                <Import Namespace = "Microsoft.VisualBasic" />
+                <Import Namespace = "System" />
+                <Import Namespace = "System.Collections" />
+                <Import Namespace = "System.Data" />
+                <Import Namespace = "System.Drawing" />
+                <Import Namespace = "System.Diagnostics" />
+                <Import Namespace = "System.Windows.Forms" />
+                <Import Namespace = "System.Threading" />
+                <Import Namespace = "System.Math" />
+                <Import Namespace = "System.Reflection" />
+                <Import Namespace = "System.IO" />
+                <Import Namespace = "stdole" />
+                <Import Namespace = "Revolution3D8080" />
+            </Imports>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "app.config"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "AssemblyInfo.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Car.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ControlPanel.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ControlPanel.resx"
+                    DependentUpon = "ControlPanel.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Dashboard.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Dashboard.vb"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DefaultScream.wav"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "DefaultThumbnail.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Globals.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "licenses.licx"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "ModelLoader.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PanelLogo.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PanelLogoHiLite.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ReadMe.txt"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "SplashScreen.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SplashScreen.resx"
+                    DependentUpon = "SplashScreen.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "SteeringWheel.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Viewer.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Viewer.resx"
+                    DependentUpon = "Viewer.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "mdl\Bunny.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "mdl\Bunny.mdl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "mdl\Bunny.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "mdl\Skeleton.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "mdl\Skeleton.mdl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "mdl\Skeleton.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\back.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\background.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\donkey.mdl"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\down.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\front.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\ground.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\heehaw.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\height.jpg"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\left.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\rev.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\right.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\runover.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\scream.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\skid.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\smack.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\thunder.wav"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "media\up.bmp"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Web References\DonkeyWeb\modelservice.disco"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "Web References\DonkeyWeb\modelservice.wsdl"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "Web References\DonkeyWeb\Reference.map"
+                    BuildAction = "None"
+                    Generator = "MSDiscoCodeGenerator"
+                    LastGenOutput = "Reference.vb"
+                />
+                <File
+                    RelPath = "Web References\DonkeyWeb\Reference.vb"
+                    DependentUpon = "Reference.map"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <Folder
+                    RelPath = "Web References\DonkeyWeb\"
+                    WebReferenceUrl = "http://localhost/donkeyweb/modelservice.asmx"
+                    UrlBehavior = "Static"
+                />
+                <Folder
+                    RelPath = "Web References\"
+                    WebReferences = "TRUE"
+                />
+            </Include>
+        </Files>
+    </VisualBasic>
+</VisualStudioProject>
+

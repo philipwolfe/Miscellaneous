@@ -1,0 +1,924 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: ASP Component Catalog</TITLE>
+
+<META NAME="Description" CONTENT="ASP component catalog" />
+<META NAME="Keywords" CONTENT="ASP, server, Web applications, components" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Mike Fenbert" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="11/04/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg01163.htm#/workshop/server/components/catalog.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg01163.htm#/workshop/server/components/catalog.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg01162.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="CATALOG" IDX_TYPE="task" IDX_CONCEPT="stopindex;Finding ASP components">ASP Component Catalog</A></H1>
+<HR SIZE="1" />
+
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, component catalog;Server components, catalog of"></A></H6>
+
+Mike Fenbert<br>Microsoft Corporation</I>
+<P>Updated: November 4, 1998
+<br>More components added!
+<P>
+
+<P><b>Contents</b>
+<br><a href="catalog.htm#intro">Introduction</a>
+<br><a href="catalog.htm#bene">Benefits of Active Server Pages</a>
+<br><a href="catalog.htm#asp">ASP Components Catalog</a>
+<br><a href="catalog.htm#dev">Developer Resource Sites</a>
+<a name="intro"></a><h2>Introduction</h2>
+<P>Imagine creating a Web site that can be personalized to fit the needs of your users. Active Server Pages (ASP) technology enables you to do just that!
+<P>
+ASP provides an open, compilation-free environment in which you can combine HTML, scripts, and reusable ActiveX&#153; Server Components to create dynamic Web pages.
+Built to encapsulate business logic, ActiveX server components can be developed in almost any language, including Java and Microsoft&reg; Visual Basic&reg;.
+<P>
+There are many ActiveX server components already available for your use.
+The Site Builder Network team is excited to bring you this <a href="catalog.htm#asp">online catalog</a> of components you can use as building blocks for your Web pages and Web-based applications.
+To find out more about ASP, see <a href="catalog.htm#bene">ASP benefits</a> before perusing the catalog.
+<P>
+To make sure that you stay up-to-date with the newest Web technology, <a href="http://www.microsoft.com/sbnmember/" target="_top">upgrade your Site Builder Network membership</a> to Level 2. To <a href="http://www.microsoft.com/sbnmember/levels/qualify2.asp" target="_top">qualify for Level 2 membership</a>, just add the <i>Get Microsoft Internet Explorer</i> logo to your site, and use an ActiveX control, Active Server Pages, or a channel.
+<P>
+<P> <A HREF="catalog.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><a name="bene" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, benefits of for Web applications">Benefits of Active Server Pages</a></h2>
+<P>With ASP, it's easy to build applications that run on a Web server. Use any language you like, and don't worry about having to compile -- ASP does all the work for you:
+<P>
+<IMG SRC="../../../workshop/graphics/bullet-1.gif"  WIDTH="14" HEIGHT="7" ALT="*">
+<b>Scripting.</b> ASP enables HTML authors and Web professionals to create powerful Web pages by simply adding in-line scripting to any HTML page.
+ASP supports any scripting language (with native support for Visual Basic&reg; Scripting Edition [VBScript] and JScript&#153;).
+Web developers can write scripts that are executed on the client or on the server.
+<P>
+<IMG SRC="../../../workshop/graphics/bullet-1.gif"  WIDTH="14" HEIGHT="7" ALT="*">
+<b>Server components.</b> ASP uses ActiveX server components running on the local server (or on another server on the network) to access databases and applications, and to process information.
+You can use server components written in any language, including Visual Basic, C++, COBOL, and Java.
+Internet Information Server (IIS) 3.0 ships with a core set of components, including the ActiveX Data Objects (ADO), which provide easy access to any OLE/DB or ODBC-compatible data source.
+<P>
+<IMG SRC="../../../workshop/graphics/bullet-1.gif"  WIDTH="14" HEIGHT="7" ALT="*">
+<b>Browser support.</b> Scripts and components included in ASP files are processed completely on the server. The page that's delivered to your client is pure, standard HTML and viewable by all browsers.
+<P>
+<IMG SRC="../../../workshop/graphics/bullet-1.gif"  WIDTH="14" HEIGHT="7" ALT="*">
+<b>Customization.</b> ASP provides easy access to all HTTP server variables, including browser type and referring page, so you can develop pages that are customized for each user.
+<P>
+
+<P> <A HREF="catalog.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<a name="asp"></a><h2>ASP Components Catalog</h2>
+This is the current list of companies and consultants that have created ASP components.
+If you have created an ASP component, we invite you to submit a description of it to be considered for inclusion in this list. Send your description to this alias:  <a href="mailto:IISWISH@microsoft.com">IISWISH@microsoft.com</a>.
+<P>
+(Please note that the links below point to servers that are not under Microsoft's control. See Microsoft's <A HREF="http://www.microsoft.com/Misc/NonMS.htm" target="_top">official statement</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> regarding other servers.)
+<P>
+
+
+<table CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+
+
+  <tr VALIGN="TOP">
+    <th BGCOLOR="#A6CAF0">Company</th>
+    <th BGCOLOR="#A6CAF0">Component(s)</th>
+    <th BGCOLOR="#A6CAF0">Component Description</th>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.4vision.com" target="_top">4Vision, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>&nbsp;</td>
+    <td BGCOLOR=#EEEEEE>Consulting
+    and ASP component services available.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.active4.com/">Active4</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>PCAuthX</td>
+    <td BGCOLOR=#EEEEEE>This ActiveX component enables you to authorize credit card transactions using PC Authorize Hub from <a
+    href="http://www.tellan.com">Tellan Software</a>.<IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a
+      href="http://www.active8it.com/products.htm">Active8It LLC</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>Active8it Component
+      Lister</td>
+      <td BGCOLOR=#EEEEEE>This software enables
+      developers using Visual Interdev&#153; to see a
+      list of the ActiveX server components that are available on any server running IIS.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.aisinet.com" target="_top">Active Internet Solutions</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>TimeEntry</td>
+    <td BGCOLOR=#EEEEEE>This
+    internet server application enables rapid online time entry with access from
+    the Internet.</td>
+  </tr>
+    <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.activestate.com" target="_top">ActiveState Tool Corp.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>PerlScript</td>
+    <td BGCOLOR=#EEEEEE>Perl
+    scripting engine for Active Server. Provides full Perl functionality plus access to all
+    Active Server Components.</td>
+  </tr>
+  <tr VALIGN="TOP">
+     <td BGCOLOR=#EEEEEE><a
+     href="http://www.anei.com/">Advanced Network Engineering</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+     <td BGCOLOR=#EEEEEE>Several</td>
+     <td BGCOLOR=#EEEEEE>New versions of all components posted October 26, 1998.</td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.adventia.com" target="_top">Adventia</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>Conversa Chat Server 2.0</td>
+      <td BGCOLOR=#EEEEEE>Conversa Chat Server 2.0 is a very powerful HTML-only chat server, which
+allows you to add a chat room to your site that anyone can use. The user's
+browser does not need to be Java- or ActiveX-enabled. Conversa also allows
+you to operate the chat room in moderated mode, and to log the conversation
+threads to a file.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.renetusa.com/asc/ascFiles.htm" target="_top">Alexander Altotsky</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>File Copy/Delete/Move component </td>
+    <td BGCOLOR=#EEEEEE>The separate functions are provided in one component, along with documentation.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.ambrasoft.lu/external/developer/freesoft/default.asp" target="_top">Ambrasoft</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>File Access Object,
+    Magic Event, and so forth</td>
+    <td BGCOLOR=#EEEEEE>The Magic Event
+    component is a small ActiveX component that enables you to trap any window message and
+    generate corresponding ActiveX events.<p>The File Access object is a small automation component that gives you the ability to perform some
+    basic fille manipulation from ASP pages. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.attachmate.com" target="_top">Attachmate</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Extra! HostView Server</td>
+    <td BGCOLOR=#EEEEEE>EXTRA!
+    HostView Server deploys 3270 sessions from a Windows NT-based intranet server in the
+    form of Java and ActiveX components. Users launch these components with popular browsers.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.aufrance.com/" target="_top">Aufrance Associates</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Calendar Internet</td>
+    <td BGCOLOR=#EEEEEE>Calendar
+    Internet provides an automated seachable database of events for Web sites that run on
+    Windows NT Web servers (Microsoft IIS). It's a complete application that integrates the Web
+    server, domain name server, Visual Basic, and Microsoft Access. </td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a
+      href="http://www.bhs.com">Beverly Hills Software</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>BHS Calendar Component</td>
+      <td BGCOLOR=#EEEEEE>The BHS Calendar Component Beta 2 is now available for downloading.
+What's New for BETA 2: Component name changed to BHSCal.Calendar, database structure has changed, now works with Microsoft Access databases, new properties, color schemes, and selectable views based on User Name.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.bitshop.com/Products/index.htm">Bitshop</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Active Merchandiser</td>
+    <td BGCOLOR=#EEEEEE>This Online Shopping
+    Mall software is designed specifically to integrate with Microsoft FrontPage and Microsoft Office 97.
+    It's scalable from small stores to very large ones. Based on Active Server
+    Pages, Active Merchandiser includes all source code and an unlimited site license for you to build your own
+    shopping mall!</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.vallin.com/default.asp" target="_top">C&amp;S System Solutions</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ZForum, NetAuction,
+    ZIntranet</td>
+    <td BGCOLOR=#EEEEEE>Go to the products page for a listing and descriptions.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.chilisoft.net" target="_top">Chili!Soft</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Chili!ASP, &nbsp;
+    Chili!Reports</td>
+    <td BGCOLOR=#EEEEEE>Chili!ASP
+    enables ASP applications to be created and run on a variety of Web server platforms. Chili!Reports is a robust ODBC database reporting application that allows you to design and deliver reports over the Web in Microsoft Excel spreadsheets.</td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.codewarriors.com" target="_top">CodeWarriors</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>SendMail, SendFormMail</td>
+      <td BGCOLOR=#EEEEEE>SendMail
+      enables you to send mail to anyone. All you need is a "To:" e-mail address, a "From:" e-mail
+      address, and an SMTP-compliant mail server. SendMail is an ActiveX server. This means that
+      you can use SendMail from ActiveX containers like Microsoft Word.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.cyberops.net" target="_top">CyberOps, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ADvantage</td>
+    <td BGCOLOR=#EEEEEE>High-performance banner ad management for IIS sites. Free and professional versions available.</td>
+  </tr>  
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.cyscape.com/browserhawk/home.asp" target="_top">cyScape</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>Browserhawk version 1.0</td>
+      <td BGCOLOR=#EEEEEE>BrowserHawk is a high-power alternative to the browser capability component and browscap.ini,
+yielding unprecedented accuracy and ease of use in browser detection for ASP scripts.  In addition
+to recognizing <b>thousands</b> more user agents than browscap.ini, Browserhawk recognizes every single
+IE and NN browser, regardless of platform, version, proxy, and other information in the user agent.
+
+BrowserHawk also provides information on more than twice  as many properties, including FileUpload, OSDetails, MouseOver,
+SSL, Authenticode, StyleSheets, DHTML, Language, and many more. It also features a built-in browser definition editor and fully automated maintenance of definition files.
+</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.dameware.com" target="_top">DameWare Development</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>DameWare DimIIS, DameWare DfsIIS</td>
+    <td BGCOLOR=#EEEEEE>IIS
+    extensions: samples are a feedback form and a search engine.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.digitalfoundry.com/index.html" target="_top">The Digital Foundry, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>WorldWideChat (WWC) 1.0</td>
+    <td BGCOLOR=#EEEEEE>This ActiveX Server Component adds chat capabilities to Active Server Web sites.
+WWC is implemented as an Internet Server API (ISAPI) DLL and is highly customizable.
+It uses standard HTML pages to create unique chat environments, and can also be configured
+to support thousands of separate chat rooms simultaneously.</td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.dimac.net" target="_top">Dimac</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>w3 Sitetree<br>w3 Jmail<br>w3 Sockets</td>
+      <td BGCOLOR=#EEEEEE>Use w3 Sitetree to create a navigation tree on your Web site. It's customizable. Choose any datasource: database entries, files, and so forth.
+
+Use w3 Jmail to send e-mail directly from your server, with or without mailserver. Free.
+
+Use w3 Sockets to connect to any external source, such as whois servers, TELNET, and so forth.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+        <td BGCOLOR=#EEEEEE><a href="http://www.eurosource.se/activex/" target="_top">Eurosource</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+        <td BGCOLOR=#EEEEEE>Several components</td>
+        <td BGCOLOR=#EEEEEE>Eurosource has developed several components like EsSmtp, EsFinger, EsPop, EsPing, EsPing, EsDes, and many, many more for use in development with Active Server Pages. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.ermas.com" target="_top">Ermas Consulting Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Ermas Components -- Active Server Suite</td>
+    <td BGCOLOR=#EEEEEE>Ermas
+    Components and Consulting for IIS/ASP. A demo site displays the Ermas components.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.flicks.com/" target="_top">Flicks Software</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Eyescope, SubscriptiX, OCXMail, AuthentiX, ASPSort, and OcxQMail Components</td>
+    <td BGCOLOR=#EEEEEE>Eyescope:
+Browser-based power. Real-time Web site analysis.
+
+<P>AuthentiX:
+The essential tool for Web site access management.
+"Basic Authentication" and more while keeping your Windows NT User Names and Passwords private. Validate against internal database or external ODBC datasource.
+
+<P>SubscriptiX:
+Turn-key Commerce Solution for credit card subscriptions to protected IIS Web directories.
+
+<P>AuthentiX ISP:
+Multi-user version for Internet Service Providers. Allows an ISP's customers to create and administer protected directories remotely.
+ 
+<P>OCXMail: FREE (with tag)
+Great for mailing form results!
+More people are using OCXMail than all other commercial competitors combined. Here's why:
+Flicks Software's OCXMail ASP component allows you to send mail using the standard SMTP protocol from any program that can use ActiveX/OLE components. 
+
+<P>ocxQmail
+ocxQmail speeds Active Server Pages by queueing messages for later dispatch by a separate process.
+ 
+<P>ASPSort
+Fast sorting of ASP arrays.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.fortek.com/" target="_top">Fourth Technologies Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>4TEK WEBDB</td>
+    <td BGCOLOR=#EEEEEE>4TEK WEBDB is a user-friendly, efficient, rapid Multiuser Query and Application Builder that allows intranet and Internet users to connect to ODBC-compliant databases, and create and maintain Web applications by cooperative development directly through the Web browser.</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://dev.gratex.sk/scriptsDev/Asp/demos/JavaLighter/default.htm" target="_top">GrateX International</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>JavaLighter, Time.Zone</td>
+    <td BGCOLOR=#EEEEEE>JavaLighter Component is dedicated to developers' publishing needs. It
+does standard J++ highlighting on .java files saved on the server. Time.Zone counts and returns time offset in a city as an argument against GMT.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.hexillion.com/software/" target="_top">Hexillion Technologies</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Ping, Tracroute, HTTP, Whois, Finger, and more</td>
+    <td BGCOLOR=#EEEEEE>See the <a href="http://www.hexillion.com/software/" target="_top">Hexillion components page</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> for documentation on each.</td>
+  </tr>
+  <tr VALIGN="TOP">
+          <td BGCOLOR=#EEEEEE><a href="http://asp.imeca.co.kr" target="_top">iMECA Co., Ltd.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+          <td BGCOLOR=#EEEEEE>Several Power-Web ASP components available</td>
+          <td BGCOLOR=#EEEEEE>iMECA Co. has a number of Power-Web components available that provide functionality in different areas like BBS, Chat, Mail, Graphs, Indexers, etc.</td>
+  </tr>
+  <tr VALIGN="TOP">
+          <td BGCOLOR=#EEEEEE><a href="http://www.infomentum.com/activeprofile/" target="_top">Infomentum</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+          <td BGCOLOR=#EEEEEE>ActiveProfile, ActiveFile</td>
+          <td BGCOLOR=#EEEEEE>Personalize your Active Server Pages application without relying on browser cookies. ActiveProfile makes it easy. Set program and user group defaults for your application or let users set their own options. ActiveProfile provides a multi-user solution to the problem of adding customization capabilities to Web-enabled applications. Compliant with RFC 1867, ActiveFile adds file upload and download to your
+ASP scripts. Manipulate files, directories, database BLOBs and more.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.inxpress.net/~kenyon/aspbroker/" target="_top">Internet
+    Express Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ASPBroker ActiveX
+    Component</td>
+    <td BGCOLOR=#EEEEEE>The ASPBroker
+    component is a new server-side ActiveX component that enables you to share ASP Session
+    variables among different sessions. A few lines of code is all it takes to create a
+    brokered session! </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.jac.com" target="_top">JA Computing, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>jBASE OBjEX</td>
+    <td BGCOLOR=#EEEEEE>Provides the
+    entire NF2 database programming language and database to Visual Basic, VBScript, JavaScript and
+    other ActiveX components.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.xs4all.nl/~jarit/asp/" target="_top">Jeroen Ritmeijer</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ASPFileFunctions</td>
+    <td BGCOLOR=#EEEEEE>In short, this
+    File Functions component offers the following functionality: <ul>
+      <li>Retrieve a list of files including information like the
+        size and date </li>
+      <li>File copying </li>
+      <li>Delete files and directories </li>
+      <li>Create directories </li>
+      <li>Rename files and directories </li>
+      <li>Move files and directories </li>
+      <li>Sorting of files based on several criteria </li>
+    </ul>
+    </td>
+  </tr>
+  <tr VALIGN="TOP">
+   <td BGCOLOR=#EEEEEE><a href="http://www.fortunecity.com/meltingpot/headfort/175/asp/control/calendar/" target="_top">Jimmy Chandra</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+   <td BGCOLOR=#EEEEEE>ASP Calendar Control</td>
+   <td BGCOLOR=#EEEEEE>The Calendar Control is implemented in ASP and JavaScript. Simply point and click to choose a date, just like in Microsoft Outlook or any other high-end scheduler's function.</td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.stellarvision.com/webjam/" target="_top">Jon A. Mnemonic</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>WebJam 1.15</td>
+      <td BGCOLOR=#EEEEEE>Extensive ASP function library. File/directory I/O, server-side multimedia, textfile handling, INI file support, and much much more. Free for non-commercial use.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.englishwizard.com" target="_top">Linguistic Technology Corporation</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>English Wizard
+    Web/Server </td>
+    <td BGCOLOR=#EEEEEE>English Wizard enables users to access any relational database using English.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.livesoftware.com" target="_top">Live Software, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>JRun</td>
+    <td BGCOLOR=#EEEEEE>JRun
+    (for IIS) is a set of Java classes and native code that can extend your Web server or
+    application to support Java Servlets.</td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.webgrid.com" target="_top">Luxent Webworks</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>WebGrid 3.0</td>
+      <td BGCOLOR=#EEEEEE>WebGrid&reg; is a Web-database publishing product
+designed to integrate with all Web site authoring environments, and deliver a wide range of formatting, reporting, and data-management capabilities for use in Internet and intranet servers.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.majormicro.com/asp-db7.html" target="_top">Major Micro Systems, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ASP-db</td>
+    <td BGCOLOR=#EEEEEE><UL>
+  <LI>Publish your live database with only 4 lines of ASP code!
+  <LI>Your data can be displayed in "grid" mode, "form" mode, or both!
+  <LI>You can "hide" any fields, or customize any field title.
+  <LI>ASP-db has a powerful built-in record selection filter option.
+  <LI>Sophisticated buffering sends the user records in page-size
+blocks
+  <LI>Columns can be sorted in ascending or descending order by simply
+clicking the column title!
+  <LI>Download function to download the table to a spreadsheet,
+database or word processor.
+  <LI>ASP-db has 15 built-in color schemes for displaying your tables.
+  <LI>Turn any field into a "hot linked" field (A HREF) with
+"drill-down" capability in only 3 lines of code!
+  <LI>Handles multiple databases on the same Web page simultaneously.
+  <LI>ASP-db reads Microsoft Access (.MDB) files, or any ODBC data
+source.
+  <LI>Much more!
+</UL>
+    </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.mapinfo.com/software/sandd/sandd.html" target="_top">MapInfo</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>MapInfo ProServer, MapMarker, MapXsite, MapXtreme, and SpatialWare</td>
+    <td BGCOLOR=#EEEEEE>ProServer offers a complete Internet/intranet mapping solution; MapXsite is a powerful and flexible "find the nearest" application. OCX/Active X with RPC Server is the Internet/intranet geocoding solution for your business.  It immediately assigns geographic coordinates to information as it is entered into your database, so users can access up-to-date information in real time. MapXtreme is a mapping application server for your intranet or extranet. It enables companies to visualize their data on a map to discover new relationships and trends not apparent when viewing data on spreadsheets and reports. SpatialWare is the ideal database storage, access, and management tool for front-end mapping applications of MapInfo Professional, MapX, and MapXtreme.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.de-info.com/asp/" target="_top">Marcus Schurstredt</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ASPFreeMail</td>
+    <td BGCOLOR=#EEEEEE>ASPFreeMail can: <ul>
+      <li>Send E-Mail via your SMTP Server </li>
+      <li>Use TO and CC lists </li>
+      <li>Send text (or vars) directly from ASP </li>
+      <li>Send attachments via UUENCODE </li>
+      <li>Reports send bytes </li>
+    </ul>
+    </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.maximized.com" target="_top">Maximized Software</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>MaxEcho, FlashStats, FlashLog</td>
+    <td BGCOLOR=#EEEEEE>MaxEcho
+    is an ASP component that enables you to process credit cards directly over the Internet at
+    near-instant speeds. Sample scripts are provided to make it easy to modify for your
+    own needs.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.metascybe.co.uk/" target="_top">Metascybe Systems, Ltd.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>TeleSCOPE</td>
+    <td BGCOLOR=#EEEEEE>TeleSCOPE is a
+    legacy system data publishing product for ICL VME Mainframe and UNIX hosts using Active
+    Server Pages features for flexibility. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.modernsoftware.com" target="_top">ModernSoft</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ModernSoft GuardX</td>
+    <td BGCOLOR=#EEEEEE>ModernSoft
+    GuardX is a set of four portable ActiveX components that password-protects your programs,
+    dialogs, menu-items -- any program feature you need to protect. ModernSoft GuardX delivers
+    secure password protection in minutes -- without programming!</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.natinst.com">National Instruments</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> </td>
+    <td BGCOLOR=#EEEEEE>Component Works
+    ActiveX server components </td>
+    <td BGCOLOR=#EEEEEE>ComponentWorks is
+    a collection of 32-bit ActiveX controls for instrumentation designed for Visual Basic,
+    Visual C++&reg;, Borland Delphi, and Internet Explorer. With ComponentWorks, you can build
+    complete virtual instruments in these environments using the DAQ, analsysis, and user
+    interface ActiveX controls from ComponentWorks. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://webmomx.netimage.com/" target="_top">Network Imaging Corporation</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></a></td>
+    <td BGCOLOR=#EEEEEE>1View:Web Multimedia Object Manager (WebMOM)</td>
+    <td BGCOLOR=#EEEEEE>This product enables Web applications to function as enterprise-wide information management systems.
+It provides direct access to information objects from any Web browser using a scalable, distributed server and storage architecture.
+Using WebMOM, Web applications can access data residing across a variety of platforms and on legacy systems.</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.overseas.com.tw/adman/" target="_top">Overseas Connections</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>ADMAN v1.03</td>
+      <td BGCOLOR=#EEEEEE>AdMan provides a simple solution for Web sites requiring automated control over their banner advertising. AdMan includes some sophisticated functions found in many of those high-end packages and can be configured to manage ads on dozens of Web sites and hundreds of ads.
+
+<UL><li>Track ad views and click-throughs in real time
+<li>Multi-homed, can track ads on multiple Web sites, even on multiple Web servers
+<li>Uses Microsoft Access or Microsoft SQLServer 6.5
+<li>Automatically remove ads when they reach a specified number of views or click-throughs
+<li>Produce live, password-protected, online reports for clients
+<li>Administrate everything via a simple Web-based interface
+</ul>
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.msen.com/~psteele/asp/" target="_top">Patrick J. Steele</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>State Of The Art,
+    Inc. ; GIF widthxheight component</td>
+    <td BGCOLOR=#EEEEEE>It contains two
+    functions for common text conversion of ASCII text into Web pages, <b>StringToHTML</b> and
+    <b>TextToHTML</b>.</td>
+  </tr>
+  <tr VALIGN="TOP">
+        <td BGCOLOR=#EEEEEE><a
+        href="http://www.persits.com" target="_top">Persits Software, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+        <td BGCOLOR=#EEEEEE>AspNTUser, AspAccessControl, AspGrid</td>
+        <td BGCOLOR=#EEEEEE>AspNTUser enables you to add, delete, and rename Windows NT users and groups, change passwords and membership information, impersonate user accounts and set account properties.
+  AspAccessControl enables you to manipulate permissions on securable Windows NT objects such as files, directories, and registry keys.
+  AspGrid is a real data-bound server-site control. It enables you to create a read/write interface to an ODBC database table with as little as 5 lines of ASP code. Online demo available.
+  </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://193.106.98.2/philt/daf20/" target="_top">Philippe Tenenhaus</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE><p align="center">Dynamic
+    Authentication Filter 2.0 for IIS 1.0 through 4.0 </td>
+    <td BGCOLOR=#EEEEEE>DAF&nbsp;2.0 is an IIS
+    filter that lets you use any ODBC data source (SQL Server, Microsoft Access, Oracle, and so forth) to store users' names and passwords, and provide access to protected pages of your Web site.</td>
+  </tr>
+    <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.pstruh.cz/" target="_top">PSTRUH Software</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE><p align="center">ScriptUtils, UserManager, RSConvert, TCPIP</td>
+      <td BGCOLOR=#EEEEEE>ScriptUtils allows working with safearray binary data, UserManager contains simple objects for creating, deleting, managing, and enumerating
+user accounts and groups, RSConvert is a control for converting DAO or ADO recordsets to MDB or
+DBF files, and TCPIP is an object for simple IP adress and host name resolution, ASP, and VB
+TraceRoute.
+      filter that lets you use any ODBC data source (SQL Server, Microsoft Access, Oracle, and so forth) to store users' names and passwords, and provide access to protected pages of your Web site.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.quiksoft.com/" target="_top">QuikSoft</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>EasyMail </td>
+    <td BGCOLOR=#EEEEEE>The EasyMail SMTP and
+    POP3 ActiveX objects together can generate and retrieve Internet e-mail. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://rajiv.com/work/free/" target="_top">Rajiv Pant's</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ActiveX
+    Programming</td>
+    <td BGCOLOR=#EEEEEE>A package to send
+    mail from Java programs.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.exactus.com.br/Rodrigo/" target="_top">Rodrigo B. De Oliveria's Components</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Bamboo
+    Series: BambooSMTP, BambooFileManager, etc..</td>
+    <td BGCOLOR=#EEEEEE>A mix of simple
+    but useful utilities like DNS and reverse DNS lookup, Beeps, and so on.
+    </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.saxsoft.com" target="_top">Sax Software Corporation</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Sax NetSell</td>
+    <td BGCOLOR=#EEEEEE>Sax
+    NetSell is a set of commerce components and Design-time ActiveX controls. Sax NetShell is
+    integrated with Microsoft Transaction Server.</td>
+  </tr>
+  <tr VALIGN="TOP">
+      <td BGCOLOR=#EEEEEE><a href="http://www.seagatesoftware.com/crystalreports/" target="_top">Seagate Software</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+      <td BGCOLOR=#EEEEEE>Crystal Reports</td>
+      <td BGCOLOR=#EEEEEE>Seagate Crystal Reports, the market-leading desktop query and report writer, is for anyone who needs to report or query directly from data sources, provide reports, or include reporting in database applications. Access over 30 data sources and perform powerful data analysis with presentation-quality output. Version 6 sets the standard for Web-enabled reporting.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.serverobjects.com" target="_top">ServerObjects Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>&nbsp;</td>
+    <td BGCOLOR=#EEEEEE>Steve has created
+    numerous components. His list of components is also located on <a href="http://www.genusa.com/asp/aspcomp.html" target="_top">his other
+    site</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.softartisans.com/" target="_top">Software Artisans</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>SA-FileUp</td>
+    <td BGCOLOR=#EEEEEE>SA-FileUp enables
+    users with a Web browser to transmit files from their local hard disk to a Web server (Microsoft IIS). Files can be of any format, such as Microsoft Word
+    documents, images or plain text. Files up to 2 GB in size can be transmitted.
+    </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.softwarefx.com/cfxie/default.asp">Software
+    FX, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>Chart FX Internet
+    Edition </td>
+    <td BGCOLOR=#EEEEEE>With Chart FX Internet
+    Edition you can develop Internet applications with dazzling charts that users can edit and
+    customize in real time. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.softwing.com/" target="_top">SoftWing</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>EventCalendar, W3Info
+    Object, etc..</td>
+    <td BGCOLOR=#EEEEEE>This site
+    contains various components from an event calendar to online events logging.</td>
+  </tr>
+  <tr VALIGN="TOP">
+        <td BGCOLOR=#EEEEEE><a href="http://www.oz.net/~sorth/" target="_top">Steve Orth</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></a></td>
+        <td BGCOLOR=#EEEEEE>HTMLess</td>
+        <td BGCOLOR=#EEEEEE>HTMLess is a HTML-to-ASCII text converter. It is a C++ dll that takes as input the path of an HTML file. It returns two files: the formatted text file and a file containing the HTML tags. It formats the text file based on the HTML tags and it converts special characters. In addition, because it parses the HTML file using pointers, it is very fast.
+        </td>
+  </tr>
+  <tr VALIGN="TOP">
+     <td BGCOLOR=#EEEEEE><a href="http://www.stonebroom.com/" target="_top">Stonebroom Software</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></a></td>
+     <td BGCOLOR=#EEEEEE>ServerZip</td>
+     <td BGCOLOR=#EEEEEE>ServerZip provides real-time file compression on the server. It creates compressed files in the industry-standard ZIP format that can be unzipped using any other standard zip utility program.
+     </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.tarsus.com/asp/wm/">Tarsus Software</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>EMail
+    and FAX server components</td>
+    <td BGCOLOR=#EEEEEE>Web Messenger is
+    a server program that enables you to send FAX and e-mail messages from your Web pages.
+    It runs on Windows NT and Windows 95, and supports most fax modems. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://www.sportsintel.com/tcal/">TDC, Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>TCal</td>
+    <td BGCOLOR=#EEEEEE>TCal enables ASP developers to add robust calendar functions to their applications.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.mcenter.com/mailpost/" target="_top">TIPS</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>MailPost</td>
+    <td BGCOLOR=#EEEEEE>MailPost is a powerful 32-bit CGI for Windows-based Web servers that e-mails the contents of an HTML form
+    to any e-mail address. MailPost mimics the UNIX CGI e-mail program. It features required
+    fields, template files, success and error pages, auto-replies, and URL redirection.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.ttminc.com" target="_top">TTM &amp; Associates Inc.</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ActiveCT</td>
+    <td BGCOLOR=#EEEEEE>TTM's
+    ActiveX Developer tools include ActiveX technolgy for rapid application development in Visual
+    Basic, HTML, and ASP.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.videosoft.com/" target="_top">VideoSoft</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>VideoSoft offers several products including: VSDATA,VSREPORTS, VSDOCX, VSDIRECT, and VSSPELL</td>
+    <td BGCOLOR=#EEEEEE>VSDOCX will automatically document your ActiveX controls.
+VSREPORTS will allow you to publish Microsoft Access-created reports using Visual Basic or any ActiveX container without having Access installed on the user's machine.
+VSDIRECT is an ActiveX control package that allows Visual Basic developers to exploit the power and speed of Microsoft DirectX technology.
+VSSPELL allows you to easily add spell checking and thesaurus functionality to any Windows application.
+</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a
+    href="http://live2.walldata.com/builder.asp">Wall Data
+    Incorporated</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ARPEGGIO&#153; Live!,
+    SALSA </td>
+    <td BGCOLOR=#EEEEEE>This Internet server
+    product runs on Windows NT Server using Microsoft IIS to publish
+    mainframe, AS/400, and any database dynamically to HTML. This Active Server Product
+    provides users with an instant Internet solution for existing applications and data. </td>
+  </tr>
+  <tr VALIGN="TOP">
+        <td BGCOLOR=#EEEEEE><a href="http://www.xact.de/dev/activemail" target="_top">XACT Computer </a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+        <td BGCOLOR=#EEEEEE>ActiveMail</td>
+        <td BGCOLOR=#EEEEEE>ActiveMail allows you to send e-mail directly from ASP via SMTP.
+  Supports multiple recipients, CC and BCC, special headers and
+  MS mail headers. Evaluation version is free. </td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td BGCOLOR=#EEEEEE><a href="http://www.xlnt.net/software/" target="_top">XLNT</a><IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"></td>
+    <td BGCOLOR=#EEEEEE>ToolBox</td>
+    <td BGCOLOR=#EEEEEE>ToolBox
+    SQL Anywhere is a Web-based administration kit built in ASP. ToolBox will connect
+    to any ODBC source on the same Network or on the Internet that is an SQL Anywhere source. </td>
+  </tr>
+
+</table>
+
+<p>&nbsp;</p>
+
+
+
+<P> <A HREF="catalog.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><a name="dev" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, components: developer resources">Developer Resource Sites</a></h2>
+<p>
+These sites provide pointers to more ASP Components as well as other useful resources:</p>
+
+
+  <p><a href="http://backoffice.microsoft.com/downtrial/moreinfo/iissamples.asp" target="_top">Microsoft IIS
+  Site</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (IIS samples, components, and utilities)
+  <p><a href="http://www.15seconds.com/Component/default.asp" target="_top">15
+  Seconds</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <P><a href="http://www.activexserver.com/" target="_top">ActiveX Server Bulletin Board</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <p><a href="http://www.activeserverpages.com" target="_top">ActiveServerPages.com</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <p><a href="http://www.asphole.com" target="_top">ASPHole</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <p><a href="http://www.aspdeveloper.net/components.asp" target="_top">Bitshop</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <p><a href="http://www.softwing.com/iisdev/" target="_top">Softwing</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <P><a href="http://www.swynk.com/" target="_top">SWYNK.COM</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+  <p><a href=" http://www.zaks.demon.co.uk/code/index.html" target="_top">Zak's Solutions</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+
+
+<p>
+<i>Author Mike Fenbert is a technical evangelist for IIS, in the Developer Relations Group.</i>
+
+<P>
+<P><P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg01161.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="catalog.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

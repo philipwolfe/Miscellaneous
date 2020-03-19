@@ -1,0 +1,45 @@
+[version]
+signature	= "$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles 	= HtmFiles,InfFiles
+AddReg  	= MenuExtReg,UninstallReg
+
+[DefaultUninstall]
+DelFiles 	= HtmFiles,InfFiles,DefFiles
+DelReg   	= MenuExtReg,UninstallReg,UninstallKeys
+
+[DestinationDirs]
+HtmFiles    = 10,web
+InfFiles    = 10,inf
+DefFiles    = 10,inf
+
+[SourceDisksNames]
+55="Install Directory","",1
+
+[SourceDisksFiles]
+msxmlvw.htm=55
+msxmlvw.inf=55
+
+[HtmFiles]
+msxmlvw.htm
+
+[InfFiles]
+msxmlvw.inf
+
+[DefFiles]
+msxmlvw.pnf
+
+[MenuExtReg]
+HKCU,"Software\Microsoft\Internet Explorer\MenuExt\%MenuTitle%",,,"%10%\web\msxmlvw.htm"
+
+[UninstallReg]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_view","DisplayName",,"%UninstallName%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_view","UninstallString",,"rundll32.exe advpack.dll,LaunchINFSection %10%\inf\msxmlvw.inf,DefaultUninstall"
+
+[UninstallKeys]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_view"
+
+[Strings]
+MenuTitle = "View XSL Output"
+UninstallName = "MSXML - XSL Output IE Extention"

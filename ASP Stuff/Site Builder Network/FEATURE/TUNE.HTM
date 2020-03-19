@@ -1,0 +1,488 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Tuning IIS 4.0 for High-Volume Sites</TITLE>
+
+<META NAME="Description" CONTENT="Tuning IIS 4.0 for high-volume sites, recommendations for" />
+<META NAME="Keywords" CONTENT="IIS, high-volume, Web sites, tune" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Microsoft Corporation" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg08224.htm#/workshop/server/feature/tune.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg08224.htm#/workshop/server/feature/tune.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg08224.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="TUNE" IDX_TYPE="task" IDX_CONCEPT="stopindex;Tuning IIS 4.0 for high-volume sites">IIS 4.0 Tuning Parameters for High-Volume Sites</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="IIS 4.0, tuning parameters for high-volume sites"></A></H6>
+Michael Stephenson and the Windows NT Server Performance Team
+<BR>Microsoft Corporation
+<P>March 9, 1998
+
+<P><P><a href="tune.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 8K)</a>.
+<P> This document provides some general guidelines on how to optimize an Internet Information Server (IIS) 4.0 installation in a high-volume environment.  It is designed for Web server system administrators who are familiar with administering Microsoft&#174; Windows&#174; NT and Microsoft IIS. Because every Web site is unique, Microsoft recommends that customers carefully plan, test, and monitor their Web sites, using both the tools in Windows NT Server and the various benchmarking suites available on the market today.  This will ensure that content deployed on an IIS 4.0 Web site is optimized for the intended use.
+
+
+<P>
+
+<table class=clsRef BORDER="1" BGCOLOR="#FFFFFF" CELLSPACING="0" width="97%" cellpadding="4">
+
+
+  <tr VALIGN="TOP">
+    <th BGCOLOR="#A6CAF0">Parameter</th>
+    <th BGCOLOR="#A6CAF0">Settings</th>
+    <th BGCOLOR="#A6CAF0">Impact</th>
+  </tr>
+  <TR ALIGN=LEFT VALIGN=TOP>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3"><b>General Tuning Parameters</b>
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+</TR>
+
+  <tr VALIGN="TOP">
+    <td>Set Windows NT Server to <b>AppServer</b>.
+</td>
+    <td>On the desktop, right-click Network Neighborhood and select Properties.
+<P>On the Services tab, double-click the Server service.
+<P>Make sure that Network Applications is selected.</td>
+    <td>IIS 4.0 has grown in size, and page faults more under the File Server setting. The AppServer setting instructs Windows NT to trim the file cache more aggressively.</td>
+</tr>
+  <tr VALIGN="TOP">
+    <td>Install the hotfix and remove irrelevant script mappings. </td>
+    <td>Download and run the hotfix utility from <a href="ftp://ftp.microsoft.com/bussys/IIS/iis-public/fixes/usa/proxy" TARGET="_top">the ftp site download</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. You will need to choose the appropriate platform (Intel or Alpha).
+<P>Using the Microsoft Management Console, navigate to the Web sites (virtual servers) under the IIS snap-in.
+<P>Right-click Default Web Site, and/or any other Web site(s) where your content exists and select properties.
+<P>Select the Home Directory property sheet.
+<P>Click the Configuration button under the Application Settings section.
+<P>Remove all unused mappings, leaving at least one mapping in place  (the server requires at least one mapping).  Microsoft recommends leaving the .asp extension in place if no other mappings are being used.
+</td>
+    <td>To make it easier for customers to upgrade to IIS 4.0, IIS 4.0 checks the extension of each file, even in a read-only directory (a directory that has scripting disabled). This additional overhead can be eliminated.  By design, the server requires at least one script mapping, so leave the ASP mapping in place.</td>
+  </tr>
+  <tr VALIGN="TOP">
+    <td>For high-volume sites or benchmark testing, set the Performance bar to <b>More than 100,000</b>. </td>
+    <td>Using the Microsoft Management Console, navigate to the Web sites (virtual servers) under the IIS snap-in.
+<P>Right-click Default Web Site, and/or any other Web site(s) where your content exists and select Properties.
+<P>Select the Performance property sheet.
+<P>Move the slider bar all the way to the right to <b>More than 100,000</b>.</td>
+    <td>This controls the amount of resources available to IIS. Because IIS expects heavy usage, which is common with most benchmarks, IIS will keep additional resources around even if they are not in use.
+<P><b>Note: </b>Use this setting only for high-volume sites.  For low-volume sites, this should be minimized. </td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td>Disable performance boost for foreground applications.
+</td>
+    <td>Open the Control Panel.
+<P>Double-click the System icon, and select the Performance property sheet.
+<P>Move the Application Performance slider to <b>None</b>.</td>
+    <td>Because high-volume sites are usually built on dedicated Web servers, it's important to give the Web server the maximum amount of system resources.  This setting maximizes the number of CPU cycles available to the Web server process. </td>
+  </tr>
+
+  <TD ALIGN=LEFT BGCOLOR="#D3D3D3"><b>Logging Tuning Parameters</b>
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+</TR>
+
+  <tr VALIGN="TOP">
+    <td>Disable logging when not needed.</td>
+    <td>Using the Microsoft Management Console, navigate to the Web sites (virtual servers) under the IIS snap-in.
+<P>Right-click Default Web Site, and/or any other Web site(s) where your content exists and select Properties.
+<P>From the Web Site property page, uncheck Enable Logging to disable logging.
+<P>Click OK.
+</td>
+<td>This frees up system resources and provides better performance.
+</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td>If logging is enabled, log to a striped partition with a controller that allows write-back caching, especially if you see heavy use on the log disk.</td>
+    <td>Using the Microsoft Management Console, navigate to the Web sites (virtual servers) under the IIS snap-in.
+<P>Right-click Default Web Site, and/or any other Web site(s) where your content exists and select Properties.
+<P>Select the Web Site property sheet.
+<P>Click the Properties button under the logging section.
+<P>Make sure the path maps to a striped partition.
+</td>
+    <td>Busy sites can see the log disk become a bottleneck, because it is a point of contention.  This means that all requests on the server will be contending for a single file.</td>
+  </tr>
+
+
+
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3"><b>Network Tuning Parameters</b>
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+</TR>
+
+
+  <tr VALIGN="TOP">
+      <td>Set receive buffers for the Network Interface Card (NIC) to maximum.  If this is in a controlled environment or for a benchmark test, set it on both the client and server.</td>
+      <td>See the documentation for your NIC for details. This parameter can often be set using the properties of the NIC under the Network Control Panel.</td>
+      <td>Dropped packets on the receiving end cause TCP to retransmit.  This minimizes the number of dropped packets on the receiving end,  thus increasing performance. </td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td> Set TCP parameters in registry.</td>
+    <td>Using Regedt32, navigate to HKLM\<Br>CurrentControlSet\<br>Services\<br>TCPIP Parameters.
+<P>Add the value <b>MaxUserPort</b> if it's not already there, and set to <b>0xfffe</b>.
+
+<P>Add the value <b>TcpWindowSize</b> if it's not already there, and set to <b>0x4470</b>. </td>
+    <td>We don't want to run out of user ports. Also, a large window size works better for high-speed networks (TCP stops when the window fills up).
+</td>
+  </tr>
+
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3"><b>SMP Tuning Parameters</b>
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+</TR>
+
+
+  <tr VALIGN="TOP">
+    <td>Control number of active IIS threads.</td>
+    <td>Monitor the Processor Queue Depth object under System in Windows NT Performance Monitor to see if you have too many threads active.
+<P>If you have <i>N</i> processors in your system, a queue depth between <i>N</i> and 3<i>N</i> is good. Leave values at the default if you are not sure.
+<P>For static workloads, you can set <b>MaxPoolThreads</b> to 1 and <b>PoolThreadLimit</b> to the number of processors in your system. (These values are set in the Windows NT Registry using regedt32.exe.  See the following sections for details on setting these parameters.)</td>
+    <td>There should be enough threads in the system that incoming requests don't get blocked. However, each thread uses system resources and can potentially cause unnecessary context switches. The goal is to maximize the number of threads IIS uses without causing excess context switches.  Doing so will ensure better performance on Symmetric Multiprocessing (SMP) hardware.
+</td>
+  </tr>
+
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3"><b>Optimizing for Static Workloads</b>
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+</TR>
+
+
+<tr VALIGN="TOP">
+    <td> Set Object Cache Time to Live (TTL) appropriately.
+<P><b>Default:</b> 30 Seconds</td>
+    <td>Using Regedt32, navigate to HKEY_LOCAL_MACHINE\<br>System\<br>CurrentControlSet\<br>Services\<br>InetInfo\<br>Parameters.
+<P>Add the value <b>ObjectCacheTTL</b> if it's not already there.
+<P>Set to the desired value. If you do not know how long you want IIS to keep an unused file open, leave <b>ObjectCacheTTL</b> at its default value.
+</td>
+    <td>This changes the frequency with which the cache scavenger runs. If your content fits in memory and is largely static, you may even disable the scavenger by setting it to <b>0xffffffff</b>.
+<P>A high <b>ObjectCacheTTL</b> works best for sites with a small number of &quot;popular&quot; files. If the number of frequently requested files is large, a high <b>ObjectCacheTTL</b> may not help. Setting this entry high tells IIS to try to keep unused files open longer. This is useful if you expect these files to be reused within the TTL period. If you do not expect the files to be reused often, or the system appears low on resources, use a lower <b>ObjectCacheTTL</b> to conserve resources. You can also use <b>OpenFilesInCache</b> to limit the number of files IIS will keep open.
+</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td>Set <b>OpenFileInCache</b> to a value large enough to cache all the open handles.
+<P><b>Default: </b>1000 for every 32MB of physical memory</td>
+    <td>Using <b>Regedt32</b>, navigate to HKEY_LOCAL_MACHINE\<br>System\<br>CurrentControlSet\<br>Services\<br>InetInfo\<br>Parameters.
+<P>Add the value <b>OpenFileInCache</b> if it's not already there.
+<P>Set to desired value. The value will depend on the amount of memory you want to make available for IIS' cache, and the number of file handles you want cached. </td>
+    <td>Large Web sites will need to keep more file handles open for maximum performance. If the content on your site is static, you can greatly increase the performance of your Web server by maximizing the number of files served from RAM instead of from disk. You can monitor the number of cached file handles using the Cached File Handles counter under Internet Information Service Global in the Windows NT Performance Monitor. </td>
+  </tr>
+
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3"><b>Optimizing Active Server Pages (ASP) Performance</b>
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+<TD ALIGN=LEFT BGCOLOR="#D3D3D3">&nbsp;
+</TD>
+</TR>
+
+  <tr VALIGN="TOP">
+    <td>Set <b>ProcessorThreadMax</b> to a low value.</td>
+    <td>Using <b>Regedt32</b>, navigate to HKEY_LOCAL_MACHINE\<br>SYSTEM\<br>CurrentControlSet\<br>Services\<br>W3SVC\<br>ASP\<br>Parameters.
+<P>Add the value <b>ProcessorThreadMax</b> if it's not already there.
+<P>Decrease the value and monitor performance.  If performance decreases, revert to the previous value.</td>
+    <td>This changes the number of threads per CPU that IIS allocates for MTS.  For well-written scripts, low numbers are better.  This lowers the amount of contention.
+</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td>Set the <b>AspScriptEngineCacheMax</b> property to <b>ProcessorThreadMax</b>,<b> </b>multiplied by the number of processors in the system.
+<P><b>Default:</b> 30 </td>
+    <td>Configuration information related to Web sites, directories, and pages is stored in the IIS configuration data store (metabase).
+<P>IIS 4.0 includes a number of scripts that let you change settings in the metabase.
+<P>From the SystemRoot, navigate to /System32/<br>inetsrv/<br>adminisamples.
+<P>Type adsutil.vbs. Set /w3svc/<br>AspScriptEngineCacheMax to <b>ProcessorThreadMax</b> multiplied by the number of processors in the system.
+</td>
+    <td>This allows each ASP thread to cache a script engine, which results in processing ASP pages more efficiently.</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+      <td>Enable buffering for ASP applications. </td>
+      <td>Using the Microsoft Management Console, navigate to the Web sites or ASP application name spaces under the IIS snap-in.
+<P>Right-click the site or application and select Properties.
+<P>Select the Home/Virtual Directory property sheet.
+<P>Click the Configuration button under the Application Settings section.
+<P>Click the App Options property sheet.
+<P>Click on the Enable Buffering option.
+<P>Click OK, then click OK again.
+</td>
+      <td>Setting this option buffers ASP output to the browser.  This allows the server to deliver the entire response to the client as opposed to delivering the content as the server generates it.</td>
+  </tr>
+
+  <tr VALIGN="TOP">
+    <td>Minimize the Session Timeout value.</td>
+    <td>Using the Microsoft Management Console, navigate to the Web sites (virtual servers) under the IIS snap-in.
+<P>Right-click Default Web Site, and/or any other Web site(s) where your content exists and select Properties.
+<P>Select the Home Directory property sheet.
+<P>Click the Configuration button under the Application Settings section.
+<P>Click on the App Options property sheet.
+<P>Set Session Timeout to the minimum amount of time you need to maintain a user's session state.
+</td>
+    <td>Maintaining session using the Session object in ASP requires system resources.  Imagine that there are 1,000 users connected at any given time.  This means that the server needs to allocate resources to maintain the session state for each user.  The longer the server needs to maintain the session state, the longer the resources are tied up.  Therefore, minimizing the Session Timeout value optimizes the server's resources and improves performance.</td>
+  </tr>
+
+
+
+</table>
+
+<P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg01282.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="tune.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,449 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Maximizing the Performance of your ASP</TITLE>
+
+<META NAME="Description" CONTENT="Top tips on maximizing the performance of your active server pages" />
+<META NAME="Keywords" CONTENT="ASP, performance, maximize, scripting, components, database" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Nancy Cluts" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="08/30/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg05105.htm#/workshop/server/asp/maxperf.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg05105.htm#/workshop/server/asp/maxperf.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg05105.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><a name="top" IDX_TYPE="task" IDX_CONCEPT="stopindex;Maximizing performance of ASP">Maximizing the Performance of Your Active Server Pages</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, maximizing performance of"></A></H6>
+<P>Nancy Winnick Cluts
+<BR>Based on a presentation by Philip Carmichael
+<BR>Microsoft Corporation
+
+<P>March 4, 1998
+<P><a href="maxperf.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 8.9K)</a>.
+<p> <b>Contents</b>
+<br> <A HREF="maxperf.htm#topic1">Introduction</A>
+<BR> <A HREF="maxperf.htm#topic2">What Is ASP?</A>
+<BR> <A HREF="maxperf.htm#topic3">Know Thyself</A>
+<BR> <A HREF="maxperf.htm#topic4">ActiveX Server Components and ASP</A>
+<BR> <A HREF="maxperf.htm#topic5">Database Concerns</A>
+<BR> <A HREF="maxperf.htm#topic7">ASP Tips and Top Ten List</A>
+<BR> <A HREF="maxperf.htm#topic8">Additional Resources</A>
+<BR> <A HREF="maxperf.htm#topic6">Summary</A>
+<P>
+<h2><A NAME="topic1"></A>Introduction
+</h2>
+<P>Active Server Pages (ASP) provides a consistent, easy-to-use interface to Web-based clients. With ASP, you can connect your user interface (HTML) with business logic. ASP also provides a secure environment for Web applications that require transactions. This article will give you the information you need to maximize the performance of your ASP scripts. In this article we will discuss:
+<UL>
+
+
+<LI> What ASP is
+<LI> File standards
+<LI> ActiveX&#174; server components and ASP
+<LI> Database concerns
+<LI> Performance testing
+
+</UL>This article is based on the presentation &quot;Maximizing the Performance of Your Active Server Pages,&quot; (DWA 05) by Philip Carmichael at Web Tech&middot;Ed, January 25-28, 1998, in Palm Springs, California. This presentation is available via NetShow. Check <a href="../../../devtraining/seminars/wte.htm" target="_top">http://www.microsoft.com/devtraining/seminars/wte.asp</a> for details.
+<P>Microsoft will present additional Web-related technical-solution sessions in June at Tech&middot;Ed 98 in New Orleans.  See the Microsoft Events site at  <A HREF="http://www.microsoft.com/events/teched/" TARGET="_top">http://www.microsoft.com/events/teched/</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for details and registration information.
+<P>
+<P> <A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, definition of">What Is ASP?</A>
+</h2>
+<P>Active Server Pages (ASP) technology provides the environment in which you can run scripts on the server. If you can write HTML, you can create an ASP file. It's really that easy. Your ASP file is simply a file that can contain any combination of HTML, scripting, and calls to components. When you make a change to the ASP file on the server, you need only save the changes to the file -- the next time the Web page is loaded, the script will automatically be compiled. Of course, to take advantage of ASP, you'll want to add features the script that will run on the server, such as database access or other network-related work.
+<P>ASP might be new to us, but it's being used widely on the World Wide Web. Aside from Microsoft Web sites (including the beloved Site Builder Network Web site), sites such as NBC (<A HREF="http://www.nbc.com" TARGET="_top">http://www.nbc.com</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">), Nasdaq (<A HREF="http://www.nasdaq.com" TARGET="_top">http://www.nasdaq.com</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">), and even the maven of good things, Martha Stewart (<A HREF="http://www.marthastewart.com" TARGET="_top">http://www.marthastewart.com</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">), take advantage of the power of ASP. If ASP is new to you, take a look at  <A HREF="aspover.htm">An Asp You Can Grasp: The ABCs of Active Server Pages</A> for an overview.
+<P>
+<P> <A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic3" IDX_TYPE="sbngen" IDX_CONCEPT="Scripting, file standards for">Know Thyself</A>
+</h2>
+<P>You can be a technically good scripter as far as correct syntax goes, but if you write script that is unreadable, it becomes unmaintainable. It is important to follow some kind of scripting file standard to maximize performance and ease maintenance.
+<P>Some things to keep in mind are:
+<UL>
+
+
+<LI> Know your script language -- Take advantage of your chosen scripting language's built-in functions and of ActiveX components.
+<LI> Know your bottlenecks -- You need to know where your users might run into a traffic jam. To minimize bottlenecks, debug script execution, copy collection values to local variables, and avoid the use of "expensive" commands in loops.
+<LI> Be consistent -- It will be easier to maintain the script later and makes your script cleaner.
+<LI> Review standards documents -- The Internet Information Server (IIS) Resource Kit includes a Standards Guide (soon to be available on the Web) that covers the standards you should follow for clean and crisp ASP script. When scripting ASP, use declaratives, type libraries, and <b>Response.IsClientConnected</b>. When using Visual Basic&#174; Scripting Edition (VBScript), use <b>Option Explicit</b>. If you are using JScript&#153;, take advantage of new features like regular expression support.
+
+</UL>
+
+<P> <A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic4" IDX_TYPE="sbngen" IDX_CONCEPT="ActiveX server components, included with IIS">ActiveX Server Components and ASP</A>
+</h2>
+<P>ASP supports the use of ActiveX server components. ActiveX server components provide a scriptable interface to your ASP via the Component Object Model (COM). If you are creating your own ActiveX server component for the server, don't give it a graphical user interface -- the client won't see it. You have several options with components. You can reuse components that you have already bought or developed, you can buy new components, or you can build your own. There are pros and cons to each of these options. You can also select the scripting language you prefer when working with an ActiveX server component.
+<P>There are several components built directly into IIS for your use, including:
+<UL>
+
+
+<LI> ActiveX Data Objects (ADO)
+<LI> Message Queue Objects
+<LI> File System Objects
+<LI> Active Messaging Objects
+<LI> Page Counter
+<LI> Permission Checker
+<LI> Content Rotator
+<LI> Summary Information
+<LI> Page Counter Component
+
+</UL>
+<h3>Server Scriptlets
+</h3>
+<P>An easy way to get started with server components is to create server scriptlets. Scriptlets enable you to create small components of script that you can reuse across your site. This script can carry out common tasks such as accessing data, performing business logic, or participating in a transaction. Server scriptlets, which are reusable COM components written in script, are very simple to create via the popular scripting languages (that is, Perl, JScript, and VBScript). This technology is currently in beta test (available at  <A HREF="http://www.microsoft.com/scripting/scriptlets/" target="_top">http://www.microsoft.com/scripting/scriptlets/</A>). To create one, check out the Microsoft Scriptlet Wizard.
+<P>
+<h3>ActiveX Server Components and ADO
+</h3>
+<P> <A HREF="http://www.microsoft.com/data/" TARGET="_top">ActiveX Data Objects</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (ADO) provides the commonly used mechanism for connecting to databases. These objects are used primarily by business components. Those of you familiar with Data Access Objects (DAO) and Remote Data Objects (RDO) should find the  <A HREF="http://www.microsoft.com/data/ado/prodinfo.htm" TARGET="_top">programming model</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for ADO familiar. ActiveX server components can use ADO to work with databases to provide content based on user preferences, geographical data, or any other criterion.
+<P>The article <A HREF="../../../workshop/components/activex/aspactx.htm">So Happy Together? Using ActiveX Components with Active Server Pages</A> gives you more information about the basics of ActiveX components and ASP, and about using ADO with ActiveX server components.
+<P>
+<P> <A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic5" IDX_TYPE="sbngen" IDX_CONCEPT="Databases, using with ASP;ASP, using your database with">Database Concerns</A>
+</h2>
+<P>Most people will want to take advantage of information stored in a database for their Web sites. This goes for businesses, who may have customer lists or inventory, and for the well-connected home user who has their friends' contact information, CDs, and movies stored in a database (doesn't everyone have six machines on their home network?).
+<P>
+<h3>SQL Server
+</h3>
+<P>To get the most out of Microsoft SQL Server, the following tips apply:
+<UL>
+
+
+<LI> Configure SQL Server's memory size adequately. There is a Knowledge Base article,  <A HREF="http://www.microsoft.com/isapi/gosupport.asp?TARGET=/support/kb/articles/q110/9/83.asp" TARGET="_top">Recommended SQL Server for Windows NT Memory Configurations</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (Article ID:Q110983) that can guide you in your configuration of SQL Server.
+<LI> Be careful about protocol selection: Use named pipes if the SQL Server resides on the IIS machine and sockets otherwise. Detailed information about sockets and SQL Server can be found in the Knowledge Base article  <A HREF="http://www.microsoft.com/isapi/gosupport.asp?TARGET="/support/kb/articles/q107/6/47.asp" TARGET="_top">Connecting to SQL Server from TCP/IP Sockets Clients</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (Article ID:Q107647).
+<LI> Let SQL do the work it was designed to do. It will join, sort, and group the data. Don't do this work yourself in other languages when you can write a query to do it for you.
+<LI> Maintain your SQL Server by making backups and monitoring the logs it creates for you. This will help you detect problems and maintain the integrity of your data.
+<LI> Use stored procedures for faster database access.
+<LI> Use the SET SHOWPLAN ON command to see how SQL Server's query optimizer produces an access plan for returning data. This access plan includes the order in which the optimizer joins tables and what, if any, available indexes it will use.
+<LI> Use indexes. Indexed database tables return query results faster than non-indexed tables.
+<LI> Run Update Statistics on your server to help it keep track of the distribution of your data. Then, your SQL Server will make alterations based on this updated information.
+<LI> Consider a data-source name (DSN) pool. This can be implemented as an array.
+
+</UL>
+<h3>Performance Testing
+</h3>
+<P>Let's say that you are responsible for creating a Web site and decide to use Active Server Pages. Now let's say that your incredible team is down to a zero bug count and the site has remained stable for a week. You are thinking, "Ship it!" Of course, if you didn't test performance, you might find that your technically correct Web site is as slow as a slug. It's important that you take performance issues into consideration when you are designing your Web site. Trying to improve performance at the end of the development cycle can prove to be daunting -- at that point, you really don't want to re-architect the site and you certainly don't want to rewrite every single page.
+<P>
+<h3>Use Sessions Wisely
+</h3>
+<P>Use sessions to save user data in memory when you will need to access that data frequently. Use persistent storage (ADO) to save data that you need to access less frequently. Do not use sessions where they are not needed -- it will decrease your performance.
+<P>
+<h3>Stress and Performance Counters
+</h3>
+<P>There are some nifty tools that you can use to measure and stress your Web site. I know; why would I want my Web site to be stressed? Life is so difficult already; shouldn't we all just try to relax? Well, you won't be relaxed if visitors to your site send you nasty e-mail about its performance at peak connectivity time. I say, stress the Web page -- not the Web author.
+<P>Take advantage of the Web Capacity Analysis Tool (available online at  <A HREF="../../../workshop/server/toolbox/wcat.htm">http://www.microsoft.com/workshop/server/toolbox/wcat.asp</A>). This tool runs simulated workloads on a test Internet Information Server (IIS). By using this tool, you can test the responsiveness of your .asp files. After you run the tests, you can decide how you want to tune your .asp files. You can also take advantage of third-party testing tools to determine the performance of your Web site. Whichever tool you choose is up to you. Testing performance is a very worthwhile endeavor, so don't get hung up on which tool to use; just do it.
+<P>The IIS Resource Kit provides invaluable information on the performance tuning and design of your Web sites. The kit provides tools such as WCAT (described above), an HTTP monitor, a migration wizard, and a sign-up server.
+<P>Other quick tips for performance testing include:
+<UL>
+
+
+<LI> Know the cost of external dependencies. If your ASP depends on content from external databases or files, know the time it takes to access these resources. Are there several other sites accessing the same databases? Should they be replicated?
+<LI> Rate component throughput. If a component slows down performance, consider whether you should rework the component or use another one.
+<LI> Simulate sessions, if used.
+<LI> Determine the number of production machines you need. If you have too few machines, you may run into a severe bottleneck.
+
+</UL>
+<P> <A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic7" IDX_TYPE="sbngen" IDX_CONCEPT="ASP top ten performance tips">ASP Tips and Top Ten List</A>
+</h2>
+<P>Here's a list of the top ten things to keep in mind when you are working with ASP. This list should get you started in the right direction. For a comprehensive explanation and list of tips, refer to the article  <A HREF="asptips.htm">15 ASP Tips to Improve Performance and Style</A>.
+
+<OL>
+
+<LI>Design for success.
+
+
+<LI>   Use application state for caching output.
+
+
+<LI>   Create and modify <b>ProcessorThreadMax</b> registry value.
+
+
+<LI>   Use system DSNs, not file DSNs or DSN-less DSNs.
+
+
+<LI>   Enable buffering for all Applications.
+
+
+<LI>   Use Microsoft Transaction Server "Library" Packages.
+
+
+<LI>   Disable Session state, if not used.
+
+
+<LI>   Use <b>OptionExplicit</b> with VBScript.
+
+
+<LI>   Make ADO free-threaded if you use SQL Server.
+
+
+<LI>    Modify the metabase <b>AspScriptEngineCacheMax</b> value.
+
+</OL>
+
+<P> <A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic8" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, resources for">Additional Resources</A>
+</h2>
+<P>For more information about ASP, click the following links:
+<UL>
+
+
+<LI> What's new in ASP and IIS -- <A HREF="http://www.microsoft.com/ntserver/nts/web/exec/overview/overview.asp" TARGET="_top">http://microsoft.com/NTServer/nts/web/exec/overview/overview.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<LI> Internet Information Server --  <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">http://www.microsoft.com/ntserver/nts/web/default.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<LI> Site Builder Network Server area --  <A HREF="../../../workshop/server/default.htm">http://www.microsoft.com/workshop/server/default.asp</A>
+<LI> Updated BrowsCap.ini --  <A HREF="http://www.cyscape.com/browscap/" TARGET="_top">http://www.cyscape.com/browscap/</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<LI> Updated scripting engines --  <A HREF="http://www.microsoft.com/scripting/" TARGET="_top">http://www.microsoft.com/scripting/</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<LI> PC Magazine Article --  <A HREF="http://www.zdnet.com/pcmag/pctech/content/16/22/pp1622.001.html" TARGET="_top">http://www.zdnet.com/pcmag/pctech/content/16/22/pp1622.001.html</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<LI> Security issues --  <A HREF="http://www.microsoft.com/security/" TARGET="_top">http://www.microsoft.com/security/</A>
+</UL>
+<h2><A NAME="topic6"></A>Summary
+</h2>
+<P>With the information you have now, you can create ASP files that include clean script that runs fast. Take advantage of the resources I've given you and don't forget to test! Keep checking this site as well as the IIS site for updated information about ASP and let us know what else you are interested in reading about. Of course, if we've covered it all flawlessly, you can tell us that, too!
+
+<P>
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00562.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="maxperf.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

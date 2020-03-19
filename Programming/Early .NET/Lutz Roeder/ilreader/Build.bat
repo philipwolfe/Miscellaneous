@@ -1,0 +1,1 @@
+csc /target:exe /out:Example.exe *.cs

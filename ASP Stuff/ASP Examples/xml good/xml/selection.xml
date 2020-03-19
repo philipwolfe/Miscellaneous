@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Catalog>
+   <Book>
+      <Sections>
+         <Section Author="Alex Homer">ASP Intrinsic Objects</Section>
+         <Section Author="Alex Homer">Scripting Objects</Section>
+         <Section Author="Alex Homer">ASP Components</Section>
+         <Section Author="Brian Francis">ActiveX Data Objects</Section>
+         <Section Author="Various">Extending ASP</Section>
+         <Section Author="Wrox">Miscellaneous Reference</Section>
+      </Sections>
+   </Book>
+</Catalog>

@@ -1,0 +1,73 @@
+<BR /><BR /><%
+
+var pad = 0;
+
+if ( xmlArticleInfo != null )
+{
+    if( Number( GetArticleAttributeValue( "allowrating" , 0 ) ) == 1 )
+    {
+        WriteRatingSubmitBar( );
+    }
+    if( Number( GetArticleAttributeValue( "allowcomment" , 0 ) ) == 1 )
+    {
+        WriteCommentTeaserTable( );
+    }
+}
+
+%><TABLE CLASS="clsNavLinks" ID="tblFooterLinks"  CELLPADDING="<%= pad %>" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD CLASS="clsRaised" ID="pBackTop" BGCOLOR="#6699CC">
+<A HREF="#top" CLASS="clsBackTop"><FONT COLOR="#FFFFFF">Back to top</FONT></A>
+</TD>
+</TR><%
+    if( oMD.author )
+    {
+%>
+<TR>
+<TD CLASS="clsRaised" BGCOLOR="#6699CC">
+<FONT COLOR="#FFFFFF">
+<%
+        if ("inetsdk" == oMD.author.toLowerCase())
+        {
+            Response.Write('<I>Did you find this topic useful? Suggestions for other topics? <A HREF="/siteguide/write-us.asp?author=' + Server.URLEncode(oMD.author) + '&area=' + Server.URLEncode(oDD.bucketTitle) + '" TARGET="_top">');
+        }
+        else if ("corner" == oMD.author.toLowerCase())
+        {
+            Response.Write('<I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="mailto:corner@microsoft.com">');
+        }
+        else if ("webmen" == oMD.author.toLowerCase())
+        {
+            Response.Write('<I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="mailto:webmen@microsoft.com">');
+        }
+        else if ("dxmwish" == oMD.author.toLowerCase())
+        {
+            Response.Write('<I>Did you find this article useful? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="mailto:dxmwish@microsoft.com">');
+        }
+        else
+        {
+            Response.Write('<I>Did you find this material useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="/siteguide/write-us.asp?author=' + Server.URLEncode(oMD.author) + '&area=' + Server.URLEncode(oDD.bucketTitle) + '" TARGET="_top">');
+        }
+        Response.Write( '<FONT COLOR="#FFFFFF">Write us!</FONT></A></I>' );
+%>
+</FONT>
+</TD>
+</TR><%
+    }
+
+
+%>
+<TR>
+<TD CLASS="clsRaised" BGCOLOR="#6699CC"><FONT COLOR="#FFFFFF"><!-- #include virtual="/msdn-online/shared/inc/copy99white.inc" --></FONT></TD>
+</TR>
+</TABLE>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+    function CheckToTop()
+    {
+        var eBody = document.body;
+        if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+    }
+
+//--></SCRIPT>
+
+

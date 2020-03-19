@@ -1,0 +1,155 @@
+<%
+
+// This file needs work.
+
+    var bNavlinksLoaded = true;
+    var bInWorkshop = false;
+    if( "object" == typeof( oDD ) )
+    {
+        bInWorkshop = (-1 != oDD.bucketRoot.indexOf("/workshop/"));
+    }
+
+    // -----------------------------------------------------------
+    // Helper functions for NavLinks row 1 generation
+    // NOTE: Should top-row NavLinks also get TITLE attributes?
+    // ----------------------------------------------------------
+
+    function GetLink(sLinkType)
+    {
+        if ("lnkShow" == sLinkType) return oDD.bucketRoot + "toc.htm";
+        else if ("lnkSync" == sLinkType) return HackURL( oDD.vroot + "c-frame.htm?" + oDD.pathname);
+    }
+
+%>
+<TABLE CLASS="clsNavTop" BGCOLOR="#6699CC" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<%
+
+
+    // -----------------------------------------------------------
+    // WriteRow2Cells() function
+    // Generates HTML for NavLink row 2 (Next/Prev/Up) cells using oMD data
+    // -----------------------------------------------------------
+
+    function TruncateNavLinkText(sLabel)
+    {
+        if ("" == sLabel || "undefined" == typeof(sLabel)) return "";
+        var iMaxLabelLength = new Number(25);
+        if (iMaxLabelLength >= sLabel.length) return sLabel;
+        return sLabel.substring(0,iMaxLabelLength) + "...";
+    }
+
+    function WriteRow2Cells(sType)
+    {
+        var sTypeLCase = new String(sType.toLowerCase());
+        Response.Write('    '
+            + '<TD WIDTH="17"><A HREF="' + eval('oMD.' + sTypeLCase + 'Link')
+            + '"><IMG ID="img' + sType
+            + '" CLASS="clsLeftMenu" HEIGHT="13" WIDTH="17" BORDER="0" TITLE="'
+            + eval('oMD.' + sTypeLCase + 'Text')
+            + '" SRC="/msdn-online/shared/graphics/icons/nl-' + sTypeLCase + '-0.gif" /></A></TD> \n'
+            + ' '
+            + '<TD NOWRAP><A ID="lnk' + sType + 'Text" CLASS="clsLeftMenu" HREF="'
+            + eval('oMD.' + sTypeLCase + 'Link')
+            + '" TITLE="' + eval('oMD.' + sTypeLCase + 'Text') + '">'
+            + TruncateNavLinkText(eval('oMD.' + sTypeLCase + 'Text')) + '</A> &nbsp; &nbsp; </TD> \n'
+        );
+    }
+
+    // start navlinks row 1
+
+%>
+
+<TD COLSPAN="2" BGCOLOR="#FFFFFF" HEIGHT="1"><IMG SRC="/msdn-online/shared/graphics/ts.gif" WIDTH="1" HEIGHT="1" /></TD>
+</TR>
+<TR>
+<TD CLASS="clsBBarRaised" VALIGN="top">
+
+    <TABLE CLASS="clsNavLinks" CELLPADDING="5" CELLSPACING="0" BORDER="0"><TR>
+<%
+if( "object" == typeof( oDD ) )
+{
+%>
+    <TD CLASS="clsBtnOff" NOWRAP>&nbsp;<A ID="lnkShowImg" HREF="<%= GetLink("lnkShow") %>" TARGET="_top"><IMG ID="imgShow" ALIGN="absmiddle" HEIGHT="16" WIDTH="16" BORDER="0" SRC="/msdn-online/shared/graphics/icons/showtoc.gif" ALT="Show/Hide TOC in left frame" /><B>&nbsp;<FONT COLOR="#FFFFFF">show toc</FONT></B></A>&nbsp;</TD>
+<%
+    // ------------------------------------
+    // NavBar browsers get the Sync button
+    // ------------------------------------
+
+    if ( oBD.getsNavBar )
+    {
+%>
+    <TD CLASS="clsBtnOff" NOWRAP>&nbsp;<A ID="lnkSyncImg" HREF="<%= GetLink("lnkSync") %>" TARGET="_top"><IMG ALIGN="absmiddle" ID="imgSync" HEIGHT="16" WIDTH="16" BORDER="0" SRC="/msdn-online/shared/graphics/icons/synctoc.gif" ALT="Synchronize TOC and Address Bar with this page" /><B><FONT COLOR="#FFFFFF">&nbsp;sync toc</FONT></B></A>&nbsp;</TD>
+<%
+    }
+
+    // ------------------------------------
+    // Only serve 'index' in Workshop
+    // ------------------------------------
+
+    if (bInWorkshop)
+    {
+%>
+    <TD CLASS="clsBtnOff" NOWRAP>&nbsp;<A ID="lnkIndexImg" HREF="/workshop/index/default.asp"><IMG ALIGN="absmiddle" HEIGHT="16" WIDTH="16" BORDER="0" SRC="/msdn-online/shared/graphics/icons/index.gif" ALT="Go to an alphabetical keyword list" /><B><FONT COLOR="#FFFFFF">&nbsp;index</FONT></B></A>&nbsp;</TD>
+<%
+    }
+}
+%>
+    <TD>&nbsp;</TD>
+    </TR>
+    </TABLE>
+</TD>
+<%
+    // ----------------------------------------------------------
+    // Give Comments links to Articles with an ArticleID
+    // ----------------------------------------------------------
+
+    if( Number( GetArticleAttributeValue( "allowcomment" , 2 ) ) == 1 && Number( GetArticleAttributeValue( "numcomments" , 0 ) ) > 0 )
+    {
+
+        Response.Write( '<TD CLASS="clsBBarRaised" ALIGN="right">' );
+        WriteCommentButtons( false , true );
+        Response.Write( '</TD>' );
+    
+    }
+%>
+
+</TR>
+
+<% // Only show ratings for articles with ratings
+
+    if( Number( GetArticleAttributeValue( "allowrating" , 2 ) ) == 1  )
+    {
+        Response.Write(  '<TR><TD COLSPAN="2" CLASS="clsRaised" ALIGN="right" STYLE="padding: 3px 15px;" ALIGN="RIGHT">' );
+        WriteRatingResultBar();
+        Response.Write( '</TD></TR>' );
+    }
+
+
+
+    // start Row2Cells handler code
+    if (bInWorkshop)
+    {
+
+        if (oDD.getsBucketIcon)
+        {
+            var sDefaultPage = (oDD.vroot != "/xml/") ? "default.asp" : "index.asp";
+            Response.Write('<TR><TD COLSPAN="2" CLASS="clsBBarRaised" BGCOLOR="#FFFFFF"><TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"><TR><TD ROWSPAN="2"><A HREF="' + oDD.bucketRoot + sDefaultPage + '"><IMG HEIGHT="32" WIDTH="31" VSPACE="5" BORDER="0" ALT="Click to return to the ' + oDD.bucketTitle + ' home page" SRC="' + oDD.bucketIcon + '" /></A></TD>');
+        }
+        else
+        {
+            Response.Write('<TR><TD COLSPAN="2" BGCOLOR="#FFFFFF"><TABLE BORDER="0" CELLPADDING="0" CELLSPACING="10"><TR><TD ROWSPAN="2"><IMG HEIGHT="32" WIDTH="31" VSPACE="5" SRC="' + oDD.bucketIcon + '" /></TD>');
+        }
+
+        Response.Write('\n\n\t<TD BGCOLOR="#FFFFFF"><TABLE ID="tblPrevNext" CELLPADDING="0" CELLSPACING="0" BORDER="0"><TR>');
+        if (oMD.prevLink && oMD.prevText) WriteRow2Cells("Prev");
+        if (oMD.nextLink && oMD.nextText) WriteRow2Cells("Next");
+        if (oMD.upLink && oMD.upText) WriteRow2Cells("Up");
+        Response.Write('\t</TR></TABLE></TD></TR>\n\n');
+        Response.Write( '<TR><TD BGCOLOR="#FFFFFF">' + oDD.bucketBranch + '</TD></TR></TABLE></TD></TR>' );
+    }
+%>
+</TABLE>
+
+
+

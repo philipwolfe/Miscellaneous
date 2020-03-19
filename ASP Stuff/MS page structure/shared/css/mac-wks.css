@@ -1,0 +1,205 @@
+
+A:link { color:#000066; }
+A:visited { color:#666666; }
+A:active { color:#0000FF; }
+
+A.clsIncCpyRt {
+  font-weight:normal; font-size:100%; font-family:verdana,arial,helvetica,sans-serif;
+  color:black;
+  text-decoration:none;
+}
+A.clsIncCpyRt:visited { color:black; }
+
+BODY { font-family:verdana,arial,helvetica,sans-serif; font-size:80%; }
+
+DIV.clsDocBody { margin-left:10px; margin-right:10pt; }
+
+DIV.clsDocBody HR { margin-top:0; }
+
+H1 { font-size:145%; }
+H2 { font-size:135%; }
+H3 { font-size:128%; }
+H4 { font-size:120%; }
+H5 { font-size:110%; }
+H6 { font-size:70%; }
+
+HR.clsTitle {
+  color:#666666;
+  height:1px;
+}
+
+P.clsRef {
+  font-weight:bold;
+  margin-top:12pt; margin-bottom:0pt;
+}
+
+PRE {
+	background:#EEEEEE;
+  margin-top:1em; margin-bottom:1em; margin-left:0pt;
+  padding-top:5pt; padding-bottom:5pt; padding-left:5pt; padding-right:5pt;
+ }
+
+PRE.clsCode,
+CODE.clsText { font-family:'courier new',courier,serif; font-size:120%; }
+
+PRE.clsSyntax { font-size:120%; font-family:verdana,arial,helvetica,sans-serif; }
+
+TD.clsShowHide {
+  width:95;
+  padding:0;
+  background-color:#FFFFFF;
+}
+
+.clsLine {
+  margin-top:10;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
+A.clsGlossary {
+  text-decoration:underline;
+  font-size:10pt;
+  color:green;
+}
+
+SPAN.clsDefValue,
+TD.clsDefValue { font-weight:bold; font-family:'courier new',courier,serif; }
+
+SPAN.clsLiteral,
+TD.clsLiteral { font-family:'courier new',courier,serif; font-size:100%; }
+
+SPAN.clsRange,
+TD.clsRange { font-style:italic; }
+
+TABLE.clsStd TH,
+BLOCKQUOTE TH {
+	text-align:left;
+	background-color:#DDD;
+	padding-left:2pt; padding-right:2pt;
+}
+
+TABLE.clsStd TD,
+BLOCKQUOTE TD {
+	background-color:#EEE;
+	padding-left:2pt; padding-right:2pt;
+}
+
+TABLE.clsParamVls,
+TABLE.clsParamVls TD { padding-left:2pt; padding-right:2pt; }
+
+#TOC { visibility:hidden; }
+
+DIV.clsBeta {
+  font-weight:bold;
+  color:red;
+}
+
+UL UL, OL UL { list-style-type:square; }
+
+/* INDEX CLASSES */
+
+UL.clsIndex {
+  margin-left:20pt; margin-top:0pt; margin-bottom:5pt;
+}
+
+TABLE.clsIndex {
+  font-size:100%;
+  padding-left:2pt; padding-right:2pt;
+}
+
+TABLE.clsIndex TD {
+  margin:3pt;
+  background-color:#EEEEEE;
+  }
+
+TR.clsEntry {
+    font-size:11;
+}
+
+.clsIndex .clsLetters {
+  background-color:#CCCCCC;
+  text-align:center;
+}
+
+TD.clsMainHead {
+  background-color:#FFFFFF;
+    font-size:145%; font-weight:bold;
+  margin-top:1.35em; margin-bottom:.5em;
+} /* main heading on index entry page */
+
+A.clsDisabled {
+  text-decoration:none;
+  color:black;
+  cursor:text;
+}
+
+A.clsEnabled { cursor:auto; }
+
+SPAN.clsAccess { text-decoration:underline; }
+
+SPAN.clsEntryText {
+  line-height:12pt;
+  font-size:8pt;
+}
+
+SPAN.clsHeading {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+}
+
+.clsSampHead { font-size:18pt; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsSampTitle { font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsSampDnldMain { font-size:11px; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsShowDesc { cursor:hand; }
+
+.clsTools {
+  color:#0B3586;
+  margin-top:5px;
+}
+
+.clsToolsHome {
+  font-size:9pt;
+  line-height:15pt;
+}
+
+.clsToolsTitle {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+  text-decoration:none;
+}
+
+.clsHide { display:none; }
+
+.clsShow { }
+
+.clsShowDiv {
+  visibility:hidden;
+  position:absolute;
+  left:250px; top:170px;
+  height:0px; width:175px;
+  z-index:5;
+}
+
+/*** DOCTOP RULES ***/
+
+#tblNavLinks TD { font-family:verdana,arial,helvetica,sans-serif; cursor:default; }
+#tblNavLinks A { font-size:9pt; color:black; text-decoration:none; }
+#lnkShowText, #lnkSyncText, #lnkSearchText, #lnkIndexText { font-weight:bold; }
+#lnkPrevText, #lnkNextText, #lnkUpText { font-size:7pt; font-weight:normal; }
+
+DIV.clsBucketBranch {
+	margin-left:10px; padding:0;
+	font-style:italic; font-size:85%; cursor:default;
+}
+
+DIV.clsBucketBranch A,
+DIV.clsBucketBranch A:link,
+DIV.clsBucketBranch A:active,
+DIV.clsBucketBranch A:visited { text-decoration:none; color:black; }
+
+A:hover,
+A.clsIncCpyRt:hover,
+DIV.clsBucketBranch A:hover { color:blue; }

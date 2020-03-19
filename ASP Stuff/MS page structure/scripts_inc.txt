@@ -1,0 +1,14 @@
+<%
+  // -----------------------------------------------------------
+  // JS SCRIPT SRC for InetSDK common code
+  // -----------------------------------------------------------
+
+  if ("MSIE" == oBD.browser && oBD.majorVer >= 4)
+	// IE4 respects JScript 1.2 but not JScript 1.3
+	// Removed DEFER per bug 105006
+    Response.Write('<SCRIPT LANGUAGE="JavaScript1.2" SRC="/workshop/code/common.js"></SCRIPT> \n');
+%>
+
+
+
+

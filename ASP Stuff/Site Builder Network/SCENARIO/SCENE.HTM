@@ -1,0 +1,402 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Network Imaging Corporation's 1View Active Server Component</TITLE>
+
+<META NAME="Description" CONTENT="A case study of Network Imaging Corporation's 1View Active Server Component" />
+<META NAME="Keywords" CONTENT="ASP, active, server, component" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Microsoft Corporation" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/14/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg07059.htm#/workshop/server/scenario/scene.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg07059.htm#/workshop/server/scenario/scene.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg07059.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="NETWORK" IDX_TYPE="task" IDX_CONCEPT="stopindex;Using WebMOM Active Server Component (Case Study)">Case Study: Network Imaging Corporation's 1View Active Server Component</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, Active Server Component: WebMOM (Case Study);Components, server: WebMOM (Case Study)"></A></H6>
+<P>Microsoft Corporation
+
+<P>April 11, 1997
+<center>
+<img src="networki.gif" width="263" height="64" border=0 align="center" alt="Network Imaging Corporation">
+<br clear=all>
+presents
+<p>
+<img src="lucentiis.gif" width="186" height="62" border=0 align="center" alt="Lucent Technologies">
+<br clear=all>
+AllView&#153; System
+<br>
+WEB Access
+<p>
+based on
+<p>
+Network Imaging's 1View&#153;
+<br>
+Active Server Component
+</center>
+<p>
+
+<a name="top"></a><b>Contents</b>
+<br>
+<a href="scene.htm#overview">Overview</a>
+<br>
+<a href="scene.htm#business">Business Problem</a>
+<br>
+<a href="scene.htm#system">System Description</a>
+<br>
+<a href="scene.htm#webaccess">AllView Web Access</a>
+<br>
+&nbsp;&nbsp;&nbsp;<a href="scene.htm#phase1">Phase I: 1View:Object Manager:WebMOM</a>
+<br>
+&nbsp;&nbsp;&nbsp;<a href="scene.htm#phase2">Phase II: 1View:WebMom Active Server Component</a>
+<P>
+<a name="overview"></a><h2>Overview</h2>
+<p>
+In 1994, AT&T Network Systems Division, working in concert with other operating divisions at AT&T, recognized the need to provide engineering, customer teams, and customers with a tool to access records, documents, and drawings.  The response to this need was the creation of a system named AllView&#153;  within AT&T,  with the responsibility of managing the capture, storage, display, distribution, and printing of information that began its life on paper, film, or as computer-generated output.
+<p>
+AT&T selected Network Imaging Corporation's 1View&#153;  line of software as the technology that would provide AllView with a suite of products capable of meeting both the immediate and future needs that were envisioned.  The 1View  Suite consists of a rich set of application programming interfaces, connectivity tools, and information capture services. It uses sophisticated caching, information clustering, and usage-based storage algorithms to optimize transactional performance.  The distributed framework optimizes database, application, and presentation performance in mixed server and multiple application environments.
+AllView (Lucent trademarked name for their 1View  implementation), provides on-line access to drawings, specifications, and other documentation.
+<P>
+Initially implemented in 1995, AllView has expanded to meet the changing needs at Lucent.  All files are stored as objects in the Network Imaging 1View:Object Manager, which provides a scalable storage backend that abstracts the object from the application, providing a enterprise storage solution that manages multiple application references to the common multimedia information base, thereby conserving expensive storage resources.  In addition to best location storage, Object Manager can provide a transaction journal or mirroring and maintains the reference until all applications have deleted the data.  It includes version control and management capabilities for document management or publishing environments where multiple versions may need to be maintained.
+<p>
+The AllView system has permitted integration of information from separate sources, and today it  provides users with the ability to access and distribute information seamlessly.   Initially, AllView was deployed to 200 centrally located users and was accessed via the 1View:EDM interface.  By 1996, the system had grown to 1000 users, who access the system both by the EDM interface and a Microsoft Windows NT&reg;-based Web server, and Internet Explorer clients.  Currently, two million objects of varying datatypes are stored in AllView.
+<p>
+The AT&T organization that is responsible for AllView became part of Lucent Technologies in the divestiture.
+<p>
+Lucent Technologies has integrated the  1View  Suite into a complex distributed engineering services environment with computer-aided design systems, host-based publication systems, complex legacy database applications, and other office applications.  The Lucent AllView System provides automation to a series of manual and/or  semi-automatic legacy information systems involved in the engineering and maintenance of  Telco switching centers.
+<P> <A HREF="scene.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<p>
+<a name="business"></a><h2>Business Problem</h2>
+<p>
+The competitive environment in the Telcom Industry has changed very dramatically as part of the overall deregulation process. Business as usual will not work in today's competitive environment.  The opening paragraphs of this article indicate the need for systems that
+<ul>
+<li>Improve business processes through more effective interaction.
+<li>Provide timely access to various forms of information.
+<li>Reduce the time to complete business transactions and operations.</ul>
+<p>
+Lucent recognized that their existing systems would not provide for their customers' changing needs.  They  were being pressured by their Local Telephone Operating Company customers to improve their processes to support the large Lucent switch installations.  Lucent's customers felt that the response times provided by the existing manual and host-based legacy systems were inadequate to provide them with a competitive advantage.  Lucent's response was to start a re-engineering  process, which resulted in the definition of an integrated software support system that they called AllView.  After defining the system requirements, Lucent started a procurement process and identified the 1View Suite as the best solution.
+<P> <A HREF="scene.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<p>
+<a name="system"></a><h2>System Description</h2>
+<p>
+The AllView system provides management of the work-in-process associated with Job Orders received from their customers.  The system supports the capture of  paper- and film-based documents, as well as mainframe-based reports and publications as part of an overall Job Order Management system.
+<p>
+The system uses Electronic Job Folders to provide the creation, deletion, update, and query access to the work-in-process through the life cycle of the Job. The system manages the Job Orders, Drawings, Specifications, Markup, and Issue Release process.  The system also provides complete management of  Fax, Printing, Plotting, and Distribution during the process.  Fax support includes both Fax In and Fax Out, as well as the support of regular office size and large engineering size drawings.
+<p>
+The latest addition to the AllView system is the Web Multimedia Object Management (WebMom) Internet extensions to the 1View product suite from Network Imaging Corporation.  The WebMom product adds Intranet and/or Internet access to the millions of documents that are stored and managed by the system.  Field maintenance people can now gain dial-in access to needed documents from remote sites.  The Lucent Intranet now has full access to the stored document base with the same access management and control that is an integral part of the AllView system design provided by the 1View system.
+<p>
+The 1View Suite acts as a distributed integration framework to provide interactive interface between the existing CAD drawing systems, Image Viewing and Markup systems, and Mainframe based processes in a distributed Local Area and Wide Area networking environment.  The system also provides seamless access to the Lucent open mail system that supports most existing mail environments.
+<p>
+The system installation consists of the following:
+<ul>
+<li>NCR multi-processor Pentium
+<li>RAID Systems
+<li>Multiple jukeboxes
+<li>1View:ObjectManager w/COLD & FAX services
+<li>1View:EDM
+<li>1View:Workflow
+<li>1View:WebMom running on Microsoft Windows NT
+<li>Growing to 2000 plus users at 9 to 12 sites</ul>
+<p>
+System solutions like AllView provide the real process improvements required to be competitive in today's environment. These systems bring cost-effective implementation reality to the re-engineering process, while providing the framework for managing complex interactive information flow processes.
+<p>
+Objects captured by the AllView system are managed by the 1View:Object Manager, and are indexed in a Sybase database selected by Lucent.  Applications -- such as 1View:EDM and the Web access application built around 1View:WebMom -- request objects over TCP/IP,  using either 1View APIs or the new Active control.
+<p>
+The 1View:EDM application is a traditional client-server application that is used to capture and index documents and data.  A 1View:COLD module automatically captures and indexes specification and report data.  The 1View:WebMom product was used to build the Phase I Web Access Interface to the AllView system.  The AllView Web Access interface is currently being upgraded to utilize Microsoft Active Server and Network Imaging's 1View:WebMOM Active Server Component for Phase II.   The new 1View:OMWEB Component, in combination with Microsoft Active Server,  provides Lucent with a system that delivers higher performance, while greatly reducing the effort required to maintain and enhance the software.
+<P> <A HREF="scene.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<p>
+<a name="webaccess"></a><h2>AllView Web Access</h2>
+<br>
+<a name="phase1"></a><h4>Phase I: 1View:Object Manager:WebMOM</h4>
+<p>
+The 1View:WebMOM Extensions represent a collection of tools that allows developers to construct custom World Wide Web applications using 1View:OM as a backend storage repository.  Central to the 1View:OM Extensions is a Common Gateway Interface program, OMWEB, that provides a means to retrieve objects from 1View:OM and display them at a Web browser.  The following graphic portrays the relationship between OMWEB and the AllView system utilizing the 1View:WebMOM enhancements as an interface to the database and OM backend storage system.
+<p>
+<img src="lucenta.gif" width="479" height="331" border=0 alt="OMWEB and AllView relational graphic">
+<p>
+In the AllView Web subsystem, the WebMOM extensions provided by Network Imaging allow clients who are running standard HTML browsers to access data stored in the AllView system.  Security is maintained through a combination of interfaces designed to meet Lucent's requirements. The client side application consists of a number of  dynamically built HTML forms used to formulate queries against the various application database tables, as well as tables for authentication and privilege.
+<p>
+The user of the HTML application generates a query by filling out a form which is interpreted by WebMOM processing code residing on the Web server. The WebMom application formulates a query to the database over an ODBC interface, and then takes the result set of the query and builds a structure on the server for the result set.  It then dynamically builds HTML for the client HTML browser application in a table layout format which represents records in the AllView database and objects stored in 1View:Object Manager.  The results of the query are formatted into an HTML page with embedded hypertext links to a set of objects.  Each hypertext link references the OMWEB CGI program to allow the contents of the object to be rendered at the workstation.
+<p>
+In addition to the OMWEB program, a set of C static libraries are provided with the toolkit.  The libraries are designed to assist the developer in constructing CGI programs.  These libraries include:
+<ul>
+<li>CGI Library - contains a collection of functions that deal specifically with CGI
+<li>OM Web Library - contains a collection of functions used for interfacing with OM
+<li>Cookie Library - contains a collection of functions that deal with magic cookies</ul>
+<p>
+The 1View:OM Web Extensions conform with the Common Gateway Interface 1.1 standard.
+<p>
+The Phase I AllView Web development effort using CGI and the WEBMOM libraries, required  over 10,000 lines of Multi-threaded C++ code, due to the necessity to create all the scheduling, connection management, database session management, cookie security,  and dynamic HTML generation software.  The functionality provided by Microsoft Active Server greatly reduced the development effort for Phase II.
+<P> <A HREF="scene.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<p>
+<a name="phase2"></a><h4>Phase II:  1View:WebMom Active Server Component</h4>
+<p>
+By  providing the Object Manager (OM) Active Server component as a new addition to 1View:WebMom, Network Imaging provides Web developers with the ability to access high capacity, scalable storage in an efficient manner.  A key feature of this new method for accessing Object Manager is its ease of use.
+<p>
+The thin ActiveX OM component requests an object from OM via a winsock RPC interface, and the OM Volume Manager which currently manages the object responds, delivering the requested object via winsock.  An OM client, requesting a number of objects,  transparently delivers the objects that satisfy the request, regardless of the location or operating system the Volume Manager is running on.  The various components in Microsoft Active Server, such as the Connection Component (ADO Database Access), greatly reduce the amount of coding required to develop and deploy high performance Internet and intranet solutions.
+<p>
+<img src="lucentb.gif" width="482" height="333"  border=0 alt="OMWEB and AllView relational graphic">
+<p>
+Utilizing both Microsoft Active Server Pages and Network Imaging's 1View:WebMOM ActiveX Server Component, the Phase II development for AllView Web required <b>under 1,000 lines of Scripting code versus 10,000 lines of C++</b>.  Microsoft Server  components are implemented as ISAPI extensions, which greatly increase performance over CGI-based implementations while offloading most of the session management and database connectivity issues from a developer.
+<p>
+<b>Key features of the 1View:WebMOM Active Server Component:</b>
+<ul>
+<li>A server-side based component
+<li>Browser independent
+<li>Fully integrated with Microsoft Internet Information Server
+<li>Accessible to existing development tools via OLE/COM
+<li>Easy to use, can be called by scripting using VBScript or JScript
+<li>Does not require HTML knowledge
+<li>Developed using Active Template Libraries (ATL)
+<li>Supports dual interfaces
+<li>Supports COM Exceptions
+<li>Can be called from Visual Basic&reg;, Visual J++&#153;, Visual C++&reg;, and ASP
+<li>In-process
+<li>Scalable
+<li>Provides per user or per application cache management capabilities
+<li>Local or Remote 1View:Object Manager connectivity, supports Object Managers Kerberos security.
+</ul>
+<P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg01282.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="scene.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

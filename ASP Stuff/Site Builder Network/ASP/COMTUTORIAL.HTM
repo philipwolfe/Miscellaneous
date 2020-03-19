@@ -1,0 +1,455 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: COM Tutorial</TITLE>
+
+<META NAME="Description" CONTENT="This tutorial demonstrates the basics of COM to those familiar with VBScript and COM objects, and is especially useful to those who have used COM objects like ActiveX Data Objects (ADO) without knowing that they are COM." />
+<META NAME="Keywords" CONTENT="COM, Component Object Model, ASP" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Wayne Berry" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+  function showSample(sURL) {
+    sFeatures = "width=520,height=400,left=10,top=10,toolbar=0,statusbar=0,scrollbars=1,resizable=1";
+    newWin = window.open (sURL, "_blank", sFeatures);
+    return false;
+  }
+
+//--></SCRIPT>
+
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg01548.htm#/workshop/server/asp/comtutorial.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg01548.htm#/workshop/server/asp/comtutorial.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg01548.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="COM" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex;COM objects, in ASP">COM Objects in ASP</A></H1>
+<HR SIZE="1" />
+<P>Wayne Berry
+<BR>Editor, 15 Seconds
+<P>January 12, 1998
+<P><a href="comtutor.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word format (zipped, 8.4K)</a>.
+<p><A NAME="contents"><b>Contents</b>
+<br> <A HREF="comtutorial.htm#INTRO">Introduction</A>
+<BR> <A HREF="comtutorial.htm#BASICS">The Basics</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#PROP">Properties</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#METH">Methods</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#ARGU">Arguments</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#COLL">Collections</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#DEF">The Default Method or Property</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#INSTAN">Instantiating an Object</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#BUILTIN">Built-in COM Objects</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#PROGID">ProgID</A>
+<BR> <A HREF="comtutorial.htm#DOCS">The Documentation</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#RW">Read and Write Properties</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#RO">Read-Only Properties</A>
+<BR>&nbsp;&nbsp;<A HREF="comtutorial.htm#OPT">Optional Method Arguments</A>
+<BR> <A HREF="comtutorial.htm#SUMM">Summary</A>
+<P>
+<h2><A NAME="INTRO" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, why to use in ASP">Introduction</A> 
+</h2>
+<P>If you are an Active Server Pages (ASP) developer, you have already used Component Object Model (COM) objects to create your ASP pages.  However, unless you have developed COM objects or read a detailed book on COM, you might not know about the multitude of COM objects that you can use in ASP.  Also, without sufficient COM knowledge, you might not be able to infer the methods and properties that exist for those objects when reading the documentation.  One of the wonderful things about COM is that once you learn the standards and restrictions, you can quickly learn to implement other COM objects.  In this tutorial, I explain how COM works from the perspective of someone who writes Visual Basic&#174; Scripting Edition (VBScript), and this knowledge will help you master the world of COM.
+<P>This tutorial demonstrates the basics of COM to those familiar with VBScript and COM objects, and is especially useful to those who have used COM objects like ActiveX&#153; Data Objects (ADO) without knowing that they are COM.  This tutorial is for you if have ever wondered any of the following:
+<UL>
+
+
+<LI> What is the difference between a property and a method?
+<LI> Does a property take an argument?
+<LI> What does it mean for a property to be read-only?
+<LI> What is a collection object?
+<LI> What properties are standard with every collection object?
+<LI> Why can I index a collection object without calling a method?
+<LI> How many COM objects can there be in a single DLL?
+
+</UL>
+<P>
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="BASICS" IDX_TYPE="task" IDX_CONCEPT="Using COM objects with ASP">The Basics</A></h2>
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: tutorial"></A></H6>
+<P> <A HREF="http://www.microsoft.com/com/" target="_top">COM</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> is the standard for the interface to objects.  By definition, COM objects have only methods and properties; there are no other interfaces.  There isn't much difference between properties and methods from a programmer's standpoint: Methods can take arguments, properties can't.  Properties can be read/write; methods -- if they return a value -- are read-only.
+<P>Component designers use methods and properties for different functionality.  Properties usually represent some aspect of the object's state, whereas a method can be a function that performs regardless of whether the object's state is involved.
+
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="PROP" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: properties">Properties</A>
+</h3>
+<P>Properties do not take any arguments and are usually used to describe or set the state of an object.  All properties return a value, however some properties are read-only, and some are read/write.  Here is an example of the VBScript syntax for reading a property:
+<P><b>Example 1</b>
+<P>
+<PRE class=clsCode>value = object.property
+</PRE>
+<P>Note there are no parentheses, not even a blank set; that is, ().  Here is the Visual Basic(r) syntax for setting a property:
+<P><b>Example 2</b>
+<P>
+<PRE class=clsCode>object.property = value
+</PRE>
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="METH" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: methods">Methods</A>
+</h3>
+<P>Methods can return values and take arguments. They are most often used to initiate an event within the object.  Methods can be used to set values, but only when passing the value through the argument list.  If a method returns a value but doesn't take an argument, the syntax will be:
+<P><b>Example 3</b>
+<P>
+<PRE class=clsCode>value = object.method()
+</PRE>
+<P>Note in Example 3 that the method has a set of blank parentheses.  Methods that have a return value must have arguments encapsulated in parentheses.  For example, the <b>Connection</b> object has an <b>Execute</b> method that returns a <b>RecordSet</b> object.  Here is an example:
+<P><b>Example 4</b>
+<P>
+<PRE class=clsCode>Set RS = Conn.Execute("SELECT * FROM TABLE")
+</PRE>
+<P>Methods that do not return values do not have parentheses around the arguments.  For example, the <b>Close</b> method of the <b>Connection</b> object is not encapsulated in parentheses:
+<P><b>Example 5</b>
+<P>
+<PRE class=clsCode>Conn.Close
+</PRE>
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="ARGU" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: arguments">Arguments</A>
+</h3>
+<P>Methods can take one or more arguments, or take none at all.  However, arguments might be optional. If they are, you do not have to enter anything for an argument.  Once one argument is optional, all arguments following it are also optional.  For example, if arguments one and two are required, and three is optional, argument four has to be optional.  A good example of an optional argument method is the <b>Open</b> method of the <b>Connection</b> object.  The <b>Open</b> method has eight optional arguments.  The first three are for establishing the database and the logon information.  You can call the <b>Open</b> method as in Example 6:
+<P><b>Example 6</b>
+<P>
+<PRE class=clsCode>Conn.Open "DSN","sa",""
+</PRE>
+<P>This indicates a DSN of "DSN", a logon of "sa", and a password of "". You can also call the <b>Open</b> method as in <A HREF="example7.htm" TARGET="_blank" 
+    ONCLICK="return showSample('/workshop/server/asp/example7.htm')">Example 7</a>.
+
+<P>Note that we used three of the optional arguments in Example 6 and we used only one in Example 7, with the same result.
+<P>Calling the arguments by delimiting with the argument and leaving it blank causes the method to execute with nulls instead of the optional argument's default values.  In Example 6, the default value of the optional arguments is used. In Example 8, nulls are used for the optional arguments:
+<P><b>Example 8</b>
+<P>
+<PRE class=clsCode>Conn.Open "DSN","sa","", , , ,
+</PRE>
+<P>Example 8 calls the optional methods with null values, which is different than Example 6.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="COLL" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: collections">Collections</A>
+</h3>
+<P>Collections are objects that represent a set of objects.  All collections have predefined methods and properties.  A collection object has an <b>Item</b> method, a <b>Count</b> property, and a <b>_NewEnum</b> method.  A collection can also create objects of the collection type.  In other words, if a particular object can be grouped in a set, that object will have a collection object that can create an instance of an object within the set.  For example, a <b>Drives</b> collection object will contain a set of drives that can represent all the drives on a particular computer. 
+<P>The <b>Count</b> property returns a LONG value that specifies how many objects are in the collection.  By passing a LONG value -- that is between one and the value returned by the <b>Count</b> property -- to the <b>Item</b> method, the collection method will return the object in the set that is associated with that position. Accessing an item in an array works similarly.
+<P>The <b>_NewEnum</b> method enables a programmer to iterate through the collection in a For&#133;Next statement.  Example 9 shows <b>_NewEnum</b> in action:
+<P><b>Example 9</b>
+<P>
+<PRE class=clsCode>For Each Object in Collection
+ ...
+Next Object
+</PRE>
+<P>Note that the <b>_NewEnum</b> method is not referenced within the syntax of the statement in Example 6.  This is because the _<b>NewEnum</b> method has a special index that is used for the For&#133;Next statement.  In fact, all methods and properties in a COM object are indexed and certain indexes are used for particular tasks.  For example, the zero index is used for the default method or property.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="DEF"></A>The Default Method or Property
+</h3>
+<P>The method or property that has the COM index of zero is called the default property.  Visual Basic enables a programmer to not use the regular method/property syntax when calling the default value; you can leave the syntactical call to the method/property off altogether.  For example, the default method in all collections is the <b>Item</b> method.  Example 10 shows how to call the <b>Item</b> method: 
+<P><b>Example 10</b>
+<P>
+<PRE class=clsCode>Set Object = Collection.Item(2)
+</PRE>
+<P>This would get the second item in the collection and assign the object variable to that object.  Because the <b>Item</b> method is the default method, you can also call the <b>Item</b> method as in Example 11:
+<P><b>Example 11</b>
+<P>
+<PRE class=clsCode>Set Object = Collection(2)
+</PRE>
+<P>Note that both the period and the actual name of the method are missing; only the argument to the method remains.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="INSTAN"></A>Instantiating an Object
+</h3>
+<P>To create an instance of a COM object in ASP, you can use a statement like the following:
+<P><b>Example 12</b>
+<P>
+<PRE class=clsCode>Set Object Server.CreateObject(&quot;SMUM.XCheck.1&quot;)
+</PRE>
+<P>There is only one argument to the <b>CreateObject</b> method of <b>Server</b> that is the <b>ProgId</b> (the program ID).  The <b>ProgId</b> is assigned by every component vendor to uniquely identify the COM object.  To create an instance of the COM object, you must know the <b>ProgId</b> of the COM object.
+<P>There is another way to get an instance of a COM object. You can have another COM object create the object and return the newly created object to you.  This is how a collection works.  You call the <b>Item</b> method of a collection, and a COM object is returned that represents the subset of the collection, which you index.  Whenever a COM object is returned by another object, you must preface the statement with <b>Set</b> as in Example 13:
+<P><b>Example 13</b>
+<P>
+<PRE class=clsCode>Set Object = Collection.Item(2)
+</PRE>
+<P>Because <b>Server</b> is a COM object, Examples 12 and 13 are much alike.  They both return COM objects with a call to another COM object.  The difference is that the <b>CreateObject</b> method of the <b>Server</b> object can return any COM object, and the <b>Item</b> method can only return COM objects that are stored in the collection.  If you need to have a COM object to create another COM object, where did the <b>Server</b> object come from?  ASP has a set of built-in COM objects that solve this chicken-or-the-egg problem.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="BUILTIN" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: built-in">Built-in COM Objects</A>
+</h3>
+<P>There are six built-in COM objects in the ASP environment:
+<ul>
+<li><b>Server</b>
+<li><b>Request</b>
+<li><b>Response</b>
+<li><b>ObjectContext</b>
+<li><b>Application</b>
+<li><b>Session</b>
+</ul>
+<P>The difference between these COM objects and the others is that you do not need to create an instance of these objects to call them.  Built-in objects are present in the page without instantiation.  They adhere to all the other rules of COM and have their own methods and properties.  You do not need to know their <b>ProgId</b>s because you don't have to call the <b>CreateObject</b> method to instantiate them.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><a name="PROGID"></a>ProgId
+</h3>
+<P>If one of the major ways to create a COM object is by using the <b>CreateObject</b> method, knowing the <b>ProgId</b>s of the objects you are creating is very important.  So where are the <b>ProgId</b>s located?  The component vendor should supply the component <b>ProgId</b>s as part of the documentation.
+<P>However, not all <b>ProgId</b>s are supplied, because a vendor doesn't always want you to create an instance of the object using the <b>CreateObject</b> method.  Some objects inherit properties from the object that creates them, so if they are not created from calling a method in that object they are not initialized correctly.  For example, creating an instance of an ADO <b>Field</b> object would not do you much good without going through the <b>RecordSet</b> object, because the ADO <b>Field</b> object would not contain any data unless you went through the <b>RecordSet</b> object.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="DOCS" IDX_TYPE="sbngen" IDX_CONCEPT="COM objects, with ASP: documentation">The Documentation</A>
+</h2>
+<P>Now that we have established the differences between methods and properties along with their different attributes, we need to understand how the documentation for the objects represents these attributes.  For example, we are going to look at 15 Seconds' component section, which is in the same format as the IIS 4.0 component documentation.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="RW"></A>Read and Write Properties
+</h3>
+<P>A good example of a read/write property is that of the <b>PhoneTranslate</b> property of the <b>XCheck</b> object, shown here in Example 14:
+<P><b>Example 14</b>
+<P>
+<PRE class=clsCode><i>object</i><b>.PhoneTranslate</b>[= <i>value</i>]
+</PRE>
+<P>Note the value syntax -- this indicates a property to which you can write.  The brackets denote that the property is optional, that is, you do not need to set the property to use the object. Here's a pointer to the  <A HREF="http://www.15seconds.com/Component/Property.asp?ComponentId=1&PropertyId=8" target="_top">full documentation</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> on the 15 Seconds site.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="RO"></A>Read-Only Properties
+</h3>
+<P>A good example of a read-only property is the <b>Expires</b> property of the <b>ASPMail</b> object. 
+<P><b>Example 15</b>
+<P>
+<PRE class=clsCode>object<b>.Expires</b>
+</PRE>
+<P>Note that, unlike Example 14, there is no equal symbol, which indicates that this property is read-only.  Here's a pointer to the  <A HREF="http://www.15seconds.com/Component/Property.asp?ComponentId=1&PropertyId=8" target="_top">full documentation</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> on the 15 Seconds site.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h3><A NAME="OPT"></A>Optional Method Arguments
+</h3>
+<P>A good example of the optional arguments is the <b>SendX</b> method of the <b>OCXMail</b> object.  The documentation syntax can be seen here in <A HREF="example16.htm" TARGET="_blank" 
+    ONCLICK="return showSample('/workshop/server/asp/example16.htm')">Example 16</a>.
+
+<P>Note that the only required argument is in the mailserver argument.  All the others, as indicated by the brackets, are optional.  Here's a pointer to the  <A HREF="http://www.15seconds.com/Component/Method.asp?ComponentId=20&MethodId=125" target="_top">full documentation</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> on the 15 Seconds site.
+<P> <A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="SUMM"></A>Summary
+</h2>
+<P>With a fundamental understanding of COM, its abilities, and good documentation, you can expand the flexibility of your ASP programming.  Take the information that you already know about programming Internet Information Server (IIS) objects, like Session objects and ADO, and expand on that by adding more COM objects to your repertoire.  Third-party COM objects will enable you to expand your Active Server applications and accomplish tasks rapidly by leveraging the Component Object Model.
+<P><i><A HREF="http://www.15Seconds.com" target="_top">15 Seconds</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> is a free Internet resource for developers working with Microsoft Internet Solutions and product lines of <A HREF="http://www.signmeup.com" target="_top">Sign Me Up Marketing</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> SMUM a leader in Internet marketing. Established in 1996, SMUM is a Seattle-based business owned by Wayne Berry, a well-known global programming consultant and co-author of Active X Programming Unleashed, Windows NT 4 Registry, and IIS 4.0 Special Edition.</i>
+<P><P>
+<P>
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00573.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="comtutorial.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

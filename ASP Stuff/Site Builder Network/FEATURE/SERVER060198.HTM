@@ -1,0 +1,461 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Microsoft Investor Site Architecture</TITLE>
+
+<META NAME="Description" CONTENT="SBN Magazine: Tom Moran column on Microsoft Investor site" />
+<META NAME="Keywords" CONTENT="Microsoft Investor, Portfolio Manager, subscription-based site, scalability" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Tom Moran" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg07333.htm#/workshop/server/feature/server060198.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg07333.htm#/workshop/server/feature/server060198.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg07333.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="top" IDX_TYPES="sbngen" IDX_CONCEPT="stopindex; Server, capacity-planning tool">Investing Wisely in Your Web Site</A></H1>
+<HR SIZE="1" />
+<P>Tom Moran
+        <BR>Microsoft Corporation
+<P>June 1, 1998
+<P>
+<P><a href="server0698.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" BORDER=0 ALT="Download">Download Microsoft Word (.DOC) format of this document (zipped, 78.2K)</A>
+
+<P><i>The following article was originally published in the Site Builder Network Magazine &quot;<a href="../../../sitebuilder/magazine/server.htm" TARGET="_top">Servin' It Up</a>" column. A much <A HREF="../../../workshop/server/scenario/msi.htm" target="_top">expanded version</A> of this article, including sample code, was published June 12, 1998 in the Server area of the Workshop.</i>
+
+<P><i>Barron's</i> magazine called it the "best all-around site for investors on the Web today."  <i>Individual Investor</i> wrote, "One of the most elegant, drop-dead gorgeous interfaces on the Net."
+<P>I'm talking about  <A HREF="http://investor.msn.com" TARGET="_top">
+Microsoft Investor</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.  Every day, 300,000 customers call up over 3.5 million pages with a response time that borders on the immediate. That kind of performance makes Microsoft Investor one of the hottest sites on the Web.
+<P>What's that got to do with anything, you ask?  "Did Tom work out a deal to get a commission for recruiting new MSI subscribers?"  That would be nice, and when all four of my readers have subscribed, that and my 20 percent discount might get me lunch at Denny's - but, alas, the answer is &quot;no.&quot;  Actually, several readers of this column sent in questions: How do I manage a subscription?  How do I get great performance?  What technologies should I use to achieve scalability?  Do you really use a full cube of butter in each serving of Chicken Kiev? Most of these can be answered by looking at the MSI site. In fact, a couple readers asked specifically about the MSI site.
+<P>So I figured I would ask if I could find out a little bit more about the MSI site and how its creators do things.  Being the skilled negotiator I am (I went to a seminar last year), I decided initially to ask for everything. I was a little shocked when Eric Zinda, the group Program Manager, agreed to let me publish all the group's secrets. There were so many of them -- and it was such good information for you -- that we've decided to highlight just a few in this column, then go into greater depth in an expanded article in SBN Workshop's Server area.  Since this was going to be a pretty big job, I asked Dustin Hubbard, one of the star engineers from Microsoft's Premier Developer Support ASP Team, to assist me.
+<P>(If you've got plenty of time to hunker down with us, you might prefer to switch to an <A HREF="../../../workshop/server/scenario/msi.htm">expanded version</A> of this article.)
+<P>
+<H2>The Big Picture</H2>
+<P>Some background: MSI is an online resource for investors who want to track their stocks, maintain their portfolios, keep up-to-date on financial news, and get investing advice from experts.  MSI is much like other investing sites on the Internet -- however, there are a few significant exceptions.
+<P>First, MSI is broken up into only two sections, subscriber and non-subscriber. Second, MSI provides a way for individuals to easily track all of their investment accounts.  Even non-subscribers are provided this powerful functionality.  Third, MSI has some of the most powerful investment-research tools available.  Finally, MSI has the ability to dynamically chart multiple stocks at once, which provides a powerful way to view the performance trends of your favorite holdings.
+<P>Here's a table that summarizes the various technologies used in the site:
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD COLSPAN=2><b>Microsoft Investor Site Technologies</b>
+</TD>
+
+
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">Internet Information Server 3.0</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>As this article was being written, the MSI team was working to upgrade their servers to IIS 4.0.
+
+</TD>
+</TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/ntserver/default.asp" TARGET="_top">Windows NT Server 4.0, SP3</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used as the platform for all servers.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/win32dev/apiext/isapimrg.htm" TARGET="_top">ISAPI Filters</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Active Server Pages
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used throughout the site to generate all Web pages
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="../../../workshop/author/css/css-ie4.htm">Cascading Style Sheets (CSS)</A>
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to easily maintain a consistent look and feel. Also used to help performance, since CSS is smaller than adding font tags to every cell
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/word/default.asp" TARGET="_top">Word</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to write all articles
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/access/default.asp" TARGET="_top">Microsoft Access</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Keeps track of articles and generates article archives
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/vba/" TARGET="_top">Visual Basic for Applications</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>A macro which goes through a Word article, generates HTML syntax for each heading and style, and does lookups in the Microsoft Access database for company information.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/sql/default.asp" TARGET="_top">SQL Server 6.5</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to store the user database
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/security/" TARGET="_top">SSL 2.0</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used for secure communication when transmitting credit card information
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/siteserver/default.asp" TARGET="_top">Content Replication System</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to deploy new or updated content onto the production servers
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/data/ado/" TARGET="_top">ActiveX Data Objects</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used for all interaction with SQL Server, all ADO is directly in ASP pages, and there is no transaction processing.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/server/asp/comp.htm" TARGET="_top">Active Template Library (ATL)</A>
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to write ISAPI filters, server-side objects, and ActiveX controls that are downloaded to client browser
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/components/activex/ctrlovw.htm" TARGET="_top">ActiveX Controls</A>
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Portfolio Manager, Investment Finder, Charting, Ticker
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="http://www.microsoft.com/scripting/" TARGET="_top">VBScript</A>
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used on server
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/scripting/" TARGET="_top">JavaScript</A>
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used on client, primarily for cross-browser compatibility
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><A HREF="../../../workshop/server/toolbox/wcat.htm">Web Capacity Analysis Tool</A>
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used for testing load of ASP pages on the Web servers
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Cookies
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Holds your username, and, if you select the option, your password.  Also used to determine whether your session has timed out. Also stores miscellaneous site settings.
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><a href="http://www.microsoft.com/mcis/guide/component_mail.asp?A=2&amp;B=2" TARGET="_top">Internet Mail Server (IMS)</a>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to send alerts
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Sendmail object
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to send your forgotten password
+</TD>
+</TR>
+</TABLE>
+<P>There are no frames, although there once were.  In fact, getting rid of frames was one of the ways the MSI team got major performance improvements between version 4 and the latest, which just debuted.  There is no Java and no per-user state.  You won't even find html pages.  MSI's primary goal has been performance and a great customer experience, and it definitely shows. <i><B> </b></i>
+<P>MSI has successfully met all of the criteria of a great Web site -- performance, stability, broad reach, scalability.  While there are many interesting areas to focus on, for this column I'll talk specifically about the subscription model.
+<P>
+<h2>Building a Subscription-Based Site
+</h2>
+<P>A key part of most large sites is a subscription or membership service.  Since the two are so tightly integrated, we'll talk about both subscription and access.  MSI uses a fairly straightforward subscription model.  The subscription model is a forms based model.  Your information, once entered into the MSI form, is picked up by an ISAPI filter, which uses ADO to check a SQL database.  What is it checking for?  Some pretty simple stuff, really.  Is your username a duplicate?  If you are signing up as part of a Microsoft Money six-month trial, do you have a valid product ID that hasn't been used before?
+<P>I've included a small flowchart so you can quickly get an idea of what is happening.
+<H4>Microsoft Investor subscription model:</H4>
+<P><IMG SRC="msichart.gif" WIDTH="442" HEIGHT="611" BORDER=0 ALT="Subscription flowchart">
+
+<P>Let's talk about what happens when you, the user, go to enter your information.  You are sent to the following page,  <A HREF="https://investor.msn.com/secure/signup/account8.asp" TARGET="_top">https://investor.msn.com/secure/signup/account8.asp</A>&nbsp;<IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> to enter your personal information.  All information is encrypted, as you can tell by the qualifier <b>https:</b>.  The credit card is actually used to check a SQL Server database, where everything is encrypted, to verify whether you have used that card before to get a free trial.  Since the credit-card numbers are all encrypted, not even the Investor team has access.  One thing many people appreciate is that their credit card is not even charged during the trial subscription.  You are asked to sign up again when your 30 days was up, rather than just automatically having your card charged.
+<P>
+<h2>All You Can Eat, $9.99
+</h2>
+<P>To simplify things (primarily for the customer, but it also has the effect of simplifying  coding), the MSI team chose an "all-you-can-eat" model. With this model, you are either a subscriber, or you're not. If you try to access a subscription page, your cookie is checked  for a recent successful login.  If you haven't logged in, or it's been too long since your  last activity, MSI presents you with a login page and lets you know this is a subscription  feature. Two files are used to do this. One is an include file, which is included in every subscription page and determines the validity of the user's login. The second is the  login.asp file, which collects and validates your information.
+<P><b>Login.inc</b> -- this file is included on every subscription page in MSI and serves to bounce the user to a login page if he or she does not have a valid user ID.  An invalid user ID could occur because the user's cookie timed out, the user hasn't logged-in before, or the credit card was denied.  MSI uses the ASP object request.
+<b>servervariables</b> to track where the user wanted to go so that the user is automatically sent to the desired page after successfully logging on.
+<P><b>Login.asp</b> --  - Unless the user has a valid ID, this then leads to the login page, which will ask for the user ID and password.  It then validates the ID against the SQL database and, if successful, sends the user on his merry way, updating his cookie so he doesn't have to log in anymore.
+<P>It is a fairly simple model. But simple is good.  MSI could have chosen to do something much more complicated, something that kept settings-per-user, charged by the quote or service, or even used NT security to validate every user's access permissions.  But this would have made it difficult for the user and more difficult to implement.  This type of approach also scales well and will work in the future when MSI goes from 50,000 paying subscribers to 500,000. (Note for readers at the Pentagon: Please do not use this type of security model to protect missile-launch codes.)
+<P>Go check out Investor if you haven't already, or if it's been awhile.  You'll be surprised at the performance and usability of the site, and having it fresh in your mind will probably help you get more out of the article when you read it.
+<P>Until next month.
+<P><i>Dustin Hubbard of Microsoft's Premier Internet Developer Support assisted with this article.</i>
+<P>
+<P><I><B>Tom Moran</B> is a program manager with Microsoft Developer Support and spends a lot of time hanging out with the Site Builder Network folks.  Outside of work, he practices kenpo (although sometimes necessary at work), tries out original recipes on his family (Lisa, Aidan, and Sydney), leads white-water trips, or studies tax law (boring, but true).</i>
+
+
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg05226.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="server060198.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,799 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Why Migrate to Windows NT Server 4.0 with Internet Information Server 4.0?</TITLE>
+
+<META NAME="Description" CONTENT="This paper will detail exactly what benefits you'll gain by migrating to Windows NT Server 4.0 with IIS 4.0, and show you exactly how to do it." />
+<META NAME="Keywords" CONTENT="Windows NT 4.0 Web Services, IIS 4.0, migrating Web servers" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Microsoft Corporation" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="10/09/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg08633.htm#/workshop/server/migrlab/whyto.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg08633.htm#/workshop/server/migrlab/whyto.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg08632.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="ASP" IDX_TYPE="task" IDX_CONCEPT="stopindex;IIS 4.0, migrating Web servers to">Microsoft Windows NT Server Migration Lab</A></H1>
+<HR SIZE="1" />
+<h4>Why Migrate to Windows NT Server 4.0 with Internet Information Server 4.0?</h4>
+
+<P>Microsoft Corporation
+
+
+<P><P>October 9, 1998<P>
+
+<P><a href="alldocs.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document and all sample documents in Microsoft Word (.DOC) format (zipped, 339K)</a>.
+<P>
+<a name="top"></a><B>Contents</B>
+<BR> <A HREF="whyto.htm#whymigrate">Overview</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic1">IIS Integration with Windows NT Server </A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic2">High Availability for Hardware and Software</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic3">Ease of Use and Administration</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic4">Ease of Developing Web Applications</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic5">Performance</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic6">Interoperability</A>
+<BR> <A HREF="whyto.htm#iisfeat">Internet Information Server 4.0 Features</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic7">Integrated Setup and Administration</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic8">Flexible Management</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic9">Complete Content Management and Control</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic10">Configuration Backup and Restoration</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic11">Hosting Multiple Web Sites</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic12">Allocating Network Bandwidth</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic13">Familiar Administration Tools</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic14">Internet Standard Services</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic15">File Sharing</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic16">Developing and Deploying Web Applications</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic17">Microsoft Index Server Integration</A>
+<BR>&nbsp;&nbsp;&nbsp;<A HREF="whyto.htm#topic18">Site Server Express Integration</A>
+
+
+<P>
+<H2>Overview
+</H2>
+The Microsoft&#174; Windows NT&#174; Server operating system is the most complete server platform, constructed to meet your most demanding Internet and corporate intranet needs. It transforms the Internet or intranet into simply another part of your operating system with its built-in Web services, Microsoft Internet Information Server.
+<P>That's quite a statement, and this paper's purpose is to show you how true it is. For starters, Windows NT Server enables comprehensive and dynamic full-text searches with the free downloadable Index Server. Professional-quality Web sites are easy to create and manage with the included Microsoft FrontPage<b>&#174;</b> Web site creation and management tool software. And WINS-DNS integration makes TCP/IP addresses much easier to manage. Tools such as these are integrated into the operating system to make it easy for you to use and administer your network, increase system flexibility and scalability, and maintain centralized and comprehensive security.
+<P>This paper will detail exactly what benefits you'll gain by migrating to Windows NT Server 4.0 with IIS 4.0, and show you exactly how to do it. After a brief overview of the overall operating system's features and highlights, we'll detail the IIS 4.0 features and architecture for you. Then we'll walk you through the steps of migration, including developing the project's vision and scope, devising the conceptual design, assessing risk, and provide reams of tips on preparing to migrate and the migration itself. We've included sample documents that you can use as templates to design and organize your project. We walked through this process ourselves so we could write this article. This document assumes that you are familiar with the basics of server administration and maintenance. Please let us know how useful it is by writing to us at  <A HREF="../../../sitebuilder/write-us.htm" TARGET="_top">http://www.microsoft.com/sitebuilder/write-us.asp</A>.
+<P>
+<H3><A NAME="topic1"></A>IIS Integration with Windows NT Server
+</H3>
+<P>Windows NT Server is a high-performance, reliable, secure, and easy-to-manage server for sharing information and running applications in the most demanding business settings. Its integrated Web services extend these strengths to your intranet and Internet sites.
+<UL>
+
+
+<LI> IIS provides the highest performance of any Web server on Windows NT Server. It also delivers superior performance for the price when compared to UNIX-based systems.
+<LI> Without additional configuration, IIS brings the security of Windows NT Server to your Web site. Because of this, you can protect your information with the ease of a single user directory and a single logon to a network.
+<LI> The integrated set of tools for running and managing all of your network, Web, and application services reduces training time for administrators.
+
+</UL>
+<H3><A NAME="topic2"></A>High Availability for Hardware and Software
+</H3>
+<P>Windows NT Server provides lower total cost of ownership (TCO) than Solaris. Read about it at <A HREF="http://www.microsoft.com/ntserver/nts/exec/compares/LowerTCO.asp" TARGET="_top">http://www.microsoft.com/ntserver/nts/exec/compares/LowerTCO.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+
+<P>Windows NT Server is also available on a wide variety of hardware for different needs at lower prices. Details on hardware and software availability for Windows NT Server are at <A HREF="http://www.microsoft.com/ntserver/nts/techdetails/compat/WebServers.asp" TARGET="_top">http://www.microsoft.com/ntserver/nts/techdetails/compat/WebServers.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+
+<P>
+<H3><A NAME="topic3"></A>Ease of Use and Administration
+</H3>
+<P>Powerful management tools in IIS 4.0 help you easily set up Web sites, manage content, and analyze usage patterns so you can improve your site as it evolves. The management tools are customizable, the administration options are flexible, and the analysis tools are thorough. You can:
+<UL>
+
+
+<LI> Enlist built-in wizards to step you through many common administrative tasks, such as creating a new Web site or virtual directory
+<LI> Manage all network, Web, and application services from a single window
+<LI>  Set properties independently for each Web site, virtual directory, or file on the server with the powerful new configuration capabilities
+<LI> Automate common management tasks across multiple servers, such as creating new Web sites and directories, by running administration scripts from the command line
+<LI> Easily analyze log files to determine usage patterns and analyze site content with integrated analysis tools
+
+</UL>
+<H3><A NAME="topic4"></A>Ease of Developing Web Applications
+</H3>
+<P>Web applications can simplify business processes, such as expense reporting, benefits management, purchasing, inventory management, marketing, and sales. With Windows NT Server 4.0 and IIS 4.0, it is easy to:
+<UL>
+
+
+<LI> Protect applications and Web sites from failure caused by misbehaving components or Web applications on the server, by running them in separate memory spaces (a feature known as <i>process isolation</i>)
+<LI> Rapidly create scalable Web applications using built-in distributed application services that automatically scale to serve thousands of simultaneous users. Only Windows NT Server with IIS provides this built-in capability. Developers can now focus on the business solution rather than the complexities typically associated with server application development.
+<LI> Use languages developers already know to develop components and applications. And, they can do it faster than on any other platform with Active Server Pages, a language-neutral, compile-free scripting environment
+<LI> Write and easily debug components and applications that run on the server, using languages that are used to write desktop applications
+<LI> Use the integrated Java Virtual Machine to provide a reliable and high-performance environment for running Java components on the server with Active Server Pages
+
+</UL>For more information on developing IIS applications, see  <A HREF="../../../workshop/server/default.htm">http://www.microsoft.com/workshop/server/default.asp</A>
+<P>
+<H3><A NAME="topic5"></A>Performance
+</H3>
+<P>The following File and Web Server Comparison Summary is an example of performance tests in which Windows NT Server consistently outperforms Sun Solaris, the leading UNIX Web server platform:
+<P> <A HREF="http://www.mindcraft.com/whitepapers/nt4sol26exec.html" TARGET="_top">Windows NT Server 4.0 Is Four Times Faster as a Web Server Than Solaris 2.6 with Sun Web Server 1.0 and Has 10.3 Times Better Price/Performance</A>
+<P>
+<H3><A NAME="topic6"></A>Interoperability
+</H3>
+<P>Interoperability is essential in today's increasingly heterogeneous computing environments. As the enterprise capabilities of the Microsoft Windows NT Server operating system evolve, corporations that once relied on UNIX systems for large, processing-intensive applications and end user time-sharing are embracing Windows NT Server. Industry analysts cite high performance, application availability, low computing costs, and ease of administration as factors spurring the popularity of Windows NT Server. Microsoft is committed to helping organizations achieve interoperability. Rather than advocate &quot;rip and replace,&quot; the company helps customers evolve their information technology infrastructures in a way that leverages new technologies and products. This solution improves information sharing, reduces computing costs, and capitalizes on past investments.
+<P>Interoperability begins with network protocols and directory security, and extends to heterogeneous, distributed enterprise applications and network and system management. Layered in the middle are data access and sharing, application porting, and cross-platform application access.
+<P>These features of interoperability fall within a Network, Data, Applications, and Management (NDAM) framework. Using products and technologies mapped to NDAM, Microsoft and industry partners are totally committed to Windows to UNIX interoperability.
+<P>Here are a few examples of industry analysts supporting this approach and of how committed we are to UNIX/Windows NT Server interoperability:
+<P> <A HREF="http://www.microsoft.com/ntserver/nts/techdetails/overview/NTS40interop.asp" TARGET="_top">Microsoft Windows NT Server Interoperability page</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P> <A HREF="http://mspress.microsoft.com/reslink/preview/net/net.htm" TARGET="_top">Microsoft Interoperability Lab</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P> <A HREF="http://www.mks.com/solution/tk/" TARGET="_top">Mortice Kern Systems Toolkit</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P> <A HREF="http://www.internix.com" TARGET="_top">Internix</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P>
+
+
+<H2><A NAME="iisfeat"></A>Internet Information Server 4.0 Features
+</H2>
+Running a Web site is easy from the start with Windows NT Server 4.0 and IIS 4.0. A new wizard gets you going quickly, and flexible administration tools let you manage the server any way you want to. IIS 4.0 provides the benefits of:
+<UL>
+
+
+<LI> Integrated setup
+<LI> Flexible management
+<LI> Complete content management and control
+<LI> Configuration backup and restoration
+<LI> Hosting multiple Web sites
+<LI> Allocating network bandwidth
+<LI> Familiar administration tools (IIS uses the Windows NT Server tools)
+
+</UL>
+<H3><A NAME="topic7"></A>Integrated Setup and Administration
+</H3>
+<P>IIS 4.0 is installed as a component of the Microsoft Windows NT Server 4.0 Option Pack.
+<UL>
+
+
+<LI> A setup wizard makes it easy to set up and install the Web services and the various components that are part of the Windows NT 4.0 Option Pack. You simply check the items that you want to install, answer a few questions, and the installation wizard installs the desired configuration on the target machine.
+<LI> When installing IIS 4.0 over the Internet, only the selected components are downloaded to your local machine. If you later decide to install other components, the installation program will automatically download the additional compressed component files and install them on the machine.
+<LI> You can automate the setup of IIS 4.0 for deploying it on many servers without remaining at the computer and stepping through the installation options. An unattended installation script can build a machine from scratch with Windows NT Server 4.0, the latest Service Pack, Internet Explorer 4.0, and selected components of the Window NT 4.0 Option Pack.
+
+</UL>
+<H3><A NAME="topic8"></A>Flexible Management
+</H3>
+<P>IIS 4.0 provides the most comprehensive set of tools for managing the Web server and its components. In addition to these tools, you can create your own custom interfaces using the IIS administration objects.
+<P><h4>Windows-Based Administration</h4>
+<P>IIS 4.0 introduces the Microsoft Management Console (MMC), a graphical Windows-based tool that enables the management of all Web services and applications from a single window. With the MMC, you can:
+<UL>
+
+
+<LI> Reduce time spent on administration by learning a single interface.
+<LI> Add Snap-in components to manage additional services and applications as your Web site grows. IIS 4.0 includes snap-ins for WWW, FTP, SMTP, NNTP, Microsoft Transaction Server, and Microsoft Index Server services.
+<LI> Create custom consoles and delegate certain administration tasks, and provide local and remote management capabilities for a single Web server or a farm of Web servers.
+
+</UL>
+<h4>Web-Based Administration</h4>
+<P>The HTML Administration tool, called the Internet Services Manager, is an innovative Web-based administration tool that was designed using Active Server Pages and JScript. It can be viewed with any browser that supports scripting and frames.
+<UL>
+
+
+<LI> Administrators can manage their Web servers remotely over the network using a standard Web browser.
+<LI> Internet Service Providers (ISPs) who host many sites can provide their customers with this tool for managing their Web sites remotely from a Web browser.
+<LI> The HTML Administration tool was built with Active Server Pages. You can look at the ASP files to both understand how they were developed and use them as a starting point for developing your own customized administration interface.
+
+</UL>
+<h4>IIS Administration Objects</h4>
+<P>The IIS Administration Objects (IISAO) provide the ability to administer the entire server programmatically. Programmers can set all of the configuration parameters of IIS and to control its operation. The IISAO enable:
+<UL>
+
+
+<LI> <b>Command Line Administration.</b> Administrators are able to automate common administration tasks by creating scripts and executing them from the command line or a Windows dialog.
+<LI> <b>Creation of Customized Administration Interfaces.</b> Organizations can use the IISAO in an ASP file or component to create a custom management interface to IIS. For example, the IISAO are used in the implementation of the Web-based administration program that ships with IIS 4.0. The IISAO can also be used in custom Visual Basic&#174; applications.
+
+</UL>IIS 4.0 includes a set of sample scripts that automate common administrative tasks. This set includes scripts to create, start, stop, pause, and resume Web and FTP sites, create and remove virtual directories, control directory access settings; and utilities that display the configuration hierarchy and search for specific configuration information.
+<P>
+<H3><A NAME="topic9"></A>Complete Content Management and Control
+</H3>
+<P>IIS 4.0 makes it easier to improve your site and the user experience. You can:
+<UL>
+
+
+<LI> Set properties down to the individual file level
+<LI> Generate dynamic Web pages with HTML templates
+<LI> Search for information on your Web
+<LI> Capture specific user information
+<LI> Analyze server log files and site content
+
+</UL>
+<h4>Set Properties Down to the Individual File Level</h4>
+<P>IIS 4.0 provides complete flexibility and control over the property settings of the Web server and individual Web sites. You can set properties on the Web server, Web site, virtual directory, and individual files. This flexibility affords you many performance and management benefits. You can:
+<UL>
+
+
+<LI> Exclude all image files from being logged. This will increase performance, reduce the log file size, and provide more accurate feedback on the number of page hits on your site.
+<LI> Require a Secure Sockets Layer (SSL) 3.0 security setting on a specific directory rather than an entire site. This will afford dramatic performance benefits while maintaining secure connections on appropriate pages.
+
+<LI> Set properties at the server level and have them automatically apply to underlying directories and files on that server. This flexibility reduces the number of redundant management tasks. You will not have to set these properties individually.
+
+</UL>
+<h4>Generate Dynamic Web Pages with HTML Templates</h4>
+<P>As Web sites grow and more information is published, companies are finding it difficult to keep all their pages updated. This is especially true with information like price lists and product catalogs.
+<UL>
+
+
+<LI> IIS 4.0 enables you to create HTML page templates with Active Server Pages to build pages dynamically and make sites easier to keep up-to-date.
+<LI> Active Server Pages (ASP) in Internet Information Server enables your to frequently change information like prices and products in databases where it is easier to manage, and build HTML pages on-the-fly with content dynamically extracted from the database.
+<LI> With Active Server Pages, content does not have to be tied to an HTML page. Information can stay in a text file and the contents of page easily updated without touching the HTML file. This can be as simple as keeping your site's headlines in a text file.
+<LI> Web sites of hundreds or thousands of pages can be reduced to just a handful of ASP files. When you want to change the design of your site, you don't have to fix every single page -- you simply fix the global file.
+<LI> Microsoft uses ASP &quot;includes&quot; on many of its Web pages to keep common elements like copyrights and menu bars consistent across a Web site by using a single source file for the contents. Updates to these source files save hours of time versus updating every file on the site by hand.
+
+</UL>
+<b>Personalized Content</b>
+<P>Active Server Pages also makes it easy to customize content for users:
+<UL>
+
+
+<LI> IIS Intrinsic Objects provide access to server variables such as the user's browser type and screen resolution.
+<LI> An ASP file can use this information to include different graphics, layouts, or ActiveX&#174; components based on what the browser supports.
+
+</UL>
+<b>HTML Pages from Database Triggers</b>
+<P>Active Server Pages can also be used with database triggers to create new static HTML pages. This is useful in situations where live database-driven dynamic pages are impractical or unnecessary because the data changes infrequently.
+<P>
+<h4>Searching for Information on Your Web</h4>
+<P>IIS 4.0 introduces updated indexing and searching functionality to the built-in content indexing and search engine for IIS. This enables users to search for content on the server using a standard Web browser.
+<UL>
+
+
+<LI> <b>Support for Active Server Pages.</b> Webmasters can create custom search pages using Active Server Pages. This opens the door to greater flexibility and power in designing dynamic query forms, creating complex and precise queries, and managing query results.
+<LI> <b>Support for Querying in SQL</b>. Provides an alternative method of issuing queries on an indexed file system. Instead of using Index Server's standard forms, administrators can write SQL queries in applications that use ActiveX Data Objects (ADO). These include components and ASP.
+<LI> <b>Improved Administration</b>. Provides an integrated MMC snap-in administration component that provides a higher level of integration between the Web server and Index Server. In addition, content under a Web site or virtual directory can be added to the index simply by checking the index check box on the property sheet for that site or directory.
+<LI> <b>Improved Robustness in Property Cache.</b> Adds a temporary file on disk to minimize corruption of the property cache during a non-clean shutdown. With this temporary file, the property cache can be restored without re-indexing the corpus.
+<LI> <b>Improved response time.</b> Returns query results almost twice as fast as in earlier versions of Index Server.
+<LI> <b>Multiple scopes.</b> Lets administrators configure their site so that several directories in different trees can be searched simultaneously.
+<LI> <b>New content filters.</b> Keeps pace with the latest technology from Microsoft by enabling you to search documents created in any Microsoft Office 97 application. A  <A HREF="http://www.adobe.com/prodindex/acrobat/ifilter.html" TARGET="_top">PDF filter</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> is available for downloading from Adobe Systems on their Web site.
+<LI> <b>Multiple language support.</b> Index Server 2.0 supports the indexing and searching of documents in several languages. The query system was built with localization in mind. It is completely modular and can dynamically load and unload language-specific utilities. These utilities include word breakers, stemmers, and normalizers. All index information is stored as Unicode characters. All queries are converted to Unicode before they are processed, thus providing powerful multilingual support.
+
+</UL>In addition to these features, read about  <A HREF="whyto.htm#topic17">how Index Server is integrated with IIS</A>.
+<P><h4>Capturing Specific User Information</h4>
+<P>IIS 4.0 provides three new logging features that enable you to easily customize the information you retrieve from your Web site:
+<UL>
+
+
+<LI> <b>Specifying log file information.</b> With IIS 4.0, you can gather detailed information about your visitors such as date, time, client IP address, and browser type, while minimizing log file size by omitting unneeded fields.
+<LI> <b>Specifying files to be logged.</b> IIS 4.0 enables you to choose files on which you want to collect data, thus improving performance, reducing log file size, and making it easier to interpret the log files. For example, you could log the activity on an HTML document while omitting a log entry for image files used in that document, thus giving you a better estimate of user activity on that page.
+<LI> <b>Customize logs on your site.</b> IIS 4.0 enables developers to create custom components for processing specific user activities and writing to a SQL Server data source or a custom log file format. You can extend the IIS 4.0 logging capabilities by plugging in additional logging components that you or other third-party software vendors create.
+
+</UL>
+<h4>Analyzing Server Log Files and Site Content</h4>
+<P>Microsoft Site Server Express Analysis makes it easy to analyze your server log files and site content. The  <A HREF="whyto.htm#topic18">Site Server Express feature set</A> provides basic functionality to that found in Microsoft Site Server.
+<P><h4>Improving the User Experience </h4>
+<P>IIS 4.0 makes it easy to customize how content is presented on your site.
+<P><b>Custom Error Messages</b>
+<P>IIS 4.0 enables you to customize the content that is returned to a browser or run an application to handle errors. Instead of using the default error messages, administrators can choose to send custom error messages to the client. These customizable error messages can be in the form of a file or a URL. You can define custom ASP pages to handle specific errors.
+<P><b>Content Ratings</b>
+<P>Users can configure content ratings using embedded descriptive labels in the HTTP headers of content on the server. Some Web browsers, such as Microsoft Internet Explorer version 3.0 or later, can detect these content labels and help users identify potentially objectionable Web content. The Web server's default Platform for Internet Content Selection (PICS)-based rating system uses a system developed by the Recreational Software Advisory Council (RSAC), which rates content according to levels of violence, nudity, sex, and offensive language. Users can also choose to use a content rating system provided by another organization.
+<P><b>Content Expiration</b>
+<P>Content managers can use IIS 4.0 to easily set an HTTP header that determines how long a Web page should remain in the client's cache. This is useful for setting a date in time-sensitive material, such as special offers or event announcements. The browser on the client's machine compares the current date to the expiration date to determine whether to display a cached page or request an updated page from the server.
+<P><b>Custom Headers</b>
+<P>Using this property, a content manager can send a custom HTTP header from the Web server to a browser. You can send a custom HTTP header that allows the client browser to cache the page but prevents proxy servers from caching the page.
+<P><b>Custom Document Footers</b>
+<P>Content managers can configure the Web server to automatically insert a file that contains HTML formatting instructions for adding a logo image or identifying text to Web pages on the server.
+<P>
+<H3><A NAME="topic10"></A>Configuration Backup and Restoration
+</H3>
+<P>IIS 4.0 provides a utility that saves configuration settings for all Web sites, FTP sites, virtual directories, and files that are administered on the Web server.
+<UL>
+
+
+<LI> Multiple backups, which include all the configuration settings, are stored by name, version number, and date, and can be stored for future restoration.
+<LI> To return to a previous configuration state and override the current configuration settings, an administrator simply selects one of the previously saved configurations and clicks Restore.
+<LI> Configuration files can be copied to other servers using the Content Replication Services, enabling a single staging server to be managed and replicated to an entire server farm.
+
+</UL>
+<H3><A NAME="topic11"></A>Hosting Multiple Web Sites
+</H3>
+<P>Until recently, having multiple Web sites on a single server required each site to have a unique IP address. IIS 4.0 supports the new HTTP 1.1 Host Header standard that allows individual Web sites on a single server to share a single IP address. Sharing an IP address makes management easier and enables IIS to support thousands of Web sites on a single server.
+<P>All browsers do not yet support HTTP 1.1. IIS 4.0 provides support for these users by optionally displaying a list of all the Web sites on the server, and passing a cookie identifying the selected site.
+<P>
+<H3><A NAME="topic12"></A>Allocating Network Bandwidth
+</H3>
+<P>IIS 4.0 enables organizations running more than one site on the Web server to throttle, or allocate, bandwidth used by HTML files and graphics on each of the sites individually. Sites that receive high traffic can be allocated more network bandwidth than sites that receive less traffic. This eliminates the competition for bandwidth that can often delay or deny access on a busy network.
+<P>
+<H3><A NAME="topic13"></A>Familiar Administration Tools
+</H3>
+<P>Administrators of Windows NT Server already have the basic knowledge to administer IIS 4.0 and its services. Because IIS 4.0 is tightly integrated with Windows NT Server, it uses many of the existing management tools a Windows NT Server administrator already knows and uses. These include:
+<UL>
+
+
+<LI> <b>User Manager for domains. </b>Add a user to your system once and provide access to file, print, Web, and application services across all servers on your network. Single network logon means the user has to sign in only once to access all the services. <b>
+<LI></b> <b>Performance monitor. </b>Performance Monitor is a powerful tool for monitoring the performance of any Windows NT Server on the network. IIS 4.0 includes counters for its HTTP and indexing services to monitor the performance and load on the server. <b>
+<LI></b> <b>Event Viewer. </b>Event Viewer is the tool you use to monitor various systems events on Windows NT Server. IIS takes full advantage of the Event Viewer to log application and security events pertaining to the Web server. Administrators can use Event Viewer as a second log to audit access to secure files.
+
+</UL>
+<H3><A NAME="topic14"></A>Internet Standard Services
+</H3>
+<P>Internet Information Server provides Windows NT Server with a fully Internet-standards compliant hypertext transport protocol (HTTP) server. HTTP defines how Web clients talk to Web servers to request files and pass information back to applications on the server.
+<P>IIS 4.0 provides:
+<UL>
+
+
+<LI> HTTP 1.1 support
+<LI> FTP service
+
+</UL>
+<h4>HTTP 1.1 Support </h4>
+<P>IIS 4.0 integrates the new HTTP 1.1 specification to provide improved Internet performance and Web browsing experience. When a client makes an HTTP request to a server, it identifies itself as an HTTP 1.1 client and IIS 4.0 responds with an HTTP 1.1 transaction. If the client supports only HTTP 1.0, IIS 4.0 falls back to HTTP 1.0 and responds with a normal HTTP 1.0 transaction.
+<P>HTTP 1.1 significantly increases your ability to download Web content. Conservative estimates place it at least 50-100% faster than 1.0. The additional technologies that enable HTTP 1.1 performance improvements include:
+<UL>
+
+
+<LI> <b>Pipelining.</b> Historically, a client must wait for a response from the Web server before it sends another request. Pipelining enables clients to send many requests before receiving a response from the Web server. This provides HTTP 1.1 clients with a performance boost when accessing an IIS 4.0 Web site, because fewer bytes are moved over the wire by not resending HTTP headers. <b>
+<LI></b> <b>Persistent connections.</b> When a client connects to a Web server and requests an object such as an image, a connection is established with the server. An HTML page may contain ten different images, thus requiring ten different connections for the client to display that one page in a Web browser. Establishing and tearing down connections is an expensive operation on the Web server, client, and network. IIS 4.0, using persistent connections, enables the client to remain connected to the Web server for a specified period without having to re-establish a connection to the server for each request. <b>
+<LI></b> <b>Chunked transfers. </b>HTTP 1.1 better supports Web pages dynamically generated with ASP through &quot;chunked&quot; transfers where the size of the content is not known as the bits are being sent over the wire. By specifying the Transfer-encoding value of <b>chunked</b>, the message is broken into a chunks of varying sizes. Each chunk contains its own size indicator and optional footers for specifying header fields. Chunking improves the overall efficiency of the transmission. <b>
+<LI></b> <b>Proxy support. </b>HTTP 1.1 defines caching directives into the protocol, so it gives servers and proxies better control of the way that content is cached/expired/flushed. IIS 4.0 allows server administrators to easily apply expiration tags to an entire server, directory, or individual files without changing the content.
+
+</UL>Additionally, IIS 4.0 supports new HTTP methods to talk to the server beyond GET and PUT.
+<UL>
+
+
+<LI> HTTP PUT enables users to post information to a Web site using the standard HTTP protocol. This allows standard HTTP 1.1-compliant clients, such as Web browsers, to post content to a remote Web site. In addition to the standard HTTP 1.1 PUT, IIS 4.0 supports RFC 1867 and FrontPage Server Extensions, which enable a Netscape browser or FrontPage to publish content to an IIS 4.0 Web site. <b>
+<LI></b> HTTP DELETE is similar to the HTTP PUT command, but the HTTP DELETE command enables users to delete content from a Web site using a standard HTTP 1.1-compliant browser.
+
+</UL>
+<h4>FTP </h4>
+<P>IIS 4.0 also provides Windows NT Server support for the File Transfer Protocol (FTP). FTP is the Internet standard high-speed protocol for downloading or transferring files from one computer to another. Many Internet Service Providers give customers FTP access to their content directory for easily moving files to the server.
+<P>The FTP service in Windows NT Server protects you against port attacks. The FTP specification allows passive connections to be established based on the port address given by the client. Hackers can execute destructive commands in the FTP service through these connections. The problem occurs when the FTP service connects using a port other than FTP Data port (20) and the port number is less than the IP reserved ports (1024). By default, the IIS FTP service does <i>not</i> make any connections to port numbers lower than the reserved port number (other than 20).
+<P>
+<H3><A NAME="topic15"></A>File Sharing
+</H3>
+<P>Organizations increasingly integrate the Web with existing file servers and databases. IIS 4.0 is the easiest way to securely share information over the Web and build new Web sites without having to know HTML.
+<P>IIS 4.0 makes it easy to:
+<UL>
+
+
+<LI> Share files on servers
+<LI> Create great-looking Web sites
+<LI> Publish to the Web
+
+</UL>
+<h4>Share Files on Servers</h4>
+<P>IIS extends the file-sharing capabilities of Windows NT Server to the Web, making it easy to publish what you already have.
+<UL>
+
+
+<LI> IIS provides transparent access to file servers on Windows NT Server, Novell NetWare, and UNIX servers.
+<LI> Sharing a directory over the Web is as easy as sharing a directory with Windows networking. You can create Web directories from the Windows File Explorer or with the IIS administration tools.
+
+</UL>Only IIS enables organizations to share files over multiple protocols while still maintaining the same levels of security.
+<UL>
+
+
+<LI> For example, employees in a Web design studio that has Windows and Macintosh computers can share files with each other over their intranet with AppleTalk and Windows networking over TCP/IP. They can also share the same files with external customers using Web and FTP clients using the same directory and file permissions.
+
+<LI> The flexibility of Windows NT Server and IIS facilitates new levels of collaboration, enabling businesses to be more productive than ever.
+
+</UL>
+<h4>Publish to the Web</h4>
+<P> <A HREF="whyto.htm#siteserverexpresspublishing">Microsoft Site Server Express Publishing</A> supports easy deployment of content to an IIS server. The Site Server Express feature set represents a subset of the functionality found in Microsoft Site Server.
+<P>
+<H3><A NAME="topic16"></A>Developing and Deploying Web Applications
+</H3>
+<P>With IIS 4.0, Microsoft introduces transactional applications. Transactions are the plumbing that now make it possible to run business applications with rapid development, and easily achieved scalability and reliability.
+<P>IIS 4.0 makes it easy to develop and deploy scalable and reliable applications for the Web:
+<UL>
+
+
+<LI> Easy application development with Active Server Pages
+<LI> Integration with Microsoft Transaction Server
+<LI> Message queuing
+<LI> Accessing data
+<LI> Building scalable and reliable applications
+<LI> Debugging
+<LI> IIS Software Development Kit
+
+</UL>
+<h4>Easy Application Development with Active Server Pages</h4>
+<P>Active Server Pages is a server-side scripting environment that you can use to create and run dynamic, interactive Web server applications. ASP enables you to combine HTML, scripting, and components to create dynamic interactive Web content or powerful Web-based applications.
+<P>ASP is an approachable, language-neutral, compile-free environment that enables users of all levels to easily create dynamic Web content or powerful Web-based applications. It has benefits for HTML authors, experienced script authors, and developers.
+<P>For more information on ASP, see http://www.microsoft.com/workshop/server/default.asp
+<P><h4>Integration with Microsoft Transaction Server</h4>
+<P>Microsoft Transaction Server (MTS) handles many of the complexities of developing secure, scalable and reliable client/server and Web applications. Developers can focus on what is really important in a project--the business logic.
+<P>The result is shorter development time, less complex programming, and easier deployment and integration through:
+<UL>
+
+
+<LI> The three-tier application model
+<LI> Transacted Active Server Pages
+<LI> Application services
+
+</UL><b>Application Model</b>
+<P>Three-tiered applications separate presentation, business logic, and data logic. In the case of IIS, a Web browser invokes an ASP file on the Web server. The ASP file contains script that references components. These components contain the application or business logic. Components run on the server, and can access and manipulate information from databases. They pass results back to the ASP file, which is then processed by the Web server and an HTML page returned to the requesting browser.
+<P>Microsoft Transaction Server (MTS) plays the role of coordinator in the middle layer, working with IIS to process client requests across components and databases that can be anywhere on the network. MTS provides developers the flexibility to deploy applications with the best design for their network, clients, and servers. Code can be run on any tier.
+<P>To date, businesses have had to purchase costly, high-end application platforms to enjoy the benefits of a three-tiered approach. Microsoft Transaction Server provides an accessible three-tiered model on Windows NT Server, delivering high-end distributed features at a much lower cost.
+<P><b>Transactional Active Server Pages</b>
+<P>Frequently, business applications need to run scripts and components within transactions. A transaction is a server operation that succeeds or fails as a whole, even if the operation involves many steps; for example, ordering, checking inventory, and billing. You can create ASP scripts that run within a transaction so that if any portion of the script fails, the entire transaction is aborted.
+<P>ASP transaction processing uses Microsoft Transaction Server, which provides a run-time infrastructure for deploying and managing Web applications.
+<P><b>Application Services</b>
+<P>The functionality required to create transactional scripts is built into Internet Information Server. If you install Microsoft Transaction Server, you can also package components so they run within transactions. The benefits of MTS include:
+<UL>
+
+
+<LI> <b>ActiveX language support.</b> You can build Transaction Server applications as software components using tools that support ActiveX , including Microsoft Visual Basic, Visual C++&#174;, and Visual J++&#153;. This leverages existing investments in training, people, and the $240 million market for pre-built ActiveX components.
+<LI> <b>Java 1.1 Support. </b>The Windows NT Server 4.0 Option Pack supports the latest additions to the Java specification. These include the JDBC to ODBC bridge, network and I/O enhancements, and others. This will provide developers with the most up-to-date capabilities Java has to offer. ActiveX controls can now be accessed as Java Beans (components), and Java Beans accessed as ActiveX controls. This integration is seamless, automatic, and bidirectional.
+<LI> <b>Simple interfaces.</b> Server environments like TP Monitors and Object Request Brokers require mastering hundreds of APIs before you become productive. Transaction Server has only two main APIs, lowering training costs while improving developer productivity.
+<LI> <b>Automatic thread and process management.</b> Transaction Server manages low-level system resources, enabling components to automatically operate in a multiuser environment without forcing you to build this complexity into your applications.
+<LI> <b>Component packaging.</b> Transaction Server includes a component packaging service, so you do not have to wrestle with the complicated logistics of integrating, installing, and deploying many components as a single application.
+<LI> <b>Shared property manager.</b> Transaction Server provides a mechanism that makes it easy to share data among multiple concurrently executing objects without forcing the developer to program complex state sharing and synchronization logic.
+
+</UL>
+<h4>Message Queuing</h4>
+<P>With the trend toward distributed computing in enterprise environments, it is important to have flexible and reliable communication among applications. Businesses often require independent applications that are running on different systems to communicate with each other and exchange messages, even though the applications may not be running at the same time.
+<UL>
+
+
+<LI> Microsoft Message Queue Server (MSMQ) technology enables applications running at different times to communicate across heterogeneous networks and systems that may be temporarily offline. Within an MSMQ enterprise, applications send messages to queues and read messages from queues.
+<LI> MSMQ integration with IIS enables developers to send asynchronous messages from ASP (or a component invoked from ASP). Using ASP, a Web Application can send an MSMQ message to a remote source for deferred processing.
+<LI> MSMQ fully supports the MTS transaction model -- enabling developers to wrap the transmission and retrieval of MSMQ messages within an MTS transaction. Using Transacted ASP, a Web Application can group the MSMQ message transmission with other transacted work (SQL updates, other MSMQ messages, and so forth). This greatly enhances developers' ability to build scalable, fault-tolerant applications on IIS.
+
+</UL><h4>Accessing Data </h4>
+<P>Web applications must easily and efficiently access diverse data sources. Through the ActiveX Data Objects and ODBC, IIS 4.0 provides you with simple and powerful interfaces to access information stored in a variety of relational database and non-database information stores on any platform.
+<P><b>ActiveX Data Objects (ADO)</b>
+<P>ADO provides you with the fastest, easiest, and most productive means for accessing all kinds of data sources. You can use ADO to create data-driven Web applications using ASP, or even use ADO within an ActiveX component to interact directly with a data source. The ADO model strives to expose everything that the underlying data provider can do, while still adding value by giving you shortcuts for common operations.
+<UL>
+
+
+<LI> ADO is designed for enterprise-class deployment. ADO is part of a language-independent, component-based system for database access. Applications built with ADO can use the transaction support in IIS 4.0 to enable interoperability and ensure a high degree of scalability and reliability.
+<LI> Because ADO works with OLE-DB providers, it can access a variety of data sources. Data sources include both traditional relational database management systems, and non-database sources such as file systems, spreadsheets, and full-text indexes.
+<LI> ADO provides easy database connectivity. Because ADO simply extends existing Microsoft ODBC interfaces, C++ and Visual Basic, you do not have to learn new objects, methods, and syntax for Web development.
+<LI> ADO can be easily optimized for different databases. Because ADO is used with Active Server Pages, the dynamic content and server-side scripting environment for IIS, you can write conditional scripts that execute different SQL commands based on the ODBC driver being used. Applications can be customized for different customers without having to change the code.
+<LI> ADO provides a scalable and reliable way to build database applications. Database applications created around ADO can use the integrated transaction processing features in IIS 4.0 to provide multiuser support and reliability through TP monitoring.
+
+</UL><b>Remote Data Services (RDS)</b>
+<P>RDS is a client-side technology that goes beyond the current generation of Web data access tools by enabling clients to update the data they see.
+<UL>
+
+
+<LI> Using Dynamic HTML and data binding in Internet Explorer 4.0, developers can deploy sophisticated user interfaces -- with a minimum of programming -- that enable end users to view and change data.
+<LI> End users are no longer restricted to staring at a static HTML results table. With RDS, they may now alter, add, and delete data they have queried and retrieved without making round-trips to the server each time.
+<LI> All changes are buffered locally, and can be submitted to the server for final inspection, processing, and storage in the database.
+
+</UL><b>Open Database Connectivity (ODBC)</b>
+<P>ODBC provides an industry standard set of interfaces for communicating with over 55 data stores.
+<UL>
+
+
+<LI> You can write database applications without targeting a single database vendor. Using ODBC gives you the flexibility of creating powerful database applications and businesses the choice of database server.
+<LI> ODBC gives you the flexibility of creating database applications in high performance languages like C++, or with scripting languages like JScript&#153; and Visual Basic&#174; Scripting Edition (VBScript).
+<LI> ODBC provides high-performance database connectivity and is the native driver to several server databases. These include Microsoft SQL Server, IBM, and Informix databases. Whether ODBC is the native driver for a database has very little effect on performance.
+
+</UL><b>Host Data Integration</b>
+<P>Using Microsoft SNA Server 4.0, Web applications can reliably connect to AS400 and mainframe data.
+<UL>
+
+
+<LI> <b>OLE DB Provider for AS/400 and VSAM. </b>This new technology provides record-level access to VSAM files in the mainframe environment, and OS/400 Physical and Logical files. <b>
+<LI></b>* <b>COM Transaction Integrator for CICS and IMS.</b> This integrates Microsoft Transaction Server (MTS) applications with CICS and IMS transactions. The Component Builder brings Microsoft drag-and-drop simplicity to developing MTS components from existing mainframe application programs, while the run-time components provide true integration, including distributed 2-phase commitment between MTS and CICS applications. Because MTS is fully integrated with Internet Information Server (IIS), applications developed with this technology are created once and can be used either by DCOM clients, Active Server Pages, or even SQL Server stored procedures.
+
+</UL><h4>Building Scalable and Reliable Applications</h4>
+<P>IIS 4.0 protects the Web server and Web applications by running the components of applications in the Microsoft Transaction Server (MTS) framework. This provides increased reliability and scalability through:
+<UL>
+
+
+<LI> Object brokering
+<LI> Crash protection and recovery
+<LI> Component management
+<LI> ODBC connection pooling
+
+</UL><b>Object Brokering</b>
+<P>Microsoft Transaction Server acts as a sort of a traffic director between ASP and the components that make up a Web application. To improve performance and scalability, MTS uses a process called just-in-time (JIT) activation and as-soon-as-possible (ASAP) deactivation.
+<P>MTS deactivates an object when it is not in use by its client, yet allows its client to maintain a reference to it. In an environment where many clients are contesting for the same object, MTS will dole out a deactivated object before instantiating a new one. This improves performance and scalability because objects can be &quot;warmed up&quot; and ready to go, fewer server resources are used, and a greater number of clients can efficiently use a smaller number of components.
+<P><b>Crash Protection and Recovery</b>
+<P>Applications built with ASP and the Internet Server API (ISAPI) for IIS 3.0 or later are fast. They achieve this by running in the same memory space as the IIS server and all other applications. Although processing is faster, if one application causes a problem, the entire server could potentially stop.
+<P>IIS 4.0 solves this because it is able to run applications in their own memory space. However, unlike CGI applications, which start a new process for request, MTS enables IIS to keep applications alive as long as new requests are coming in. This results in significantly better performance than CGI.  In the event a component crashes, the server and other applications stay running -- only the single out-of-process application dies. IIS automatically restarts the application on the next request.
+<P><b>Component Management</b>
+<P>When developing Web applications, it is often necessary to stop the application for debugging purposes or to load an updated version.  IIS 4.0 provides component management so you can stop an application without stopping the entire server. This unloads the application from memory so an administrator can install new components. The application restarts the next time a browser requests it.
+<P><b>ODBC Connection Pooling</b>
+<P>IIS 4.0 recycles ODBC connections in much the same way that it recycles connections to objects. Rather than discarding ODBC connections when they are no longer in use, MTS simply deactivates them and ultimately passes the connection out to another object in need. New ODBC connections are only necessary when there are more active connections required than deactivated resources. Again, performance and scalability are greatly improved.
+<P><h4>Debugging</h4>
+<P>The  <A HREF="http://msdn.microsoft.com/scripting/default.htm?/scripting/debugger/default.htm" TARGET="_top">Microsoft Script Debugger</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> helps you interactively test your Web applications and quickly locate problems in the scripts.  Regardless of your planning or level of experience, scripting errors may prevent your Active Server Pages applications from initially working correctly. Debugging, or the process of finding and correcting scripting errors, is crucial to the development of successful Web applications.
+<P>The Microsoft Script Debugger is a powerful debugging tool that works with Windows Internet Explorer version 3.0 or later. It has several helpful and effective debugging features. You can:
+<UL>
+
+
+<LI> Run your server-side scripts one line at a time
+<LI> View the values of your variables, properties, or array elements while your ASP script runs
+
+<LI> Set pauses, with either the debugger or by inserting a statement into your scripts, to suspend execution of your server-side scripts at a particular line
+
+<LI> Trace procedures and functions while running the ASP script
+
+</UL>
+<P><h4>IIS Software Development Kit (SDK)</h4>
+<P>IIS 4.0 includes a Software Development Kit to help developers understand the Web application programming services available in IIS. The  <A HREF="http://premium.microsoft.com/msdn/library/sdkdoc/iishelp/iis/htm/sdk/eadg_7f90.HTM" TARGET="_top">SDK</A> provides developers with a number of examples in the following areas:
+<UL>
+
+
+<LI> <b>ASP examples. </b>These examples give new users an overview of the capabilities of server-side scripting in general, ASP in particular, and provide more advanced examples for experienced developers who want to discover what ASP can do for them. <b>
+<LI></b> <b>Component examples.</b> The IIS 4.0 SDK contains several examples that demonstrate key concepts in component construction. There are several samples provided, including source in Visual Basic, C++, and Java. <b>
+<LI></b> <b>ISAPI examples.</b> Using ISAPI, developers can add to the functionality of IIS, and create Web-based applications that have as much functionality as any desktop application. The IIS 4.0 SDK provides a number of ISAPI extensions and filters to demonstrate how to use the ISAPI interface.
+
+</UL>
+<H3><A NAME="topic17"></A>Microsoft Index Server Integration
+</H3>
+<P>Microsoft Index Server works with Windows NT Server 4.0/IIS 4.0 to provide your organization access to all of the documents stored on your intranet or Internet site. It enables you to perform full-text searches and retrieve all types of information from any Web browser, in just about any format, with the click of a mouse or button. Index Server is a free, downloadable component of Windows NT Server version 4.0. It is included in the Windows NT Server 4.0 Option Pack.
+<P><h4>What Index Server Does</h4>
+<UL>
+
+
+<LI> <b>Indexes all documents.</b> Microsoft Index Server enables the end user to query indexes and entire documents on intranet or Internet sites that are stored on the Windows NT Server 4.0 operating system with Internet Information Server. The search engine can find documents in just about any format: text in a Microsoft Word document, statistics on a Microsoft Excel spreadsheet, or the content of an HTML page.
+<LI> <b>Customized query form.</b> The Webmaster can create a customized query form, enabling end users to choose the scope of their search. This form modification enables a user to search by either contents or other document properties such as the author and subject.
+<LI> <b>Customized results page.</b> The Webmaster can customize the results page shown after a search. Variables include any document properties such as title, author, date, size, and a document summary. The number of hits shown per page can also be set, and results can be sorted by any property. Index Server 2.0 also supports hit highlighting where the search words are shown highlighted in the document.
+<LI> <b>Automatic maintenance.</b> Index Server was designed for a &quot;zero maintenance&quot; environment where a server must be running 24 hours a day, seven days a week. Once set up, all the operations are automatic. This includes automatic updates, index creation and optimization, and crash recovery in case there's a power failure.
+<LI> <b>Administrative tools.</b> There are a number of built-in tools to help administrators optimize their query service. The performance monitoring capability gives administrators key information to gauge site performance, including the number of queries processed and the response time.
+<LI> <b>Multiple languages.</b> Built-in language support enables end users to query documents in seven different languages. Documents written in Dutch, English (U.S. and International), French, German, Italian, Spanish, and Swedish can be searched.
+<LI> <b>Extensible architecture.</b> <i>Content filters</i> extract the textual information contained within a formatted file. Content filters are associated with particular document formats. Content filters comply with the <b>IFilter </b>ActiveX programmatic interface, which has been published by Microsoft. By writing a content filter, developers can expose their contents to Index Server for indexing and retrieval by end users.
+
+</UL>
+<H3><A NAME="topic18"></A>Site Server Express Integration
+</H3>
+<P><h4>What Is Microsoft Site Server Express?</h4>
+<P>Microsoft Site Server Express offers basic functionality versions of Microsoft Site Server's Analysis and Publishing features. Microsoft Site Server provides a comprehensive Web site environment for enhancing, deploying, and managing rich Intranet, Internet, and commerce sites.
+<P><h4>Usage Analysis </h4>
+<P>Each time a user interacts with a site, the Web server software records information about the interaction, commonly referred to as a <i>hit</i>, in a single line of a log file. This data, however, is not very readable and does not provide useful information about a site's users, how long they stayed, and other information. Through the Usage Import and Report Writer modules, IIS 4.0 provides administrators the tools to easily extract trend and usage information from an IIS 4.0 log file and make more informed business decisions. Specifically, administrators are able to:
+<UL>
+
+
+<LI> Import an IIS log file and translate <i>hits</i> into useful information about <i>requests</i> (a hit that successfully retrieves content, including ad clicks), <i>visits</i> (a series of consecutive requests from a user to a Web site), <i>users</i> (anyone who visits the site at least once), and <i>organizations </i>(the named domain from which the user connected).
+<LI> Easily produce nine pre-defined reports that can be saved in HTML or popular business software formats.
+<LI> Automate import and analysis of log files through a GUI-based scheduler.
+
+</UL>Microsoft Site Server provides additional usage analysis functionality, including:
+<UL>
+
+
+<LI> Support for additional server log file formats including UNIX-based formats
+<LI> Over twenty-five predefined reports
+<LI> The ability to create custom usage analysis reports
+<LI> Support for SQL Server databases
+<LI> Generation of detailed advertising reports
+<LI> Aggregation of data across multiple Web servers and sites
+
+</UL><h4>Content Analysis </h4>
+<P>The amount of information contained on sites and the complexity of managing sites are increasing. On a corporate intranet site, for example, an increasing number of people are contributing content to the site. This means that quality requirements are becoming stricter while site complexity is increasing.
+<P>IIS 4.0 includes site analysis tools through the integration of the Analysis feature of Site Server Express. The Content Analyzer module adds functionality such as powerful site visualization and content reporting. For example, you can easily visualize the location of content on your site, identify links to off-site locations, and report on the amount and type of content composing the site.
+<P>Microsoft Site Server provides additional content analysis functionality, including over 20 pre-defined HTML reports for managing Web site content and the ability to perform custom searches for resources such as text strings, link status, author, expiration date, or other user-defined parameters.
+<P><A NAME="siteserverexpresspublishing"></A><h4>Publishing</h4>
+<P>The publishing feature of Site Server Express includes the following components for easily deploying content to your IIS server:
+<P><h4>Web Publishing Wizard</h4>
+<P>The Microsoft Web Publishing Wizard (WPW) is a client-side application that makes it easy to post Web pages to an IIS 4.0 Web site. It automates the process of copying files from a computer to a Web server. The Web Publishing Wizard is also included in Microsoft Site Server.
+<P><h4>Posting Acceptor</h4>
+<P>The Microsoft Posting Acceptor enables Internet Information Server (IIS) to accept Web content posts (files) from the WPW or other clients using the RFC1867 multi-form/posting method through an HTTP connection. Users can also post files from Internet Explorer 3.0 or later (with the ActiveX Upload control provided with IIS 4.0) and Netscape Navigator 2.02 or later. The Posting Acceptor is also included in Microsoft Site Server.
+<P>
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg01282.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="whyto.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

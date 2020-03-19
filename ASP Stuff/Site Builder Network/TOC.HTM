@@ -1,0 +1,667 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>SBN Workshop - Server Technologies Topic Listing</TITLE>
+<META NAME="robots" CONTENT="noindex" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+<SCRIPT>
+   //<!--
+var sUA = window.navigator.userAgent;
+var bIsIE4 = -1 != sUA.indexOf("MSIE 4"); 
+var bIsIE5 = -1 != sUA.indexOf("MSIE 5"); 
+var bIsMac = sUA.indexOf("Mac") > -1;
+var bDoesAll = (bIsIE4 || bIsIE5) && !bIsMac;
+
+var sSheet = "/sitebuilder/shared/css/";
+if (bDoesAll || bIsMac) 
+{
+if (bIsMac) sSheet += "ie4Mac-toc.css";
+else sSheet += "ie4-toc.css";
+}
+else 
+{
+sSheet += "all-toc.css";
+}
+document.write('<LINK REL="stylesheet" TYPE="text/css" HREF="' + sSheet + '">');
+
+   function newItem(sDatePosted) {
+      var dPosted = new Date(sDatePosted)
+      if (Date.parse(Date()) < Date.parse(dPosted) + 7){
+         document.write("<IMG SRC='../../sitebuilder/graphics/new1.gif' ALIGN='middle' WIDTH='19' HEIGHT='9' BORDER='0' ALT='New'>");
+      }
+   }
+
+   function updatedItem(sDateUpdated) {
+      var dUpdated = new Date(sDateUpdated)
+      if (Date.parse(Date()) < Date.parse(dUpdated) + 7){
+         document.write("<IMG SRC='../../sitebuilder/graphics/rev1.gif' WIDTH='19' HEIGHT='9' BORDER='0' ALT='Updated'>");
+      }
+   }
+
+   // do nothing but enable items to receive focus
+   function NoOp()
+   {
+      return;
+   }   
+
+   //-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="white" TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" LINK="#000066" VLINK="#666666" TEXT="#000000">
+<TABLE CELLPADDING="5" WIDTH="100%">
+<TR>
+<TD ALIGN="center"><A ID="lnkToWorkshop" HREF="../../workshop/toc.htm"><IMG ALIGN="top" ID="imgUp" HEIGHT="13" WIDTH="17" BORDER="0" TITLE="Workshop TOC" SRC="../../workshop/graphics/icons/nl-up-0.gif" /><B>workshop toc</B></A></TD>
+</TR>
+</TABLE>
+<TABLE CELLPADDING="7" CELLSPACING="0" WIDTH="100%">
+<TR>
+<TD ALIGN="left" VALIGN="middle" BGCOLOR="#99CCFF"><A ID="lnkBucketTitle" expResetToc="true" HREF="default.htm"><IMG ID="imgBucketIcon" HEIGHT="32" WIDTH="31" BORDER="0" SRC="../../workshop/graphics/icons/server.gif" ALT="Server Technologies" /></A></TD>
+<TD ALIGN="left" VALIGN="middle" WIDTH="100%" BGCOLOR="#99CCFF"><A ID="lnkBucketTitle" expResetToc="true" HREF="default.htm"><B>Server Technologies TOC</B></A></TD>
+</TR>
+</TABLE>
+<FONT SIZE="1" FACE="Verdana,Arial,Helvetica">
+<UL STYLE="behavior:url('/sitebuilder/shared/htc/tocstate.htc')">
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="nextgen/roadmap.htm">
+Road Map of Server Technologies</A>
+</LI>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Server Migration Lab</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="migrlab/whyto.htm">
+Why Migrate to NT 4.0/IIS 4.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="migrlab/howto.htm">
+How to Migrate: Step-by-Step</A>
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Internet Information Server (IIS)</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/essentials/forstarters/starts031698.htm">
+Introduction to IIS 4.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isn/techcenter/tuningIIS.asp">
+Tuning IIS Performance</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/debug.htm">
+Debugging with IIS 4.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isapi/goprem.asp?TARGET=/msdn/library/devprods/vc%2B%2B/vcmfc/d4/s534e.htm">
+Debugging with IIS 3.0</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/tune.htm">
+IIS 4.0 Tuning for High-Volume Sites</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="nextgen/iismts.htm">
+IIS 4.0 &amp; MTS 2.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isapi/goprem.asp?TARGET=/msdn/library/sdkdoc/iishelp/iis/htm/sdk/eadg_7f90.htm">
+IIS 4.0 SDK</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isn/techcenter/unixnt/default.asp">
+IIS 4.0 Unix Integration SDK</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isn/techcenter/IISManCom.asp">
+IIS 4.0 Management Component</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="iis/customerr.htm">
+IIS 4.0 Custom Error Messages</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/remoteadmin.htm">
+Remote Admin from MMC</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="toolbox/wcat.htm">
+IIS 4.0 WCAT download</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/seminar/98/iissecurity/portal.htm">
+Security</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/seminar/98/iissupport/portal.htm">
+Security Q &amp; A</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/security.htm">
+Authentication &amp; Security</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/ntserver/nts/web/default.asp">
+IIS 4.0/Windows NT Web Services</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/feature.htm">
+Minimum Services for IIS 3.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/ntserver/nts/techdetails/default.asp">
+Windows NT Server 4.0 Technical Papers</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/ntserver/windowsnt5/techdetails/default.asp">
+Windows NT Server 5.0 Technical Papers</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/ntserver/nts/downloads/recommended/nt4svcpk4/default.asp">
+Windows NT Option Pack</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/msj/">
+Windows NT 5.0 Preview in MSJ</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Active Server Pages (ASP)</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="asp/aspover.htm">
+Overview</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/aspfeat.htm">
+Feature Overview</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/aspatoz.htm">
+ASP from A to Z</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/aspconv.htm">
+Programming Conventions</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/asptips.htm">
+15 Top Tips</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/maxperf.htm">
+Maximizing Performance</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isn/techcenter/security.asp">
+Implement a Secure Site with ASP</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="nextgen/nextgen.htm">
+International ASP</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/site012198.htm">
+Graphic Design w/ASP</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/database/datavis/datavis.htm">
+Prepping Your Data with ASP</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/comtutorial.htm">
+COM Objects in ASP</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://mspress.microsoft.com/prod/books/sampchap/1456.htm">
+Programming ASP</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/active.htm">
+Web Session Management &amp; ASP</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="toolbox/toolbox.htm">
+IDC/HTX-to-ASP Converter</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/devnews/mayjun97/benasp.htm">
+Building an ASP Application, Part I</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/devnews/sepoct97/apscale.htm">
+Building an ASP Application, Part II</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/server062998.htm">
+Q &amp; A</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.clbooks.com/partners/sitebuilder/1576102475-sbn.html">
+ASP Black Book</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Active Server Components</A>
+<SCRIPT LANGUAGE="javascript">//<!--
+         updatedItem("Nov 4 1998")
+        //--></SCRIPT>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="../../sitebuilder/magazine/clientvserver.htm">
+Intro to Client &amp; Server-Side Objects</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/components/activex/aspactx.htm">
+Using ActiveX with ASP</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/aspvs97.htm">
+Creating in Visual Studio 97</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/comp.htm">
+Developing with ATL</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/vbmtsiis.htm">
+Developing in Visual Basic for IIS/MTS</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/com/wpaper/mts-ejb.asp">
+MTS &amp; JavaBeans Comparison</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/agility.htm">
+Threading Models &amp; Performance</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/components/com/comthread.htm">
+COM Threading Models</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/developer/news/drgui/072798.htm">
+Dr. GUI COM Series</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn/microsoft.com/developer/news/feature/duwamish2_5/d2dalatl.htm">
+Migrating VB 5 to VC++ 5</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/daciisperf.htm">
+Data Access Components with IIS 4.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/outproc.htm">
+Enabling Out-of-Process Components</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/catalog.htm">
+ASP Component Catalog</A>
+<SCRIPT LANGUAGE="javascript">//<!--
+         updatedItem("Nov 4 1998")
+        //--></SCRIPT>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/com/">
+COM Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/server090198.htm">
+Create and Debug Java COM Objects</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="components/server100198.htm">
+Data Access Using WFC/ADO</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/components/default.htm">
+See Also: Component Development</A>
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Site Server</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="nextgen/siteservfeat.htm">
+Overview of SBN/MSDN Site Server Feature</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/msdn/news/feature/042798/ssintro.htm">
+Introduction</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="nextgen/searchcatalog.htm">
+Creating a Search Catalog for Your Site</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn/microsoft.com/news/feature/042798/SSDatIdx.htm">
+Search Database Indexing</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/news/feature/042798/ExtdSS30.htm">
+Extending Search w/AUO Framework</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/intranet/guide/index.asp">
+Site Server Search &amp; Index Server</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="nextgen/perstutor.htm">
+Personalization &amp; Membership Tutorial</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/news/feature/042798/hostmulti.htm">
+Hosting Multiple User Communities</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="nextgen/sessiondata.htm">
+Membership Dir &amp; AUO for Session State</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/news/feature/042798/memdirct.htm">
+Membership Directory Config &amp; Tuning</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="nextgen/kmpaper.htm">
+Getting the Most Out of Knowledge Manager</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="siteserver/siteexch/exchss.htm">
+Knowledge Mgmt with Exchange Server</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/mcis/reskit/rk_start.htm">
+MCIS Resource Kit</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/default.asp">
+Site Server Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/commerce/partners/proservices.asp">
+Site Server Partners Page</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.SiteServer.com">
+SiteServer.Com</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Commerce</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="../../sitebuilder/magazine/starters.htm">
+For $tarters</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/seminar/sbn_index.htm">
+Online Training</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/commerce/guide/site3white.asp">
+Tech Papers</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/commerce/update/tools.asp">
+Tools, Performance Kit &amp; Samples</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/commerce/update/css.asp">
+Sample Sites</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/developer/news/feature/duwamish3/default.htm">
+Duwamish Bookstore Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/intranet/Update/sdk.asp">
+Commerce SDK</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/siteserver/commerce/update/enhancements.asp">
+Interchange Pipeline (CIP) Manager Beta &amp; SDK</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/mcis/reskit/rk_start.htm">
+MCIS Resource Kit</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/sbnmember/osig/default.asp">
+Online Special-Interest Group: E-Commerce</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.sbnosig.com/gazette/">
+OSIG Member Gazette Commerce topics</A>
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Microsoft Commercial Internet System</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isn/techcenter/proxyidsec.asp">
+Membership Sysadmin &amp; Registration</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/mcis/reskit/rk_start.htm">
+Resource Kit</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/mcis/default.asp">
+MCIS Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">SQL Server</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/sql/beta/whtepprs.asp">
+Version 7.0 Technical Papers</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/sql/beta/featexercises.asp">
+Version 7.0 Samples &amp; Tutorials</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/developer/news/feature/duwamish2_5/d2upsize.htm">
+Migrating a DB to SQL</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http:/isapi/gobackoffice.asp?TARGET=/downtrial/moreinfo/sqldrk.asp">
+Developer's Resource Kit &amp; Tech Papers</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">FrontPage Server Extensions</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/languages/fp/fpovw.htm#hosting">
+See: Server Extensions (in Languages &amp; Dev Tools)</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/frontpage/wpp/serk/default.htm">
+Resource Kit</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/frontpage/hosting/hosting_faqs.htm">
+FAQ</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Certificate Server</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/security/client/certsvr.htm">
+Overview (in Security &amp; Cryptography)</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/security/products/certserver.asp">
+Certificate Server Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="nextgen/pws.htm" TARGET="_top">
+Personal Web Server</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Proxy Server</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="proxy/server072798.htm">
+Fight Fire with Firewalls</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/proxy/guide/carpwp.asp">
+Cache Array Routing Protocol</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/proxy/default.asp">
+Proxy Server Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Systems Management Server</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="nextgen/smssec8.htm">
+Reviewer's Guide</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/smsmgmt/support/whitepaper.asp">
+SMS Tech Papers</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Site Administration &amp; Development</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://msdn.microsoft.com/developer/news/feature/visep98/videbug.htm">
+Debugging with Visual InterDev</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/webfarm3.htm">
+Managing Session State in a Web Farm</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="toolbox/cookie.htm">
+Simulate Cookies with Cookie Munger</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/vpnovw.htm">
+Virtual Private Networking Overview</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/server033198.htm">
+Basics of Security</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/mind/0398/Security/security.htm">
+A Peek Inside Microsoft Security Products</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/security/">
+Security Advisor Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="../../workshop/essentials/wteched98/dbwebapps.htm">
+Data-Driven Web Applications</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/data/">
+Universal Data Access Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.intel.com/solutions/tech/via.htm">
+Virtual Interface Architecture</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Case Studies</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="feature/serveroptms.htm">
+Performance on Microsoft's Web Site</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/backstage/">
+More on Microsoft's Web Site</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="../../sitebuilder/magazine/codeintro.htm">
+SBN Redesign Code</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/personalize.htm">
+Internet Start Site: Personalization</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/pull.htm">
+Internet Start: Content from Web to Client</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/cache.htm">
+Internet Start: Server Caching</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/server060198.htm">
+Microsoft Investor Site: Overview</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="scenario/msi.htm">
+Microsoft Investor Site: Technical Article</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="scenario/classovw.htm">
+15 Seconds Job Classifieds</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="scenario/15seconds.htm">
+15 Seconds Dynamic/Static Pages</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="feature/acthoro.htm">
+Daily Horoscope Application</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="scenario/awest.htm">
+Effortless Ticketing Online with IIS</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="scenario/scene.htm">
+Network Imaging Corp: 1View ASP Component</A>
+</LI>
+</UL>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Tools</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" HREF="feature/server042798.htm">
+INetMonitor</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="asp/inline.htm">
+In-Line HTML Editor</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isn/techcenter/SbsIsp/default.asp">
+Small Business Server Tools for ISPs</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="../../sitebuilder/magazine/server.htm" TARGET="_top">
+"Servin' It Up" Column</A>
+</LI>
+<LI CLASS="clsShowHide"><A HREF="javascript:NoOp()" CLASS="clsTOCHeading">Support</A>
+</LI>
+<UL CLASS="clsItemsHide">
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isapi/gosupport.asp?TARGET=/support/iis/iisfixes.asp">
+IIS Fixes/Updates</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="bugzap/tshoot.htm">
+ASP Troubleshooting Tips &amp; Techniques</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="bugzap/memory.htm">
+ASP Memory Leak in IIS 3.0</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.microsoft.com/isapi/gosupport.asp?TARGET=/support/kb/articles/q168/3/54.asp">
+OLE &amp; OLEDB Provider Errors</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="bugzap/http11.htm">
+IE 4.0 Preview 2 &amp; HTTP 1.1 Bug</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="bugzap/viewscript.htm">
+Viewable Script Logic Bug</A>
+</LI>
+<LI><A CLASS="clsTOCItem" HREF="bugzap/vbscript.htm">
+VBScript Memory Leaks &amp; Hotfix</A>
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="support/server.htm">
+KB Articles on WinInet</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.15seconds.com/">
+15 Seconds</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.activeserverpages.com/">
+ActiveServer Pages.Com</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.activeserverpages.ru/">
+Russian ActiveServer Pages.Com</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://sweden.activeserverpages.com/">
+Swedish ActiveServer Pages.Com</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.activeserverpages.com/japan/">
+Japanese ActiveServer Pages.Com</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+<LI><A CLASS="clsTOCItem" TARGET="_top" HREF="http://www.asphole.com/asphole/default.asp">
+ASP Hole</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="33" ALT="Non-MS link.gif" SRC="../../sitebuilder/graphics/leave-ms.gif" />
+</LI>
+</UL>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="http://www.microsoft.com/ntserver/nts/fileprint/exec/feature/IndexServerSummary.asp" TARGET="_top">
+See Also: Index Server</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="http://www.microsoft.com/netmeeting/ils/default.htm" TARGET="_top">
+See Also: Internet Locator Server</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="../../workshop/messaging/default.htm">
+See Also: Exchange Server (in Messaging &amp; Collaboration)</A>
+</LI>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="http://www.microsoft.com/ntserver/nts/appservice/exec/overview/Trans_Overview.asp" TARGET="_top">
+See Also: Transaction Server</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+<LI CLASS="noexpand"><A CLASS="clsTOCHeading" HREF="http://backoffice.microsoft.com/" TARGET="_top">
+See Also: BackOffice Live</A>
+&nbsp;<IMG BORDER="0" HEIGHT="11" WIDTH="17" ALT="Non-SBN link.gif" SRC="../../sitebuilder/graphics/leave-site.gif" />
+</LI>
+</UL>
+</FONT>
+<SCRIPT>
+   //<!--
+   if (bDoesAll) {
+      document.write("<SCR" + "IPT LANGUAGE='javascript' SRC='/sitebuilder/shared/js/toc.js'></SCR" + "IPT>");
+   }
+   //-->
+</SCRIPT>
+</BODY>
+</HTML>

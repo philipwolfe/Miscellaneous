@@ -1,0 +1,4110 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: Web Workshop - Touring the MSDN Online Redesign Code: NavBar
+Date: Thu, 13 Jul 2000 14:01:36 -0500
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01BFECD2.DBFEA810";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2919.6600
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Web Workshop - Touring the MSDN Online Redesign Code: =
+NavBar</TITLE>
+<META content=3DDHTML name=3Dkeywords>
+<META content=3DAll name=3Drobots>
+<META content=3D"A tour of the MSDN Online redesign code, focusing on =
+the NavBar"=20
+name=3Ddescription>
+<META content=3DEN-US name=3DMS.LOCALE>
+<META content=3D"text/html; charset=3Diso-8859-1" =
+http-equiv=3DContent-Type>
+<META content=3DRobert%20Carter name=3DAuthor>
+<SCRIPT language=3DJavaScript><!--
+
+	// -----------------------------------------------------------
+	// Client-side BrowserData constructor
+	// Populated using data from server-side oBD object to avoid redundancy
+	// -----------------------------------------------------------
+
+	function BrowserData()
+	{
+		this.userAgent =3D "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT)";=0A=
+		this.browser =3D "MSIE";=0A=
+		this.majorVer =3D 5;=0A=
+		this.minorVer =3D "01";=0A=
+		this.betaVer =3D "0";=0A=
+		this.platform =3D "NT";=0A=
+		this.platVer =3D "0";=0A=
+		this.getsNavBar =3D true;=0A=
+		this.doesActiveX =3D true;=0A=
+		this.fullVer =3D 5.01;=0A=
+
+	}
+	var oBD =3D new BrowserData();
+
+//--></SCRIPT>
+<LINK href=3D"http://msdn.microsoft.com/msdn-online/shared/css/ie4.css"=20
+rel=3Dstylesheet type=3Dtext/css>
+<STYLE type=3Dtext/css>PRE.clsCode {
+	FONT-SIZE: 110%
+}
+PRE.clsSyntax {
+	FONT-SIZE: 100%
+}
+</STYLE>
+
+<SCRIPT language=3DJavaScript=20
+src=3D"http://msdn.microsoft.com/msdn-online/shared/js/navlinks.js"></SCR=
+IPT>
+
+<SCRIPT language=3DJScript><!--
+
+	function CommonLoad()
+	{
+		if ("function" =3D=3D typeof(InitNavLinks)) InitNavLinks();
+		if ("function" =3D=3D typeof(CheckToTop)) CheckToTop();
+		if ("function" =3D=3D typeof(RemoveLastPipe)) RemoveLastPipe();
+		if ("function" =3D=3D typeof(process_button))
+		{
+			with( document )
+			{
+				ondblclick =3D onmousedown =3D onmouseup =3D onmouseover =3D =
+onmouseout =3D onkeyup =3D onclick =3D onselectstart =3D process_button;
+			}
+		}
+		if( "function" =3D=3D typeof( doOutline ) )
+		{
+			document.onclick =3D doOutline;
+		}
+	}
+
+//--></SCRIPT>
+
+<SCRIPT language=3DJavascript><!--
+
+	// -----------------------------------------------------------
+	// window_load()
+	// Container function for load.
+	// -----------------------------------------------------------
+
+	function window_load()
+	{
+		if (oBD.getsNavBar)
+		{
+			if ("function" =3D=3D typeof(CommonLoad)) CommonLoad();
+		}
+	}
+	window.onload =3D window_load;
+
+//--></SCRIPT>
+
+<META content=3D"MSHTML 5.00.2919.6307" name=3DGENERATOR></HEAD>
+<BODY bgColor=3D#ffffff leftMargin=3D0 text=3D#000000 topMargin=3D0 =
+MARGINHEIGHT=3D"0"=20
+MARGINWIDTH=3D"0">
+<SCRIPT language=3Djavascript=20
+src=3D"http://msdn.microsoft.com/library/toolbar/toolbar.js"></SCRIPT>
+
+<SCRIPT language=3Djavascript=20
+src=3D"http://msdn.microsoft.com/library/toolbar/en-us/global.js"></SCRIP=
+T>
+
+<SCRIPT language=3Djavascript=20
+src=3D"http://msdn.microsoft.com/msdn-online/shared/js/local.js"></SCRIPT=
+>
+
+<SCRIPT language=3Djavascript><!--
+
+	if (ToolBar_Supported)
+	{
+		=
+setICPBanner("/msdn-online/shared/graphics/banners/workshop-banner.gif","=
+","MSDN Online Web Workshop");
+		drawToolbar();
+	}
+
+//--></SCRIPT>
+
+<SCRIPT language=3Djavascript=20
+src=3D"http://msdn.microsoft.com/msdn-online/shared/js/stealth.js"></SCRI=
+PT>
+
+<TABLE bgColor=3D#6699cc border=3D0 cellPadding=3D0 cellSpacing=3D0 =
+class=3DclsNavTop=20
+width=3D"100%">
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#ffffff colSpan=3D2 height=3D1><IMG height=3D1=20
+      =
+src=3D"http://msdn.microsoft.com/msdn-online/shared/graphics/ts.gif"=20
+    width=3D1></TD></TR>
+  <TR>
+    <TD class=3DclsBBarRaised vAlign=3Dtop>
+      <TABLE border=3D0 cellPadding=3D8 cellSpacing=3D0 =
+class=3DclsNavLinks=20
+      id=3DtblNavLinks>
+        <TBODY>
+        <TR>
+          <TD class=3DclsBtnOff noWrap>&nbsp;<A=20
+            href=3D"http://msdn.microsoft.com/workshop/author/toc.htm"=20
+            id=3DlnkShowImg target=3D_top><IMG align=3DabsMiddle=20
+            alt=3D"Show/Hide TOC in left frame" border=3D0 height=3D16 =
+id=3DimgShow=20
+            =
+src=3D"http://msdn.microsoft.com/msdn-online/shared/graphics/icons/showto=
+c.gif"=20
+            width=3D16><B>&nbsp;<FONT color=3D#ffffff>show=20
+          toc</FONT></B></A>&nbsp;</TD>
+          <TD class=3DclsBtnOff noWrap>&nbsp;<A=20
+            =
+href=3D"http://msdn.microsoft.com/workshop/c-frame.htm?/workshop/author/d=
+html/navbar.asp"=20
+            id=3DlnkSyncImg target=3D_top><IMG align=3DabsMiddle=20
+            alt=3D"Synchronize TOC and Address Bar with this page" =
+border=3D0=20
+            height=3D16 id=3DimgSync=20
+            =
+src=3D"http://msdn.microsoft.com/msdn-online/shared/graphics/icons/syncto=
+c.gif"=20
+            width=3D16><B><FONT color=3D#ffffff>&nbsp;sync=20
+          toc</FONT></B></A>&nbsp;</TD>
+          <TD class=3DclsBtnOff noWrap>&nbsp;<A=20
+            =
+href=3D"http://msdn.microsoft.com/workshop/index/default.asp"=20
+            id=3DlnkIndexImg><IMG align=3DabsMiddle=20
+            alt=3D"Go to an alphabetical keyword list" border=3D0 =
+height=3D16=20
+            =
+src=3D"http://msdn.microsoft.com/msdn-online/shared/graphics/icons/index.=
+gif"=20
+            width=3D16><B><FONT =
+color=3D#ffffff>&nbsp;index</FONT></B></A>&nbsp;</TD>
+          <TD>&nbsp;</TD></TR></TBODY></TABLE></TD>
+    <TD align=3Dright class=3DclsBBarRaised>&nbsp; </TD></TR>
+  <TR>
+    <TD bgColor=3D#ffffff colSpan=3D2>
+      <TABLE border=3D0 cellPadding=3D0 cellSpacing=3D10>
+        <TBODY>
+        <TR>
+          <TD rowSpan=3D2><IMG height=3D32=20
+            =
+src=3D"http://msdn.microsoft.com/workshop/graphics/icons/author.gif"=20
+            vspace=3D5 width=3D31></TD>
+          <TD bgColor=3D#ffffff>
+            <TABLE border=3D0 cellPadding=3D0 cellSpacing=3D0 =
+id=3DtblPrevNext>
+              <TBODY>
+              <TR></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD bgColor=3D#ffffff><A=20
+            href=3D"http://msdn.microsoft.com/workshop/default.asp"=20
+            target=3D_top>Web Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A=20
+            =
+href=3D"http://msdn.microsoft.com/workshop/c-frame.htm#/workshop/author/d=
+efault.asp"=20
+            target=3D_top>DHTML, HTML &amp;=20
+  CSS</A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<DIV class=3DclsDocBody><!-- DOCUMENT CONTENT START --><A =
+name=3Dtop></A>
+<H1><A name=3DNAVBAR=20
+idx_concept=3D"stopindex;Code tour, NavBar; Menus, generating dynamic"=20
+idx_type=3D"sbngen">A Tour of the Code --<BR>NavBar: Dynamic Menu=20
+Generation</A></H1>
+<P>Robert Carter<BR>MSDN Online Writer</P>
+<P>George Young<BR>Web Developer Engineer<BR>MSDN Online</P>
+<P>Updated: February 16, 1999</P>
+<P><A =
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbarsamp.zip"><=
+IMG=20
+alt=3DDownload border=3D0=20
+src=3D"http://msdn.microsoft.com/msdn-online/shared/graphics/icodownl.gif=
+">Download=20
+the source code for a sample NavBar site (zipped, 16.2K)</A> (see =
+readme.txt for=20
+instructions).</P>
+<P><B>Editor's note:</B> This article, recently updated to reflect =
+version 2 of=20
+the MSDN Online Web site's NavBar, is the first part of a series =
+describing the=20
+code implementation for the MSDN Online redesign launched in June and =
+July of=20
+1998. If you haven't yet, you might want to read the introduction, <A=20
+href=3D"http://msdn.microsoft.com/workshop/management/planning/codeintro.=
+asp">A=20
+Tale of Two Web Teams: Touring the Redesign Code</A>.</P>
+<P><B>Contents</B><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#intro"=
+>Introduction</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#functi=
+on">NavBar=20
+Functionality</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#menu">=
+Building=20
+the Menu</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#popula=
+te">Populate=20
+the Menus</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#displa=
+y">Over,=20
+on, and What to Display</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#td">Wh=
+ich=20
+&lt;TD&gt; Are We in Again?</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#play">=
+Playing=20
+Show and Hide</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#cache"=
+>Event=20
+Caching</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#sum">S=
+ummary</A></P>
+<P><B>Other parts in this series</B><BR><A=20
+href=3D"http://msdn.microsoft.com/voices/codeintro.asp">Introduction and =
+
+Overview</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/NavFrame.asp">Nav=
+Frame:=20
+Selective Frame Activation</A><BR><A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/specialdes.asp">O=
+ther=20
+Special Features and Hacks</A></P>
+<H2><A name=3Dintro>Introduction</A></H2>
+<P>As Robert is rapidly learning (much to his dismay), coders rarely =
+leave=20
+well-enough alone. (Truth be told, he's only dismayed insofar as his =
+articles=20
+rapidly become obsolete; on the upside, the code keeps getting better.) =
+Such is=20
+the case with NavBar, the snappy navigation aid that appears across the =
+top of=20
+all MSDN Online pages.</P>
+<P>This article, like the code it describes, is a complete re-working of =
+our=20
+earlier release. If you downloaded the sample we released a few weeks =
+back, and=20
+were confused because the sample and the article that described it =
+seemed such=20
+different beasts, you can now rest easy. With this update, we'll step =
+through=20
+NavBar's functionality again, and then discuss our latest coding =
+practices in=20
+the context of actions users take on a hypothetical MSDN Online =
+page.</P>
+<H2><A name=3Dfunction></A>NavBar Functionality</H2>
+<P>First, let's revisit what NavBar is and does. NavBar is our site-wide =
+
+navigation tool, the conduit to reach all the major areas (and =
+sub-areas) of=20
+MSDN Online, including Workshop, Magazine, Member Community, Tools &amp; =
+
+Samples, and Training. The final option on NavBar, Site Info, takes =
+users to=20
+pages that orient them to MSDN Online and its search and index =
+pages.</P>
+<P>We intentionally configured the user interface to mimic Windows =
+menu-based=20
+applications. Simply mousing over areas cause them to turn light blue =
+(as=20
+opposed to the box that appears around menu items in Windows=20
+applications).</P><BR><IMG alt=3D"Mousing over the MSDN Online NavBar" =
+border=3D0=20
+height=3D66 =
+src=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar1.gif"=20
+width=3D400>=20
+<P><B>Figure 1. Mousing over the MSDN Online NavBar</B></P>
+<P>Clicking on a NavBar item causes the menu it contains to drop down, =
+revealing=20
+second-level areas. The chosen NavBar item changes to light =
+gray.</P><BR><IMG=20
+alt=3D"Drop-down menu" border=3D0 height=3D241=20
+src=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar2.gif" =
+width=3D358>=20
+<P><B>Figure 2. Clicking a NavBar item causes a drop-down menu to =
+appear</B></P>
+<P>As with Windows applications, once you've clicked on a NavBar item =
+and opened=20
+it, moving the mouse along the NavBar will cause each navbar item to =
+display its=20
+menu contents without requiring another mouse click. (Go ahead, try it.) =
+Moving=20
+the mouse outside the NavBar or the exposed menu drop-down has no effect =
+(the=20
+menu stays just where it is) unless you click again, which will cause =
+the menu=20
+to close.</P>
+<P>Moving the mouse down the exposed menu will cause each highlighted =
+entry to=20
+be banded in navy blue (the text converts to white to remain visible =
+against the=20
+dark background). Note that the whole row is banded in navy rather than =
+just the=20
+text, which we accomplish by placing <A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#divmen=
+u">each=20
+entry inside its own &lt;DIV&gt; tag</A>. Clicking on an entry in the =
+menu sends=20
+you to its associated area or page.</P><BR><IMG alt=3D"NavBar =
+terminology"=20
+border=3D0 height=3D291=20
+src=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar3.gif" =
+width=3D345>=20
+<P><B>Figure 3. Highligted NavBar items with terminology =
+call-outs</B></P>
+<P>Before we go much further, we should settle on some terminology. As =
+Figure 3=20
+shows, NavBar is the entire table colored in royal blue. You click on =
+(or mouse=20
+over) a NavBar item. Clicking on a NavBar item opens a menu. Each of the =
+
+elements within the menu are referred to as menu items. While this may =
+sound=20
+pedantic, it is easy to get confused when we get into describing the =
+code and=20
+its page functionality -- and the code is complex enough without getting =
+tripped=20
+up by terminology issues.</P>
+<P>Browsers that aren't capable of displaying the NavBar Dynamic HTML =
+(DHTML) --=20
+essentially, any browser that isn't Internet Explorer 4.0 and above on =
+Windows=20
+or UNIX -- are sent a different set of code. Although NavBar looks the =
+same,=20
+clicking on one of the NavBar items doesn't display the drop-down menu; =
+instead,=20
+we send the user to the default page for each section.</P>
+<P>We determine which version of NavBar to send to a browser through =
+server-side=20
+sniffing. The sniffing code is embedded in browdata.inc (which we'll =
+describe=20
+more fully in our forthcoming update of NavFrame and NavLinks). Each =
+version of=20
+NavBar, DHTML and down-level, is placed in a one-row table. From there, =
+the=20
+similarities end. We will spend the bulk of our time talking about the =
+DHTML=20
+version of NavBar; we leave the down-level version for you to figure out =
+on your=20
+own (it's easy enough for even Robert to grasp).</P>
+<H2><A name=3Dmenu></A>Building the Menu</H2>
+<P>The include file navbar.inc, which is inserted into every Web =
+Workshop=20
+document from inside <I>another</I> include file, doctop.inc, performs a =
+
+conditional test to determine whether the browser gets sent =
+navbar-gb.inc, which=20
+contains our DHTML version of NavBar, or navbar-ob.inc, which includes =
+the=20
+down-level, standard-HTML version. Both versions house NavBar in a =
+table. In the=20
+down-level table, instead of each cell containing a hyperlinked graphic, =
+as we=20
+did in version 1.0, we cut NavBar file size by 50 percent and saved four =
+trips=20
+to the server by sending down a single-image client-side image =
+map.</P><PRE class=3DclsCode>&lt;%
+  if (oBD.getsNavBar)
+  {
+%&gt;
+    &lt;!--#include virtual=3D'/msdn-online/shared/inc/navbar-gb.inc' =
+--&gt;
+&lt;%
+  }
+  else
+  {
+%&gt;
+    &lt;!--#include virtual=3D'/msdn-online/shared/inc/navbar-ob.inc' =
+--&gt;
+&lt;%
+  }
+%&gt;
+</PRE>
+<P>In the up-level version, only the MSDN Online logo and the red =
+triangles are=20
+sent down as graphics; all the other table entries are text. We use CSS =
+class=20
+names to display the text entries as different colors for each of the =
+states a=20
+NavBar item can assume (default state [white], when a user is mousing =
+over a=20
+NavBar item [light blue], and when the menu associated with a NavBar =
+item is=20
+displayed [gray]). In addition, the state information represented by the =
+CSS=20
+class names helps us decide what actions to take in script. Below is a =
+table=20
+cell for the DHTML version of NavBar:</P><PRE class=3DclsCode>&lt;TD =
+CLASS=3D"clsNavBarItem" expItemNum=3D"1"&gt;
+Magazine&lt;BR&gt;
+&lt;IMG HEIGHT=3D"4" WIDTH=3D"7" BORDER=3D"0"=20
+  SRC=3D"/msdn-online/shared/navBar/graphics/arrow.gif"&gt;
+&lt;/TD&gt;
+</PRE>
+<P>Each NavBar item is given a class and a uniquely numbered =
+<B>expItemNum</B>=20
+<A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/reference/propert=
+ies/expando.asp">expando=20
+property</A>. Expando properties, which are unique to JScript=AE and =
+Internet=20
+Explorer 4.0 and above, let us create our own properties for an object =
+(in this=20
+case, the <B>TD</B> object), and assign them values if we want.</P>
+<H2><A name=3Dpopulate></A>Populate the Menus</H2>
+<P>The navmenus.inc file, which contains the contents of the menus, is =
+loaded=20
+for DHTML-capable browsers from a conditional test in footer.inc. The =
+footer.inc=20
+file, as its name implies, is an include file inserted at the end of the =
+
+document we're sending from the server. The navmenus.inc file is simply =
+a series=20
+of nested &lt;DIV&gt; tags. Each upper-level &lt;DIV&gt; defines a menu, =
+
+specifies an ID and a class, binds its <B>onmouseover()</B> and=20
+<B>onmouseout()</B> events to our <B>Menu_hover()</B> function, and its=20
+<B>onclick()</B> event to our <B>Menu_click()</B> function. The =
+second-level=20
+&lt;DIV&gt;s, which define the menu items, contain the menu item text =
+and the=20
+URL to which the menu item points.</P><PRE class=3DclsCode>&lt;DIV =
+ID=3D"divMenu1" CLASS=3D"clsMenu" ONMOUSEOVER=3D"Menu_hover();"=20
+  ONMOUSEOUT=3D"Menu_hover();" ONCLICK=3D"Menu_click();"&gt;
+  &lt;DIV expURL=3D"/voices/default.asp"&gt;Magazine Home&lt;/DIV&gt;
+  &lt;DIV expURL=3D"/voices/jane.asp"&gt;Ask Jane&lt;/DIV&gt;
+  &lt;DIV expURL=3D"/voices/dude.asp"&gt;DHTML Dude&lt;/DIV&gt;
+.
+.
+.
+&lt;/DIV&gt;
+</PRE>
+<P>The three event-handler functions are processed on the client side, =
+because=20
+they respond to events that occur within the browser. We load them in a =
+script=20
+SRC file from footer.inc:</P><PRE class=3DclsCode>&lt;%
+if (oBD.getsNavBar)
+{
+  Response.Write('&lt;SCRIPT LANGUAGE=3D"JavaScript" =
+SRC=3D"navbar.js"&gt;&lt;/SCRIPT&gt; \n');
+}
+%&gt;
+</PRE>
+<P>(oBD.getsNavBar is part of our browser-sniffing code, which we'll =
+discuss in=20
+a later article.)</P>
+<H2><A name=3Ddisplay></A>Over, on, and What to Display</H2>
+<P>Now that we've sent down all our data and functions, we can turn to =
+how=20
+everything works together to control the NavBar display. Assume a user =
+begins a=20
+session in Workshop. The page has just loaded, and no menus are open. =
+The user=20
+mouses over the "Workshop" NavBar item, which looks like the following =
+in=20
+HTML:</P><PRE class=3DclsCode>&lt;TABLE ID=3D"tblNavBar" BORDER=3D"0" =
+CELLPADDING=3D"0" CELLSPACING=3D"0"&gt;
+&lt;TR VALIGN=3D"top"&gt;
+.
+.
+.
+  &lt;TD CLASS=3D"clsNavBarItem" expItemNum=3D"3"&gt;
+  Workshop
+  &lt;BR&gt;
+  &lt;IMG HEIGHT=3D"4" WIDTH=3D"7" BORDER=3D"0"
+    SRC=3D"/msdn-online/shared/navBar/graphics/arrow.gif"&gt;
+  &lt;/TD&gt;
+.
+.
+.
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+</PRE>
+<P>Note that the ID of the &lt;TABLE&gt; tag is "tblNavBar", the class =
+of the=20
+Workshop &lt;TD&gt; is initially "clsNavBarItem", and that the expando =
+property=20
+<B>expItemNum</B> is "3".</P>
+<P>Just a little more stage-setting: At the bottom of navbar.js, we've =
+inserted=20
+the event-binding code shown below:</P><PRE class=3DclsCode>if ("object" =
+=3D=3D typeof(tblNavBar))
+{
+  tblNavBar.onmouseover =3D new Function("NavBar_mouseover(this);");
+  tblNavBar.onmouseout =3D new Function("NavBar_mouseout(this);");
+  tblNavBar.onselectstart =3D new Function("return false;");
+  tblNavBar.onclick =3D new Function("NavBar_click(this);");
+}
+</PRE>
+<P>When the user mouses over the "Workshop" &lt;TD&gt; cell, its=20
+<B>onmouseover()</B> event is fired. Because we're dealing with an =
+Internet=20
+Explorer 4.0 or higher browser, this event automatically "bubbles up" =
+the=20
+document's hierarchy all the way to the document level (unless we =
+specifically=20
+stop it from doing so by setting the window.event.cancelBubble property =
+to=20
+"true"). So, bubbling up our page's hierarchy from the &lt;TD&gt;, we =
+progress=20
+through &lt;TR&gt;, &lt;TBODY&gt;, and &lt;TABLE&gt;. Through the code =
+snippet=20
+above, we handle the <B>onmouseover()</B> event at the &lt;TABLE&gt; =
+level,=20
+where we call the function <B>NavBar_mouseover()</B>.</P>
+<P>What's more, we use the <B>new Function()</B> statement to pass a =
+parameter=20
+to the <B>NavBar_mouseover()</B> event handler. In this case, we use the =
+keyword=20
+<B>this</B> to pass a reference to the containing table.</P><BR><IMG=20
+alt=3D"Event binding" border=3D0 height=3D151=20
+src=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar4.gif" =
+width=3D356>=20
+<P><B>Figure 4. Event-binding to the entire NavBar table when the TD =
+element=20
+onclick() event fires</B></P>
+<P>Now we can step into <B>NavBar_mouseover()</B>.</P><PRE =
+class=3DclsCode>function NavBar_mouseover(eContainer)
+{
+  var eSrc =3D FindTD(window.event.srcElement,eContainer);
+  if (FindTD(window.event.fromElement,eContainer) !=3D eSrc)
+  {
+    if ("clsNavBarItem" =3D=3D eSrc.className)
+    {
+      eSrc.className =3D "clsNavBarItemOver";
+      if (null !=3D eMenuShown)
+      {
+        HideMenu();
+        ShowMenu(eSrc);
+      }
+    }
+  }
+}
+</PRE>
+<P>The <B>this</B> keyword points to the table. We receive that pointer =
+in=20
+<B>NavBar_mouseover()</B> and call it eContainer. Now we want to figure =
+out if=20
+on the <B>mouseover()</B> we moused into a different &lt;TD&gt; than we =
+were in=20
+before. The first two lines of <B>NavBar_mouseover()</B> do that. The =
+first one=20
+figures out which &lt;TD&gt; we moused into; the second, which =
+&lt;TD&gt; we=20
+came from (and whether they're the same). We use the <B>FindTD()</B> =
+function to=20
+do this.</P>
+<H2><A name=3Dtd></A>Which &lt;TD&gt; Are We in Again?</H2>
+<P>If you look at how the NavBar table is constructed, you'll realize =
+that the=20
+user could have moused over the "Workshop" text or the red triangle =
+image.=20
+<B>FindTD()</B> iterates through the table hierarchy (the same way our =
+event=20
+bubble did) until it encounters and returns the containing <B>TD</B> =
+object. In=20
+the next line, we call <B>FindTD()</B> again, this time passing the=20
+<B>fromElement</B> property as a parameter to gather information about =
+where the=20
+mouse came from (we don't hop to for any old <B>mouseover()</B> event!). =
+If the=20
+user moved the mouse from the "Workshop" NavBar item <I>graphic</I> to =
+the=20
+"Workshop" NavBar item <I>text</I>, or vice versa, we don't want to do =
+anything,=20
+because as far as we're concerned, the user is still in the same NavBar=20
+item.</P><PRE class=3DclsCode>function FindTD(eSrc,eContainer)
+{
+  while (eContainer.contains(eSrc))
+  {
+    if ("TD" =3D=3D eSrc.tagName) return eSrc;
+    eSrc =3D eSrc.parentElement;
+  }
+  return false;
+}
+</PRE>
+<P>If it turns out that we came from outside the "Workshop" NavBar item=20
+<I>entirely</I>, we test to see if the element being moused over has a =
+className=20
+of "clsNavBarItem" (we moused over "Workshop", which does). If yes, we =
+re-assign=20
+"clsNavBarItemOver" as the class name. If nothing else happens in the =
+rest of=20
+<B>NavBar_mouseover()</B>, this reassignment to "clsNavBarItemOver" will =
+cause=20
+the text to display in light blue.</P>
+<P>But we're not done yet. We have one more conditional to wade through. =
+If the=20
+variable eMenuShown is not null, which it wouldn't be if a menu were =
+already=20
+open, we call <B>HideMenu()</B> to close the menu that was open, and =
+then=20
+<B>ShowMenu()</B> to open the menu associated with the NavBar item being =
+moused=20
+over. (Remember, if a menu is open and the user starts mousing over =
+<I>other</I>=20
+NavBar menu items,we want the menus to follow the mouse around, opening =
+menus as=20
+they are moused over -- similar to what happens with most Windows=20
+applications.)</P>
+<P>If we're in this part of <B>NavBar_mouseover()</B>, a menu was open=20
+somewhere, we hid it (and reassigned all its relevant elements and =
+classes to=20
+their default values), and now we need to open the menu associated with =
+the=20
+NavBar item the mouse is currently over. In <B>ShowMenu()</B>, the menu =
+to=20
+display is identified by concatenating the <B>expItemNum</B> expando =
+property=20
+(an integer between 1 and 6) to the text string "divMenu", which =
+identifies the=20
+<A=20
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#popula=
+te">menu=20
+associated with each NavBar item</A> loaded from navmenus.inc. We assign =
+eSrc to=20
+eNavBarItemShown, change the class name of eNavBarItemShown to=20
+"clsNavBarItemShown" (which has the effect of changing the "Workshop" =
+text to=20
+gray), and make our menu visible.</P>
+<H2><A name=3Dplay></A>Playing Show and Hide</H2>
+<P>The <B>HideMenu()</B> and <B>ShowMenu()</B> functions primarily =
+change the=20
+visibility of the relevant menu, and re-assign any class names or =
+variable=20
+values.</P><PRE class=3DclsCode>function HideMenu()
+{
+  eMenuShown.style.visibility =3D "hidden";
+  eMenuShown =3D null;
+  eNavBarItemShown.className =3D "clsNavBarItem";
+  eNavBarItemShown =3D null;
+  UncacheAndRebind();
+}
+
+function ShowMenu(eSrc)
+{
+  eMenuShown =3D document.all["divMenu" + eSrc.expItemNum];
+  eNavBarItemShown =3D eSrc;
+  eNavBarItemShown.className =3D "clsNavBarItemShown";
+  if (null !=3D eMenuShown) eMenuShown.style.visibility =3D "visible";
+  CacheAndBind();
+}
+</PRE>
+<P>In the last line of both <B>HideMenu()</B> and <B>ShowMenu()</B>, we =
+perform=20
+another feat of code derring-do that we refer to as event caching.</P>
+<H2><A name=3Dcache></A>Event Caching</H2>
+<P>Because we're trying to simulate the behavior of Windows applications =
+when=20
+menus are already open, we want to close an open menu if one of three =
+additional=20
+things happens:</P>
+<UL>
+  <LI>the user presses the ESC key=20
+  <LI>the user clicks anywhere in the document (outside of NavBar), or=20
+  <LI>the user moves to another window </LI></UL>
+<P>To do this, we have to handle three events: =
+<B>document.onkeypress</B>,=20
+<B>document.onclick</B>, and <B>window.onblur</B>. We have to be =
+careful,=20
+though, because those are global events that may already be being =
+handled by=20
+code specific to the document itself. Because NavBar is included in =
+thousands of=20
+documents (not all of them authored by us), we can't know for sure that =
+we=20
+aren't interfering with already-existing code. We deal with this =
+uncertainty by=20
+event caching.</P>
+<P>In a nutshell, event caching lets us suspend any default =
+event-handling that=20
+may already exist in favor of our own event handlers. So when (and only =
+when) a=20
+menu is open, and only until the time when the menu is closed, we "take =
+over"=20
+these three global events. Before taking over, we "cache" any =
+event-handlers=20
+that may have been bound by the hosting document, so that we may restore =
+them=20
+once the menu is closed.</P>
+<P>In <B>CacheAndBind()</B>, we store whatever handler was called when=20
+<B>document.onclick</B> fired in <B>window.CachedClick</B>,=20
+<B>document.onkeypress</B> in <B>window.CachedKeypress</B>, and=20
+<B>window.onblur</B> in <B>window.CachedBlur</B> (we store each event, =
+whether a=20
+document- or window-level event, as a <B>window</B> object variable to =
+make it=20
+globally available).</P><PRE class=3DclsCode>function CacheAndBind()
+{
+  window.CachedClick =3D document.onclick;
+  window.CachedKeypress =3D document.onkeypress;
+  window.CachedBlur =3D window.onblur;
+  document.onclick =3D document_click;
+  document.onkeypress =3D document_keypress;
+  window.onblur =3D window_blur;
+}
+</PRE>
+<P>Once we've stashed the three default handlers, we can bind our own =
+handlers,=20
+<B>document_click</B>, <B>document_keypress</B>, <B>and window_blur</B> =
+to those=20
+three pesky global events. We do this in the last three lines of=20
+<B>CacheAndBind()</B>.</P>
+<P><B>UncacheAndRebind()</B>, called at the end of <B>HideMenu()</B>, =
+restores=20
+the original event handlers assigned to the global events.</P><PRE =
+class=3DclsCode>function UncacheAndRebind()
+{
+  document.onclick =3D window.CachedClick;
+  document.onkeypress =3D window.CachedKeypress;
+  window.onblur =3D window.CachedBlur;
+}
+</PRE>
+<BLOCKQUOTE><B>Note</B>&nbsp;&nbsp;&nbsp;We should be totally honest and =
+state=20
+  that we haven't duplicated <I>all</I> the functionality of Windows =
+menus in=20
+  NavBar yet. For instance, if you hit the TAB key in NavBar once a menu =
+is=20
+  open, you aren't moved down the menu items one at a time. The arrow =
+keys=20
+  aren't functional at all. But there is almost full Windows menu =
+functionality=20
+  in NavFrame. <I>Really</I>.</BLOCKQUOTE>
+<H2><A name=3Dsum></A>Summary</H2>
+<P>NavBar was developed to provide access to all the major areas of the =
+MSDN=20
+Online . MSDN Online visitors using Internet Explorer 4.0 and above =
+browsers on=20
+the Windows and UNIX platforms can take full advantage of all of the =
+DHTML=20
+features NavBar provides. Users of other browsers are given fully =
+functional=20
+navigation, albeit without the DHTML drop-down menu displays. For those=20
+interested in adapting NavBar to their site, or who want to review all =
+the code=20
+in detail, a fully-functional download is made available from the top of =
+this=20
+article.</P>
+<P>Overall, we're pretty proud of NavBar. While version 1.0, which we =
+wrote=20
+about earlier, worked pretty well, version 2.0 is a lot cleaner and more =
+
+efficient. We encourage you to experiment with it, share any innovations =
+or=20
+observations you come up with, or simply use to get an idea of the =
+potential for=20
+DHTML and the like in your own work. Thanks for tuning in.</P><!-- =
+DOCUMENT CONTENT END --></DIV><BR><BR>
+<TABLE border=3D0 cellPadding=3D0 cellSpacing=3D0 class=3DclsNavLinks =
+id=3DtblFooterLinks=20
+width=3D"100%">
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#6699cc class=3DclsRaised id=3DpBackTop><A =
+class=3DclsBackTop=20
+      =
+href=3D"http://msdn.microsoft.com/workshop/author/dhtml/navbar.asp#top"><=
+FONT=20
+      color=3D#ffffff>Back to top</FONT></A> </TD></TR>
+  <TR>
+    <TD bgColor=3D#6699cc class=3DclsRaised><FONT color=3D#ffffff><I>Did =
+you find=20
+      this material useful? Gripes? Compliments? Suggestions for other =
+articles?=20
+      <A=20
+      =
+href=3D"http://msdn.microsoft.com/siteguide/write-us.asp?author=3DRobert%=
+2520Carter&amp;area=3DDHTML%2C+HTML+%26amp%3B+CSS"=20
+      target=3D_top title=3D"Go ahead. Make our day! Send us your =
+thoughts."><FONT=20
+      color=3D#ffffff>Write us!</FONT></A></I> </FONT></TD></TR>
+  <TR>
+    <TD bgColor=3D#6699cc class=3DclsRaised><FONT color=3D#ffffff><FONT=20
+      color=3D#ffffff>=A9</FONT> <A class=3DclsIncCpyRt=20
+      =
+href=3D"http://msdn.microsoft.com/isapi/gomscom.asp?TARGET=3D/misc/cpyrig=
+ht.htm"=20
+      target=3D_top><FONT color=3D#ffffff>2000 Microsoft Corporation. =
+All rights=20
+      reserved. Terms of =
+use</FONT></A>.</FONT></TD></TR></TBODY></TABLE>
+<SCRIPT language=3DJavaScript><!--
+
+	function CheckToTop()
+	{
+		var eBody =3D document.body;
+		if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display =
+=3D 'block';
+	}
+
+//--></SCRIPT>
+</BODY></HTML>
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/graphics/ts.gif
+
+R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAQAICRAEAOw==
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/graphics/icons/showtoc.gif
+
+R0lGODlhEAAQAKIAAGZmZjMzM8zMzAAAZv///wAAAAAAAAAAACH5BAAAAAAALAAAAAAQABAAAAM7
+SLrcOjBK+aaFT+ghHBlVJABBWX7Z1jngJ41m8KQC57UTHKOfVq8N3ItkmvVUtxBEV8T5bCzlJeKp
+KhIAOw==
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/graphics/icons/synctoc.gif
+
+R0lGODlhEAAQAKIAAJmZmWZmZszMzP///wAAZgAAAAAAAAAAACH5BAAAAAAALAAAAAAQABAAAAM/
+OLrcSjBK+aaFT2gi3CBV9AlBGXyZAGIN+GGWAKDjaz2hLXUup76LXghGAghHm46jtwOYSjSfStka
+XkSe7CABADs=
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/graphics/icons/index.gif
+
+R0lGODlhEAAQAJEAAAAAZv///8zMzJmZmSH5BAAAAAAALAAAAAAQABAAAAI5jI9pwO2+nmRLWCBU
+ALGJAYZbdWUKtzlXs5AChlDos7Kz9b4zt3tUOtrgYI8gbYAz3Uqa3gSiiQYKADs=
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/workshop/graphics/icons/author.gif
+
+R0lGODlhHwAgAKL/AP///8DAwMDey7/avGbMMwBmAAAzAAAAACH5BAEAAAEALAAAAAAfACAAQAOK
+GLrMU6PJqR4pOOtsoLRbKIpdNIEZoJVUG6Cc577FhQF4ruur7NSjIGv2uwyJLtARWdSoYqYkMEjy
+0WzULGYIK+y+OSilK7QSyUvmx6w+AaPtBiytJm/ZUuyIvtaDnwV8V1pVcHaEPRFTN3+NgIEFg4h7
+Vodagl1/YjOWm0yHgmeLoXWQcHETAmoJADsAAAAAAAAAAAAAAAAAAAIAXPVvACj1bwCs0AGBEAAA
+AAAADz4AAAAA7AFrAUb0bwAS9G8ADAAAAAAAAAAAAAAACPNvAAAAAAAAAG8AAAAAACDzbwBstwAA
+HiAAAA8+qKIXBowtNwYAANsN+L/4PkXBAgAgAMwAAAAXBkiEAABvAAAAAABU828AbLf3v/tB97+Q
+lPy/4hP3v18BAADbDfi/+D5FwQIAAADM828ADAAAAAAAAAAAAAAAyPNvAAAAAAAwAAAArNB0gfgA
+dYEAAG8AuvdvAHr3bwCs0HSBAQAAANjzbwDwHwAQMAAAAAIAAADM828ADAAAAAAAAAAAAAAAyPNv
+AAAAAAAAAG8AuvdvAHr3bwD9AW8ADAADAB0CGPZvABcANPZvALkpABAdAAAAAgAAABj2bwAAAG8A
+uvdvAHr3bwCnBCAAdQEXBgyEKoUShOoWuAFKoQAAGQEXBiSETIWnBHYXFwYDAEqh8v4XBjaElHOn
+BCoHRAGnLUqhJhoXBmSE0DCnBGoHJhpnAec/AABnASYabhlnAQAA5z9nAQAAAAC57gAAQmyBbx1n
+I2eshCgAqPRvAGAAAAAcAQAA5C9RAJGj978AAE0AADFRAGAAAAAAAAAADABNAAAATQDkL1EAQAAA
+AAAAAAATBQAAEwUAAND0bwBBpfe/AABNAFil978AAE0AQQAAAEEAAAAAAAAAEjBRAAAAAAAAAAAA
+BI9DABIwUQAUok4A6C9RABYwUQCi928A/////wAAAACAj0MAEjBRACH5BAEAAAMALAAAAAAfACAA
+QAi5AAcIHEiQoIACAgoqXCjwIIECECNKjGgAoUKHEzNq1Fgx4UKMEQFI7Miw5ACQFC2aPFngIUQA
+MGPKlDlSpcGWG3OSXHnz4U6eJjH+BNpTosiUHoPizMnRJkuXTKNC3ImywMyrMZEyrKrTKU+uQ4le
+9Cr2I86kZQuiDCuW61SySqFuZDtWLtajBeg+ldoUrVu+NRMufXm3MN68BfYCnuv0r1S9Ve9qXel4
+MtG/er8OztwWMdq0CwOIDQgAOw==
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/graphics/icodownl.gif
+
+R0lGODlhEAAQALMAAAD//39/f8DAwAAAAP///4AAAP8AAAD/AACAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAACH5BAEAAAAALAAAAAAQABAAQARDEMgJShl0BsG75wFGWYUxnNQWrGwrrGJWxpls1tvnIQfc
+/j/a6FarzYo2AzEDHAABAYJ0SpX6dLprtfoKAU7gcFgSAQA7AA==
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/workshop/author/dhtml/navbar1.gif
+
+R0lGODlhkAFCAMT/AP///2tra72traVaWrUxKf+cjN5KMfcxAKWclM7e7wgQGFJ7vWuMxkJrtRhK
+pefv/6293jljtQg5nAAxnBAxjAAYWgAhlAAYjCkxewAIhHt7jAAAEAAAe1IxY4wxQgAAACwAAAAA
+kAFCAAAF/+AnjmRpnmiqrmzrvnAsz3Rt33iu77WC/MCgcEgsGo/IpHLJbDqf0Kh0Sq1ar9jpY8vt
+er/gsHhMLpvP6LR6zW673/C4fE5/S+74vH7P7/v/gIGCg4SFhoeIiYqLjI2Oj5CJExEWlZaXmJma
+m5ydnp+goaKjpKWmp6ipqqusra6oDhOys7S1tre4ubq7vBIUvsASvMPExcbHyMnKy8zNzs/Q0ROx
+0tXEFBa+FBQYHd7fGL/W4+Tl5ufo6eq11OvRvhjd3x4eBPT29vQd4e79/v8AAwrE1W5gLwvx5tUj
+wLChw4f59lEwSLGixYsYZxXMOEECwm70FkLM5+Gbt3sMD//Y6zCRo8uXMGMm23jR18mGKkmCC7et
+Z89wHegdUMlSJsALF4yuQ9qP6S6n5SgklUDT4LabDkPu4/kLz6w8tLjVU+mh5TOkSWdJTUtOqjUG
+DCaY1SV17YW5Ad26ZSaBwQK8tqBOEHyXWN+/uSYuiAsY2oUIDBxYqNrPEjeQYxmW5Hmr0gQLszyD
+thWUaOOZESIIk+Ug9epxElRHm5ggwWdeEyM4aL2bYu/eyy44AACBLcEItHTLyv1al3DixgMnAOCR
+3AUGABYIJ/Yq04WEIldWwIC002dM5y3VotBBMwZnEyFsiZD0+hbt464DaBB9Gejaoz21QG0QJAAB
+fQJJxQD/BBPAJZcywj1QXGIWFDgYbRM+9gAD/QXmgIQdznKBfNXlhx1/lNmyAAQstujiizDGGKMA
+NApQwI01yqijjJEFOAEGC3VwFgQAABABBxNkQGR29aFlnJNOQbkclMIt4ACVZtkVYi0X1PZgLknB
+FcECZFopi5Mt2TURWlOyuVZLhK3p5CzKsYjUmlkWlks2Bm45GJEeZQPdYBEAwOFgcyKKqAN9KioX
+lAVagJZZUj6KJi/6NTDZMBUW+QAAn4YK6qiiljpqkZ6iquqqqpp66qufpoqqZGG1R8B7zSQlHwSR
+TdDAgkz6WiaCF0hQJpnUjEkmJZMd24ADsVHVwLFXDuZA/5kNDObcBF76aEtrECyAXlJjplZta+ZO
+sgBywqW2rizrVqtcS8qlZm+1VDV4YL3ttNachyDqUuEDnyUV8GOGJjUtsuRGQEFqFID42ALWYtvp
+sdpScO2y2DiwMMNPnbgdL53yuhhcKKescspkMjAdqzDHLPPMntKqVpDQGMgtBBJsOBwDGXCL6qEX
+NLAqA1ItSdxg2KnagNFjroqffkUmUO0uBnrL5Yo21yJBgbXhx8ADYU9QYFyP1abzgAkgyOuZjOqm
+dm0MVLJggwYmQDGv9UXQ9pYRHgqmfNr2nGGhQJs9NDYW6rzhBRUmIEEGC6AqedOoEqs0gxlgXiR+
+zomcIv8tnfaIyR2VAOKx0jS37nqrXf9oK67MJNUniIb+nBS6EbCoL5m/QjeZuQvuBjx2C0BdOQML
+89rXvmOGuyU2XgLucuyEMmAvZHEtqJuYY0bmt5Xcp+aX2XFZ2zaj5HOvr77mMkq03wjiEuGEujjg
+fe+L8bziXw3g1bQCyCAiJSAyEjDUzjTFoggsbGDAWxEDvuaX5BVvec1j0GmYtp9N7QI08hGXsRYW
+KCtlIgOWyMBjduWiWMHMRXlTFYFcKLMHdE0CGNDMBo3RpcvBBQLPSljRgAco+VwgAyiUkKQ2FsDs
+qDAD+oPAtQCgPyoiMQMJeAAFsjhA7AgOFxbwksC4Fh3/C1wPhWZkEFws0DnbQPEBupFi0A6Iwrvx
+ajQOOBCjJMNGlzWoe3WrxLW0Nw24OGCDFogY/nAhAQ4U6mlUrNzXANDH/aiQA4DCjhQ5wKgDHgiF
+09EOEkf0ADaqkDgJhMATKzctKx6RcFoTkeg4RaQJji2LB5RAA/R2rep4RRYW+BUQ0RVAGqJqQx3x
+C2RiJaHUyIdmNgyQBWxVlmeEMQEWwCQVOWA0DkngZVUzm20+Y7hEss5IxaKAhShnJOwgKHKKa9UX
+b9HDRO6Ja96ywIBsZse4pFEye/QbQMMFwri87TNxyyMlPnO34t1tNGlEH6Y+tEj7GQ2SVdTfAyZX
+ualZ/yhSqZuO1SA3sAf8RQKkDNQ3GZSwwVQuasSqHphO5MEPyueHzNNo3TxWvKCZCzSVkOAd/FVF
+mB0QLppaQKwOuJtnvmpVVgsQBYK0Q2LYjnPuzEChrMTUZxGuQNiYzIa+GZlnnYgDK5WMfqJWrRFh
+s0DbG92DdBbLM10vOhfg2nkc9FAy9s6Z9KGg3dSYPuHosW1AbWj3GCRLNTKornB73FOgVijIUBJQ
+7OTPnyQHUrECUW9B280uDfQ1yYHGcBM4WOWmWC14hm4/I7Pphs7Gxr6oZkH3OZkAA/WruOgPgSvi
+VYsWBEQx6dNAzMuWRnkVPQAYSLg8G40E2nOAap4FQP/BjAzCWnkkDnAAO2Yr5RFTyzNDcSAD3DRS
+HiPDAaRgp4r1axwEvNte5m3pP9jcxSDpM6nrjNS9tnHQP4VjNYFO5o5/5BbaDBvHhf7zeneEnCwg
+sxjkfNBwfkLoggy5XriglJVPJJI4I8shl3EIvRlowKfyaNqrTsBQq9zPalXYJYJZD7Zyvc1NiWsl
+yaQYVFvALXEPVIkATvC3uzGuhy0wpsk0ADkrsnAs1kuJgUYmFpBpR2lKEo1rArMSCOOq+PK4UZfp
+xmNjNZDHMnqi2Djspe5MCjxZxJvl+amHX9IFr3bD50loj898fWzxVghYwx7Kdxxuzfr+JosFYaB3
+f+z/M0IZ/RSKZrhgWYRcsYgTtGAyNY4FtE0lFPnK9aUGAy4bmC8NtEUpfs9qHeWN716rqRx/ppZF
+JQ4lCsUrT1otxSZFYW8lg4cBHSjSE1gMVZKnLqr4JcnQUqotreRsKYJmqgQ4QFGeQT1RiwhxhoVd
+XlcFgWx4LpKrgqRl25rFRGKubTu0nbd54TKwERkyeUvfHc040rgJ1HZ1e1+yn1sbuQW2LwwQQa/Y
+dqjJ6A2yImJURcHIrQTUZzj4o4rSkDaw82A8kfpsFQSSRh3PEMfcqJIi1RYXMhzTMjvudpmEWiMh
+E+84hEF1ni6v7L0/Qtm3zPZYMPfcy0ISWzd92YJk/9gzFA/QDhpk8pb+6KNPlknlMIvhdNFU5uyU
+JTk2vZLFtKyVMs9grdyc0h+1QLOYxdAqNayRsnLMFJtkIadZFTSTmaaBgQAUKQAKiDYhmfzsYdzv
+0vCimIbrB7mT2Vefiu9I8uqDcJTxJ5gLeE3yJNVbv7iXOCir30xdTrJaNiBQecxdzT1JnBZRvbca
+B6LdKGbIZANdNR7zFdFPPzw+P2uSNrwAdZ3+L2cIBpgSDis2JNwRcxk5G5dAikdIqnxLMN9Roz7+
+LbqtLU6dpxbq4Q7JLgFMjXzA7wAAfCzM7t/bTDRghn9SGUE+GsJINfoQfRJEQV4s/TiAA5ICcXbV
+Qf+2Fl7EJQxiZSWrR1wOAEWmY2TLpj3mRjFkIgwVeC2qMSa+wmET1CCgV3vYYUPD1wECSA6rQSlG
+4ymaJQvAsB7HUHwfJEZKwYIOoADoB3gWRgsLglKcQmqzoQzikAxmZCT2ZHizVHom1SLJQyTrAnqz
+lR0/xCxtZwko9TwitBuYB0XPkmIT5GQTCC3P0juB1DSZ0QEwCBDNUiY8OBBPVlUcUYM3GHjfkoPE
+YEIzSE9jUiJpR205Vgm1BBkssmFNFT04FYh8REB5tyJZBES9JUyOtyAH9DR+AYk59SvIBSwAYADV
+9XQWkSgGoX1GAYd/F3jFV4JcYooxAYqYAhq2djH/HrFfqJM60xILT0MNldA7M5NFW5BFMlMbzsWL
+oAKMq/IABuB0qHiHyHgOoph+cpiMLlGAuDYZvEELQ7UbVGGNeNBEr7ONrpMAAVABZ+iM4ogOEWCD
+oxgLdzCOFZEvpZc70sQe/CAwunRO3FiPrEJs6piP6rCMGvABGKAAGFCA+mgOfVgycRUBATAAA6AB
+vLM9Duky9hiRrBJV4TiQFtkM/PgBCuANASCQF1kNrWhAYOApdVCSzoU9H5mSxMAbysEa5siMn5IA
+H9AA2yATbggQBcg9KWMjBSAAKcMrK8MyxzKURFmUbWeUSLlkShEUIdGUXKaSpOGUIUEAQiIX+6AA
+/zNJgy8ZAB8wHQ+AlQoAkDIhAVLZlJyoDuw4ftl3AR5AFiQVgN2BCW8pCtdnFB0wFHiZlx4AlaSR
+l365l7IgAhyJARWgMVvZlc4Vlh0QAAEgGy9BAdnml3h5lvuYDOyhGRXQEc3hB2vGZ6L1ZK3xZHVH
+FRmIjms2VA6EdHXnMRXpEjgkmdrGl7bgC7BZlYGpAUXSjzO5jIAnUud3jjFBlpJJAALhkcAEJAxh
+hsWgP0c1iQUClM8JiL0DROGie0wVRcjlTD9knBZBXXhpm7JZCzmUl8o5Cx+Am6AiAN6IlejJlb6J
+frrpMDABJHqJAa1JkMgwXTpkDLhIIMBScwNCHP+WODYSckDiVBtPtiQFl4IGQod3qJ9EEZ63cAfe
+CZ5ygZAa4EIC0AHnWSQCEACxogEC8Hcf4A2O6ZptqRKUuQ5pWQyXSZU3qRHysYsr4jPm5jxktot6
+FIgm4zLPpWjO1YXjeJflKaGziQGxaQvcoAAjajm/OTOA9wAIoAAOyhEM4RvI8KL2yZ/1FmS7gkBn
+k0zEMR1SxGIG8jQFAipltYsJkC3quG1GOqHhcIbliJ7O9aQyw5WfIgAKQJPzuaUDwZ3YRpXHwD3B
+tRjPlXkb9hm7BBdtumzPmWTPKT5HZVLHGKfJmI4E8ZJFggBNKjMCgAAx6Y/BeZ/pYJw2kZwxqpn/
+RPU008Jck/B7WwdtLLgYp+dmDtRjPaY9poqpKukAfWdM2/iVK+qrhiGo1EWoxeAH0/AVILESgEqD
+qxEIxlqts/CP4MSNMhkA1qoM3IlDI9ir7gdU53EZWJGcGJBPpON+49qt1oqtESmTxequucCdcjFV
+QwGjQbgLHqENCREUD6EPnEGvBDsMDdABomqPMumnBTsM9rocyUqV8dATWmMTJ4ES2dYQ3sAVDdux
+iWGY6MeND0CqHqsLLYoMz5oT9eCUQcGU4aGy+rCxq1qyBLuM2kqyNEsQ8AGwGTsSPhuzcyquOVuw
+Nvs6UtoB8jm03wIN3HCxU6kZArsVA6u0VHsL/0XrOgGwAYdUtezgClTCARTAARggthUAJXF5tqBA
+JWq7tmzbtm77tnAbt3I7t3S7ttkQAB0grHkaeHXbt377t4DrtpUXlIRbuCfTdnBxLJN4uIXbuI77
+uJAbuSrDuImLMo53uZabuZW7uZPIuZjruZrbuaL7uaMbuqR7uqabuqC7ugzQj9lKM4AnuqpbuqyL
+urU7u7ZLu7qbu6R7bhL5u8AbvMI7vMRbvMZ7vPUoABvwulDaAcj7vNAbvdI7vdRbvdZ7vdQ7pZ9a
+QwiLvd77veAbvuI7vuQ7vQpgp734Adtbvuzbvu77vvAbv7/7lX43BgAgAOorv/q7v/zbv/5bvV0J
+EJZhqZEEDJYCnL//m8AKvMAM3MD3G6o04qk1AsGemrAOfMEYnMEavMEc3MEe/MEgHMIiPMIkXMIm
+fMIonMIqvMIs3MIu/MIwHMMyPMM0XMM2fMM4nMM6vMMLHAIAOw==
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/workshop/author/dhtml/navbar2.gif
+
+R0lGODlhZgHxAPcAAP////+PQP8wAPCPQPCPP/AwAPAvAO/fwO/fv+/QwO/Qv++wb++vb+DfwODf
+v+DQwODQv+Cvb+CPX9/AoN+/oN+PX9+PUNDQ0NDQz9DP0NDPz9DAr9C/r9C/oM/Q0M/Qz8/P0M/P
+z8/PwM/Az8/AwMDPz8DPwMDAz8DAwL/P77/P4L/A77/A4L+/v7+/sL+wv7+wsLDP77DP4LDA77DA
+4LC/v7C/sLCwv7CwsLCwr7CwoLCvr7CvoK+wr6+woK+vr6+voJ+fn58wP5CfoJCfn5CQoJCQn5CQ
+kJCPj5AwP5AwMJAvP5AvMI+fz4+Qj4+PkI+Pj4Cf0ICfz3+Q0H9/f39wf3B/f3BgT2+Q0G+Pz2+P
+wG9vb29vYG9gT2Bvb2BfUGBfT2BQUF9fX19fUF9QX19QUFBfX1BQX1BQUE9PT09PQE9AT09AQEBP
+T0BPQEBATz9gsD8/Pz8/MD8wPz8wMDCQ/zBgsDA/PzA/MDAwPzAwMC+Q/x8vcB8vbx8gcB8fHx8f
+EB8QHx8QEBAvcBAvbxAgcBAfHxAfEBAQHxAQEAAwnwAwkAAvnwAvkAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAZgHxAAAI/wABCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqVKMXHEfPkik+bM
+mjhv6rTJM2fPnT6DArUpsyjRo0aTIl2qtCnTp06jQp0qtSrVq1azYt2qtSvXr10RfkkjZYrZs2jT
+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
+ffVcBgQAOw==
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/workshop/author/dhtml/navbar3.gif
+
+R0lGODlhWQEjAfcAAP////DAj+/QoO/PoO/Pj+/Aj++gYO8wEO8wD+Dg4ODg3+Df4ODf3+DQv+DQ
+oODPr+DPoOCvYOCgYOAwEOAwD+AvEN/g4N/g39/f4N/f39/fv9/Qv9+wj9+PUN9/UNDQ0NDQz9DP
+0NDPz9C/j9CwsNCwj9CAUNBfQNAwINAwH8/Q0M/Qz8/P0M/Pz8/AwM+/wM+/v8+/sM+wv8+wsM8w
+IM8wH88vIMDP4MDA4MDAwMDAv8C/wMC/v7/P77/P4L/A77/A4L+/v7+wv7+wsLC/sLCwv7CwsLCw
+r7CvsLCvr7CfoLCfgLCQr7CQoK+w36+wsK+wr6+vsK+vr6+voK+gr6+goK+ggK+fgKC/36Cw4KCw
+36Cvr6CvoKCgr6CgoJ+v0J+gsJ+fv5+fsJ+foJ+fn5+QkJ+AcJ9/X59/UJCw0JCv0JCQn5CQkJBf
+f5BQf5BQcI+v0I+g0I+Qj4+Pj49PUI9PT49AUICfv4CQv4BAYIBAX4A/YIAvUIAvT4AgUIAgT3+f
+z3+Qz39/f39/cH9wf3B/f3BwcHBwb3BvcHBvb3AQQHAQP3APQHAPP2+PwG+AwG9vb29vYG9gb28Q
+QG8AMGCPsGCAsGBgYGAAMGAAL19fX19fUF9QX19QUFB/z1B/wFBwwFBwv1Bvv1BfX1BfUFBQX1BQ
+UFAwX1AwUFAvX09wv09PT09PQE9AT09AQE8wX0BPT0BPQEBAT0BAQEBAP0A/QEA/P0AwIEAwH0Av
+IEAvHz9AQD9APz8/QD8/Pz8/MD8wcD8wPz8wMD8wID8vcDBfrzBQrzA/PzA/MDAwcDAwPzAwMC+g
+/y9fry9Qry8vLy8vIC8gby8gLy8gIC8fbyCg/yAvLyAvICAgYCAgLyAgIBBAoBA/oBAQEBAQDxAP
+EBAPDw+Q/w9AoA8/oA8QEA8QDw8PEA8PDwCQ/wCP/wAwnwAwkAAvnwAvkAAQjwAQgAAPjwAPgAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAWQEjAQAI/wABCBxI
+sKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzBjypxJs6bN
+mzhz6tzJ86SXJgXNAI1oZE6bo0149FzKtGnPNoyUCjTCKI9ENpgwMcqEKY9Up2DDilXZJlObgUYU
+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
+ADs=
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://msdn.microsoft.com/workshop/author/dhtml/navbar4.gif
+
+R0lGODlhZAGXAOYAAP/////f///Q//+v//8wD/D/8PD/7/Dw8PDw7/CgkPAwD/AvD+//8O//7+/w
+8O/w7++gkM/v0M/g38/g0MDv38Dv0MDg38Dg0LC/sLCwsLAwL7AwILAvL6/fv6/fsKDfv6DfsKCv
+0KCQj6AwMKAwL6AvMJ+w0J+v35+v0I/PkIDPkIDPj4CAf3/PkH/Pj3+fz3+Qz3DPkGCPwGCAwF+/
+f1+/cF+AwFC/f1AwX1AwUFAvX1AvUE8wX08vX0BvsEBgsD9vsDCvXzCvUDBfsDBfrzBQry+vXy+v
+UC9frx+gQB+gPxCgQBCgPxAfPxAfMBAQPw8fPw8QPw8QMACQIACQHwAwnwAwkAAwjwAvnwAvkAAv
+jwAgkAAfjwAQjwAQgAAPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwA
+AAAAZAGXAAAH/4AAgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2u
+r7CxsrO0tba3iQ8FD7wPiLq+grqEwLyFwcCLvgXHF4UXFYbBjMmNxbjY2dqNLUlMSUtJSc40IIPd
+TEstgkIxhC3f4c6CBkEqADTx94ceSxdUvOa1MGKAUBAaAEAgFJTEHKN84Bwqakdj3baLGLVdAAEi
+SbloF6YEGUQjiYQWVCwA8EioJIgJIBgMerDkXpIgE7otLNTxwhIJNxa2CDJtJUIVU8w5oPJBEIJE
+B44EkVDyqSIaKmjszMi1a6sHNOYdSGIRQIsp4wTRMALgQkMA6v9ajjQ09t4SoUl8PWjgINiFAxup
+eLxwNkgQiwcTTpnijIq5oUbWKfQ1wciDxCr8gTVs7oLWmhcQXPClYp/X06hBefbYQFhkQVFpHBaE
+MshNQVO20hC5ZAIxJimMCvLpwWcQIWQJubWHoIW6s+vuAlBxM0iBpAkVJg1pzggNBEZuUrHIMcgU
+AyHt+SbUMQiIoqnjy48UYUmQeU6TJ6RSoJta9yDYs1JZ+DT0HiEOJGHTQj21NcEFfRWSmFlBPOUf
+S9RdEMQR2Hm22zpB3BDBW8dZQF00ChnBWIOIFDbfizByw9lMceEzxUDYyfbfgHIdouGCtE1RgIc0
+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
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: text/css;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/css/ie4.css
+
+BODY {
+	COLOR: #000000; FONT: 68% verdana,arial,helvetica
+}
+DIV.clsDocBody {
+	MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px; MARGIN-TOP: 10px
+}
+DIV.clsFooter {
+	MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px; MARGIN-TOP: 10px
+}
+DIV.clsFPfig {
+	FONT-SIZE: 80%
+}
+TD {
+	FONT-SIZE: 68%
+}
+TH {
+	FONT-SIZE: 68%
+}
+A:link {
+	COLOR: #003399; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #6699cc; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+DIV.clsDocBody A:link {
+	TEXT-DECORATION: underline
+}
+DIV.clsDocBody A:visited {
+	TEXT-DECORATION: underline
+}
+DIV.clsDocBody SPAN.clsHighlightItems A:link {
+	TEXT-DECORATION: none
+}
+DIV.clsDocBody SPAN.clsHighlightItems A:visited {
+	TEXT-DECORATION: none
+}
+DIV.clsNavTbl A:link {
+	TEXT-DECORATION: none
+}
+DIV.clsNavTbl A:visited {
+	TEXT-DECORATION: none
+}
+H2 A:visited {
+	COLOR: #003399
+}
+H3 A:visited {
+	COLOR: #003399
+}
+A.clsIncCpyRt {
+	COLOR: #000000; FONT-SIZE: 95%; TEXT-DECORATION: underline
+}
+A.clsIncCpyRt:hover {
+	COLOR: #003399
+}
+A.clsBackTop {
+	COLOR: black; FONT-SIZE: 90%; MARGIN-BOTTOM: 0px; MARGIN-TOP: 10px; =
+PADDING-BOTTOM: 0px; TEXT-DECORATION: underline
+}
+A.clsBackTop:visited {
+	COLOR: black; FONT-SIZE: 90%; MARGIN-BOTTOM: 0px; MARGIN-TOP: 10px; =
+PADDING-BOTTOM: 0px; TEXT-DECORATION: underline
+}
+A.clsBackTop:hover {
+	COLOR: blue
+}
+P {
+	LINE-HEIGHT: 1.5em; MARGIN-BOTTOM: 1em; MARGIN-TOP: 0.5em
+}
+P.clsRef {
+	FONT-WEIGHT: bold; MARGIN-BOTTOM: 0em; MARGIN-TOP: 12pt
+}
+PRE {
+	BACKGROUND: #eeeeee; MARGIN-BOTTOM: 1em; MARGIN-LEFT: 0px; MARGIN-TOP: =
+1em; PADDING-BOTTOM: 5pt; PADDING-LEFT: 5pt; PADDING-RIGHT: 5pt; =
+PADDING-TOP: 5pt
+}
+PRE.clsCode {
+	FONT-FAMILY: 'courier new',courier,serif; FONT-SIZE: 120%
+}
+CODE.clsText {
+	FONT-FAMILY: 'courier new',courier,serif; FONT-SIZE: 120%
+}
+PRE.clsCCCode {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FONT-FAMILY: 'courier =
+new',courier,serif; FONT-SIZE: 120%
+}
+PRE.clsSyntax {
+	FONT-FAMILY: verdana,arial,helvetica,sans-serif; FONT-SIZE: 125%
+}
+H1 {
+	FONT: 165% verdana,arial,helvetica; MARGIN: 0px 0px 5px
+}
+H2 {
+	FONT: bold 125% verdana,arial,helvetica; MARGIN-BOTTOM: 0.5em; =
+MARGIN-TOP: 1em
+}
+H2.clsOsigHead {
+	COLOR: #3366cc; FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: =
+125%; MARGIN-BOTTOM: 0em; MARGIN-TOP: 1em
+}
+H2.clsBlue {
+	COLOR: #336699
+}
+H3 {
+	FONT: bold 115% verdana,arial,helvetica; MARGIN-BOTTOM: 0.5em
+}
+H4 {
+	FONT: bold 100% verdana,arial,helvetica; MARGIN-BOTTOM: 0.5em
+}
+H5 {
+	FONT: bold 100% verdana,arial,helvetica; MARGIN-BOTTOM: 0.5em
+}
+H6 {
+	FONT: bold 100% verdana,arial,helvetica; MARGIN-BOTTOM: 0.5em
+}
+TABLE.clsNavTbl {
+	MARGIN-LEFT: 10px
+}
+TABLE.clsNavTbl TH {
+	FONT-FAMILY: verdana,arial,helvetica,sans-serif; FONT-SIZE: 60%
+}
+TABLE.clsNavTbl TD {
+	FONT-FAMILY: verdana,arial,helvetica,sans-serif; FONT-SIZE: 60%
+}
+TABLE.clsNavTbl TH {
+	PADDING-BOTTOM: 0px
+}
+TABLE.clsTblHomeLeft A {
+	COLOR: #003399; FONT-FAMILY: verdana,arial,helvetica,sans-serif; =
+FONT-SIZE: 90%
+}
+TABLE.clsTblHomeLeft A:visited {
+	COLOR: #003399; FONT-FAMILY: verdana,arial,helvetica,sans-serif; =
+FONT-SIZE: 90%
+}
+TABLE.clsTblHomeLeft A:hover {
+	COLOR: #003399; FONT-FAMILY: verdana,arial,helvetica,sans-serif; =
+FONT-SIZE: 90%
+}
+TABLE.clsTblHomeLeft A:hover {
+	TEXT-DECORATION: underline
+}
+TABLE.clsStd TH {
+	BACKGROUND-COLOR: #ddd; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; =
+PADDING-RIGHT: 2px; PADDING-TOP: 2px; TEXT-ALIGN: left; VERTICAL-ALIGN: =
+top
+}
+TABLE.clsStd TD {
+	BACKGROUND-COLOR: #eee; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; =
+PADDING-RIGHT: 2px; PADDING-TOP: 2px; VERTICAL-ALIGN: top
+}
+TABLE.clsParamVls {
+	PADDING-LEFT: 2pt; PADDING-RIGHT: 2pt
+}
+TABLE.clsParamVls TD {
+	PADDING-LEFT: 2pt; PADDING-RIGHT: 2pt
+}
+UL {
+	MARGIN-BOTTOM: 10px; MARGIN-LEFT: 17px; MARGIN-TOP: 10px
+}
+UL.clsBltBlu {
+	LIST-STYLE: url(/msdn-online/shared/graphics/bulletblue.gif)
+}
+UL.clsBltRed {
+	LIST-STYLE: url(/msdn-online/shared/graphics/bulletred.gif)
+}
+OL {
+	MARGIN-BOTTOM: 10px; MARGIN-LEFT: 25px; MARGIN-TOP: 10px
+}
+UL LI {
+	LINE-HEIGHT: 120%; MARGIN-BOTTOM: 0.5em
+}
+UL LI LI {
+	LIST-STYLE: disc
+}
+OL LI {
+	MARGIN-BOTTOM: 0.7em
+}
+INPUT.clsButton {
+	BACKGROUND-COLOR: #6699cc; COLOR: #ffffff; FONT-WEIGHT: bold; =
+MARGIN-LEFT: 5px; MARGIN-TOP: 10px
+}
+TD.clsGrayBar {
+	BACKGROUND-COLOR: #cccccc; BORDER-BOTTOM: #cccccc 2px inset; =
+PADDING-LEFT: 18px
+}
+DIV.clsVoicesBody {
+	MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px
+}
+TABLE.clsVoicesHead {
+	MARGIN-TOP: 4px
+}
+TD.clsCategory {
+	FONT: bold 65% verdana,arial,helvetica,sans-serif
+}
+TD.clsVoiceNav {
+	BACKGROUND-IMAGE: url(/msdn-online/voices/graphics/background.jpg); =
+PADDING-TOP: 4px
+}
+TD.clsVoiceNav DIV {
+	FONT-SIZE: 90%; PADDING-TOP: 4px
+}
+TD.clsVoiceNav A:visited {
+	COLOR: #003399
+}
+TD.clsVoiceNav SPAN.clsLeftNavDot {
+	FONT-SIZE: 100%; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: =
+normal; LINE-HEIGHT: 80%
+}
+TD.clsArchiveTD {
+	PADDING-LEFT: 20px; PADDING-TOP: 20px
+}
+TD.clsArchiveTD {
+	FONT: 68% verdana,arial,helvetica,sans-serif
+}
+H3.clsVoicesHead {
+	MARGIN-BOTTOM: 1.5em; PADDING-TOP: 6px
+}
+TD.clsStoryTD {
+	PADDING-RIGHT: 6px; PADDING-TOP: 4px
+}
+TH.clsStoryTD {
+	PADDING-RIGHT: 6px; PADDING-TOP: 4px
+}
+DIV.clsByLine {
+	FONT-SIZE: 80%; LINE-HEIGHT: 120%; PADDING-TOP: 2px
+}
+SPAN.pubdate {
+	COLOR: #999999
+}
+SPAN.pd {
+	COLOR: #999999
+}
+SPAN.clsPubdate {
+	COLOR: #999999
+}
+TD.clsPubDate {
+	COLOR: #999999
+}
+P.clsPubDate {
+	COLOR: #999999
+}
+TABLE.clsCatItems TD.clsPubDate {
+	PADDING-TOP: 4px
+}
+TABLE.clsCatItems A:link {
+	TEXT-DECORATION: none
+}
+TABLE.clsCatItems A:visited {
+	TEXT-DECORATION: none
+}
+TD.clsPubDate {
+	PADDING-TOP: 10px
+}
+TABLE.clsCatItems {
+	MARGIN-TOP: 5px
+}
+TABLE.clsCatItems P {
+	MARGIN-BOTTOM: 0px; MARGIN-TOP: 0px
+}
+P.clsPostDate {
+	COLOR: #0099ff
+}
+DIV.clsPullQuote {
+	COLOR: #3366ff; FONT: italic 110%/140% =
+verdana,arial,helvetica,sans-serif; PADDING-BOTTOM: 0.5em
+}
+DIV.clsPullQuote HR {
+	COLOR: #3366ff; FONT: italic 110%/140% =
+verdana,arial,helvetica,sans-serif; PADDING-BOTTOM: 0.5em
+}
+TD.clsTDBody SPAN.clsHighlightItem {
+	LINE-HEIGHT: 1.5em
+}
+IMG.clsLstImg {
+	MARGIN-TOP: -2px
+}
+SPAN.clsHighlightItem A {
+	FONT-SIZE: 120%
+}
+.clsNewsContent {
+	DISPLAY: none
+}
+.clsTab {
+	BACKGROUND-COLOR: #3366cc; COLOR: #ffffff; CURSOR: hand; FONT: bold 65% =
+verdana,arial,helvetica,sans-serif
+}
+.clsTabSelected {
+	BACKGROUND-COLOR: #99ccff; COLOR: #000000; CURSOR: hand; FONT: bold 65% =
+verdana,arial,helvetica,sans-serif
+}
+.clsNewsItemTD {
+	PADDING-TOP: 4px
+}
+#idTabs TD.clsTab {
+	BACKGROUND-COLOR: #003366; BORDER-BOTTOM: #99ccff 2px inset; =
+BORDER-LEFT: #6699cc 1px solid; BORDER-RIGHT: #6699cc 1px solid; =
+BORDER-TOP: #003366 2px solid; CURSOR: hand
+}
+#idTabs TD.clsTab A {
+	COLOR: #ffffff; FONT-SIZE: 95%; TEXT-DECORATION: none
+}
+TD.clsTab A:hover {
+	COLOR: #ffffff; FONT-SIZE: 95%; TEXT-DECORATION: none
+}
+TD.clsTab A:active {
+	COLOR: #ffffff; FONT-SIZE: 95%; TEXT-DECORATION: none
+}
+#idTabs TD.clsTabSelected {
+	BACKGROUND-COLOR: #6699cc; BORDER-LEFT: #99ccff 2px outset; =
+BORDER-RIGHT: #99ccff 2px outset; BORDER-TOP: #99ccff 2px outset
+}
+#idTabs TR.clsTblHead TD {
+	BORDER-BOTTOM: #cccccc 1px outset; BORDER-TOP: #cccccc 2px groove
+}
+#idTabs TD.clsTabSelected A {
+	COLOR: #ccffcc; FONT-SIZE: 95%; FONT-WEIGHT: bold; TEXT-DECORATION: =
+none
+}
+TD.clsTabSelected A:hover {
+	COLOR: #ccffcc; FONT-SIZE: 95%; FONT-WEIGHT: bold; TEXT-DECORATION: =
+none
+}
+TD.clsTabSelected A:active {
+	COLOR: #ccffcc; FONT-SIZE: 95%; FONT-WEIGHT: bold; TEXT-DECORATION: =
+none
+}
+#tabs A.clsTab {
+	COLOR: #ffffff; FONT-SIZE: 95%; TEXT-DECORATION: none
+}
+#tabs A.clsTab:hover {
+	COLOR: #ffffff
+}
+#tabs A.clsTab:active {
+	COLOR: #ffffff
+}
+#tabs A.clsTab:visited {
+	COLOR: #ffffff
+}
+#tabs A.clsTabSelected {
+	COLOR: #000000; FONT-SIZE: 95%; FONT-WEIGHT: bold; TEXT-DECORATION: =
+none
+}
+#tabs A.clsTabSelected:active {
+	COLOR: #000000
+}
+#tabs A.clsTabSelected:hover {
+	COLOR: #000000
+}
+#tabs A.clsTabSelected:visited {
+	COLOR: #000000
+}
+TD.clsLToc A {
+	COLOR: black; CURSOR: hand; TEXT-DECORATION: none
+}
+TD.clsLToc A:hover {
+	COLOR: black; CURSOR: hand; TEXT-DECORATION: none
+}
+TD.clsLToc A:visited {
+	COLOR: black; CURSOR: hand; TEXT-DECORATION: none
+}
+TD.clsLToc B {
+	COLOR: black; CURSOR: hand; TEXT-DECORATION: none
+}
+TD.clsLToc A:hover {
+	COLOR: red
+}
+SPAN.st {
+	FONT-SIZE: 100%; FONT-STYLE: normal; FONT-VARIANT: normal; FONT-WEIGHT: =
+normal; LINE-HEIGHT: 120%
+}
+UL.clsShowHide LI {
+	CURSOR: hand; FONT-WEIGHT: bold; LIST-STYLE: =
+url(/msdn-online/shared/graphics/plus.gif); PADDING-TOP: 2px
+}
+UL.clsShowHide DIV {
+	FONT-WEIGHT: normal; PADDING-TOP: 4px
+}
+UL.clsShowHide A:visited {
+	COLOR: #003399
+}
+DIV.clsHide {
+	DISPLAY: none
+}
+UL.clsShowHide LI.clsHide {
+	LIST-STYLE: url(/msdn-online/shared/graphics/plus.gif)
+}
+DIV.clsShow {
+	CURSOR: text; DISPLAY: block
+}
+DIV.clsShow P {
+	LINE-HEIGHT: 120%; MARGIN-BOTTOM: 4px; MARGIN-TOP: 6px
+}
+UL.clsShowHide LI.clsShow {
+	LIST-STYLE: url(/msdn-online/shared/graphics/minus.gif)
+}
+TD.clsBigNav A:visited {
+	COLOR: #003399
+}
+TD.clsBigNav A:hover {
+	COLOR: red; TEXT-DECORATION: none
+}
+TD.clsBigNav {
+	CURSOR: hand; FONT-SIZE: 108%; PADDING-BOTTOM: 0px; PADDING-LEFT: 4px; =
+PADDING-RIGHT: 4px; PADDING-TOP: 0px
+}
+TD.clsBigNavSel {
+	CURSOR: auto; FONT-SIZE: 108%; PADDING-BOTTOM: 0px; PADDING-LEFT: 4px; =
+PADDING-RIGHT: 4px; PADDING-TOP: 0px
+}
+A#idToggleAll {
+	COLOR: #003399; FONT-WEIGHT: bold
+}
+A#idToggleAll IMG {
+	VERTICAL-ALIGN: bottom
+}
+#lnkPrevText {
+	COLOR: black; FONT-FAMILY: verdana,arial,helvetica,sans-serif; =
+FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+#lnkNextText {
+	COLOR: black; FONT-FAMILY: verdana,arial,helvetica,sans-serif; =
+FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+#lnkUpText {
+	COLOR: black; FONT-FAMILY: verdana,arial,helvetica,sans-serif; =
+FONT-SIZE: 7.5pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+DIV.clsBucketBranch {
+	FONT-STYLE: italic; MARGIN: 10px
+}
+DIV.clsBucketBranch A {
+	COLOR: black; TEXT-DECORATION: none
+}
+DIV.clsBucketBranch A:link {
+	COLOR: black; TEXT-DECORATION: none
+}
+DIV.clsBucketBranch A:active {
+	COLOR: black; TEXT-DECORATION: none
+}
+DIV.clsBucketBranch A:visited {
+	COLOR: black; TEXT-DECORATION: none
+}
+DIV.clsBucketBranch A:hover {
+	COLOR: blue
+}
+TD.clsGrayTop {
+	BORDER-BOTTOM: 0px; BORDER-TOP: #cccccc 1px solid; COLOR: black; =
+FONT-WEIGHT: normal; PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; =
+PADDING-RIGHT: 10px; PADDING-TOP: 5px
+}
+TD.clsRaised {
+	BORDER-BOTTOM: #003366 1px solid; BORDER-TOP: #99ccff 1px solid; =
+PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; =
+PADDING-TOP: 5px
+}
+TD.clsDarkRaised {
+	BORDER-BOTTOM: #000000 1px solid; BORDER-TOP: #6699cc 1px solid; =
+PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; =
+PADDING-TOP: 5px
+}
+TD.clsSunken {
+	BORDER-BOTTOM: #99ccff 1px solid; BORDER-TOP: #003366 1px solid; =
+PADDING-BOTTOM: 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; =
+PADDING-TOP: 5px
+}
+TD.clsBBarSunken {
+	BORDER-BOTTOM: #99ccff 1px solid; BORDER-TOP: #003366 1px solid; =
+PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; =
+PADDING-TOP: 0px
+}
+TD.clsBBarRaised {
+	BORDER-BOTTOM: #000033 1px solid; BORDER-TOP: #99ccff 1px solid; =
+PADDING-BOTTOM: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; =
+PADDING-TOP: 0px
+}
+TD.clsLightGreen {
+	COLOR: #ccffcc; FONT-STYLE: italic; FONT-WEIGHT: normal
+}
+TD.clsBtnUp {
+	BORDER-BOTTOM: #99ccff 2px outset; BORDER-LEFT: #99ccff 2px outset; =
+BORDER-RIGHT: #99ccff 2px outset; BORDER-TOP: #99ccff 2px outset; COLOR: =
+#ffffff; CURSOR: hand; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; =
+PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 0px
+}
+TD.clsBtnDown {
+	BORDER-BOTTOM: #99ccff 2px inset; BORDER-LEFT: #99ccff 2px inset; =
+BORDER-RIGHT: #99ccff 2px inset; BORDER-TOP: #99ccff 2px inset; COLOR: =
+#ffffff; CURSOR: hand; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; =
+PADDING-LEFT: 3px; PADDING-RIGHT: 3px; PADDING-TOP: 0px
+}
+TD.clsBtnOn {
+	BACKGROUND-COLOR: #336699; BORDER-BOTTOM: #99ccff 2px inset; =
+BORDER-LEFT: #99ccff 2px inset; BORDER-RIGHT: #99ccff 2px inset; =
+BORDER-TOP: #99ccff 2px inset; COLOR: #ffffff; CURSOR: hand; =
+FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; PADDING-LEFT: 3px; =
+PADDING-RIGHT: 3px; PADDING-TOP: 0px
+}
+TD.clsBtnOff {
+	BORDER-BOTTOM: #6699cc 2px solid; BORDER-LEFT: #6699cc 2px solid; =
+BORDER-RIGHT: #6699cc 2px solid; BORDER-TOP: #6699cc 2px solid; COLOR: =
+#ffffff; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; PADDING-LEFT: 3px; =
+PADDING-RIGHT: 3px; PADDING-TOP: 0px; tab-index: 0
+}
+TABLE.clsRating TD {
+	BACKGROUND-COLOR: white; BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: =
+#666666 1px solid; BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #666666 =
+1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; =
+PADDING-TOP: 0px
+}
+#pBackTop {
+	DISPLAY: none
+}
+TABLE.clsNavLinks A:hover {
+	TEXT-DECORATION: none
+}
+TABLE.clsNavLinks {
+	CLEAR: both
+}
+#txtCharCount {
+	BACKGROUND-COLOR: white; BORDER-BOTTOM: #cccccc 2px ridge; BORDER-LEFT: =
+#cccccc 2px ridge; BORDER-RIGHT: #cccccc 2px ridge; BORDER-TOP: #cccccc =
+2px ridge; COLOR: red; FONT-WEIGHT: bold; HEIGHT: 1.5em; OVERFLOW: =
+hidden; TEXT-ALIGN: right; WIDTH: 3.7em
+}
+TABLE.clsCmtEntryTbl TD {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; =
+PADDING-TOP: 3px
+}
+SPAN.clsLeftNavDot {
+	COLOR: red; FONT-SIZE: 115%; LINE-HEIGHT: 1
+}
+DIV.clsExpanded {
+	COLOR: black; DISPLAY: inline; WIDTH: 100%
+}
+A.clsExpanded {
+	COLOR: black; DISPLAY: inline; WIDTH: 100%
+}
+DIV.clsCollapsed {
+	DISPLAY: none
+}
+A.clsCollapsed {
+	DISPLAY: none
+}
+SPAN.clsPropattr {
+	FONT-WEIGHT: bold
+}
+#pStyles {
+	CURSOR: hand; DISPLAY: none; TEXT-DECORATION: underline
+}
+#pCode {
+	CURSOR: hand; DISPLAY: none; TEXT-DECORATION: underline
+}
+#pSyntax {
+	CURSOR: hand; DISPLAY: none; TEXT-DECORATION: underline
+}
+#pEvents {
+	CURSOR: hand; DISPLAY: none; TEXT-DECORATION: underline
+}
+#pStyles {
+	CURSOR: hand; DISPLAY: none; TEXT-DECORATION: underline
+}
+#idToolbar {
+	FONT-SIZE: 10pt
+}
+#idToolbar {
+	BORDER-BOTTOM: #ffffff 1px solid
+}
+#idToolbar A:hover {
+	TEXT-DECORATION: none
+}
+A.clsDisabled {
+	COLOR: black; CURSOR: text; TEXT-DECORATION: none
+}
+A.clsEnabled {
+	CURSOR: auto
+}
+SPAN.clsAccess {
+	TEXT-DECORATION: underline
+}
+TABLE.clsIndex {
+	MARGIN-TOP: 17pt; PADDING-LEFT: 2pt; PADDING-RIGHT: 2pt
+}
+TABLE.clsIndex TD {
+	BACKGROUND-COLOR: #eeeeee; MARGIN: 3pt
+}
+TR.clsEntry {
+	VERTICAL-ALIGN: top
+}
+TABLE.clsIndex TD.clsLetters {
+	BACKGROUND-COLOR: #cccccc; TEXT-ALIGN: center
+}
+TD.clsMainHead {
+	BACKGROUND-COLOR: #ffffff; FONT-SIZE: 145%; FONT-WEIGHT: bold; =
+MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1.35em; VERTICAL-ALIGN: top
+}
+UL.clsIndex {
+	MARGIN-BOTTOM: 5pt; MARGIN-LEFT: 20pt; MARGIN-TOP: 0pt
+}
+LI OL {
+	PADDING-BOTTOM: 1.5em
+}
+A.clsLeftMenu {
+	COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: =
+none
+}
+A.clsLeftMenu:visited {
+	COLOR: #000000; FONT-SIZE: 8pt; FONT-WEIGHT: bold; TEXT-DECORATION: =
+none
+}
+BUTTON.clsShowme {
+	BACKGROUND-COLOR: #002f90; COLOR: #ffffff; FONT-FAMILY: arial; =
+FONT-SIZE: 11px; FONT-WEIGHT: bold; HEIGHT: 23px; POSITION: relative; =
+TOP: 2px; WIDTH: 68px
+}
+BUTTON.clsShowme5 {
+	BACKGROUND-COLOR: #002f90; COLOR: #ffffff; FONT-FAMILY: arial; =
+FONT-SIZE: 11px; FONT-WEIGHT: bold; HEIGHT: 23px; POSITION: relative; =
+TOP: 2px; WIDTH: 68px
+}
+DIV.clsBeta {
+	COLOR: red; FONT-WEIGHT: bold; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em
+}
+DIV.clsHi {
+	PADDING-LEFT: 2em; TEXT-INDENT: -2em
+}
+BUTTON.clsShowme {
+	MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em
+}
+BUTTON.clsShowme5 {
+	MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em
+}
+DIV.clsShowme {
+	MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em
+}
+SPAN.clsDefValue {
+	FONT-FAMILY: 'courier new'; FONT-WEIGHT: bold
+}
+TD.clsDefValue {
+	FONT-FAMILY: 'courier new'; FONT-WEIGHT: bold
+}
+SPAN.clsLiteral {
+	FONT-FAMILY: 'courier new'
+}
+TD.clsLiteral {
+	FONT-FAMILY: 'courier new'
+}
+SPAN.clsRange {
+	FONT-STYLE: italic
+}
+TD.clsRange {
+	FONT-STYLE: italic
+}
+SPAN.clsEntryText {
+	FONT-SIZE: 8pt; LINE-HEIGHT: 12pt
+}
+SPAN.clsHeading {
+	COLOR: #00319c; FONT-SIZE: 11pt; FONT-WEIGHT: bold
+}
+DIV.clsNote {
+	BACKGROUND-COLOR: #eeeeee; MARGIN-BOTTOM: 4pt
+}
+SPAN.clsFmtLib {
+	TEXT-TRANSFORM: lowercase
+}
+SPAN.clsFmtInc {
+	TEXT-TRANSFORM: lowercase
+}
+SPAN.clsFmtIDL {
+	TEXT-TRANSFORM: lowercase
+}
+SPAN.clsFmtDLL {
+	TEXT-TRANSFORM: lowercase
+}
+#tblSiteMap DIV {
+	LINE-HEIGHT: 120%
+}
+#idToc A.clsTocHeading {
+	COLOR: black; TEXT-DECORATION: none
+}
+#idToc A.clsTocHeading:hover {
+	COLOR: red
+}
+#idToc A.clsTocItem {
+	COLOR: black; TEXT-DECORATION: none
+}
+#idToc A.clsTocItem:hover {
+	COLOR: red
+}
+#idToc A.clsTocItemSelect {
+	COLOR: black; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+#idToc A.clsTocItemSelect:hover {
+	COLOR: black
+}
+#idToc UL {
+	MARGIN-BOTTOM: 2px; MARGIN-LEFT: 24px; MARGIN-TOP: 0px
+}
+#idToc UL UL LI {
+	MARGIN-LEFT: -24px; MARGIN-TOP: 0.1em
+}
+#idToc .noexpand {
+	LIST-STYLE: url(/msdn-online/shared/graphics/solid.gif)
+}
+#idToc .clsNoExpand {
+	LIST-STYLE: url(/msdn-online/shared/graphics/solid.gif)
+}
+#idToc .clsShowHide {
+	CURSOR: hand; LIST-STYLE: url(/msdn-online/shared/graphics/plus.gif)
+}
+#idToc .clsShowHideShowing {
+	CURSOR: hand; LIST-STYLE: url(/msdn-online/shared/graphics/minus.gif)
+}
+#idToc UL.clsItemsShow {
+	LIST-STYLE: url(/msdn-online/shared/graphics/arrowstop.gif)
+}
+#idToc UL.clsItemsHide {
+	DISPLAY: none
+}
+#idToc .clsStyleCheck {
+	MARGIN-LEFT: 15px; MARGIN-TOP: 5px
+}
+#idToc .clsStyleText {
+	CURSOR: default; FONT-SIZE: 10px; MARGIN-LEFT: 34px; MARGIN-TOP: -16px
+}
+UL.clsItemsShow {
+	MARGIN-TOP: 5px
+}
+UL.clsItemsShow LI {
+	MARGIN-LEFT: -17px; MARGIN-TOP: 5px
+}
+A.clsTocHeading {
+	LINE-HEIGHT: 130%
+}
+UL.clsItemsShow LI A {
+	COLOR: #000000
+}
+UL.clsItemsShow A:visited {
+	COLOR: #000000
+}
+A.clsTocHeading {
+	COLOR: #000000
+}
+A.clsTocHeading:visited {
+	COLOR: #000000
+}
+UL.clsItemsShow LI A:hover {
+	COLOR: red; TEXT-DECORATION: none
+}
+A.clsTocHeading:hover {
+	COLOR: red; TEXT-DECORATION: none
+}
+.clsCCActListBG {
+	BACKGROUND: #ffcc66
+}
+.clsCCRatListBG {
+	BACKGROUND: #99ccff
+}
+.clsCCRatList {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.clsCCActList {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.clsCCActListText {
+	COLOR: #003366; FONT-FAMILY: verdana,arial,sans serif; FONT-SIZE: =
+xx-small
+}
+.clsCCActListHeader {
+	COLOR: black; FONT-FAMILY: verdana,arial,sans serif; FONT-SIZE: x-small
+}
+.clsCCActListHost {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: black; =
+FONT-FAMILY: verdana,arial,sans serif; FONT-SIZE: x-small
+}
+.clsDicta {
+	FONT-FAMILY: verdana,arial; FONT-SIZE: x-small; PADDING-BOTTOM: 4px; =
+PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 4px
+}
+.clsDesc {
+	FONT-FAMILY: verdana,arial; FONT-SIZE: x-small; PADDING-BOTTOM: 4px; =
+PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 4px
+}
+.clsCop {
+	COLOR: #6699cc; FONT-FAMILY: verdana,arial; FONT-SIZE: x-small
+}
+.clsPrecis {
+	BACKGROUND-COLOR: menu; BORDER-BOTTOM: buttonshadow 1px solid; =
+BORDER-TOP: buttonhighlight 1px solid; COLOR: menutext; FONT-FAMILY: =
+verdana,arial; FONT-SIZE: small
+}
+.clsCCGeneralHead {
+	BACKGROUND: #003366; BORDER-TOP: #6699cc 1px solid; COLOR: #ffffff; =
+FONT-FAMILY: verdana,arial,sans serif; FONT-SIZE: 12pt; FONT-WEIGHT: =
+bold; HEIGHT: 25px; PADDING-BOTTOM: 2pt; PADDING-LEFT: 12pt; =
+PADDING-RIGHT: 2pt; PADDING-TOP: 2pt; WIDTH: 100%
+}
+.clsCCGeneralHead2 {
+	BACKGROUND: #cccccc; BORDER-BOTTOM: #999999 1px solid; BORDER-TOP: =
+#ffffff 1px solid; COLOR: #003366; FONT-FAMILY: verdana,arial,sans =
+serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold; HEIGHT: 23px; PADDING-BOTTOM: =
+2pt; PADDING-LEFT: 10pt; PADDING-RIGHT: 2pt; PADDING-TOP: 2pt; WIDTH: =
+100%
+}
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: application/x-javascript
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/js/navlinks.js
+
+
+	// -----------------------------------------------------------
+	// InitNavLinks()
+	// Sets link text, URL and icon for NavLinks Show based on framed state
+	// -----------------------------------------------------------
+
+	function InitNavLinks()
+	{
+		if ("object" !=3D typeof(lnkShowImg) || "object" !=3D typeof(imgShow) =
+|| "object" !=3D typeof(lnkShowImg.all.tags( "FONT" )))
+		{
+			return false;
+		}
+
+		var bIsFramed =3D ((top !=3D self) && ("TOC" =3D=3D =
+top.frames[0].name));
+		if (bIsFramed)
+		{
+			lnkShowImg.all.tags( "FONT" )[0].innerText =3D "hide toc";
+			lnkShowImg.href =3D self.location.href;
+			imgShow.src =3D "/msdn-online/shared/graphics/icons/hidetoc.gif";
+		}
+		else
+		{
+			lnkShowImg.all.tags( "FONT" )[0].innerText =3D "show toc";
+			var sPath =3D self.location.pathname;
+
+			// WATCH OUT FOR INSTANCES OF MSDN-ONLINE !!!=09
+			sPath =3D sPath.replace("/msdn-online","");
+			var sFrameHref =3D sPath.match(/[/][^/]+[/]/) + "c-frame.htm?" + =
+sPath;
+			lnkShowImg.href =3D sFrameHref;
+			imgShow.src =3D "/msdn-online/shared/graphics/icons/showtoc.gif";
+		}
+	}
+
+	// -----------------------------------------------------------
+	// NavLinks_hover()
+	// DHTML script for NavLinks mouseover and mouseout.
+	// -----------------------------------------------------------
+
+=09
+		/////////////////////////////////////////////////////////////
+		//
+		//	Function: process_button() - Button Event handler
+		//	Parameters: none
+		//	Returns: void
+		//
+		//	This function processes mouse and keyboard events on all
+		//	button elements (className contains "Btn" within a given
+		//	container.  Button specific processing is sent to the buttonClick()
+		//  	function. Information about the button can be stored in expandos,
+		//			STATE ( "On" , "Off" )
+		//			IMG ( contains the base name and ID of the icon )
+		//
+		/////////////////////////////////////////////////////////////
+=09
+=09
+		function process_button()
+		{
+			var oEl =3D event.srcElement;
+			event.cancelBubble =3D true;
+			while( -1 =3D=3D oEl.className.indexOf( "Btn" ) )
+			{
+				oEl =3D oEl.parentElement;
+				if( !oEl ) return;
+			}
+			var baseClass =3D oEl.className.substring( 0 , oEl.className.indexOf( =
+"Btn" ) + 3 );
+			var btnImage =3D null;
+			if( oEl.IMG ) btnImage =3D oEl.all.tags( "IMG" )[0];
+=09
+			switch( event.type )
+			{
+				case "mouseout" :
+					if( oEl.contains( event.toElement ) ) return;
+					if( btnImage )
+					{
+						btnImage.src =3D  btnImage.src.substring( 0 , btnImage.src.length =
+- 5 ) + "1.gif";
+					}
+					if( oEl.STATE )
+					{
+=09
+						oEl.className =3D baseClass + oEl.STATE;
+					}
+					else
+					{
+						oEl.className =3D baseClass + "Off";
+					}
+					break;
+				case "mouseover" :
+					if( oEl.contains( event.fromElement ) ) return;
+				=09
+					if( btnImage )
+					{
+						btnImage.src =3D  btnImage.src.substring( 0 , btnImage.src.length =
+- 5 ) + "2.gif";
+					}
+					if( oEl.STATE )
+					{
+						var tmpState =3D oEl.STATE =3D=3D "Off" ? "Up" : "Down";
+						oEl.className =3D baseClass + tmpState;
+					}
+					else
+					{
+						oEl.className =3D baseClass + "Up";
+					}
+					break;
+=09
+				case "mousedown" :
+					oEl.className =3D baseClass + "Down";
+					break;
+=09
+				case "mouseup" :
+					if( oEl.STATE )
+					{
+						oEl.STATE =3D oEl.STATE =3D=3D "Off" ? "On" : "Off";
+						var tmpState =3D oEl.STATE =3D=3D "On" ? "Down" : "Up";
+						oEl.className =3D baseClass + tmpState;
+					}
+					else
+					{
+						oEl.className =3D baseClass + "Up";
+					}
+					break;
+=09
+				case "click" :
+					event.returnValue =3D doButtonClick( oEl );
+					break;
+=09
+				case "dblclick" :
+					event.returnValue =3D doButtonClick( oEl );
+					break;
+=09
+				case "keyup" :
+					if( 13 =3D=3D event.keyCode )
+					{
+						if( oEl.STATE )
+						{
+							oEl.STATE =3D oEl.STATE =3D=3D "Off" ? "On" : "Off";
+							var tmpState =3D oEl.STATE =3D=3D "On" ? "Down" : "Up";
+							oEl.className =3D baseClass + tmpState;
+						}
+						else
+						{
+							oEl.className =3D baseClass + "Up";
+						}
+						event.returnValue =3D doButtonClick( oEl );
+					}
+					break;
+				=09
+				case "selectstart" :
+					if( oEl )
+					{
+						event.returnValue =3D false;
+						return false;
+					}
+					break;
+=09
+				default :
+					break;
+=09
+			}
+		}
+=09
+	////////////////////////////////////////////////////////////////////
+	//
+	//	Function: doButtonClick()
+	//	Parameters: oEl - Button Element which fired the event
+	//	Returns: event return value
+	//
+	//	This function navigates to the first link contained in a button,
+	//	or performs a custom button action if one is defined on an =
+individual page.
+	//
+	////////////////////////////////////////////////////////////////////
+=09
+		function doButtonClick( oEl )
+		{
+			var oLink =3D oEl.all.tags( "A" );
+			if( oLink.length  )
+			{
+				if( "_blank" =3D=3D oLink[0].target )
+				{
+					winComments =3D window.open(  oLink[0].href ,"winComments" , =
+"width=3D640,height=3D480,location=3Dno,status=3Dyes,resizable=3Dyes,scro=
+llbars=3Dyes,menubar=3Dyes,toolbar=3Dno" );
+					winComments.focus();
+					event.returnValue =3D false;
+					return false;
+				}
+				else if( !oEl.ACTION )
+				{
+					oLink[0].click();
+					return true;
+				}
+			}
+		=09
+			if( "function" =3D=3D typeof( fnCustomAction ) )
+			{=09
+				return fnCustomAction( oEl );
+			}
+		}
+
+	// -----------------------------------------------------------
+	// PreloadNavLinksImages()
+	// Preloads mouseover images.
+	// -----------------------------------------------------------
+
+	function PreloadNavLinksImages()
+	{
+		var sRootPath =3D new String("/msdn-online/shared/graphics/icons/");
+		var aImages =3D new =
+Array("show","hide","sync","index","search","prev","next","up");
+		for (var i=3D0;i<aImages.length;i++)
+		{
+			var eImg =3D new Image();
+			eImg.src =3D sRootPath + "nl-" + aImages[i] + "-1.gif";
+		}
+	}
+	if (oBD.getsNavBar) PreloadNavLinksImages();
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: application/x-javascript
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/library/toolbar/toolbar.js
+
+// VSS Version 67 - Release October 25, 1999
+//
+var ToolBar_Supported =3D false;
+var Frame_Supported   =3D false;
+var DoInstrumentation =3D false;
+
+if (navigator.userAgent.indexOf("MSIE")    !=3D -1 &&=20
+	navigator.userAgent.indexOf("Windows") !=3D -1 &&=20
+	navigator.appVersion.substring(0,1) > 3)
+{
+	ToolBar_Supported =3D true;
+}
+
+if (ToolBar_Supported)
+{
+	var newLineChar =3D String.fromCharCode(10);
+	var char34 =3D String.fromCharCode(34);
+	var LastMSMenu =3D "";
+	var LastICPMenu=3D "";
+	var CurICPMenu =3D "";
+	var IsMSMenu =3D false;
+	var IsMenuDropDown =3D true;
+	var HTMLStr;
+	var TBLStr;
+	var x =3D 0;
+	var y =3D 0;
+	var x2 =3D 0;
+	var y2 =3D 0;
+	var x3 =3D 0;
+	var MSMenuWidth;
+	var ToolbarMinWidth;
+	var ToolbarMenu;
+	var ToolbarBGColor;
+	var ToolbarLoaded =3D false;
+	var aDefMSColor  =3D new Array(3);
+	var aDefICPColor =3D new Array(3);
+	var aCurMSColor  =3D new Array(3);
+	var aCurICPColor =3D new Array(3);
+	var MSFont;
+	var ICPFont;
+	var MaxMenu =3D 30;
+	var TotalMenu =3D 0;
+	var arrMenuInfo =3D new Array(30);
+
+	// Output style sheet and toolbar ID
+	document.write("<SPAN ID=3D'StartMenu' =
+STYLE=3D'display:none;'></SPAN>");
+
+	// Build toolbar template
+	TBLStr  =3D "<TABLE BORDER=3D0 CELLPADDING=3D0 CELLSPACING=3D0><TR =
+STYLE=3D'height:20;vertical-align:middle'><!--ICP_MENU_TITLES--></TR></TA=
+BLE>";
+	HTMLStr =3D=20
+		"<DIV ID=3D'idToolbar'     =
+STYLE=3D'background-color:white;width:100%'>" +
+		"<DIV ID=3D'idRow1'        STYLE=3D'position:relative;height:20;'>" +
+		"<DIV ID=3D'idICPBanner'   =
+STYLE=3D'position:absolute;top:0;left:0;height:60;width:250;overflow:hidd=
+en;vertical-align:top;'><!--BEG_ICP_BANNER--><!--END_ICP_BANNER--></DIV>"=
+ +
+		"<DIV ID=3D'idMSMenuCurve' =
+STYLE=3D'position:absolute;top:0;left:250;height:20;width:18;overflow:hid=
+den;vertical-align:top;'><IMG SRC=3D'/library/toolbar/images/curve.gif' =
+BORDER=3D0></DIV>" +
+		"<DIV ID=3D'idMSMenuPane'  =
+STYLE=3D'position:absolute;top:0;left:250;height:20;width:10;color:white;=
+background-color:black;float:right;' NOWRAP><!--MS_MENU_TITLES--></DIV>" =
++=20
+		"</DIV>" +
+		"<DIV ID=3D'idRow2' STYLE=3D'position:relative;left:250;height:40;'>" =
++
+		"<DIV ID=3D'idADSBanner'   =
+STYLE=3D'position:absolute;top:0;left:0;height:40;width:200;vertical-alig=
+n:top;overflow:hidden;'><!--BEG_ADS_BANNER--><!--END_ADS_BANNER--></DIV>"=
+ +
+		"<DIV ID=3D'idMSCBanner'   =
+STYLE=3D'position:absolute;top:0;left:200;height:40;width:112;vertical-al=
+ign:top;overflow:hidden;' =
+ALIGN=3DRIGHT><!--BEG_MSC_BANNER--><!--END_MSC_BANNER--></DIV>" +
+		"</DIV>" +
+		"<DIV ID=3D'idRow3' STYLE=3D'position:relative;height:20;width:100%'>" =
++
+		"<DIV ID=3D'idICPMenuPane' =
+STYLE=3D'position:absolute;top:0;left:0;height:20;color:white;background-=
+color:black;' NOWRAP><!--ICP_MENU_TITLES--></DIV>" +
+		"</DIV>" +
+		"</DIV>" +
+		"<SCRIPT FOR=3DidToolbar EVENT=3Donresize>resizeToolbar();</SCRIPT>" +
+		"<SCRIPT FOR=3DidToolbar EVENT=3Donmouseover>hideMenu();</SCRIPT>" +
+		"<SCRIPT TYPE=3D'text/javascript'>" +=20
+		"   var ToolbarMenu =3D StartMenu;" +=20
+		"</SCRIPT>" +=20
+		"<DIV WIDTH=3D100%>";
+
+	// Intialize global variables
+	ToolbarBGColor	=3D "white";						// toolbar background color
+	MSFont  =3D "xx-small Verdana";
+	ICPFont =3D "bold xx-small Verdana";
+=09
+	aDefMSColor[0]	=3D aCurMSColor[0]  =3D "black";	// bgcolor;
+	aDefMSColor[1]	=3D aCurMSColor[1]  =3D "white";	// text font color
+	aDefMSColor[2]  =3D aCurMSColor[2]  =3D "red";		// mouseover font color
+=09
+	aDefICPColor[0]	=3D aCurICPColor[0] =3D "#6699CC";	// bgcolor;
+	aDefICPColor[1] =3D aCurICPColor[1] =3D "white";	// text font color
+	aDefICPColor[2] =3D aCurICPColor[2] =3D "red";		// mouseover font color
+}
+
+// The hard-coded numbers in functions - drawToolbar() & resizeToolbar()
+// correspond to the dimension of the four gif files:
+//		ICP_BANNER: 60h x 250w
+//		ADS_BANNER: 40h x 200w
+//		MSC_BANNER: 40h x 112w
+//		Curve:	    20h x 18w
+
+function drawToolbar()
+{
+	HTMLStr +=3D "</DIV>";
+	document.write(HTMLStr);
+	ToolbarLoaded =3D true;
+	MSMenuWidth     =3D Math.max(idMSMenuPane.offsetWidth, (200+112));
+	ToolbarMinWidth =3D (250+18) + MSMenuWidth;
+
+	idToolbar.style.backgroundColor     =3D ToolbarBGColor;
+	idMSMenuPane.style.backgroundColor  =3D aDefMSColor[0];
+	idICPMenuPane.style.backgroundColor =3D aDefICPColor[0];
+	idMSMenuPane.style.color			=3D aDefMSColor[1];
+	idICPMenuPane.style.color			=3D aDefICPColor[1];
+	resizeToolbar();
+
+	for (i =3D 0; i < TotalMenu; i++)=20
+	{
+		thisMenu =3D document.all(arrMenuInfo[i].IDStr);
+		if (thisMenu !=3D null)
+		{
+			if (arrMenuInfo[i].IDStr =3D=3D LastMSMenu && arrMenuInfo[i].type =
+=3D=3D "R")
+			{
+				//Last MSMenu has to be absolute width
+				arrMenuInfo[i].type =3D "A";
+				arrMenuInfo[i].unit =3D 200;
+			}
+			if (arrMenuInfo[i].type =3D=3D "A")
+				thisMenu.style.width =3D arrMenuInfo[i].unit;
+			else=20
+				thisMenu.style.width =3D Math.round(arrMenuInfo[i].width * =
+arrMenuInfo[i].unit) + 'em';
+		}
+	}
+}
+
+function resizeToolbar()
+{
+	if (ToolBar_Supported =3D=3D false) return;
+
+	w =3D Math.max(ToolbarMinWidth, document.body.clientWidth) - =
+ToolbarMinWidth;
+=09
+	idMSMenuCurve.style.left  =3D (250+w);
+	idMSMenuPane.style.left   =3D (250+w+18);
+	idMSMenuPane.style.width  =3D MSMenuWidth;
+
+	idADSBanner.style.left    =3D (w+18);
+
+	idMSCBanner.style.left    =3D (w+18+200);
+	idMSCBanner.style.width   =3D (MSMenuWidth - 200);
+=09
+	idICPMenuPane.style.width =3D ToolbarMinWidth + w;
+}
+
+function setToolbarBGColor(color)
+{=09
+	ToolbarBGColor =3D color;
+	if (ToolbarLoaded =3D=3D true)
+		idToolbar.style.backgroundColor =3D ToolbarBGColor;
+}=09
+
+function setMSMenuFont(sFont)
+{	MSFont =3D sFont;
+}
+
+function setICPMenuFont(sFont)
+{	ICPFont =3D sFont;
+}
+
+function setDefaultMSMenuColor(bgColor, fontColor, mouseoverColor)
+{=09
+	if (bgColor   !=3D "")	  aDefMSColor[0] =3D bgColor;
+	if (fontColor !=3D "")	  aDefMSColor[1] =3D fontColor;
+	if (mouseoverColor !=3D "") aDefMSColor[2] =3D mouseoverColor;
+}
+
+function setDefaultICPMenuColor(bgColor, fontColor, mouseoverColor)
+{=09
+	if (bgColor   !=3D "")	  aDefICPColor[0] =3D bgColor;
+	if (fontColor !=3D "")	  aDefICPColor[1] =3D fontColor;
+	if (mouseoverColor !=3D "") aDefICPColor[2] =3D mouseoverColor;
+}
+
+function setICPMenuColor(MenuIDStr, bgColor, fontColor, mouseoverColor)
+{=09
+	if (ToolbarLoaded =3D=3D false) return;
+
+	// Reset previous ICP Menu color if any
+	if (CurICPMenu !=3D "")
+	{
+		PrevID =3D CurICPMenu.substring(4);
+		CurICPMenu =3D "";
+		setICPMenuColor(PrevID, aDefICPColor[0], aDefICPColor[1], =
+aDefICPColor[2]);
+	}
+
+	var	id =3D "AM_" + "ICP_" + MenuIDStr;
+	var thisMenu =3D document.all(id);
+	if (thisMenu !=3D null)
+	{
+		CurICPMenu =3D "ICP_" + MenuIDStr;
+		aCurICPColor[0] =3D bgColor;
+		aCurICPColor[1] =3D fontColor;
+		aCurICPColor[2] =3D mouseoverColor;
+
+		// Change menu color
+		if (bgColor !=3D "")
+			thisMenu.style.backgroundColor =3D bgColor;
+		if (fontColor !=3D "")
+			thisMenu.children(0).style.color =3D fontColor;
+
+		// Change subMenu color
+		id =3D "ICP_" + MenuIDStr;
+		thisMenu =3D document.all(id);
+		if (thisMenu !=3D null)
+		{
+			if (bgColor !=3D "")
+				thisMenu.style.backgroundColor =3D bgColor;
+		=09
+			if (fontColor !=3D "")
+			{
+				i =3D 0;
+				id =3D "AS_" + "ICP_" + MenuIDStr;
+				thisMenu =3D document.all.item(id,i);
+				while (thisMenu !=3D null)
+				{
+					thisMenu.style.color =3D fontColor;
+					i +=3D 1;
+					thisMenu =3D document.all.item(id,i);
+				}
+			}
+		}
+	}
+}
+
+function setAds(Gif,Url,AltStr)
+{	=
+setBanner(Gif,Url,AltStr,"<!--BEG_ADS_BANNER-->","<!--END_ADS_BANNER-->")=
+;
+}
+
+function setICPBanner(Gif,Url,AltStr)
+{	=
+setBanner(Gif,Url,AltStr,"<!--BEG_ICP_BANNER-->","<!--END_ICP_BANNER-->")=
+;
+}
+
+function setMSBanner(Gif,Url,AltStr)
+{	tempGif =3D "/library/toolbar/images/" + Gif;
+	=
+setBanner(tempGif,Url,AltStr,"<!--BEG_MSC_BANNER-->","<!--END_MSC_BANNER-=
+->");
+}
+
+function setBanner(BanGif, BanUrl, BanAltStr, BanBegTag, BanEndTag)
+{
+	begPos =3D HTMLStr.indexOf(BanBegTag);
+	endPos =3D HTMLStr.indexOf(BanEndTag) + BanEndTag.length;
+=09
+	SubStr =3D HTMLStr.substring(begPos, endPos);
+	SrcStr =3D "";
+	if (BanUrl !=3D "")
+		SrcStr +=3D "<A Target=3D'_top' HREF=3D'" + formatURL(BanUrl, BanGif) =
++ "'>";
+	SrcStr +=3D "<IMG SRC=3D'" + BanGif + "' ALT=3D'" + BanAltStr + "' =
+BORDER=3D0>";
+	if (BanUrl !=3D "")
+		SrcStr +=3D "</A>";
+	SrcStr =3D BanBegTag + SrcStr + BanEndTag;
+	HTMLStr =3D HTMLStr.replace(SubStr, SrcStr);=09
+}
+
+function setICPSubMenuWidth(MenuIDStr, WidthType, WidthUnit)
+{	tempID =3D "ICP_" + MenuIDStr;
+	setSubMenuWidth(tempID, WidthType, WidthUnit);
+}
+
+function setMSSubMenuWidth(MenuIDStr, WidthType, WidthUnit)
+{	tempID =3D "MS_" + MenuIDStr;
+	setSubMenuWidth(tempID, WidthType, WidthUnit);
+}
+
+function setSubMenuWidth(MenuIDStr, WidthType, WidthUnit)
+{
+	var fFound =3D false;
+	if (TotalMenu =3D=3D MaxMenu)
+	{
+		alert("Unable to process menu. Maximum of " + MaxMenu + " reached.");
+		return;
+	}
+=09
+	for (i =3D 0; i < TotalMenu; i++)
+		if (arrMenuInfo[i].IDStr =3D=3D MenuIDStr)
+		{
+			fFound =3D true;
+			break;
+		}
+
+	if (!fFound)
+	{
+		arrMenuInfo[i] =3D new menuInfo(MenuIDStr);
+		TotalMenu +=3D 1;
+	}
+
+	if (!fFound && WidthType.toUpperCase().indexOf("DEFAULT") !=3D -1)
+	{
+		arrMenuInfo[i].type =3D "A";
+		arrMenuInfo[i].unit =3D 160;
+	}
+	else
+	{
+		arrMenuInfo[i].type =3D (WidthType.toUpperCase().indexOf("ABSOLUTE") =
+!=3D -1)? "A" : "R";
+		arrMenuInfo[i].unit =3D WidthUnit;
+	}
+}
+
+// This function creates a menuInfo object instance.
+function menuInfo(MenuIDStr)
+{
+	this.IDStr =3D MenuIDStr;
+	this.type  =3D "";
+	this.unit  =3D 0;
+	this.width =3D 0;
+	this.count =3D 0;
+}
+
+function updateSubMenuWidth(MenuIDStr)
+{
+	for (i =3D 0; i < TotalMenu; i++)
+		if (arrMenuInfo[i].IDStr =3D=3D MenuIDStr)
+		{
+			if (arrMenuInfo[i].width < MenuIDStr.length)=20
+				arrMenuInfo[i].width =3D MenuIDStr.length;
+			arrMenuInfo[i].count =3D arrMenuInfo[i].count + 1;
+			break;
+		}
+}
+
+function addICPMenu(MenuIDStr, MenuDisplayStr, MenuHelpStr, MenuURLStr)
+{ =09
+	if (LastICPMenu =3D=3D "") HTMLStr =3D =
+HTMLStr.replace("<!--ICP_MENU_TITLES-->", TBLStr);
+
+	if (addICPMenu.arguments.length > 4)
+		TargetStr =3D addICPMenu.arguments[4];
+	else
+		TargetStr =3D "_top";
+	tempID =3D "ICP_" + MenuIDStr;
+	addMenu(tempID, MenuDisplayStr, MenuHelpStr, MenuURLStr, TargetStr, =
+true);=20
+	LastICPMenu =3D tempID;
+}
+
+function addMSMenu(MenuIDStr, MenuDisplayStr, MenuHelpStr, MenuURLStr)
+{=09
+	TargetStr =3D "_top";
+	tempID =3D "MS_" + MenuIDStr;
+	addMenu(tempID, MenuDisplayStr, MenuHelpStr, MenuURLStr, TargetStr, =
+false);=20
+	LastMSMenu =3D tempID;
+}
+
+function addMenu(MenuIDStr, MenuDisplayStr, MenuHelpStr, MenuURLStr, =
+TargetStr, bICPMenu)
+{
+	cFont   =3D bICPMenu? ICPFont : MSFont;
+	cColor0 =3D bICPMenu? aDefICPColor[0] : aDefMSColor[0];
+	cColor1 =3D bICPMenu? aDefICPColor[1] : aDefMSColor[1];
+	cColor2 =3D bICPMenu? aDefICPColor[2] : aDefMSColor[2];
+	cStyle  =3D "font:" + cFont + ";background-color:" + cColor0 + =
+";color:" + cColor1 + ";";
+	tagStr  =3D bICPMenu? "<!--ICP_MENU_TITLES-->" : =
+"<!--MS_MENU_TITLES-->";
+=09
+	if (MenuHelpStr =3D=3D "") MenuHelpStr =3D MenuDisplayStr;
+	MenuStr =3D newLineChar;
+	if (bICPMenu)=20
+		MenuStr +=3D "<TD STYLE=3D'" + cStyle + "' ID=3D'AM_" + MenuIDStr + "' =
+NOWRAP>";
+	else
+	{
+		MenuStr +=3D "<SPAN STYLE=3D'" + cStyle + "'>";
+		if (LastMSMenu !=3D "") MenuStr +=3D "|";=20
+		MenuStr +=3D "&nbsp;";
+	}
+
+	MenuStr +=3D "<A STYLE=3D'text-decoration:none;cursor:hand;font:" + =
+cFont + ";color:" + cColor1 + ";'" +
+			   "   TARGET=3D'" + TargetStr + "'" +
+			   "   TITLE=3D" + char34 + MenuHelpStr + char34;
+	if (MenuURLStr !=3D "")
+		MenuStr +=3D " HREF=3D'" + formatURL(MenuURLStr, ((bICPMenu? =
+"ICP_":"MS_") + MenuDisplayStr)) + "'";
+	else
+		MenuStr +=3D " HREF=3D'' =
+onclick=3D'window.event.returnValue=3Dfalse;'";
+	MenuStr +=3D " onmouseout=3D"  + char34 + "mouseMenu('out' ,'" + =
+MenuIDStr + "'); hideMenu();" + char34 +=20
+			   " onmouseover=3D" + char34 + "mouseMenu('over','" + MenuIDStr + =
+"'); doMenu('"+ MenuIDStr + "');" + char34 + ">" +
+			   "&nbsp;" + MenuDisplayStr + "&nbsp;</a>";
+	if (bICPMenu)=20
+		MenuStr +=3D "&nbsp;</TD><TD STYLE=3D'" + cStyle + "'>|</TD>";
+	else
+		MenuStr +=3D "</SPAN>";
+
+	MenuStr +=3D tagStr;
+	HTMLStr =3D HTMLStr.replace(tagStr, MenuStr);=09
+	setSubMenuWidth(MenuIDStr,"default",0);
+}
+
+function addICPSubMenu(MenuIDStr, SubMenuStr, SubMenuURLStr)
+{=09
+	if (addICPSubMenu.arguments.length > 3)
+		TargetStr =3D addICPSubMenu.arguments[3];
+	else
+		TargetStr =3D "_top";
+	tempID =3D "ICP_" + MenuIDStr;
+	addSubMenu(tempID,SubMenuStr,SubMenuURLStr,TargetStr,true);=20
+}
+
+function addMSSubMenu(MenuIDStr, SubMenuStr, SubMenuURLStr)
+{=09
+	TargetStr =3D "_top";
+	tempID =3D "MS_" + MenuIDStr;
+	addSubMenu(tempID,SubMenuStr,SubMenuURLStr,TargetStr,false);=20
+}
+
+function addSubMenu(MenuIDStr, SubMenuStr, SubMenuURLStr, TargetStr, =
+bICPMenu)
+{
+	cFont   =3D bICPMenu? ICPFont : MSFont;
+	cColor0 =3D bICPMenu? aDefICPColor[0] : aDefMSColor[0];
+	cColor1 =3D bICPMenu? aDefICPColor[1] : aDefMSColor[1];
+	cColor2 =3D bICPMenu? aDefICPColor[2] : aDefMSColor[2];
+=09
+	var MenuPos =3D MenuIDStr.toUpperCase().indexOf("MENU");
+	if (MenuPos =3D=3D -1) { MenuPos =3D MenuIDStr.length; }
+	InstrumentStr =3D MenuIDStr.substring(0 , MenuPos) + "|" + SubMenuStr;;
+	URLStr        =3D formatURL(SubMenuURLStr, InstrumentStr);
+
+	var LookUpTag  =3D "<!--" + MenuIDStr + "-->";
+	var sPos =3D HTMLStr.indexOf(LookUpTag);
+	if (sPos <=3D 0)
+	{
+		HTMLStr +=3D newLineChar + newLineChar +
+				"<SPAN ID=3D'" + MenuIDStr + "'" +
+				" =
+STYLE=3D'display:none;position:absolute;width:160;background-color:" + =
+cColor0 + ";padding-top:0;padding-left:0;padding-bottom:20;z-index:9;'" =
++
+				" onmouseout=3D'hideMenu();'>";
+		if (Frame_Supported =3D=3D false || bICPMenu =3D=3D false)
+			HTMLStr +=3D "<HR  STYLE=3D'position:absolute;left:0;top:0;color:" + =
+cColor1 + "' SIZE=3D1>";
+		HTMLStr +=3D "<DIV STYLE=3D'position:relative;left:0;top:8;'>";
+	}
+
+	TempStr =3D newLineChar +
+				"<A ID=3D'AS_" + MenuIDStr + "'" +
+				"   STYLE=3D'text-decoration:none;cursor:hand;font:" + cFont + =
+";color:" + cColor1 + "'" +
+				"   HREF=3D'" + URLStr + "' TARGET=3D'" + TargetStr + "'" +
+				" onmouseout=3D"  + char34 + "mouseMenu('out' ,'" + MenuIDStr + =
+"');" + char34 +=20
+				" onmouseover=3D" + char34 + "mouseMenu('over','" + MenuIDStr + =
+"');" + char34 + ">" +
+				"&nbsp;" + SubMenuStr + "</A><BR>" + LookUpTag;
+	if (sPos <=3D 0)
+		HTMLStr +=3D TempStr + "</DIV></SPAN>";
+	else
+		HTMLStr =3D HTMLStr.replace(LookUpTag, TempStr);=09
+
+	updateSubMenuWidth(MenuIDStr);=09
+}
+
+function addICPSubMenuLine(MenuIDStr)
+{=09
+	tempID =3D "ICP_" + MenuIDStr;
+	addSubMenuLine(tempID,true);
+}
+
+function addMSSubMenuLine(MenuIDStr)
+{=09
+	tempID =3D "MS_" + MenuIDStr;
+	addSubMenuLine(tempID,false);
+}
+
+function addSubMenuLine(MenuIDStr, bICPMenu)
+{
+	var LookUpTag =3D "<!--" + MenuIDStr + "-->";
+	var sPos =3D HTMLStr.indexOf(LookUpTag);
+	if (sPos > 0)
+	{
+		cColor  =3D bICPMenu? aDefICPColor[1] : aDefMSColor[1];
+		TempStr =3D newLineChar + "<HR STYLE=3D'color:" + cColor + "' =
+SIZE=3D1>" + LookUpTag;
+		HTMLStr =3D HTMLStr.replace(LookUpTag, TempStr);
+	}
+}
+
+function mouseMenu(id, MenuIDStr)=20
+{
+	IsMSMenu   =3D (MenuIDStr.toUpperCase().indexOf("MS_") !=3D -1);
+	IsMouseout =3D (id.toUpperCase().indexOf("OUT") !=3D -1);
+
+	if (IsMouseout)
+	{
+		color =3D IsMSMenu? aDefMSColor[1] : aDefICPColor[1];
+		if (MenuIDStr =3D=3D CurICPMenu && aCurICPColor[1] !=3D "")=20
+			color =3D aCurICPColor[1];
+	}
+	else
+	{
+		color =3D IsMSMenu? aDefMSColor[2] : aDefICPColor[2];
+		if (MenuIDStr =3D=3D CurICPMenu && aCurICPColor[2] !=3D "")=20
+			color =3D aCurICPColor[2];
+	}
+	window.event.srcElement.style.color =3D color;
+}
+
+function doMenu(MenuIDStr)=20
+{
+	var thisMenu =3D document.all(MenuIDStr);
+	if (ToolbarMenu =3D=3D null || thisMenu =3D=3D null || thisMenu =3D=3D =
+ToolbarMenu)=20
+	{
+		window.event.cancelBubble =3D true;
+		return false;
+	}
+	// Reset dropdown menu
+	window.event.cancelBubble =3D true;
+	ToolbarMenu.style.display =3D "none";
+	showElement("SELECT");
+	showElement("OBJECT");
+	showElement("IFRAME");
+	ToolbarMenu =3D thisMenu;
+	IsMSMenu =3D (MenuIDStr.toUpperCase().indexOf("MS_") !=3D -1);
+
+	// Set dropdown menu display position
+	x  =3D window.event.srcElement.offsetLeft +
+	 	 window.event.srcElement.offsetParent.offsetLeft;
+	if (MenuIDStr =3D=3D LastMSMenu)=20
+		x +=3D (window.event.srcElement.offsetWidth - =
+thisMenu.style.posWidth);
+	y  =3D (IsMSMenu)?=20
+		 (idRow1.offsetHeight) :
+		 (idRow1.offsetHeight + idRow2.offsetHeight + idRow3.offsetHeight);
+
+	// Get main menu width
+	x2 =3D x + (MenuIDStr =3D=3D LastMSMenu? thisMenu.style.posWidth : =
+window.event.srcElement.offsetWidth);
+	// Get dropdown menu width
+	x3 =3D x + 160;
+	for (i =3D 0; i < TotalMenu; i++)
+		if (arrMenuInfo[i].IDStr =3D=3D MenuIDStr)
+		{
+			x3 =3D x+ arrMenuInfo[i].unit;
+			break;
+		}
+	thisMenu.style.top  =3D y;
+	thisMenu.style.left =3D x;
+	thisMenu.style.clip =3D "rect(0 0 0 0)";
+	thisMenu.style.display =3D "block";
+
+	// delay 2 millsecond to allow the value of ToolbarMenu.offsetHeight be =
+set
+	window.setTimeout("showMenu()", 2);
+	return true;
+}
+
+function showMenu()=20
+{
+	if (ToolbarMenu !=3D null)=20
+	{=20
+		IsMenuDropDown =3D (Frame_Supported && IsMSMenu =3D=3D false)? false : =
+true;
+		if (IsMenuDropDown =3D=3D false)
+		{
+			y =3D (y - ToolbarMenu.offsetHeight - idRow3.offsetHeight);
+			if (y < 0) y =3D 0;
+			ToolbarMenu.style.top =3D y;
+		}
+		// Get dropdown menu height
+		y2 =3D y + ToolbarMenu.offsetHeight;
+
+		ToolbarMenu.style.clip =3D "rect(auto auto auto auto)";
+		hideElement("SELECT");
+		hideElement("OBJECT");
+		hideElement("IFRAME");
+	}
+}
+
+function hideMenu()
+{
+	if (ToolbarMenu !=3D null && ToolbarMenu !=3D StartMenu)=20
+	{
+		var cX =3D event.clientX + document.body.scrollLeft;
+		var cY =3D event.clientY + document.body.scrollTop;
+		var bHideMenu =3D true;
+
+		if (IsMenuDropDown =3D=3D true)
+		{
+			if (cY >=3D (y - idRow3.offsetHeight+10) && cY < y)
+			{
+				if (cX >=3D (x+5) && cX <=3D x2) bHideMenu =3D false;
+			}
+			else if (cY >=3D y && cY <=3D y2)
+			{
+				if (cX > (x+5) && cX <=3D x3) bHideMenu =3D false;
+			}
+		}
+		else
+		{
+			if (cY >=3D y2 && cY < (y2 + idRow3.offsetHeight))
+			{
+				if (cX >=3D (x+5) && cX <=3D x2) bHideMenu =3D false;
+			}
+			else if (cY >=3D y && cY <=3D y2)
+			{
+				if (cX > (x+5) && cX <=3D x3) bHideMenu =3D false;
+			}
+		}
+
+		if (! bHideMenu)=20
+		{
+			window.event.cancelBubble =3D true;
+			return;=20
+		}
+
+		ToolbarMenu.style.display =3D "none";
+		ToolbarMenu =3D StartMenu;
+		window.event.cancelBubble =3D true;
+
+		showElement("SELECT");
+		showElement("OBJECT");
+		showElement("IFRAME");
+	}
+}
+
+function hideElement(elmID)
+{
+	for (i =3D 0; i < document.all.tags(elmID).length; i++)
+	{
+		obj =3D document.all.tags(elmID)[i];
+		if (! obj || ! obj.offsetParent)
+			continue;
+
+		// Find the element's offsetTop and offsetLeft relative to the BODY =
+tag.
+		objLeft   =3D obj.offsetLeft;
+		objTop    =3D obj.offsetTop;
+		objParent =3D obj.offsetParent;
+		while (objParent.tagName.toUpperCase() !=3D "BODY")
+		{
+			objLeft  +=3D objParent.offsetLeft;
+			objTop   +=3D objParent.offsetTop;
+			objParent =3D objParent.offsetParent;
+		}
+		// Adjust the element's offsetTop relative to the dropdown menu
+		objTop =3D objTop - y;
+
+		if (x > (objLeft + obj.offsetWidth) || objLeft > (x + =
+ToolbarMenu.offsetWidth))
+			;
+		else if (objTop > ToolbarMenu.offsetHeight)
+			;
+		else if (IsMSMenu && (y + ToolbarMenu.offsetHeight) <=3D 80)
+			;
+		else
+			obj.style.visibility =3D "hidden";
+	}
+}
+
+function showElement(elmID)
+{
+	for (i =3D 0; i < document.all.tags(elmID).length; i++)
+	{
+		obj =3D document.all.tags(elmID)[i];
+		if (! obj || ! obj.offsetParent)
+			continue;
+		obj.style.visibility =3D "";
+	}
+}
+
+function formatURL(URLStr, InstrumentStr)
+{
+	var tempStr =3D URLStr;
+
+	if (DoInstrumentation && URLStr !=3D "" )
+	{
+		var ParamPos1 =3D URLStr.indexOf("?");
+		var ParamPos2 =3D URLStr.lastIndexOf("?");
+		var ParamPos3 =3D URLStr.toLowerCase().indexOf("target=3D");
+		var ParamPos4 =3D URLStr.indexOf("#");
+		var Bookmark  =3D "";
+		var URL =3D URLStr;
+		if (ParamPos4 >=3D 0)
+		{
+		 	URL =3D URLStr.substr(0, ParamPos4);
+			Bookmark =3D URLStr.substr(ParamPos4);
+		}
+	=09
+		if (ParamPos1 =3D=3D -1)
+			tempStr =3D "?MSCOMTB=3D";
+		else if (ParamPos1 =3D=3D ParamPos2 && ParamPos3 =3D=3D -1)=09
+			tempStr =3D "&MSCOMTB=3D";
+		else if (ParamPos1 =3D=3D ParamPos2 && ParamPos3 !=3D -1)=09
+			tempStr =3D "?MSCOMTB=3D";
+		else if (ParamPos1 < ParamPos2)
+			tempStr =3D "&MSCOMTB=3D";
+
+		tempStr =3D URL + tempStr + InstrumentStr.replace(" ","%20") + =
+Bookmark;
+	}
+	return tempStr;
+}
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: application/x-javascript
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/library/toolbar/en-us/global.js
+
+var ToolBar_Supported =3D ToolBar_Supported ;
+if (ToolBar_Supported !=3D null && ToolBar_Supported =3D=3D true)
+{
+	//To Turn on/off Instrumentation set DoInstrumentation =3D true/false.
+	DoInstrumentation=3D false;
+
+	// Customize default MS menu color - bgColor, fontColor, mouseoverColor
+	setDefaultMSMenuColor("#000000", "white", "red");
+
+	// Customize toolbar background color
+	setToolbarBGColor("white");
+
+	// display default ICP Banner
+	=
+setICPBanner("/library/toolbar/images/banner.gif","/isapi/gomscom.asp?tar=
+get=3D/","microsoft.com Home") ;
+=09
+	// display MSCOM Banner
+	setMSBanner("mslogo.gif","/isapi/gomscom.asp?target=3D/","microsoft.com =
+Home") ;
+
+	// display ADS
+	//setAds("/library/toolbar/images/ADS/ad.gif","","") ;
+
+	//***** Add Standard Microsoft.com menus *****
+	//ProductsMenu	=09
+	addMSMenu("ProductsMenu", "All Products", =
+"","/isapi/gomscom.asp?target=3D/catalog/default.asp?subid=3D22");
+	=
+addMSSubMenu("ProductsMenu","Downloads","/isapi/gomscom.asp?target=3D/dow=
+nloads/");
+	addMSSubMenu("ProductsMenu","MS Product =
+Catalog","/isapi/gomscom.asp?target=3D/catalog/default.asp?subid=3D22");
+	addMSSubMenu("ProductsMenu","Microsoft =
+Accessibility","/isapi/gomscom.asp?target=3D/enable/");
+	addMSSubMenuLine("ProductsMenu");
+	addMSSubMenu("ProductsMenu","Server =
+Products","/isapi/gomscom.asp?target=3D/servers/");
+	addMSSubMenu("ProductsMenu","Developer =
+Tools","/isapi/gomsdn.asp?target=3D/vstudio/");
+	addMSSubMenu("ProductsMenu","Office =
+Family","/isapi/gomscom.asp?target=3D/office/");
+	addMSSubMenu("ProductsMenu","Windows =
+Family","/isapi/gomscom.asp?target=3D/windows/");
+	addMSSubMenu("ProductsMenu","MSN","http://www.msn.com/");
+
+	//SupportMenu
+	addMSMenu("SupportMenu", "Support", =
+"","/isapi/gosupport.asp?target=3D/directory/");
+	addMSSubMenu("SupportMenu","Knowledge =
+Base","http://support.microsoft.com/search/");
+	addMSSubMenu("SupportMenu","Product Support =
+Options","/isapi/gosupport.asp?target=3D/directory/");
+	addMSSubMenu("SupportMenu","Service Partner =
+Referrals","/isapi/gomscom.asp?target=3D/biz/provider/default.asp");
+	addMSSubMenu("SupportMenu","Year 2000 =
+Compliance","/isapi/gomscom.asp?target=3D/technet/year2k/product/product.=
+asp");
+
+	//SearchMenu
+	addMSMenu("SearchMenu", "Search", =
+"","/isapi/gosearch.asp?target=3D/us/default.asp");				=09
+	addMSSubMenu("SearchMenu","Search =
+microsoft.com","/isapi/gosearch.asp?target=3D/us/default.asp");
+	addMSSubMenu("SearchMenu","MSN Web Search","http://search.msn.com/");
+
+	//MicrosoftMenu								=09
+	addMSMenu("MicrosoftMenu", "microsoft.com Guide", =
+"","/isapi/gomscom.asp?target=3D/");
+	addMSSubMenu("MicrosoftMenu","microsoft.com =
+Home","/isapi/gomscom.asp?target=3D/");
+	addMSSubMenu("MicrosoftMenu","MSN Home","http://www.msn.com/");
+	addMSSubMenuLine("MicrosoftMenu");
+	addMSSubMenu("MicrosoftMenu","Contact =
+Us","/isapi/goregwiz.asp?target=3D/regwiz/forms/contactus.asp");
+	=
+addMSSubMenu("MicrosoftMenu","Events","http://events.microsoft.com/events=
+/");
+	=
+addMSSubMenu("MicrosoftMenu","Newsletters","/isapi/goregwiz.asp?target=3D=
+/regsys/pic.asp?sec=3D0");
+	addMSSubMenu("MicrosoftMenu","Profile =
+Center","/isapi/goregwiz.asp?target=3D/regsys/pic.asp");
+	addMSSubMenu("MicrosoftMenu","Training & =
+Certification","/isapi/gomscom.asp?target=3D/train_cert/");
+	addMSSubMenu("MicrosoftMenu","Free E-mail =
+Account","http://www.hotmail.com/");
+}
+
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: application/x-javascript
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/js/local.js
+
+var ToolBar_Supported =3D ToolBar_Supported ;
+if (ToolBar_Supported !=3D null && ToolBar_Supported =3D=3D true)
+{
+	//To Turn on/off Frame support, set Frame_Supported =3D true/false.
+	Frame_Supported =3D false;
+
+	// Customize default ICP menu color - bgColor, fontColor, =
+mouseoverColor
+	setDefaultICPMenuColor("99CCFF", "#000000", "#FF3300");
+
+	// Customize toolbar background color
+	setToolbarBGColor("#FFFFFF");
+	// setToolbarBGColor("#000000");
+
+	// display ICP Banner
+	=
+setICPBanner("/msdn-online/shared/graphics/banners/home-banner.gif","/msd=
+n-online/default.asp","MSDN Online") ;
+
+	//***** Add ICP menus *****
+
+	// HOME
+	addICPMenu("homeMenu", " Home", "", "/default.asp");
+
+	// Magazines
+	addICPMenu("magMenu", " Magazines", "", "/resources/magazines.asp");
+	addICPSubMenu("magMenu", " Voices", "/voices/");
+	addICPSubMenu("magMenu", " MSDN Magazine", "/msdnmag/");
+	addICPSubMenu("magMenu", " MSJ", "/isapi/gomscom.asp?TARGET=3D/msj/");
+	addICPSubMenu("magMenu", " MIND", =
+"/isapi/gomscom.asp?TARGET=3D/mind/");
+	addICPSubMenu("magMenu", " MSDN Newspaper", "/voices/news/");
+	addICPSubMenu("magMenu", " MSDN Show", "/theshow/");
+
+	// LIBRARIES
+	addICPMenu("libMenu", " Libraries", "", "/resources/libraries.asp");
+	addICPSubMenu("libMenu", " MSDN Library Home", "/library/default.asp");
+	addICPSubMenu("libMenu", " Web Workshop Home", "/workshop/");
+	addICPSubMenu("libMenu", " Code Center", "/code/");
+
+	// DEVELOPER CENTERS
+	addICPMenu("devctrMenu", " Developer Centers", "", =
+"/resources/devcenters.asp");
+	addICPSubMenu("devctrMenu", " DirectX", "/directx/");
+	addICPSubMenu("devctrMenu", " Exchange", "/exchange/");
+	addICPSubMenu("devctrMenu", " Internet Explorer", "/ie/");
+	addICPSubMenu("devctrMenu", " SQL Server", "/sqlserver/");
+	addICPSubMenu("devctrMenu", " Visio", "/visio/");
+	addICPSubMenu("devctrMenu", " Windows 2000", "/windows2000/");
+	addICPSubMenu("devctrMenu", " Windows Media", "/windowsmedia/");
+	addICPSubMenu("devctrMenu", " XML", "/xml/default.asp");
+
+	// RESOURCES
+	addICPMenu("resourcesMenu", " Resources", "", "/resources/");
+	addICPSubMenu("resourcesMenu", " Code Center", "/code/");
+	addICPSubMenu("resourcesMenu", " Bug Center", "/bugs/");
+	addICPSubMenu("resourcesMenu", " DLL Help Database", =
+"/isapi/gosupport.asp?TARGET=3D/servicedesks/fileversion/default.asp?vart=
+arget=3Dmsdn");
+	addICPSubMenu("resourcesMenu", " Support Home", =
+"/isapi/gosupport.asp?TARGET=3D/servicedesks/msdn/");
+	addICPSubMenu("resourcesMenu", " Newsgroups", "/newsgroups/");
+	addICPSubMenu("resourcesMenu", " Peer Journal", "/peerjournal/");
+	addICPSubMenu("resourcesMenu", " Members Helping Members", =
+"/community/mhm/");
+	addICPSubMenu("resourcesMenu", " User Groups", =
+"/resources/usergroup/");
+	addICPSubMenu("resourcesMenu", " Chats", "/chats/");
+	addICPSubMenu("resourcesMenu", " Training", "/training/");
+	addICPSubMenu("resourcesMenu", " Events", "/events/");
+	addICPSubMenu("resourcesMenu", " Developer Books", =
+"/resources/books.asp");
+	addICPSubMenu("resourcesMenu", " MSDN for Students", "/students/");
+	addICPSubMenu("resourcesMenu", " Component Resources", =
+"/componentresources/");
+
+	// DOWNLOADS
+	addICPMenu("dlMenu", " Downloads", "", "/downloads/default.asp");
+	addICPSubMenu("dlMenu", " Service Packs", =
+"/downloads/c-frame.htm?001#/downloads/spacks/");
+	addICPSubMenu("dlMenu", " Sample Code/Applications", =
+"/downloads/c-frame.htm?002#/downloads/samples/");
+	addICPSubMenu("dlMenu", " Tools and Utilities", =
+"/downloads/c-frame.htm?003#/downloads/tools/");
+	addICPSubMenu("dlMenu", " Beta and Preview Releases", =
+"/downloads/c-frame.htm?004#/downloads/betas/");
+	addICPSubMenu("dlMenu", " Images", =
+"/downloads/c-frame.htm?005#/downloads/images/");
+	addICPSubMenu("dlMenu", " Sounds", =
+"/downloads/c-frame.htm?006#/downloads/sounds/");
+	addICPSubMenu("dlMenu", " SDKs", =
+"/downloads/c-frame.htm?007#/downloads/sdks/");
+	addICPSubMenu("dlMenu", " MSDN Subscriber Downloads", =
+"/subscriptions/resources/subdwnld.asp");
+
+	// SEARCH MSDN
+	addICPMenu("searchMenu", " Search MSDN", "", =
+"/isapi/gosearch.asp?TARGET=3D/us/dev/default.asp");
+}
+------=_NextPart_000_0000_01BFECD2.DBFEA810
+Content-Type: application/x-javascript
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://msdn.microsoft.com/msdn-online/shared/js/stealth.js
+
+
+	if (4 <=3D parseInt(navigator.appVersion))
+	{
+
+		// TURN DIVIDER LINE WHITE
+
+		var aMenus =3D new Array("mag","lib","devctr","resources","dl");
+		for (var i=3D0;i<aMenus.length;i++)
+		{
+			if (eMenu =3D document.all["ICP_" + aMenus[i] + "Menu"])
+			{
+				if (eHR =3D eMenu.children(0))
+				{
+					if ("HR" =3D=3D eHR.tagName.toUpperCase())
+					{
+						eHR.style.color =3D "white";
+					}
+				}
+			}
+		}
+
+	//	SET WIDTH FOR MENUS (SEE LOCAL.JS)
+
+	if ("object" =3D=3D typeof(ICP_devctrMenu)) ICP_devctrMenu.style.width =
+=3D "180px";
+	if ("object" =3D=3D typeof(ICP_resourcesMenu)) =
+ICP_resourcesMenu.style.width =3D "170px";
+	if ("object" =3D=3D typeof(ICP_dlMenu)) ICP_dlMenu.style.width =3D =
+"170px";
+
+
+	}
+
+	// REMOVE LAST PIPE (AFTER SEARCH) ON ICP TB
+
+	function RemoveLastPipe()
+	{
+		if ((eLink =3D document.all["AM_ICP_searchMenu"]) && (eSpan =3D =
+document.all[eLink.sourceIndex + 2]))
+		{
+			if (eSpan.innerHTML && eSpan.innerHTML=3D=3D"|") eSpan.innerHTML =3D =
+"";
+		}
+	}
+------=_NextPart_000_0000_01BFECD2.DBFEA810--

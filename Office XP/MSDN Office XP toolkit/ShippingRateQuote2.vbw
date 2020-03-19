@@ -1,0 +1,7 @@
+SMOGHelp = 66, 66, 602, 484, 
+modGETRATE_ = 22, 22, 558, 440, 
+GetRate = 0, 0, 0, 0, C
+QuoteRequest = 0, 0, 0, 0, C
+modGETRATERESPONSE_ = 44, 44, 580, 462, 
+GetRateResponse = 0, 0, 0, 0, C
+Quote = 0, 0, 0, 0, C

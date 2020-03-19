@@ -1,0 +1,564 @@
+//<script language="javascript">
+//     author: Philip Wolfe
+//    contact: www.philipwolfe.com
+//    version: 1.0b
+//
+// copyrights:
+//	Philip Wolfe
+//
+//	(If you feel that some of this is your code, you may contact
+//	 me to be listed under copyrights.)
+
+
+var VB4JS_VERSION = 1.0;
+
+/******************************************************\
+** Visual Basic Constants
+\******************************************************/
+
+/******************************************************\
+** Private Variables (not to be used directly)
+\******************************************************/
+
+/******************************************************\
+** Visual Basic Functions
+\******************************************************/
+function Abs(Number) {//Function Returns the absolute value of a number.
+	if(/^(((\+|-)?\d+(\.\d*)?)|((\+|-)?(\d*\.)?\d+))$/.test(Number)){
+		return(Number>=0?Number:Number*-1);
+	}
+	return null;
+}
+function jArray(arglist) {//Function Returns a Variant containing an array.(renamed so not to conflict with builtin Array)
+	var arr = new Array();
+	for(i=0;i<jArray.arguments.length;i++){
+		arr.pop(jArray.arguments[i]);
+	}
+	return arr;
+}
+function Asc(string) {//Function Returns the ANSI character code corresponding to the first letter in a string.
+	return(string==null?null:string.charCodeAt(0));
+}
+function Atn(number) {//Function Returns the arctangent of a number.
+	return Math.atan(number);
+}
+function CBool(expression) {//Function Returns an expression that has been converted to a Variant of subtype Boolean.
+	return(eval(expression)?true:false);
+}
+function CByte(expression) {//Function Returns an expression that has been converted to a Variant of subtype Byte.
+	var num = eval(expression);
+	return num<=255?Math.round(num):null;
+}
+function CCur(expression) {//Function Returns an expression that has been converted to a Variant of subtype Currency.
+	var num = eval(expression);
+	return Math.round(num*10000)/10000;
+}
+function CDate(expression) {//Function Returns an expression that has been converted to a Variant of subtype Date.
+	return Date.parse(expression);
+}
+function CDbl(expression) { //Function Returns an expression that has been converted to a Variant of subtype Double.
+	expression = eval(expression);
+	var significantdigits = String(expression).length - String(expression).indexOf(".");
+	if(significantdigits>expression.length)
+		significantdigits = 1;
+	else
+		significantdigits = Math.pow(10,significantdigits);
+	return isNaN(parseFloat(expression))?NaN:parseFloat((expression * significantdigits) / significantdigits);
+}
+function Chr(charcode) {/* Function Returns the character associated with the specified ANSI character code.*/
+	if(charcode>=0&&charcode<=127){return String.fromCharCode(charcode);}else{return null;}
+}
+function CInt(expression) { /*Function Returns an expression that has been converted to a Variant of subtype Integer. */
+	return parseInt(eval(expression),0);
+}
+function CLng(expression) { /*Function Returns an expression that has been converted to a Variant of subtype Long. */
+	return parseFloat(eval(expression));
+}
+function Cos(number) {/* Function Returns the cosine of an angle. */
+	return Math.cos(number);
+}
+function CreateObject(obj) {/*Function Creates and returns a reference to an Automation object.*/
+	var object = new ActiveXObject(obj);return object;
+}
+function CSng(expression) { /*Function Returns an expression that has been converted to a Variant of subtype Single. */
+	return Number(eval(expression));
+}
+function CStr(expression) { /*Function Returns an expression that has been converted to a Variant of subtype String.*/
+	var s = new String(eval(expression));
+	return s.toString();
+}
+function jDate() { /*Function Returns the current system date.*/
+
+}
+function DateAdd(interval, number, date) {/*Function Returns a date to which a specified time interval has been added.*/
+	if(!/^[+-]?\d*$/.test(number)){return null;}
+	if(/^((\d{1}|[0-1][0-9])\/(\d{1}|[0-3][0-9])\/([0-9]{2}|[1-2][0-9]{3}))$/.test(date)){
+		var i1,i2,nMon,nDay,nYear;
+		var aDaysInMonth=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+		var nMinYear=1900;
+		i1=date.indexOf("/");
+		nMon=parseInt(date.substring(0,i1));
+		i2=date.indexOf("/", i1+1);
+		nDay=parseInt(date.substring(i1+1,i2));
+		nYear=parseInt(date.substring(i2+1));
+		if(nYear<20){nYear+=2000;}
+		else if(nYear>=20&&nYear<=100){nYear+=1900;}
+		else if(nYear>=100&&nYear<1000){return null;}
+		if(nMon<1||nMon>12){return null;}
+		if(nYear<nMinYear){return null;}
+		if(nDay<1){return null;}
+		aDaysInMonth[1]=(((nYear%4==0)&&((!(nYear%100==0))||(nYear%400==0)))?29:28);
+		if(nDay>aDaysInMonth[nMon-1]){return null;}
+
+		switch(interval) {
+			case "yyyy" : //year
+				nYear+=number;
+				if(2==nMon){nDay=((((0==nYear%4)&&((!(0==nYear%100))||(0==nYear%400)))?29:28));}
+				break;
+			case "q" : //quarter
+				if(nDay>=aDaysInMonth[nMon-1]){nDay=aDaysInMonth[(nMon-1+number)%12+1-1];}
+				nMon=(nMon-1+number)%12+1;
+				break;
+			case "m" : //month
+				if(nDay>=aDaysInMonth[nMon-1]){nDay=aDaysInMonth[(nMon-1+number)%12+1-1];}
+			    nYear += Math.floor((nMon - 1 + number) / 12);
+			    nMon = (nMon-1+number)%12+1;
+			    break;
+			case "d" : //day
+			    
+			    break;
+			case "y" : //day of year
+			case "w" : //weekday
+			case "ww" : //week of year
+			case "h" : //hour
+			case "n" : //minute
+			case "s" : //second
+			default :
+				return null;
+				break;
+		}
+		return nMon + "/" + nDay + "/" + nYear;
+	}
+	else{return null;}
+	
+}
+function DateDiff(date1, date2) {/*DateDiff Function Returns the number of intervals between two dates.  */
+    var datediff = date1.getTime() - date2.getTime();
+    return (datediff / (24*60*60*1000));
+}
+/*DatePart Function Returns the specified part of a given date. 
+DateSerial Function Returns a Variant of subtype Date for a specified year, month, and day. 
+DateValue Function Returns a Variant of subtype Date.*/ 
+function Day(date) {/*Function Returns a whole number between 1 and 31, inclusive, representing the day of the month.*/
+	if(/^((\d{1}|[0-1][0-9])\/(\d{1}|[0-3][0-9])\/([0-9]{2}|[1-2][0-9]{3}))$/.test(date)){
+		var i1,i2,nMon,nDay,nYear;
+		var aDaysInMonth=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+		var nMinYear=1900;
+		i1=date.indexOf("/");
+		nMon=parseInt(date.substring(0,i1));
+		i2=date.indexOf("/", i1+1);
+		nDay=parseInt(date.substring(i1+1,i2));
+		nYear=parseInt(date.substring(i2+1));
+		if(nYear<20){nYear+=2000;}
+		else if(nYear>=20&&nYear<=100){nYear+=1900;}
+		else if(nYear>=100&&nYear<1000){return "";}
+		if(nMon<1||nMon>12){return "";}
+		if(nYear<nMinYear){return "";}
+		if(nDay<1){return "";}
+		aDaysInMonth[1]=(((nYear%4==0)&&((!(nYear%100==0))||(nYear%400==0)))?29:28);
+		if(nDay>aDaysInMonth[nMon-1]){return "";}
+		else{return nDay;}
+	}
+	else if(date==null){return null;}
+	else{return "";}
+}
+function Eval(javascriptexpression) { /*Function Evaluates an expression and returns the result. */
+	return eval(javascriptexpression);
+}
+function Exp(number) {/* Function Returns e (the base of natural logarithms) raised to a power. */
+	var result;
+	result=Math.exp(number);
+	return(isFinite(result)?result:"");
+}
+function Filter(arrInputStrings,Value,Include,Compare) { /*Filter Function Returns a zero-based array containing subset of a string array based on a specified filter criteria.*/
+	var arrReturn = new Array();
+	var include = (Filter.arguments[2]?true:false);
+	var compare=(Filter.arguments[3]==1?1:0);
+	if(typeof(arrInputStrings)=="object"){
+		if(arrInputStrings!=null){
+			if(arrInputStrings.constructor==Array) {
+				for(i=0;i<arrInputStrings.length;i++) {
+					//TODO: Test array item aginst Value
+				}
+			}else {
+				return null;
+			}
+		}else {
+			return null;
+		}
+	}else {
+		return null;
+	}
+}
+function Fix(number) { /*Function Returns the integer portion of a number. */
+	return Math.floor(number);
+}
+function FormatCurrency() { /*Function Returns an expression formatted as a currency value using the currency symbol defined in the system control panel. */
+
+}
+function FormatDateTime() { /*Function Returns an expression formatted as a date or time.*/
+
+}
+function FormatNumber() { /*Function Returns an expression formatted as a number.*/
+
+}
+function FormatPercent(expression) { /*Function Returns an expression formatted as a percentage (multiplied by 100) with a trailing % character.*/
+	var s = new String(eval(expression)*100);
+	return s+"%";
+}
+function GetLocale() { /*Function Returns the current locale ID value.*/
+
+}
+function GetObject() { /*Function Returns a reference to an Automation object from a file. */
+
+}
+function GetRef() { /*Function Returns a reference to a procedure that can be bound to an event. */
+
+}
+function Hex() { /*Function Returns a string representing the hexadecimal value of a number. */
+
+}
+function Hour(time) { /*Function Returns a whole number between 0 and 23, inclusive, representing the hour of the day.*/
+	if(/^(\d{1,2}):(\d{2})(:(\d{2}))?(\s?(AM|am|PM|pm))?$/.test(time)){
+		var arrTime = time.match(/^(\d{1,2}):(\d{2})(:(\d{2}))?(\s?(AM|am|PM|pm))?$/);
+		if(arrTime==null)return null;
+		var hour = arrTime[1];
+		var ampm = arrTime[6];
+		ampm=ampm.toUpperCase();
+		if(hour<0||hour>23)return"";
+		if(hour<12&&ampm=="PM")return Number(hour)+12;
+		return hour;
+	}
+	return"";
+}
+function InputBox(strprompt, title, defaultvalue) { /*Function Displays a prompt in a dialog box, waits for the user to input text or click a button, and returns the contents of the text box. */
+	return window.prompt(strprompt, defaultvalue);
+}
+function InStr(start, string1, string2) {//Function Returns the position of the first occurrence of one string within another.  
+	var pos=0;
+	var compare=(InStr.arguments[3]==null?0:InStr.arguments[3]);
+	if(string1==null)return null;
+	if(string2==null)return null;
+	if(string1.length<1)return 0;
+	if(string2.length<1)return start;
+	if(start<=-1)start=0;
+	if(start>string1.length)return 0;
+	if(start>0)start--;
+	if(compare!=0){
+		string1=string1.toUpperCase();
+		string2=string2.toUpperCase();
+	}
+	for(i=start;i<string1.length;i++){
+		if(string1.substr(i,string2.length)==string2){pos=i+1;break;}
+	}
+	return pos;
+}
+function InStrRev(string1, string2) {//Function Returns the position of an occurrence of one string within another, from the end of string.
+	var pos=0;
+	var start=(InStrRev.arguments[2]==null?-1:InStrRev.arguments[2]);
+	var compare=(InStrRev.arguments[3]==null?0:InStrRev.arguments[3]);
+	if(string1==null)return null;
+	if(string2==null)return null;
+	if(string1.length<1)return 0;
+	if(string2.length<1)return start;
+	if(start<=-1)start=string1.length;if(start>string1.length)return 0;
+	if(start>0)start--;
+	if(compare!=0){
+		string1=string1.toUpperCase();
+		string2=string2.toUpperCase();
+	}
+	for(i=start;i>-1;i--){
+		if(string1.substr(i,string2.length)==string2){pos=i+1;break;}
+	}
+	return pos;
+}
+function Int(number) {//Function Returns the integer portion of a number.  
+	if(/^(((\+|-)?\d+(\.\d*)?)|((\+|-)?(\d*\.)?\d+))$/.test(number)){
+		var start,end,fraction,n;
+		start=0;
+		end=number.indexOf(".");
+		if(end==-1)end=number.length;
+		n=number.substring(start,end);
+		fraction=number.substring(end,number.length);
+		if(fraction>0){return n-1;}
+		else{return n;}
+	}
+}
+function IsArray(varname) {// Function Returns a Boolean value indicating whether a variable is an array.
+	if(typeof(varname)=="object"){
+		if(varname!=null){return(varname.constructor==Array?true:false);}
+	}
+	return false;
+}
+function IsDate(expression) {//Function Returns a Boolean value indicating whether an expression can be converted to a date.
+	expression = eval(expression);
+	if(/^((\d{1}|[0-1][0-9])\/(\d{1}|[0-3][0-9])\/([0-9]{2}|[1-2][0-9]{3}))$/.test(expression)){
+		var i1,i2,nMon,nDay,nYear;
+		var aDaysInMonth=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+		var nMinYear=1900;
+		i1=expression.indexOf("/");
+		nMon=parseInt(expression.substring(0,i1));
+		i2=expression.indexOf("/", i1+1);
+		nDay=parseInt(expression.substring(i1+1,i2));
+		nYear=parseInt(expression.substring(i2+1));
+		if(nYear<20){nYear+=2000;}
+		else if(nYear>=20&&nYear<=100){nYear+=1900;}
+		else if(nYear>=100&&nYear<1000){return false;}
+		if(nMon<1||nMon>12){return false;}
+		if(nYear<nMinYear){return false;}
+		if(nDay<1){return false;}
+		aDaysInMonth[1]=(((nYear%4==0)&&((!(nYear%100==0))||(nYear%400==0)))?29:28);
+		if(nDay>aDaysInMonth[nMon-1]){return false;}
+		return true;
+	}
+	else{return false;}
+}
+function IsEmpty(expression){//Function Returns a Boolean value indicating whether a variable has been initialized.\
+	expression=eval(expression);
+	if(typeof(expression)=="undefined"){return true;}
+	if(typeof(expression)=="object"){return false;}
+	if(expression.length==0||expression==""){return true;}
+	return false;
+}
+function IsNull(expression) {//Function Returns a Boolean value that indicates whether an expression contains no valid data (Null).
+	expression=eval(expression);
+	if(typeof(expression)=="undefined")return false;
+	return(expression==null?true:false)
+}
+function IsNumeric(expression) {//Function Returns a Boolean value indicating whether an expression can be evaluated as a number. 
+	return/^(((\+|-)?\d+(\.\d*)?)|((\+|-)?(\d*\.)?\d+))$/.test(eval(expression));
+}
+function IsObject(expression) {//Function Returns a Boolean value indicating whether an expression references a valid Automation object. 
+	expression=eval(expression);
+	return(typeof(expression)=="object"&&expression!=null?true:false);
+}
+function Join(array) { /*Function Returns a string created by joining a number of substrings contained in an array.*/
+	return array.join();
+}
+function LBound(array) { /*Function Returns the smallest available subscript for the indicated dimension of an array. */
+	return 0;
+}
+function LCase(string){/* Function Returns a string that has been converted to lowercase. */
+	return string.toLowerCase();
+}
+function Left(string, length) {/* Function Returns a specified number of characters from the left side of a string. */
+	return string.substr(0, length);
+}
+function Len(string) {/* Function Returns the number of characters in a string or the number of bytes required to store a variable.  */
+	return string.length;
+}
+/*LoadPicture Function Returns a picture object. Available only on 32-bit platforms. */
+function Log(number) {/* Function Returns the natural logarithm of a number. */
+	var result;
+	result = Math.log(number);
+	return (isFinite(result) ? result : "");
+}
+function LTrim(str) {/*LTrim Function Returns a copy of a string without leading spaces. */
+	var i;
+	for(i=0;i<str.length;i++){
+		if(str.charAt(i)!=" "){
+			break;
+		}
+	}
+	
+	return str.substr(i,str.length);
+	//TOTest: return String(strUntrimmed).replace(/^\s*/, '');
+}
+function Mid(string, start) {/* Function Returns a specified number of characters from a string. */
+	var length=(Mid.arguments[2]==null?"":Mid.arguments[2]);
+	return string.substr(start-1, length);
+}
+/*Minute Function Returns a whole number between 0 and 59, inclusive, representing the minute of the hour. 
+Month Function Returns a whole number between 1 and 12, inclusive, representing the month of the year. 
+MonthName Function Returns a string indicating the specified month.  */
+function MsgBox(strprompt, buttons, title) { /*Function Displays a message in a dialog box, waits for the user to click a button, and returns a value indicating which button the user clicked.  */
+	if(buttons==0)
+		window.alert(strprompt);
+	else
+		return window.confirm(strprompt);
+}
+function Now() { /*Now Function Returns the current date and time according to the setting of your computer's system date and time.*/
+    var dt = new Date();
+    return dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
+}
+
+/*Oct Function Returns a string representing the octal value of a number. */
+function Replace(expression, find, replacewith, start, count, compare) { /*Function Returns a string in which a specified substring has been replaced with another substring a specified number of times.*/
+	expression=eval(expression);
+	if(expression.length==0)return;
+	return expression.replace();
+}
+function RGB(red, green, blue) { /*Function Returns a whole number representing an RGB color value.  */
+	
+}
+function Right(string, length) {/* Function Returns a specified number of characters from the right side of a string. */
+	var result, temp;
+	if (!isFinite(length)) {return "";}
+	temp = string.length - 1;
+	result = "";
+	if (length <= temp) {
+		for(i=temp;i>temp - length;i--){
+			result = string.substr(i,1) + result;
+		}
+	}
+	return (length <= temp ? result : string);
+}
+function Rnd() { /*Function Returns a random number.*/
+	return Math.random();
+}
+function Round(number) { /*Function Returns a number rounded to a specified number of decimal places. */
+	return Math.round(number);
+}
+function RTrim(str) {/*RTrim Function Returns a copy of a string without trailing spaces.*/
+	var i;
+	for(i=str.length-1;i>0;i--){
+		if(str.charAt(i)!=" "){
+			break;
+		}
+	}
+	if (i > 0) {
+		i = i + 1;
+	}
+
+	return str.substr(0,i);
+	//ToTest: return String(strUntrimmed).replace(/\s*$/, '');
+}
+function ScriptEngine() { /*Function Returns a string representing the scripting language in use. */
+	return "JScript";
+}/*
+function ScriptEngineBuildVersion() { /*Function Returns the build version number of the scripting engine in use.
+	return 
+}
+ScriptEngineMajorVersion Function Returns the major version number of the scripting engine in use. 
+ScriptEngineMinorVersion Function Returns the minor version number of the scripting engine in use. 
+Second Function Returns a whole number between 0 and 59, inclusive, representing the second of the minute. 
+SetLocale Function Sets the global locale and returns the previous locale. 
+Sgn Function Returns an integer indicating the sign of a number. */
+function Sin(number) {/* Function Returns the sine of an angle. */
+	return Math.sin(number);
+}
+function Space(number) { /*Function Returns a string consisting of the specified number of spaces. */
+	var s = new String();
+	for(i=0;i<number;i++)
+		s+=" ";
+	return s;
+}
+function Split(expression, delemiter, count, compare) { /*Function Returns a zero-based, one-dimensional array containing a specified number of substrings. */
+	var r = new RegExp();
+	if(compare==1)
+		r.ignoreCase=true;
+	if(count==-1)
+		r.global=true;
+		
+	r.source= "/"+delemiter+"/";
+	return expression.split(r);
+}
+function Sqr(number) { /*Function Returns the square root of a number.*/
+	return Math.sqrt(number);
+}
+function StrComp() {//Function Returns a value indicating the result of a string comparison.
+
+}
+//TODO: what to do here
+function vbString(string, length) {//Function Returns a repeating character string of the length specified. 
+	var s = new String();
+	for(i=0;i<length;i++)
+		s+=string;
+	return s;
+}
+function StrReverse() {//Function Returns a string in which the character order of a specified string is reversed.
+
+}
+function Tan(number) {/* Function Returns the tangent of an angle. */
+	return Math.tan(number);
+}
+function Time() {/*Time Function Returns a Variant of subtype Date indicating the current system time.*/
+	var d = new Date();
+	var s = "";
+	if(d.getHours()==0)s+="12:";
+	else if(d.getHours()>12)s+=""+d.getHours()-12+":";
+	else s+=d.getHours()+":";
+	if(d.getMinutes()<10)s+="0"+d.getMinutes()+":";
+	else s+=d.getMinutes()+":";
+	if(d.getSeconds()<10)s+="0"+d.getSeconds();
+	else s+=d.getSeconds();
+	return s;
+}
+/*Timer Function Returns the number of seconds that have elapsed since 12:00 AM (midnight). 
+TimeSerial Function Returns a Variant of subtype Date containing the time for a specific hour, minute, and second. 
+TimeValue Function Returns a Variant of subtype Date containing the time.*/
+function Trim(str) {/*Trim Function Returns a copy of a string without leading or trailing spaces.*/
+	var i,j;
+	for(i=0;i<str.length;i++){
+		if(str.charAt(i)!=" "){
+			break;
+		}
+	}
+	for(j=str.length-1;j>0;j--){
+		if(str.charAt(j)!=" "){
+			break;
+		}
+	}
+	return str.substr(i,(j+1)-i);
+	//ToTest: return String(strUntrimmed).replace(/^\s*/, '').replace(/\s*$/, '');
+}
+/*TypeName Function Returns a string that provides Variant subtype information about a variable. */
+function UBound(arr) {/*UBound Function Returns the largest available subscript for the indicated dimension of an array. */
+	// TODO - make this work like vb when there is only one element.
+	if (arr.constructor == Array) {
+		return arr.length - 1;
+	}
+}
+function UCase(string) {/*Function Returns a string that has been converted to uppercase. */
+	return string.toUpperCase();
+}
+function VarType(obj) {/*VarType Function Returns a value indicating the subtype of a variable. */
+	return typeof(obj);
+}
+function Weekday(date, firstdayofweek) {/*Function Returns a whole number representing the day of the week.*/
+	if(/^((\d{1}|[0-1][0-9])\/(\d{1}|[0-3][0-9])\/([0-9]{2}|[1-2][0-9]{3}))$/.test(date)){
+		var i1,i2,nMon,nDay,nYear;
+		var aDaysInMonth=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+		var nMinYear=1900;
+		i1=date.indexOf("/");
+		nMon=parseInt(date.substring(0,i1));
+		i2=date.indexOf("/", i1+1);
+		nDay=parseInt(date.substring(i1+1,i2));
+		nYear=parseInt(date.substring(i2+1));
+		if(nYear<20){nYear+=2000;}
+		else if(nYear>=20&&nYear<=100){nYear+=1900;}
+		else if(nYear>=100&&nYear<1000){return "";}
+		if(nMon<1||nMon>12){return "";}
+		if(nYear<nMinYear){return "";}
+		if(nDay<1){return "";}
+		aDaysInMonth[1]=(((nYear%4==0)&&((!(nYear%100==0))||(nYear%400==0)))?29:28);
+		if(nDay>aDaysInMonth[nMon-1]){return "";}
+		objDate = new Date(nMon+"/"+nDay+"/"+nYear);
+		return objDate.getDay()+1;
+	}
+	else{return "";}
+}
+function WeekdayName(weekday, abbreviate, firstdayofweek) {/*Function Returns a string indicating the specified day of the week.*/
+	abbreviate=(abbreviate==true?true:false);
+	if(firstdayofweek<1||firstdayofweek>7||firstdayofweek==null){firstdayofweek=1;}
+	if(weekday<1||weekday>7){return null;}
+	var arrDayNames=new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+	var arrShortDayNames=new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+	if(abbreviate){return arrShortDayNames[(((weekday-1)+(firstdayofweek-1))%7)];}
+	else{return arrDayNames[(((weekday-1)+(firstdayofweek-1))%7)];}
+}
+function Year(){/*Year Function Returns a whole number representing the year. */
+	return (parseInt(Date.getYear())<100?parseInt(Date.getYear())+1900:Date.getYear());
+}
+
+//</script>

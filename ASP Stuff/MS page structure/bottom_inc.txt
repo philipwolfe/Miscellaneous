@@ -1,0 +1,26 @@
+<%
+if (oMD.whiteSpace)
+{
+%>
+</TD>
+         </TR>
+        </TABLE>
+<%
+
+}
+	if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") )
+	{
+ %>
+</TD>
+</TR>
+</TABLE>
+<%
+	}
+	
+	//if ((oBD.getsNavBar!=true) && (typeof(oFooter)=="object")) oFooter.Render();
+	if (typeof(oFooter)=="object") oFooter.Render();
+%>
+
+</BODY>
+</HTML>
+

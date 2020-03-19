@@ -1,0 +1,130 @@
+<!-- #include virtual="/library/shared/globals/inc/globals.inc" --><!-- #include virtual="/library/shared/common/inc/browdata.inc" --><!-- #include virtual="/library/shared/common/inc/sqldata.asp" --><!-- #include virtual="/library/shared/common/inc/feature_loader.inc"    --><HTML>
+    <HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1" />
+    <TITLE><%= oMD.title %></TITLE>
+
+    <META NAME="Description" CONTENT="<%= oMD.description %>" />
+    <META NAME="Robots" CONTENT="<%= oMD.robots %>" />
+    <META NAME="Keywords" CONTENT="<%= oMD.keywords %>" />
+    <META NAME="MS.LOCALE" CONTENT="<%= oMD.locale %>" />
+    
+    <BASE TARGET="_top" />
+    
+    <!-- #include virtual="/library/shared/common/inc/header.inc" -->
+    
+    <%
+    
+    // Should add the stuff that header.inc is putting in the page here.
+    
+    fnWriteJs();
+    fnWriteCss();
+    fnWriteHeaderString();
+    if( debug ) Response.Write( sDebugStr );
+    if( "function" == typeof( fnWriteCustomHeader ) ) fnWriteCustomHeader();
+
+    var sBgColor = (oMD.bgColor) ? oMD.bgColor : "#FFFFFF";
+    %>
+
+    </HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="<%=sBgColor%>" TEXT="#000000">
+<%
+    if (typeof(oToolbar)=="object") oToolbar.Render();
+
+    if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") || (typeof(oAppBar)=="object") )
+    {
+%>    
+    <TABLE BORDER="0" CELLPADDING="0" WIDTH="100%" CELLSPACING="0" <%if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") ) Response.Write("Height=\"100%\"");%>>
+    <TR>
+<%
+        if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") )
+        {
+%>
+    <TD VALIGN="top" ALIGN="left" WIDTH="180" <% if (oBD.getsNavBar) {%>Height="100%"<%}%>>
+
+<%  
+        }
+    }
+    
+    if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") )
+    {
+%>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" bgcolor="#6699CC" <% if (oBD.getsNavBar) {%>Height="100%"<%}%>>
+        <TR>
+        <TD VALIGN="top">
+<%
+        if (typeof(oSearchTab)=="object") oSearchTab.Render();
+%>
+        </TD>
+        </TR>
+        <TR>
+        <TD Height="100%" VALIGN="top" bgcolor="#6699CC">
+<%
+       if (typeof(oFlyOutMenu)=="object") oFlyOutMenu.Render();
+       
+       if (typeof(oAdBar)=="object") oAdBar.Render();
+
+%>
+        </TD>
+        </TR>
+        </TABLE>
+<%  
+    }
+    
+    if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") )
+    {
+%>
+    </TD>
+<%  
+    }
+        
+    if ( (typeof(oSearchTab)=="object") || (typeof(oFlyOutMenu)=="object") || (typeof(oAdBar)=="object") )
+    {
+%>
+    <TD ALIGN="left" VALIGN="top"> 
+<%
+    }
+        if ( (typeof(oAppBar)=="object") || (typeof(oEyebrow)=="object") )
+        {
+%>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+        <TR>
+        <TD VALIGN="top" align="left" WIDTH="100%">
+<%
+            if (typeof(oAppBar)=="object") oAppBar.Render();
+            if (typeof(oEyebrow)=="object") oEyebrow.Render();
+%>
+        </TD>
+        </TR>
+        </TABLE>
+<%
+        }
+        
+        if ( (typeof(oRatings)=="object") || (typeof(oComments)=="object") )
+        {
+%>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+        <TR>
+        <TD VALIGN="top" ALIGN="right" WIDTH="100%" STYLE="padding-right:15px;">
+<%
+            if (typeof(oRatings)=="object") oRatings.Render();
+            if (typeof(oComments)=="object") oComments.Render();
+%>
+        </TD>
+        </TR>
+        </TABLE>
+<%  
+        }
+
+    if (oMD.whiteSpace)
+    {
+%>
+<TABLE BORDER="0" class="clsContainer" CELLPADDING="15" CELLSPACING="0" float="left" WIDTH="100%">
+    <TR>
+        <TD VALIGN="top" ALIGN="left">
+<%
+    }
+    
+    if (typeof(oWebParts)=="object") oWebParts.Render();
+%>
+

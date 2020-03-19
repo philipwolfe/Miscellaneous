@@ -1,0 +1,11 @@
+%% 1
+<IMG SRC="http://www.wrox.com/images/wroxlogo.gif">
+<H3><A HREF="http://www.wrox.com">The best programming books!</A></H3>
+
+%% 1
+<IMG SRC="http://www.asptoday.com/images/asptoday.gif">
+<H3><A HREF="http://www.asptoday.com">Up-to-the-minute articles on ASP!</A></H3>
+
+%% 1
+<IMG SRC="http://www.stonebroom.com/images/sslogo34.gif">
+<H3><A HREF="http://www.stonebroom.com">Specialist and bespoke software</A></H3>

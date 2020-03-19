@@ -1,0 +1,352 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: IIS 4.0 and MTS 2.0: Technology for the Web</TITLE>
+
+<META NAME="Description" CONTENT="IIS 4.0 and MTS 2.0: Technology for the Web. Why MTS was integrated into IIS architecture, three major benefits of this integration, and how to develop server-side components that use MTS." />
+<META NAME="Keywords" CONTENT="IIS, MTS, technology" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="James Utzschneider" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg04287.htm#/workshop/server/nextgen/iismts.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg04287.htm#/workshop/server/nextgen/iismts.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg04286.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="TECH" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex;IIS 4.0, integration with MTS;MTS 2.0, integration with IIS">IIS 4.0 and MTS 2.0: Technology for the Web</A></H1>
+<HR SIZE="1" />
+<P>James Utzschneider
+<BR>Microsoft Corporation
+<P>February 6, 1998
+<P>
+<P><a href="iismts.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word format (zipped, 47.1K)</a>.
+<P>
+<a name="top"></a><b>Contents</b>
+<br> <A HREF="iismts.htm#topic1">Introduction</A>
+<BR> <A HREF="iismts.htm#topic2">What Is MTS, and Why Combine It with IIS</A>?
+<BR> <A HREF="iismts.htm#topic3">Using IIS and MTS to Create a Transaction for a Web Page</A>
+<BR> <A HREF="iismts.htm#topic4">Web Server as Application Platform</A>
+<P>
+<h2><A NAME="topic1"></A>Introduction
+</h2>
+<P>When Microsoft shipped Internet Information Server (IIS) 3.0 one year ago, it introduced Active Server Pages (ASP). ASP enables Web developers to write scripts that run on the server or the client. This technology makes it easy for Web developers to build server applications that work with any Internet browser.  An Active Server Page consists of HTML, scripts, and Component Object Model (COM) components that developers combine into a Web application. ASP also separates presentation logic from business logic, enabling three-tier business applications on the Web. (For more information on ASP, see  <A HREF="../../../workshop/server/asp/aspover.htm">An ASP You Can Grasp: The ABCs of Active Server Pages</A> and the  <A HREF="../../../workshop/server/asp/aspfeat.htm">ASP Overview</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.)
+<P>Microsoft Transaction Server (MTS) 2.0 is integrated with IIS 4.0, which recently shipped.  This integration of MTS and ASP makes ASP much more powerful without changing the programming model that made it so successful. This article talks about why MTS was integrated into the IIS architecture, describes the three major benefits of this integration, and shows how easy it is to develop server-side components that use MTS.
+
+<P> <A HREF="iismts.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic2" IDX_TYPE="sbngen" IDX_CONCEPT="MTS 2.0, why combined with IIS;IIS 4.0, why combined with MTS">What Is MTS, and Why Combine It with IIS?</A>
+</h2>
+<P>MTS is a new kind of <i>middleware</i>, software that makes it easier to build and scale distributed applications running on servers. For example, banks, manufacturers, telephone companies, and other large enterprises have run their most important business applications on software like Transaction Processing (TP) Monitor software like IBM's CICS and IMS. A TP Monitor is a type of middleware that enables business applications to scale to support a large number of users and run reliably.  TP Monitors do this by acting as big application <i>multiplexors</i>; that is, they enable system resources like processes and threads to be shared across thousands of concurrent users.  Applications using TP Monitors run reliably through the use of transaction protocols<i> </i>that ensure that work executes properly and writes to disk accurately.
+<P>Unfortunately, developers cannot use modern programming languages like Visual J++&#153; or Visual Basic&#174; to write applications that run on traditional TP Monitors.  To make TP Monitor services easier to use for a broad pool of developers, Microsoft turned to Object Request Brokering (ORB) technology based on COM.
+<P>ORBs, like TP Monitors, are a type of middleware.  ORBs make the development and deployment of distributed applications built from component software easier.  ORBs create objects, know where they are, and provide services separate from the code.  This eliminates network programming and object management from coding.
+<P>In combining TP Monitor technology with ORB technology, MTS pioneered a new type of middleware engine that the Gartner Group called an Object Transaction Monitor, or OTM.  OTMs integrate the scalability and reliability services of a TP Monitor with the distributed object brokering services of an ORB.   In short, MTS serves as a container for COM components running in the middle tier of a three-tier application.
+<P>
+<h3>Easier Server Programming
+</h3>
+<P>Developing server-side components that use MTS is relatively easy for an experienced developer.  MTS components are implemented as "single user" COM DLLs, where developers focus on implementing business functions and not on complex, multiuser programming issues like thread creation or termination and user concurrency in writing middle-tier business logic.
+<P>Developers can write these components in any language that supports COM, including Microsoft Visual Basic, Visual C++&#174;, Visual J++, Sybase PowerBuilder, Borland Delphi, MicroFocus COBOL, and Oracle Objects for OLE.
+<P>MTS enables components to automatically execute within <i>transactions</i>, a software mechanism that ensures that software programs execute reliably. At a low level, MTS uses a two-phase commit protocol to coordinate the participants in the transaction. For example, a Web application designed to sell books on the Internet may involve five components and three database tables.  MTS ensures that <b>all</b> eight of these elements always work together and complete a task, or that <b>none</b> of them do, to make sure that the Web site never has inconsistent or incorrect results.
+<P>Unlike traditional TP Monitors, MTS does not require developers to insert complex transaction processing code directly into their programs.  Developers do not have to write <b>begin transaction</b>, <b>end transaction</b>, enlist specific databases on a transaction, or track transaction IDs across different components or processes.  With MTS, transaction support simply becomes a type attribute of component's class that is configured using the MTS Explorer. The MTS Explorer is hosted within the MMC.
+
+<P><IMG SRC="iismtsfig01.gif"  WIDTH="389" HEIGHT="434" BORDER="0" ALT="*">
+<P><b>Figure 1.  Microsoft Transaction Server Explorer</b>
+<P>
+<h3>Performance
+</h3>
+<P>MTS implements scalability services that enable these "single-user" components to scale to support a large number of concurrent users.  One of these services is a thread pool.  MTS creates and runs multiple component instances -- one for each caller -- within a single process.  This enables single-user components to execute in a multiuser environment without requiring a process-per-user architecture.  The diagram below illustrates this architecture.
+
+<P><IMG SRC="iismtsfig02.gif"  WIDTH="447" HEIGHT="178" BORDER="0" ALT="*">
+<P><B>Figure 2.  Process per single user (left) and MTS single user components in a multiuser environment (right)</b>
+<P>MTS multiplexes connections to system resources.  Often in a distributed application, the system cost of establishing a connection to a back-end resource like a database far exceeds the system cost of the work involved in, for example, updating a record.  To overcome this problem, MTS pools connections to back-end resources like databases.
+<P>Applications based on distributed objects can encounter scalability problems due to difficulties involved with state management.  For example, in a sales management application built with distributed objects with 500 users, there may be 500 concurrent requests from client systems to create a separate instance of a customer object.  500 instances of a customer object that maintains state on a server may cause a server to stall.
+<P>MTS provides two related component state management scalability services:<i> Just-in-Time (JIT) Activation</i> and <i>As Soon as Possible (ASAP)</i> <i>Deactivation</i>.  Here's how they work: clients create components inside of MTS, get a reference to the component, and start working with it.  When a particular set of work is done -- for example, updating a customer record in a sales management system -- a developer makes a call to MTS that deactivates the component.  This releases component state, serves as a transaction boundary, and enables server applications to scale.  The client still maintains a reference to the server component, so the next time it requests work, MTS uses JIT Activation to fire up a new instance of component.  When Microsoft shipped MTS a year ago, it described this capability to activate and deactivate server components as a stateless programming model.  A more accurate description is a <i>state-precise</i> programming model, because MTS enables developers to precisely manage the amount of state stored in server-side components.
+
+<P>
+<h3>Packaging, Cross-Platform Interoperability, and Deployment
+</h3>
+<P>MTS includes a facility for configuring DLL components into <i>application packages</i> that serve as units of execution and deployment.  Packages run in a single system process and serve as a security boundary.  Developers can deploy all of their application components into a single package, and partition the application so that half of the components run in one package and half of the components run in another package.  These two packages can run on separate servers without requiring developers to change how the components are implemented.  Microsoft calls this capability to partition an application across multiple back-end servers <i>static load balancing</i>.
+<P>MTS enables middle-tier components running on Windows NT&#174; Server to integrate with both clients on resource managers that run on legacy platforms.  Windows and UNIX clients can call MTS components via DCOM.  MTS does not require the installation of client-side libraries and has no client footprint.
+   While MTS itself doesn't have a footprint, it may be called by COM components installed on a client machine, using Distributed Component Object Model (DCOM) as the network protocol (you can use the MTS Explorer to automatically install the client side of MTS applications).
+
+<P>MTS uses industry-standard transaction processing protocols to integrate with databases and TP Monitors running on legacy UNIX and mainframe systems.  MTS includes native transaction support for Microsoft SQL Server and Microsoft Message Queue Server using OLE Transactions, a distributed object-based transaction protocol.  MTS implements the Open Groups XA transaction protocol, enabling middle-tier COM applications to work with Oracle, IBM DB2, Informix, and Sybase databases on Windows NT, UNIX, and other platforms.  MTS 2.0 also ships with a transactional ODBC driver for Oracle's driver.
+<P>SNA Server 4.0 includes COM Transaction Integrator (COMTI), formerly known as "Cedar," a technology that enables MTS applications to enlist in mainframe CICS and IMS applications using IBM's SNA LU 6.2 Sync Level 2.  Thus developers can build new, transacted applications using components that integrate with legacy mainframe applications.
+<P>MTS's ability to integrate through transactions Oracle on UNIX, CICS on mainframes, and SQL Server on Windows NT servers creates an <i>application integration</i> environment for middle-tier components that enables companies to leverage investments in existing systems.
+<P>The MTS application environment includes the Transaction Server Explorer, a Microsoft Management Console (MMC) snap-in that provides developers and administrators with a Graphical User Interface (GUI) management environment.  The Explorer enables developers to install components into MTS, configure transaction and security support, deploy MTS applications across clients and server, and monitor transaction throughput and performance.
+
+<P> <A HREF="iismts.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic3" IDX_TYPE="sbngen" IDX_CONCEPT="IIS 4.0, creating page transactions with MTS;MTS 2.0, creating page transactions with IIS">Using IIS and MTS to Create a Transaction for a Web Page</A>
+</h2>
+<P>In addition to DCOM clients, MTS supports HTML clients through Active Server Pages (since the release of IIS 3.0).  An ASP script can invoke a component running inside of MTS, even components that are also being invoked through DCOM clients.  Supporting both "thin" HTML clients and "smart" DCOM clients from a common component-based middle-tier application that is integrated with legacy systems makes IIS with MTS a powerful application platform for Web applications.
+<P>And this powerful platform just got better with IIS 4.0.  In IIS 4.0, ASP uses MTS 2.0 as its application engine.  The two technologies ship together in the Windows NT 4.0 Option Pack, use a common thread pool, and both use Microsoft Management Console (MMC) as a common management console.
+
+<P><IMG SRC="iismtsfig03b.gif"  WIDTH="517" HEIGHT="456" BORDER="0" ALT="*">
+<P><b>Figure 3.  Microsoft Management Console</b>
+<P>IIS 4.0 ASP scripts run as MTS applications.  Developers can configure their Web applications to run out-of-process,<i> </i>enabling the application to execute in its own MTS package.  This provides crash protection for ASP applications.
+<P>The integration of IIS and MTS enables developers to configure their Web pages to execute within an MTS transaction. The ASP script below shows how:
+<P>
+<PRE class=clsCode>&lt;% TRANSACTION=REQUIRED %&gt;
+&lt;%
+...
+Set objAd = Server.CreateObject(&quot;bus_Ad.Ad&quot;)
+objAd.PlaceAd(...)
+...
+Sub OnTransactionCommit()
+  Response.Write "Ad has been placed"
+End Sub
+Sub OnTransactionAbort()
+  Response.Write "Error has occurred"
+End Sub
+%&gt;
+</PRE>
+<P>The &lt;% TRANSACTION = REQUIRED%&gt; tag in an Active Server Page (.asp file) enables MTS to create a transaction for the page.  All components invoked within the page (and subsequent component and database calls that flow from these components) can execute within a single MTS transaction, with full rollback and recovery.
+<P>IIS 4.0 transactional Web pages include <i>transactional events</i> that developers can use to fork application flow based on transaction outcome.  The above example displays different text strings based on transaction outcome.  This is a simple, powerful tool for developers building business applications for the Web.
+<P> <A HREF="iismts.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic4"></A>Web Server as Application Platform
+</h2>
+<P>As developers deploy the next generation of Web applications, they face the dilemma of integrating production applications with Web technology.  The integration of MTS and IIS turns the Web server into an application platform with integrated, enterprise technology for building great applications on the Web.  For additional information on MTS, please visit the MTS Web site.
+<P><i>Author James Utzschneider is the lead program manager for the Microsoft Transaction Server team.</i>
+<P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg04285.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="iismts.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

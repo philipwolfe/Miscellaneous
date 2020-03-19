@@ -1,0 +1,30 @@
+'-- Global.ASA file --
+
+<SCRIPT LANGUAGE=VBSCRIPT RUNAT=SERVER>
+
+Sub Session_OnStart 
+    
+   
+   
+   
+
+
+
+ 
+
+
+
+
+End Sub
+
+
+
+
+
+
+</SCRIPT>
+
+
+'-- End Global.ASA File
+
+ 

@@ -1,0 +1,15 @@
+<%
+var gloc_sCluster = new String("http://msdndev");
+
+var gloc_sConfigFileName = new String("cnfg.xml");
+var gloc_sDefaultCnfgPath = new String("\\library\\shared\\common\\cnfg\\");
+
+var gloc_sDefaultMenuName = new String("menu.xml");
+var gloc_sDefaultMenuPath = new String("\\library\\shared\\common\\");
+var gloc_sDefaultMenuDataPath = new String("/library/shared/common/");
+var gloc_sMenuXSLT = new String("\\library\\shared\\flyoutmenu\\inc\\menu.xsl");
+
+// Netscape Only globals
+var gloc_sMSPath = new String("/library/toolbar/images/");
+%>
+

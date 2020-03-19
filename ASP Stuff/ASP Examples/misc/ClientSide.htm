@@ -1,0 +1,22 @@
+<HTML>
+<HEAD><TITLE>Cookies</TITLE>
+   <SCRIPT LANGUAGE="JavaScript">
+      function doCookie() {
+         var strName = "Name=";
+         if (document.cookie.indexOf(strName) != -1) {
+            intStart = document.cookie.indexOf(strName);
+            intEnd   = document.cookie.length;
+            intLen   = intStart + strName.length;
+            strValue = document.cookie.substring(intLen, intEnd);
+            alert("Welcome, " + unescape(strValue));
+         } else {
+            name = prompt("Enter your name please...", "...in this box");
+            document.cookie = strName + escape(name) + ";";
+            document.location.reload();
+         }
+      }
+   </SCRIPT>
+</HEAD>
+<BODY onLoad=doCookie()>
+</BODY>
+</HTML>

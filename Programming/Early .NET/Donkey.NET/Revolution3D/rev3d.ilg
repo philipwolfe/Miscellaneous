@@ -1,0 +1,9 @@
+          -r3d initialization proccessing--
+          Revolution3D Build 0.8.0
+          local found w/OS Windows 2000
+          check directx8 version OK
+          selected render target window
+          target hWnd 1639126
+          view fov 70
+          view distance 500
+init      device and format enumeration- ok

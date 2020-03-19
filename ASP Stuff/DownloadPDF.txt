@@ -1,0 +1,36 @@
+<%
+	OPTION EXPLICIT
+	
+	Response.Expires = 0
+	Response.ExpiresAbsolute = Now() - 1
+	Response.addHeader "pragma","no-cache"
+	Response.addHeader "cache-control","private"
+	'Response.CacheControl = "no-cache"
+%>
+	<!--#include file="inc_CheckLoggedIn.asp"-->
+<%
+	
+	if not Response.Buffer then Response.Buffer = true
+
+	dim strFileName, strFilePath, objStream, fso, intCharPos
+	
+	strFileName = trim(cstr(Request.QueryString("FileName")))
+
+	strFileName = replace(strFileName, "/", "")
+
+	strFilePath = "D:/inetpub/plic/web/scripts/secure/pdfs1/" & strFileName
+
+	set objStream = server.CreateObject("ADODB.Stream")
+	
+	objStream.Type = 1
+	objStream.Open 
+	objStream.LoadFromFile strFilePath
+
+	Response.ContentType = "application/pdf"
+	Response.AddHeader "Content-disposition", "filename=""some.pdf"""
+	Response.AddHeader "Content-length", objStream.Size
+			
+	Response.BinaryWrite objStream.Read
+	
+	set objStream = nothing
+%>

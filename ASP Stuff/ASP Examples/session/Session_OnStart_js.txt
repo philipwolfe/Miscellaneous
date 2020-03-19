@@ -1,0 +1,20 @@
+// To be pasted in your global.asa file
+
+function Session_OnStart() {
+
+   // Create an instance of the AdRotator component with session-level scope
+   Session("ASPAdRotator") = Server.CreateObject("MSWC.AdRotator");
+
+   Session("Start_Time") = String(Date())        // Store the date/time as a string
+
+   /* We can access the contents of the Request and Response in a Session_OnStart
+      event handler for the page that initiated the session. This is the *only* 
+      place that the ASP page context is available like this.
+      as an example, we can get the IP address of the user: 
+      Session("Your_IP_Address") = Request.ServerVariables("REMOTE_ADDR") */
+
+   Application.Lock();                           //Prevent concurrent updates  
+   intVisits = Application("Visit_Count") + 1;   //Increment counter variable
+   Application("Visit_Count") = intVisits;       //Store back in Application
+   Application.UnLock();                         //Release lock on Application
+}

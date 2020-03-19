@@ -1,0 +1,7 @@
+<?xml version='1.0' ?>
+<Catalog>
+   <Book Author="Alex Homer">
+      <Chapter>Chapter 1</Chapter>
+      <Chapter>Chapter 2</Chapter>
+      <!-- This book needs more chapters! -->
+</Catalog>

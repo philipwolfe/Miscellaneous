@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DonkeyNET", "DonkeyNET.vbproj", "{6FE6A25C-4378-4BDA-B74F-7B1E73E6BBE9}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DonkeyWeb", "http://localhost/DonkeyWeb/DonkeyWeb.vbproj", "{ACA3D223-C837-4B9E-822D-6661029FF9BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6FE6A25C-4378-4BDA-B74F-7B1E73E6BBE9}.Debug.ActiveCfg = Debug|.NET
+		{6FE6A25C-4378-4BDA-B74F-7B1E73E6BBE9}.Release.ActiveCfg = Release|.NET
+		{ACA3D223-C837-4B9E-822D-6661029FF9BE}.Debug.ActiveCfg = Debug|.NET
+		{ACA3D223-C837-4B9E-822D-6661029FF9BE}.Debug.Build.0 = Debug|.NET
+		{ACA3D223-C837-4B9E-822D-6661029FF9BE}.Release.ActiveCfg = Release|.NET
+		{ACA3D223-C837-4B9E-822D-6661029FF9BE}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,37 @@
+<HTML>
+<BODY>
+<SCRIPT language="javascript" defer=true>
+var win = external.menuArguments;
+var doc = win.document;
+var xmldoc = doc.XMLDocument;
+if (!xmldoc)
+{
+    win.alert("Not XML Document.");
+}
+else
+{
+    try
+    {
+        var vdoc = xmldoc.cloneNode(false);
+        vdoc.async = false;
+        vdoc.validateOnParse=true;
+        vdoc.resolveExternals=true;
+        if ( vdoc.load(xmldoc))
+        {
+            win.alert("Validation Successful.\n"+xmldoc.url);
+        }
+        else
+        {
+            var error = vdoc.parseError;
+            win.alert("Parse Error at line "+error.line+" in "+ error.url+"\n"+
+                      "Source: "+error.srcText+"\n\n"+ error.reason);
+        }
+    }
+    catch(e)
+    {
+        alert( "Error in 'Validate XML': "+e.description);
+    }
+}
+</SCRIPT>
+</BODY>
+</HTML>

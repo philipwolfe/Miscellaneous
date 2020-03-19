@@ -1,0 +1,38 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+
+Sub Application_OnStart()
+
+   'Create an instance of an ADO Recordset with application scope
+   Set Application("ADOConnection") = _
+                           Server.CreateObject("ADODB.Connection")
+   
+   'Create a Variant array and fill it
+   Dim varArray(2)
+   varArray(0) = "This is a Variant array "
+   varArray(1) = "stored in the "
+   varArray(2) = "Application object."
+
+   'Store it in the Application
+   Application("Variant_Array") = varArray
+
+   'Store the date/time as a string
+   Application("Start_Time") = CStr(Now)
+
+   'Set counter variable to zero
+   Application("Visit_Count") = 0
+
+End Sub
+
+Sub Application_OnEnd
+
+End Sub
+
+Sub Session_OnStart()
+
+End Sub
+
+Sub Session_OnEnd
+
+End Sub
+
+</SCRIPT>

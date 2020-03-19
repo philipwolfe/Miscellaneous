@@ -1,0 +1,143 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:int id="ref-1">
+<m_value>3</m_value>
+</xsd:int>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:ArrayList id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/ns/System.Collections">
+<_items href="#ref-2"/>
+<_size>4</_size>
+<_version>4</_version>
+</a1:ArrayList>
+<SOAP-ENC:Array id="ref-2" SOAP-ENC:arrayType="xsd:anyType[16]">
+<item href="#ref-3"/>
+<item href="#ref-4"/>
+<item href="#ref-5"/>
+<item href="#ref-6"/>
+</SOAP-ENC:Array>
+<a3:Setup id="ref-3" xmlns:a3="http://schemas.microsoft.com/clr/nsassem/Collide/Collide%2C%20Version%3D1.0.1062.27363%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<name id="ref-9">Swirly</name>
+<ballCount>10</ballCount>
+<collisions>true</collisions>
+<elasticityBall>1</elasticityBall>
+<elasticityWall>1</elasticityWall>
+<erase>true</erase>
+<ghost>5</ghost>
+<velocity>10</velocity>
+<gravityBall>1</gravityBall>
+<eraseBalls>true</eraseBalls>
+<sizeMax>20</sizeMax>
+<sizeMin>5</sizeMin>
+<strFilename xsi:null="1"/>
+<distribution>Linear</distribution>
+<strTitle id="ref-10">C#</strTitle>
+<strFont id="ref-11">Arial</strFont>
+<fontColor>
+<name xsi:null="1"/>
+<value>4294901760</value>
+<knownColor>0</knownColor>
+<state>2</state>
+</fontColor>
+<titleSize>24</titleSize>
+</a3:Setup>
+<a3:Setup id="ref-4" xmlns:a3="http://schemas.microsoft.com/clr/nsassem/Collide/Collide%2C%20Version%3D1.0.1062.27363%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<name id="ref-12">Ideal Gas</name>
+<ballCount>96</ballCount>
+<collisions>true</collisions>
+<elasticityBall>1</elasticityBall>
+<elasticityWall>1</elasticityWall>
+<erase>true</erase>
+<ghost>1</ghost>
+<velocity>10</velocity>
+<gravityBall>0</gravityBall>
+<eraseBalls>true</eraseBalls>
+<sizeMax>20</sizeMax>
+<sizeMin>20</sizeMin>
+<strFilename xsi:null="1"/>
+<distribution>Linear</distribution>
+<strTitle xsi:null="1"/>
+<strFont xsi:null="1"/>
+<fontColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>0</knownColor>
+<state>0</state>
+</fontColor>
+<titleSize>0</titleSize>
+</a3:Setup>
+<a3:Setup id="ref-5" xmlns:a3="http://schemas.microsoft.com/clr/nsassem/Collide/Collide%2C%20Version%3D1.0.1062.27363%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<name id="ref-13">Galaxy</name>
+<ballCount>48</ballCount>
+<collisions>true</collisions>
+<elasticityBall>1</elasticityBall>
+<elasticityWall>1</elasticityWall>
+<erase>true</erase>
+<ghost>5</ghost>
+<velocity>0</velocity>
+<gravityBall>1</gravityBall>
+<eraseBalls>true</eraseBalls>
+<sizeMax>20</sizeMax>
+<sizeMin>6</sizeMin>
+<strFilename xsi:null="1"/>
+<distribution>Linear</distribution>
+<strTitle id="ref-14">C# Excursion</strTitle>
+<strFont id="ref-15">Papyrus</strFont>
+<fontColor>
+<name xsi:null="1"/>
+<value>4294967040</value>
+<knownColor>0</knownColor>
+<state>2</state>
+</fontColor>
+<titleSize>48</titleSize>
+</a3:Setup>
+<a3:Setup id="ref-6" xmlns:a3="http://schemas.microsoft.com/clr/nsassem/Collide/Collide%2C%20Version%3D1.0.1062.27363%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<name id="ref-16">Data Access</name>
+<ballCount>13</ballCount>
+<collisions>true</collisions>
+<elasticityBall>1</elasticityBall>
+<elasticityWall>1</elasticityWall>
+<erase>true</erase>
+<ghost>5</ghost>
+<velocity>2</velocity>
+<gravityBall>7</gravityBall>
+<eraseBalls>true</eraseBalls>
+<sizeMax>100</sizeMax>
+<sizeMin>10</sizeMin>
+<strFilename xsi:null="1"/>
+<distribution>Linear</distribution>
+<strTitle id="ref-17">.NET Data Access Strategies</strTitle>
+<strFont id="ref-18">Arial</strFont>
+<fontColor>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>164</knownColor>
+<state>1</state>
+</fontColor>
+<titleSize>26.25</titleSize>
+</a3:Setup>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:boolean id="ref-1">
+<m_value>true</m_value>
+</xsd:boolean>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:boolean id="ref-1">
+<m_value>false</m_value>
+</xsd:boolean>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:int id="ref-1">
+<m_value>5000</m_value>
+</xsd:int>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

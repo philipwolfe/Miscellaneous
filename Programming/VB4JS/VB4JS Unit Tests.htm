@@ -1,0 +1,275 @@
+<html>
+	<head>
+		<title>VB Wrapper for Javascript</title>
+		<meta http-equiv="x-ua-compatible" content="IE=10">
+	</head>
+<body>
+<script language="javascript" src="vb4js.js"></script>
+<form name=theform>
+Bool:<input type=text name=thebool><br>
+
+<input type=button value="Test J Function" onclick="javascript:alert(DateAdd('q',2,'2/2/2001'));">
+<input type=button value="Test VB Function" onclick="vbscript:alert(dateadd('q', 2, '1/1/2001'))">
+<input type=button value="call j test" onclick="javascript:test();">
+</form>
+
+<table border=1 width=100%>
+<caption>These are the test cases I have tested the functions with.  
+Please feel free to add your own if it looks like I have overlooked something.</caption>
+	<tr>
+		<th>Fucntion</th>
+		<th>Description</th>
+		<th>Javascript Test</th>
+		<th>VBScript Test</th>
+	</tr>
+	<tr>
+		<td>Abs(number)</td>
+		<td>Function Returns the absolute value of a number.</td>
+		<td><script language="javascript">
+			document.write("Abs() of -99 is " + Abs(-99) + "<br>");
+			document.write("Abs() of -98.5 is " + Abs(-98.5) + "<br>");
+			document.write("Abs() of 99.449 is " + Abs(99.449) + "<br>");
+			</script></td>
+		<td><script language="vbscript">
+			document.write("Abs() of -99 is " & Abs(-99) & "<br>")
+			document.write("Abs() of -98.5 is " & Abs(-98.5) & "<br>")
+			document.write("Abs() of 99.449 is " & Abs(99.449) & "<br>")
+			</script></td>
+	</tr>
+	<tr>
+		<td>jArray()</td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td>Asc(char)</td>
+		<td>Function Returns the ANSI character code corresponding to the first letter in a string.</td>
+		<td><script language="javascript">
+			document.write("Asc() of \"A\" is " + Asc("A") + "<br>");
+			document.write("Asc() of \"1\" is " + Asc("1") + "<br>");
+			document.write("Asc() of \")\" is " + Asc(")") + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("Asc() of ""A"" is " & Asc("A") & "<br>")
+			document.write("Asc() of ""1"" is " & Asc("1") & "<br>")
+			document.write("Asc() of "")"" is " & Asc(")") & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>Atn(number)</td>
+		<td>Function Returns the arctangent of a number.</td>
+		<td><script language="javascript">
+			document.write("Atn() of \"1\" is " + Atn(1) + "<br>");
+			document.write("Atn() of \"-1\" is " + Atn(-1) + "<br>");
+			document.write("Atn() of \"PI\" is " + Atn(Math.PI) + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("Atn() of ""1"" is " & Atn(1) & "<br>")
+			document.write("Atn() of ""-1"" is " & Atn(-1) & "<br>")
+			document.write("Atn() of ""PI"" is " & Atn(3.14159) & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>CBool(expression)</td>
+		<td>Function Returns an expression that has been converted to a Variant of subtype Boolean.</td>
+		<td><script language="javascript">
+			document.write("CBool() of \"1\" is " + CBool(1) + "<br>");
+			document.write("CBool() of \"0\" is " + CBool(0) + "<br>");
+			document.write("CBool() of \"-1\" is " + CBool(-1) + "<br>");
+			document.write("CBool() of \"false==false\" is " + CBool(false==false) + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("CBool() of ""1"" is " & CBool(1) & "<br>")
+			document.write("CBool() of ""0"" is " & CBool(0) & "<br>")
+			document.write("CBool() of ""-1"" is " & CBool(-1) & "<br>")
+			document.write("CBool() of ""false=false"" is " & CBool(false=false) & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>CByte(expression)</td>
+		<td>Function Returns an expression that has been converted to a Variant of subtype Byte.</td>
+		<td><script language="javascript">
+			document.write("CByte() of \"1\" is " + CByte(1) + "<br>");
+			document.write("CByte() of \"9.45\" is " + CByte(9.45) + "<br>");
+			document.write("CByte() of \"15.5\" is " + CByte(15.5) + "<br>");
+			document.write("CByte() of \"2+3\" is " + CByte(2+3) + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("CByte() of ""1"" is " & CByte(1) & "<br>")
+			document.write("CByte() of ""9.45"" is " & CByte(9.45) & "<br>")
+			document.write("CByte() of ""15.5"" is " & CByte(15.5) & "<br>")
+			document.write("CByte() of ""2+3"" is " & CByte(2+3) & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>CCur</td>
+		<td>Function Returns an expression that has been converted to a Variant of subtype Currency.</td>
+		<td><script language="javascript">
+			document.write("CCur() of \"1\" is " + CCur(1) + "<br>");
+			document.write("CCur() of \"9.45498\" is " + CCur(9.45498) + "<br>");
+			document.write("CCur() of \"-15.55555\" is " + CCur(-15.55555) + "<br>");
+			document.write("CCur() of \"2.8462+3.2257\" is " + CCur(2.8462+3.2257) + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("CCur() of ""1"" is " & CCur(1) & "<br>")
+			document.write("CCur() of ""9.45498"" is " & CCur(9.45498) & "<br>")
+			document.write("CCur() of ""-15.55555"" is " & CCur(-15.55555) & "<br>")
+			document.write("CCur() of ""2.8462+3.2257"" is " & CCur(2.8462+3.2257) & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>CDate</td>
+		<td>Function Returns an expression that has been converted to a Variant of subtype Date.</td>
+		<td><script language="javascript">
+			/*document.write("CDate() of \"#11/1/2002#\" is " + CDate(#11/1/2002#) + "<br>");*/
+			document.write("CDate() of \"Nov 1, 02\" is " + CDate("Nov 1, 02") + "<br>");
+			document.write("CDate() of \"nov-15-02\" is " + CDate("nov-15-02") + "<br>");
+			document.write("CDate() of \"03:14:22\" is " + CDate("03:14:22") + "<br>");
+			document.write("CDate() of \"1\" is " + CDate(1) + "<br>");
+			document.write("CDate() of \"35007\" is " + CDate(35007) + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("CDate() of ""#11/1/2002#"" is " & CDate(#11/1/2002#) & "<br>")
+			document.write("CDate() of ""Nov 1, 02"" is " & CDate("Nov 1, 02") & "<br>")
+			document.write("CDate() of ""nov-15-02"" is " & CDate("nov-15-02") & "<br>")
+			document.write("CDate() of ""03:14:22"" is " & CDate("03:14:22") & "<br>")
+			document.write("CDate() of ""1"" is " & CDate(1) & "<br>")
+			document.write("CDate() of ""35007"" is " & CDate(35007) & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>CDbl(expression)</td>
+		<td>Function Returns an expression that has been converted to a Variant of subtype Double.</td>
+		<td><script language="javascript">
+			document.write("CDbl() of \"1\" is " + CDbl(1) + "<br>");
+			document.write("CDbl() of \"9.45498\" is " + CDbl(9.45498) + "<br>");
+			document.write("CDbl() of \"-15.55555\" is " + CDbl(-15.55555) + "<br>");
+			document.write("CDbl() of \"2.8462+3.2257\" is " + CDbl(2.8462+3.2257) + "<br>");
+			document.write("CDbl() of \"2.33333\" is " + CDbl("2.33333") + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("CDbl() of ""1"" is " & CDbl(1) & "<br>")
+			document.write("CDbl() of ""9.45498"" is " & CDbl(9.45498) & "<br>")
+			document.write("CDbl() of ""-15.55555"" is " & CDbl(-15.55555) & "<br>")
+			document.write("CDbl() of ""2.8462+3.2257"" is " & CDbl(2.8462+3.2257) & "<br>")
+			document.write("CDbl() of ""2.33333"" is " & CDbl("2.33333") & "<br>")
+		</script></td>
+	</tr>
+	<tr>
+		<td>DateAdd(<i>interval</i>, <i>number</i>, <i>date</i>)</td>
+		<td>Function Returns a date to which a specified time interval has been added.</td>
+		<td><script language="javascript">
+			document.write('DateAdd("m", 1, 1/1/2014) is ' + DateAdd("m", 1, "1/1/2014") + "<br>");
+			document.write('DateAdd("m", 2, 1/1/2014) is ' + DateAdd("m", 2, "1/1/2014") + "<br>");
+			document.write('DateAdd("m", 12, 1/1/2014) is ' + DateAdd("m", 12, "1/1/2014") + "<br>");
+			document.write('DateAdd("m", 13, 1/1/2014) is ' + DateAdd("m", 13, "1/1/2014") + "<br>");
+			document.write('DateAdd("m", 23, 1/1/2014) is ' + DateAdd("m", 23, "1/1/2014") + "<br>");
+			document.write('DateAdd("m", 24, 1/1/2014) is ' + DateAdd("m", 24, "1/1/2014") + "<br>");
+			document.write('DateAdd("m", 1, 1/31/2016) is ' + DateAdd("m", 1, "1/31/2016") + "<br>");
+			document.write('DateAdd("m", 12, 2/29/2016) is ' + DateAdd("m", 12, "2/29/2016") + "<br>");
+		</script></td>
+		<td><script language="vbscript">
+			document.write("DateAdd(""m"", 1, 1/1/2014) is " & DateAdd("m", 1, #1/1/2014#) & "<br>")
+			document.write("DateAdd(""m"", 2, 1/1/2014) is " & DateAdd("m", 2, "1/1/2014") & "<br>")
+			document.write("DateAdd(""m"", 12, 1/1/2014) is " & DateAdd("m", 12, "1/1/2014") & "<br>")
+			document.write("DateAdd(""m"", 13, 1/1/2014) is " & DateAdd("m", 13, "1/1/2014") & "<br>")
+			document.write("DateAdd(""m"", 23, 1/1/2014) is " & DateAdd("m", 23, "1/1/2014") & "<br>")
+			document.write("DateAdd(""m"", 24, 1/1/2014) is " & DateAdd("m", 24, "1/1/2014") & "<br>")
+			document.write("DateAdd(""m"", 1, 1/31/2016) is " & DateAdd("m", 1, "1/31/2016") & "<br>")
+			document.write("DateAdd(""m"", 12, 2/29/2016) is " & DateAdd("m", 12, "2/29/2016") & "<br>")
+        </script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><script language="javascript"></script></td>
+		<td><script language="vbscript"></script></td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,13 @@
+REDIRECT /ads-demo/redirect.asp 
+WIDTH 440 
+HEIGHT 60 
+BORDER 1 
+*
+http://www.wrox.com/images/wroxlogo.gif 
+http://www.wrox.com/
+Best programmer's books
+20 
+http://www.asptoday.com/images/asptoday.gif 
+http://www.asptoday.com 
+Up-to-the minute articles on ASP
+20

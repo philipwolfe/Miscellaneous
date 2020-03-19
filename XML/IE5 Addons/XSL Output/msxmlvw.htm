@@ -1,0 +1,25 @@
+<HTML>
+<TITLE>XSL Transformation Ouput</TITLE>
+<BODY>
+<SCRIPT language="javascript" defer=true>
+var win = external.menuArguments;
+var doc = win.document;
+var xmldoc = doc.XMLDocument;
+var xsldoc = doc.XSLDocument;
+if (!xmldoc)
+{
+    win.alert("Not XML Document.");
+}
+else
+{
+   try {
+      var srcwin = win.open("about:blank","","resizable=yes,scrollbars=yes");
+      srcwin.document.write("<html><title>XSL Transformation Ouput</title><body style=\"font:x-small 'Verdana';\"><nobr id=x>working...</nobr></body></html>\n");
+      srcwin.document.body.all("x").innerText = xmldoc.transformNode( xsldoc);
+   } catch (e) {
+      alert( "Error in 'View XSL Transform': "+e.description);      
+   }
+}
+</SCRIPT>
+</BODY>
+</HTML>

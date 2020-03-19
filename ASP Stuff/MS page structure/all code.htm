@@ -1,0 +1,737 @@
+<HTML>
+<HEAD>
+<TITLE>SBN NavBar Sample Page</TITLE>
+<style>
+	/***** NavBar Styles *****/
+
+	#tblNavBar {
+		font-family:Tahoma, MS Sans Serif, Arial, Geneva, Helvetica; font-size:8pt;
+		background-color:#003399; color:white;
+		cursor:default;
+	}
+	#tblNavBar TD {
+		text-align:center;
+		padding:2px; padding-top:4px;
+	}
+	#tblNavBar TD.clsSBNLogo {
+		padding:0px;
+	}
+	#tblNavBar TD.clsNavBarItem {
+		color:white; cursor:hand;
+	}
+	#tblNavBar TD.clsNavBarItemOver {
+		color:#99CCFF; cursor:hand;
+	}
+	#tblNavBar TD.clsNavBarItemShown {
+		color:#CCCCCC; cursor:hand;
+	}
+	#tblNavBar TD.clsNavBarItem IMG,
+	#tblNavBar TD.clsNavBarItemOver IMG,
+	#tblNavBar TD.clsNavBarItemShown IMG,  {
+		position:relative; top:5px;
+	}
+/*
+	#tblNavBar TD DIV {
+		font-family:webdings; font-size:9pt; line-height:7pt;
+		color:red; padding-top:1px;
+*/
+	}
+
+	/***** Menu Styles *****/
+
+	#divMenu1 { width:75pt; left:85px; }
+	#divMenu2 { width:140pt; left:148px; }
+	#divMenu3 { width:155pt; left:218px; }
+	#divMenu4 { width:100pt; left:285px; }
+	#divMenu5 { width:90pt; left:380px; }
+	#divMenu6 { width:85pt; left: 436px; }
+
+	.clsMenu {
+		font-family:Tahoma, MS Sans Serif, Arial, Geneva, Helvetica; font-size:8pt;
+		line-height:8pt; cursor:default;
+		color:black; background-color:#CCCCCC;
+		padding:1px; text-align:left;
+		position:absolute; top:30px; visibility:hidden; overflow:hidden;
+		border-style:outset; border-color: white silver silver white; border-width:2;
+	}
+	.clsMenu DIV {
+		width:100%; padding:3px; padding-left:5px;
+	}
+	.clsMenu DIV.clsMenuItemOver {
+		color:white; background-color:#003399;
+	}
+
+/*** COMMON ***/
+
+A:link { color:#000066; }
+A:visited { color:#666666; }
+
+A.clsIncCpyRt,
+A.clsIncCpyRt:visited,
+P.clsIncCpyRt {
+  font-weight:normal; font-size:75%; font-family:verdana,arial,helvetica,sans-serif;
+  color:black;
+  text-decoration:none;
+}
+
+A.clsLeftMenu,
+A.clsLeftMenu:visited {
+  color:#000000;
+  text-decoration:none;
+  font-weight:bold; font-size:8pt;
+}
+
+A.clsBackTop,
+A.clsBackTop:visited {
+  margin-top:10; margin-bottom:0;
+  padding-bottom:0;
+  font-size:75%;
+  color:black;
+}
+
+A:hover,
+A.clsBackTop:hover,
+A.clsIncCpyRt:hover,
+A:active { color:blue; }
+
+A.clsGlossary {
+  font-size:10pt;
+  color:green;
+}
+
+BODY { font-size:80%; font-family:verdana,arial,helvetica,sans-serif; }
+
+BUTTON.clsShowme,
+BUTTON.clsShowme5 {
+  font-weight:bold; font-size:11; font-family:arial;
+  width:68; height:23;
+  position:relative; top:2;
+  background-color:#002F90;
+  color:#FFFFFF;
+}
+
+DIV.clsBeta {
+  font-weight:bold;
+  color:red;
+}
+
+DIV.clsDocBody { margin-left:10px; margin-right:10px; }
+
+DIV.clsDocBody HR { margin-top:0; }
+
+DIV.clsDesFooter { margin:10px 10px 0px 223px; }
+
+DIV.clsFPfig { font-size:80%; }
+
+DIV.clsHi {
+	padding-left:2em;
+	text-indent:-2em
+}
+
+DIV.clsShowme { margin-bottom:.5em; margin-top:.5em; }
+
+H1{
+  font-size:145%;
+  margin-top:1.25em; margin-bottom:0em;
+}
+
+H2 {
+  font-size:135%;
+  margin-top:1.25em; margin-bottom:.5em;
+}
+
+H3 {
+  font-size:128%;
+  margin-top:1em; margin-bottom:0em;
+}
+
+H4 {
+  font-size:120%;
+  margin-top:.8em; margin-bottom:0em;
+}
+
+H5 {
+  font-size:110%;
+  margin-top:.8em; margin-bottom:0em;
+}
+
+H6 {
+  font-size:70%;
+  margin-top:.6em; margin-bottom:0em;
+}
+
+HR.clsTransHR {
+	position:relative; top:20;
+	margin-bottom:15;
+}
+
+P.clsRef {
+  font-weight:bold;
+  margin-top:12pt; margin-bottom:0pt;
+}
+
+PRE {
+  background:#EEEEEE;
+  margin-top:1em;	margin-bottom:1em; margin-left:0px;
+  padding:5pt;
+}
+
+PRE.clsCode, CODE.clsText { font-family:'courier new',courier,serif; font-size:130%; }
+
+PRE.clsSyntax { font-family:verdana,arial,helvetica,sans-serif; font-size:120%; }
+
+SPAN.clsEntryText {
+  line-height:12pt;
+  font-size:8pt;
+}
+
+SPAN.clsHeading {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+}
+
+SPAN.clsDefValue, TD.clsDefValue { font-weight:bold; font-family:'courier new' }
+
+SPAN.clsLiteral, TD.clsLiteral { font-family:'courier new'; }
+
+SPAN.clsRange, TD.clsRange { font-style:italic; }
+
+SPAN.clsShowme {
+  width:100%;
+  filter:dropshadow(color=#000000,OffX=2.5,OffY=2.5,Positive=1);
+  position:relative;
+  top:-8;
+}
+
+TABLE { font-size:100%; }
+
+TABLE.clsStd TH,
+BLOCKQUOTE TH {
+	font-size:100%;
+	text-align:left; vertical-align:top;
+	background-color:#DDD;
+	padding:2px;
+}
+
+TABLE.clsStd TD,
+BLOCKQUOTE TD {
+	font-size:100%;
+	vertical-align:top;
+	background-color:#EEE;
+	padding:2px;
+}
+
+TABLE.clsParamVls,
+TABLE.clsParamVls TD { padding-left:2pt; padding-right:2pt; }
+
+#TOC { visibility:hidden; }
+
+UL UL, OL UL { list-style-type:square; }
+
+.clsHide { display:none; }
+
+.clsShow { }
+
+.clsShowDiv {
+  visibility:hidden;
+  position:absolute;
+  left:250px; top:170px;
+  height:0px; width:175px;
+  z-index:-1;
+}
+
+.#pBackTop { display:none; }
+
+#idTransDiv {
+	position:relative;
+	width:90%; top:20;
+  filter:revealTrans(duration=1.0, transition=23);
+}
+
+
+/*** INDEX-SPECIFIC ***/
+
+A.clsDisabled {
+  text-decoration:none;
+  color:black;
+  cursor:text;
+}
+
+A.clsEnabled { cursor:auto; }
+
+SPAN.clsAccess { text-decoration:underline; }
+
+TABLE.clsIndex {
+  font-size:100%;
+  padding-left:2pt; padding-right:2pt;
+	margin-top: 17pt;
+}
+
+TABLE.clsIndex TD {
+  margin:3pt;
+  background-color:#EEEEEE;
+}
+
+TR.clsEntry { vertical-align:top; }
+
+TABLE.clsIndex TD.clsLetters {
+  background-color:#CCCCCC;
+  text-align:center;
+}
+
+TD.clsMainHead {
+  background-color:#FFFFFF;
+  vertical-align:top;
+  font-size:145%; font-weight:bold;
+  margin-top:1.35em; margin-bottom:.5em;
+}
+
+UL.clsIndex { margin-left:20pt; margin-top:0pt; margin-bottom:5pt; }
+
+LI OL { padding-bottom: 1.5em }
+
+
+/*** GALLERY/TOOLS/SAMPLES ***/
+
+FORM.clsSamples { margin-bottom:0; margin-top:0; }
+
+H1.clsSampH1 {
+	font-size:145%;
+  margin-top:.25em; margin-bottom:.25em;
+}
+
+H1.clsSampHead {
+  margin-top:5px; margin-bottom:5px;
+  font-size:24px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif;
+}
+
+H2.clsSampTitle {
+  font-size:128%;
+  margin-top:.2em; margin-bottom:0em;
+}
+
+TD.clsDemo {
+  font-size:8pt;
+  color:#00319C;
+  text-decoration:underline;
+}
+
+.clsSampDnldMain { font-size:11px; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsShowDesc { cursor:hand; }
+
+A.clsTools {
+  color:#0B3586;
+  font-weight:bold;
+}
+
+H1.clsTools, H2.clsTools {
+  color:#0B3586;
+  margin-top:5px;
+}
+
+TD.clsToolsHome {
+  font-size:9pt;
+  line-height:15pt;
+}
+
+SPAN.clsToolsTitle {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+  text-decoration:none;
+}
+
+
+/*** DESIGN ***/
+P.cat {
+	font-size:13pt;
+	color:#787800;
+	text-decoration:none;
+	margin-top:18px;
+}
+
+P.author {
+	font-size:9pt; font-style:italic;
+	line-height:13pt;
+	margin-top:10px;
+}
+
+P.date {
+	font-size:8pt;
+	line-height:12px;
+	margin-top:0px;
+	color:#3366FF;
+}
+
+P.graph1 {
+	line-height:13pt;
+	margin-top:-10px;
+}
+
+P.col {
+	line-height:13pt;
+	margin-top:10px; margin-left:5px;
+}
+
+P.cal1 {
+	text-decoration:none;
+	margin-top:-10px;
+}
+
+P.cal2 {margin-top:-10px; }
+P.photo { font-size:8pt; }
+
+
+/*** DOCTOP ***/
+
+#tblNavLinks A {
+	color:black;
+	text-decoration:none;
+	font-family:verdana,arial,helvetica,sans-serif;
+}
+#lnkShowText, #lnkSyncText, #lnkSearchText, #lnkIndexText { font-size:8pt; font-weight:bold; }
+#lnkPrevText, #lnkNextText, #lnkUpText { font-size:7.5pt; font-weight:normal; }
+
+
+DIV.clsBucketBranch {
+	margin-left:10px; margin-top:15px; margin-bottom:-10pt;
+	font-style:italic; font-size:85%;
+}
+
+DIV.clsBucketBranch A,
+DIV.clsBucketBranch A:link,
+DIV.clsBucketBranch A:active,
+DIV.clsBucketBranch A:visited { text-decoration:none; color:black; }
+DIV.clsBucketBranch A:hover { color:blue; }
+
+@font-face { font-family:WebDingsDownArrow; src:url(/sitebuilder/shared/css/wd.eot) }
+
+TD.clsNavBarItem DIV { font-family:WebDingsDownArrow; }
+
+
+/*** SDK, IE4 ONLY ***/
+
+DIV.clsExpanded, A.clsExpanded { display:inline; color:black; }
+DIV.clsCollapsed, A.clsCollapsed { display:none; }
+SPAN.clsPropattr { font-weight:bold; }
+
+#pStyles,	#pCode, #pSyntax, #pEvents, #pStyles {display:none; text-decoration:underline; cursor:hand; }
+</style>
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+	<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="http://www.microsoft.com/sitebuilder/" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" 
+		SRC="shared/graphics/sbnlogo.gif" ALT="SBN Home" /></A></TD>
+	<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="shared/graphics/arrow.gif"></TD>
+	<TD>&nbsp;|&nbsp;</TD>
+	<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="shared/graphics/arrow.gif"></TD>
+	<TD>&nbsp;|&nbsp;</TD>
+	<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="shared/graphics/arrow.gif"></TD>
+	<TD>&nbsp;|&nbsp;</TD>
+	<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="shared/graphics/arrow.gif"></TD>
+	<TD>&nbsp;|&nbsp;</TD>
+	<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="shared/graphics/arrow.gif"></TD>
+	<TD>&nbsp;|&nbsp;</TD>
+	<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="shared/graphics/arrow.gif"></TD>
+	<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+
+
+<H1>The Site Builder Network NavBar Sample Demonstration Page</H1>
+<HR SIZE="1" />
+<P><!--DATE-->December 15, 1998
+<P><!--/DATE-->
+<P>
+Hello intrepid coders! </P>
+<P>Welcome to our NavBar sample. Hopefully by now you've read our <a href="http://www.microsoft.com/workshop/author/dhtml/navbar.asp">seminal NavBar article</a>, and are ready to plunge into the code itself. Before you do, though, a few notes:
+<UL>
+	<LI>The code here does not exactly match the code in the article.  Although the logic is the same, we've made some updates. Because you're such accomplished coders, and also because we feel the implementation is smoother and more intuitive, we're sure you won't have any difficult figuring out what's what.</LI>
+	<LI>We used virtual includes for our files. To be able to see this ASP file on your local server, you'll need to set up a virtual directory named navbar, and pop all the sample files in the folder it's associated with.</LI>
+	</UL>
+With that said, dive in, the water's fine. And let us know if you have any comments or suggestions by using the Write-us link below.
+</P>
+<P>
+<I>The Site Builder Network Team</I>
+<!-- DOCUMENT CONTENT END -->
+
+
+
+<P><I>Did you find this sample useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="http://www.microsoft.com/sitebuilder/write-us.asp?author=Robert%20Carter&area=NavBar%20Sample" TARGET="_top">Write us!</A></I>
+
+  
+
+	<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/default.asp">Magazine Home</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/jane.asp">Ask Jane</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/dude.asp">DHTML Dude</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/xml.asp">Extreme XML</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/starters.asp">For Starters</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/hess.asp">More or Hess</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/server.asp">Servin' It Up</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/site.asp">Site Lights</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/magazine/webmen.asp">Web Men Talking</DIV>
+	</DIV>
+	<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+		<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+		<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+	</DIV>
+	<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+		<DIV expURL="http://www.microsoft.com/workshop/default.asp">Workshop Home</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/essentials/default.asp">Essentials</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/components/default.asp">Component Development</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/delivery/default.asp">Content &amp; Component Delivery</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/database/default.asp">Data Access &amp; Databases</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/design/default.asp">Design</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/author/default.asp">DHTML, HTML &amp; CSS</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/languages/default.asp">Languages &amp; Development Tools</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/messaging/default.asp">Messaging &amp; Collaboration</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/networking/default.asp">Networking, Protocols &amp; Data Formats</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/browser/default.asp">Reusing Browser Technology</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/security/default.asp">Security &amp; Cryptography</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/server/default.asp">Server Technologies</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/imedia/default.asp">Streaming &amp; Interactive Media</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/workshop/management/default.asp">Web Content Management</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/xml/default.asp">XML (Extensible Markup Language)</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/index/">Workshop Index</DIV>
+	</DIV>
+	<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+		<DIV expURL="http://www.microsoft.com/gallery/default.asp">Tools &amp; Samples Home</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/gallery/tools/default.asp">Tools</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/gallery/samples/default.asp">Samples, Headers, Libs</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/gallery/images/default.asp">Images</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/gallery/sounds/default.asp">Sounds</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/gallery/stylesheets/default.asp">Style Sheets</DIV>
+		<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+	</DIV>
+	<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+		<DIV expURL="http://www.microsoft.com/devtraining/default.asp">Training Home</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/seminars/default.asp">SBN Live Seminars</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/chat/default.asp">SBN Live Chats</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/roadmap/default.asp">Training Road Maps</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/tools/default.asp">Tool Tutorials</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/atec.asp">Courses</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/peer/default.asp">Peer Support</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/mastering.asp">CD-ROM Training</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/books_kits.asp">Books & Training Kits</DIV>
+		<DIV expURL="http://www.microsoft.com/workshop/c-frame.htm#/devtraining/mscert/default.asp">Certification</DIV>
+	</DIV>
+	<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+		<DIV expURL="http://www.microsoft.com/sitebuilder/default.htm">SBN Home</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/siteinfo/newtosite.asp">New to SBN?</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/whatsnew.asp">What's New on SBN</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/siteinfo/sitemap.asp">Site Map</DIV>
+		<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/siteinfo/glossary/default.asp">Glossary</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/write-us.asp">Write Us</DIV>
+		<DIV expURL="http://www.microsoft.com/sitebuilder/siteinfo/about.asp">Using This Site</DIV>
+	</DIV>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	// -----------------------------------------------------------------------
+	// 	NAVIGATION FOR MENUBAR AND MENUITEMS
+	// -----------------------------------------------------------------------
+
+	// -----------------------------------------------------------------------
+	// 	Global variables to track menu state
+	// -----------------------------------------------------------------------
+
+	var eNavBarItemShown = null;
+	var eMenuShown = null;
+
+	// -----------------------------------------------------------------------
+	// 	Conditional global event-handlers
+	// -----------------------------------------------------------------------
+
+	function document_click()
+	{
+		if ("clsNavBarItemShown" != window.event.srcElement.className && null != eMenuShown) HideMenu();
+	}
+
+	function document_keypress()
+	{
+		if ("27" == window.event.keyCode && null != eMenuShown) HideMenu();
+	}
+
+	function window_blur()
+	{
+		if (null != eMenuShown) HideMenu();
+	}
+
+	// -----------------------------------------------------------------------
+	// 	Cache/Uncache functions to store and bind if menu shown
+	// -----------------------------------------------------------------------
+
+	function CacheAndBind()
+	{
+		window.CachedClick = document.onclick;
+		window.CachedKeypress = document.onkeypress;
+		window.CachedBlur = window.onblur;
+		document.onclick = document_click;
+		document.onkeypress = document_keypress;
+		window.onblur = window_blur;
+	}
+
+	function UncacheAndRebind()
+	{
+		document.onclick = window.CachedClick;
+		document.onkeypress = window.CachedKeypress;
+		window.onblur = window.CachedBlur;
+	}
+
+	// -----------------------------------------------------------------------
+	// 	HideMenu and ShowMenu functions
+	// -----------------------------------------------------------------------
+
+	function HideMenu()
+	{
+		eMenuShown.style.visibility = "hidden";
+		eMenuShown = null;
+		eNavBarItemShown.className = "clsNavBarItem";
+		eNavBarItemShown = null;
+		UncacheAndRebind();
+	}
+
+	function ShowMenu(eSrc)
+	{
+		eMenuShown = document.all["divMenu" + eSrc.expItemNum];
+		eNavBarItemShown = eSrc;
+		eNavBarItemShown.className = "clsNavBarItemShown";
+		if (null != eMenuShown) eMenuShown.style.visibility = "visible";
+		CacheAndBind();
+	}
+
+	// -----------------------------------------------------------------------
+	// 	FindTD function used in NavBar event-handlers to determine TD ancestor
+	// -----------------------------------------------------------------------
+
+	function FindTD(eSrc,eContainer)
+	{
+		while (eContainer.contains(eSrc))
+		{
+			if ("TD" == eSrc.tagName) return eSrc;
+			eSrc = eSrc.parentElement;
+		}
+		return false;
+	}
+
+	// -----------------------------------------------------------------------
+	// 	NavBar event-handlers (bound below)
+	// -----------------------------------------------------------------------
+
+	function NavBar_mouseover(eContainer)
+	{
+		var eSrc = FindTD(window.event.srcElement,eContainer);
+		if (FindTD(window.event.fromElement,eContainer) != eSrc)
+		{
+			if ("clsNavBarItem" == eSrc.className)
+			{
+				eSrc.className = "clsNavBarItemOver";
+				if (null != eMenuShown)
+				{
+					HideMenu();
+					ShowMenu(eSrc);
+				}
+			}
+		}
+	}
+
+	function NavBar_mouseout(eContainer)
+	{
+		var eSrc = FindTD(window.event.srcElement,eContainer);
+		if (FindTD(window.event.toElement,eContainer) != eSrc)
+		{
+			if ("clsNavBarItemOver" == eSrc.className) eSrc.className = "clsNavBarItem";
+		}
+	}
+
+	function NavBar_click(eContainer)
+	{
+		window.event.cancelBubble = true;
+		var eSrc = FindTD(window.event.srcElement,eContainer);
+		if ("clsNavBarItemOver" == eSrc.className)
+		{
+			if (null != eMenuShown) HideMenu();
+			ShowMenu(eSrc);
+		}
+		else if ("clsNavBarItemShown" == eSrc.className)
+		{
+			if (null != eMenuShown) HideMenu();
+			eSrc.className = "clsNavBarItemOver";
+		}
+	}
+
+	// -----------------------------------------------------------------------
+	// 	HackURL function used in Menu_click to create unique c-frame frameset in Menu_click
+	// -----------------------------------------------------------------------
+
+	function HackURL(sURL)
+	{
+		var dDate = new Date().getTime();
+		var sFrameURL = sURL.substring(0,sURL.indexOf("#"));
+		var sHash = sURL.substring(sURL.indexOf("#"));
+		if ("" != sFrameURL)
+		{
+			if (-1 < location.protocol.indexOf("file:")) return sHash.substring(1);
+			else return sFrameURL + "?" + dDate + sHash;
+		}
+		else return sURL;
+	}
+
+	// -----------------------------------------------------------------------
+	// 	Menu event-handlers (bound inline at time of menu creation)
+	// -----------------------------------------------------------------------
+
+	function Menu_hover()
+	{
+		var eSrc = window.event.srcElement;
+		if ("clsMenu" != eSrc.className) eSrc.className = ("" == eSrc.className ? "clsMenuItemOver" : "");
+	}
+
+	function Menu_click()
+	{
+		HideMenu();
+		top.location.href = HackURL(window.event.srcElement.expURL);
+	}
+
+	// -----------------------------------------------------------------------
+	// 	NavBar event binding
+	// -----------------------------------------------------------------------
+
+	if ("object" == typeof(tblNavBar))
+	{
+		tblNavBar.onmouseover = new Function("NavBar_mouseover(this);");
+		tblNavBar.onmouseout = new Function("NavBar_mouseout(this);");
+		tblNavBar.onselectstart = new Function("return false;");
+		tblNavBar.onclick = new Function("NavBar_click(this);");
+	}
+//-->
+</SCRIPT>
+</DIV>
+</BODY>
+</HTML>
+
+
+
+
+
+
+

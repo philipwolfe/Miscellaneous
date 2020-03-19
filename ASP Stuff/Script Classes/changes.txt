@@ -1,0 +1,265 @@
+; The following is the full modification history to changes
+; in the cyScape enhanced browscap.ini.  The browscap.ini file
+; can be obtained at http://www.cyscape.com/browscap
+;
+; Copyright (c) 1997-2000 cyScape, Inc. All rights reserved.
+;
+;       - Ver 2.4  (06/30/99)
+;            Added several entries for Netscape 4.06
+;            Added several entries for Netscape 4.07
+;            Added several entries for Netscape 4.5
+;            Added several entries for Netscape 4.5 beta 1 and 2
+;            Added several entries for Netscape 4.6
+;            Added several entries for Windows 98 support
+;            Added several entries for IE 5.0 beta 1, 2, and release versions
+;            Added new entry for MS PIE 2.0
+;
+;       - Ver 2.3  (7/16/98)
+;            Added master definition entry for MSIE 5.0
+;            Added MSIE 5.0b1 for Win95/98/NT
+;            Added MSIE 5.0 for Win95/98/NT
+;            Added dozens of entries for Netscape 4.05
+;            Added wildcard entry for IE 5
+;
+;       - Ver 2.2a  (2/18/98)
+;            Added entry for final version of IE 4.0 for Mac
+;            Moved wildcard entries to near end of file so they may possibly
+;               be picked up if no other matches are found previously in the file
+;            Moved the rest of the modification history into a separate file
+;            Fixed some inconsistencies with some minorver properties;
+;       - Ver 2.2a  (2/18/98)
+;            Added entry for final version of IE 4.0 for Mac
+;            Moved wildcard entries to near end of file so they may possibly
+;               be picked up if no other matches are found previously in the file
+;            Moved the rest of the modification history into a separate file
+;            Fixed some inconsistencies with some minorver properties
+;            
+;       - Ver 2.2  (1/14/98)
+;            Added Opera browser v3.0 for Win31/Win95/WinNT
+;            AuthenticodeUpdate=a added to all MSIE 3.02 "Update a" entires
+;            Removed extra version letter included on some entries Version property
+;            Added Mozilla/2.01I for Sun X11
+;            Added Mozilla/4.02 [en] Sun X11
+;            Added Mozilla/3.0C-USG Sun X11
+;            Added MSIE 4.01 for MSN 2.5 WinNT/Win95
+;            Added MSIE 4.0p1 for MacPPC
+;            Added Mozilla/3.01-C-NSCP for MacPPC
+;            Added several entries for Mozilla/4.04b9
+;            Added additional entry for Mozilla/1.0N
+;            Changed ActiveXControls to False for MSIE 3.02 unders Windows 3.1
+;            Removed duplicate definitions for various Netscape browsers
+;            Added missing parenthesis for a couple of definitions
+;            Change several IE 1.0/1.5 definitions to reflect corresponding parent
+;            Changed Nokia-Communicator to reflect proper default parent string
+;       - Ver 2.1b  (11/13/97)
+;            Added dozens of entries for support of Netscape 4.04
+;            Added support for additional IE 4.0 variations using wildcards
+;       - Ver 2.1a  (11/12/97)
+;            Added support for final FrontPage98 agent
+;            Updated support MSIE 4.01
+;       - Ver 2.1  (11/12/97)
+;            Added additional support for flavors of Mozilla 2.02E
+;            Added additional support for flavors of Mozilla 2.01
+;            Added support for Mozilla 3.0 for HP-UX
+;            Added support for older Netscape v1 thats still showing up
+;            Added dozens of new entries to pick up Netscape 3.04 GOLD
+;            Added support for Channel Definition Format (CDF)
+;            Fixed a couple of missing brackets (which had not ill effects)
+;            Added Mozilla/2.01 variation for Win16
+;            Added Mozilla/3.0C for additional Win16 variations
+;            Added a bunch of additional crawlers
+;            Added several additional variations of MSIE 4.0
+;            Added Mozilla/3.02Gold for Win95
+;            Added dozens of new entries to pick up Netscape 3.04
+;            Added support for IE 4.01 for Win95/NT and Windows 98
+;            Added additional support for Mozilla/4.03
+;       - Ver 2.0  (10/14/97)
+;            Added support for serveral variations of MSIE 4.0 final release
+;            Added another variation for Altavista
+;            Added libwww-perl for 5.03 and 5.07
+;            Added Mozilla/2.01 for X11 SunOS
+;            Fixed WebTV/1.2 to properly report itself as version 2.0
+;            Added Mozilla/4.03 for X11 AIX
+;            Added Mozilla/4.03 for X11 Linux
+;            Added Mozilla/4.03 for X11 SunOS
+;            Added Mozilla/2.02E for Win95
+;            Added Mozilla/2.02E KIT for Win95
+;            Added and updated serveral Mozilla v1 browsers
+;            Updated Mozilla/3.0 to drop applets from Win16 browsers
+;            Updated serveral Mozilla/4.03 entries reporting minorver of 2
+;            Added Mozilla/4.03 variation for Mac PPC
+;       - Ver 1.9d (9/15/97)
+;            Added Mozilla/4.03 Netscape for various platforms/languages
+;            Added Mozilla/1.22 MSIE 1.5 for Windows unknown platform
+;            Fixed parent reference for HotJava/1.0/JDK1.1.1
+;            Added Mozilla/4.01a for Mac reported only as PPC
+;            Changed platform references for Win68k to Mac68k
+;            Added Mozilla/1.0 for IRIX X11
+;            Added Mozilla/2.0 MSIE 3.02 Update a MSN 2.0 for Win95
+;            Added Mozilla/2.0 MSIE 3.0 MSN 2.5 SK for Win95
+;            Added Mozilla/2.0 MSIE 3.0 Update a SK for Win95
+;            Added Mozilla/2.0 MSIE 3.0 Update B for Win95
+;            Added Mozilla/2.01E for Win95
+;            Added Mozilla/3.01 for X11 HP-UX
+;       - Ver 1.9c (9/3/97)
+;            Added Mozilla/3.01 for MACOS8 PPC and 68K
+;            Updated WebTV 1.2 capabilities
+;            Updated MSIE 4.0b2 to recognize MSIECrawler as well as Crawler for 95/NT
+;            Added Prodigy WB/3.2d
+;            Added Mozilla/4.0 MSIE 4.0b2 for AOL 3.0
+;            Added Nokia-Communicator
+;            Added Mozilla/2.0 MSIE 3.03 for Win31
+;            Added aolbrowser/1.1 for Mac 68k
+;            Added Mozilla/4.01a for MacPPC and Mac68k
+;            Removed entries responsible for misreporting IE 3.01 as AOL16
+;            Added another Mozilla/3.02 MSIE 3.02 variation
+;            Added support for generic "Mozilla/3.0"
+;       - Ver 1.9b (8/28/97)
+;            Added Mozilla/4.02 for multiple platforms and languages
+;            Fixed capabilities for IE 3.x, particularly on Mac platforms
+;            Added several new crawlers
+;            Added libwww-perl/5.06
+;            Added JDK/1.0.2 (HotJava)
+;            Added Mozilla/2.02 APPLE
+;            Added Mozilla/2.0 for NEWT ActiveX
+;            Added Mozilla/2.02 for X11 IRIX
+;            Added Mozilla/3.03 for Mac
+;            Fixed entry for MSIE 3.02 Update a/AK AOL 3.0
+;       - Ver 1.9a (8/14/97)
+;            Added O'Reilly's WebView
+;            Added several entries for new Mozilla/3.03 for Win95/NT/16 and Mac
+;            Added AltaVista crawler
+;            Fixed a few typos
+;
+;       - Ver 1.9 (8/11/97)
+;            Improved efficiency of handling crawlers
+;            Added ia_archiver ver 1.6 crawler
+;            Added Lycos 3.0 crawler
+;            Added Eule-Robot crawler
+;            Added SwissSearch crawler
+;            Added Netscape 1.1N for 16 bit
+;            Added Mozilla/2.0 MSIE 3.01 Update B for  Win95
+;            Added Mozilla/2.01E-CIS for Win95
+;            Added multi language suport to Mozilla/2.02 OS/2
+;            Added Mozilla/2.02E for OS/2
+;            Modified Mozilla/3.02Gold to pick up WinNT
+;            Added Mozilla/2.02E-KIT for Win95 Intel
+;            Added Mozilla/3.0 for X11 SunOS
+;            Added Mozilla/3.0Gold for X11 SunOS
+;            Added Mozilla/4.0 for MSIE 4.0b2 MSN 2.0 for Win95
+;            Added Mozilla/1.22 MSIE 2.0 for Win95
+;            Added Mozilla/2.02 for X11 SunOS
+;            Added Mozilla/3.0 for X11 FreeBSD
+;            Added Mozilla/3.01 for X11 Linux
+;            Added Lynx/2.6 and Lynx/2.7.1.
+;            Added Checkbot v1.50 crawler
+;            Added variation for Mozilla/2.0 MSIE 3.02
+;            Added Mozilla/2.0 MSIE 3.02 Update a for WinNT
+;            Added additional entry for Mozilla/2.01E-compaq 
+;            Added additional entry for Mozilla/2.01E-GTE
+;            Added Mozilla/2.02 for X11 Linux
+;            Added Mozilla/2.02E-VN005 for Win95
+;            Added Mozilla/3.0 MSIE 3.0 for unknown platform
+;            Added Mozilla/3.01 Gold for X11 AIX
+;            Added Mozilla/3.03 for Win16
+;            Added several entries for Mozilla/3.03 Gold 
+;            Added Mozilla/4.0 MSIE 4.0b2 Update a for Win95/NT
+;            Added Mozilla/4.0 for Win95 when no I or U specified
+;            Added Mozilla/2.0 MSIE 3.0b1 for Mac 68k
+;            Added Mozilla/2.0 MSIE 3.0B for Windows 3.1
+;            Added and updated WebTV browsers
+;
+;
+;       - Ver 1.8 (7/22/97)
+;            Added Mozilla/2.01 for a few older 16 bit versions
+;            Added HotJava 1.0
+;            Added Mozilla/4.01 Win16 both multilanguage & proxy
+;            Added additional support for MacPPC Mozilla/3.01
+;            Added support for Mozilla/3.0C* browsers, including another AOL
+;            Added Mozilla/1.22 MSIE 2.0 for Win16
+;            Added Mozilla/1.22 ATT for Win16
+;            Added Mozilla/2.01E GTE and NOV 
+;            Added Mozilla/2.0 Update a for NT
+;            Added Mozilla/4.0 MSIE 4.0b3 (anticipating)
+;            Added Mozilla/3.02 for Win95 and NT
+;            Added additional support for both older and newer AOL browsers
+;            Added Mozilla/1.22 for Win16 U
+;            Added Mozilla/2.0 MSIE 3.0 for Win 3.1
+;            Added Mozilla/2.0 MSIE 3.02 Win95/AK
+;            Added Mozilla/2.0 MSIE 3.02 for MSN 2.0 Update a/Win95
+;            Added Mozilla/2.0 MSIE 3.02 for MSN 2.5 Update a/Win95
+;            Added Mozilla/2.0 MSIE 3.02 Update a/AK/Win95
+;            Added Mozilla/2.0 MSIE 3.02 Update a for AOL 3.0 - Win95/NT
+;            Added Mozilla/2.01E Compaq, NC250, SNET2  brand for Win95/NT/16
+;            Added Mozilla/2.01E NC250  brand for Win95 (I/U)
+;            Added Mozilla/2.01E for Mac
+;            Added Mozilla/2.01KIT for WinNT/95 (I/U)
+;            Added Mozilla/2.02KIT for WinNT/95/16 (I/U)
+;            Added Mozilla/3.0-C brand NC320 for Mac68K
+;            Fixed missing minor version # is older Netscape 2.01 and 2.02 entries
+;            Added Mozilla/3.01GoldC off brands
+;            Added Mozilla/4.01 for Macintosh (68K/PPC) and Win16 (I/U)
+;            Added additional support for AOL 3.0 
+;            Added Mozilla/4.0 MSIE 4.0b2 for MSN 2.5
+;            Added support for Netscape 3.02Gold w/ multi language
+;            Added Netscape 3.01 Gold for X11 UNIX
+;            Added Mozilla/3.0 for X11 SCO UNIX
+;            Added Mozilla/2.0 for FrontPage 2.0
+;            Added Prodigy WB/3.2b
+;            Added Mozilla/3.0 MSIE 3.01 for Mac68k
+;            Added NCSA Mosaic v2.1.1
+;            Additional misc. updates not listed
+;
+;       - Ver 1.7b-d (7/6/97 - 7/14/97)
+;            Minor changes for IE 3.02, Default properties added for unrecognized 
+;             browsers, and a few other misc. updates and additional changes
+;             to browers support for default language and proxies
+;
+;       - Ver 1.7 (7/6/97)
+;            Added support browsers reported with proxy information in user agent
+;            Added older Mozilla/1.22 16 bit windows
+;            Added a missing entry for AOL 3.0 and Macintosh
+;            Added AOL 3.0 on Windows 16bit platform
+;            Added Mozilla/2.0 MSIE 3.0 for Mac PowerPC
+;            Added Mozilla/2.0 MSIE 3.0 update A for Win95
+;            Added Mozilla/2.0 MSIE 3.01 update B for Win95
+;            Added Mozilla/2.0 MSIE 3.02 update A for Win95
+;            Added Mozilla/2.0 MSIE 3.02 for Windows 3.1
+;            Added Mozilla/2.0 MSIE 3.02 for Windows NT
+;            Added Mozilla/2.0 MSIE 3.02 for Thai Windows 95
+;            Added Mozilla/2.02 For OS/2
+;            Added Mozilla/3.0 3.0.1 for Mac PPC
+;            Added Mozilla/3.0 for BSD/OS UNIX 
+;            Added Mozilla/3.01 for SunOS UNIX
+;            Added Mozilla/3.01 multi language support via wildcards
+;            Added Mozilla/3.01 wildcards to catch 3.01C* (i.e. 3.01C-KIT)
+;            Added Mozilla/3.01Gold multi language support
+;            Added Mozilla/3.01Gold for 16bit under Win95;
+;            Added Mozilla/4.0 Update A for 95/NT
+;            Added Mozilla/3.01 for UNIX, IRIX X11
+;            Added Mozilla/3.0 for WebTV
+;            Consolodated several entries by using wildcards were applicable
+;
+;       - Ver 1.6 (6/18/97)
+;            Modified Netscape 4 to change beta to False (6/19/97 - 1.6b)
+;            Added Mozilla/4.01 for multiple platforms
+;            Added Mozilla/4.0 final for Macintosh
+;            Added Mozilla/4.0b3-5 for Macintosh
+;            Added Mozilla/3.01b1Gold for multiple platforms
+;            Added Mozilla/3.01 for 16bit Netscape under Win95
+;            Added Mozilla/3.0 for OS/2
+;            Added Mozilla/2.02 modifications to properly support Win16 (U/I)
+;            Added Mozilla/2.0 for MSIE 3.02 marked as Win32
+;            Added Mozilla/2.0 for AOL 3.0 on Windows 3.1 and Mac PPC
+;            Added Mozilla/2.0 for UNIX, SunOS X11
+;            Added Mozilla/2.0 for Windows 3.1            
+;            Added Mozilla/2.0 for MSIE 3.0a on Windows 3.1
+;            Added Mozilla/2.0 for Win16 non MSIE
+; 	- Ver 1.5 (6/9/97)
+;            Added Netscape 4.0 final Win95/NT/3.1 releases
+;            Added NCSA Mosaic 3.0
+;
+;	- Ver 1.0 - 1.4
+;            Added misc. browsers, including Netscape 4 betas, and IE 3.0/3.02
+;            Added old AOL browsers (many of which are still in use)
+;            Fixed minor discrepencies

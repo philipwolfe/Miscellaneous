@@ -1,0 +1,76 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+
+Sub Application_OnStart
+   'Database Connection String
+   Application("strConn") = "Data Source=yourserver;" & _
+      "Provider=SQLOLEDB;Initial Catalog=database;" & _
+      "User ID=user;Password=passsword;"
+End Sub
+
+Sub Application_OnEnd
+   Set Application ("strConn") = Nothing
+End Sub
+
+Sub Session_OnStart
+   If not(Request.Cookies("Name")("Visited") <> "") Then
+      Response.Cookies("Name").Expires = "January 1, 2005"
+      Response.Cookies("Name")("Visited") = "1"
+      a = 1
+   Else
+      a = Request.Cookies("Name")("Visited")
+      a = a + 1
+      Response.Cookies("Name").Expires = "January 1, 2005"
+      Response.Cookies("Name")("Visited") = a
+   End If
+
+   Set BrowserType = Server.CreateObject("MSWC.BrowserType")
+
+   Set Conn = Server.CreateObject("ADODB.Connection")   
+   Conn.Open Application("strConn")
+
+   Set rs = Server.CreateObject("ADODB.RecordSet")
+   strSql = "SELECT * FROM [Logins]"
+   rs.Open strSql, conn, 1, 3  ' Keyset cursor & optimistic locking
+
+   rs.Addnew
+   rs.Fields("IP") = Request.ServerVariables("REMOTE_ADDR")
+   rs.Fields("Referring_Site").value = _
+      Request.ServerVariables("HTTP_REFERER")
+   rs.Fields("Visited").value = Request.Cookies("Name")("Visited")
+   rs.Fields("ActiveX").value = CStr(BrowserType.ActiveX)
+   rs.Fields("Backgroundsounds").value = _
+      CStr(BrowserType.Backgroundsounds)
+   rs.Fields("Beta").value = CStr(BrowserType.Beta)
+   rs.Fields("Cookies").value = CStr(BrowserType.Cookies)
+   rs.Fields("Frames").value = CStr(BrowserType.Frames)
+   rs.Fields("Javaapplets").value = CStr(BrowserType.Javaapplets)
+   rs.Fields("Javascript").value = CStr(BrowserType.Javascript)
+   rs.Fields("Majorver") = BrowserType.Majorver
+   rs.Fields("Minorver") = BrowserType.Minorver
+   rs.Fields("Parent") = BrowserType.Parent
+   rs.Fields("Platform")= Request.ServerVariables("HTTP_USER_AGENT")
+   rs.Fields("Tables").value = CStr(BrowserType.Tables)
+   rs.Fields("Vbscript").value = CStr(BrowserType.Vbscript)
+   rs.Fields("Version") = BrowserType.Version
+   rs.Update
+   rs.close
+   conn.close
+End Sub
+
+Sub Session_OnEnd
+
+   Set Conn = Server.CreateObject("ADODB.Connection")
+   Conn.Open Application("strConn")
+
+   Set rs = Server.CreateObject("ADODB.RecordSet")
+   strSql = "SELECT * FROM [Logins]"
+   rs.Open strSql, Conn
+   rs.AddNew
+   rs.Fields("State") = "Session Ended"
+   rs.Fields("Date") = Now()
+   rs.Update
+   rs.Close
+   Conn.Close
+End Sub
+
+</SCRIPT>

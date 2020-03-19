@@ -1,0 +1,479 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: The Basics of Security</TITLE>
+
+<META NAME="Description" CONTENT="Tom Moran Servin' It Up column on the basics of security for server technologies" />
+<META NAME="Keywords" CONTENT="server, security" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Tom Moran" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg07331.htm#/workshop/server/feature/server033198.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg07331.htm#/workshop/server/feature/server033198.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg07331.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="top" IDX_TYPES="sbngen" IDX_CONCEPT="stopindex; Security, basics">The Basics of Security</A></H1>
+<HR SIZE="1" />
+<P>Tom Moran
+        <BR>Microsoft Corporation
+<P>March 31, 1998
+<P><a href="server0398.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" BORDER=0 ALT="Download">Download Microsoft Word (.DOC) format of this document (zipped, 11.3K)</A>
+
+<P><i>The following article was originally published in the Site Builder Network Magazine &quot;<a href="../../../sitebuilder/magazine/server.htm" TARGET="_top">Servin' It Up</a>" column.</i>
+        <P>My plan is to cover predominantly Active Server Pages technology (ASP), Microsoft Internet Information Server (IIS) and Microsoft Site Server.  However, this column is for you, so you  <A HREF="server033198.htm#write">tell me</A> what you are most interested in.
+<P>Of course, for this first time out, I get to choose.  I wanted to make this column kind of fun, and I thought I would start with some cheesy allusions to Bill Clinton and how certain request protocols are supposed to work.  My editor quickly nixed that idea, so we agreed I would talk about security only.  Maybe the fun comes next time, but security is awfully important, so I don't mind -- shouldn't get me in too much trouble, either.  Specifically, let's start with a primer and decision-making guide.  In the future, we'll spend time delving down into more specifics and implementation issues, including lots of code and examples.
+<P>
+<h2>One Step at a Time
+</h2>
+<P>Security is a wide-reaching topic -- and can get extremely complex. Don't let that stop you, because most of what you <i>really</i> need to know can be absorbed in bite-sized chunks and implemented in stages.  When thinking about security for your site, you need to be concerned with several discrete areas , as well as a few basic concepts.  Each has a set of technologies and techniques all its own, and I've included a table of some of these for each area. I will outline each of these areas, introduce a few important concepts, and give a few examples of when you might want to use each.   I will also include a few links to more information, but the best place to start for any of this is the online documentation for the Windows NT&#174; 4.0 Option Pack  -- you'll notice I refer you to it several times.
+<P><IMG SRC="server0398.gif" WIDTH="469" HEIGHT="397" BORDER=0 ALT="Permissions process">
+<P><b>Figure 1. Access permissions process</b>
+<h2>The Beginnings
+</h2>
+<P>
+<h3><A NAME="access" IDX_TYPES="sbngen" IDX_CONCEPT="Security, access control">Access Control</A></h3>
+<br><b>or &quot;How do I keep my competitors off my site?&quot;</b>
+<br>The first and most fundamental area is access control, which allows you to determine who has, and who shouldn't have, access to your site -- or to specific areas on your site. For example, if you are planning on having some sort of membership, with content restricted to those members, you need to understand each method of access control and decide which works best in your situation.
+<P>This is so fundamental, it deserves a little extra explanation. So I've included a chart.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=TOP>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Anonymous
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Allows anyone to view the content on your site.  Anonymous, Basic, and NTLM can all be set through the same IIS dialog box using the Microsoft Management Console MMC).
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Basic
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Requires a user ID and password.  Not very secure, since it is sent over the wire either as clear text or base64-encoded.  Still very appropriate for some applications, and probably the most widely used authentication method.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Digest Authentication
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Conceptually similar to Basic; however, the password is <i>not</i> sent over the network.  Instead, a hashed version of the password is used. This is not officially supported in IIS 4.0.  However, since it is a proposed part of HTTP 1.1, I though you might come across it.  This may end up being a good method to use in the future, since it will likely be supported by multiple browsers and will get around some of the major problems of Basic Authentication.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>NTLM
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Also known as NT Challenge/Response.  The most secure of the three basic authentication methods supported by IIS.  However, you must be using Internet Explorer clients to support NTLM.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>TCP/IP addresses
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Allows you to restrict access based on a user's IP Address or domain. You can programmatically restrict access according to a domain as well, but that is a much more complex option, and will be addressed in detail in an upcoming column.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>NTFS security
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Allows you to specify permissions at the file level, based on user or NT group.
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Site Server membership
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Part of the Site Server product, which sits on top of NTS and IIS.  Use when you need NT Authentication, but want higher scalability or are on the World Wide Web, where your users may not participate in an NT domain model.  Ideal for a large subscription service.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Content Rating
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Really a self-selecting type of access control that you probably have no control over.  Users must configure a response to this in their browsers.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>At a high level, it is pretty simple.  The server takes a request, goes through a series of checks, and then denies or grants access based on the results.  Notice something about this chart? To obtain access, the user has to go through the entire chain of verification.  If verification fails at any point along the way, access is immediately denied.
+<h3><A NAME="audit" IDX_TYPES="sbngen" IDX_CONCEPT="Security, auditing site access">Auditing</A></h3>
+<P><b>or &quot;How can I tell who changed the picture of my mother-in-law to an elephant?&quot;</b>
+<BR>More importantly, you want to prove it wasn't you.  Use this ability when it is important to determine who's done what, which files or pages have been accessed, and what may have been compromised or tested.  For example, if you want to know who exactly is accessing a certain file, you can set up logging that will record any access, failed or successful.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=TOP>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>NT Event Logs
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Your basic Windows NT logs.  You can log system events, such as access violations, low disk space, and so on.  Check out the Event Viewer in your Administrative Tools for more information.  Be careful not to audit everything, or your event log will soon become unmanageable.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS Logs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>More comprehensive than the Windows NT Event log.  You can determine who is accessing your site and specifically what content they looked at.  Search on <b>about logging Web site activity</b> in your Windows NT Option Pack docs for more information.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Custom Logs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>A COM interface allows you to create your own custom logging object and UI.  Search on <b>custom logging</b> in your Windows NT Option Pack docs for more information.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<h3><A NAME="authentication" IDX_TYPES="sbngen" IDX_CONCEPT="Security, authentication">Authentication</A></h3>
+<P><b>or &quot;I don't want my kids getting into my bank account&quot;</b>
+<BR>Use authentication when it is necessary to prove the identity of the user.  For example, if you are creating a private financial transaction, such as a bank-balance transfer, you would secure the channel, and also ensure that whomever executed the transaction was the true owner.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=TOP>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Client Certificates
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>These certificate values are available to ASP through the <b>Request</b> object.  You must have a server certificate and secure connection to use client certificates.  For more info, search in the  <A HREF="http://www.microsoft.com/isapi/goprem.asp?TARGET=/msdn/library/default.htm" TARGET="_top">MSDN Library</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for <b>client certificate</b>.  Also search for <b>enabling client certificates</b> in your NT Option Pack docs.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Custom
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>You can use Visual C++ to create ISAPI filters that can implement your own authentication scheme.  For more information, just search for <b>isapi filter</b> on www.microsoft.com.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<h3><A NAME="privacy" IDX_TYPES="sbngen" IDX_CONCEPT="Security, privacy/data integrity">Privacy/Data Integrity</A></h3>
+<P><b>or &quot;How to make your love letters secure&quot;</b>
+<BR>Privacy techniques ensure that nobody else has access to your secure communication.  Note that posting from forms is generally <i>not</i> a very private way to transfer data!  <A HREF="http://www.microsoft.com/security/" TARGET="_top">Microsoft's Security site</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> is the definitive place for information on encryption-related issues
+<P>Data integrity methods help ensure that the data you send is the data your user receives, and vice versa.  Again, financial transactions are an area illustrating the risks of corrupted data or malicious alteration.  If you purchase something, you want to make sure that the amount hasn't been altered, either maliciously or through an error caused by a system going down before the transaction was completed.
+<P>Privacy and data integrity go hand in hand; if your communication is secure, then no one should be able to alter it.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=TOP>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Client Certificates
+</TD>
+
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Properties available through ASP and ISAPI; can be mapped directly to Windows NT accounts.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Encryption
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Encryption is the general term used for setting up a secure channel.  Find more by searching for encryption in your Windows NT Option Pack docs.  To set up a secure channel, you generally need a valid server certificate.  You can either make your own through Certificate Server, or request one through a third-party certificate authority.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SSL
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Secure Sockets Layer (SSL)-specific protocol used to provide a secure channel. IIS 4.0 supports SSL 3.0.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>PCT
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Private Communication Technology (PCT) 1.0 is another protocol supported by IIS 4.0.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>TLS
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Transport Layer Security (TLS) is a protocol used primarily in messaging applications using SMTP.
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Microsoft Transaction Server (MTS)
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Now part of Windows NT and integrated with IIS, MTS allows you to easily use ASP to set up transactions around database access to create a robust transaction processing system.  You can even mark an entire ASP page as transactional.  There is a good article in the  <A HREF="http://www.microsoft.com/msj/0498/mts.htm" TARGET="_top">April MSJ Microsoft Systems Journal</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> about integrating MTS into your application.
+
+</TD>
+</TR>
+
+</TABLE>
+<h2><A NAME="related" IDX_TYPES="sbngen" IDX_CONCEPT="Security, related concepts">The Relations</A></h2>
+<P>A few related concepts will affect your decision on how to secure your site:
+<P><b>O/S integration:</b> Is this just another layer on the operating system, or is it able to take advantage of the native security of the operating system?  The security used by IIS and FP Server extensions is integrated with Windows NT security.  That means security is more robust, and has fewer points of failure.
+<P><b>User context:</b> This is an important concept.  Whenever someone accesses your site, he or she does so in the context of a Windows NT user.  This is true even if he is anonymous, and carries forward into any applications or tasks that are launched on the visitor's behalf.  This subject, which extends to such related issues as impersonation and delegation, is rather complex and the source of many access problems.  Look for more specifics in a future column.
+<P><b>The anonymous user:</b> Whenever someone accesses your site anonymously (because you have configured anonymous access in IIS Admin), the user is in the context of a Windows NT account called IUSR_<i>machinename</i>.  This is important because, by using this account, and limiting its access through Windows NT, you are still able to restrict permissions to specific files (assuming you are using NTFS).
+<P><b>Database security:</b> When you are doing any database work, each database may implement its own security model.  For example, SQL Server has a very robust security model.  However, it can also use <i>integrated security</i>, where it depends on NT authentication mechanisms for all connections.  In certain circumstances, using SQL Server security can make it easier to use a database that may be located on a separate machine.  See the following resources for more information:
+<UL>
+
+
+<LI> <A HREF="http://www.microsoft.com/vinterdev/techmat/whitepapers/VIaccess.htm" TARGET="_top">http://www.microsoft.com/vinterdev/techmat/whitepapers/VIaccess.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for using Access
+
+<LI> <A HREF="http://www.microsoft.com/vinterdev/techmat/tutorials/lesson9.htm" TARGET="_top">http://www.microsoft.com/vinterdev/techmat/tutorials/lesson9.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> to learn more about using Visual InterDev&#153; with SQL Server
+
+</UL><b>Run-time versus design-time security:</b> This is primarily an issue involving Visual InterDev and FrontPage&#174;, and is worth an entire column by itself.  The idea is that you not only need to manage end-user access to your site, but also your Web application while it is under development.  There is an excellent white paper by Martin Sonntag at  <A HREF="http://www.microsoft.com/vinterdev/techmat/whitepapers/visecure.htm" TARGET="_top">http://www.microsoft.com/vinterdev/techmat/whitepapers/visecure.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P><b>Programmability:</b> This is the ability to make custom authentication schemes or to control access programmatically.  Can you hide your source code?  Do you need to?  Using ASP and server-side objects can help you do this.  Depending on your programming background and environment, you can also modify and create Windows NT groups, modify access, and so forth.
+<P><b>System Integrity:</b> This is the ability to isolate applications running on the server.  Can an app crash or do damage to another app?  IIS provides several ways to maintain system integrity.  Process isolation means that an application failing won't bring down the entire machine and cause a reboot.  IIS actually uses MTS to achieve process isolation.  Bandwidth throttling, or limiting, provides the ability to limit the amount of bandwidth used in serving up static HTML pages, helping to ensure other applications do not starve for resource time.
+<P>
+<h2>Feeling More Secure Now?
+</h2>
+<P>While there are many topics to understand, there are also a lot of great resources -- the two best being the Search area on Microsoft's Web site and the Windows NT Option Pack documentation.  The hardest part is figuring out what methods, acronyms, and technologies fit with each area -- and, hopefully, this column will help reduce the time you waste pursuing red herrings when you need to get your Web site working.  I would love to get mail from you.   <A HREF="server033198.htm#write">Let me know</A> what you think of this article, and what you want to see in the future, and we'll grow this column together to meet your server needs. (Put &quot;Server&quot; column in the subject line of your mail.)
+
+<P>
+
+<h2>Security Resources</h2>
+<P>An excellent article about security concepts and troubleshooting more specific to Visual InterDev is  <A HREF="http://premium.microsoft.com/isapi/devonly/prodinfo/msdnprod/msdnlib.idc?theURL=/msdn/library/techart/msdn_authentication.htm" TARGET="_top">Authentication and Security for Internet Developers</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> by Scott Stabbert (requires one-time registration).
+<P>Another excellent article on security is at  <A HREF="http://www.15seconds.com/" TARGET="_top">http://www.15seconds.com/</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">. Look for &quot;Advanced Security Concepts.&quot;
+<P>For more general information on all of the topics presented, visit <A HREF="../../../workshop/server/default.htm">SBN Workshop's Server Technologies section</A>.
+<P>There are also tons of great implementation-specific articles in the Microsoft  <A HREF="http://www.microsoft.com/isapi/gosupport.asp?TARGET=/support/default.asp" TARGET="_top">Knowledge Base</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.  Whenever you think you have run into a bug or need a workaround, check this resource first.
+
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg05226.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="server033198.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

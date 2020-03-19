@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.microsoft.com/donkeyweb/modelservice" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.microsoft.com/donkeyweb/modelservice" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.microsoft.com/donkeyweb/modelservice">
+      <s:element name="Browse">
+        <s:complexType />
+      </s:element>
+      <s:element name="BrowseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BrowseResult" type="s0:ArrayOfObstacleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfObstacleInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ObstacleInfo" type="s0:ObstacleInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ObstacleInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Thumbnail" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="DownloadSize" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Download">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModelName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DownloadResult" type="s0:Obstacle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Obstacle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Scream" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfObstacleInfo" nillable="true" type="s0:ArrayOfObstacleInfo" />
+      <s:element name="Obstacle" type="s0:Obstacle" />
+    </s:schema>
+  </types>
+  <message name="BrowseSoapIn">
+    <part name="parameters" element="s0:Browse" />
+  </message>
+  <message name="BrowseSoapOut">
+    <part name="parameters" element="s0:BrowseResponse" />
+  </message>
+  <message name="DownloadSoapIn">
+    <part name="parameters" element="s0:Download" />
+  </message>
+  <message name="DownloadSoapOut">
+    <part name="parameters" element="s0:DownloadResponse" />
+  </message>
+  <message name="BrowseHttpGetIn" />
+  <message name="BrowseHttpGetOut">
+    <part name="Body" element="s0:ArrayOfObstacleInfo" />
+  </message>
+  <message name="DownloadHttpGetIn">
+    <part name="ModelName" type="s:string" />
+  </message>
+  <message name="DownloadHttpGetOut">
+    <part name="Body" element="s0:Obstacle" />
+  </message>
+  <message name="BrowseHttpPostIn" />
+  <message name="BrowseHttpPostOut">
+    <part name="Body" element="s0:ArrayOfObstacleInfo" />
+  </message>
+  <message name="DownloadHttpPostIn">
+    <part name="ModelName" type="s:string" />
+  </message>
+  <message name="DownloadHttpPostOut">
+    <part name="Body" element="s0:Obstacle" />
+  </message>
+  <portType name="ModelServiceSoap">
+    <operation name="Browse">
+      <documentation>Returns the names and thumbnails of models available for download.</documentation>
+      <input message="s0:BrowseSoapIn" />
+      <output message="s0:BrowseSoapOut" />
+    </operation>
+    <operation name="Download">
+      <documentation>Returns the content for a model specified by name.</documentation>
+      <input message="s0:DownloadSoapIn" />
+      <output message="s0:DownloadSoapOut" />
+    </operation>
+  </portType>
+  <portType name="ModelServiceHttpGet">
+    <operation name="Browse">
+      <documentation>Returns the names and thumbnails of models available for download.</documentation>
+      <input message="s0:BrowseHttpGetIn" />
+      <output message="s0:BrowseHttpGetOut" />
+    </operation>
+    <operation name="Download">
+      <documentation>Returns the content for a model specified by name.</documentation>
+      <input message="s0:DownloadHttpGetIn" />
+      <output message="s0:DownloadHttpGetOut" />
+    </operation>
+  </portType>
+  <portType name="ModelServiceHttpPost">
+    <operation name="Browse">
+      <documentation>Returns the names and thumbnails of models available for download.</documentation>
+      <input message="s0:BrowseHttpPostIn" />
+      <output message="s0:BrowseHttpPostOut" />
+    </operation>
+    <operation name="Download">
+      <documentation>Returns the content for a model specified by name.</documentation>
+      <input message="s0:DownloadHttpPostIn" />
+      <output message="s0:DownloadHttpPostOut" />
+    </operation>
+  </portType>
+  <binding name="ModelServiceSoap" type="s0:ModelServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="Browse">
+      <soap:operation soapAction="http://www.microsoft.com/donkeyweb/modelservice/Browse" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Download">
+      <soap:operation soapAction="http://www.microsoft.com/donkeyweb/modelservice/Download" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="ModelServiceHttpGet" type="s0:ModelServiceHttpGet">
+    <http:binding verb="GET" />
+    <operation name="Browse">
+      <http:operation location="/Browse" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="Download">
+      <http:operation location="/Download" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="ModelServiceHttpPost" type="s0:ModelServiceHttpPost">
+    <http:binding verb="POST" />
+    <operation name="Browse">
+      <http:operation location="/Browse" />
+      <input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="Download">
+      <http:operation location="/Download" />
+      <input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ModelService">
+    <documentation>Used for browsing and downloading models for use in Donkey.NET.</documentation>
+    <port name="ModelServiceSoap" binding="s0:ModelServiceSoap">
+      <soap:address location="http://localhost/donkeyweb/modelservice.asmx" />
+    </port>
+    <port name="ModelServiceHttpGet" binding="s0:ModelServiceHttpGet">
+      <http:address location="http://localhost/donkeyweb/modelservice.asmx" />
+    </port>
+    <port name="ModelServiceHttpPost" binding="s0:ModelServiceHttpPost">
+      <http:address location="http://localhost/donkeyweb/modelservice.asmx" />
+    </port>
+  </service>
+</definitions>

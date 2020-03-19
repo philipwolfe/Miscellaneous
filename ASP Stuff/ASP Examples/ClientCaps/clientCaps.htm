@@ -1,0 +1,26 @@
+<HTML>
+   <HEAD>
+      <SCRIPT LANGUAGE="JavaScript">
+         function createCookie() {
+            strCookie = "Browscap="
+            strCookie += "availHeight=" + clientCaps.availHeight;
+            strCookie += "&availWidth=" + clientCaps.availWidth;
+            strCookie += "&bufferDepth=" + clientCaps.bufferDepth;
+            strCookie += "&colorDepth=" + clientCaps.colorDepth;
+            strCookie += "&connectionType=" + clientCaps.connectionType;
+            strCookie += "&cookieEnabled=" + clientCaps.cookieEnabled;
+            strCookie += "&cpuClass=" + clientCaps.cpuClass;
+            strCookie += "&height=" + clientCaps.height;
+            strCookie += "&javaEnabled=" + clientCaps.javaEnabled;
+            strCookie += "&platform=" + clientCaps.platform;
+            strCookie += "&systemLanguage=" + clientCaps.systemLanguage;
+            strCookie += "&userLanguage=" + clientCaps.userLanguage;
+            strCookie += "&width=" + clientCaps.width;
+            document.cookie=strCookie;
+         }
+      </SCRIPT>
+   </HEAD>
+   <BODY ONLOAD="createCookie()">
+      <MYCAPS ID="clientCaps" STYLE="behavior:url(#default#clientCaps)" />
+   </BODY>
+</HTML>

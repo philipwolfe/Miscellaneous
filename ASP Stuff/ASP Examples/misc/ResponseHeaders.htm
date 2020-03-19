@@ -1,0 +1,14 @@
+<SCRIPT>
+   // Instantiate the object
+   var objHttpRequest=new ActiveXObject("Microsoft.XMLHTTP");
+
+   // Open the request specifying the GET method, the URL of the ASP page
+   // and synchronous loading of the page
+   objHttpRequest.open("GET", "http://localhost/ASP Prog Ref/Chapter 05/HTTPUserAgent_vbs.asp", false);
+
+   // Send the request
+   objHttpRequest.send();
+
+   // Display all header information
+   document.write(objHttpRequest.getAllResponseHeaders());
+</SCRIPT>

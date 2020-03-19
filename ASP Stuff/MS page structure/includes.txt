@@ -1,0 +1,10 @@
+http://msdn.microsoft.com/msdn-online/shared/inc/docdata.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/browdata.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/header.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/footer.inc
+http://msdn.microsoft.com/workshop/templates/scripts.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/doctop.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/toolbar-uplevel.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/toolbar.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/toolbar-downlevel.inc
+http://msdn.microsoft.com/msdn-online/shared/inc/navlinks.inc

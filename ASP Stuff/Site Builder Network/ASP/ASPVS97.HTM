@@ -1,0 +1,617 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Creating an Active Server Component in Visual Studio 97</TITLE>
+
+<META NAME="Description" CONTENT="The first in a four-part series, this article provides a simple example of how to create an Active Server Component in Visual Studio 97 using the ATL version 2.0 and Microsoft Visual C++ version 5.0." />
+<META NAME="Keywords" CONTENT="ATL, ASP, Visual Studio 97, server" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Wayne Berry" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg00574.htm#/workshop/server/asp/aspvs97.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg00574.htm#/workshop/server/asp/aspvs97.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg00574.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="CREATE" IDX_TYPE="task" IDX_CONCEPT="stopindex;Creating an Active Server Component in Visual Studio 97">Creating an Active Server Component in Visual Studio 97</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="Components, server: creating in Visual Studio 97"></A></H6>
+<P>Wayne Berry<BR>Editor, 15 Seconds
+<P>June 1997
+
+<P><b>Contents</b>
+<br> <A HREF="aspvs97.htm#intro">Introduction</A>
+<br> <A HREF="aspvs97.htm#STEP1">Step 1: Creating an ATL project</A>
+<BR> <A HREF="aspvs97.htm#STEP2">Step 2: Adding an Active Server Component</A>
+<BR> <A HREF="aspvs97.htm#STEP3">Step 3: Creating a method</A>
+<BR> <A HREF="aspvs97.htm#STEP4">Step 4: Making it work</A>
+<BR> <A HREF="aspvs97.htm#STEP5">Step 5: Adding the component to an ASP page</A>
+<a name="intro"></a><h2>Introduction
+</h2>
+<P>The first in a four-part series, this article provides a simple example of how to create an Active Server Component in Visual Studio&#153; 97 using the Active Template Library (ATL) version 2.0 and Microsoft Visual C++&#174; version 5.0. The Active Server Component works with Active Server Pages (ASP) as an extension of Active Server. When placed within an ASP page, the component we are going to create will get the user's cookie, or assign a cookie if the user doesn't have one.
+<P>If you are still using Microsoft Visual C++ version 4.2, we recommend you upgrade to Microsoft Visual Studio 97, which makes COM objects much easier to program.
+<P>If you don't plan to use ASP technologies, you may want to consider using a simple object, instead. Please see the  <A HREF="aspvs97.htm#DISCUSS">discussion</A> at the end of this article.
+<P>Creating an Active Server Component consists of five steps. If you have already installed Visual Studio 97, you can get started right away.
+<P>
+<P><A HREF="aspvs97.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P>
+<h2><A NAME="STEP1" IDX_TYPE="sbngen" IDX_CONCEPT="ATL, creating a project in Visual Studio 97;Visual Studio 97, creating an ATL presentation">Step 1: Creating an ATL Project</A>
+</h2>
+<P>The first step in building an Active Server Component is to create an ATL project.  We will create the ATL project using the ATL COM AppWizard. The code produced by the wizard is nothing more than a DLL shell, with the ability to register the objects that will be defined later, to create those objects through a class factory, and to build a DllMain that supports the DLL shell.  The shell by itself is not an Active Server Component.  The shell is a holder for many Active Server Components.  These components share the same code that is available in the shell and can share functionality between them, since they exist in the same DLL.
+<OL>
+
+<LI>   Open Microsoft Visual Studio&#153; 97; from the File menu, choose New.
+<LI>   Click the Project tab.
+<LI>   From the list of projects, choose <b>ATL COM AppWizard</b>.
+<LI>   For the project name, type <b>SMUM</b>. It is important to note that this is the name of the project, not the name of the object.  We like to give the project the same name as that of the company under which the project will be licensed. In this example, &quot;SMUM&quot; stands for &quot;Sign Me Up Marketing.&quot; We also prefer to use the project name as the first part of the object's common name. For instance, the Prog ID of the object in this example will be SMUM.Example. We prefer not to give the project the same name as the object, because there may be more than one object within a project/shell.  Also, the ATL wizard will have problems with filenames later if the object and the project have the same name. 
+<p><IMG SRC="042297_1.gif" border=0 alt=""> 
+
+<p><b>Figure 1. New project</b>
+<P>
+<LI>   Press OK. The &quot;ATL COM AppWizard - Step 1 of 1&quot; dialog box will appear.
+<LI>   Check <b>Allow merging of proxy/stub code</b>.
+<LI>   Click Finish.
+<LI>   Click OK.
+<p><IMG SRC="042297_2.gif" border=0 alt="">
+
+<p><b>Figure 2. ATL COM AppWizard - Step 1 of 1</b>
+</OL>
+<h4>Files affected
+</h4>
+<UL>
+
+
+<LI> SMUM.CPP: This file contains the code for the project, including code for the Class Factory, registration, and DllMain.
+<LI> SMUM.DEF: This is the definition file that tells the compiler which procedure to export; the class factory and the registration functions are exported.
+<LI> SMUM.IDL: This is the interface definition file. The ATL COM wizard doesn't implement any interfaces through the .IDL file until objects are added in step 2.
+<LI> SMUM.RC: The DLL resource file.
+<LI> StdAfx.CPP, StdAfx.H: Precompiled header files.
+<LI> dlldatax.C: This file contains code for merging the proxy/stub.
+
+</UL>
+<P> <A HREF="aspvs97.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="STEP2" IDX_TYPE="sbngen" IDX_CONCEPT="ATL, adding Active Server Component to Visual Studio 97 project;Visual Studio 97, adding Active Server Component to project">Step 2: Adding an Active Server Component</A>
+</h2>
+<P>The second step is to add an Active Server Component to the shell.  This is done using the ATL Object Wizard.
+<OL>
+
+<LI>   From the Visual Studio menu bar, choose Insert, and click <b>New ATL Object</b>. The &quot;ATL Object Wizard&quot; dialog box will appear.
+<LI>   Choose <b>Component</b> from the left-hand list box.
+<LI>   In the right-hand list box, choose the type of component: <b>ActiveX Server Component</b>.
+<p><IMG SRC="042297_3.gif" border=0 alt="">
+
+<p><b>Figure 3. ATL Object Wizard</b>
+<P>
+<LI>   Click Next. Another dialog box, &quot;ATL Wizard Object Properties,&quot; will appear.
+
+<LI>   For Short Name, type the name of the component. In this example, we will call the component <b>Example</b>. Notice that while you type, the wizard automatically fills in the other properties.
+<LI>   Type the object's Prog ID by highlighting the first part of the Prog ID and replacing it with <b>SMUM</b> (in step one, I mentioned that the example object Prog ID would be &quot;SMUM.Example&quot;).  Be careful not to highlight the period that separates the two parts of the Prog ID. The wizard will not allow you to type a period in this edit box. If you delete the period, you will have to start over from step 1.
+<LI>   Modify the Type to read <b>Sign Me Up Marketing Example Component</b>, so that when you test the component from the ActiveX Control Test Container, you will be able to find it quickly. The ActiveX Control Test Container is a tool that comes with Visual C++ installation of Visual Studio 97. The test container loads COM objects and allows you to test them by their method and properties.
+<p><IMG SRC="042297_4.gif" border=0 alt="">
+
+<p><b>Figure 4. ATL Wizard Object Properties</b>
+<P>
+<LI>   Click OK to create the object.
+
+</OL>
+<h4>Files affected
+</h4>
+<P>The ATL Object Wizard creates these files: 
+<UL>
+
+
+<LI> Example.CPP
+<LI> Example.H
+
+</UL>The wizard also adds code describing the interface of the Example object to the project's SMUM.IDL.
+<P>
+<h3>Object Member Variables
+</h3>
+<P>When the ATL Object Wizard creates an Active Server Component, it adds by default the member variables that interface with the <b>Application</b>, <b>Request</b>, <b>Response</b>, <b>Server</b>, and <b>Session</b> objects.
+<P>
+<P> <A HREF="aspvs97.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="STEP3" IDX_TYPE="sbngen" IDX_CONCEPT="Visual Studio 97, creating a method in ATL project;ATL, creating a method for in Visual Studio 97">Step 3: Creating a Method</A>
+</h2>
+<P>Now we will implement a method to get and set a cookie. First, we need to add a method called <b>GetCookie</b> to the <b>Example</b> interface.
+<OL>
+
+<LI>   Go to the Project window of the SMUM project.
+<LI>   Click the <b>Class View</b> tab.
+<LI>   Expand the Cexample class until you can see the <b>IExample</b> interface.
+<LI>   Right-click <b>IExample</b>, and choose <b>Add Method</b>.
+<p><IMG SRC="042297_5.gif" border=0 alt="">
+
+<p><b>Figure 5. Adding a method in the Project view</b>
+<P>
+<LI>   The &quot;Add Method to Interface&quot; dialog box should appear.
+<LI>   For Method Name, type <b>GetCookie</b>.
+<LI>   For Parameters, type <b>[out,retval] BSTR *pVal</b>.
+<p><IMG SRC="042297_6.gif" border=0 alt="">
+
+<p><b>Figure 6. Adding a method to the interface</b>
+<P> 
+<LI>   Click OK.
+
+</OL>By using Visual Studio 97 to add a method in the Project view, you automatically insert the interface description into the *.IDL file, and supporting code for the class is generated.
+<P>
+<P> <A HREF="aspvs97.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="STEP4"></A>Step 4: Making It Work
+</h2>
+<P>Now we are going to add the functionality to the <b>GetCookie</b> method created in step 3. This method gets the current cookie; if not available, it creates a cookie and returns its value.
+<P>To quickly find the section of code where Visual Studio added the method, expand the project in the Project window, expand the <b>IExample</b> interface, and double-click on the <b>GetCookie</b> method. Add the following code:
+<P>
+<PRE class=clsCode>STDMETHODIMP CExample::GetCookie(BSTR * pVal)
+{
+   GUID            guid;
+   TCHAR           lpszCookie[25];
+   VARIANT            varOptional;
+   HRESULT            hr;
+
+   // Check the Pointer 
+   if (pVal==NULL)
+      return E_POINTER; 
+
+   // Optimistically set the Returning 
+   // HRESULT
+   hr=S_OK;
+
+   // Configure the Optional Variant
+   // This configuration follows
+   // the documentation for the
+   // Active Server Object Interfaces
+   V_ERROR(&amp;varOptional) == DISP_E_PARAMNOTFOUND;
+
+   // Check to make sure all the interfaces
+   // loaded correctly.  This is the part
+   // that would fail if you called this
+   // object from Visual Basic.
+
+   if (m_bOnStartPageCalled)
+   {
+      // Allocate the Request Dictionary Objects
+      // so that we can pass them to the Active
+      // Server Object Interfaces
+      CComPtr&lt;IRequestDictionary&gt; piReadDict;
+      CComPtr&lt;IRequestDictionary&gt; piWriteDict;
+
+      // Pointer to the Write Cookie Interface
+      IWriteCookie      *piWriteCookie;
+   
+      // From the Request Interface retrieve
+      // a Dictionary of Cookies
+      hr=m_piRequest-&gt;get_Cookies(&amp;piReadDict);
+
+      if (FAILED(hr))
+         return hr;
+
+      // Allocate and set Variants to pass to 
+      // the dictionary
+      CComVariant vtIn(_T(&quot;GUID&quot;));
+      CComVariant   vtOut;
+
+      // Get the Cookie from the dictionary
+      // named SMUMID and put it in vtOut
+      hr = piReadDict-&gt;get_Item(vtIn, &amp;vtOut);
+
+      if (FAILED(hr))
+         return hr;
+
+      // vtOut contains an IDispatch Pointer. 
+      // To fetch the value for the cookie, you
+      // must get the Default Value for the 
+      // Object stored in vtOut using VariantChangeType.  
+      hr = VariantChangeType(&amp;vtOut, &amp;vtOut, 0, VT_BSTR);
+
+      if (FAILED(hr))
+         return hr;
+
+      // If the Cookie isn't set then
+      // the length of vtOut will be 0
+      if (!wcslen(V_BSTR(&amp;vtOut)))
+      {
+         // There isn't a Cookie assigned
+         // so we have to create one.
+
+         // Use a GUID for the Unqiue User Cookie
+         CoCreateGuid(&amp;guid);
+
+         // Put the GUID into a String
+         wsprintf(lpszCookie,
+            _T(&quot;%X%X%X%X%X%X%X%X%X%X%X&quot;),
+            guid.Data1,
+            guid.Data2, guid.Data3,
+            guid.Data4[0], guid.Data4[1],
+            guid.Data4[2], guid.Data4[3],
+            guid.Data4[4], guid.Data4[5],
+            guid.Data4[6], guid.Data4[7]);
+      
+
+         // Create a Variant from the String
+         CComVariant   vtCookieValue(lpszCookie);
+
+         // Get the writable Cookie Dictionary 
+         // from the Response Object.  Notice
+         // that it is the Response Object and
+         // not the Request Object like above.
+         hr=m_piResponse-&gt;get_Cookies(&amp;piWriteDict);
+
+         if (FAILED(hr))
+            return (hr);
+
+         // Get the Writable Interface for
+         // the GUID cookie from the Cookie Dictionary
+         // Notice here that the GUID cookie
+         // doesn't exist in the dictionary, but we
+         // can still ask for its interface
+         hr = piWriteDict-&gt;get_Item(vtIn, &amp;vtOut);
+
+         if (FAILED(hr))
+            return(hr);
+
+         // Make it easy on ourselves, get and cast
+         // the IDistpach value to the dual interface
+         // that we want to call
+         piWriteCookie = (IWriteCookie*)(vtOut.ppdispVal);
+         
+         // Create the Cookie using the Name GUID and the Value of
+         // the GUID that we generated
+         hr = piWriteCookie-&gt;put_Item(varOptional,
+            V_BSTR(&amp;vtCookieValue));
+
+         if (FAILED(hr))
+            return(hr);
+
+         // Create an Expiration Date sometime in the future
+         // To keep the example simple, I am using my birthday
+         // in 2010. 10/4/2010. Some other time, we will show
+         // how to generate a VB DATE (double) without MFC.
+         DATE   dtExpiration=40455.0;
+         
+         // This is required if you want the browser
+         // to retain the cookie between sessions
+         hr = piWriteCookie-&gt;put_Expires(dtExpiration);
+
+         if (FAILED(hr))
+            return(hr);
+
+         // Assign the out,retval
+         *pVal = ::SysAllocString(V_BSTR(&amp;vtCookieValue)); 
+
+         // A little help for Debugging
+         ATLTRACE (_T(&quot;Setting Cookie to: %s\n&quot;),
+            V_BSTR(&amp;vtCookieValue));
+      }
+      else
+      {
+         // Assign the out,retval
+         *pVal = ::SysAllocString(V_BSTR(&amp;vtOut));
+         
+         // A little help for Debugging
+         ATLTRACE (_T(&quot;Cookie was set to: %s\n&quot;),
+            V_BSTR(&amp;vtOut));
+      }
+   }
+
+   return hr;
+
+ }
+</PRE>
+<P>Once you have added the code, build the DLL. After compilation and linking, Visual Studio will register the DLL. If you have Internet Information Server (IIS) installed, you can now use the component.
+<P>
+<P> <A HREF="aspvs97.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="STEP5" IDX_TYPE="sbngen" IDX_CONCEPT="ASP, adding component to ASP page;Components, server: adding to ASP page">Step 5: Adding the Component to an ASP Page</A>
+</h2>
+<P>The last step is to add the component you just built to your ASP page.
+<P>
+<h4>The right way
+</h4>
+<P>Here is the <i>right way</i> to call the Active Server Component. Notice that the cookie header precedes the &lt;HTML&gt; and &lt;BODY&gt; tags.
+<P>
+<PRE class=clsCode>&lt;%
+' Here is where the OnStartPage method is called
+Set Example=Server.CreateObject(&quot;SMUM.Example.1&quot;)
+
+'Here is the method call to assign the cookie
+Cookie = Example.GetCookie()
+%&gt;
+&lt;HTML&gt;
+&lt;BODY&gt;
+&lt;%=Cookie%&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+
+</PRE>
+<P>
+<h4>Warning
+</h4>
+<P>When setting cookies, you must always assign the cookie header <i>before</i> the main body (&lt;HTML&gt; and &lt;BODY&gt; tags) of your page. For instance, this is the wrong way to send the code: 
+<P>
+<PRE class=clsCode>&lt;HTML&gt;
+&lt;BODY&gt;
+&lt;%
+Set Example=Server.CreateObject(&quot;SMUM.Example.1&quot;)
+
+' The Cookie Header is set with this
+' call if a cookie doesn't exist,
+' which is too late since some of the body text has
+' been sent already.
+Cookie = Example.GetCookie()
+%&gt;
+The Cookie is : &lt;%=Cookie%&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+</PRE>
+<P>
+<h3><A NAME="DISCUSS"></A>Components or Simple Objects?
+</h3>
+<P>We just ran through the steps to create an Active Server Component using the ATL Object Wizard, which inserted code and created files to support the COM object named <b>Example</b>. This is the same code that the wizard would have created if we had chosen to create a simple object. 
+<P>Simple objects are sometimes more appropriate for large projects if you plan to use the same object over and over, and that object won't require access to Active Server Component interfaces (<b>Application</b>, <b>Request</b>, <b>Response</b>, <b>Server</b>, and <b>Session</b>). When creating an Active Server Component, the wizard adds code to access those interfaces. This is convenient only if the component is going to be used in an Active Server environment. 
+<P>
+<h4>A cookie example
+</h4>
+<P>If you want to create a customer object based on a cookie, you can call an Active Server Component from an ASP page; for example: 
+<P>
+<PRE class=clsCode>Set Creator=Server.CreateObject(&quot;SMUM.CustomerCreator.1&quot;)
+Set Customer = Creator.CreateCustomer
+Customer.EmailAddress = &quot;webmaster@signmeup.com&quot; 
+</PRE>
+<P>The cookie call to the <b>Request</b> object is hidden from the ASP developer. When the <b>CustomerCreator</b> object performs the <b>CreateCustomer</b> method, the cookie value is retrieved from the <b>Request</b> interface within the <b>CustomerCreator</b> object. If the user does not currently have a cookie, the <b>Creator</b> object also sets the cookie in the <b>Response</b> interface. Finally, the e-mail address is written to a database, with the cookie serving as the primary key.
+<P>Consider this example in which the <b>Creator</b> object is a simple object instead of an Active Server Component. 
+<P>
+<PRE class=clsCode>Set Creator=Server.CreateObject(&quot;SMUM.CustomerCreator.1&quot;)
+Set Customer = Creator.CreateCustomer(Request.Cookies(&quot;SMUMID&quot;)) 
+Response.Cookies(&quot;SMUMID&quot;) = Customer.Cookie
+Customer.EmailAddress = &quot;webmaster@signmeup.com&quot; 
+</PRE>
+<P>In this example, we have to pass the cookie in the <b>Creator</b> object and assign the cookie once we have created the <b>Customer</b> object. This technique makes more work for the programmer. If it is more work, why is it better to create a simple object? The answer lies within the scope of the project.
+<P>For instance, once all the e-mail addresses have been collected from the Web site, you may want to view each customer address from your desktop. With the simple object, you can create a Visual Basic&#174; application that views each e-mail address in turn. However, you cannot call the Active Server Component from Visual Basic, because the instantiation of the Active Server interfaces would fail.
+<P>Simple objects can be called from Visual Basic and from ASP pages; Active Server Components can be called only from ASP pages. For a little more work, you can get a lot more use out of your object.
+
+<P><i><B>Wayne Berry</b> is the editor of</i> <a href="http://www.15Seconds.com/" target="_top">15 Seconds</a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">, <i>an online publication written for Internet developers and content providers about IIS, ISAPI, and Active Server. For more information about </i>15 Seconds<i>, contact the <A HREF="mailto:webmaster@signmeup.com">Webmaster</A>.</i>
+<P>
+
+<P>
+<P><P>
+<P>
+
+<P>
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00573.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="aspvs97.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

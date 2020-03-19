@@ -1,0 +1,196 @@
+
+A:link { color:#000066; }
+A:visited { color:#666666; }
+A:active { color:#0000FF; }
+
+A.clsBottomItem {
+  font-size:85%;
+  color:#000000;
+  text-decoration:none;
+}
+
+A.clsBackTop,
+A.clsBackTop:visited {
+  margin-top:10; margin-bottom:0;
+  padding-bottom:0;
+  text-decoration:underline;
+  font-size:70%;
+  color:black;
+}
+
+BLOCKQUOTE #pCode { font-size:100%; font-family:verdana,arial,helvetica,sans-serif; }
+
+BLOCKQUOTE TH {
+	font-family:verdana,arial,helvetica,sans-serif; font-weight:bold; font-size:75%;
+  text-align:left;
+  background-color:#DDD;
+}
+
+BLOCKQUOTE TD,
+TABLE.clsStd,
+TABLE.clsStd TD {
+	font-family:verdana,arial,helvetica,sans-serif; font-size:75%;
+  text-align:left;
+  background-color:#EEE;
+}
+
+BODY { font-family:verdana,arial,helvetica,sans-serif; font-size:75%; }
+
+DIV.clsDocBody { margin-left:10px; margin-right:10px; }
+
+DIV.clsDocBody P.clsIncCpyRt,
+DIV.clsDocBody A.clsIncCpyRt,
+DIV.clsDocBody A.clsIncCpyRt:visited {
+  font-size:8pt; font-family:verdana,arial,helvetica,sans-serif;
+  color:black;
+  text-decoration:none;
+}
+
+DIV.clsBeta {
+  font-weight:bold;
+  color:red;
+}
+
+H1 { font-size:125%; }
+H2 { font-size:110%; }
+H3 { font-size:100%; }
+H4 { font-size:95%; }
+H5 { font-size:85%; }
+H6 { font-size:75%; }
+
+P.clsRef {
+  font-weight:bold; font-family:verdana,arial,helvetica,sans-serif; font-size:75%;
+  margin-top:7pt; margin-bottom:0pt;
+}
+
+PRE {
+  background:#EEEEEE;
+  margin-top:1em;	margin-bottom:1em; margin-left:0px;
+  padding:5pt;
+}
+
+PRE.clsCode,
+CODE.clsText,
+DIV.clsDocBody PRE.clsCode { font-family:'courier new',courier,serif; font-size:90%; }
+
+PRE.clsSyntax { font-family:verdana,arial,helvetica,sans-serif; font-size:110%; }
+
+TD.clsShowHide {
+  width:95;
+  padding:0;
+  background-color:#FFFFFF;
+}
+
+#TOC { visibility:hidden; }
+
+SPAN.clsDefValue { font-weight:bold; font-family:'courier new' }
+
+SPAN.clsRange { font-style:italic; }
+
+UL UL, OL UL { list-style-type:square; }
+
+OL { padding-bottom: 1.5em; }
+
+/* INDEX CLASSES */
+
+UL.clsIndex { margin-left:20pt; margin-top:0pt; margin-bottom:5pt; }
+
+TABLE.clsIndex {
+  font-size:100%;
+  padding-left:2pt; padding-right:2pt;
+}
+
+DIV.clsDocBody TD.clsIndex {
+  background-color:#EEEEEE;
+	margin-left:12;
+	font-family:verdana,arial,helvetica,sans-serif; font-size:75%;
+}
+
+DIV.clsDocBody TD.clsLetters {
+  margin:3pt;
+	text-align:center;
+  background-color:#CCCCCC;
+	font-family:verdana,arial,helvetica,sans-serif; font-size:80%;
+}
+
+TD.clsMainHead {
+  background-color:#FFFFFF;
+  font-size:145%; font-weight:bold;
+  margin-top:1.35em; margin-bottom:.5em;
+}
+
+A.clsDisabled {
+  text-decoration:none;
+  color:black;
+}
+
+.clsAccess { text-decoration:underline; }
+
+/* SBN */
+
+A.clsLinkedHeading {
+  color:#000066;
+  font-weight:bold; font-size:8pt;
+}
+
+SPAN.clsEntryText {
+  line-height:12pt;
+  font-size:8pt;
+}
+
+SPAN.clsHeading {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+}
+
+.clsSampHead { font-size:18pt; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsSampTitle { font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsSampDnldMain { font-size:11px; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsTools {
+  color:#0B3586;
+  margin-top:5px;
+}
+
+.clsToolsHome {
+  font-size:9pt;
+  line-height:15pt;
+}
+
+.clsToolsTitle {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+  text-decoration:none;
+}
+
+.clsShowDiv {
+  visibility:hidden;
+  position:absolute;
+  left:250px; top:170px;
+  height:0px; width:175px;
+  z-index:5;
+}
+
+/*** DOCTOP RULES ***/
+
+#lnkShowText, #lnkSyncText, #lnkSearchText, #lnkIndexText {
+	font-family:verdana,arial,helvetica,sans-serif; font-weight:bold; font-size:8.5pt;
+	color:black;
+	text-decoration:none;
+}
+
+#lnkPrevText, #lnkNextText, #lnkUpText {
+	font-family:verdana,arial,helvetica,sans-serif; font-size:8pt;
+	color:black;
+	text-decoration:none;
+}
+
+DIV.clsBucketBranch { margin-left:10px; margin-top:0px; margin-bottom:-10pt; font-style:italic; font-size:70%; }
+
+DIV.clsBucketBranch A,
+DIV.clsBucketBranch A:link,
+DIV.clsBucketBranch A:active,
+DIV.clsBucketBranch A:visited { text-decoration:none; color:black; }
+

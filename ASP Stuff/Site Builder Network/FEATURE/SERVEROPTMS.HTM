@@ -1,0 +1,2844 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Server Performance Optimization on Microsoft's Web Site</TITLE>
+
+<META NAME="Description" CONTENT="Server Performance Optimization on Microsoft's Web Site: A technical paper on server registry settings, testing methods, and monitoring performance on www.microsoft.com servers." />
+<META NAME="Keywords" CONTENT="IIS, ODBC, optimize, server, performance, Web site" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Todd Wanke" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="08/12/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+  function showSample(sURL) {
+    sFeatures = "width=520,height=400,left=10,top=10,toolbar=0,statusbar=0,scrollbars=1,resizable=1";
+    newWin = window.open (sURL, "_blank", sFeatures);
+    return false;
+  }
+
+//--></SCRIPT>
+
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg07342.htm#/workshop/server/feature/serveroptms.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg07342.htm#/workshop/server/feature/serveroptms.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg07342.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="OPTIMIZE" IDX_TYPE="task" IDX_CONCEPT="stopindex;Optimizing server performance">Server Performance Optimization on Microsoft's Web Site</A></H1>
+<HR SIZE="1" />
+<H6><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, optimization of on Microsoft site;Microsoft, optimization of own Web site"></A></H6>
+<P>Todd C. Wanke
+<BR>Infrastructure Test Lead
+<BR>Microsoft Corporation
+
+<P>February 18, 1998
+<br>Updated: March 13, 1998 (new chapter on <A HREF="serveroptms.htm#iis4">IIS 4.0 tuning</a>)
+<P><a href="optms.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 721K)</a>.
+<P>
+<P><a name="top"></a><b>Contents</b>
+<br> <A HREF="serveroptms.htm#topic1">Introduction</A>
+<BR> <A HREF="serveroptms.htm#topic2">Microsoft Web Site's Objectives</A>
+<BR> <A HREF="serveroptms.htm#topic3">Server Registry Settings</A>
+<BR> <A HREF="serveroptms.htm#iis4">IIS 4.0 Tuning Tips Based on Our Settings</A>
+<BR> <A HREF="serveroptms.htm#topic4">Custom ISAPI Filter</A>
+<BR> <A HREF="serveroptms.htm#topic5">Hardware Configuration and Network Architecture</A>
+<BR> <A HREF="serveroptms.htm#topic6">Performance Monitoring</A>
+<BR> <A HREF="serveroptms.htm#topic7">Testing</A>
+<BR>Appendices:
+<BR> <A HREF="serveroptms.htm#topic8">  A: Tuning ODBC Connection Pooling</A>
+<BR> <A HREF="serveroptms.htm#topic9">  B: Tuning Your Web Server's ASP Queue and Thread Pool</A>
+<BR> <A HREF="serveroptms.htm#topic10"> C: 15 ASP Tips to Improve Performance and Style</A>
+<BR> <A HREF="serveroptms.htm#topic11">  D: Threading Models</A>
+<BR> <A HREF="serveroptms.htm#topic12">  E: HTTPMon Configuration Manager</A>
+<BR> <A HREF="serveroptms.htm#topic13">  F: Related Request for Comment (RFC) </A>
+<P>
+<h2><A NAME="topic1"></A>Introduction
+</h2>
+<P>This technical paper is designed to explain the configuration of the Microsoft Web site and to describe in detail how it functions.  One inherent difficulty in putting the configuration on paper is that the document becomes out-of-date almost immediately after it's finished.  We will try our best to frequently update this document; please watch for updates.
+<P>This document assumes that you are a site administrator or manager familiar with Microsoft Web server technologies and tools. This document describes the Microsoft Web site architecture and configuration, and offers ideas for your site's configuration.  Our test and development teams continually monitor and measure site performance to improve site stability.  The best advice we can give you, based on our experience, is to continually try to improve your site through better ASP programming, registry improvements, and architecture -- there is always a better way!
+<P>We recently made improvements to our site with a few &quot;tweaks&quot; to the registry, which are listed and explained in this paper.   Microsoft's Web site is currently focused on delivering active content with personalization through the use of Active Server Pages (ASP), and as a result, one obstacle we face is improving the site's SQL connectivity and Internet Information Server (IIS) performance.  Recently, we physically moved the servers closer to the Web servers, adjusted queuing registry parameters, adjusted ODBC retry intervals, and performed a lot of testing.  We at Microsoft's Web site are committed to improving our site as well as making sure your site -- running Internet Information Server (IIS) -- is as efficient and robust as possible.
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic2" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, optimization goals on Microsoft's site">Microsoft Web Site's Objectives</A>
+</h2>
+<P>In the summer of 1997, the Microsoft Web site team accepted a challenge of attaining 99.8% availability. It is our top priority. However, when talking about or referring to availability, we have two classifications to increase granularity: server availability and user availability - both of which are equally important.
+<P><b>Server availability</b> refers to the overall healthiness of the site's servers.  This means the servers are &quot;capable&quot; of serving a request; that is, the server is not in an unknown or locked state and the INETINFO process is functioning correctly.
+<P><b>User availability</b> is the experience the user has when they request a page or data from the site's servers.  Do they receive the response that they requested?   (This does not include error messages like the infamous &quot;Error 500: Server Too Busy&quot;.)
+<P>To attain and maintain this standard, we adjust our registry settings and hardware configuration, monitor performance, and perform extensive testing. The following sections describe these processes, and the appendices offer technology-specific tips on what we are doing to achieve this goal.
+<P>When putting this paper together, I was asked to state whether we have reached the goal of 99.8%.   Although I would love to tell you we have, the answer must be qualified and question first clarified.   Yes, we have reached our goal; however, we do not run at 99.8% availability 100% of the time.
+<P>Upon reading this, you may ask, "Why have you been unable to sustain the level once you achieved your goal"?   The reason and answer is simple: more users are developing active content with new methods, objects, and requirements.   Given this, we continually increase our performance and availability -- but at the cost of running more Active Content and maintaining our current "Server Availability."
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A><h2><A NAME="topic3" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, registry settings for 3.0 optimization;Microsoft, server settings on own Web site, IIS 3.0">Server Registry Settings</A>
+</h2>
+<P>The configuration registry stores values that define the working environment for Microsoft&#174; Windows&#174; operating systems and any services installed on the computer running Windows. Usually, to change these values, you use graphical tools, such as Control Panel, Windows Setup, or Internet Service Manager. Windows operating systems also include a utility, the Registry Editor (regedit.exe), which you can use to inspect and modify the configuration registry directly. Before you modify the registry, it is strongly recommended that you read Part IV of <i>Windows NT Resource Guide </i>(found in the  <A HREF="http://mspress.microsoft.com/reslink/preview/kits/kits.htm" TARGET="_top">Microsoft Windows NT Server Resource Kit</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">). It describes in detail how to use and change parameters in the registry.
+<P>The following registry settings are available for Microsoft's IIS 3.0.   Although the majority of the registry keys are set at default, we have improved the speed, reliability, and overall performance of our servers by modifying the sections shown in red. In addition, the following tables provide detailed information about each of the registry entries installed and configured by Microsoft's Web Team and Active Server Pages. Each table consists of three rows. The top cell contains a value entry and the class or type of the value entry. The middle cell contains the range of the value and the default value of the entry. The bottom cell contains an explanation of the registry entry as it affects the execution and performance of Active Server Pages.
+<P><b>Important   </b>Using the Registry Editor incorrectly can cause serious problems, including corruption that may require reinstalling Windows or Active Server Pages. Using the Registry Editor to edit entries in the registry is equivalent to editing raw sectors on a hard disk. If you make mistakes, your computer's configuration could be damaged. You should edit registry entries only for settings that you cannot adjust through the user interface, and be very careful whenever you edit the registry directly.
+<P>Registry Path:
+<P>HKEY_LOCAL_MACHINE\SYSTEM
+<BR>\CurrentControlSet
+<BR>.\Services
+<BR>..\W3SVC
+<BR>...\ASP
+<BR>....\Parameters
+<P><b><font color="ff0000">Microsoft site's current setting: 0</font></b>
+<P>
+<TABLE CLASS=clsREF WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AllowSessionState REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag controls whether Active Server Pages can maintain session state in applications. If set to 1, ASP scripts can allow for session state for all users who access an ASP file on a Web site. If set to 0, session state is not allowed; the <b>ASPSessionID</b> cookie will not be sent to clients that access the Web site, and any attempts to store anything in the session or to use <b>Session_OnStart</b> or <b>Session_OnEnd</b> will generate an error. If this setting is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>BufferingOn REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag controls whether Active Server Pages buffers output to a browser. If it is on (set to 1) then all output is collected before any is sent to the browser. This allows for HTTP headers to be set from anywhere within a script. The <b>Response.Buffer </b>method can be used to override this default setting. You do not have to stop and restart the Web server for changes to this setting to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>DefaultScriptLanguage REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: String
+<BR>Default: VBScript
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the script language that is used as the primary scripting language for all Active Server Pages applications. The primary scripting language can be used inside of Active Server Pages scripting delimiters (&lt;% and %&gt;). The default value is <b>VBScript</b>. The &lt;%@  LANGUAGE = <i>ScriptingLanguage</i> %&gt; command (that is, &lt;%@ LANGUAGE=&quot;VBSCRIPT&quot; %&gt;) can be used to override this default setting. If this setting is changed, the Web server must be stopped and restarted for the change to take effect.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>EnableParentPaths REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag controls whether Active Server Pages can allow paths relative to the current directory (that is, moving back up the directory hierarchy with ".." operations). The default setting is <b>True</b>. This parameter setting constitutes a minor security risk, because an include path could access a file outside the server's virtual root space. Web site administrators who want to restrict such access can set this value to 0 (<b>False</b>). If this setting is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogErrorRequests REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag controls whether the Web server writes unsuccessful client requests to the Windows NT event log file. The value 1 turns error logging on, and 0 turns it off. Changing this setting does not require that the Web server be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MemFreeFactor REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 50 - 150
+<BR>Default: 50
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the maximum length of the free memory list as a percentage of the used memory list. If this setting is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MinUsedBlocks REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 5 - 20
+<BR>Default: 10
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the minimum length of the used memory list before elements can be freed. If this setting is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>NumInitialThreads REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 10
+<BR>Default: 2
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the number of worker threads that Active Server Pages creates when it is started. If this value exceeds the maximum number of threads possible as indicated by <b>ProcessorThreadMax</b>, Active Server Pages will honor <b>ProcessorThreadMax</b> over <b>NuminitialThreads</b>. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br>
+<b><font color="ff0000">Microsoft site's current setting: 0x00000019</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ProcessorThreadMax REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 0x000000C8
+<BR>Default: 10
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the maximum number of worker threads to create per processor. Generally, it is not advisable to create more than 20 threads per processor. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting: 0x00000064</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>RequestQueueMax REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 0xFFFFFFFF
+<BR>Default: 500
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the maximum number of .asp file requests to maintain in the request queue available for each thread. When the limit is reached, clients are sent the value from the registry value <b>ServerTooBusy</b>. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ScriptEngineCacheMax</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - 0xFFFFFFFF
+<BR>Default: 30
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the maximum number of ActiveX&#153; language engines that Active Server Pages will keep cached in memory. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting: &quot;An error occurred on the server while processing your request.  Please send the details of this error to webmaster@microsoft.com.&quot; </font></b><P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ScriptErrorMessage REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: String
+<BR>Default: An error occurred on the server when processing the URL. Please contact the system administrator.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This message appears on a browser if <b>ScriptErrorsSentToBrowser </b>is set to <b>False</b>. Changing this setting does not require that the Web server be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ScriptErrorsSentToBrowser REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag controls whether the Web server writes debugging specifics (file name, error and line numbers, description) to the browser in addition to the log. You do not have to stop and restart the Web server for changes to this setting to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ScriptFileCacheSize REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - 0xFFFFFFFF
+<BR>Default: -1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies (in bytes) the amount of memory to allocate for caching precompiled script files, which improves the performance of Active Server Pages. A special value of 0 indicates that no script files will be cached. A special value of -1 (default) indicates that all script files requested will be cached. Performance may be low if caching is not used. Sites with heavy file traffic can increase this size if there is sufficient RAM on the system. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ScriptFileCacheTTL REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - 0x7FFFFFFF, 0xFFFFFFFF
+<BR>Default: 300 seconds
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the amount of time that script files will remain in the Memory Cache before being phased out -- if there have been no references to those scripts. If the number of data files is limited or clients access only a small portion of files, increasing this value could be beneficial. A value of 0xFFFFFFFF means files will be cached indefinitely. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ScriptTimeout REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - 0xFFFFFFFF
+<BR>Default: 90 seconds
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the length of time Active Server Pages will allow a script to run to completion. If the script fails to complete within this time period, the server terminates the script and writes an event to the event log. This can be overridden in a script by using the <b>Server.ScriptTimeout </b>method call. A special value of -1 allows scripts to run for an indefinite amount of time. You do not have to stop and restart the Web server for changes to this setting to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>SessionTimeout REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 0xFFFFFFFF
+<BR>Default: 20 minutes
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the default amount of time a <b>Session</b> object should be maintained after the last request associated with the object is made. This can be overridden in a script using the <b>Session.Timeout </b>method call. You do not have to stop and restart the Web server for changes to this setting to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>StartConnectionPool REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag controls whether ODBC connection pooling is turned on (default) or off. If this setting is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadCreationThreshold REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 0xFFFFFFFF
+<BR>Default: 5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the number of requests that can be maintained in the common queue (that is, requests that do not need to be executed on a specific thread) for Active Server Pages. If requests in the common queue exceed this number, a new thread is created in the thread pool (that is, the total number of threads that ASP creates to service incoming requests), but only if the number of threads in the thread pool is less than the configured maximum of <b>ProcessorThreadMax</b>. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">The following Registry parameters require a hotfix:  ASP.DLL version 1.20.04.00  (check <A HREF="http://www.microsoft.com/" TARGET="_top">http://www.microsoft.com</a> for updates)</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>EnableExceptionHandling REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates whether IIS should provide internal exception handling rather than handling in the ASP code.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting: 1</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ForcedTimestampCheck REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<P>Default: 0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates whether the called asp file should be verified as current by checking the file's time and date stamp rather than checking the time/date of the file in the ASP cache (hash) queue.  By setting this value to 1, the server's performance is affected slightly.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MaxVroots REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0-?
+<P>Default: 1000
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the maximum number of virtual directories that are available.  The previous limitation in IIS 3.0 without the hotfix was 64.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>QueueWaitTimeOutInSeconds REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0-?
+<P>Default: 0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates if an asp request has been in the request queue for a period of time longer than this setting. If so, the server will drop the request and not complete it.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><B><font color="ff0000">Microsoft site's current setting (see <A HREF="serveroptms.htm#topic11">Appendix D</A> for explanation):
+<P> [HKEY_LOCAL_MACHINE\SOFTWARE]
+<BR>.\Classes
+<BR>..\CLSID
+<BR>...\{0000022C-0000-0010-8000-00AA006D2EA4}
+<BR>....\InprocServer32]</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadingModel REG_ SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: Apartment
+<P>Changed to: &quot;Both&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>See Appendix D: Threading Models
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting (see </b><b><A HREF="serveroptms.htm#topic11">Appendix D</A></b><b> for explanation):
+<P>[HKEY_LOCAL_MACHINE\SOFTWARE]
+<BR>.\Classes
+<BR>..\CLSID
+<BR>...\{00000231-0000-0010-8000-00AA006D2EA4}
+<BR>....\InprocServer32]</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadingModel REG_ SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: Apartment, Free, Both
+<BR>Default: Apartment
+<P>Changed to: &quot;Both&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>See Appendix D: Threading Models
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting (see </b><b><A HREF="serveroptms.htm#topic11">Appendix D</A></b><b> for explanation):
+<P>[HKEY_LOCAL_MACHINE\SOFTWARE]
+<BR>.\Classes
+<BR>..\CLSID
+<BR>...\{00000280-0000-0010-8000-00AA006D2EA4}
+<BR>....\InprocServer32]</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadingModel REG_ SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: Apartment, Free, Both
+<BR>Default: Apartment
+<P>Changed to: &quot;Both&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>See Appendix D: Threading Models
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting (see </b><b><A HREF="serveroptms.htm#topic11">Appendix D</A></b><b> for explanation):
+<P>[HKEY_LOCAL_MACHINE\SOFTWARE]
+<BR>.\Classes
+<BR>..\CLSID
+<BR>...\{00000281-0000-0010-8000-00AA006D2EA4}
+<BR>....\InprocServer32]</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadingModel REG_ SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: Apartment, Free, Both
+<P>Default: Apartment
+<P>Changed to: &quot;Both&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>See Appendix D: Threading Models
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting (see </b><b><A HREF="serveroptms.htm#topic11">Appendix D</A></b><b> for explanation):
+<P>[HKEY_LOCAL_MACHINE\SOFTWARE]
+<BR>.\Classes
+<BR>..\CLSID
+<BR>...\{00000293-0000-0010-8000-00AA006D2EA4}
+<BR>....\InprocServer32]</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadingModel REG_ SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: Apartment, Free, Both
+<P>Default: Apartment
+<P>Changed to: &quot;Both&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>See Appendix D: Threading Models
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting (see </b><b><A HREF="serveroptms.htm#topic11">Appendix D</A></b><b> for explanation):
+<P> [HKEY_LOCAL_MACHINE]
+<BR>.\SYSTEM
+<BR>..\CurrentControlSet
+<BR>...\Services
+<BR>....\W3SVC
+<BR>.....\Parameters</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>PoolIDCConnections REG_ DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,1
+<BR>Default: 0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates whether you want to have all IDC connections pooled during execution.  This value is still available but unnecessary with the implementation prior to ODBC connection pooling.
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting:
+<P>[HKEY_LOCAL_MACHINE]
+<BR>.\SOFTWARE
+<BR>..\ODBC
+<BR>...\ODBCInst.ini
+<BR>....\ODBC Connection Pooling</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Retry Wait REG_ DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0,120
+<BR>Default: 60
+<P>Changed to: &quot;5&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the period of to time wait between failed connection attempts.  If the retry attempt is successful, the dead connection is removed from the pool.   If the retry fails, the connection is returned to the pool to block other connection attempts.   The connection is marked with a time-out value (in seconds).   When the time-out period expires, the driver manager will attempt to reconnect to the server.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><b><font color="ff0000">Microsoft site's current setting:
+<P>[HKEY_LOCAL_MACHINE]
+<BR>.\SYSTEM
+<BR>..\CurrentControlSet
+<BR>...\Services
+<BR>....\InetInfo
+<BR>.....\parameters] </font></b>
+<P>Information on the following parameters is undocumented (look for future versions of this document to clarify).
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD>&quot;BandwidthLevel&quot;=dword:ffffffff
+<P>&quot;ListenBackLog&quot;=dword:000000c8
+<P>&quot;AcceptExOutstanding&quot;=dword:00000064
+<P>&quot;MinFileKBSec&quot;=dword:00000100
+<P>&quot;MaxPoolThreads&quot;=dword:0000001e
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><B><font color="ff0000">Microsoft site's current setting:
+<P>[HKEY_LOCAL_MACHINE]
+<BR>.\SYSTEM
+<BR>..\CurrentControlSet
+<BR>...\Services
+<BR>....\InetInfo
+<BR>.....\parameters
+<BR>......\Filter]</font></b>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD>
+<P>&quot;FilterType&quot;=dword:00000000
+<P>&quot;NumGrantSites&quot;=dword:00000000
+<P>&quot;NumDenySites&quot;=dword:00000000
+</TD>
+</TR>
+
+</TABLE>
+<P><FONT FACE="VERDANA,ARIAL,HELVETICA" SIZE=2>
+<h3>Additional IIS Registry Settings:
+</h3>
+<P>[HKEY_LOCAL_MACHINE]
+<BR>\SYSTEM
+<BR>\CurrentControlSet
+<BR>\Control
+<BR>\ServiceProvider
+<BR>\ServiceType
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>TcpPort :DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicated the number of the port that you want the World Wide Web Publishing Service to listen to.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>[HKEY_LOCAL_MACHINE]
+<BR>\SYSTEM
+<BR>\CurrentControlSet
+<BR>\Services
+<BR>\InetInfo
+<BR>\Parameters
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>BandwidthLevelREG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF<br>
+Default: 0xFFFFFFFF
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This specifies the amount of bandwidth on the network that IIS can use. The server comes with an automatic bandwidth throttler, which makes intelligent decisions to meet user requirements. This helps reduce overloading the network with IIS server activities. For administrators of small corporate servers, where a single server is used for multiple sites, this will help reduce network usage for IIS. It is recommended that this parameter be set from the Internet Server Admin Manager; otherwise the server should be stopped and restarted for this value to take effect. A special value of 0xFFFFFFFF means no throttling should be done.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MemoryCacheSize : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF<br>
+Default: 3072000 (3 MB)
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS caches system handles, directory listings, and several Binary Large Objects (BLOBs) of frequently used data to improve performance of the system. This parameter specifies the amount of memory in bytes to allocate for such a cache. This cannot be configured using Admin Manager. When changed, the server must be stopped and restarted for this to take effect. A value of 0 specifies no caching. The performance may be low when caching is shut out. Certain sites experiencing high file traffic can increase this size if there is sufficient RAM on the system.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ObjectCacheTTL : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0x7FFFFFFF, 0xFFFFFFFF <br>
+Default: 10*60(10Minutes)
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Objects in the Memory Cache will be phased out of the cache if there have been no references to an object after this period. If system memory is limited, a lower TTL may prevent non-paged memory being used for cached file handles. A value of 0xFFFFFFFF disables the object cache scavenger. Units are in seconds.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>UserTokenTTL : REG_DWORD </b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 -0 x7FFFFFFF<br>
+Default: 15*60 (10Minutes)
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>When a request is made to the server, the security credentials for the request (or the configured anonymous user) are used to create a user token on the server which the server impersonates when accessing files or other system resources. The token is cached so the Windows NT log on only takes place the first time the user accesses the system or after the user's token has fallen out of the cache. NTLM authentication tokens are not cached. Units are in seconds.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogFileBatchSize :  REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - 0xFFFFFFFF  <br>
+Default: 64*1024 (64K)
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This specifies the batch size for writing log files. The server caches the last <b>LogFileBatchSize</b> bytes of data in memory buffers before it dumps the current buffer and moves onto the next buffer. Such batch processing reduces the amount of disk traffic created by log files. However, if a site is interested in getting the current-up-to-date log records flushed to disk, the batch size can be reduced.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MaxPoolThreads : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF <br>
+Default: 10
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>MaxPoolThreads</b> specifies the number of pool threads to create per processor. Each pool thread watches for the network request and processes the same. Generally it is not good to create more than 20 threads per processor.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MaxConcurrency : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF <br>
+Default: 0
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>MaxConcurrency</b> specifies the amount of concurrency that a system should provide. We use completion ports for handling I/O. In general it is not good to have more than one thread running and conflicting on shared memory or locks. This parameter specifies how many threads per processor should be allowed to run simultaneously if there is a pending I/O operation. The specific value of 0 enables the system to make an intelligent choice of the number of threads to use. Any non-zero value specifies that the system should allow that many threads per processor to run simultaneously.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ThreadTimeout : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF<br>
+Default: 24*60*60 (24 hours)
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>ThreadTimeout</b> specifies the amount of time an I/O processing thread should be maintained even if there is no I/O on the system. In general when there is no I/O activity and no requests outstanding, the server is idle and does not consume memory. But if that situation prolongs and exceeds the <b>ThreadTimeout</b> interval, the thread is killed. Unit is in seconds.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>UseAcceptEx : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1<br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Starting with Windows NT 3.51 SP2 we have a new facility to listen and establish connections on the server side. <b>AcceptEx()</b> provides a cheap way to accept and receive an initial chunk of data on a new incoming connection. By default, the server uses this method to accept new connections. If, for experimental purposes, one decides to not use this fast I/O path, this value can be set to 0. However, setting to 0 may cause potential performance degradation.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AcceptExOutstanding  : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0-1000 <br>
+Default: 40
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>When using <b>AcceptEx()</b>, a certain number of sockets should be maintained to receive and process new connections. This parameter specifies the number of such outstanding connections to maintain. Whenever the number of outstanding sockets falls below this range, the server adds additional sockets to bring it back to this level.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AcceptExTimeout : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0-0xFFFFFFFF <br>
+Default: 120
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>AcceptExTimeout</b> specifies the time an <b>AcceptEx</b> socket is allowed to wait for a receive to complete, before the server shuts down the waiting connection. This helps reduce the number of outstanding sockets and thus conserve the system memory usage. Unit is in seconds.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MimeMap : Key</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This is a subkey that contains all the virtual roots for a service.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>DebugFlags : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF <br>
+Default: 0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>DebugFlags</b> specifies the bit mask for selectively enabling different checks in a debug binary of the server common DLL (INFOCOMM.DLL). This bit mask applies to the common DLL only.
+</TD>
+</TR>
+
+</TABLE><P>&nbsp;<br>[HKEY_LOCAL_MACHINE]<br>
+.\System<br>
+..\CurrentControlSet<br>
+...\Services<br>
+....\W3SVC <br>
+.....\Parameters<br>
+
+<p>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AdminName : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String <br>
+Default: Administrator
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>AdminName</b>  specifies the user-friendly administrator name. Gopher service uses this name to send back responses for Gopher queries. It's also a way to identify who owns a service using IIS manager.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AdminEmail : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String  <br>
+Default: Admin@corp.com
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>AdminEmail</b> specifies the e-mail address for an administrator of a particular service. Gopher service uses this name to send back responses for Gopher+ queries. It also serves as a way to identify who owns a service using IIS manager.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ServerComment : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String <br>
+Default: ""
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Specifies a user-friendly comment for a service. This information is supplied to the IIS manager and is used to add configurable comments about a server.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>EnableSvcLoc :  REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1 <br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS Services register themselves with a service locator so the service can be discovered by an administrative utility and clients. This parameter controls such registration. If it is set to 0, the service will forgo registration of the service. Otherwise, it registers the service for service location. Administrators planning on having a private server should consider setting the value of this parameter to 0.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AllowAnonymous :  REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1  <br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag specifies whether an anonymous user can connect and make a request to the server. By custom, most Internet protocols allow anonymous connections to access a limited set of files. Hence, it is essential to permit anonymous connections.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AnonymousOnly :  REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1   <br>
+Default: 0
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>AnonymousOnly</b> specifies whether only anonymous connections are permitted. If this flag is turned on, only anonymous connections are permitted (especially true of FTP server).
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AnonymousUserName : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String<br>
+Default: Guest
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><b>AnonymousUserName</b>  specifies the name of the local user account to use for anonymous users. The server impersonates a particular user to access files, to leverage the file system security model. This parameter should not be changed by itself. It should be configured using the IIS Admin Manager so that the appropriate password can also be set. The password is stored in a protected area in the registry.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ConnectionTimeOut : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0-0xFFFFFFFF <br>
+Default: 600 seconds
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Specifies the time the server should hold on to a connection when there is no activity on the connection. The server automatically disconnects long-hanging connections. Unit is in seconds.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogAnonymous : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1  <br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag specifies whether a log record should be written for anonymous connections. If set to 0, no log records are written for anonymous connections.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogNonAnonymous : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1  <br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This flag specifies whether a log record should be written for non-anonymous connections. If set to 0, no log records are written for non-anonymous connections. Only FTP and HTTP services have non-anonymous user support.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogFileDirectory : REG_EXPAND_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String    <br>
+Default: %systemroot%\system32\logfiles
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This string specifies the directory in which log files are to be stored. Each service generates a log record for each request processed.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogFilePeriod : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0,1,2,3 <br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT><P>This specifies an internal value for the request-logging module. The value specifies how often to produce log files.
+<P>0&nbsp;&nbsp; No period. The logfile size is limited to <b>LogFileTruncateSize</b> bytes.
+<P>1&nbsp;&nbsp; Open a new log file each day (daily)
+<P>2&nbsp;&nbsp;  Open a new log file every week (weekly)
+<P>3&nbsp;&nbsp;  Open a new log file every month (monthly)
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogFileTruncateSize : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0-0xFFFFFFFF <br>
+Default: 4,000,000,000
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the maximum size of each log file generated. Once this size is reached, the logging module automatically opens a new log file. A special value of 0 means do not truncate.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogSqlDataSources : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String <br>
+Default: ""
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This string specifies the name of the ODBC data source to use for sending the services' request logs to a SQL-compatible database system. This data source should be a system digital switched network (DSN) in the ODBC installation on the server machine.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogSqlTableName : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String  <br>
+Default: ""
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This string specifies the name of the ODBC table to use to send the service's request logs to a SQL-compatible database system. The table should be created by the administrator as per the specification provided with the services. The user should also have proper access permissions to insert into the table.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogSqlUserName : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String  <br>
+Default: ""
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This string specifies the user name to use for talking to the ODBC data source specified for ODBC-based logging. This user should be a valid user on the database system to which the <b>LogSqlDataSource</b> is pointing.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogSqlPassword : REG_SZ</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  String <br>
+Default: ""
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This string specifies the password to establish an ODBC connection for a particular user account on the ODBC data source. Currently the password is stored as a clear text. This may change in the future.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>LogType : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0, 1, 2  <br>
+Default: 1
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the type of logging desired. The type specifies the destination of log files.
+<P>0&nbsp;&nbsp;    No logging
+<P>1&nbsp;&nbsp;    Log to files
+<P>2&nbsp;&nbsp;    Log to ODBC data source
+
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MaxConnections : REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range:  0 - 0xFFFFFFFF <br>
+Default: 1000
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the maximum number of simultaneous connections that the server allows at any given time. When the number of current connections exceeds this value, the service rejects the request. It sends a friendly message if possible.
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>VirtualRoots : Key</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This is a subkey that contains all the virtual roots for a service.
+</TD>
+</TR>
+
+</TABLE>
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="iis4" IDX_TYPE="sbngen" IDX_CONCEPT="Microsoft, server settings on own Web site, IIS 4.0; IIS 4.0, tuning on Microsoft's Web site; IIS, registry settings for 4.0 optimization">IIS 4.0 Tuning Tips Based on Our Settings</A></h2>
+<P>[<i>Editor's note: This chapter was posted March 13, 1998.</i>]
+<P>The Microsoft Web site team and IIS Development work very closely together to improve and continually monitor IIS performance.  We believe strongly that "if it works on Microsoft dot com, it will work for the rest of the world."  Although this statement may sound like quite an assumption, we believe it is true because of the tremendous diversity among the groups that create content for us (our <i>content providers</i>) and the vast resources we provide on the site.  Microsoft's Web site has over 400 content providers, 20 gigabytes of content, six thousand ASP files, numerous custom components, and a large dependency on SQL connectivity and performance.
+<P>
+<h3>The Microsoft Web Site's IIS 4.0 Story
+</h3>
+<P>The Microsoft Web site converted to IIS 4.0 in late February of 1998. One of the most impressive and interesting points of our recent conversion was the way in which it actually occurred, and the information we learned through the conversion process.  On February 19, Microsoft's Web site was running on 16 IIS 3.0/WindowsNT 4.0 Compaq Proliant 5000s.  As a result of some internal dependencies (independent of IIS), an immediate upgrade occurred during that week.  However, due to the high demand of our site and the latency inherent in DNS, this was a difficult task to get done both quickly and with minimal effect on our customers.  To minimize any effect on our customers, we first identified the number of servers we could install from scratch with IIS 4.0.  Following this, we removed all other IIS 3.0 servers from DNS.  Once they were removed, we took them completely offline and began adding them back to the cluster as they were upgraded to IIS 4.0.
+<P>After all was said and done on February 19, we ended up with seven IIS 4.0/Windows NT servers fully functioning.  On February 20, these seven servers were running at nearly 95% availability and performing as well -- if not better than -- the 16 IIS 3.0 servers previously in place.  Today, we are back to our original 16 servers (all running IIS 4.0) and our availability percentage is in the high 90s.
+<P>Although this is a terrific success story, the conversion required a lot of technical assistance, server testing, and configuration changes.  Microsoft believes strongly in ASP technology, and a tremendous number of files on its site depend on ASP functionality.  Because of this, we need to guarantee our servers are configured correctly and fine-tuned to the dynamics of our site.  We realized that we needed to make a few configuration changes to the default values of IIS 4.0, to tune performance for one of the largest sites in the world.  As a result, changes were made to the settings after continual monitoring, testing, and trial implementation(s).  Since the latest wave of changes, we have made unbelievable progress and dramatically changed the site availability favorably.
+<P>The following settings were used to optimize performance for IIS 4.0 on  <A HREF="http://www.microsoft.com/" TARGET="_top">http://www.microsoft.com/</A> (and  <A HREF="http://home.microsoft.com/" TARGET="_top">http://home.microsoft.com/</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">).  We have experienced a tremendous improvement in server availability and will continue to improve these settings.  In addition, our server lifetime has increased dramatically (details will be provided in this paper when more data/further analysis is available) and server efficiency mirrored these gains (current processor utilization is running around 30 to 60%).
+<P>
+<h3>Changes
+</h3>
+<P>With the introduction of IIS 4.0, a new central repository called the <i>metabase</i> has been implemented.  The easiest way to modify these settings is through the utilities included in the ADMINSAMPLES directory, which is created during IIS 4.0 installation.
+<P>These utilities, also known as the Admin Samples, allow for fast and easy scripting:
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Utility</b>
+</TD>
+
+<TD><b>Description</b>
+</TD>
+
+<TD><b>Metabase Setting</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>adsutil.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS administration utility that enables manipulation with Active Directory Services Interfaces (ADSI) parameters
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>adsutil.vbs GET W3SVC/1/ServerBindings
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>chaccess.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Changes access on v-root
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>chaccess -a w3svc/1/ROOT +read -write +script +browse
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>contftp.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Resumes FTP Service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>contftp -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>contsrv.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Resumes Web server Service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>contsrv -c MACHINE1,MACHINE2,MACHINE3 -a w3svc/1,msftpsvc/2
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>contweb.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Resumes WWW aervice
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>contweb -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>dispnode.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Displays the path of the node
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>dispnode --adspath IIS://MachineName/w3svc/1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>disptree.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Displays the path/details of all nodes in tree
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>disptree -a IIS://LocalHost/w3svc --NoRecurse
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>findweb.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Finds the named Web on the specified computer, and displays the site number, description, host name, port, and IP Address
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>findweb -c MACHINE www.mycompany.com
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>fixcfg.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Fixes server configuration
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>fixCfg  [--computer|-c COMPUTER1[,COMPUTER2...]]
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>mkw3site.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Makes a complete site (lots of options)
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>mkw3site -r D:\Roots\Company11 --DontStart -t &quot;My Company Site&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>mkwebdir.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Makes a Web v-root
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>mkwebdir -c MyComputer -w &quot;Default Web Site&quot;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>pauseftp.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Pauses the FTP server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>pauseftp -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Pausesrv.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Pauses the IIS server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>pausesrv -a w3svc/1,msftpsvc/2
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Pauseweb.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Pauses the Web server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>pauseweb -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Startftp.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Starts the FTP server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>startftp -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>startsrv.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Starts the IIS server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>startsrv -a w3svc/1,msftpsvc/2
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>startweb.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Starts the Web server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>startftp -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>stopftp.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Stop the FTP server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>stopftp -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Stopsrv.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Stops the IIS server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>stopsrv -a w3svc/1,msftpsvc/2
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>stopweb.vbs
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Stops the Web server service
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>stopweb -c MACHINE1,MACHINE2,MACHINE3 -a 1,2,5
+</TD>
+</TR>
+
+</TABLE>
+<P>When Microsoft implements a change to its Web site, a script is traditionally created and replicated to a working directory on all servers where it is executed. That is:
+<P>
+<PRE class=clsCode>-c:\localbin
+</PRE>
+<P>The following line will copy a file to three servers:
+<P>
+<PRE class=clsCode>     for %i in (Server1, Server2, Server3) do copy IISTune.reg \\%i\c$\localbin
+</PRE>
+<P>Below, you will find two sets of settings.  The first set is configured in the registry, and the second in the IIS metabase.  All settings in the metabase are configured specifically for IIS 4.0.  The use of the registry for some IIS 4.0 settings was maintained for backward compatibility.
+<P>The information is provided in the following format:
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Key : Type</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>DataValues
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Description
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Command line to change the value
+</TD>
+</TR>
+
+</TABLE>
+<h3>Registry Changes
+</h3>
+<P><b>Note:</b> Due to optimization changes in IIS 4.0, the number of <b>ProcessorThreadsMax</b> was decreased.  This is the result of improved ASP performance handling in IIS 4.0 versus 3.0.
+<P>Registry Path:
+<P>HKEY_LOCAL_MACHINE\SYSTEM\
+<BR>CurrentControlSet\
+<BR> Services\
+<BR>  W3SVC\
+<BR>   ASP\
+<BR>    Parameters
+<BR>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 0x00000014 </b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ProcessorThreadMax REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 0x000000C8
+<BR>Default: 10
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the maximum number of worker threads to create per processor. Generally, it is not advisable to create more than 20 threads per processor. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 0x000000C8</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>RequestQueueMax REG_DWORD</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 1 - 0xFFFFFFFF
+<BR>Default: 500
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value specifies the maximum number of ASP file requests to maintain in the request queue for each thread. When the limit is reached, clients are sent the value from the registry value <b>ServerTooBusy</b>. If this value is changed, the Web server must be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+
+</TABLE>
+<h3>Metabase Changes
+</h3>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 30</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ConnectionTimeOut : INTEGER</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/ConnectionTimeout 30
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: False</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AuthNTLM : Boolean</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/AuthNTLM False
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: False</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ASPLogErrorRequests : Boolean</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>The value determines if ASP-specific errors are written to the Windows NT Event Manager or to a file.   When the Microsoft Web site team is determining errors, we set this to <b>True</b>; otherwise we set it to <b>False</b>.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/AspLogErrorRequests False
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 30</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ASPScriptTimeout </b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - unlimited
+<BR>Default: 90 seconds
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the length of time ASP will allow a script to run to completion. If the script fails to complete within this time period, the server terminates the script and writes an event to the event log. This can be overridden in a script by using the <b>Server.ScriptTimeout </b>method call. A special value of -1 allows scripts to run for an indefinite amount of time. Changing this setting does not require that the Web server be stopped and restarted for the change to take effect.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/AspScriptTimeout 30
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 30</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AspQueueTimeout : INTEGER</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - unlimited
+<P>Default: -1
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the length of time ASP will remain in the queue before being processed.   To determine this, monitor Active Server Pages/Request Queued through Performance Monitor (perfmon.exe) and evaluate the amount of ASP queuing that exists.   When queuing occurs, ASPs that are queued (waiting to be processed by a thread (<b>ProcessorThreadMax</b>) will wait the value of <i>ScriptTimeout</i> before being terminated.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/AspQueueTimeout 30
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 1000</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ServerListenBacklog : INTEGER</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - unlimited
+<P>Default: 200
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This property specifies the number of outstanding sockets that can be queued. The value is based on the <b>AcceptEx</b> operating system parameter and the server size specified in the <b>ServerSize</b> property.
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/ServerListenBacklog 1000
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>ServerSize : Long</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - 2
+<P>Default: 0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This property specifies the general size of the server in terms of number of client requests handled per day. A value of 0 indicates a small Web site that would expect to receive fewer than 10,000 requests per day; a value of 1 indicates a medium site handling between 10,000 and 100,000 per day; and a value of 2 designates a large site processing more than 100,000 requests per day. The value of this property is used to calculate the value for the <b>ServerListenBacklog</b> property.
+
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 1000</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>MaxEndPointConnections : LONG</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0 - unlimited
+<BR>Default: 200
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This property specifies the maximum number of listen sockets that will be aggregated on a network endpoint. For example, if this value is set to 15, a maximum of 15 total connections can be made to a single port, even if more than one domain is bound to the port.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs SET w3svc/MaxEndPointConnections 1000
+</TD>
+</TR>
+
+</TABLE>
+<P>&nbsp;<br><font color="ff0000"><b>Microsoft site's current setting: 1200</b></font>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>AspScriptFileCacheSize</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Range: 0, -1, &gt; 0
+<BR>Default: 1200
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>This value indicates the number of ASP templates that are cached.   There is one template cached for every ASP that is executed, to avoid unnecessary processing of ASP files by the ASP Process handler.  The downside of a large number is memory constraints.  Each template consumes a block of memory.  This value should be set proportionally to the number of ASPs that reside on the server (www.microsoft.com has approximately 5000 ASP files).
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs set w3svc/AspScriptFileCacheSize 1200
+</TD>
+</TR>
+
+</TABLE>
+<P>The following code will enable you to change specific IIS 4.0 settings via a script.  To learn how to use and edit the metabase, make sure you install the Admin Samples during IIS installation.  This will place files in the INETSRV\ADMINSAMPLES directory, and the files can be run from a command prompt.
+<P>
+<PRE class=clsCode>cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br> ENUM W3SVC
+</PRE>
+<P>Once completed, you can use REGEDIT and METAEDIT (from the Option Pack Resource Kit) to verify the settings.
+<P>The following two scripts are used by the Microsoft Web site team to configure servers.  To use these scripts, cut and paste the two sections into two separate files.  Name the first file IIS4TUNE.REG and the second IIS4TUNE.CMD (names are used for demonstration purposes only).  Then, place these two files in the ADMINSAMPLES directory (or a directory where cscript.exe and adsutil.vbs reside) and execute the two files.
+<P>
+<b>IIS4TUNE.REG</b>
+<P>
+<PRE class=clsCode>
+REM Begin IIS4TUNE.REG
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC\ASP\Parameters]
+&quot;ProcessorThreadMax&quot;=dword:00000014
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC\asp\parameters]
+&quot;RequestQueueMax&quot;=dword:000000C8
+
+REM End IIS4TUNE.REG
+</PRE>
+<P>
+<b>IIS4TUNE.CMD</b>
+<P>
+<PRE class=clsCode>
+REM Begin IIS4TUNE.CMD
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/ConnectionTimeout 30
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/AuthNTLM False
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/AspLogErrorRequests False
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/AspScriptTimeout 30
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/AspQueueTimeout 30
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/ServerListenBacklog 1000
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>SET w3svc/MaxEndPointConnections 1000
+cscript c:\winnt\system32\inetsrv\adminsamples\adsutil.vbs <br>set w3svc/AspScriptFileCacheSize 1200
+REM End IIS4TUNE.CMD
+</PRE>
+
+<P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic4" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, custom ISAPI filter on Microsoft's site;Microsoft, custom ISAPI filter on own Web site">Custom ISAPI Filter</A>
+</h2>
+<P>Microsoft's Web site currently runs one ISAPI filter on its site to help control the reliability and security of the site.  This filter allows specified file types to be executed in virtual roots that are marked as Read-Only (and prevent all other files from executing in private v-roots).   This is necessary on Microsoft's Web site because a huge amount of content is propped to our site from all Microsoft groups.  This filter prevents &quot;untested and/or unapproved&quot; executables from running on the servers.
+<P>All of the virtual roots (except two) on the site are configured as Read-Only.   Therefore, no file (including ASPs) may be executed in these virtual roots without this special filter.
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic5" IDX_TYPE="sbngen" IDX_CONCEPT="Microsoft, configuration and architecture of own Web site">Hardware Configuration and Network Architecture</A>
+</h2>
+<P>Sample machine configuration:
+<P>Compaq Proliant 5000 Quad Processor (6500s are being ordered as of 2/5/98).
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Hardware</b>
+</TD>
+
+<TD><b>Software</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Compaq Proliant 5000 (6500) Quad Processor
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Windows NT 4.0 SP3
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SCSI Smart 2 Array Controller
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS 3.0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>512 MB RAM
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Content Replication Server (CRS)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>(Microsoft Personalization Server (MPS)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SQL 6.5
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IE 4.0
+</TD>
+</TR>
+
+</TABLE>
+<P><h3>Web Content Servers </h3>
+<P>36 Compaq Proliant 5000 series computers are used as Web content servers for Microsoft's Web site: 16 www.microsoft.com HTTP servers, 3 premium.microsoft.com servers, and 17 home.microsoft.com servers. The www.microsoft.com and home.microsoft.com computers have four p6 Intel processors and 512 Megabytes (MB) of Random Access Memory (RAM). The premium.microsoft.com computers have four p6 Intel Processors and 256 MB of RAM. The www.microsoft.com content consists of 10 gigabytes of HTML, office documents, and free downloads. The 36 servers are on four FDDI LANs (100 megabits per second) which are connected to the Internet via eight DS3 circuits (45 Megabits per second). The servers each run Windows NT Server 4.0 and Internet Information Server 3.0.
+<P><h3>Search Servers </h3>
+<P> Six servers are reserved solely for general site searching as well as for searching the Microsoft Knowledge Base. These servers are Compaq Proliant series 4500 and 5000 machines with four p166 processors and 512 MB RAM. They use Microsoft Index Server version 1.1 and each server receives an average of 150 search requests per minute. (Further information on Index Server 2.0  with IIS 4.0 will be provided shortly.)
+<P><h3>Software Download Servers</h3>
+<P>The Microsoft site's servers also have dedicated software download machines at their disposal. There are 31 servers dedicated solely to providing you with the 8.7 gigabytes of free software that Microsoft makes available on the Internet. These servers are complemented by 130 servers around the world in 51 countries.
+<P><h3>Database Servers</h3>
+<P>Three SQL servers currently handle all SQL applications on www.microsoft.com. The SQL Servers have 750+ SQL-based applications and are running Windows NT Server 4.0 and SQL Server 6.5. There is an average of 300 SQL connections to these SQL servers at any point during peak business hours. The SQL servers are Compaq series 5000 quad p200 with 512 MB RAM and are connected to the Web servers with a DS3 (45 megabits per second) circuit.
+<P>More information concerning our site can be found at  <A HREF="http://www.microsoft.com/misc/mscomfaq.htm" TARGET="_top">http://www.microsoft.com/mscomfaq.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P><h3>Network Infrastructure</h3>
+<P>To provide greater internal network capacity, the site architecture is being changed to distribute servers among five FDDI rings (100 MB per second). Gigaswitches are used to distribute incoming traffic among four rings and outgoing traffic among the eight DS3 lines (45 MB per second) to the Internet. Only three of the four rings have HTTP download servers, so one ring will always be available to service requests for Web pages, even if a spike of downloads uses up the other rings' total capacity. The FTP download servers, which share the fifth FDDI ring with the SQL Server, are accessible directly from the Internet.
+<P>The FTP machines are complemented by 20 servers operated by a Microsoft partner, six of which are located on the West coast, 10 on the East coast, and four in the Midwest. Microsoft controls another eight servers located in France, Japan, Brazil, Germany, Australia, New Zealand, Korea, and the United Kingdom. Various Microsoft partners run 132 download servers in 51 countries.
+
+<P><A HREF="serveroptfigure01.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/feature/serveroptfigure01.htm')">Figure 1</a>
+
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic6" IDX_TYPE="sbngen" IDX_CONCEPT="Microsoft, performance monitoring of own Web site">Performance Monitoring</A>
+</h2>
+<P>Microsoft monitors the performance of its Web site in two ways: by monitoring its connectivity to the Internet, and by monitoring each server in each of the clusters within the data centers. One thing we watch for is whether the LANs that connect our servers to the Internet through are overburdened.  We have four 100Mb/Sec FDDI LANs that connect all of the servers to the Internet. Currently, at any given time, the utilization of those LANs is between 20% and 60%.
+<P><IMG SRC="serveroptfigure02.gif" WIDTH="480" HEIGHT="313" BORDER=0>
+<P><b>Figure 2.  Microsoft site's LAN utilization</b>
+<P>
+<P>We will be adding more capacity within our own clusters in the next few months to be able to handle large-capacity events like the release of a new version of Internet Explorer.
+<P>While monitoring the servers, we watch the following counters closely using the Performance Monitor [Editor's note: a chapter on Performance Monitor, &quot;Perfmon&quot; is coming soon]:
+<OL>
+
+
+<LI> CPU Utilization: One thing we notice on www.microsoft.com is that the CPU utilization on our machines is not directly correlated to the number of users on the machine. IIS 3.0 use of the processors has become extremely efficient within the software and makes the percentage of CPU use almost a non-factor. If you have a multiprocessor machine and are receiving 10 million hits a day on that one server, you should not be seeing a very high percentage of your CPU being utilized. If you are, check which processor it is; it could just be problems with your network (Microsoft's Network Monitor can be used for network analysis).
+
+
+<LI>   Current Anonymous Users: This number, when used with all of the other counters mentioned, can give you a good idea of your hardware limitations due to content on your site. When receiving a really high number of ASP requests on your site, your servers will begin to experience blocking problems at a certain User and Connections/Second level, if everyone is using ASP functionality in the same manner throughout your site.  If there is very limited ASP use on your site, you will almost never notice a Current Anonymous user level you cannot realistically reach.
+
+<LI>   Connections Per Second: An IIS server can handle a finite number of ASP requests/second, because each request needs to be processed to see if there is code that needs to be run. To increase your connections/second on your servers, make sure all pages that do not need to run scripting are kept as HTML pages. HTML does not have to be processed and will not contribute to a blocking state on your servers.
+<LI>   Total Queue Length: When looking to see if your site has a blocking problem, or if you are noticing a large quantity of "Server too Busy" messages, this is the first counter to look at. If your site has objects, exterior dependencies, or slow-running scripts inside of ASP pages, this counter will indicate if those items are holding back your site. If IIS is unable to process the number of ASP requests coming in -- because the code in the pages takes longer to process than the time between requests -- IIS will begin to queue the requests. If queuing is noticeable on your site, you should immediately investigate.  If there is one inefficient page on your site that is accessed at a high rate, it can affect all of the ASP pages on your site. Even if all other ASP pages in your site are efficient, they will all have to wait in line while the inefficient page is processed. If that page is accessed enough, all ASP requests will queue and your site will begin to render "Server too Busy" messages. Once you are receiving these error messages, you should see if  <A HREF="http://www.microsoft.com/isn/techcenter/tuningiis.asp?A=10&B=3" TARGET="_top">tuning your thread count and queue length</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> will help alleviate the problem.
+<LI>   Available Memory: Always maintain your servers so they have a large amount of memory available. This is a variable that will stay quite level and predictable while content and functionality on your site does the same. You should monitor the level of available memory on a regular basis, but especially pay attention to it after you have made new additions to your site, such as objects or a new set of content. These types of changes introduce the possibility that a user could be accessing functionality in IIS improperly or pushing it beyond its capacity. When this happens, certain functions may not close down properly, and when called enough, can cause a problematic memory leak.
+</OL>[<i>Editor's note: This chapter was provided by Todd Weeks (Internet Systems Capacity Planner, Microsoft Corporation).</i>]
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic7" IDX_TYPE="sbngen" IDX_CONCEPT="Microsoft, testing of own Web site">Testing</A>
+</h2>
+<P>The testing efforts of the Microsoft Web site team consist of three functional responsibilities: ASP testing and code review, current infrastructure test, and new technology testing and implementation.
+<P>ASP testing and code review enables us to look at all executable code that runs on our site prior to posting it.   The majority of the problems uncovered by tests we run are found in Appendix C:  <A HREF="../../../workshop/server/asp/asptips.htm">15 ASP Tips to Improve Performance and Style</A>.  In addition, we have also developed an internal tool that checks link references, ASP keyword &quot;gotchas,&quot; and programming style.
+<P>Current infrastructure test focuses primarily on improving current site performance.  We currently have a replica of our site in a lab environment with multiple clients to simulate load on the servers.  The tool used for the simulation is WCAT and is provided in the IIS 4.0 Resource Kit and the  <A HREF="../../../workshop/server/toolbox/wcat.htm">Site Builder Workshop Server area</A>.  Although the majority of our troubleshooting and debugging efforts are focused in the lab environment, we periodically maintain one live server in debug mode so we can debug a live server experiencing a certain condition.  The group that owns that component is then contacted and a debug of the object is performed to improve site performance and the quality of our products.
+<P>The microsoft.com site is a breeding ground for new technology testing and implementation.  Because our servers are &quot;live&quot; we have a set of rules, contacts, and tests that are required before we use the new technology or new product on the site.  Using the new technology &quot;live&quot; occurs only after thorough testing is performed in the lab and a migration plan developed and followed.  The majority of our new technology testing is done by integrating into the lab environment for a period of standard test, then moving to our intranet, and finally to a single &quot;debuggable&quot; live server. Then we implement the technology site-wide.
+<P>When testing for performance, the following performance counters are monitored and seem to be sufficient for identifying the majority of our issues:
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#EEEEEE">
+
+<TD>Requests/Sec
+</TD>
+
+<TD>ASP
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Thread Pool Current
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ASP
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Total Queue Length
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ASP
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Current Anonymous Users
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>HTTP Service
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Connections/sec
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>HTTP Service
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>% Committed Bytes In Use
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Memory
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Available Bytes
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Memory
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Private Bytes (inetinfo &quot;IIS Process&quot;)
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Process (see below for explanation)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Thread Count (inetinfo)
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Process (see below for explanation)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>% Processor Time
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Processor
+</TD>
+</TR>
+
+</TABLE>
+<P>Private Bytes (inetinfo): This counter is extremely helpful when determining memory leaks in custom objects that are running In-Process (W3SVC).
+<P>Thread Count (inetinfo): This counter is extremely helpful when tracking down a badly behaved application running in-process (W3SVC), that spawns multiple threads.
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic8" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, tuning ODBC connection pooling;Microsoft, tuning ODBC connection pooling on own Web site">Appendix A: Tuning ODBC Connection Pooling</A>
+</h2>
+<P>ODBC Connection pooling is a mechanism that enables the ODBC driver manager to manage a list of in-process real connections to a database driver and to hand out "virtual" connections to the calling application.  When the application disconnects from this "virtual" connection, the real connection is returned to the list (the "resource pool,") where it can be used to make another "virtual" connection. This article describes how we improved ODBC connection pooling on the Microsoft site.
+<P>The ODBC 3.0 driver manager made no attempt to see if the connection that it handed back was still "alive" (there is no such concept as a dead connection in ODBC).  When a connection did happen to die (which they do sometimes on SQL Server), the driver manager would keep handing this dead connection back to the calling application.  Because of this, a single transient failure could keep the application from reaching the server.
+<P>ODBC released an internal fix to the driver manager that used a SQL Server-specific driver attribute to detect dead connections at disconnect time.   If a dead connection was detected, it would be destroyed instead of going back into the pool.   This approach solved the problem of the transient failure.
+<P>However, this approach exposed a problem in some multi-threaded applications that use connection pooling.  When the SQL Server actually died, these applications would continue to create new threads requesting a connection to the dead server.   Because there were no dead "virtual" connections to block those requests, the driver manager would attempt to create a new "real" connection.   This connection would take about thirty seconds to time out.   During that thirty seconds, many new requests could be posted.   They would each time out for thirty seconds.   Eventually, the ODBC client (often an IIS 3.0 server) would be swamped with connection attempts.
+<P>
+<h3>Solutions
+</h3>
+<P>One solution is to use a heuristic algorithm to detect dead servers versus transient failures.  The basic approach is to retry only once when a connection attempt fails.  If the retry attempt is successful, the dead connection is removed from the pool.   If the retry fails, the connection is returned to the pool to block other connection attempts.  The connection is marked with a time-out value.  When the time-out period expires, the driver manager will attempt to reconnect to the server.
+<P>The driver manager detects dead connections in two ways.  The first method is to call a SQL-Server specific option before returning a real connection back into the connection pool.  This will tell us if the connection appears to be dead.
+<P>Connections can also be tested when the Driver Manager attempts to make a real connection to the database.  There are certain ODBC error status codes that indicate network failure, and it uses these to decide if the failure was related to network problems or other reasons.
+<P>
+<h3>Sequence of Events
+</h3>
+<P>The following steps are taken on the Microsoft.com site to determine and make use of the new Retry Wait registry setting:
+<OL>
+
+<LI>    The first time a dead connection is detected, it is put back into the pool with a timestamp (tick count) and marked to indicate that the connection is dead and we haven't attempted to reconnect.  An error is returned to the application.
+<LI>     When a dead connection marked as such is retrieved from the pool, we immediately return that connection to the pool.   This keeps other clients from attempting to reconnect to that data source.  We mark this connection with a number, and set a mask in a global bit field to indicate that this connection is possibly good.   We then try to connect.   If we succeed, we remove the dead connection from the pool.
+<LI>    When we see a dead connection with a non-expired time-out, we return the failure immediately to the client and return the dead &quot;real&quot; connection to the pool.
+<LI>    When we see a connection with an expired time-out we reset the timer, return the connection to the pool, and try to reconnect as in Step 2.   If the connection succeeds, we remove the dead connection from the pool.
+<LI>   One enhancement this design provides is that we never test two connections at the same time (there is a gate in the driver manager.)   This prevents large numbers of connections waking up at the same time and potentially consuming all resources if the application is trying to speak to multiple dead servers, and only one of them comes back online.
+<BR>
+
+</OL>
+            <P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic9"></A>Appendix B
+</h2>
+<P><A HREF="http://www.microsoft.com/isn/techcenter/tuningiis.asp?A=10&B=3" TARGET="_top">Tuning Your Web Server's ASP Queue and Thread Pool</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic10"></A>Appendix C.
+</h2>
+<P><A HREF="../../../workshop/server/asp/asptips.htm">15 ASP Tips to Improve Performance and Style</A>
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic11" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, threading models: recommendations;Microsoft, threading models used on own Web site">Appendix D: Threading Models</A>
+</h2>
+<P>This article describes threading models and provides our recommendations, based on our experiences managing and optimizing Microsoft's Web site, for components that are called by Active Server Pages. For a basic definition of threading models, see the  <A HREF="../../../workshop/server/asp/comp.htm">Threading Models section of Developing Active Server Components with ATL</A>.
+<P>
+<h3>Apartment Threading:
+</h3>
+<P>This threading model is recommended for components that are called by Active Server Pages.
+<P>Each apartment-model object may be entered by only one thread, the thread that called <b>CoCreateInstance</b>. However, an object server can support multiple objects being entered simultaneously by different threads. Common data held by the object server must be protected against thread collisions.
+<P>The Web server creates an apartment-model object in the same thread that called <b>CoCreateInstance</b>. Calls to the object from the apartment thread are not marshaled. Requests that are in the same session as an apartment model object are handled by the thread that created the apartment model object.
+<P>One disadvantage of apartment-threaded objects is that they cannot be stored in the Application object. The only way to create an apartment-threaded object with application scope is to declare it with an &lt;OBJECT&gt; tag. However, when this object is used, the Web server will lock the application down to a single thread -- the one that created the object. This will reduce server performance significantly, and should only be considered for intranet applications.
+<P>In addition, if an apartment-threaded object is created with session scope or is stored in the Session object, the Web server will lock the session down to the single thread that created the object.
+<P>
+<h3>Free-Threaded
+</h3>
+<P>This threading model is not recommended for components that will be called by Active Server Pages.
+<P>Free-threaded objects place no restrictions on threads or how many threads can enter the object. The object cannot contain thread-specific data and must protect its data from simultaneous access by multiple threads.
+<P>The Web server creates free-threaded objects in a different thread than the one that called <b>CoCreateInstance</b>. All calls to the object are marshaled to a free-threading thread.
+<P>One disadvantage of free-threaded objects is that they cannot be stored in the Application object. The only way to create a free-threaded object with application scope is to declare it with an &lt;OBJECT&gt; tag. However, when this object is used, the Web server will lock the application down to a single thread: the one that created the object. This will reduce server performance significantly, and should only be considered for intranet applications.
+<P>In addition, if a free-threaded object is created with session scope or is stored in the Session object, the Web server will lock the session down to the single thread that created the object.
+<P>
+<h3>Objects Marked as Both
+</h3>
+<P>This threading model is highly recommended for components that will be called by Active Server Pages.
+<P>ActiveX objects marked as both can be used in either apartment-threaded or free-threaded modes. They can be entered by multiple threads, protect their data from thread collisions, and do not contain thread-specific data.
+<P>The Web server creates an object marked as both in a single thread, the one that serviced the request. The call to <b>CoCreateInstance</b> is not marshaled to another thread. However, if the object has session scope or is placed in the Session object, the Web server will not lock the session to that thread. Calls to the object from other requests in the same session are executed in the request thread.
+<P>Because objects marked as both guarantee protection of data against multiple thread access, they can be used for objects that have application scope.
+<P>
+<h3>How to Enable Threading on a Web Site
+</h3>
+<P>When you install the core IIS 3.0 product, four files are included during the installation.  These files are listed below and can be found at the following location:
+<P>C:\Program Files\Common Files\System\ADO&gt;
+<P>MakeApt.bat - This batch file calls adoapt.reg as part of a script.
+<P>MakeFree.bat - This batch file calls adofree.reg as part of a script.
+<P>AdoApt.reg - This file changes the necessary parameters to switch IIS to run ADO in apartment-threading mode.
+<P>AdoFree.reg - This file changes the necessary parameters to switch IIS to run ADO in apartment-threading mode.
+<P><P> <A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<h2><A NAME="topic12" IDX_TYPE="sbngen" IDX_CONCEPT="IIS, HTTPMon configuration manager;Microsoft, using HTTPMon on own Web site;HTTPMon, using">Appendix E: HTTPMon Configuration Manager</A>
+</h2>
+<P>HTTPMon Configuration Manager is a multi-threaded Windows NT Server monitoring tool that gathers large amounts of data about a Web site from the Httpmon.ini configuration file.  It is designed to test a large number of machines through the configuration of the INI file and generate a standard comma separated value (CSV) file or Windows NT events.
+<P>HTTPMon provides immediate monitoring of Web servers with no special Web page development skills necessary, yet it can also be customized to perform complex tests. HTTPMon is designed to use existing pages on a Web server to capture <i>user experiences</i>, that is, to realistically represent the performance your users experience.  In addition, you can configure Httpmon.ini to use "clusters" and "friendly names."  When accessing existing pages, HTTPMon will then provide names that are easy for helpdesk and support personnel to translate and troubleshoot.
+<P>HTTPMon is a Microsoft product that shipped with the IIS 4.0 Resource Kit.   This tool was developed by the Microsoft Web site team to monitor Microsoft's Web servers and report statistics on their individual/cluster performance.  For the most recent versions of this application, search <A HREF="http://www.microsoft.com/kb/" TARGET="_top">http://www.microsoft.com/kb/</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for article Q181372, which will be posted soon. Version 2.1 has been released and is available for download at <a href="ftp://ftp.microsoft.com/bussys/utilities/httpmon/" TARGET="_top">ftp://ftp.microsoft.com/bussys/utilities/httpmon/</a>  <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+
+<P>
+<IMG SRC="serveroptfigure03.gif" WIDTH="640" HEIGHT="480" BORDER="0" ALT="*">
+<P><b>Figure 3. HTTP Monitor</b>
+
+
+
+<P>With some additional coding and implementation (samples are provided in the httpmon\samples directory of the  <A HREF="http://mspress.microsoft.com/reslink/preview/kits/kits.htm" TARGET="_top">Windows NT Resource Kit</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">), it is possible to use the HTTPMon-generated CSV file to import into Structured Query Language (SQL), read from a custom application, and accomplish many different tasks (like Internet monitoring or Operations/Help Desk support).
+<P>This section provides technical details on how HTTPMon works, and walks you through configuring the tool so you can begin monitoring your servers and optimizing performance for your users.
+<P>
+<h3>How it Works
+</h3>
+<P><b>MaxThreadPool</b> (set all parameters in httpmon.ini) is used to spin the number of threads at start-up.  These threads are then activated and requests are sent.  When a request is ready to be sent, an available thread is found from the MAXTHREADPOOL and used.  This parameter allows HTTPMon to be throttled to the capacity of the machine.
+<P>One problem that can occur is that more requests can be blocked than threads available.  This can cause blocking and potentially cause data to be delayed.  To avoid this problem, set this parameter to at least the maximum number of tests that could fail at a particular time, plus a few for a buffer (that is, if you sample ten URLs for a server, the smallest value should be set to about twelve).  If you have fewer requests than MAXTHREADPOOL, the number of threads is set to the number of requests.
+<P>
+<h3>Calculation Formula Explained
+</h3>
+<P>All keys in caps are specified in the %WINDIR%\httpmon.ini file, which is configured through the use of HttpMonCfg.Exe (installed as part of the application).
+<OL>
+
+<LI>   A request is sent to SERVERx_IP/URLx_Path.
+<LI>   If SERVERx_IP responds back in 30 seconds or less with a <b>Success</b> (defined per RFC 1945 standards), action is performed as signaled by URLx_Alert.
+<LI>   If a <b>Server Too Busy</b> is received, HTTPMon waits SERVERTOOBUSY and retries NUM500RETRIES until either a <b>Success</b> is received or the number of attempts equals NUM500RETRIES. Action is performed as defined by URLx_Alert.
+<LI>   If the server is not responding or a response other than <b>Success</b> or <b>Server Too Busy</b> is received, HTTPMon waits CONNECTIONDEAD and retries NUMOTHERRETRIES of times until either a <b>Success</b> is received or number of attempts equals NUMOTHERRETRIES.  Action is performed as defined by URLx_Alert.
+<LI>   This test is then run for the entire suite of samples every SAMPLEPERIOD with MAXTHREADPOOL number of threads.
+
+</OL>
+<h3>Output Information
+</h3>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#EEEEEE">
+
+<TD>SourceName
+</TD>
+
+<TD>15 chars
+</TD>
+
+<TD>IP address of the HTTPMON source server
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>DestName
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>15 chars
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Name of the tested server
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>DestIP
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>15 chars
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IP of the tested server
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Cluster
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>30 chars
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Cluster grouping name
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Friendly
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>15 chars
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Friendly name for URL
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ResponseCode
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Integer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Response from the request (Based on RFC 1945)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>HeaderCode
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Integer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Allows for Success/Failure condition in header for verification
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>DnldTime
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Integer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Time for HTML text to be returned.
+
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Retries
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Integer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Number of samples attempted
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>GMT
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Time
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Time of sampling
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Alert Level
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Integer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Level of monitoring
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<h3>Sample Output
+</h3>
+<PRE class=clsCode>Httpmon, Microsoft01, 1.1.1.1, WWW, Homepage, 200, 0, 2, 1, 9/23/97 20:44:28, 1
+Httpmon, Microsoft02, 1.1.1.2, WWW, Homepage, 200, 1, 2, 1, 9/23/97 20:44:28, 1
+Httpmon, Microsoft03, 1.1.1.3, WWW, Homepage, 200, 1, 3, 1, 9/23/97 20:44:28, 1
+Httpmon, Microsoft04, 1.1.1.4, WWW, Homepage, 200, 1, 3, 1, 9/23/97 20:44:28, 1
+Httpmon, Microsoft05, 1.1.1.5, WWW, Homepage, 200, 1, 4, 1, 9/23/97 20:44:28, 1
+</PRE>
+
+<P>
+<h3>Sample INI Configuration File
+</h3>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD>[TIMEOUTS] (defaults)
+</TD>
+
+<TD>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ServerTooBusy=15
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SERVERTOOBUSY = Retry wait in seconds
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>ConnectionDead=30
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>CONNECTIONDEAD = Retry wait in seconds
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Num500Retries=8
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>NUM500RETRIES = Number of times to retry when 500 received
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>NumOtherRetries=3
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>NUMOTHERRETRIES = Number to retry for != 500 or !=200
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SamplePeriod=120
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SamplePeriod = Sample period in seconds
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SourceServer =Httpmon
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>SourceServer = 15-character name of server running the test
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>GATEWAY=0
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>0 uses default registry settings for accessing the Internet
+<P>1 uses the Internet/intranet locally
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>MAXTHREADPOOL=20
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Number of worker threads to service request (Maximum is 64,  default is 5)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>WorkingDirectory = c:\temp
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Working directory for temporary files
+</TD>
+</TR>
+
+</TABLE>
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD>[CLUSTER]
+</TD>
+
+<TD>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Cluster1=CompanyX
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Logic grouping or cluster
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Cluster2=CompanyY
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Logic grouping or cluster
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>&nbsp;
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>[CompanyX]
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Logical grouping
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server1_Name=FirstServer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server's NetBIOS name
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server1_IP=1.1.1.1
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server's IP address
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server2_Name=SecondServer
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server's NetBIOS name
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server2_IP=2.2.2.2
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Server's IP address
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL1_Name=WWWHomepage
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Friendly (easy to identify) name for the URL sampling
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL1_Path=/default.asp
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL to be sampled
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL1_Alert=1
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>The action that should be taken (1 = write to CSV, 2 = Windows NT Event)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL1_Header=False
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Verify Header (0 = found, 1 = not found, 9 = unspecified)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL2_Name=IEHomepage
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Friendly (easy to identify) name for the URL sampling
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL2_Path=/ie/default.asp
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL to be sampled
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL2_Alert=2
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>The action that should be taken (1 = write to CSV, 2 = Windows NT Event)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>URL2_Header=True
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Verify header (return 0 = found, 1 = not found, 9 = unspecified)
+</TD>
+</TR>
+
+</TABLE>
+<h3>Configuring HTTPMon
+</h3>
+<P>This section describes how to use the existing environment to start monitoring (refer to readme.txt in the  <A HREF="http://mspress.microsoft.com/reslink/preview/kits/kits.htm" TARGET="_top">Windows NT Resource Kit</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for specifics on setup and configuration).  When configuring HTTPMon for the first time, you'll want to decide what areas of your site provide the best user experience.  We picked four parts of the existing www.microsoft.com cluster to monitor to provide a realistic representation of user experience when accessing the site.  The four areas are defined as:
+<UL>
+
+
+<LI> Home page (default.asp)
+<LI> HTML (default.htm)
+<LI> SQL Server dependencies (location/filenames confidential)
+<LI> User Property database (location/filenames confidential)
+
+</UL>The first three areas were available to begin immediate monitoring through simply adding the URL to the "Relative Path" in the Edit URL properties dialog box. The fourth area was a little more complicated and required us to write a separate page that performs an action in an ASP page, and based on its results, returns a <b>Success</b> or <b>Failure</b> in the HTTP Header.
+<P>To configure the tool, we'll start at the beginning.  Click the HttpMonCfg.exe icon on your desktop.  The application will display this screen:
+            <P><IMG SRC="serveroptfigure04.gif" WIDTH="343" HEIGHT="427" BORDER="0" ALT="*">
+
+<P><b>Figure 4. HTTPMon Configuration Manager opening screen</b>
+<P>
+<h3>How to Add a Cluster
+</h3>
+<P>To add a cluster, right-click the Web Clusters icon in the Configuration Manager:
+<P><IMG SRC="serveroptfigure05.gif" WIDTH="343" HEIGHT="427" BORDER="0" ALT="*">
+            <P><b>Figure 5. Web clusters </b>
+<P>In the Add Cluster dialog box, type the cluster name and click OK.
+            <P>
+      <IMG SRC="serveroptfigure06.gif" WIDTH="317" HEIGHT="343" BORDER="0" ALT="*">
+       <P><b>Figure 6.  Web cluster dialog box</b>
+<P>
+<h3>How to Add a Server (in a Cluster)
+</h3>
+<P>To add a server, enter the Server Name and the IP address.
+            <P>
+      <IMG SRC="serveroptfigure07.gif" WIDTH="317" HEIGHT="390" BORDER="0" ALT="*">
+             <P><b>Figure 7. Edit Server dialog box </b>
+
+<P>If you don't know the IP address, you can use the ping utility to receive this
+    information:
+<PRE class=clsCode>C:\&gt;ping Elmer
+Pinging elmer.dns.microsoft.com [100.100.100.1] with 32 bytes of data:
+Reply from 100.100.100.1: bytes=32 time&lt;10ms TTL=126
+...;
+</PRE>
+
+<P>In this example, 100.100.100.1 is the IP address of Elmer.
+
+
+
+<P>
+<h3>How to Add a Simple URL (to a Cluster)
+</h3>
+<P>To add a URL to a cluster, enter the information in the Edit URL dialog box and select the Alert Level desired.  By default, the test will write results to a CSV file and NOT perform the Verify Header test.
+            <P>
+      <IMG SRC="serveroptfigure08.gif" WIDTH="317" HEIGHT="391" BORDER="0" ALT="*">
+<P><b>Figure 8. Edit URL dialog box</b>
+<P>
+<h3>How to Use HTTPMon's Verify Header Function
+</h3>
+<P>Important: The following sections and information on HTTPMon are not intended for a novice Web operation and should only be attempted and supported by administrators with extensive knowledge of ASP and Web programming.
+<P>The "Verify Header" function is a powerful and useful option to help gather additional information on operations like checking SQL connectivity, FTP Server availability, or other operations that can't be verified through simple ASP or HTML URLs.  To perform the test, enter the information as you would for a typical test but include a check in the Verify Header check box at the lower right of the dialog box (see Figure 8).
+
+<P>This setting is represented in the %WINDIR%\HTTPMON.INI file for each URL in the clusters as:
+<P>
+<PRE class=clsCode>URL1_Name=WebSQL
+URL1_Path=/TestUserDB.asp
+URL1_Alert=1
+<b>URL1_Header=True </b><i>(Valid values: True or False)
+</i></PRE>
+<P>Once this is completed, you will need to write a script to perform the secondary test.   The following is an example script (with names changed) that the Microsoft Web site uses to verify connectivity to our user database (a SQL 6.5 database).
+<P><b>TestUserDB.asp</b>
+<P>
+<PRE class=clsCode>1.   &lt;% Response.Expires = 0
+2.   iErr = 0
+3.   On Error Resume Next
+4.   Set MSObject = Server.CreateObject(&quot;MSWebObject.MSSQL&quot;)
+5.   If Err.Number = 0 Then
+6.   Country = MSObject (&quot;Country&quot;)
+7.   If Err.Number = 0 Then
+8.   mso_IsReg = MSObject (&quot;mso_IsReg&quot;)
+9.   If Err.Number &lt;&gt; 0 Then
+10.  iErr = 3
+11.  End If
+12.  Else
+13.  iErr = 2
+14.  End If
+15.  Else
+16.  iErr = 1
+17.  End If
+18.  If iErr = 0 Then
+19.  Response.AddHeader &quot;Object-Creation&quot;, &quot;Success&quot;
+20.  Status = &quot;Success&quot;
+21.  Else
+22.  Response.AddHeader &quot;Object-Creation&quot;, &quot;Fail&quot;
+23.  Status = &quot;Error: Fail&quot;
+24.  End If %&gt;
+25.  &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;
+26.  &lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;MSCom SQL Test Page&lt;/TITLE&gt;&lt;/HEAD&gt;
+27.  This page is for testing object creation and gathering stats
+     on down time.
+28.  &lt;% = Status %&gt;&lt;BR&gt;&lt;/BODY&gt;&lt;/HTML&gt;
+</PRE>
+<P>Lines 1 through 17 perform a test that's validated in line 18. Depending on the result gathered, either <b>Success</b> or <b>Failure</b> is returned in the header through lines 19 and 22.  The two values (<b>Success</b>/<b>Failure</b>) are the only values supported in HTTPMon version 2.0.  In the CSV files that are generated, these values are represented by:
+<P><b>0</b> for <b>Success</b>
+<P><b>1</b> for <b>Failure</b>
+<P><b>9</b> for <b>Unspecified</b>
+<P>For example, here is how each possibility would appear:
+<PRE class=clsCode>RED-INTERNET, WEBSERVER1, 211.68.137.53,WWW, USERDB, 200, <b>0</b>, 0, 1, 1/17/97 5:04:43, 1
+RED-INTERNET, WEBSERVER1, 211.68.137.53,WWW, USERDB, 200, <b>1</b>, 0, 1,11/17/97 5:04:43, 1
+RED-INTERNET, WEBSERVER1, 211.68.137.53,WWW, USERDB, 200, <b>9</b>, 0, 1,11/17/97 5:04:43, 1
+</PRE>
+
+<P>
+
+<P>The following is the Header returned from an HTTP Request. It was an actual capture from the sample script above, which successfully located the Country Code in the SQL database:
+<P>
+<PRE class=clsCode>STATUS_CODE = 200
+STATUS_TEXT = OK
+VERSION = HTTP/1.0
+CONTENT_TYPE = text/html
+DATE = Mon, 17 Nov 1997 04:42:11 GMT
+EXPIRES = Mon, 17 Nov 1997 04:42:10 GMT
+RAW_HEADERS_CRLF = HTTP/1.0 200 OK
+Server: Microsoft-IIS/3.0
+Object-Creation: Success
+</PRE>
+<P>
+<h2><A NAME="topic13"></A>Appendix F: Related Request for Comment (RFC)
+</h2>
+<P>The following RFC provides valuable information concerning the Hypertext Transfer Protocol (HTTP).
+<P><a href="http://ds.internic.net/rfc/rfc1945.txt" TARGET="_top">Hypertext Transfer Protocol -- HTTP/1.0 </a> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P><P>
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg07341.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="serveroptms.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

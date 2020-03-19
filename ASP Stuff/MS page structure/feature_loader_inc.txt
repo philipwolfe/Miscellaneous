@@ -1,0 +1,372 @@
+<%
+var oToolbar;
+var oSearchTab;
+var oFlyOutMenu;
+var oAdBar;
+var oAppBar;
+var oEyebrow;
+var oWebParts;
+var oFooter;
+var oDeepTree;
+
+var sTreeId = null;
+
+if( "string" != typeof( sHeaderString ) ) sHeaderString = "";
+
+// We need to remove any QueryString parameters added by code
+//      1. frame=true
+//      2. hidetoc=true
+//      3. etc...
+
+var sUrl = String( Request.ServerVariables( "SCRIPT_NAME" ) );
+
+var sQuery = String( Request.QueryString );
+sQuery = sQuery.toLowerCase().replace( /frame=[^&]*[&$]?/gi , "" );
+sQuery = sQuery.replace( /&$/gi , "" );
+
+
+var sQuery2 = sQuery.replace( /hidetoc=[^&]*[&$]?/gi , "" );
+sQuery2 = sQuery2.replace( /sort=[^&]*[&$]?/gi , "" );
+sQuery2 = sQuery2.replace( /&$/gi , "" );
+
+
+
+var sRedirUrl = sUrl;
+if( sQuery != "" )
+{
+    sRedirUrl += "?" + sQuery;
+}
+    
+
+var sContextUrl = sUrl;
+if( sQuery != "" )
+{
+    sContextUrl += "?" + sQuery2;
+}
+
+
+var oxmlMenu; //initialized by flyout menu render() for eyebyows
+var oXML = null;
+if( "string" != typeof( oMD.thirdPartyCss ) ) oMD.thirdPartyCss = "";
+if( "string" != typeof( oMD.thirdPartyJs ) ) oMD.thirdPartyJs = "";
+
+
+fnLoadFeatures();
+
+function fnLoadFeatures()
+{
+    ////////////////////////////////////////////////////
+    //
+    // Dependencies: 
+    //      o Eyebrow must be called after leftnav
+    //    o Toolbar must be called after leftnav
+    //
+    ////////////////////////////////////////////////////
+    //
+    // Explanation:
+    //      Code below looks for the specified node, if it finds the node it 
+    //      looks for a src attribute, if it finds a src attribute it recalls
+    //      fnLoadCnfg passing in the value of the src attribute as a param 
+    //      to the function
+    //
+    ////////////////////////////////////////////////////
+    
+    oXML = fnLoadCnfg();
+    
+    
+    var oTmpNode = null;
+    var oAltNode = null;
+    var oTmpAttr = null;
+    if( null != oXML )
+    {
+        if (    oTmpNode = oXML.selectSingleNode("//leftnav")  ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("/deeptreeconfig")) ? fnInitLeftNav(     oAltNode ): fnInitLeftNav(     oTmpNode ) : fnInitLeftNav(     oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//toolbar")  ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//toolbar")) ? fnInitToolbar(     oAltNode ): fnInitToolbar(    oTmpNode ) :  fnInitToolbar(    oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//searchtab")) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//searchtab")) ? fnInitSearchTab( oAltNode ): fnInitSearchTab(  oTmpNode ) :  fnInitSearchTab(  oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//adbar")    ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//adbar")) ? fnInitAdBar(         oAltNode ): fnInitAdBar(      oTmpNode ) :  fnInitAdBar(      oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//appbar")   ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//appbar")) ? fnInitAppBar(       oAltNode ): fnInitAppBar(     oTmpNode ) :  fnInitAppBar(     oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//eyebrow")  ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//eyebrow")) ? fnInitEyebrow(     oAltNode ): fnInitEyebrow(    oTmpNode ) :  fnInitEyebrow(    oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//footer")   ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//footer")) ? fnInitFooter(       oAltNode ): fnInitFooter(     oTmpNode ) :  fnInitFooter(     oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//ratings")  ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//ratings")) ? fnInitRatings(     oAltNode ): fnInitRatings(    oTmpNode ) :  fnInitRatings(    oTmpNode );}
+        if (    oTmpNode = oXML.selectSingleNode("//comments") ) { (oTmpAttr = oTmpNode.getAttribute("src")) ? (oAltNode = fnLoadCnfg(oTmpAttr).selectSingleNode("//comments")) ? fnInitComments(   oAltNode ): fnInitComments(   oTmpNode ):   fnInitComments(   oTmpNode );}
+
+        //hack for node home pages
+        if (    oTmpNode = oXML.selectSingleNode("//webparts") || oMD.getsWP) fnloadWpCss();
+
+        // initialize "rogue" webparts 
+        if (oMD.rightNav) fnInitWebParts();
+    }
+}    
+    
+
+function fnLoadCnfg(sSrc)
+{
+    try {
+
+        var sCnfgPath = (sSrc) ? Server.MapPath( sSrc ) : (oMD.cnfgFile) ? Server.MapPath(oMD.cnfgFile) : Server.MapPath(gloc_sConfigFileName);
+            
+        var xmlDoc = new ActiveXObject( "Msxml2.FreeThreadedDOMDocument" );
+        xmlDoc.async = false;
+        xmlDoc.load(sCnfgPath);
+        while (sCnfgPath.length > 11 && xmlDoc.xml.length < 1)
+        {
+            sCnfgPath = fnGetParentDir(sCnfgPath)
+            xmlDoc.load(sCnfgPath + gloc_sConfigFileName);
+        }
+        
+        if (xmlDoc.xml.length<1)
+        {
+            xmlDoc.load(Server.MapPath(gloc_sDefaultCnfgPath + gloc_sConfigFileName));
+        }
+        return xmlDoc;
+
+    } catch(e) {
+        Response.Write("Error: " + e.description);
+        return xmlDoc;
+    }
+}
+
+function fnWriteJs()
+{
+    
+    oJsArray = oMD.thirdPartyJs.split( "|" );
+    Response.Write( "\n" );
+    for( var i = 0; i < oJsArray.length; i++ )
+    {
+        if( oJsArray[i] != "" )  // could potentially check to see if the file exists on the server
+        {
+            Response.Write( '<SCRIPT LANGUAGE="javascript" SRC="' + oJsArray[i] + '"></SCRIPT>\n' );
+        }
+    }
+    return;
+}
+
+function fnWriteCss()
+{
+    oCssArray = oMD.thirdPartyCss.split( "|" );
+    Response.Write( "\n" );
+    for( var i = 0; i < oCssArray.length; i++ )
+    {
+        if( oCssArray[i] != "" )  // could potentially check to see if the file exists on the server
+        {
+            Response.Write( '<LINK REL="stylesheet" TYPE="text/css" HREF="' + oCssArray[i] + '" />\n' );
+        }
+    }
+    return;
+}
+
+function fnWriteHeaderString()
+{
+    Response.Write( sHeaderString );
+}
+
+function fnInitToolbar(objToolbarNode)
+{
+%>
+<!-- #include virtual="/library/shared/toolbar/inc/library.inc" -->
+<%
+    oMD.thirdPartyJs += "|/library/toolbar/toolbar.js";
+    if (oMD.leftNavType == "menu") {oMD.thirdPartyJs += "|/library/toolbar/en-us/global.js"};
+    oToolbar = new Toolbar(objToolbarNode);
+}
+
+function fnInitSearchTab(objSearchNode)
+{
+%>
+<!-- #include virtual="/library/shared/searchtab/inc/library.inc" -->
+<%
+    //oMD.thirdPartyCss += "|/library/shared/searchtab/css/search.css";
+    oSearchTab = new SearchTab(objSearchNode);
+}
+    
+function fnInitLeftNav(objLeftNavNode)
+{
+    oMD.leftNavType = String(objLeftNavNode.getAttribute("type")).toLowerCase();
+    if(oMD.leftNavType == "menu")
+    {
+        oFlyOutMenu = new FlyOutMenu();
+        oMD.thirdPartyCss += "|/library/flyoutmenu/default.css";
+%>
+<!-- #include virtual="/library/shared/flyoutmenu/inc/library.inc" -->
+<%
+    }
+    else if( objLeftNavNode.nodeName == "deeptreeconfig" )
+    {
+        oMD.leftNavType = "deeptree";
+        var sFrame = String( Request.QueryString( "frame" ) );
+        sTreeId = "";
+        if( sFrame == "undefined" )
+        {
+            var xmlNode = objLeftNavNode.selectSingleNode( "TreeRootPath" );
+            
+            if( null != xmlNode )
+            {
+                //Response.Write( sRedirUrl );
+                Response.Redirect( xmlNode.text + "?url=" + sRedirUrl );
+            }
+            
+        }
+        else
+        {
+            sHeaderString += "\n\n<script>\n\tif( self == top )\n{\n\tlocation = \"" + sRedirUrl + "\";\n}\n\n</script>";
+        }
+        xmlNode = objLeftNavNode.selectSingleNode( "TreeId" );
+        if( null != xmlNode )
+        {
+            sTreeId = xmlNode.text;
+        }
+
+        // Needs to redirect into frameset.
+        
+    }
+}
+
+function fnInitAdBar(objAdBar)
+{
+%>
+<!-- #include virtual="/library/shared/adbar/inc/library.inc" -->
+<%
+    oMD.thirdPartyCss += "|/library/shared/adbar/css/default.css";
+    oAdBar = new AdBar(objAdBar);
+}
+
+function fnInitComments(objCommentsNode)
+{
+%>
+<!-- #include virtual="/library/shared/comments/inc/commentslink.asp" -->
+<%
+    oComments = new CommentsLink(objCommentsNode);
+}
+
+function fnInitRatings(objRatingsNode)
+{
+%>
+<!-- #include virtual="/library/shared/ratings/inc/ratings.asp" -->
+<%
+    oRatings = new Ratings(objRatingsNode);
+}
+
+function fnInitFooter(objFooterNode)
+{
+%>
+<!-- #include virtual="/library/shared/footer/inc/library.inc" -->
+<%
+    if (typeof(oToolbar)!="object")
+    {
+        oMD.thirdPartyJs += "|/library/toolbar/toolbar.js";
+    }
+    oFooter = new Footer(objFooterNode);
+}
+
+function fnInitAppBar(objAppBarNode)
+{
+%>
+<!-- #include virtual="/library/shared/appbar/inc/library.inc" -->
+<%
+            oAppBar = new AppBar(objAppBarNode);
+}
+
+function fnInitEyebrow(objEyebrowNode)
+{
+%>
+<!-- #include virtual="/library/shared/eyebrow/inc/library.inc" -->
+<%
+    oMD.thirdPartyCss += "|/library/shared/eyebrow/css/default.css";
+    
+    if( oMD.leftNavType == "deeptree" )
+    {   
+        
+        if( sTreeId != null && sTreeId != "" )
+        {
+            var oXmlContext = GetContext( sContextUrl , sTreeId );
+            //Response.Write( Server.urlDecode( sContextUrl ) );
+        
+        }
+        var oXmlNode;
+        while( null != oXmlContext && oXmlContext.hasChildNodes )
+        {
+
+         
+            oXmlContext = oXmlContext.firstChild;
+            if( oXmlContext.nodeName != "TreeNode" )
+            {
+                oXmlContext = oXmlContext.firstChild;
+            }
+          
+            oXmlNode = oXML.createElement( "item" );
+            if( oXmlContext.attributes.getNamedItem( "Title" ) != null )
+            {
+                oXmlNode.setAttribute( "label" , oXmlContext.getAttribute( "Title" ) );
+            }
+            if( oXmlContext.attributes.getNamedItem( "Href" ) != null )
+            {
+                oXmlNode.setAttribute( "url" , oXmlContext.getAttribute( "Href" ) );
+            }
+            if( oXmlContext.attributes.getNamedItem( "NodeId" ) != null )
+            {
+                oXmlNode.setAttribute( "id" , oXmlContext.getAttribute( "NodeId" ) );
+            }
+            if( oXmlContext.attributes.getNamedItem( "NodeXmlSrc" ) != null )
+            {
+                oXmlNode.setAttribute( "xmlsrc" , oXmlContext.getAttribute( "NodeXmlSrc" ) );
+            }
+            objEyebrowNode.appendChild( oXmlNode );
+        }
+        sHeaderString += "\n\n<xml id='xmlPageContext'>" + objEyebrowNode.xml + "</xml>";
+        objEyebrowNode.removeChild( objEyebrowNode.childNodes.item( objEyebrowNode.childNodes.length - 1 ) );
+    }
+    oEyebrow = new Eyebrow(objEyebrowNode);
+}
+
+function fnInitWebParts()
+{
+
+
+
+%>
+<!-- #include virtual="/library/shared/webparts/inc/library.inc" -->
+<%
+    var sContentID = (oMD.contentID) ? oMD.contentID : "\"\"";
+    sHeaderString += "\n <script> \n" + "var sContentID = " + sContentID + "; \n </script>\n";
+    
+    oWebParts = new WebParts();
+}
+
+function fnloadWpCss()
+{
+   if (oBD.platform == "Mac")
+       {
+            oMD.thirdPartyCss += "|/library/shared/webparts/mac.css";
+       }
+       else if(oBD.majorVer == 4 && oBD.browser =="MSIE")
+       {
+            oMD.thirdPartyCss += "|/library/shared/webparts/ie4.css";
+       }
+       else if(oBD.getsNavBar)
+       {
+            oMD.thirdPartyCss += "|/library/shared/webparts/ie.css";
+       }
+       else 
+       {
+            oMD.thirdPartyCss += "|/library/shared/webparts/netscape.css";
+       }
+       
+       var sContentID = (oMD.contentID) ? oMD.contentID : "\"\"";
+       sHeaderString += "\n<script>\n" + "var sContentID = " + sContentID + "; \n </script>\n";
+}
+
+function fnGetParentDir(sCurLoc)
+{
+    sCurLoc = sCurLoc.substring(0, sCurLoc.lastIndexOf("\\"));
+    return sCurLoc.substring(0, sCurLoc.lastIndexOf("\\")+1);
+}
+
+function fnGetParentVRoot(sCurLoc)
+{
+    var sTemp = new String(sCurLoc);
+    sTemp = sTemp.substring(0, sTemp.lastIndexOf("/"));
+    return sTemp.substring(0, sTemp.lastIndexOf("/")+1);
+}
+
+%>
+
+

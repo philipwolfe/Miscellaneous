@@ -1,0 +1,243 @@
+<!-- START docdata.inc-->
+<%
+	// BUGBUG: needs conditional for bucketBranch -- should only build if in a workshop page
+	// 					this will allow us to remove excess from BuildBranchURL()
+
+
+	// -------------------------------------------------------
+	// aBuckets array
+	// contains the title and root for every bucket
+	//
+	// NOTE: Perhaps break up into multiple arrays like c-frame
+	// to lessen unecessary memory use.  Good Global.asa candidate
+	// -------------------------------------------------------
+
+  // parsepath|label|branch
+
+  /*
+   first block contains special cases
+   revisit once dir structure and content are in place
+  */
+
+	var aBuckets = new Array(
+
+		"workshop/imedia/agent|Microsoft Agent|/workshop/imedia/agent/",
+		"msagent|Microsoft Agent|/workshop/imedia/agent/",
+		"workshop/imedia/windowsmedia|Windows Media Technologies|/workshop/imedia/windowsmedia/",
+		"resources/usergroup|Web Technology|/resources/usergroup/",
+ 		"workshop/author/htmlhelp|HTML Help|/workshop/author/htmlhelp/",
+		"downloads/samples/internet|Web &amp; Internet Samples|/downloads/samples/internet/",
+		"workshop/languages/fp|Microsoft FrontPage|/workshop/languages/fp/",
+		"workshop/languages/vinterdev|Microsoft Visual InterDev|/workshop/languages/vinterdev/",
+		"downloads/webtechnology|Web Technology|/downloads/webtechnology/",
+		"workshop/samples|Samples Catalog|/workshop/samples/",
+		
+		"msdownload/sbndownload|Tools|/downloads/tools/",
+		
+		"chats|Chats|/chats/",
+		
+		"peerjournal|Peer Journal|/peerjournal/",
+
+		"community/freebies|Freebies|/community/",
+		"community/osig|Online Special-Interest Groups|/community/",
+		"community|Member Community|/community/",
+
+		"osig|Online Special-Interest Groups|/osig/",
+
+		"downloads/tools|Tools|/downloads/tools/",
+		"downloads/samples|Samples|/downloads/samples/",
+		"downloads/images|Images|/downloads/images/",
+		"downloads/sounds|Sounds|/downloads/sounds/",
+		"downloads/membersounds|Member Sounds|/downloads/membersounds/",
+
+		"siteguide|Site Guide|/siteguide/",
+
+		"training/chats|Training|/training/",
+		"training/offers|Training|/training/",
+		"training/peers|Training|/training/",
+		"training/resources|Training|/training/",
+		"training/roadmap|Training|/training/",
+		"training/selfstudy|Training|/training/",
+		"training/seminars|Training|/training/",
+		"training/tools|Training|/training/",
+		"training|Training|/training/",
+
+		"voices|Voices|/voices/",
+
+		"standards|Specs &amp; Standards|/standards/",
+		"xml|XML (Extensible Markup Language)|/workshop/xml/",
+
+		"workshop/index|Index|/workshop/index/",
+		"workshop/misc|Web Workshop (Miscellaneous)|/workshop/",
+
+		"workshop/essentials|Essentials|/workshop/essentials/",
+		"workshop/delivery|Content &amp; Component Delivery|/workshop/delivery/",
+		"workshop/components|Component Development|/workshop/components/",
+		"workshop/database|Data Access &amp; Databases|/workshop/database/",
+		"workshop/design|Design|/workshop/design/",
+		"workshop/author|DHTML, HTML &amp; CSS|/workshop/author/",
+		"workshop/languages|Languages &amp; Development Tools|/workshop/languages/",
+		"workshop/messaging|Messaging &amp; Collaboration|/workshop/messaging/",
+		"workshop/networking|Networking, Protocols &amp; Data Formats|/workshop/networking/",
+		"workshop/browser|Reusing Browser Technology|/workshop/browser/",
+		"workshop/security|Security &amp; Cryptography|/workshop/security/",
+		"workshop/server|Server Technologies|/workshop/server/",
+		"workshop/management|Web Content Management|/workshop/management/",
+		"workshop/imedia|Streaming &amp; Interactive Media|/workshop/imedia/",
+
+		"workshop|Web Workshop|/workshop/",
+		"downloads|downloads|/downloads/",
+
+		"msdn-online|MSDN Online|/msdn-online/"
+
+	);
+
+	// -----------------------------------------------------------
+	// Helper functions for DocumentData constructor
+	// -----------------------------------------------------------
+
+	// -----------------------------------------------------------
+	// BuildBranchURL()
+	// Used to build a branch of BucketBranch
+	// If the URL passed is neither the workshop nor downloads home page
+	// Then convert the URL to a HackURL c-frame URL
+	// -----------------------------------------------------------
+
+	function BuildBranchURL(sURL)
+	{
+		if (oBD.getsNavBar &&
+			"/workshop/" != sURL &&
+			"/community/" != sURL &&
+			"/downloads/" != sURL &&
+			"/training/" != sURL &&
+			"/events/" != sURL &&
+			"/siteguide/" != sURL &&
+			"/peerjournal/" != sURL &&
+			"/resources/" != sURL &&
+			"/voices/" != sURL)
+		{
+			sURL =  HackURL("/workshop/c-frame.htm#" + sURL);
+		}
+		return sURL;
+	}
+
+	// -----------------------------------------------------------
+	// GetBucketIndex()
+	// Returns the index of the appropriate aBuckets array element for the passed path
+	// We save processing by then referring to just the index later
+	// -----------------------------------------------------------
+
+	function GetBucketIndex(sPath)
+	{
+		var iNumBuckets = aBuckets.length;
+		for (var i=0; i<iNumBuckets; i++)
+		{
+			if (-1 != sPath.indexOf("/" + aBuckets[i].substring(0,aBuckets[i].indexOf("|")) + "/"))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	// -------------------------------------------------------
+	// DocumentData() constructor
+	// .pathname: (string) the path passed to the constructor
+	// .bucketIcon: (string) the SRC of the icon image to be shown in NavLinks
+	// .bucketRoot: (string) the path to the bucket root
+	// .bucketTitle: (string) the "title" displayed in the bucket branch below NavLinks
+	// .bucketBranch: (string) the pipe-delimited series of "titles", with live links
+	// .showBucketIcon: (boolean) to tell NavLinks whether to wrap icon in A HREF and add TITLE
+	//   (false for "misc" and "workshop", which have blank icons)
+	// -------------------------------------------------------
+
+	function DocumentData(sPath)
+	{
+		this.pathname = sPath;
+
+			var sBucketIconsFolder = "/workshop/graphics/icons/";
+
+		// -------------------------------------------------------
+		// Match bucket with path
+		// Loop through aBuckets until matched
+		// -------------------------------------------------------
+
+		var iIndex = GetBucketIndex(sPath);
+		if (-1 != iIndex)
+		{
+			var aBucketData = aBuckets[iIndex].split("|");
+			var sFolder = aBucketData[0].substring(aBucketData[0].lastIndexOf("/") + 1);
+			this.showBucketIcon = true;
+			this.bucketIcon = sBucketIconsFolder + sFolder + ".gif";
+			this.bucketRoot = aBucketData[2];
+			this.bucketTitle = aBucketData[1];
+			this.bucketBranch = "";
+			this.vroot = this.pathname.match(/[/][^/]+[/]/);
+
+			// -------------------------------------------------------
+			// Re-assign this.vroot for /xml/ and /standards/
+			// -------------------------------------------------------
+
+			if ("/workshop/xml/" == this.bucketRoot)
+			{
+				this.vroot = "/xml/";
+			}
+			else if ("/standards/" == this.bucketRoot)
+			{
+				this.vroot = "/standards/";
+			}				
+
+			// -------------------------------------------------------
+			// Split root and build branch from resulting array
+			// First handle "/workshop/misc/" and "/workshop/" who get no icons
+			// -------------------------------------------------------
+
+			if ("/workshop/misc/" == this.bucketRoot || "/workshop/" == this.bucketRoot)
+			{
+				this.showBucketIcon = false;
+				this.bucketBranch = '<A HREF="/workshop/default.asp" TARGET="_top">' + this.bucketTitle + '</A>';
+				return;
+			}
+
+			var aLimbs = this.bucketRoot.substring(1,this.bucketRoot.length - 1).split("/");
+			for (var j=1;j<aLimbs.length;j++)
+			{
+				aLimbs[j] = aLimbs[j-1] + "/" + aLimbs[j];
+			}
+
+			for (var j=0;j<aLimbs.length;j++)
+			{
+				var iLimbIndex = GetBucketIndex("/" + aLimbs[j] + "/");
+				if (iLimbIndex != -1) {
+					sBranchHREF = aBuckets[iLimbIndex].split("|")[2];
+				
+					this.bucketBranch += '<A HREF="';
+					if ("/workshop/xml/" != sBranchHREF)
+					{
+						this.bucketBranch += BuildBranchURL(sBranchHREF) + 'default.asp" ';
+					}
+					else
+					{
+						this.bucketBranch += BuildBranchURL("/xml") + '/index.asp" ';
+					}
+					this.bucketBranch += 'TARGET="_top">' + aBuckets[iLimbIndex].split("|")[1] + '</A>'
+						+ (j != aLimbs.length - 1 ? '&nbsp;&nbsp;|&nbsp;&nbsp;' : '');
+				}
+			}
+			return;
+		}
+
+		this.showBucketIcon = false;
+		this.bucketIcon = sBucketIconsFolder + "workshop.gif";
+		this.bucketRoot = "/workshop/";
+		this.bucketTitle = "Web Workshop";
+		this.bucketBranch = '<A HREF="' + BuildBranchURL("/workshop/") + '" TARGET="_top">' + this.bucketTitle + '</A>';
+	}
+
+	var oDD = new DocumentData(new String(Request.ServerVariables("PATH_INFO")).toLowerCase());
+
+%>
+<!-- STOP docdata.inc-->
+
+
+

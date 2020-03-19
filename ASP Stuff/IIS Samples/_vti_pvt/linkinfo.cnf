@@ -1,0 +1,6 @@
+vti_encoding:SR|utf8-nl
+<% =ovfile %>:sampfram.asp
+/iissamples/sdk/asp/docs/codebrws.asp:toolbar.asp
+/iissamples/sdk/asp/docs/toolbar.asp:sampfram.asp
+<%=ovfile%>:toolbar.asp
+/iissamples/sdk/asp/<%=srcfile%>_vbscript.asp:toolbar.asp

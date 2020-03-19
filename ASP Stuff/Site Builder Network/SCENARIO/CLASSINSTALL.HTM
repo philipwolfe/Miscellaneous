@@ -1,0 +1,514 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Web Job Classifieds Code Download and Installation Instructions</TITLE>
+
+<META NAME="Description" CONTENT="Classifieds Site Code Download and Installation" />
+<META NAME="Keywords" CONTENT="Web Job Classifieds, sample code" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Wayne Berry" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg01290.htm#/workshop/server/scenario/classinstall.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg01290.htm#/workshop/server/scenario/classinstall.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg01290.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex; Web Job Classifieds site code download and installation instructions">Classifieds Site Code Download and Installation </A></H1>
+<HR SIZE="1" />
+<P>Wayne Berry<BR>Editor, 15 Seconds
+<P>April 14, 1998
+<P><a href="classinstall.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 10.8K)</a>.
+                <P><a href="classeula.htm"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download the classifieds site code</a>
+
+<a name="top"></a><P><b>Contents</b>
+<br> <A HREF="classinstall.htm#topic1">Introduction</A>
+<br> <A HREF="classinstall.htm#topic2">Install IIS 4.0</A>
+<br> <A HREF="classinstall.htm#topic3">XSession</A>
+<br> <A HREF="classinstall.htm#topic4">XCheck</A>
+<br> <A HREF="classinstall.htm#topic5">Configure SQL Server</A>
+<br> <A HREF="classinstall.htm#topic6">Configure ODBC</A>
+<br> <A HREF="classinstall.htm#topic7">Modify the Global Variables</A>
+<br> <A HREF="classinstall.htm#topic8">Modify the Text</A>
+<br> <A HREF="classinstall.htm#topic9">Modify the Logo</A>
+<br> <A HREF="classinstall.htm#topic10">Summary</A>
+<P>
+<h2><A NAME="topic1" IDX_CONCEPT="stopindex"></A>Introduction
+</h2>
+<P>This article provides the installation instructions for building your own classifieds site with the downloadable code. The site is completely customizable, so you can create your own theme, regions, and categories.  You will need to have access to Internet Information Server (IIS) and Microsoft SQL Server to run the classifieds site.  You will also need to know HTML, graphics, SQL Server, IIS, and Active Server Pages (ASP) to customize the site.
+<P>
+<h2><A NAME="topic2"></A>Install IIS 4.0
+</h2>
+<P>This site is written with ASP and designed to run on IIS 4.0.  To run the code, you will need to download and configure IIS 4.0.
+<P>
+<h3>Download IIS
+</h3>
+<P>IIS is part of the Windows&#174; NT 4.0 Option Pack. You can download the Windows NT 4.0 Option Pack from this location:
+<P> <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">http://www.microsoft.com/ntserver/nts/web/default.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P>The Option Pack needs to be installed on top of Windows NT 4.0 Service Pack 3.0 and Windows NT Server.  Once installed, you can begin configuring the Web site.
+<P>
+<h3>Configuring IIS
+</h3>
+<P>The code that you can download assumes that you have a separate domain for your classifieds site.  All the files are located in a single directory that is the root of that domain.  References to the files also assume that the files are located in the root of a domain.  Get a single IP and configure Windows NT to service that IP.  Using Microsoft data source name (DNS) Server, map the domain name to the IP.  Now you can configure IIS to listen for requests and issue responses.  Use the following instructions to configure your IIS machine:
+<OL>
+
+<LI>   Open Internet Service Manager.
+<LI>   Select the machine that you are using.
+<LI>   Right-click that machine, choose New, and then Web Site.
+<LI>   Type Classified in for the Web Site Name and click the Next button.
+<LI>   Select the IP that you are going to use and click Next.
+<LI>   Create a directory on the hard drive under &quot;inetpub&quot; and select this directory, then click Next.
+<LI>   Click Finish.
+
+</OL>
+<P>
+<h4>Turn off sessions
+</H4>
+<P>You will not need IIS to maintain the built-in session state, because the Session object is not used.  The session state is enabled by default, and for performance reasons you should turn it off if you are not using it.  Here is how to turn the session state off:
+<OL>
+
+<LI>   Open Internet Service Manager
+<LI>   Select the Web site that you just created.
+<LI>   Right-click it and select Properties.
+<LI>   Click the Home Directory tab.
+<LI>   Click the Configuration button.
+<LI>   Click the App Option tab.
+<LI>   Uncheck the Enable Session State check box.
+<LI>   Click OK.
+<LI>   Click OK again.
+
+</OL>
+<h3>Installing the Files
+</h3>
+<P>All the files in the download should be placed in the directory that you created for the Web site.  This is the same directory to which you mapped the IP.
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic3"></A>XSession
+</h2>
+<P>XSession is used to keep the session state of the classifieds site and to maintain state across the user's visits.  For example, when the user first visits the site a welcome message appears.  However, on repeat visits this message doesn't appear.  This information is kept in a file store that is accessed through XSession.
+<P>
+<h3>Installing XSession
+</h3>
+<P>You can download XSession from this URL:
+<P> <A HREF="ftp://ftp.signmeup.com/xsession.zip" TARGET="_top">ftp://ftp.signmeup.com/xsession.zip</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P>Once you have it downloaded, you'll need to install the component:
+<OL>
+
+<LI>   Copy XSession.dll to the System directory, which is by default c:\winnt\system32.
+<LI>   Open a command window.
+<LI>   Change the directory until you are in the system directory.
+<LI>   Type the following command to register XSession:
+
+</OL>
+<P>
+<PRE CLASS=clsCode>regsvr32 XSession.dll
+</PRE>
+<P>There is a 30-day trial for this component.  This will allow you to test the site without initially purchasing the component.  To purchase the component, click the link below:
+<P> <A HREF="http://www.swregnet.com/1643p.htm" TARGET="_top">http://www.swregnet.com/1643p.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P>
+<h3>Configure XSession
+</h3>
+<P>By default XSession will write the data store at:
+<P>c:\winnt\system32\inetsrv\XSession
+<P>If you wish to change this location, you can do so by changing the registry key at:
+<P>HKEY_LOCAL_MACHINE\SOFTWARE\SMUM\XSession\Parameters\Root
+<P>Depending on the traffic you are getting, the data store could get quite large, so take this into consideration with its placement.  Also, if you are running two servers in a Web farm, you will want to point both servers to the same data store on one of the servers.
+<P>For more information about XSession go to:
+<P> <A HREF="http://www.signmeup.com/XSession.stm" TARGET="_top">http://www.signmeup.com/XSession.stm</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic4"></A>XCheck
+</h2>
+<P>XCheck is used verify the form input before allowing a post to go to the Web site.  Using XCheck reduces the cost of maintaining the Web site, because each post does not need to be checked individually by the administrator -- ads can automatically go live on the site.
+<P>You can download XSession from this URL:
+<P> <A HREF="ftp://ftp.signmeup.com/xcheck.zip" TARGET="_top">ftp://ftp.signmeup.com/xcheck.zip</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P>To install the component:
+<OL>
+
+<LI>   Copy XCheck.dll to the System directory, by default c:\winnt\system32.
+<LI>   Open a command window.
+<LI>   Change the directory until you are in the system directory.
+
+</OL>
+<OL>
+<LI>   Type the following command to register XCheck:
+
+</OL>
+<PRE CLASS=clsCode>
+regsvr32 XCheck.dll
+</PRE>
+<P>There is a 30-day trial for this component.  This will allow you to test the site without initially purchasing the component.  To purchase the component, click the link below:
+<P> <A HREF="http://www.swregnet.com/875p.htm" TARGET="_top">http://www.swregnet.com/875p.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P>For more information about XCheck go to:
+<P> <A HREF="http://www.signmeup.com/XCheck.stm" TARGET="_top">http://www.signmeup.com/XCheck.stm</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic5"></A>Configure SQL Server
+</h2>
+<P>The classifieds site uses SQL Server extensively to generate the advertisements and the dynamic drop-down menus.  For this reason, we recommend running SQL Server on a separate machine than the Web server.
+<P>
+<h3>Create a Database
+</h3>
+<P>The first thing you need to do is create a database to hold the tables that will be used for the site.  For a medium-size site with 100-200 ads, you will need a 100-megabyte database device with a separate 50-megabyte log device.
+<P>
+<h3>Run the SQL Scripts
+</h3>
+<P>Once you have the database created, you can run the SQL script that comes with the download.  The name of the script is setup.sql.  To run the script, follow the steps listed below:
+<OL>
+
+<LI>   Close SQL Enterprise Manager if it is open.
+<LI>   Open ISQL_w.
+<LI>   Log in with the &quot;sa&quot; account.
+<LI>   Choose the database you created for the classifieds site from the drop-down menu at the top.
+<LI>   Load the setup.sql by clicking File and then Open.
+<LI>   Execute setup.sql by clicking the Run button in the toolbar.
+
+</OL>This script will create the post, section, region, and subsection tables with foreign key references and primary key indexing.   It will also create a user called usr_classified and give that user permission to access the tables.  Finally, it populates the table with some default data so that you have something to work with.
+<P>
+<h3>Populate the Database
+</h3>
+<P>The setup.sql script creates some default data that you can work with, however you will want to customize the site to your own needs.  You can change the regions displayed, and the categories and the subcategories of ads.
+<P>You can modify the region table so that the right regions are included.  For example, you might want to create an apartment classifieds for your city.  The region table would then contain the different communities within your city.
+<P>Modifying the section table and the subsection table changes the categories that ads can go into.  Depending on the site you are running, these tables will have different data.  With the apartment example, you might want to make main sections with apartment styles -- studio, townhouse, shared living -- and subsections that are price ranges.
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic6"></A>Configure ODBC
+</h2>
+<P>
+<h3>Create a DSN
+</h3>
+<P>You will want to create a system DSN on the machine that is running the Web server.  The DSN name should be &quot;classified&quot;.  This DSN is used by Active Server Pages to connect to the database, so point the DSN to the SQL Server with the default database being the one you created.
+<P>
+<h3>Change sql.asp
+</h3>
+<P>sql.asp contains the name of the DSN, the user name to use when logging into the SQL server, and the password for that user.  This file is included in every ASP file that needs to make database calls.  By default they are set like this:
+<P>
+<PRE CLASS=clsCode>Const SQLDSN = &quot;classified&quot;
+Const SQLUser = &quot;usr_classified&quot;
+Const SQLPassword = &quot;&quot;
+</PRE>
+<P>If you change the DSN name, the user name, or the password, you will have to modify this file to match the changes.  It is important to note that because this page is named with an asp extension it will always be executed if the script is turned on.  In other words, there is no way for anyone to read this file and get your user name or password to the SQL server database.
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic7"></A>Modify the Global Variables
+</h2>
+<P>There are several global variables that are used throughout the Web site.  These are contained in the global.asp file, which (like sql.asp), is included in all the main pages.  To modify these global variables, make changes to the global.asp.  You must modify <b>gstrCustServiceEmail</b>, <b>gstrServer</b>, and <b>gstrSiteName</b> to make the site operate properly; the rest are used to customize the site.
+<P>
+<h3>Change the Customer Service E-mail Address
+</h3>
+<P>To set the customer service e-mail addresses, modify the global variable called <b>gstrCustServiceEmail</b>.  Note here the Hungarian notation that tells us this is a global string.
+<P>
+<h3>Change the Server Variable
+</h3>
+<P>The JScript&#153; in the pages references the root of the server and needs the full URL to activate the pop-up windows.  You will have to modify the global variable called <b>gstrServer</b> to be your domain name.
+<P>
+<h3>Change the Site Name
+</h3>
+<P>You will need to modify the site name. It is set in the global variable called <b>gstrSiteName</b>.
+<P>
+<h3>Change the Maximum Word Count
+</h3>
+<P><b>glMaxTextWordCount</b> limits the amount of text that can be posted for each posting.  Set <b>glMaxTextWordCount</b> to 200 to limit the postings to 200 words.
+<P>
+<h3>Change the Maximum Title Length
+</h3>
+<P><b>glMaxTitleWordCount</b> represents the maximum number of words in the title of each posting.
+<P>
+<h3>Modify the Empty Message
+</h3>
+<P>Where there are no postings for the page, the message in <b>gstrEmtpy</b> is displayed to the user.  By default it is set to &quot;There are no advertisements for this section, keyword, or region.&quot;
+<P>
+<h3>Mouseover Message
+</h3>
+<P>When you mouse over one of the postings, the message in <b>gstrClickOn</b> is displayed.  By default it reads &quot;Click on the advertisement for more information.&quot;
+<P>
+<h3>Performance Settings
+</h3>
+<P><b>glInsertSizeIncrement</b> is used to allocate memory for the array that arranges the postings on the page.  Setting <b>glInsertSizeIncrement</b> too low will cause the page to have to reallocate memory too often.  Setting <b>glInsertSizeIncrement</b> too high will raise the memory requirements of the site.  By default, <b>glInsertSizeIncrement</b> is set to 75. If you think that you will have more than 75 postings per page, you should raise this setting.
+<P><b>glNewDays</b> is the number of days that a posting is considered new and receives the new logo next to the posting.  Postings that are younger than <b>glNewDays</b> from the current date are displayed on the entrance page to the site.  If this setting is too low and no postings are this new, the Web page will return to the SQL Server to get advertisements that are <b>glNewDays</b> older than <b>glNewDays</b>.  This causes an additional round trip to the SQL Server.  If <b>glNewDays</b> is too high, there will be too many ads on the entrance page, causing the page to load too slowly for the user.  You need to set <b>glNewDays</b> based on the number of postings you are receiving on the site.  The default is 2 days.
+<P>If there are only <b>glNewAdMin</b> postings to display that are new, the ASP will return to the SQL Server to find more postings.  This setting prevents your entrance page from appearing empty when there are not many new postings.  Setting <b>glNewAdMin</b> too low will create an empty look; setting it too high will cause extra work for SQL Server, degrading your performance.  The default setting is 10 postings.
+<P>
+<h3>Column Settings
+</h3>
+<P>You can change the number of columns displayed on the site by changing <b>glColumns</b>.  By default, <b>glColumns</b> is set to four columns.  You can also change the width of those columns with the <b>glColumnWidth</b> setting.  By default, the setting is 185 pixels.  The default settings are set so that the site is viewable with a maximized Internet Explorer browser with a screen resolution of 800 x 600.
+<P>
+<h3>Color Settings
+</h3>
+<P><b>gstrBodyBGColor</b>, <b>gstrPColor</b>, <b>gstrSColor</b>, <b>gstrTColor</b>, <b>gstrButtonColor</b>, <b>gstrButtonDarkColor</b>, <b>gstrButtonLightColor</b>, <b>gstrButtonEdgeColor</b>, <b>gstrHighlightColor</b>, <b>gstrTextColor</b>, <b>gstrInverseTextColor</b> and <b>gstrVLinkColor</b> control the color settings for the site.  You can change these setting to match your brand or create them for your site.  There are additional notes about the settings in the global.asp file.
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic8"></A>Modify the Text
+</h2>
+<P>
+<h3>Customize the Welcome Text
+</h3>
+<P>When the user first comes to the site, a welcome message is displayed in a modal dialog box.  The same text is used when the user chooses About from the More Info menu.  This text is in a file called welcome_text.asp.  You will have to modify this file to contain the greeting you wish the user to see.  This page is not displayed directly, but is referenced from other ASP pages.
+<P>
+<h3>Modify the Copyright Information
+</h3>
+<P>The copyright information is contained in a file called footer.asp.  You will need to add your company information to the copyright text.
+<P>
+<h3>Modify the Legal Text
+</h3>
+<P>You will need to change the legal text that is displayed to the user when they click on the copyright at the bottom of the page, or when the user chooses Legal Notice from the More Info menu. This text is contained in popup_legal.txt.
+<P>
+<h3>Modify the New Post Text
+</h3>
+<P>The instructions that are presented to the user when they are posting to the site should be customized to reflect the theme and style of your site.  You can change the text by changing the newpost_text.asp file.
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic9"></A>Modify the Logo
+</h2>
+<P>You will need to create a logo for the header. You can do this by changing the logo.gif image.  Make sure to change the height and width setting in the header.asp file to match the size of your new graphic.
+<P> <A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic10"></A>Summary
+</h2>
+<P>Once you've completed all the steps above, you should be able to run your new classifieds site.  If you create an Internet site with this code, drop us a line at webmaster@15Seconds.com so that we can take a look at your handiwork.
+<P>See also the  <A HREF="classinstall.htm">downloadable classifieds site code</A> and the article on the  <A HREF="classtech.htm">15 Seconds Job Classifieds Technical Architecture</A>. If you are interested in SBN membership so you can access contact information on the site and post job openings, see the  <A HREF="http://www.microsoft.com/sbnmember/" TARGET="_top">SBN Membership home page</A> and the  <A HREF="http://www.microsoft.com/sbnmember/connect/jobads.asp" TARGET="_top">bumper page</A> that points to the 15 Seconds Job Classifieds for SBN Members.
+<P><A HREF="http://www.15Seconds.com" TARGET="_top">15 Seconds</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> is a free Internet resource for developers working with Microsoft Internet Solutions and product lines of <A HREF="http://www.signmeup.com" TARGET="_top">Sign Me Up Marketing</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link"> SMUM, a leader in Internet marketing. Established in 1996, SMUM is a Seattle-based business owned by Wayne Berry, a well-known global programming consultant and co-author of Active X Programming Unleashed, Windows NT 4 Registry, and IIS 4.0 Special Edition.</i>
+<P>
+
+
+<P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00573.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="classinstall.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

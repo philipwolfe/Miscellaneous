@@ -1,0 +1,95 @@
+<%
+	if( "string" != typeof( sHeaderString ) ) sHeaderString = "";
+	
+if( "object" != typeof( oBD ) )
+{
+	// -----------------------------------------------------------
+	// BrowserData() constructor
+	// .userAgent: (string) the HTTP_USER_AGENT input string
+	// .browser: (string) "MSIE", "Opera", "Nav", "Other"
+	// .majorVer: (integer) major version
+	// .minorVer: (string) minor (dot) version
+	// .betaVer: (string) beta version
+	// .platform: (string) operating system
+	// .getsNavBar (boolean) whether browser gets the DHTML menus
+	// .doesActiveX (boolean) whether browser does 32-bit ActiveX
+	// -----------------------------------------------------------
+
+	function BrowserData(sUA)
+	{
+		this.userAgent = sUA.toString();
+		// var rPattern = /(MSIE)\s(\d+)\.(\d+)((b|p)([^(s|;)]+))?;?(.*(98|95|NT|3.1|32|Mac|X11))?/;
+		// following change per matto request, captures version number of operating system
+		var rPattern = /(MSIE)\s(\d+)\.(\d+)((b|p)([^(s|;)]+))?;?(.*(98|95|NT|3.1|32|Mac|X11))?\s*([^\)]*)/;
+		if (this.userAgent.match(rPattern))
+		{
+			this.browser = "MSIE";
+			this.majorVer = parseInt(RegExp.$2) || 0;
+			this.minorVer = RegExp.$3.toString() || "0";
+			this.betaVer = RegExp.$6.toString() || "0";
+			this.platform = RegExp.$8 || "Other";
+			// following line added per matto request, to capture os version number
+			this.platVer = RegExp.$9 || "0";
+		}
+		else if (this.userAgent.match(/Mozilla[/].*(95[/]NT|95|NT|98|3.1).*Opera.*(\d+)\.(\d+)/))
+		{
+			//"Mozilla/4.0 (Windows NT 5.0;US) Opera 3.60  [en]";
+			this.browser = "Opera";
+			this.majorVer = parseInt(RegExp.$2) || parseInt(RegExp.$2) || 0;
+			this.minorVer = RegExp.$3.toString() || RegExp.$3.toString() || "0";
+			this.platform = RegExp.$1 || "Other";
+		}
+		else if (this.userAgent.match(/Mozilla[/](\d*)\.?(\d*)(.*(98|95|NT|32|16|68K|PPC|X11))?/))
+		{
+			//"Mozilla/4.5 [en] (WinNT; I)"
+			this.browser = "Nav";
+			this.majorVer = parseInt(RegExp.$1) || 0;
+			this.minorVer = RegExp.$2.toString() || "0";
+			this.platform = RegExp.$4 || "Other";
+		}
+		else
+		{
+			this.browser = "Other";
+		}
+		this.getsNavBar = ("MSIE" == this.browser && 4 <= this.majorVer && "Mac" != this.platform && "X11" != this.platform);
+		this.doesActiveX = ("MSIE" == this.browser && 3 <= this.majorVer && ("95" == this.platform || "98" == this.platform || "NT" == this.platform));
+		this.doesPersistence = ("MSIE" == this.browser && 5 <= this.majorVer && "Mac" != this.platform && "X11" != this.platform);
+
+		// following line added per matto request, to return full browser version ( such as IE 5.5)
+		this.fullVer = parseFloat( this.majorVer + "." + this.minorVer );
+	}
+
+	var oBD = new BrowserData(new String(Request.ServerVariables("HTTP_USER_AGENT")));
+
+sHeaderString +="\n\n   <SCRIPT LANGUAGE=\"JavaScript\"><!--";
+sHeaderString +="\n   function BrowserData()\n{";
+
+	for (Prop in oBD)
+	{
+		var vProp = oBD[Prop];
+		if ("string" == typeof(vProp)) sHeaderString += "\n		this." + Prop + " = \"" + oBD[Prop] + "\";" + "\n";
+		else sHeaderString += "\n		this." + Prop + " = " + oBD[Prop] + ";" + "\n";
+	}
+sHeaderString +="\n   }";
+sHeaderString +="\n\n   var oBD = new BrowserData();";
+sHeaderString +="\n\n   //--></SCRIPT>";
+
+if (oBD.getsNavBar != true)
+{
+
+sHeaderString +="\n\n   <SCRIPT LANGUAGE=\"JavaScript\"><!--";
+
+sHeaderString +="\n\n   if (document.layers) {"
+sHeaderString +="\n    origWidth  = innerWidth;"
+sHeaderString +="\n  origHeight = innerHeight;"
+sHeaderString +="\n   }";
+sHeaderString +="\n\n   function resizeFix() { if (innerWidth != origWidth || innerHeight != origHeight) location.reload(); }";
+sHeaderString +="\n\n   if (document.layers) onresize = resizeFix;"
+
+sHeaderString +="\n\n   //--></SCRIPT>";
+
+}
+}
+%>
+
+

@@ -1,0 +1,22 @@
+<SCRIPT LANGUAGE="JScript" RUNAT="Server">
+
+function Application_OnStart() {
+   Application("ADOConnection") =
+                        Server.CreateObject("ADODB.Connection");
+   Application("Start_Time") = String(Date());
+   Application("Visit_Count") = 0;
+}
+
+function Application_OnEnd() {
+   //Code here is executed when the application ends;
+}
+
+function Session_OnStart() {
+
+}
+
+function Session_OnEnd() {
+}
+
+</SCRIPT>
+

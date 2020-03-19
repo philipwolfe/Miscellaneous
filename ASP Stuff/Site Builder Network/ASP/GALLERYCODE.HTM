@@ -1,0 +1,118 @@
+<HTML>
+<head>
+<title>Black and White Photography</title>
+</head>
+<body bgcolor="#FFFFFF" topmargin=0 leftmargin=0>
+<!--TOOLBAR_START-->
+<TABLE WIDTH=100% CELLPADDING=0 CELLSPACING=0 BORDER=0>
+<TR>
+<TD WIDTH=500 ROWSPAN=2 VALIGN=TOP><NOBR><FONT FACE="Arial, Helvetica" SIZE=1><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH=103 HEIGHT=21 ALT="Microsoft Home" BORDER=0></A><A HREF="http://www.microsoft.com/products/default.asp?divisionid=10" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH=81 HEIGHT=21 ALT="Products" BORDER=0></A><A HREF="http://www.microsoft.com/search/default.asp" target="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH=68 HEIGHT=21 ALT="Search" BORDER=0></A><A HREF="http://www.microsoft.com/Support/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH=74 HEIGHT=21 ALT="Support" BORDER=0></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH=55 HEIGHT=21 ALT="Shop" BORDER=0></A><A HREF="http://www.microsoft.com/regwiz/regwiz.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH=78 HEIGHT=21 ALT="Write Us" BORDER=0></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH=49 HEIGHT=21 ALT="" BORDER=0></FONT></NOBR></TD>
+
+<TD BGCOLOR="#000000" WIDTH=100% HEIGHT=20>&nbsp;</TD>
+<TD WIDTH=91 ROWSPAN=2 ALIGN=RIGHT VALIGN=TOP><FONT FACE="Arial, Helvetica" SIZE=1><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH=91 HEIGHT=21 ALT="Microsoft Home" BORDER=0></A></FONT></TD>
+</TR>
+<TR>
+<TD BGCOLOR="#FFFFFF" WIDTH=100% HEIGHT=1>
+</TD>
+</TR>
+</TABLE>
+<!--TOOLBAR_END-->
+
+ <center>
+<FONT FACE="VERDANA, ARIAL, HELVETICA" SIZE=2><h1>Gallery Sample ASP Code</h1>
+</FONT>
+</CENTER>
+
+ <PRE><FONT FACE="COURIER, COURIER NEW" SIZE=2>
+&lt;html&gt;
+&lt;!-- 
+    Sample created by Nadja Vol Ochs. 1997 
+
+    To call the viewpics.asp fill each url of the thumbnail with the appropriate variables.
+    TITLE - used for the title of the IMG and the main HTML title.
+    IMG   - the location of the larger image.
+    HEIGHT- height of the image
+    WIDTH - width of the image
+    INFO  - information displayed about the image
+
+    Example:
+
+    &lt;A HREF="viewpics.asp?TITLE=Heather+in+a+window&amp;IMG=/sitebuilder/columnists/images/hands.jpg&amp;HEIGHT=200&amp;WIDTH=141&amp;INFO=Black+and+white+photograph+of+my+friend+Heather+in+Paul's+window."&gt;
+    &lt;IMG SRC="Images/hands.jpg" WIDTH=71 HEIGHT=100 BORDER=0 ALT="Heather in a Window"&gt;
+    &lt;/a&gt;
+
+--&gt;
+&lt;head&gt;
+&lt;title&gt;Black and White Photography&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor="#FFFFCC" topmargin=0 leftmargin=0&gt;
+
+
+&lt;CENTER&gt;
+
+&lt;TABLE BORDER=0 CELLPADDING=6 CELLSPACING=6&gt;
+&lt;TR&gt;
+&lt;TD COLSPAN=5 ALIGN=CENTER&gt;
+    &lt;FONT FACE="Verdana, Helvetica, Comic Sans MS, Times New Roman"&gt;&lt;CENTER&gt;
+    &lt;I&gt;&lt;h1&gt;Black and White Photography&lt;/H1&gt;&lt;/I&gt;&lt;/CENTER&gt;&lt;/FONT&gt;
+    &lt;BR&gt;
+    &lt;FONT FACE="arial, helvetica" SIZE=4&gt;
+    Click on Small Pictures to See Large Versions.&lt;/FONT&gt;
+&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD ALIGN=CENTER&gt;
+&lt;TABLE BORDER=2 BORDERCOLOR="#000000" CELLPADDING=6 CELLSPACING=6&gt;
+&lt;TR&gt;
+&lt;TD VALIGN=TOP ALIGN=CENTER BGCOLOR=#FFFFFF&gt;
+    &lt;A HREF="viewpics.asp?TITLE=Heather+in+a+window&amp;IMG=/sitebuilder/columnists/images/hands.jpg&amp;HEIGHT=200&amp;WIDTH=141&amp;INFO=Black+and+white+photograph+of+my+friend+Heather+in+Paul's+window."&gt;
+    &lt;IMG SRC="/sitebuilder/columnists/images/hands.jpg" WIDTH=71 HEIGHT=100 BORDER=0 ALT="Heather in a Window"&gt;
+    &lt;/a&gt;
+&lt;/TD&gt;
+
+&lt;TD VALIGN=TOP ALIGN=CENTER BGCOLOR=#FFFFFF&gt;
+    &lt;A HREF="viewpics.asp?TITLE=Shell+Shadow&amp;IMG=/sitebuilder/columnists/images/shell.jpg&amp;HEIGHT=216&amp;WIDTH=200&amp;INFO=Black+and+white+photograph+of+me+holding+a+shell+between+my+legs.+I+took+this+with+a+tripod."&gt;
+    &lt;IMG SRC="/sitebuilder/columnists/images/shell.jpg" WIDTH=100 BORDER=0 HEIGHT=108 ALT="Shell Shadow"&gt;
+    &lt;/A&gt;
+&lt;/TD&gt;
+
+&lt;TD VALIGN=TOP ALIGN=CENTER BGCOLOR=#FFFFFF&gt;
+    &lt;A HREF="viewpics.asp?TITLE=Alocasia+Leaves&amp;IMG=/sitebuilder/columnists/images/leaf.jpg&amp;HEIGHT=132&amp;WIDTH=200&amp;INFO=Black+and+white+photograph+of+my+favorite+house+plant."&gt;
+    &lt;IMG SRC="/sitebuilder/columnists/images/leaf.jpg" WIDTH=100 BORDER=0 HEIGHT=66 ALT="Alocasia Leaves"&gt;
+    &lt;/A&gt;
+&lt;/TD&gt;
+&lt;/TR&gt;
+
+&lt;TR BGCOLOR=#FFFFFF&gt;
+&lt;TD VALIGN=TOP ALIGN=CENTER BGCOLOR=#FFFFFF&gt;
+    &lt;A HREF="viewpics.asp?TITLE=California+Coast&amp;IMG=/sitebuilder/columnists/images/oceanl.jpg&amp;HEIGHT=163&amp;WIDTH=240&amp;INFO=Black+and+white+photograph+taken+on+the+coast+of+California."&gt;
+    &lt;IMG SRC="/sitebuilder/columnists/images/oceanl.jpg" WIDTH=120 HEIGHT=82 BORDER=0 ALT="California Coast"&gt;
+    &lt;/A&gt;
+&lt;/TD&gt;
+
+&lt;TD VALIGN=TOP ALIGN=CENTER BGCOLOR=#FFFFFF&gt;
+    &lt;A HREF="viewpics.asp?TITLE=Greek+Orthodox&amp;IMG=/sitebuilder/columnists/images/church.jpg&amp;HEIGHT=200&amp;WIDTH=296&amp;INFO=Black+and+white+photograph+of+a+Greek+Orthodox+church+in+Bellingham,+Washington."&gt;
+    &lt;IMG SRC="/sitebuilder/columnists/images/church.jpg" WIDTH=148 BORDER=0 HEIGHT=100 ALT="Greek Orthodox"&gt;
+    &lt;/A&gt;
+&lt;/TD&gt;
+
+&lt;TD VALIGN=TOP ALIGN=CENTER BGCOLOR=#FFFFFF&gt;
+    &lt;A HREF="viewpics.asp?TITLE=Shadow+Stairs&amp;IMG=/sitebuilder/columnists/images/stairs.jpg&amp;HEIGHT=165&amp;WIDTH=240&amp;INFO=Black+and+white+photograph+of+a+staircase+in+Bellingham,+Washington."&gt;
+    &lt;IMG SRC="/sitebuilder/columnists/images/stairs.jpg" WIDTH=120 BORDER=0 HEIGHT=84 ALT="Shadow Stairs"&gt;
+    &lt;/A&gt;
+&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+
+&lt;/CENTER&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+ </PRE></FONT>
+ <!--#include virtual="/sitebuilder/global/cpyright98.htm"
+</FONT>
+</BODY>
+</HTML>

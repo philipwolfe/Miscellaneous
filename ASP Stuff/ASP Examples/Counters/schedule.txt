@@ -1,0 +1,13 @@
+REDIRECT redirect_vbs.asp
+WIDTH 200
+HEIGHT 200 
+BORDER 0
+*
+http://julians/asp%20prog%20ref/Chapter%2019/wroxlogo.gif 
+http://www.wrox.com
+The best programmer's books
+20 
+http://julians/asp%20prog%20ref/Chapter%2019/asptoday.gif 
+http://www.asptoday.com 
+Up-to-the minute articles on ASP
+20

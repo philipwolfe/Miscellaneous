@@ -1,0 +1,458 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Extending Web-Based Knowledge Management with Microsoft Exchange Server</TITLE>
+
+<META NAME="Description" CONTENT="How-to article with sample application" />
+<META NAME="Keywords" CONTENT="Exchange Server, Site Server, knowledge management, search capability" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Thomas Rizzo" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="08/31/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+  function showSample(sURL) {
+    sFeatures = "width=520,height=400,left=10,top=10,toolbar=0,statusbar=0,scrollbars=1,resizable=1";
+    newWin = window.open (sURL, "_blank", sFeatures);
+    return false;
+  }
+
+//--></SCRIPT>
+
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../../workshop/pg02792.htm#/workshop/server/siteserver/siteexch/exchss.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../../workshop/pg02792.htm#/workshop/server/siteserver/siteexch/exchss.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../../workshop/pg02792.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="ASP" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex;Exchange Server, Web-based knowledge management with; Site Server, extending Web-based knowledge management with Exchange Server">Extending Web-Based Knowledge Management with Microsoft Exchange Server
+</A></H1>
+<HR SIZE="1" />
+<P>Thomas Rizzo
+<BR>Microsoft Corporation
+<P>July 17, 1998
+<P><a href="exchss.zip"><IMG SRC="../../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 440K).
+<P><a href="siteexchsamp.zip"><IMG SRC="../../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download the sample application and documentation (zipped, 1.49 MB).
+
+<P> </a><b>Contents</b>
+<BR> <A HREF="exchss.htm#topic1">Introduction</A>
+<BR> <A HREF="exchss.htm#topic2">The Sample Application</A>
+<BR> <A HREF="exchss.htm#topic3">How It Works and How You Can Set It Up</A>
+<BR> <A HREF="exchss.htm#topic4">Security Requirements</A>
+<BR> <A HREF="exchss.htm#topic5">The ASP Search Page</A>
+<BR> <A HREF="exchss.htm#topic6">Conclusion</A>
+<P>
+<H2><A NAME="topic1"></A>Introduction
+</H2>
+The amount of information generated today is exploding, especially within businesses.  With the growth of the Internet and the ubiquitous connectivity it provides for businesses, information overload can quickly become a problem for many corporate users.  Users can sign up for a variety of information sources such as Internet newsgroups, list servers, or Web page updates.  Your corporation may even have internal discussion aliases.  Although the availability of information and knowledge sharing helps users make better decisions, it also forces users to spend more time sifting through information to find the relevant bits and pieces they need for their job.  What corporations need is a way to index and search across all of these different data sources, making it easier and less time-consuming for users to find relevant information.
+<P>Say hello to Microsoft&#174; Site Server 3.0 and Microsoft Exchange Server 5.5.  While Site Server provides the necessary features for full-text indexing, and search and knowledge delivery; Exchange Server provides the collaborative infrastructure and functionality that makes creating Internet newsgroups, threaded discussions, customer contact databases, and custom collaborative applications easy.  Combine these two products and you have a knowledge management solution that can make your search page the most popular page on your intranet.
+<P>This article explains how you can extend the Knowledge Management features of Site Server 3.0 with Microsoft Exchange Server and Microsoft Outlook&#153; to build high-powered Web-based Knowledge Management solutions.  You will learn how to use the built-in full-text indexing of Exchange Public Folders in Site Server, and how to extend the search capabilities of Site Server with custom ASP code that enables you to build customized search pages.  These search pages allow your users to find information stored throughout the Exchange system whether the information is a NNTP news item, a posted item in a Public Folder or an email discussion archived in a Public Folder.
+<P>This article assumes that you have a working knowledge of Site Server Search. For information on Site Server Search, see  <A HREF="../../../../workshop/server/nextgen/searchcatalog.htm">Creating a Search Catalog for Your Site</A>.  For more how-to information on Site Server, see the  <A HREF="../../../../workshop/server/nextgen/siteservfeat.htm">SBN/MSDN feature articles</A>.
+<P>
+
+
+<H2><A NAME="topic2"></A>The Sample Application
+</H2>
+To start off, I'll show you just one of the possibilities: here's a sample search site (downloadable from the top of this article) that shows you how you can customize the search capabilities provided by Microsoft Site Server when indexing Exchange Public Folders.  Figure 1 shows the default page of the application.  You can search on who posted the item or when it was posted, and also by custom properties such as the issue type of an item (which can be problem, resolution, or best practice).
+<P><A HREF="fig1.gif" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/fig1.gif')"><b>Figure 1. Default page of sample application</b></a>
+<P>When a user clicks the Search button, the page queries the corresponding catalog of information and returns the results to the browser as shown in Figure 2.
+
+<P><A HREF="fig2.gif" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/fig2.gif')"><b>Figure 2.  Results returned</b></a>
+<P>Note the HTML page icon next to the hyperlink for the item.  The hyperlink on the item will launch Microsoft Outlook on the user's machine so the user can read the item.  If the user does not have Microsoft Outlook, Microsoft Outlook Web Access will be launched to display the item.  Figure 3 shows Outlook 98 reading the item and Figure 4 shows Outlook Web Access reading the same item.
+
+<P><A HREF="fig3.gif" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/fig3.gif')"><b>Figure 3.  Microsoft Outlook 98 displaying the item</b></a>
+
+<P><A HREF="fig4.gif" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/fig3.gif')"><b>Figure 4.  Microsoft Outlook Web Access displaying the item</b></a>
+<P>Please note that the custom Outlook Form was converted to an HTML form by using the new Microsoft Outlook HTML Form Converter.  For more information on the form converter, please visit  <A HREF="http://www.backoffice.microsoft.com/downtrial/moreinfo/ex55sp1.asp" TARGET="_top">http://www.backoffice.microsoft.com/</A> <IMG SRC="../../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P>The sample application uses a custom Outlook form in an Exchange Public Folder to prompt the user for the item's issue type as they post it.  However, there are other ways you can use Public Folders to store information without creating custom Outlook forms.  One way is to make Public Folders part of discussion distribution lists.  With this method, the Public Folder serves as an archive of the information that is sent to the distribution list.  Having this archive lets users search this information and avoid posting a question to the distribution list that may already be answered.
+<P>Another way to use Public Folders to gather and distribute information is to set one up as an incoming and outgoing Internet news server.  Public Folders support replicating Internet newsgroup information into the folder.  You can store this information in a central location rather than having individual users connecting to Internet newsgroups from their own machines.  The other benefit is that users can then use Outlook to change the views of the content as well as add new content.  This new content can be replicated to the Internet by Exchange Server.
+<P>
+
+
+<H2><A NAME="topic3"></A>How It Works and How You Can Set It Up
+</H2>
+Before you can even start using Site Server with Exchange, you need to create a Public Folder that will contain the items you want your users to share.  You can create custom Outlook forms, Web applications, or just use the built-in capabilities of Outlook to add information into this Public Folder.  To help you get started with custom forms, there is a custom Outlook form and the Outlook form converted to a Web form in the sample application.  To learn how to set up these forms in Outlook and Outlook Web Access, please read the setup guide included with the downloadable sample.  The sample application contains three custom fields on the Outlook and Web form: Type, Industry, and Product.  When we create the search catalog, Site Server will automatically index these custom properties so that users can search on these properties.  You do not have to add custom Exchange and Outlook properties to the Site Server schema to search on the properties.  As you will see in the sample code, all you need to do is use the <b>@META_customname</b> syntax in your search page to search on Exchange custom properties.
+<P>Now we can set up Site Server to leverage the knowledge you store in Exchange. The first step is to create a search catalog, which is the index and property store that Site Server creates and your users can search.  In the same catalog, you can create an index of Exchange Public Folders, and also open database connectivity (ODBC) databases, Web pages, Microsoft Office documents, and items from the file system.  When indexing Public Folders, Site Server also indexes any documents in the Public Folder (such as Office documents) and enables you to search for text or properties contained in those Office documents.
+<P>To set up Site Server to create this index, you must first run the Create New Catalog Definition Wizard in the Microsoft Management Console (MMC) administrator for Site Server.
+<OL>
+
+<LI>In the MMC, right-click your Catalog Build Server as shown in Figure 5 and select New Catalog Definition with Wizard.
+
+<P><A HREF="fig5.gif" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/fig5.gif')"><b>Figure 5.  Running the Create New Catalog Definition Wizard</b></a>
+<P>
+<LI>   In the wizard, type in a catalog name and then select the Exchange crawl option.  The wizard will present a start address that looks like:
+<BR>exch://yourservername/Public Folders/All Public Folders/.
+<LI>   After the last /, type the path to the Public Folder you want to have Site Server index.  For example, if you had a Public Folder in your Public Folder hierarchy named Helpdesk under the IT Applications folder, the Site Server start address would be exch://yourservername/Public Folders/All Public Folders/IT Applications/Helpdesk.  You can also enable Site Server to crawl all the subfolders under your start address automatically.  This is very useful if you use many child folders in your organization.  The best example of this is if you use Exchange for NNTP newsgroups.
+<LI>   The next step is to tell Site Server where to propagate the final catalog to after it completes indexing the items.
+<LI>   Finally, click the Build Now check box and select Finish in the wizard.  That's it.  You are now indexing all the items in the folder.  You can rerun this wizard to add either other Public Folders to the catalog or other types of data sources.
+
+</OL>You can schedule Site Server to update the index you create by doing either a full or incremental build of the contents.  Because we will be adding new contents to the Public Folder after creating the Search Catalog, I recommend that you manually force Site Server to rebuild the catalog during the development process.  This guarantees that you will have the most recent information from the folder in the catalog.
+<OL>
+
+<LI>   You can find the manual rebuild command by right-clicking the name of your catalog under the Catalog Build Server section of the MMC window.
+<LI>   Select properties, and go to the Status tab.
+<LI>   Click the right-pointing arrow next to the State label and select Start Incremental Build.  There is an excellent article that describes creating Site Server catalogs in more detail at .
+
+</OL>
+<P>
+
+
+<H2><A NAME="topic4"></A>Security Requirements
+</H2>
+When setting up your virtual directory to allow searches against Exchange information, you must authenticate the user before Site Server will return information to the browser.  This authentication is necessary so that information a particular user should not see is not returned by the search.  Because of this authentication requirement, you should disable anonymous access to the virtual directory where you place your search pages and require Basic or Windows NT Challenge/Response authentication, or you should add code to your search page to authenticate the user directly in Visual Basic&#174; Scripting Edition (VBScript) or JavaScript code.
+<P>
+
+
+<H2><A NAME="topic5"></A>The ASP Search Page
+</H2>
+The crux of the application -- beyond the custom forms and the Site Server full-text catalog -- is the custom ASP search page on which users can search for items that meet specific criteria.  What you will see in the search page is searching across one Public Folder; however, Site Server supports crawling multiple Public Folders as well as other data sources such as ODBC databases, file folders, Microsoft Office documents, and HTML pages -- all in a single catalog.
+<P>Let's take a look at each section of code in search.asp, to see how to create a custom search page using custom Exchange properties with Site Server catalogs.
+<P>The first section of search.asp processes the input from the user.  Because the application divides the search results into 10 hits at a time, it uses Session variables in ASP to remember the criteria the user entered for their search across the multiple pages.  If you customize this application to search on additional properties, be sure to modify this section so that when the user clicks to see more search results, their search criteria is not lost at the top of the HTML page.
+<P>
+<PRE CLASS=clsCode>
+&lt;% ' Process Input Section. %&gt;
+&lt;% if Request.QueryString &lt;&gt; &quot;&quot; then %&gt;
+  &lt;% ' Initialize or set non-predefined variables from information posted to page.
+     ' Purpose of DisplayText variable is to have just the words from the query for
+     '  display in the introductory sentence and in the more results link.
+      if Request(&quot;DisplayText&quot;)= &quot;&quot; then
+        DisplayText= Request(&quot;q1&quot;)
+      else
+        DisplayText = Request(&quot;DisplayText&quot;)
+      end if
+
+     ' Purpose of RecordNum variable is to display which records
+     ' are displayed on each results page.
+      if Request(&quot;RecordNum&quot;) = &quot;&quot; then
+        RecordNum=1
+      else
+        RecordNum=Request(&quot;RecordNum&quot;)
+      end if
+
+     ' Purpose of session variables is to store information for use in
+     ' editing a search. Only information from the initial query is stored:
+     ' these variables are not updated on &quot;more results&quot; pages.
+     ' If you add additional search criteria in your search page, make sure
+     ' to add their initial value to the Session object.
+     ' Server.HTMLEncode is required to store queries with double quotes.
+      if Request(&quot;sh&quot;) = &quot;&quot; then
+        Session(&quot;q1&quot;)=Server.HTMLEncode(Request(&quot;q1&quot;))
+        Session(&quot;q2&quot;)=Request(&quot;q2&quot;)
+        Session(&quot;ct&quot;)=Request(&quot;ct&quot;)
+   Session(&quot;c3&quot;)=Request(&quot;c3&quot;)
+   Session(&quot;o3&quot;)=Request(&quot;o3&quot;)
+   Session(&quot;q3&quot;)=Request(&quot;q3&quot;)
+   Session(&quot;o4&quot;)=Request(&quot;o4&quot;)
+   Session(&quot;q4&quot;)=Request(&quot;q4&quot;)
+   Session(&quot;c5&quot;)=Request(&quot;c5&quot;)
+   Session(&quot;q5&quot;)=Request(&quot;q5&quot;)
+   Session(&quot;c6&quot;)=Request(&quot;c6&quot;)
+   Session(&quot;q6&quot;)=Request(&quot;q6&quot;)
+   Session(&quot;c7&quot;)=Request(&quot;c7&quot;)
+   Session(&quot;q7&quot;)=Request(&quot;q7&quot;)
+   Session(&quot;c8&quot;)=Request(&quot;c8&quot;)
+   Session(&quot;q8&quot;)=Request(&quot;q8&quot;)
+   Session(&quot;c9&quot;)=Request(&quot;c9&quot;)
+   Session(&quot;q9&quot;)=Request(&quot;q9&quot;)
+      end if
+      ' Read session object into variables.
+        q1=Session(&quot;q1&quot;)
+        q2=Session(&quot;q2&quot;)
+        ct=Session(&quot;ct&quot;)
+   c3=Session(&quot;c3&quot;)
+   o3=Session(&quot;o3&quot;)
+   q3=Session(&quot;q3&quot;)
+   o4=Session(&quot;o4&quot;)
+   q4=Session(&quot;q4&quot;)
+   c5=Session(&quot;c5&quot;)
+   q5=Session(&quot;q5&quot;)
+   c6=Session(&quot;c6&quot;)
+   q6=Session(&quot;q6&quot;)
+   c7=Session(&quot;c7&quot;)
+   q7=Session(&quot;q7&quot;)
+   c8=Session(&quot;c8&quot;)
+   q8=Session(&quot;q8&quot;)
+   c9=Session(&quot;c9&quot;)
+   q9=Session(&quot;q9&quot;)
+
+%&gt;
+&lt;% end if %&gt;
+</PRE>
+<P>The second section of search.asp is the search initiation section.  This section displays the form for the user to specify the search criteria.  As you can see, the input fields on the form are assigned specific names.  To make it easy for you to build custom search pages, Site Server provides what is called Conventional Query String Variables.  These variables are two-letter tags that are designed to identify the property you want to query on and the value to use for the criteria for the query.  For example, the ct tag identifies the catalog to use for the search.  The q<i>n</i> tag (where n is a number) specifies the query string variables.  You should use the q<i>n</i> tag in conjunction with the c<i>n</i> tag, because the c<i>n</i> tag specifies the column you want to search for the q<i>n</i> value.  As you can see in the code, the q<i>n</i> and c<i>n</i> tags are used heavily.  An example query string from a typical search looks like:
+<PRE CLASS=clsCode>
+q1=&amp;c2=@DocAuthor&amp;q2=&amp;c3=@filewrite&amp;o3=%3E%3D&amp;q3=-
+1y&amp;c5=@MessageEmailAddress&amp;q5=&amp;o4=@DocTitle&amp;q4=&amp;c6=@MessageFolder&amp;q6=&amp;ct=Discussion
+&amp;c7=@META_Type&amp;q7=&amp;c8=@META_Industry&amp;q8=&amp;c9=@META_Product&amp;q9=
+</PRE>
+<P><A HREF="ex01.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/ex01.htm')">And here's the code</a>.
+<P>The next section of the code checks to see if the user has the ActiveX&#174; control installed on his or her machine that launches Outlook so they can view the item.  If the user does not, Outlook Web Access will be used to display the item.  The code then creates the query to the catalog by using the Site Server Query object.  The Query object has a number of properties that you can use to create very complex queries against Site Server catalogs.  In the search.asp code, the first step is to create the Query object by calling <b>Server.CreateObject</b> with the <b>ProgID</b> of the Query object, <b>MSSearch.Query</b>.  Because the app passes all the information about the query along the URL query string, we can use the method <b>SetQueryFromUrl</b> to have the Query object automatically parse the URL query string and set the Query object properties according to the specified conventional query string variables.
+<P>When working with Exchange Server, use the <b>OptimizeFor</b> property to specify that you do not want a hit count.  This will improve the performance of your application.  The code also uses the <b>MaxRecords</b> property to specify the maximum number of records to return on each page.  The Columns property specifies the columns to return in the recordset that we create later on.  You have to put the names of the columns you want to display in this property.
+<P>The final step in creating the search results is to actually create the recordset of items that match our criteria.  To do this, we need to call the <b>CreateRecordSet</b> method on the Query object.  This method will create an ActiveX Data Objects (ADO) sequential, forward-only recordset that we can use to display our results. <A HREF="ex02.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/ex02.htm')">Here's the code</A>.
+<P>
+
+<P>The final section of the code displays the actual returned items in the recordset using an HTML table.  To return the location of the item as a URL, the code uses the <b>DocAddress</b> property contained for each item in the Site Server catalog.  The code also displays two ways for the user to view items: using the Outlook client or using Outlook
+Web Access. <A HREF="ex03.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/siteserver/siteexch/ex03.htm')">Here's the code</a>.
+<P>
+
+<P>Further instructions and tips are provided in the sample application files.
+<P>
+
+
+<H2><A NAME="topic6"></A>Conclusion
+</H2>
+As you have seen in this article, it is very easy to get started using Exchange Server and Site Server together to manage the daily flood of information that you likely receive into your business.  However, this article and sample only scratch the surface of the types of applications you can build when you combine Site Server and Exchange Server.  If you are interested in learning more about either of these products and how they can help you build interactive, dynamic and powerful Web sites, please visit  <A HREF="http://www.microsoft.com/siteserver/default.asp" TARGET="_top">http://www.microsoft.com/siteserver/</A> <IMG SRC="../../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> and  <A HREF="http://www.microsoft.com/exchange/" TARGET="_top">http://www.microsoft.com/exchange/</A> <IMG SRC="../../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P>
+
+
+
+
+<P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../../sitebuilder/pg02791.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="exchss.htm#top" CLASS="clsBackTop"><IMG SRC="../../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+[version]
+signature	= "$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles 	= HtmFiles,InfFiles
+AddReg  	= MenuExtReg,UninstallReg
+
+[DefaultUninstall]
+DelFiles 	= HtmFiles,InfFiles,DefFiles
+DelReg   	= MenuExtReg,UninstallReg,UninstallKeys
+
+[DestinationDirs]
+HtmFiles    = 10,web
+InfFiles    = 10,inf
+DefFiles    = 10,inf
+
+[SourceDisksNames]
+55="Install Directory","",1
+
+[SourceDisksFiles]
+msxmlval.htm=55
+msxmlval.inf=55
+
+[HtmFiles]
+msxmlval.htm
+
+[InfFiles]
+msxmlval.inf
+
+[DefFiles]
+msxmlval.pnf
+
+[MenuExtReg]
+HKCU,"Software\Microsoft\Internet Explorer\MenuExt\%MenuTitle%",,,"%10%\web\msxmlval.htm"
+
+[UninstallReg]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_valid","DisplayName",,"%UninstallName%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_valid","UninstallString",,"rundll32.exe advpack.dll,LaunchINFSection %10%\inf\msxmlval.inf,DefaultUninstall"
+
+[UninstallKeys]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_valid"
+
+[Strings]
+MenuTitle = "Validate XML"
+UninstallName = "MSXML - XML Validation IE Extention"

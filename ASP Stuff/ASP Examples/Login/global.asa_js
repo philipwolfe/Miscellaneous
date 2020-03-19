@@ -1,0 +1,76 @@
+<SCRIPT LANGUAGE=JScript RUNAT=Server>
+
+function Application_OnStart() {
+   Application("strConn") = "Data Source=YourServer;" +
+      "Provider=SQLOLEDB;Initial Catalog=database;" +
+      "User ID=user;Password=passsword;";
+}
+
+function Application_OnEnd() {
+   delete Application("strConn");
+}
+
+
+function Session_OnStart() {
+   if (Request.Cookies("Name")("Visited") != null) {
+      Response.Cookies("Name").Expires = "January 1, 2005";
+      Response.Cookies("Name")("Visited") = "1";
+      a = 1;
+   } else {
+      a = Request.Cookies("Name")("Visited");
+      a += 1;
+      Response.Cookies("Name").Expires = "January 1, 2005";
+      Response.Cookies("Name")("Visited") = a;
+   }
+
+   BrowserType = Server.CreateObject("MSWC.BrowserType");
+
+   Conn = Server.CreateObject("ADODB.Connection");
+   Conn.Open(Application("strConn"));
+
+   rs = Server.CreateObject("ADODB.RecordSet");
+   strSql = "SELECT * FROM [Logins]";
+   rs.Open(strSql, Conn, 1, 3);   // Keyset cursor & optimistic locking
+
+   rs.Addnew();
+   rs.Fields("IP").value = Request.ServerVariables("REMOTE_ADDR");
+   rs.Fields("Referring_Site").value =
+      Request.ServerVariables("HTTP_REFERER");
+   rs.Fields("Visited").value = Request.Cookies("Name")("Visited");
+   rs.Fields("ActiveX").value = String(BrowserType.ActiveX);
+   rs.Fields("Backgroundsounds").value =
+      String(BrowserType.Backgroundsounds);
+   rs.Fields("Beta").value = String(BrowserType.Beta);
+   rs.Fields("Cookies").value = String(BrowserType.Cookies);
+   rs.Fields("Frames").value = String(BrowserType.Frames);
+   rs.Fields("Javaapplets").value = String(BrowserType.Javaapplets);
+   rs.Fields("Javascript").value = String(BrowserType.Javascript);
+   rs.Fields("Majorver") = BrowserType.Majorver;
+   rs.Fields("Minorver") = BrowserType.Minorver;
+   rs.Fields("Parent") = BrowserType.Parent;
+   rs.Fields("Platform")= Request.ServerVariables("HTTP_USER_AGENT");
+   rs.Fields("Tables").value = String(BrowserType.Tables);
+   rs.Fields("Vbscript").value = String(BrowserType.Vbscript);
+   rs.Fields("Version") = BrowserType.Version;
+   rs.Update();
+   rs.close();
+   Conn.close();
+}
+
+function Session_OnEnd() {
+
+   Conn = Server.CreateObject("ADODB.Connection");
+   Conn.Open(Application("strConn"));
+
+   rs = Server.CreateObject("ADODB.RecordSet");
+   strSql = "SELECT * FROM [Logins]";
+   rs.Open(strSql, Conn);
+   rs.AddNew();
+   rs.Fields("State") = "Session Ended";
+   rs.Fields("Date") = Date();
+   rs.Update();
+   rs.Close();
+   Conn.Close();
+}
+
+</SCRIPT>

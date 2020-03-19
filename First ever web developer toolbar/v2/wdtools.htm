@@ -1,0 +1,38 @@
+<HTML>
+<script language="javascript" src="%TEMPLATEDIR%\wdtools.js"></script>
+<SCRIPT LANGUAGE="JavaScript" defer> 
+var parentwin = external.menuArguments;
+var doc = parentwin.document;
+
+//parentwin.alert("BEGIN SCRIPT");
+
+//check for only one
+if(doc.all.webdevtools){parentwin.alert("You can only have one Web Dev Tool Bar per page.");}
+else {
+
+//
+var	strHTML = "";
+	strHTML += "<form name=\"thedevform\"><nobr>";
+	strHTML += "<fieldset id=\"webdevtools\" style=\"position:relative; background-color:buttonface;valign:top;\" ><legend>Web Developer Toolbar:</legend>";
+	strHTML += " <button onclick=\"javascript:var newwin=window.open('','','directories=0,location=0,menubar=0,status=0,toolbar=0,resizable=1');newwin.document.writeln('<html><body><h1>Document source:</h1><br><textarea cols=90 rows=25>');newwin.document.write(window.document.body.innerHTML.substr(0,window.document.body.innerHTML.length-window.document.all.thedevform.outerHTML.length-16));newwin.document.writeln('</text'+'area></body></html>');newwin.document.close();\">View Doc HTML</button><nobr>";
+	strHTML += " <button onclick=\"javascript:var s='';for(i=0;i<document.forms.length;i++){if(document.forms[i].name!='thedevform'){s+='Form Name: '+document.forms[i].name+'\\n';for(j=0;j<document.forms[i].length;j++){s+='      '+document.forms[i].elements[j].type.toUpperCase()+': '+document.forms[i].elements[j].name+'\\n';}}}alert(s);\">View Form Information</button>";
+	strHTML += " <button onclick=\"javascript:alert('Scripts: '+document.scripts.length);for(k=0;k<document.scripts.length;k++){alert('Script No. '+k+'\\n'+'Language: '+document.scripts[k].language+'\\n'+document.scripts[k].innerHTML)};\">View Scripts</button>";
+	strHTML += " <button onclick=\"javascript:var empty=String.fromCharCode(39);var frm=prompt('Which form contains the object?\\n(use the number, start counting at 0)');var obj=prompt('What object do you want to have an event unbound?\\n(remember cAsE MaTTeRs)');var ev=prompt('What event do you want to unbind?');eval('document.forms['+frm+'].'+obj+'.'+ev+'='+empty+empty);alert('The Object: '+obj+' on Form: '+frm+' should be unbound from the Event: '+ev+'.');\">Unbind Event from object</button>";
+	strHTML += "";
+	strHTML += "";
+	strHTML += "";
+	strHTML += "";
+	strHTML += "<fieldset><legend>Type in code to be executed on this page.</legend><textarea name=\"txtExeCode\" rows=2 cols=90></textarea><button onclick=\"javascript:window.execScript(document.thedevform.txtExeCode.value, 'Javascript');\">Execute Code</button></filedset>";
+	strHTML += "";
+	strHTML += "";
+	strHTML += "</fieldset></form>";
+	strHTML += "";
+
+
+//insert a gray div at the end of the document
+doc.body.insertAdjacentHTML("BeforeEnd", strHTML);
+}//for only one check
+//parentwin.alert("END SCRIPT");
+
+</SCRIPT>
+This page is not to be viewed directly.

@@ -1,0 +1,716 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Investing Wisely in Your Web Site</TITLE>
+
+<META NAME="Description" CONTENT="Investing Wisely in Your Web Site, a case study of Microsoft Investor and how they use their server technologies for efficiency and performance" />
+<META NAME="Keywords" CONTENT="Microsoft Investor, Portfolio Manager, subscription-based site, scalability" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Tom Moran and Dustin Hubbard" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="08/03/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+  function showSample(sURL) {
+    sFeatures = "width=520,height=400,left=10,top=10,toolbar=0,statusbar=0,scrollbars=1,resizable=1";
+    newWin = window.open (sURL, "_blank", sFeatures);
+    return false;
+  }
+
+//--></SCRIPT>
+
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg05284.htm#/workshop/server/scenario/msi.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg05284.htm#/workshop/server/scenario/msi.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg05284.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="top2" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex; Subscription-based site, Microsoft Investor case study; Portfolio Manager, as used on Microsoft Investor site; Case studies, Microsoft Investor site">Investing Wisely in Your Web Site</A></H1>
+<HR SIZE="1" />
+<P>Tom Moran, Microsoft Developer Support
+<BR>Dustin Hubbard, Premier Internet Developer Support<BR>Microsoft Corporation
+<P>June 12, 1998
+<P><a href="msi.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 70.6K)</a>.
+<P><a href="msisamp.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download the sample code files (zipped, 2.8K)</a>.
+
+<P> <b>Contents</b>
+<br> <A HREF="msi.htm#topic1">Introduction</A>
+<BR> <A HREF="msi.htm#topic2">Technologies Used: The Big Picture</A>
+<BR> <A HREF="msi.htm#topic3">Site Architecture</A>
+<BR> <A HREF="msi.htm#topic4">Designing Scalable Web Applications</A>
+<BR> <A HREF="msi.htm#topic5">Performance: The Need for Speed</A>
+<BR> <A HREF="msi.htm#topic6">Browser Compatibility</A>
+<BR> <A HREF="msi.htm#topic7">Building a Subscription-Based Site</A>
+<BR> <A HREF="msi.htm#topic8">An In-Depth Look at Portfolio Manager</A>
+<BR> <A HREF="msi.htm#topic9">Testing: Making Sure It All Works </A>
+<BR> <A HREF="msi.htm#topic10">Publishing </A>
+<BR> <A HREF="msi.htm#topic11">Thank You and Goodnight</A>
+<BR> <A HREF="msi.htm#topic12">Additional Resources</A>
+<P><b>Note</b>  <A HREF="../../../workshop/server/feature/server060198.htm">Highlights of this article</A> were recently published in the SBN Magazine. Through June 30, readers of this article can receive a Microsoft Investor subscription free for one month, plus a continuing 30 percent discount (US$6.95 monthly, instead of US$9.95) thereafter. Remember, the first month is free. To obtain the discount, you must use this link to  <A HREF="https://investor.msn.com/secure/signup/club/sbn.asp" TARGET="_top">Microsoft Investor</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> (new subscriptions only, offer valid through June 1998 only).
+<P>
+<h2><A NAME="topic1"></A>Introduction
+</h2>
+<P><i>Barron's</i> magazine called it the &quot;best all-around site for investors on the Web today.&quot;  <i>Individual Investor</i> wrote, &quot;One of the most elegant, drop-dead gorgeous interfaces on the Net.&quot;
+<P>I'm talking about Microsoft Investor (<A HREF="http://investor.msn.com" TARGET="_top">http://investor.msn.com</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">). Every day, 300,000 customers call up over 3.5 million pages with a response time that borders on the immediate. That kind of performance makes Microsoft Investor one of the hottest sites on the Web.
+<P>So I figured I would ask if I could find out a little bit more about the Microsoft Investor (MSI) site and how its creators do things.  Being the skilled negotiator I am (I went to a seminar last year), I decided initially to ask for everything. I was a little shocked when Eric Zinda, the group Program Manager, agreed to let me publish all the group's secrets. There were so many of them -- and it was such good information for you -- that I asked Dustin Hubbard, one of the star engineers from Microsoft's Premier Developer Support ASP Team, to assist me.
+<P>The main purpose of this article is to address some of the most significant decisions that come up when trying to build a robust, scalable Web site and architecture. We will examine the most crucial aspects of designing a large-scale Web site, tell you exactly how MSI designed, built, and tested their commercial Web site, and answer such questions as:  How do I manage a subscription?  How do I get great performance?  What technologies should I use to achieve scalability?
+<P>In this article, Dustin and I will take you through several major areas of the site -- architecture, performance, publishing, testing, building the site so it's scalable, subscriptions, downleveling (browser compatibility), and so on.  As we walk you through the site and these features, we will also point out various decision points the team came across as they built the site.
+<P>This article assumes intermediate familiarity with server software and hardware, including Microsoft Internet Information Server (IIS).
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic2" IDX_TYPES="sbngen" IDX_CONCEPT="Microsoft Investor site, technologies used on">Technologies Used: The Big Picture</a>
+</h2>
+<P>Some background: MSI is an online resource for investors who want to track their stocks, maintain their portfolios, keep up-to-date on financial news, and get investing advice from experts.  MSI has tools for seasoned investors as well as ways to help beginning investors understand the market through features like the strategy lab.  There are daily articles, quote and news feeds, market summaries updated several times per day, analyst recommendations, and so forth. MSI is much like other investing sites on the Internet -- however, there are a few significant exceptions.
+<P>First, MSI is broken up into only two sections, subscriber and non-subscriber. Second, MSI provides a way for individuals to easily track all of their investment accounts.  Even non-subscribers are provided this powerful functionality.  Third, MSI has some of the most powerful investment-research tools available.  Finally, MSI has the ability to dynamically chart multiple stocks at once, which provides a powerful way to view the performance trends of your favorite holdings.
+<P>Here's a table that summarizes the various technologies used on the site:
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Technology</b>
+</TD>
+
+<TD><b>Use/Notes</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">Internet Information Server (IIS) 3.0</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>As this article was being written, the MSI team was working to upgrade their servers to IIS 4.0
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/ntserver/default.asp" TARGET="_top">Windows NT&#174; Server 4.0, SP3</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used as the platform for all servers
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/win32dev/apiext/isapimrg.htm" TARGET="_top">ISAPI Filters</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to add information to the IIS logs
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/server/default.htm">Active Server Pages (ASP)</A>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used throughout the site to generate all Web pages
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/author/css/css-ie4.htm" TARGET="_top">Cascading Style Sheets (CSS)</A>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to easily maintain a consistent look and feel, and to help performance, because CSS is smaller than adding font tags to every cell
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/word/default.asp" TARGET="_top">Microsoft Word</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to write all articles
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/access/default.asp" TARGET="_top">Microsoft Access</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Keeps track of articles and generates article archives
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/vba/" TARGET="_top">Visual Basic&#174; for Applications</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>A macro that goes through a Word article, generates HTML syntax for each heading and style, and does lookups in the Microsoft Access database for company information
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/sql/default.asp" TARGET="_top">SQL Server 6.5</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to store the user database
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/security/" TARGET="_top">SSL 2.0</A>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used for secure communication when transmitting credit-card information
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/siteserver/default.asp" TARGET="_top">Content Replication System (CRS)</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to deploy new or updated content onto the production servers ( a feature of Site Server 3.0)
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/data/ado/" TARGET="_top">ActiveX&#174; Data Objects (ADO)</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used for all interaction with SQL Server, all ADO is directly in ASP pages, and there is no transaction processing
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/server/asp/comp.htm" TARGET="_top">Active Template Library (ATL)</A>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to write ISAPI filters, server-side objects, and specific ActiveX controls that are downloaded to client browser
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/components/default.htm" TARGET="_top">ActiveX Controls</A>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Portfolio Manager, Investment Finder, Charting, Ticker
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/scripting/" TARGET="_top">VBScript</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used on server
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/scripting/" TARGET="_top">JavaScript</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used on client, primarily for cross-browser compatibility
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="../../../workshop/server/toolbox/wcat.htm">Web Capacity Analysis Tool</A>
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used for testing load of ASP pages on the Web servers
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Cookies
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Holds your username, and, if you select the option, your password; used to determine whether your session has timed out; and stores miscellaneous site settings
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT> <A HREF="http://www.microsoft.com/mcis/guide/component_mail.asp?A=2&B=2" TARGET="_top">Internet Mail Server (IMS)</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to send alerts
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Sendmail object
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>Used to send your forgotten password
+</TD>
+</TR>
+
+</TABLE>
+<P>There are no frames, although there once were.  In fact, getting rid of frames was one way the MSI team got major performance improvements between versions 4 and 5 of their site, which just debuted.  There is no Java and no per-user state.  You won't even find HTML pages.  MSI's primary goal has been performance and a great customer experience, and it definitely shows.
+<P>MSI has successfully met all the criteria of a great Web site -- performance, stability, broad reach, and scalability.  There are many interesting areas of the site; now we'll focus on each in turn.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic3" IDX_TYPES="sbngen" IDX_CONCEPT="Microsoft Investor site, site architecture">Site Architecture</a>
+</h2>
+<P>Because the architecture serves as the foundation for everything else, we'll start there.
+<P><A HREF="msifig01.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/scenario/msifig01.htm')">Figure 1.</a>
+
+<P>One of the most interesting things about the architecture is that there are two different stock quote feeds: a satellite dish and a leased line (similar to ISDN).  Although the recent Galaxy 4 satellite outage took out the stock quote feed for some of MSI's competitors, MSI stayed up without a burp because of the land-based line.  It might sound a little strange, but thinking through issues like this is a real part of creating a site that is both redundant and fail-safe. (In a redundant system, if you lose part of the system, you can continue to operate. For example, if you have two power supplies and one takes over if the other one dies, then that is a form of redundancy.)
+<P>As we mentioned in the introduction, the entire site is built on Windows NT 4.0 and IIS 3.0.  At the time this article was written, the MSI team was in the middle of upgrading to IIS 4.0, primarily to take advantage of the increased performance and stability improvements.  When asked if they were currently having problems with stability, they mentioned some of their Windows NT boxes running their quote servers had been running over six months and never gone down.
+<P>Whether you maintain your own connection to the Internet or rely on an ISP to provide it for you, infrastructure is a major component of Web site design.  Don't assume your ISP has the bandwidth your application requires to give a good end-user experience.
+<P>
+<h3>Quote and News Servers
+</h3>
+<P>After the quotes from S&amp;P are picked up, they are broadcast via the small private LAN to a bank of three quote servers.  These servers hold large memory-mapped databases of the approximately 250,000 symbols.  If you are asking yourself why SQL Server isn't used, the reason is that when this site was created, SQL version 4.3 was current and supported only page locking.  As you can imagine, it might cause a bit of a performance problem if you had to lock the page every time a new quote price came in from the stock exchanges.  With the current version of SQL Server, this is not a problem.  The servers also manage information that is sent via CRS (from Microsoft Commercial Internet System [MCIS]) from a server that collects data from several data providers, including Hoovers, Media General, MSNBC, Zacks, MorningStar.   Most of these other data feeds are actually sent by FTP from the data provider's servers to MSI for processing.
+<P>As was pointed out previously, there are several server-side objects (SSOs) used on the Web servers.  One SSO communicates with the News servers, and a separate SSO communicates with the Quote Servers -- we'll talk about the specifics a little  <A HREF="msi.htm#componentize">further down</A>.
+<P>The News Servers also hold large memory-mapped files of the last 30 days of news, provided by MSNBC.  This news is processed into HTML format and replicated to the utility servers.  Because it gets to the utility servers in HTML, it is very quickly served to a customer.
+<P>
+<h3>E-mail
+</h3>
+<P>Note that there is a mail server that uses IMS (from MCIS).  This is used to generate the alert e-mail that subscribers sign up for.  The team also uses SQL Server and SMTP to generate the mail you get when you request a lost password.  This was the simplest and quickest way to get e-mail for someone trying to get in who has lost his or her password.  The alert e-mail service runs on its own server to minimize interdependency.  Customers want an alert as soon as possible when an event happens, and isolating the server that handles that mail helps accomplish this.
+<P>
+<h3>Shared Servers
+</h3>
+<P>Chat servers and bulletin-board system (BBS) servers are shared with MSN.  Actually, this is an important part of the architecture.  If you can find someone else who is doing something successfully, and it meets your needs, there is nothing wrong with sharing the responsibility.  It can be a lot cheaper and easier to use someone else's service than to develop your own.
+<P>
+<h3>Managing the Data Center
+</h3>
+<P>
+<h4>Documentation, documentation, documentation
+</h4>
+<P>One of the most difficult challenges is making sure that all your servers are set up exactly the way you need them to be.  This means that all of the correct software is there, with all of the patches.  It also means that all of the data source names (DSNs) are set up, the SSOs and ISAPI filters are installed, and so forth.  MSI has an internal document that details every step.  If you were to follow this exactly, everything would be set up exactly as it needs to be.  It is important to leave no room for error, so when a version of software changes, the team goes through the setup instructions again to make sure that the dialog boxes are the same, and that specific instructions like "Click Add" are still relevant.
+<P>
+<h4>When something goes wrong
+</h4>
+<P>So what happens if something goes wrong?  Well, MSI's goal is to detect and resolve the problem before someone calls in and says they're having a problem.  A complete system  monitors the Windows NT event log and Performance Monitor (a.k.a. &quot;perfmon,&quot; a feature of Windows NT). The status is available round-the-clock via Web pages, so anybody on the team can keep an eye on what is happening.  Several members of the team also carry pagers, and are beeped automatically if there is a problem.  The Investor team uses standard IIS perfmon counters to monitor application health, as well as custom counters that tell them things like how many price tables were delivered, how many charts, the number of file downloads, and so forth.  All of this is accomplished via ASP pages that talk to various internal controls monitoring the health of the entire system.
+<P><b>Decision point</b>: How are you planning to monitor your servers? Check out  <a href="../../../workshop/server/feature/server042798.htm">Tom's article on INetMonitor</a> and <A HREF="http://www.microsoft.com/evaluate/intranet/effective.htm" TARGET="_top">Microsoft's Site Server Usage Analyst</A> for ideas.
+<P>
+<h3>Load Balancing
+</h3>
+<P>The Investor team wrote their own round-robin, load-balancing software in their SSOs instead of using standard DNS.  This ensures that quotes and newsfeeds are delivered from the server that can best handle them.  In effect, it does custom load balancing to meet the needs of the Investor architecture.  Doing something like this is not for the faint of heart, and not generally recommended, but in MSI's case was necessary.
+<P>
+<h3>Fault Tolerance
+</h3>
+<P>A major challenge the MSI team faced was to build a site that would be available to investors all over the world, all day, every day.  This is critical because of the global need for up-to-date, accurate investment information.  So what happens when the MSI team needs to reboot their server to upgrade a piece of software or when the infamous Windows NT blue screen appears?  Do thousands of individuals suddenly lose their connection to MSI?
+<P>This is what fault tolerance is all about: basically, expecting the unexpected and preparing for it.  Any serious Web architecture must be capable of losing a server without affecting the customers who are accessing that site.  This is accomplished by having multiple servers running the same software, all the time.  Say, for instance, you have two IIS 4.0 Web servers running through a router.  If you need to restart one of the servers to upgrade some software, you can do so without taking your site off the Internet.
+<P>One example of fault tolerance is MSI's quote architecture.  They have two different feeds that receive data from S&amp;P Com Stock, which go to three different quote servers. All this is done to increase the certainty that quote feeds will always be available to MSI customers.
+<P><b>Decision Point:</b>  Determine the acceptable amount of availability for your Web site.  Is it 70, 80, 90, or maybe 99.9 percent?  Your architecture should be designed to meet this fault-tolerance percentage.  If you use an ISP, ask them what level of fault tolerance they are promising.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic4" IDX_TYPES="sbngen" IDX_CONCEPT="Scalable Web applications, designing: Microsoft Investor site case study">Designing Scalable Web Applications</a>
+</h2>
+<P>We wrote this article to help you design and build a Web site that will meet your organization's needs today and, more importantly, will meet them tomorrow.  This is where we find the majority of mistakes get made.  In a push to get something out fast, many questions go unanswered -- or even more often -- unconsidered.  Thus, six months after the site goes live, a major redesign is necessary because the site isn't fast enough or traffic to the site is significantly higher than anticipated.
+<P>
+<h3>Scalability
+</h3>
+<P><i>Scalability</i> is simply ensuring that as traffic to your site grows, so does the Web server's ability to effectively handle it.  For instance, if freeways were built to be scalable, the lanes of traffic would increase as the number of commuters on a particular freeway increased.  When more users begin going to a site that is not scalable, the result is the same as what happens to popular freeways.  Traffic comes to a crawl and in some cases you get road rage (or in the case of the Internet, it might be called "Web rage&quot;).
+<P>MSI is an excellent example of a site architecture that scales as its popularity increases.  It's a good thing too, because the site's traffic has increased over 60% in the past six months.  Making a site scalable doesn't have to be particularly complicated; you just have to plan for it from the beginning.
+<P>To start with, estimate the amount of traffic to your site per month and triple it!  Just about everyone underestimates the amount of traffic that their site will generate.  If your architecture handles only your initial estimate, you will find that your site quickly will not be able to handle the number of requests it receives.  The technique of forecasting Web traffic to your site is commonly known as <i>capacity planning</i>.  It involves determining the server's requirements, designing an application to meet those requirements, and monitoring your site to ensure those requirements are being met.  The  <A HREF="http://mspress.microsoft.com/prod/books/1398.htm" TARGET="_top">Internet Information Server Resource Kit by Microsoft Press</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> has an entire chapter dedicated to this subject.
+<P>
+<h3>Keep It Stateless
+</h3>
+<P>One way MSI ensured a scalable architecture was by building a stateless Web site.  The term <i>stateless</i> means that information does not persist after a request is served.  A simpler way to think of it is that the Web site &quot;remembers nothing.&quot;  When designing your site, don't keep information in the Web server's memory.  If information needs to be retained, write it to a database or a text file.  This frees up the amount of available memory the system has running, and it is able to handle a greater number of requests.
+<P>Many companies that have built their Web sites using the Microsoft ASP architecture have made heavy use of the Session object. The ASP Session object retains information for a user for the amount of time the user is at the site plus 20 minutes (by default).  Think about the ramifications of doing this.  Let's say you ask every visitor to your page to enter his or her name and you store it in a Session object.  Assume you have 100,000 visitors a day.  That means that you would likely have over 4,000 names in memory at a time.  That is vital RAM being used to fulfill a pretty insignificant purpose. Even worse (because RAM is really pretty cheap) is the time it would take to look all of that information up.  Also, it is not a simple or desirable task to try to get Session objects working in any sort of cluster or Web farm.  If you need that type of functionality on a large scale, you really should look at Site Server's membership services.  There are times, however, when using the Session object may make sense, such as on an intranet site where Web traffic is fairly light.
+<P><b>Decision Point:</b>  List all the information that you plan to maintain on a per-visitor basis.  If you are not planning to store it in a database, decide whether it is critical enough to justify the scalability hit.  You basically have four choices: cookies, session objects, a custom database, or something like <A HREF="../../../workshop/server/nextgen/sessiondata.htm">Site Server's membership services</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. If your site already uses ASP, you might want to check your pages for Session objects and try to modify your ASP to not use them.
+<P>
+<h3><A NAME="COMPONENTIZE"></A>Componentize
+</h3>
+<P>Have you ever been in a car accident and had to have the hood or door replaced because it was damaged in the accident?  All the repair shop has to do is take that component (let's say the car's hood) off and put on a new one.  Can you imagine the cost if you had a dent in your hood but the only way to replace it was to replace the entire exterior of the car?  Not only would it cost significantly more money, but it would take longer to do, and if the following month you got a dent in your door, you would have to go through the entire process all over again.  As absurd as that idea seems in the realm of cars, every day people build Web sites that are designed exactly that way.
+<P>To componentize your site and avoid this, think through your Web site's design <i>before</i> you build it.  This will enable you to break your site up into reusable components, which usually means into server-side objects (SSOs).  An <i>SSO</i> is essentially a dynamic-link library (DLL) that sits on the server and contains some type of business logic.  That is exactly what MSI did to ensure that their site was scalable -- not to mention easier to maintain.
+<P>MSI has various SSOs that they wrote using C++ and ATL.  Each of these objects fills a very specific purpose (and yours should also):
+<UL>
+
+
+<LI> An SSO is used to generate split and dividend tables that get downloaded in HTML format to the client's browser.
+<LI> An SSO is used only to access a back-end quote server and retrieve its data.  Then an ASP page can take that data and format it any way it likes.
+<LI> An SSO is used to access back-end news servers.
+
+</UL>Two of the most common ways to build an Internet SSO are to use Visual Basic&#174; 5.0 or Visual C++&#174; and ATL.  Note that a component written in ATL, in most cases, will be much faster and scale better than one written in Visual Basic.  However, a component written in Visual Basic may be much quicker and easier to develop, so there is a tradeoff.  You need to decide whether the added scalability provided by a component written in C++ is worth the possible delay in implementation.
+<P>Componentizing a Web site provides scalability that otherwise would be missing because a component can be used by thousands of users simultaneously and can be spread across multiple Web servers.  This is part of load balancing, which we touched on earlier.
+<P><b>Decision Point:</b>  Determine your business needs and pick a technology to build your components with that matches those needs.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic5" IDX_TYPES="sbngen" IDX_CONCEPT="Performance, on Microsoft Investor site">Performance: The Need for Speed</a>
+</h2>
+<P>Performance is essentially speed.  Simply put, it is how fast a Web site runs and what causes it to slow down.  Have you ever tried hitting a popular site during lunch time?  If you have, you have probably noticed that the site is slower than only a few hours earlier.  This is usually because more people are accessing that same site and the Web server has a harder time responding to all the increased requests.  Various studies have suggested that Web surfers give a site about 10 to 15 seconds to display before they hit the Stop button and go to a different site.
+<P>It is easy to build a site that is fast when only a handful of users are accessing it.  However, if your site grinds to a crawl when a few hundred people access it, you may be in big trouble.
+<P><b>Decision Point:</b>  What level of end-user experience can you afford to provide? Is it important that all users have a premium experience, even under load?  Will they go to a competitor if response time is not immediate?  The Investor team wanted everyone to have a premium experience, and knew that for customers in a financial environment, speed was paramount.  Keep in mind that speed is more than just how quickly a completed page is brought down from the server -- it is also how quickly someone can find the information they need.
+<P>
+<h3>Mommy, Where Does Performance Come From?
+</h3>
+<P>Unlike mathematics and physics, performance is more an art than a science.  In some respects, that is unfortunate, because there is no simple equation to determine how fast your site will be.  In most cases it takes testing, fine-tuning, and time to get your site optimized.  However, if you have a Web site that was not designed for speed, there is very little you can do to improve the performance of the site without redesigning it.  Thus it is critical that performance is a major consideration in the design stage.  Some of the major contributors to Web site performance include:
+<UL>
+
+
+<LI> Code complexity (ASP, SSO, and so forth)
+<LI> Network bandwidth both to the Internet and to back-end databases
+<LI> Hardware, with both memory and disk speed being critical
+<LI> Web-page download size
+<LI> Back-end connectivity requirements
+<LI> Coding conventions
+
+</UL>And that's just to name a few.  You can see that with all these variables, it takes good planning to design and build a fast site.
+<P>
+<h3>Building a Lean, Mean Web Site Machine
+</h3>
+<P>MSI is an excellent example of a site built for speed; the team's goal was to ensure that their site is one of the fastest investor sites in the world.  Listed below are some of the performance-enhancing things that they have done to make their site fly.
+<P><b>1. </b><b>Web servers have 510 MB of RAM each.</b> As with your own PC, the more memory you have the better your performance.
+<P><b>2. </b><b>Spare use of images.</b> The more images you have on your page, the longer it will take your page to get transmitted to the client.
+<P><b>3. </b><b>Use of Server Side Objects (SSO).</b>  ATL objects not only scale well but perform great under high load.
+<P><b>4. </b><b>Active Data Objects (ADO) and connection pooling.</b>  Connection pooling significantly reduces the amount of time that the Web server takes to establish a connection to a back-end database.  A slight change for IIS 4.0 is that connection pooling is now on by default.
+<P><b>5. </b><b>No use of frames.</b> Frames actually increase the amount of time it takes to download to a client because more files get transmitted per client request.  MSI cut their download traffic in half simply by removing frames from their site.  What may look like frames on the pages are actually tables.
+<P><b>6. </b><b>Keep all pages under 10K.</b>  Setting a limit on page size (including all images, and so forth) will help you keep your pages lean.
+<P><b>7. </b><b>Careful use of objects.</b>  The MSI team is careful only to instantiate objects right before they use them.  This ensures that objects don't end up hanging around in memory longer than needed.
+<P>The one thing that would increase the speed of the site even more would be, of course, to use HTML instead of ASP.  Because ASP has to be interpreted and generated by the server, it is much slower than straight HTML.  However, nearly every page on the MSI site has database queries. In this case, ASP is usually the best choice, because it enables customization on-the-fly.  It comes down to flexibility versus performance.
+<P>
+<h4>Scalability is king
+</h4>
+<P> <A HREF="msi.htm#designingscalable">Earlier in this article</A>, we talked extensively about what scalability is and how to ensure you design a scalable Web site.  If your site does not scale well, all other performance enhancements you have made will likely be useless under high load or stress.
+<P>
+<h4>Keep the code small and efficient
+</h4>
+<P>If your code is efficient and well-written, it will perform much better than poorly written code.  A good example of this is the problem that the MSI team found when testing one of their ASP pages.  They were retrieving arrays from one of their SSOs and iterating through each record in the array, of which there were 1,000.  The problem was that in their <b>if</b> statement they kept using the syntax <b>someObject.arrayMethod(x)</b>.  As it turns out, VBScript re-copies the returned value of a method every time it is called.  Therefore, rather than creating 1,000 rows in memory they were creating 1,000 rows 1,000 times, which of course equals one million!  The way to resolve this is simple.  Just assign the array to a local variable and then iterate through the local variable; that way the 1,000 records will get created only once.
+<P>
+<h4>Componentize your application
+</h4>
+<P>Componentizing your application serves two purposes:  it helps your Web site scale better and  it makes your application fast.  Breaking your code out of ASP and putting it into SSOs will generally improve performance.  The reason is that ASP is written in an interpreted language such as VBScript or JScript&#153;, which means that each line has to be read and interpreted every time a client requests it.  An SSO written in ATL is machine-compiled, which means it does not need to get interpreted every time a user requests it.  If you write an SSO in Visual Basic you'll find that it is slightly faster than VBScript, but slower than ATL.
+<P>
+<h4>Use objects and include files wisely
+</h4>
+<P>As I mentioned earlier, it is easy to unintentionally initialize objects that you end up not using in certain pages.  One common place this can happen is within included files.  You can avoid this by using the &lt;OBJECT&gt; syntax rather than the <b>server.createobject()</b><i> </i>syntax.  If you use the &lt;OBJECT&gt; tag, the object doesn't actually get created until you reference it in your code by calling a method or property on that object.  In contrast, the <b>server.createobject()</b> syntax immediately creates the object.
+<P>
+<h4>Understand coding ramifications
+</h4>
+<P>In an effort to quickly build your Web application it is easy to overlook costly coding errors.  Remember that just because your code runs doesn't mean it runs well.  The MSI example I gave about creating one million records instead of 1,000 is an easy thing to overlook but can cause substantial performance problems and be difficult to track down.  Be sure to spend time going back over your code after it is written to look for obvious problems, such as creating variables and objects that don't get used.  Stepping through your code is a great way to really understand all the work it is doing.  Each step takes up server resources, and with hundreds or thousands of simultaneous users, it can be very costly on your live site.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic6" IDX_TYPES="sbngen" IDX_CONCEPT="Browser compatibility, on Microsoft Investor site">Browser Compatibility</a>
+</h2>
+<P>Just about anyone who has developed a Web site has faced the decision of what client browsers they will support.  This usually boils down to whether you want your site to support both Microsoft Internet Explorer and Netscape Navigator, or just one browser.  For the MSI team, the decision was easy.  They would need to support both browsers to develop a Web site that reached the broadest consumer base.
+<P><b>Decision Point:</b> Of course, when developing a Web site for both browsers you have some difficult decisions to make. Should you build two Web sites, one for Microsoft Internet Explorer and one for Netscape Navigator? Should you use only standard HTML in your page to guarantee browser compliance but forfeit the creativity that other Web sites will offer? What technologies can you safely implement across multiple browsers?
+<P>For the MSI team to build a site that supported many different browsers but also incorporated some of the latest technologies, they had to make some important decisions.  First of all, each ASP page sniffs the browser and generates two possible versions of HTML: A Cascading Style Sheets (CSS) version for Internet Explorer versions 3, 4, 5 and Netscape Navigator 4; or a basic HTML version for every other browser from Navigator 3 to WebTV.
+<P>MSI decided to make heavy use of CSS for the most current browsers because it is a standard that is supported by both Microsoft's and Netscape's browsers, but offers much more design flexibility than standard HTML.
+<P>The team also makes use of ActiveX components for the more interactive portion of their site such as their Historical Chart and Portfolio Manager sections.  However, because ActiveX is not directly supported by Netscape Navigator, they also wrote a custom plug-in that would expand the functionality of Navigator and enable it to use ActiveX.  In the cases where a customer is using a browser that is not Internet Explorer or Navigator, the Web page will detect this, generate a GIF image of the requested chart on the server, and send the browser the image.
+<P>For MSI, browser compatibility was a major goal.  Spending the extra development time needed to build a Web site that captures approximately 99% of the world's browser market was well worth it for them.
+<P>
+<h3>Know Your Audience
+</h3>
+<P>With so many technologies available today for Internet development, it is important to know your audience.  You must choose the technology that best meets your consumer base.  If, for instance, you are building an intranet site and you know the only browser used on it is Internet Explorer 4.0, you can take advantage of things like the Internet Explorer 4.0 object model without worrying about browser compatibility.  On the other hand, if you are building an Internet site where your audience will be wide and varied, as is the case for the MSI site, you'll need to pick your technologies more carefully.  Research technologies before designing your site, so you know which ones are supported by different browsers.  For instance, DHTML is supported by both Internet Explorer and Navigator, but their implementation of DHTML is different.  Don't make assumptions about a browser's support of a technology.  Sometimes two different versions of the same browser vary widely in what technologies they support.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic7" IDX_TYPES="sbngen" IDX_CONCEPT="Subscription-based site, Microsoft Investor site case study">Building a Subscription-Based Site</a>
+</h2>
+<P>A key part of most large sites is a subscription or membership service.  Because the two are so tightly integrated, we'll talk about both subscription and access.  MSI uses a fairly straightforward subscription model.  It's a forms-based model.  Your information, once entered into the MSI form, is picked up by an ISAPI filter, which uses ADO to check a SQL Server database.  What is it checking for?  Some pretty simple stuff, really.  Is your username a duplicate?  If you are signing up as part of a Microsoft Money six-month trial, do you have a valid product ID that hasn't been used before?
+<P>I've included a small flowchart so you can quickly get an idea of what is happening.
+<P><img src="msifig02.gif" WIDTH="442" HEIGHT="611" ALT="[MSI3498C  6091 bytes ]">
+<P><b>Figure 2. Subscription model flowchart</b>
+<P>Let's talk about what happens when you go to enter your information.  You are sent to the following page (https://investor.msn.com/secure/signup/account8.asp) to enter your personal information.  All information is encrypted, as you can tell by the https: qualifier.  The credit card is actually used to check a SQL Server database, where everything is encrypted using the Win32&#174; CryptoAPI, to verify whether you have used that card before to get a free trial.  Because the credit card numbers are all encrypted, not even the Investor team has access.  One thing many people appreciate is that their credit card is not even charged during the trial subscription.  They actually ask you to sign up again when your 30 days are up, rather than automatically charging your card.
+<P>
+<h3>All You Can Eat, $9.99
+</h3>
+<P>To simplify things (primarily for the customer, but it also simplifies coding), the MSI team chose an &quot;all-you-can-eat&quot; model. With this model, you are either a subscriber or you're not. If you try to access a subscription page, your cookie is checked to verify that you recently and successfully logged on.  If you haven't logged on, or it's been too long since your last activity, MSI presents you with a logon page and lets you know this is a subscription feature. Two files are used to do this. One is an include file, which is included in every subscription page and determines the validity of the user's logon. The second is the login.asp file, which collects and validates your information.
+<P><b><A HREF="msilogininc.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/scenario/msilogininc.htm')">Login.inc</A></b><b> </b>-- This file is included on every subscription page in MSI and bounces the user to a logon page if he or she does not have a valid user ID.  An invalid user ID could occur because the user's cookie timed out, the user hasn't logged on before, or the credit card was denied.  MSI uses the ASP object request s<b>ervervariables</b> to track where the user wants to go so that the user is automatically sent to the desired page after successfully logging on.
+<P><b><A HREF="msiloginasp.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/scenario/msiloginasp.htm')">Login.asp</A></b> --  Unless the user has a valid ID, this logon page appears, which will ask for the user ID and password.  It then validates the ID against the SQL Server database and, if successful, sends the user on his merry way, updating his cookie so he doesn't have to log on anymore.
+<P>It is a fairly simple model. But simple is good.  MSI could have chosen to do something much more complicated, something that kept settings per user, charged by the quote or service, or even used Windows NT security to validate every user's access permissions.  But this would have made it difficult for the user and more difficult to implement.  The approach used also scales well and will work in the future when MSI goes from 50,000 paying subscribers to 500,000.
+<P><b>Decision Point:</b>  How many users do you expect, what kind of data do you need to keep about them, and in your wildest dreams, what kind of growth do you expect?
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic8" IDX_TYPES="sbngen" IDX_CONCEPT="Portfolio Manager, on Microsoft Investor site">An In-Depth Look at Portfolio Manager</a>
+</h2>
+<P>A main goal of this article is to closely examine a unique function of a major Web site that our readers can go to and clearly understand how it works.  We have chosen to discuss MSI's Portfolio Manager because it is a popular function of MSI and it is available to all people who visit the site.
+<P>
+<h3>Just As Its Name Implies
+</h3>
+<P>Portfolio Manager's purpose is, as its name implies, to track and manage an individual's personal investment portfolios.  Some of its powerful features include the ability to track all your accounts in one location, the option of encrypting your data for confidentiality, and interactive views that let you decide how you want the data presented.
+<P>Portfolio Manager is available from the MSI site at  <A HREF="http://investor.msn.com" TARGET="_top">http://investor.msn.com</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.  Click on the Portfolio Manager link and follow along as we walk you through the user experience and its design.
+<P>
+<h3>The Technology Behind Portfolio Manager
+</h3>
+<P>
+<h4>ActiveX
+</h4>
+<P>For Internet Explorer and Netscape Navigator, Portfolio Manager relies solely on ActiveX technology.  The first time you use Portfolio Manager, it will download and extract a .cab file to your system.  Once it has finished, you will have an .ocx and two .dlls on your system that are used by Portfolio Manager.  The .cab file is required to use a client-side ActiveX component on your local machine.  Once the component is installed, Portfolio Manager is available.  To add ActiveX functionality to Netscape Navigator, the MSI team shared a plug-in that  <A HREF="http://carpoint.msn.com/" TARGET="_top">CarPoint</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> wrote so that Netscape users can also benefit from the added functionality provided by ActiveX.
+<P>
+<h4>Storing the data
+</h4>
+<P>The first thing you'll want to do in Portfolio Manager is add your account information and investment transactions.  When you do this, all that actually happens is the data you enter gets written to a text file on your local system.  This information then gets read out of the text file and displayed in Portfolio Manager.  The benefits of keeping the data locally on the user's computer rather than on the Web server include:
+<UL>
+
+
+<LI> Security, because your portfolio is not transmitted over the Internet
+<LI> Speed, because the data is stored on the local hard drive
+
+</UL>One disadvantage of keeping the data stored locally is that if you go to another computer and run Portfolio Manager, your portfolio doesn't come with you.  The MSI team provides an export function that will copy the text file onto a floppy disk, which you can import to a different computer.
+<P>
+<h4>Getting the quotes
+</h4>
+<P>A few seconds after adding a transaction, more information about your portfolio will appear, such as your stocks' current prices, daily change, and your investments' market value.  This is accomplished by an ISAPI filter that that the MSI team wrote, which communicates with the ActiveX control on your computer.  The quote data for your stock gets marshaled across the Internet and copied onto your computer where the portfolio calculations take place.
+<P>
+<h4>Security
+</h4>
+<P>Even though the data in Portfolio Manager is all stored locally, certain users may still want the text file encrypted.  The MSI team has provided a way to do this from within Portfolio Manager.  By using the  <A HREF="../../../workshop/security/default.htm" TARGET="_top">CryptoAPI</A> and building their own encryption scheme, they have ensured that your data is safe from any unauthorized viewers.  You must provide a password to unencrypt the data before you can view it.
+<P>
+<h4>Non-ActiveX browsers
+</h4>
+<P>To make sure no Web surfers feel left out, even those users who are not running Internet Explorer or Netscape Navigator can use Portfolio Manager.  When a browser requests the page, ASP is used to check what type of browser it is.  If it is not one of the supported ActiveX browsers, the customer's information will get stored on a SQL Server database that is maintained by Microsoft.  The interface is not as dynamic as using the ActiveX version but still offers much of the functionality.
+<P>
+<h3>Design Decisions
+</h3>
+<P>Walter Kennamer is the Software Design Lead for all of the ActiveX controls on the MSI site.  I spent some time with Walter going over the Portfolio Manager technologies and major design decisions that were made.
+<P>Walter told me that the first big design decision was in which technology to implement Portfolio Manager.  He said they considered three choices:
+<OL>
+
+<LI>   Static HTML
+<LI>   Java applets
+<LI>   ActiveX
+
+</OL>According to Walter, the biggest reason that they decided not to use static HTML was because of its inherent lack of flexibility.  For instance, you cannot enable the user to dynamically change the view of their data.  In this scenario, the application becomes less interactive and lacks the added functionality that makes Portfolio Manager so powerful.  In addition, every request would have to go back to the server, which is slow and time-consuming.
+<P>The second technology the MSI team considered was Java applets.  The nice thing about using a Java applet is that most browsers today ship with a Java Virtual Machine (JVM) so applets are widely supported.  However, there were some major obstacles to using Java.   If you recall, earlier I discussed that the data used by Portfolio Manager was stored locally on a user's hard drive.  The issue with Java applets is that the security is so rigid you cannot perform any I/O (input/output) on a user's computer.  This makes it virtually impossible to read and write data from a text file on the user's computer without going through complicated authentication routines.
+<P>The final choice, which was used, was ActiveX.  ActiveX offered many advantages, including the data could be locally accessed, the interface could be flexible and interactive, and the code could be written very efficiently.  The one major drawback was that unlike Java, the only browser that natively supports ActiveX is Internet Explorer.  Given all the other positives about ActiveX, the team decided to work around this issue by writing a custom plug-in for Netscape Navigator so that those end users could benefit as well.
+<P>Once the technology was chosen, the next major design decision was determining the application requirements.  The MSI site had one requirement above and beyond everything else: speed.  They wanted the application to be small so that it would download fast.  Their other requirement was that it could run on all Windows&#174; platforms with no external dependencies.  With traditional applications, developers can rely heavily on the use of class libraries, such as Microsoft Foundation Classes (MFC), which helps them write code faster but requires many files to be installed on a user's computer.  The MSI team did not want to make the ActiveX file depend on the libraries being on the user's machine and thus increase the amount of download time for the end user.  Given this, their only option was to not rely on any external libraries, which increased development time but ultimately provided a better solution for the customers.
+<P>The result of all this planning, decision-making, and development time was a lean .cab file that contained only one .ocx, two .dlls, and was only 432K.  This includes not just the Portfolio Manager, but charting, a stock and fund finder, and a Find Symbol control.  Now that's design and development at its finest!
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic9" IDX_TYPES="sbngen" IDX_CONCEPT="Testing procedures, on Microsoft Investor site">Testing: Making Sure It All Works</a>
+</h2>
+<P>As you probably know, one of the most critical tasks in producing a site like this is testing.  The site changes several times daily and the links need to be tested, the functionality needs to be verified, it needs to be fail-safe and redundant, and the user experience needs to be good even when there is high load or spikes, and so forth.  We had the opportunity to meet with Bob Archer, the testing manager, to talk about the MSI team's testing process.
+<P>There are seven people testing the site, or about 60% of the number of developers (and they are hiring more).  Four-and-a-half people are focused on testing the client, one-and-a-half people are focused on the server side, and there is one lead.  Because an MSI site goal is to have as broad a reach as possible, it makes sense to have that client/server balance.  They need to test all clients and all operating systems, which is a big job.  An interesting fact that came up when we discussed this balance with Bob was that the quote servers, running Windows NT, have never gone down.
+<P>One of the key things they look at is performance.  What is the raw number of bytes transferred and what is the time to process?  To do this, they used perfmon extensively, creating their own custom perfmon counters.  They also created several of their own custom components that generate debug and performance information.  They use a single daily drop machine to propagate code for the next version, subscribing to the tenet, "Get to a known state and stay there."
+<P>
+<h3>Tools
+</h3>
+<P>To test links, they have a link checker that was written using Visual Basic.  You can imagine that this gets run a lot with a site that is updated three or more times a day.  Even so, the basic link checking and so on is still about 50 percent automated and 50 percent manual effort.
+<P>Webmon is another tool they use.  Webmon is written in ASP and consists of a screen divided into multiple sections displaying the status of all the servers and major processes running.  They can tell at a glance what the status of each server is, and the application itself will send out pages that buzz your pager if bad things start to happen. The team designed the tool to have hooks in several of the ISAPI filters, SSOs, and so forth, and have written custom components that talk to those parts of the production architecture which in turn make that data available to ASP. Starting out, if a certain component had a problem, the team designed these hooks to monitor it to find out what happened after the fact.  In the last couple of site versions, however, they planned these debugging and information hooks into each new component.
+<P><b>Decision Point:</b>  What would something going wrong look like?  Can you anticipate that and make sure that your component can tell you when there is a problem, rather than waiting until a user calls up when the problem has gotten out of hand?
+<P>
+<h3>It Doesn't Always Go Smoothly
+</h3>
+<P>There are some things the team wants to do differently when they next redesign the site. One is to try better to test under actual load conditions.  It is difficult to come up with scenarios that really mean anything and real-world server testing is tough.  While you can use tools like  <A HREF="../../../workshop/server/toolbox/wcat.htm">WCAT</A> or InetMonitor (available through the  <A HREF="http://mspress.microsoft.com/prod/books/397.htm" TARGET="_top">BackOffice&#174; Resource Kit</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">) to load up the servers, you need to make sure that you test all the way to failure.  You also need to ensure you are mimicking typical user behavior.  If not, certain code sections may behave differently.  For example, if the code that made quote lookups was more server-intensive than one might think, on a particularly heavy trading day the site could behave in strange ways and the user experience could suffer drastically.  This could happen even if the servers were tested all the way to failure.
+<P>Downlevel testing also came up repeatedly as a difficult issue to master.  There are many browsers out there, and a lot of operating systems, and they needed to test each of them. To do this, they have to be familiar with a lot of different behaviors.  Which versions support tables, frames, scripting, and so forth?
+<P>Like most groups doing something like this, the MSI team didn't start out with people who had backgrounds in testing large-scale sites.  Most of the people have applications backgrounds, with some systems and coding.  This means that there is much less automation than one might expect, and that they adopt a milestone approach, much like producing any other product.  It also means that when they have to get into the Windows NT debugger to find a potential problem, they can.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic10"></A>Publishing
+</h2>
+<P>This process is actually a little different than we expected.  Because the timing on a site like this is so critical, the publishing team went with a very straightforward model geared for speed, without a lot of bells and whistles.  There are three separate content areas -- Insight, Market Summaries, and the Strategy Lab.
+<P><b>Insight.</b>  The content is written up in Microsoft Word, undergoes a quick content editing pass, and is sent to copyediting, where one of three producers manually copies it into a directory to be picked up for publishing. To deploy the content, the Microsoft Content Replication System is used. This handles deploying content simultaneously to all servers with no need for any down time.  The MSI team uses a two-stage model of a staging server plus a deployment server, which basically means they always have a backup.
+<P><b>Market Summaries.</b>  Definitely geared for speed -- nobody wants to wait on these.  These are rewritten and enhanced immediately from information wires, sent directly to copyediting, and posted on the site.
+<P><b>Strategy Lab.</b>  Basically follows the same process as Insight, but there is no content editing -- this content is completely in the voice of the strategist.
+<P>An interesting thing the MSI team has done to streamline things is to use a combination of Microsoft Word, Visual Basic for Applications (VBA), and Microsoft Access to massage much of the content into ASP pages.  Either a member of the editorial staff or a freelance writer writes each article in Word.  When the article is complete, a set of macros is run that basically dumps out ASP code. Microsoft Access is used primarily to hold a small repository of company information, such as the stock symbol and Internet link, so that all a writer has to do is refer to the company, and all of the links and current information are already taken care of.  The macros are pretty fancy in that they take care of all of the downlevel compatibility issues as well.  If there is a heading, for example, it will recognize that and produce something like the following code:
+<P>&lt;%=Heading1%&gt;This is a title&lt;%=endHeadling1%&gt;
+<P>The heading variables are defined in an included file that sets them to be CSS tags or standard HTML tags, based on the browser type.
+<P>As you can see, even with several custom tools, there is still more to do manually than one might expect.  But that is how it is with all large-scale Web sites I've seen.
+<P> <A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+
+<h2><A NAME="topic11"></A>Thank You and Goodnight
+</h2>
+<P>After reading this article, you probably have more questions than answers.  If so, this article did exactly what we intended.  We wanted to address the decisions you will need to make when designing a large-scale Web application, while at the same time giving you an inside look at the MSI site for reference.
+<P>Building a fast, secure, and scalable Web site takes planning, time, and work.  However, if you spend the extra time in the beginning to address the critical questions that we have outlined throughout this article, your site will run markedly faster, smoother, and better than others will.
+<P>Who knows -- maybe your site will be the next one that <i>Barron's</i> magazine calls "the best all-around site . . . on the Web today."
+<P>
+<h2><A NAME="topic12"></A>Additional Resources
+</h2>
+<P> <A HREF="../../../workshop/server/feature/serveroptms.htm">Server Performance Optimization on Microsoft's Web Site</A>
+<P><A HREF="http://www.microsoft.com/isn/techcenter/tuningiis.asp?A=10&B=3" TARGET="_top">Tuning Internet Information Server Performance</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P> <A HREF="http://www.starnine.com/webstar/overview.html" TARGET="_top">A Model of Web Server Performance</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<P> <A HREF="../../../workshop/server/asp/asptips.htm">15 ASP Tips to Improve Performance and Style</A>
+<P>
+
+
+
+
+<P>
+
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg05283.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="msi.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

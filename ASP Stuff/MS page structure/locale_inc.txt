@@ -1,0 +1,58 @@
+<%
+'---------------------------------------------------------
+'-- Locale.inc
+'--
+'-- Description:
+'--   Shared Locale ID constants and procedures
+'---------------------------------------------------------
+
+Function GetLocaleID()
+
+	On Error Resume Next
+
+	Dim strLocaleID
+	Dim strISOLocaleCode
+
+	'-- Initialize Locale ID
+	GetLocaleID = DEFAULT_LOCALE_ID
+
+	'-- Check query string for Locale ID
+	strLocaleID = Trim(Request.QueryString("LocaleID"))
+
+	If strLocaleID <> "" Then
+		If IsNumeric(strLocaleID) Then
+			If Application("SysInfo").IsSupportedLocaleID(CStr(strLocaleID)) Then
+				GetLocaleID = strLocaleID
+				Exit Function
+			End If
+		End If
+	End If
+
+	'-- Get Locale ID from browser ISO Locale Code
+	strISOLocaleCode = Trim(Request.ServerVariables("HTTP_ACCEPT_LANGUAGE"))
+	if Instr(1, strISOLocaleCode, ",") > 0 then
+		strISOLocaleCode = Mid(strISOLocaleCode, 1, Instr(1, strISOLocaleCode, ",") - 1)
+	end if
+	strLocaleID = CStr(Application("SysInfo").GetLocaleIDFromISOLocaleCode(strISOLocaleCode))
+
+	If Not Application("SysInfo").IsSupportedLocaleID(CStr(strLocaleID)) Then
+		strLocaleID = CStr(Application("SysInfo").DefaultLocaleID)
+	End If
+
+	If strLocaleID <> "" Then
+		GetLocaleID = strLocaleID
+		Exit Function
+	End If
+
+	'-- Get default Locale ID
+	strLocaleID = ""
+	strLocaleID = CStr(Application("SysInfo").DefaultLocaleID)
+
+	If strLocaleID <> "" Then
+		GetLocaleID = strLocaleID
+		Exit Function
+	End If
+
+End Function
+%>
+

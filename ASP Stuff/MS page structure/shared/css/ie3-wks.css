@@ -1,0 +1,161 @@
+/*** DOCTOP ***/
+
+#tblNavLinks A {
+	color:black;
+	text-decoration:none;
+	font-size:8pt; font-family:verdana,arial,helvetica,sans-serif;
+}
+#lnkShowText, #lnkSyncText, #lnkSearchText, #lnkIndexText { font-weight:bold; }
+#lnkPrevText, #lnkNextText, #lnkUpText { font-size:7.5pt; font-weight:normal; }
+
+DIV.clsBucketBranch {
+	margin-left:10px; margin-top:15px; margin-bottom:-10pt;
+	font-style:italic; font-size:85%;
+}
+
+DIV.clsBucketBranch A,
+DIV.clsBucketBranch A:link,
+DIV.clsBucketBranch A:active,
+DIV.clsBucketBranch A:visited { text-decoration:none; color:black; }
+
+A:link { color:#000066; }
+
+A.clsIncCpyRt, A.clsBackTop {
+  font-size:70%; font-family:verdana,arial,helvetica,sans-serif;
+  color:black;
+}
+
+BODY { font-size:80%; font-family:verdana,arial,helvetica,sans-serif; }
+
+DIV.clsDocBody { margin-left:10px; margin-right:10pt; }
+
+H1 { font-size:60%; }
+H2 { font-size:75%; }
+H3 { font-size:105%; }
+H4 { font-size:100%; }
+H5 { font-size:110%; }
+H6 { font-size:70%; }
+
+P.clsRef {
+  font-weight:bold;
+  margin-top:12pt; margin-bottom:0pt;
+}
+
+PRE { background:#EEEEEE; }
+
+PRE.clsCode {
+  font-family:'courier new',courier,serif;,courier,serif; font-size:130%;
+  margin-top:1em; margin-bottom:1em; margin-left:0pt;
+}
+
+PRE.clsSyntax {
+  background:#EEEEEE;
+  font-family:verdana,arial,helvetica,sans-serif; font-size:120%;
+}
+
+CODE.clsText { font-family:'courier new',courier,serif;,courier,serif; font-size:130%; }
+
+TABLE.clsRef {
+  font-size:9pt;
+  margin-top:10pt; margin-bottom:6pt;
+}
+
+.clsLiteral { font-family:'courier new',courier,serif; }
+
+P.clsLine A {
+  font-size:5%;
+  text-decoration:underline;
+  color:black;
+}
+
+A.clsGlossary {
+  text-decoration:underline;
+  font-size:10pt;
+  color:green;
+}
+
+.clsDefValue { font-weight:bold; font-family:'courier new',courier,serif; }
+
+DIV.clsBeta {
+  font-weight:bold;
+  color:red;
+}
+
+/* INDEX CLASSES */
+
+UL.clsIndex{ margin-left:20pt; margin-top:0pt; margin-bottom:5pt; }
+
+TABLE.clsIndex TD {
+  margin-left:3px; margin-top:3px; margin-right:3px; margin-bootom:3px;
+  background-color:#EEEEEE;
+}
+
+TR.clsEntry { font-size:75%; }
+
+TD.clsMainHead { font-size:145%; font-weight:bold; }
+
+A.clsDisabled {
+  text-decoration:none;
+  color:black;
+}
+
+.clsAccess { text-decoration:underline; }
+
+/* SBN */
+
+A.clsTools {
+  color:#0B3586;
+  font-weight:bold;
+}
+
+FORM.clsSamples { margin-bottom:0; }
+
+H1.clsSampHead {
+  margin-top:5px; margin-bottom:5px;
+  font-size:24px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif;
+}
+
+H2.clsSampTitle {
+  font-size:128%;
+  margin-top:.2em; margin-bottom:0em;
+}
+
+.clsSampHead {
+  font-size:18pt; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif;
+}
+
+.clsSampTitle {
+  font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif;
+}
+
+.clsDemo {
+  font-size:8pt;
+  color:#00319C;
+  text-decoration:underline;
+}
+
+.clsEntryText { font-size:8pt; }
+
+.clsHeading {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+}
+
+.clsSampDocBody { margin-left:15px; margin-right:10px; }
+
+.clsSampDnldMain { font-size:11px; font-family:verdana,arial,helvetica,sans-serif; }
+
+.clsTools {
+  color:#0B3586;
+  margin-top:5px;
+}
+
+.clsToolsHome { font-size:9pt; }
+
+.clsToolsTitle {
+  color:#00319C;
+  font-size:11pt; font-weight:bold;
+  text-decoration:none;
+}
+
+

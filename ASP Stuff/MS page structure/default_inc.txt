@@ -1,0 +1,124 @@
+<%
+
+// Get Application Path Information
+var sPath = String( Request.ServerVariables( "Path_Info" ) );
+sPath = sPath.substring( 0 , sPath.lastIndexOf( "/" ) + 1 );
+
+// Create Config File References
+var sDeepTreeConfigPath = sPath + "deeptreeconfig.xml";
+var sToolBarConfigPath  = sPath + "toolbarconfig.xml";
+var sSearchTabConfigPath   = sPath + "searchtabconfig.xml";
+
+// Process QueryString
+var sContentWebPath = String( Request.QueryString );
+sContentWebPath = sContentWebPath.replace( /(\?|&)hidetoc=(true|false)&?/gi , "" );
+var sUrl = String( Request.QueryString( "url" ) );
+var sHideToc = String( Request.QueryString( "hidetoc" ) );
+
+// Load Xml Document
+var oXDoc = new ActiveXObject( "Microsoft.XMLDOM" );
+oXDoc.async = false;
+oXDoc.load( Server.MapPath( sDeepTreeConfigPath ) );
+
+var iSearch = sContentWebPath.toLowerCase().indexOf( "url=" );
+
+var bIsMsLink = ( ( sContentWebPath.indexOf( "://" ) == -1 ) || ( sContentWebPath.indexOf( "microsoft" ) != -1 ) ) && ( sContentWebPath.indexOf( "<" ) == -1 ) && ( sContentWebPath.indexOf( "script:" ) == -1 );
+
+if (sUrl == "" || sUrl == "undefined" || sUrl.substring( 0,1 ) == "?" )
+  {
+  bIsMsLink = false;
+  }
+
+if( !bIsMsLink || iSearch == -1 )
+{
+    oNode = oXDoc.selectSingleNode( "/deeptreeconfig/StartPage" );
+    if( oNode != null )
+    {
+        sContentWebPath = oNode.text;
+    }
+}
+else
+{
+    sContentWebPath = sContentWebPath.substring( iSearch + 4 )
+}
+
+if (sContentWebPath.indexOf("?") == -1)
+  {
+  if (sContentWebPath.indexOf("&") == -1)
+    {
+    sContentWebPath = sContentWebPath + "?frame=true";
+    }
+  else
+    {
+    if (sContentWebPath.indexOf("frame=") == -1)
+      {
+      sContentWebPath += "&frame=true";
+      }
+    }
+  }
+else
+  {
+  if (sContentWebPath.indexOf("frame=") == -1)
+    {
+    sContentWebPath += "&frame=true";
+    }
+  }
+
+//if hidetoc parameter is anything besides "true" then show the toc
+
+if (sHideToc != "true")
+  {
+  sHideToc = "false";
+  }
+
+//take the TreeLabel from the Deeptree config and make it the default title of the page
+var sTreeLabel;
+sTreeLabel = String(oXDoc.selectSingleNode( "/deeptreeconfig/TreeLabel" ).text);
+
+%>
+<HTML>
+<HEAD>
+  <META NAME="Robots" CONTENT="noindex">
+  <META content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <TITLE><%if (sTreeLabel != null) {Response.Write(sTreeLabel);}%></TITLE>
+  <SCRIPT LANGUAGE="JavaScript">
+
+  // this page should never load inside of another frame
+  if (top.location != self.location)
+    {
+    top.location = self.location;
+    }
+
+  function InitSync()
+  {
+      if( "object" == typeof( top.deeptree ) && "unknown" == typeof( top.deeptree.Sync ) )
+      {
+        top.deeptree.Sync();
+      }
+  }
+  </SCRIPT>
+</HEAD>
+
+<FRAMESET onload="InitSync();" rows="82,*" border="1" FRAMESPACING="0" TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0">
+  <FRAME name="fraToolbar" src="/library/shared/deeptree/asp/toolbar.asp?tbcfg=<%=sToolBarConfigPath%>" scrolling="no" border="0" frameborder="no" noresize TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" style="border-bottom: solid #99ccff 1px;"></FRAME>
+  <%
+  if (sHideToc == "true")
+    {
+    %>
+    <FRAME name="fraRightFrame" src="/library/shared/deeptree/asp/rightframe.asp?dtcfg=<%=sDeepTreeConfigPath%>&url=<%=sContentWebPath%>&hidetoc=<%=sHideToc%>" FRAMEBORDER="no" BORDER="0" BORDERCOLOR="#6699CC"></FRAME>
+    <%
+    }
+  else
+    {
+    %>
+    <FRAMESET name="fstMain" cols="216,*" border="1" frameborder="1" FRAMESPACING="6" TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0">
+      <FRAME name="fraLeftFrame" src="/library/shared/deeptree/asp/leftframe.asp?stcfg=<%=sSearchTabConfigPath %>&dtcfg=<%=sDeepTreeConfigPath%>&url=<%=sContentWebPath%>" TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" FRAMEBORDER="1" BORDER="1"></FRAME>
+      <FRAME name="fraRightFrame" src="/library/shared/deeptree/asp/rightframe.asp?dtcfg=<%=sDeepTreeConfigPath%>&url=<%=sContentWebPath%>&hidetoc=<%=sHideToc%>" FRAMEBORDER="no" BORDER="0" BORDERCOLOR="#6699CC"></FRAME>
+    </FRAMESET>
+    <%
+    }
+  %>
+</FRAMESET>
+
+</HTML>
+

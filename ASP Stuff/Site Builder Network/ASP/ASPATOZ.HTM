@@ -1,0 +1,729 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: ASP from A to Z</TITLE>
+
+<META NAME="Description" CONTENT="ASP tips and tricks, plus links to further information" />
+<META NAME="Keywords" CONTENT="ASP, tips and tricks" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Nancy Cluts" />
+<META NAME="Posted" CONTENT="10/22/98" />
+<META NAME="Updated" CONTENT="" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg00563.htm#/workshop/server/asp/aspatoz.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg00563.htm#/workshop/server/asp/aspatoz.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg00563.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+
+
+<H1><A NAME="ASP" IDX_TYPE="task" IDX_CONCEPT="stopindex;ASP, alphabetical list of terms and tips">ASP from A to Z</A></H1>
+<HR SIZE="1" />
+
+<P>Nancy Winnick Cluts
+<BR>Developer Technology Engineer
+<BR>Microsoft Corporation
+<P><!--DATE-->October 22, 1998
+<P><!--/DATE-->
+<P><a href="aspatoz.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word (.DOC) format (zipped, 158K).
+<P> </a><b>Contents</b>
+<br> <A HREF="aspatoz.htm#TOPIC1">Introduction</A>
+<BR> <A HREF="aspatoz.htm#TOPIC2">What ASP Is </A>
+<BR> <A HREF="aspatoz.htm#TOPIC3">How ASP Works</A>
+<BR> <A HREF="aspatoz.htm#TOPIC4">ASP from A to Z</A>
+<BR> <A HREF="aspatoz.htm#TOPIC5">Bibliography</A>
+<P>
+<H2><A NAME="TOPIC1"></A>Introduction 
+</H2>
+There's lots of helpful information about Active Server Pages (ASP) available on this site and other sites. If you have plenty of time to search for the information, you can find answers to most of your questions. But if you want to find out what tools you can use to debug ASP or how to handle errors, you need to do some digging. This article provides an easy way to find information that pertains to ASP, including a short definition of what ASP is, how ASP works, and an alphabetical list of terms and tips that relate to ASP. In the A-to-Z list, you will see a brief description as well as pertinent links to more detailed information (when that information is available). This article is meant to be a "living" document. That means that I plan on updating it with new tips and removing tips that no longer apply. If you are an ASP developer and have a "juicy" tip, send it to me. If I publish it here, you'll get credit and the everlasting gratitude of throngs of other ASP developers.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P> 
+
+<H2><A NAME="TOPIC2"></A>What ASP Is  
+</H2>
+Active Server Pages is a programming environment that provides the ability to combine HTML, scripting, and components to create powerful Internet applications that run on your server. If you are already creating Web sites that combine HTML, scripting, and some reusable components, you can use ASP to glue these items together. You can create an HTML interface for your application by adding script commands to your HTML pages and you can encapsulate your business logic into reusable components. These components can be called from script or other components.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<H2><A NAME="TOPIC3"></A>How ASP Works 
+</H2>
+When you incorporate ASP into your Web site, here's what happens:
+
+<OL>
+
+<LI>The user brings up a Web site (like Site Builder Network) where the default page has the extension .asp.
+
+<LI>   The browser requests the ASP file from the Web server.
+
+<LI>   The server-side script begins to run with ASP.
+
+<LI>   ASP processes the requested file sequentially (top-down), executes any script commands contained in the file, and produces an HTML Web page.
+
+<LI>   The Web page is sent to the browser.
+
+</OL>
+
+<P>Because your script runs on the server, the Web server does all of the processing and standard HTML pages can be generated and sent to the browser. This means that your Web pages are limited only by what your Web server supports. Another benefit of having your script reside on the server is that the user cannot "view source" on the original script and code. Instead, the user sees only the generated HTML as well as non-HTML content, such as XML, on the pages that are being viewed.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<H2><A NAME="TOPIC4"></A>ASP from A to Z 
+</H2>
+
+<P>This section contains a list of terms and tips to help you understand ASP. They are listed in alphabetical order. Scroll down to the topic that interests you or click the letter in the alphabet below to jump down to the section containing the topic. I cribbed, er, I mean, compiled these tips and definitions from a number of sources, including technical articles (listed in the bibliography below), Knowledge Base articles, and a beta version of the Microsoft&#174; Internet Information Server (IIS) 5.0 documentation (I'm so lucky!).
+
+<P>
+ <A HREF="aspatoz.htm#A">A</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#B">B</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#C">C</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#D">D</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#E">E</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#F">F</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#G">G</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <P>
+ <A HREF="aspatoz.htm#I">I</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#J">J</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#L">L</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#M">M</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#O">O</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#P">P</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#Q">Q</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <P>
+ <A HREF="aspatoz.htm#R">R</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#S">S</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#T">T</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#V">V</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#W">W</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <A HREF="aspatoz.htm#X">X</A> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<P>
+<H4><A NAME="A"></A>ADO 
+</H4>
+<P>Active Data Objects (ADO) provides a programming model for an OLE-DB data source. It is the database model that ASP uses; however, ASP can use other database access mechanisms. ADO supports the following installable objects, which are often used in ASP files: <b>Command</b>, <b>Connection</b>, <b>Recordset</b>, <b>Field</b>, and <b>Error</b>. Refer to the ADO Web site at  <A HREF="http://www.microsoft.com/data/ado/">http://www.microsoft.com/data/ado/</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for more information than you can shake a stick at.
+<P>
+<H4>Applications 
+</H4>
+<P>ASP is not just for prototyping. When using ASP as a solution, design your solution as an application instead of designing stand-alone ASP pages. As far as objects are concerned, it's best to take a look at what you need to accomplish and decide what you need, then whether you can buy the objects or will need to create the objects yourself. Take into consideration caching, scalability, reusability, security, and consistency.
+<P>
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="B"></A>Bottlenecks 
+</H4>
+<P>Identify your bottlenecks (that is, the database, network card, or network connection) using the tools available: WCAT, NetMon, and performance counters. To improve server performance, take a look at all parts of the system for potential bottlenecks, including hardware configuration and software settings. This way, if you are ever asked to scale the project larger, you will know where the work needs to be done.
+<P>
+<H4>Browser Connection
+</H4>
+<P>In IIS 4.0, use the <b>Response.IsClientConnected</b> property to determine if the browser is still connected. If the browser is not connected, you can conserve CPU cycles by ceasing the processing of the ASP page. Refer to the Knowledge Base article <A HREF="http://support.microsoft.com/support/kb/articles/q182/8/92.asp" TARGET="_top">Use <b>IsClientConnected</b>  to Check if Browser is Connected</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+
+<P>
+<H4>Buffering 
+</H4>
+<P>Turn buffering ON. By default it is OFF in IIS 4.0; in IIS 5.0, buffering is ON by default. You should buffer your ASP files so that you can abort sending a Web page. This might happen if the script being processed runs into a problem or if a user does not have appropriate security credentials. If this happens, and if you are using IIS 5.0, you can transfer the user to another page using <b>Server.Transfer</b>, or clear the buffer (using the <b>Clear</b> method of the <b>Response</b> object) to send different content to the user. 
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="C"></A>C++ 
+</H4>
+<P>If you are creating page-level components, you can use server scriptlets, Visual Basic&#174;, Visual J++&#153;, and Visual C++&#174;. If you are writing components that will be in application or session state, we recommend that you write them in C++ or Java so you can create them as both-threaded. Visual Basic is apartment-threaded. See the section below on  <A HREF="aspatoz.htm#T">threading</A> for more details.
+<P>
+<H4>Caching 
+</H4>
+<P>If your application sends pages to the client via a proxy server, the proxy server may cache pages to return them more quickly to the client. This reduces the load on the network and the Web server. To prevent a browser from caching ASP pages, set <b>Response.Expires</b> to some negative number. This will force the cached pages to expire immediately. If you set <b>Response.Expires</b> to <b>0</b>, and if your browser clock is behind by a few minutes, the page won't expire immediately. If your Web site contains objects that do not expire often, such as images, set the expiration to some time in the future. This will greatly increase the speed at which a page is refreshed or downloaded. Proxy caching via <b>pragma:nocache</b> is already done for you by IIS, so you don't have to set this in your headers. More information about caching can be found in  <A HREF="../../../workshop/server/feature/cache.htm">Got Any Cache?</A>
+<P>
+<H4>Client-Side Scripts 
+</H4>
+<P>Distribute the work on your Web site by providing script on both the client and the server. See  <A HREF="../../../sitebuilder/magazine/clientvserver.htm" TARGET="_top">Client-Side and Server-Side Objects</A>. 
+<P>
+<H4>COM Object Debugging
+</H4>
+<P>If you create a COM object and use it through ASP with <b>Server.CreateObject</b>, you cannot go back into your development environment and recompile the COM DLL without restarting the IIS Admin and W3SVC (Web server) service. Otherwise, the COM DLL will be locked. To restart these services, do the following:
+<OL>
+
+<LI>   At a command prompt, type <b>net stop iisadmin /y</b>. Please note that this will shut down IIS' parent service, IIS Admin. This will also shut down FTP and other services that are children of IIS Admin. If you type only <b>net stop w3svc</b>, inetinfo.exe will not be unloaded. 
+<LI>   At a command prompt, type <b>net start w3svc</b>. This will restart IIS Admin and the W3SVC service (Web server). 
+<LI>   You may recompile at any point after Step 1. Once you refer to an object that loads your DLL, you must repeat Step 1 before building the component successfully.
+
+</OL>
+<H4>Components
+</H4>
+<P>Use components to encapsulate the business logic in your ASP applications. You can create your own components or buy them "off the shelf." Once you have a component, you can reuse it wherever you need it. Develop your components using C++ or Java. Because Visual Basic is not marked as both-threaded, you cannot use Visual Basic components within application scope. If you design your own components, be sure to design components that are <i>stateless</i> (that is, the methods you define take parameters, rather than having a script set properties then call the method without the parameters). 
+<P>Stateless components are far more flexible and reusable. In addition, if you have areas in your script where you have more than 100 lines of contiguous script, consider turning that script into a  <A HREF="http://premium.microsoft.com/msdn/library/welcome/dsmsdn/msdn_imho012698.htm" TARGET="_top">server scriptlet</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. More information about creating components can be found in the Active Server Components section of the Server area of the SBN Workshop. A comprehensive list of third-party components available for ASP can be found in the  <A HREF="../../../workshop/server/components/catalog.htm">ASP Component Catalog</A>.
+<P>
+<H4>Connections
+</H4>
+<P>Pool your connections for optimal performance. By pooling your connections, your resources are allocated more efficiently. For support of multiple logons, provide one connection for read-only access and one connection for read/write access. In general, avoid putting ADO connections in session state. ODBC (version 3.0 and later) automatically does connection pooling for you, and OLE-DB provides session pooling. 
+<P>
+<H4>Cookie Munger 
+</H4>
+<P>ASP uses cookies to store the session identifier (ASP <b>SessionID</b>). For machines that have cookies turned off, the Cookie Munger tool can be used to strip out cookies and put the information in a URL. This enables the use of "cookies" without actually sending out cookies. For more information, see  <A HREF="../../../workshop/server/toolbox/cookie.htm">Simulating Cookies with the Cookie Munger</A>. 
+<P>
+<H4>CPU 
+</H4>
+<P>Design for scalability. Stress your ASP applications at 100% CPU to determine how to best allocate your resources. Use  <A HREF="../../../workshop/server/toolbox/wcat.htm">WCAT</A> or a third-party tool such as Mercury's LoadRunner to tune your performance.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="D"></A>Data Access Components
+</H4>
+<P>Read  <A HREF="../../../workshop/server/components/daciisperf.htm" TARGET="_top">Improving the Performance of Data Access Components in IIS 4.0</A> for a detailed explanation of the techniques that you can use to improve performance. 
+<P>
+<H4>Database
+</H4>
+<P>Use ADO for adding database access to your Web pages via components. ADO can be used to create small components that connect to any OLE-DB compliant data source, whether it's relational or non-relational. This includes spreadsheets, databases, or e-mail directories. 
+<P>
+<H4>Debugging 
+</H4>
+<P>There are many tools available for debugging, including  <A HREF="../../../sitebuilder/vinterdev/vionsbn.htm" TARGET="_top">Visual InterDev 6.0</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for your script, Visual C++, or Visual J++ components and the  <A HREF="http://msdn.microsoft.com/scripting/debugger/default.htm" TARGET="_top">Microsoft Script Debugger</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. The Script Debugger lets you run your server-side scripts one line at a time, monitor the value of variables, properties, or array elements during execution, and trace procedures. 
+<P><b>Important</b>   Once you have finished debugging your Web site, don't forget to turn off debugging on your live servers. This will increase performance.
+<P>
+<H4>Dictionary Object
+</H4>
+<P>The <b>Dictionary</b> object enables you to look up and store arbitrary key-data pairs rapidly. The <b>Dictionary</b> object gives you access to items in the array by <b>key</b>, so it is faster to find things that aren't stored contiguously in memory. Instead, you use a key rather than having to know where in the array the object is stored. 
+<P>
+<H4>Disconnected Recordsets
+</H4>
+<P>Disconnecting a <b>Recordset</b> means you can view the <b>Recordset</b>'s data after severing the connection to the data store that generated the <b>Recordset</b>. You can create a disconnected ADO <b>Recordset</b> in-process with a <b>Recordset</b> whose <b>CursorLocation</b> property is <b>adUseClient</b> and whose <b>ActiveConnection</b> property is set to NULL/Nothing. You can then put the <b>Recordset</b> into ASP application state and use the <b>Recordset Clone</b> method to share and access the <b>Recordset</b> in your ASP files. You can then pass this <b>Recordset</b> to a remote client using either RDS or DCOM (or both together). Read the Knowledge Base articles <A HREF="http://support.microsoft.com/support/kb/articles/q184/3/97.asp" TARGET="_top">HOWTO: Getting ADO Disconnected Recordsets in VBA/C++/Java</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> and <A HREF="http://support.microsoft.com/support/kb/articles/q190/7/17.asp" TARGET="_top">INFO: Disconnected Recordsets with ADO or RDS</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> for detailed information.
+
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="E"></A>Error Handling 
+</H4>
+<P>You can use the <b>ASPError</b> object to obtain information about an IIS 5.0 error condition that has occurred in an ASP file. The <b>ASPError</b> object is returned by the <b>Server.GetLastError</b> method. If the error condition generates an exception and you are using VBScript, use <b>OnErr</b>. In JScript&#153;, use the <b>try&#133;catch</b> method. Detailed information about error handling can be found in the article  <A HREF="../../../workshop/languages/jscript/handling.htm">Microsoft JScript Version 5.0 Adds Exception Handling</A>, by Michael Edwards.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="F"></A>Flow Control 
+</H4>
+<P>Flow control is the ability to set the flow of your ASP application. Flow is controlled through <b>Response</b> methods and two new <b>Server</b> methods (for IIS 5.0). Using <b>Response.Redirect</b> causes posted data to be lost. The <b>Response.End</b> method causes ASP to stop when an error is found. You do not need to call this method after calling <b>Response.Redirect</b>. The <b>Server.Transfer</b> method is the same as <b>Response.Redirect</b>, except that the work is done on the server and posted data is not lost. The <b>Server.Execute</b> method will flow into a nested ASP call and return execution to where you were before the error occurred. 
+<P>
+<H4>FileSystem Object
+</H4>
+<P>The <b>FileSystem</b> object blocks on files. If you are running a high-volume Web site, don't use the <b>FileSystem</b> object because the performance of accessing a single file will degrade. If you are using multiple files that are not being accessed at the same time, use of the <b>FileSystem</b> object will not result in a performance hit.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="G"></A>Global.asa
+</H4>
+<P>The Global.asa file is an optional file in which you can specify event procedures and declare objects that have session or application scope. It is not a content file displayed to the users; it stores event information and objects used globally by the application. This file must be named Global.asa and must be stored in the root directory of the application. An application can have only one Global.asa file. Instead of using the ASP <b>FileSystem</b> object to read files on a page, load the file(s) into an Application level array in Global.asa. 
+<P>
+<H4>Glue
+</H4>
+<P>Use ASP for the glue and components for the business logic. If you have 100 or more lines of consecutive script, turn it into a component using server scriptlets (bearing in mind that server scriptlets have the same limitations as Visual Basic components). More information on server scriptlets can be found on the Scripting Web site at  <A HREF="http://msdn.microsoft.com/scripting/scriptlets/default.htm" TARGET="_top">http://msdn.microsoft.com/scripting/scriptlets/default.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.  
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="I"></A>InetLoad
+</H4>
+<P>The InetLoad<b> </b>tool can be used to tune your Web site. This tool generates customizable loads on various Internet services, over a broad range of Internet protocols, including HTTP, SMTP, POP3, and LDAP. You can use this tool to simulate traffic on your Web site. InetLoad is available at  <A HREF="/msdownload/inetload/inetload.htm" TARGET="_top">http://www.microsoft.com/msdownload/inetload/inetload.htm</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. See also  <A HREF="aspatoz.htm#W">WCAT</A> and Mercury LoadRunner for tuning tools.
+<P>
+<H4>Internationalization
+</H4>
+<P>If you are providing a Web site that will be viewed in countries other than the United States, you can use the CODEPAGE tag within the &lt;% %&gt; delimiters to specify the proper code page. Alternatively, you can use the <b>Session.CodePage</b> property. Read all about it at   <A HREF="../../../workshop/server/nextgen/nextgen.htm">http://www.microsoft.com/workshop/server/nextgen/nextgen.asp</A>. In addition to CODEPAGE, you can also use the Local Language Identifier (LCID) to determine the language that the user has set as her preference. Detailed information about LCID can be found in the <b>IMultiLanguage</b> <A HREF="../../../workshop/misc/mlang/reference/ifaces/imultilanguage/imultilanguage.htm" TARGET="_top"> Reference</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.  
+<P>
+<H4>Isolation
+</H4>
+<P>You can separate IIS, ASP, and components into different processes for better performance. The drawback to putting these in different processes is the cross-process communication performance hit. You can put IIS, ASP, and your components in one process. This is the fastest method, but if your component goes down, it can bring down ASP and IIS. You can put IIS in one process and ASP with your components in another so that IIS will not crash if your component or ASP crashes. You can put IIS and ASP in one process and your component in another process. This is slower than the previous option due to all of the cross-process communication; however, it does insulate IIS and ASP from a buggy component. The slowest but "safest" option is to put IIS, ASP, and your components all in separate processes. If one crashes, nothing else will, but the performance will be very, very slow. It's a better idea to test your components really well.
+<P>
+<TABLE CLASS=clsRef WIDTH=95% BORDER=0 CELLPADDING=5 CELLSPACING=2>
+<TR ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#A6CAF0">
+
+<TD><b>Component Configuration</b>
+</TD>
+
+<TD><b>Protection</b>
+</TD>
+
+<TD><b>Speed</b>
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS, ASP, and components in one process
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>1
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>4
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS in one process, ASP and components in another process
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>2
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>3
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS and ASP in one process, components in another process
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>3
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>2
+</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>IIS in one process, ASP in one process, components in one process
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>4
+</TD>
+<TD BGCOLOR=#EEEEEE ALIGN=LEFT>1
+</TD>
+</TR>
+</TABLE>
+
+<P>Legend: 1 = Least, 4 = Most
+
+
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="J"></A>Java
+</H4>
+<P>Use Java (or C++) to write components. Java is a powerful language that you can use to create components that are both-threaded.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="L"></A>Logging
+</H4>
+<P>You can turn on <b>URI_Query</b> extended logging to log ASP failures. This is not turned on by default. Turning it on is tricky, so here are the steps:
+<ol>
+<li> Select a Web or FTP site and open its property sheets. 
+<li> Enable logging if it is disabled and select the W3C Extended log file format. 
+<li> Click Properties. 
+<li> On the Extended Properties property sheet, select the fields you want to log ( in this instance, <b>URI_Query</b>). By default, Time,<b> </b>Client IP Address,<b> </b>Method, URI Stem, and HTTP Status are enabled. 
+<li> Click Apply. 
+</ol>
+
+<P>You can also log to the Windows NT&#174; Server Event Log; however, logging to the Windows NT Server Event Log is not a good idea if you've got lots of errors or are in debugging mode because you can fill up the log quickly. Using the Windows NT Performance Monitor, you can log a variety of error conditions, including how many ASP requests have failed and how many errors occurred during the script run-time.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="M"></A>Mail
+</H4>
+<P>Use Collaboration Data Objects (CDO) to send mail for Windows NT Server. CDO is a lightweight version of CDO for Exchange. It works on SMTP or Exchange. If you are using another e-mail protocol, use a third-party component. A comprehensive list is at ( <A HREF="../../../workshop/server/components/catalog.htm">http://www.microsoft.com/workshop/server/components/catalog.asp</A>).
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="O"></A>&lt;OBJECT&gt; tag 
+</H4>
+<P>If you need to refer to objects that may not be used, instantiate them by using the &lt;OBJECT&gt; tag rather than using <b>Server.CreateObject</b>. Using <b>Server.CreateObject</b> causes the object to be created immediately. If you don't use that object later, you end up wasting resources. 
+<P>
+<H4>Option Explicit
+</H4>
+<P>Turn on the Option Explicit option in your .asp file. Visual Basic enables you to use variables without explicitly declaring them. Turning on this option helps to identify undefined variables -- you will get an error message for undefined variables. Turning on Option Explicit makes undeclared variables illegal. Undeclared local variables are as slow as global variables. Turning on this option will help you find these slugs so that you can get them out of your code. 
+<P>
+<H4>Order of Execution
+</H4>
+<P>ASP does not guarantee the order of execution of script written in different script blocks. It is strongly recommended that only procedures (functions and subs) be used in script blocks. This way, you can control the execution order by calling those procedures from the primary script (that found inside &lt;% and %&gt;) or by calling one procedure from another procedure.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="P"></A>Performance Monitoring
+</H4>
+<P>Make sure to monitor the performance of your ASP application. You can use the System Monitor to determine the number of connections and file transfers for a week-long period on your Web site. You can also check the Event Viewer to view the Windows NT Event log. (See the logging topic just above.) Some events that can be helpful include:
+<UL>
+
+
+<LI> <b>Request.WaitTime</b> (how long the request has been waiting)
+<LI> <b>Request.Queued</b> (how many requests are queued up)
+<LI> <b>Request.Executing</b> (what's being done concurrently)
+<LI> <b>Request.PerSecond</b> (throughput)
+<LI> <b>Sessions.Current</b> (to see if there aren't any or how many are going on)
+<LI> <b>Request.Disconnected</b> (if the browser has disconnected, stop processing the ASP to reduce the waste of CPU cycles)
+<LI> <b>Templates.Cached</b> (if you are caching too many, you may run out of memory)
+
+</UL>
+<H4>Programming Conventions
+</H4>
+<P>If you want to have efficient scripts, consult the programming conventions available in the IIS Resource Kit. These conventions are published online at  <A HREF="aspconv.htm">http://www.microsoft.com/workshop/server/asp/aspconv.asp</A>.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="Q"></A>Queuing
+</H4>
+<P>You can use  <A HREF="http://www.microsoft.com/msj/0798/mtsmsmq/mtsmsmqtop.htm" TARGET="_top">Message Queuing Services</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> to bundle an update or set of updates into a transactional message that is delivered to a remote server. Message Queuing Services ensures that updates will be delivered to the remote server, even if the network is currently unavailable. Your application receives a commit message and can continue with the transaction.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="R"></A>Remote Data Service (RDS)
+</H4>
+<P>To tune RDS, increase <b>ADCThreads</b> from its default of six to twelve. The Registry entry for this parameter is located at HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC\Parameters\ADCThreads. The maximum number you can specify is 50. Note that the server must be rebooted for this change to take effect.  
+<P>
+<H4>Restarting IIS
+</H4>
+<P>By default, sites start automatically when your server restarts. To start, stop, or pause a site in the Internet Information Services snap-in, select the site you want to start, stop, or pause. Then click the Start, Stop, or Pause button on the toolbar. If a site stops unexpectedly, the Internet Information Services snap-in may not correctly indicate the state of the server. Before restarting, click Stop, and then click Start to restart the site. Use the Cluster Administrator user interface for starting and stopping clustered sites.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="S"></A>Scalability
+</H4>
+<P>Break your include files into multiple small files rather than having one large file, and include only those files required by your server-side script. If the file that your ASP script includes contains a large number of functions and variables that are not used by the including script, you can waste resources and adversely affect performance and scalability.
+<P>
+<H4>Scripting Engines
+</H4>
+<P>ASP comes with scripting engines for Microsoft Visual Basic&#174; Scripting Edition (VBScript) and Microsoft JScript. COM Scripting engines for PERL, REXX, and Python are also available through third-party developers. Cache as many script engines as you have threads running. 
+<P>
+<H4>Scripting Languages
+</H4>
+<P>ASP supports the VBScript, JScript, Perl, and REXX scripting languages.
+<P>
+<H4>Security
+</H4>
+<P>You can create server-side script using ASP that extracts a user's client certificate and saves the information. You can then use Secured Sockets Layer (SSL) to catalog and manage the certificates of users accessing your server. Read more about implementing a secure site with ASP at  <A HREF="http://www.microsoft.com/isn/techcenter/security.asp" TARGET="_top">http://www.microsoft.com/isn/techcenter/security.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P>
+<H4>Self-Tuning
+</H4>
+<P>A new feature for IIS 5.0 enables ASP to detect when executing requests are blocked by external resources, and to automatically provide more threads to simultaneously execute additional requests and continue normal processing. If the CPU becomes overburdened, ASP cuts down on the number of threads to reduce thread-switching on simultaneous non-blocking requests. 
+<P>
+<H4>Server Performance
+</H4>
+<P>You can optimize your server performance by techniques like changing Registry settings for both your system and for IIS. Read this detailed explanation of the settings used on the Microsoft Web site and how the Web team tunes the site:  <A HREF="../../../workshop/server/feature/serveroptms.htm">http://www.microsoft.com/workshop/server/feature/serveroptms.asp</A>.
+<P>
+<H4>Server Scriptlets
+</H4>
+<P>In IIS 5.0, ASP supports server scriptlets. Now you can turn your business logic script procedures into reusable COM components that you can use in your Web applications, as well as in other COM-compliant programs. 
+<P>
+<H4>Service Packs
+</H4>
+<P>Be sure to get the latest service pack for IIS and ASP. You can find information about service packs on the IIS site at  <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">http://www.microsoft.com/ntserver/nts/web/default.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P>
+<H4>Sessions
+</H4>
+<P>Use the <b>AspSessionMax</b> metabase property to set the maximum number of concurrent sessions that IIS will run. Using this property will limit the memory overhead incurred by maintaining sessions. You can also manage the lifetime of session objects within IIS using the <b>AspSessionTimeout</b> property.
+<P>
+<H4>Session Loss
+</H4>
+<P>Session identifiers can be lost for a variety of reasons including bad code, an insufficient <b>Session.Timeout</b> value, and lack of cookie acceptance. If you are running into this problem, refer to this very helpful article on ASPAlliance at  <A HREF="http://www.aspalliance.com/juan/" TARGET="_top">http://www.aspalliance.com/juan/</A> <IMG SRC="../../../sitebuilder/graphics/leave-ms.gif" WIDTH="33" HEIGHT="11" BORDER="0" ALT="Non-MS link">.
+
+<P>
+<H4>Serialized
+</H4>
+<P>Session requests are serialized unless they are in sessionless ASP pages. Sessionless ASP pages can often improve the responsiveness of your server by eliminating potentially time-consuming session activity. 
+<P>
+<H4>SQL Server
+</H4>
+<P>By default, the creation of temporary stored procedures is set to ON for SQL Server 2.65 and 3.5 drivers. If you have connection pooling enabled, your temporary stored procedures can be inadvertently deleted. We recommend that you disable the creation of stored procedures when running with connection pooling. A detailed explanation of this phenomenon can be found in the article Improving the Performance of Data Access Components with IIS 4.0,  <A HREF="../../../workshop/server/components/daciisperf.htm" TARGET="_top">http://www.microsoft.com/workshop/server/components/daciisperf.asp</A>, in the Connection Pooling and SQL Server Temporary Stored Procedure section.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="T"></A>Templates
+</H4>
+<P>Templates can be either static, like a style sheet or a Word document template, or can include logic. You can use ASP to provide templates that contain logic that you use for many different files.
+<P>
+<H4>Testing
+</H4>
+<P>Test your ASP. Use the tools available with IIS and Visual InterDev 6.0 to test your script and components.
+<P>
+<H4>Threads
+</H4>
+<P>Use objects that are marked as "both" for the threading model in your ASP file, if you plan to store those objects in session or application state. Objects marked "both" or "apartment" will give you the best performance for objects that are within the scope of the page. ASP does not guarantee that your session will run on a particular thread. If you use an apartment-threaded component, that component will always run on the same thread. Components that are both-threaded can run on any thread. In simple terms: Let's say that you are at a supermarket. You notice that checkout line number three has only one person in line while the other checkout lines are long. You choose checkout line number three. If you come back to the store later, you might see that checkout line number three now has a very long line, so you'd prefer to go to another checkout that has a shorter line. If you are apartment-threaded, you can't go to another line; you must go back to the thread that created you. Read  <A HREF="../../../workshop/server/components/agility.htm">http://www.microsoft.com/workshop/server/components/agility.asp</A> for more information about threading and ASP components. 
+<P>
+<H4>Transactions
+</H4>
+<P>A transaction is a group of operations that you can have perform as a whole. Transactions are used with databases to ensure that all related data is updated as a whole. If an error occurs, the original state of the database is restored.
+<P>
+<H4>Tools
+</H4>
+<P>Drumbeat, FrontPage 2000, and NetObjects Fusion are tools that you can use to get started using ASP quickly and easily. 
+<P>
+<H4>Type Libraries
+</H4>
+<P>You can cache type libraries on the server using the <b>AspEnableTypelibCache</b> metabase property. This property applies to all ASP applications that are running in the same process.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="V"></A>Validation
+</H4>
+<P>If you are running a smart browser, it's capable of doing some validation for you. Take advantage of this whenever you can. Then, perform validation through your scripting. When all else fails, you can go ahead and access your database on the back end. But remember that whenever you access the database that lives on the server, you are going to take a performance hit. This can be very expensive if you have several values in a form that you are validating. If you know that you will need to run some script on the client side, go ahead and move the code to the client side for faster performance. When you are running on the client, you have the processor(s) for your use; the server has to use its processing power for all of the requests it receives. 
+<P>
+<H4>Visual InterDev
+</H4>
+<P>Use Microsoft Visual InterDev&#174; to quickly create leading-edge Web sites. Visual InterDev includes a set of integrated database tools that greatly simplify connecting your Web site to OLE-DB data sources and open database connectivity- (ODBC) compliant databases. For more information, visit the Microsoft Visual InterDev Web site at  <A HREF="http://www.microsoft.com/vinterdev/" TARGET="_top">http://www.microsoft.com/vinterdev/</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">. For development information, refer to  <A HREF="http://msdn.microsoft.com/vinterdev/technical/articles/develop.asp" TARGET="_top">http://msdn.microsoft.com/vinterdev/technical/articles/develop.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">.
+<P>If you are running into problems debugging local ASP in Visual InterDev, the problem might be with the way you have your permissions set. Open DCCOMCNFG and go to the Catalog Class and Machine Debug Manager application identifiers. Go to the Security tab and make sure that your machine Administrators group is listed in the Custom Access and Launch Permissions dialogs. In addition, be sure to add yourself to the Administrators group.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="W"></A>WCAT
+</H4>
+<P>The WCAT tool runs simulated workloads on client/server configurations. Using WCAT, you can test how IIS and your network configuration respond to a variety of different client requests. The results of these tests can be used to determine the optimal server and network configuration. WCAT is designed to evaluate how Internet servers running Windows NT Server and IIS respond to various workload simulations. Download WCAT from <A HREF="../../../workshop/server/toolbox/wcat.htm#download">http://www.microsoft.com/workshop/server/toolbox/wcat.asp#download</A>. 
+<P>
+<H4>Web Farms
+</H4>
+<P>A Web farm is a Web site that is served by more than one computer. As a result, user requests will not always be routed to the same server. Software is used to distribute the work. This is known as load balancing. When loads are balanced, it can be difficult to maintain session information. If you are going to use ASP session management on a Web farm that is load-balanced, you need to be sure that all requests made within a user session are directed to the same server. You can do this by writing a <b>Session_OnStart</b> procedure that uses a <b>Response</b> object to redirect the browser to the Web server where the user's session is running.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<P>
+<H4><A NAME="X"></A>XML
+</H4>
+<P>Extensible Markup Language (XML) enables you to describe complex data structures to be used in your Web applications (for C-types, think of a struct). You can use the  <A HREF="../../../workshop/xml/default.htm" TARGET="_top">Microsoft XML Parser</A> (part of Internet Explorer 4.0) to create ASP applications using XML.
+<P><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+<P>
+
+<H2><A NAME="TOPIC5"></A>Bibliography 
+</H2>
+More information about ASP can be found in the following articles:
+<UL>
+
+
+<LI> IIS documentation:  <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">http://www.microsoft.com/workshop/ntserver/nts/web/default.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">
+<LI> ASP overview:  <A HREF="aspover.htm">http://www.microsoft.com/workshop/server/asp/ASPover.asp</A>
+<LI> ASP technology overview:  <A HREF="aspfeat.htm">http://www.microsoft.com/workshop/server/asp/aspfeat.asp</A>
+<LI> Geek Speak Decoded #3: Client-Side and Server-Side Objects: <A HREF="../../../sitebuilder/magazine/clientvserver.htm">http://www.microsoft.com/sitebuilder/magazine/clientvserver.asp</A>
+<LI> Tom Moran's ASP Q&amp;A: <A HREF="../../../workshop/server/feature/morqa.htm">http://www.microsoft.com/workshop/server/feature/morqa.asp</A>
+</UL>
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg00562.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="aspatoz.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

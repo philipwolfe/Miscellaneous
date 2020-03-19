@@ -1,0 +1,533 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Using the Membership Directory and Active User Object (AUO) for Session State Data</TITLE>
+
+<META NAME="Description" CONTENT=" Site Server feature: Using the Membership Directory and Active User Object (AUO) for Session State Data" />
+<META NAME="Keywords" CONTENT="AUO, Site Server membership directory, session state" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Anthony Chavez" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+  function showSample(sURL) {
+    sFeatures = "width=520,height=400,left=10,top=10,toolbar=0,statusbar=0,scrollbars=1,resizable=1";
+    newWin = window.open (sURL, "_blank", sFeatures);
+    return false;
+  }
+
+//--></SCRIPT>
+
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg07348.htm#/workshop/server/nextgen/sessiondata.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg07348.htm#/workshop/server/nextgen/sessiondata.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg07347.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><a name="title" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex; Session state data, using the Membership Directory and AUO for; Membership Directory, Site Server: using with AUO for session state data; AUO, using with Membership Directory for session state data">Using the Membership Directory and Active User Object (AUO) for Session State Data</A></H1>
+<HR SIZE="1" />
+<h6><a name="title2" IDX_TYPE="task" IDX_CONCEPT="Use the Membership Directory and AUO for session state data"></a></h6>
+<P>Anthony Chavez
+<BR>Microsoft Corporation
+<P>April 27, 1998
+
+
+<P>
+<P><a href="sessdata.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download this document in Microsoft Word format (zipped, 14K)</a>.
+<P><a name="top"></a>
+<P> </a><b>Contents</b>
+<br> <A HREF="sessiondata.htm#topic1">Introduction</A>
+<BR> <A HREF="sessiondata.htm#topic2">Using the Session Object to Store Session State Data</A>
+<BR> <A HREF="sessiondata.htm#topic3">Using the Membership Directory to Store Session State Data</A>
+<BR> <A HREF="sessiondata.htm#topic4">Configuring AUO</A>
+<BR> <A HREF="sessiondata.htm#topic5">Accessing Session State Data Using AUO</A>
+<BR> <A HREF="sessiondata.htm#topic6">Differences Between IIS Sessions and Membership Directory Session Objects</A>
+<BR> <A HREF="sessiondata.htm#topic7">Load and Scaling Issues</A>
+<P><b>Return to Site Server 3.0 Feature pages</b>
+<br><a href="siteservfeat.htm">Go to SBN Overview page</a>
+<br><A HREF="http://www.microsoft.com/msdn/news/feature/042798/ssummary.htm" TARGET="_top">Go to MSDN Summary page</a> <A HREF="http://www.microsoft.com/msdn/" TARGET="_top"><IMG src="/msdn/art/msdn50x25.gif" border="0" width="50" height="25" alt="MSDN Online"></A>
+
+<br><A HREF="http://www.microsoft.com/msdn/news/feature/042798/default.htm" TARGET="_top">Go to MSDN Overview page</a> <A HREF="http://www.microsoft.com/msdn/" TARGET="_top"><IMG src="/msdn/art/msdn50x25.gif" border="0" width="50" height="25" alt="MSDN Online"></A>
+
+
+
+<P>
+<h2><A NAME="topic1"></A>Introduction
+</h2>
+<P>This article discusses how the Site Server Membership Directory and Active User Object (AUO) can be used to support session state data in Active Server Pages (ASP)-based Web applications.
+<P>This approach has the benefit that it will work across Web farms. In addition, session state data can be stored in the RAM-based dynamic portion of the Membership Directory, yielding higher performance than storing the session state data in a static database. Furthermore, you can configure AUO to provide access to session state data, resulting in a single, simple interface to all user data.
+<P>Both the Membership Directory and AUO are available as part of Microsoft Site Server version 3.0.
+<P><b>Note </b>This article assumes the reader is familiar with the Membership Directory and AUO, as well as Microsoft Internet Information Server (IIS) and ASP.
+<P> <A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic2" IDX_TYPE="sbngen" IDX_CONCEPT="Session object, using to store session state data; Session state data, using Session object to store">Using the Session Object to Store Session State Data</A>
+</h2>
+<P>Session state data is information about a user that you want to track during the user's visit to your Web site. Some examples of session state data are:
+<UL>
+
+
+<LI> Whether the user has visited a promotional page. If they have not, that can trigger ASP code to show them a highly visible link to the page.
+<LI> Number of times the user has requested a stock quote during the session. If the number exceeds a certain limit, that can trigger code to set an attribute for that user that indicates they may be interested in the stock market.
+<LI> List of stocks that the user has requested during the session. At the top of the page, you can have ASP code that provides shortcut links to the latest quotes for those stocks.
+<LI> Page that the user is currently viewing. Use this information to generate a list of all users currently online, as well as a list of all users currently viewing a given page.
+
+</UL>Session state is inherently temporary; if the user does not request another page within a certain time (for example, 20 minutes), the session expires and all data associated with it is lost. The next time the user requests a page from the site, a new session begins.
+<P>IIS and ASP technology provide script authors an easy way to manage session state data, using the built-in Session object (see the IIS documentation, which you can download from  <A HREF="http://www.microsoft.com/ntserver/nts/web/default.asp" TARGET="_top">http://microsoft.com/ntserver/nts/web/default.asp</A> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link">). When a user first requests an ASP page within an application, IIS automatically creates a new Session object for that user in the Web server. The script author uses this object to store and retrieve arbitrary user properties. The author does not have to deal with creating the Session object, assigning a session cookie to the user, or retrieving the Session object for the current user; this is handled behind the scenes by IIS. To store a variable in the Session object, you simply assign it to a named entry.
+<P>For example:
+<P>
+<PRE class=clsCode>
+Session("visitedPromoPage") = True
+
+</PRE>
+<P>To retrieve a session variable, the script author just accesses the entry where it is stored. For example:
+<P>
+<PRE class=clsCode>
+&lt;% if Session("visitedPromoPage") = False then %&gt;
+ &lt;a href="PromotionalPage"&gt; CLICK HERE FOR COOL STUFF &lt;/a&gt;
+&lt;% end if %&gt;
+
+</PRE>
+<P>Using IIS Session objects works great but there are limitations; in particular, they are difficult to use with Web farms. The Session object is stored in RAM on the computer where it was originally created. If on subsequent requests the user receives a Web page from a different Web server computer, a new Session<b> </b>object will be created there, with no relation to the original Session object, which is clearly not the desired behavior. There are various workarounds to this problem, as well as other solutions. Full discussion of these approaches and their tradeoffs is outside the scope of this paper; see the paper  <A HREF="../../../workshop/server/feature/webfarm3.htm">Managing Session State in a Web Farm</A> (consult the Microsoft BackOffice Web site).
+<P><b>Note</b> One of the approaches described in this paper is to use the Microsoft Personalization System (MPS). This product has been succeeded by the Personalization system in Site Server 3.0. If you wish to use a static store approach to storing session state, it is strongly recommended that you use Site Server 3.0.
+<P>One approach (not mentioned in the Web Farm paper) that you should consider is storing session state data in the Site Server Membership Directory and using AUO to access it from your ASP pages. This method is discussed in the remainder of this document.
+<P> <A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic3" IDX_TYPE="sbngen" IDX_CONCEPT="Membership Directory, using to store session state data; Session state data, using the Membership Directory to store">Using the Membership Directory to Store Session State Data</A>
+</h2>
+<P>The Membership Directory can store user and application data for intranet and Internet Web sites that have been built on IIS and ASP. Data stored in the Membership Directory can be either static or dynamic. For example, user accounts and personalization profiles are stored as static data. On the other hand, the current IP address of the user could be stored as dynamic data, because it is transient and will change depending on where the user logs in. Access to data in the Membership Directory is supported through the Active Directory Service Interface (ADSI). In addition, one can access the Membership Directory over TCP/IP using the standard LDAP version 3 protocol.
+<P>The Dynamic Directory area of the Membership Directory is a natural place to house session state data. As described in the following section, you can configure AUO to automatically create a dynamic object in the Membership Directory for each user visiting the site. Attributes on this object are the user's session attributes. Dynamic objects in the Membership Directory have a time-to-live (TTL), which is specified when the object is created. Clients can refresh a dynamic object, resetting its TTL; once the TTL has expired, the object is automatically deleted. This corresponds precisely to the notion of a session. The TTL is the session length; when the TTL (and the Session object itself) expires, the session is over. Whenever the user visits a page on the site, the dynamic object is refreshed and the session is renewed. When the user goes for a long period without accessing a page on the site, the Session object expires.
+<P>The main benefit of this approach is the ability to work in a Web farm environment where users may be bounced from Web server to Web server as they traverse the site, because the session state data is stored in the common Membership Directory. Another benefit is fault tolerance. Using the IIS built-in Session object, if the Web server containing a user's session data crashes, that session data is lost. Using the Membership Directory to store session data, if a Web server goes down, the user's session state data is preserved. When the load-balancing mechanism redirects the user to a working Web server, pages on that server will be able to retrieve the user's session data from the Membership Directory. Additional fault tolerance can be added by using the dynamic data replication feature of the Membership Directory. Multiple Lightweight Directory Access Protocol (LDAP) Services (on separate computers) that are part of the same Membership Directory can be configured to replicate dynamic data amongst each other. If one of the LDAP Services crashes, the others take over responsibility for managing its dynamic data.
+<P> <A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic4" IDX_TYPE="sbngen" IDX_CONCEPT="AUO, configuring">Configuring AUO</A>
+</h2>
+<P>One of the key features of Site Server is Active User Object (AUO). AUO provides script authors with seamless access to user attributes stored in a variety of stores. AUO is based on a provider model; any store accessible through ADSI can be an AUO provider. To access session state data using AUO, you need to configure a provider to access the Dynamic Directory portion of the Membership Directory.
+<P>First, make sure you have installed a Membership Server with AUO on your Web server computer and mapped the appropriate Web site to it. The Membership Directory can use either Membership Authentication mode or Microsoft Windows NT Authentication mode.
+<P>Second, you need to choose or create a class of object for the user's session state data. This can be any class that the Membership Directory supports. You can use an existing class, such as the <b>Member</b> class, or you can define a new class with the attributes that you want as session properties. One of the Site Server samples (which you can download from the Microsoft Web site) is an example of how to use AUO with session state data. The sample is an ASP page designed to work with session state data. If you want to try this ASP page, you must configure a new container, new class, and attributes as shown in the following procedure. Use the Membership Directory Manager (MDM) (from the Microsoft Management Console [MMC]) to add containers, classes, and attributes as needed.
+<P>To configure your Site Server installation to use the session state data sample:
+<P>1. Under the Membership Directory root node, create a container named <b>ou=SessionStateData</b>.
+<P>2. Create an attribute in the schema with the following attributes:
+<P>
+<PRE class=clsCode><b>cn</b>: HitCount
+<b>Type</b>: Integer
+</PRE>
+<P>3. Create a class named <b>SessionState </b>with the following attributes:
+<P>
+<PRE class=clsCode><b>Must-have</b>: cn and objectClass*.
+<b>May-have</b>: GUID and HitCount**.
+<b>Parent class</b>: organizationalUnit
+<b>RDNAttribute</b>: cn.
+</PRE>
+<P>*If you are using the Membership Directory Manager (from MMC) to create this class, you will not be able to explicity add the <b>objectClass</b> attribute; this is done for you automatically.
+<P>**<b>GUID</b> is a required attribute of your <b>SessionState</b> class.
+<P>4. Use Microsoft Site Server Service Admin (MMC) to create a secondary AUO provider with the alias <b>SessionState </b>and give it the
+    following properties</a>:
+
+<PRE class=clsCode><b>ADS path</b>: <i>computename</i>:<i>LDAPport</i>/o=<i>directoryname</i>/ou=SessionStateData
+<b>Schema path</b>: <i>computename</i>:<i>LDAPport</i>/o=<i>directoryname</i>/ou=Admin/cn=Schema/cn=SessionState
+</PRE>
+
+<P>
+
+<P> <A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic5" IDX_TYPE="sbngen" IDX_CONCEPT="AUO, using to access session state data; Session state data, accessing using AUO">Accessing Session State Data Using AUO</A>
+</h2>
+<P>On any ASP page where you want to get or set session state data, you need to create an AUO instance for the current user:
+<P>
+<PRE class=clsCode>
+Set user = Server.CreateObject("Membership.UserObjects")
+</PRE>
+<P>This line sets the <b>user </b>variable to the AUO of the user currently accessing the page. We will use this variable in the example code later in this topic.
+<P>For the static AUO providers, you are now ready to access user properties. For the dynamic provider you have configured for session state, you need to do a little extra work. Because the Session object is dynamic, it may not currently exist. Therefore, you need to add code that checks if the user's Session object exists, and creates it if the object does not exist. The code also needs to set the object's TTL to the desired session length. The
+    following code snippet shows how to do this (it assumes the AUO session state provider is named <b>SessionState</b>, and the class for Session objects is <b>SessionState</b>):
+<PRE class=clsCode>
+If Not IsArray(user("SessionState").objectClass) Then
+ ' User doesn't yet exist, so make sure it's dynamic
+ user("SessionState").objectClass = Array("SessionState", "dynamicObject")
+end if
+
+' set the time-to-live to the desired session length.
+' This is specified in seconds.
+User("SessionState").entryTTL = 600    ' set to 10 minutes
+User("SessionState").SetInfo 'must call this immediately after setting entryTTL
+
+
+</PRE><P>
+<P><b>Note</b> It is necessary to always call <b>SetInfo()</b> immediately after setting the <b>entryTTL</b> attribute, and <b>before setting any other attribute on the dynamic AUO provider</b>.
+<P>
+
+
+<P>
+
+<P>You may want to refresh the user's Session object whenever they visit <i>any</i> page in the site, whether or not that page actually uses session state data. To keep from having redundant code everywhere, we recommend putting the previous code into an<b> </b>.inc file, and including this file on every ASP page.
+<P>Now you can access user session properties, very much like you would using the built-in Session object. Two examples follow, which show how you would use the Session object and how you would use AUO and the Membership Directory.
+<P>To set a user session property:
+<UL>
+
+
+<LI> Using the built-in Session object:
+
+</UL>
+<PRE class=clsCode>   Session("quoteTotal") = 1
+   Session("currentPage") = Request("SCRIPT_NAME")
+</PRE>
+<UL>
+
+
+<LI> Using AUO with the Membership Directory:
+
+</UL>
+<PRE class=clsCode>   User("ILSsession").quoteTotal= 1
+   User("ILSsession").currentPage = Request("SCRIPT_NAME")
+</PRE>
+<P>To retrieve a user session property:
+<UL>
+
+
+<LI> Using the built-in Session object:
+
+</UL>
+<PRE class=clsCode>   userQuoteTotal = Session("quoteTotal")
+</PRE>
+<UL>
+
+
+<LI> Using AUO with the Membership Directory:
+
+</UL>
+<PRE class=clsCode>   userQuoteTotal = User("ILSsession").quoteTotal
+</PRE>
+<P>Finally, at the end of every page on which you have set any session properties using AUO with the Membership Directory, be sure to call the <b>SetInfo()</b> method on your dynamic provider:
+<P>
+<PRE class=clsCode>
+User("ILSsession").SetInfo
+
+</PRE>
+<P><b>Note</b> It is necessary to always call <b>SetInfo()</b> immediately after setting the <b>entryTTL</b> attribute, and <b>before setting any other attribute on the dynamic AUO provider</b>.
+<P> <A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic6" IDX_TYPE="sbngen" IDX_CONCEPT="IIS Sessions, and Membership Directory Session objects: differences; Membership Directory objects, and IIS sessions: differences; Session objects, differences between Membership Directory and IIS sessions">Differences Between IIS Sessions and Membership Directory Session Objects</A>
+</h2>
+<P>As you can see from the previous examples, using AUO for session state data is similar to using the built-in Session object. However, there are three significant differences.
+<P>
+<h3>Defining New Session Properties
+</h3>
+<P>With the built-in Session object, you can define new properties simply by specifying a new entry name. For example, suppose you want to let each user enter a friendly name to be used in their session. You might do something like this:
+<P>
+<PRE class=clsCode>
+Session("userFriendlyName") = Request.Form("FriendlyName")
+
+</PRE>
+<P>Using AUO with the Membership Directory, it is slightly more work. Before you can use <b>userFriendlyName </b>as a session property, you need to first define a new attribute in the Membership Directory schema called <b>userFriendlyName</b>, and then add this attribute to the class being used for session state data. To do this, use MDM. Once this is done, you can use the following code:
+<P>
+<PRE class=clsCode>
+User("ILSsession").userFriendlyName = Request.Form("FriendlyName")
+</PRE>
+<P>
+<h3>Searching for Session State Data
+</h3>
+<P>One of the biggest differences between using the IIS Session object and storing session state data in the Membership Directory is that you can search for objects in the Membership Directory. For example, you could generate a list of all the users currently viewing a given Web page. Assuming that the name of the user's current page is stored in the <b>currentPage</b> property as shown previously, the <A HREF="sessiondataex1.htm" TARGET="_blank"
+    ONCLICK="return showSample('/workshop/server/nextgen/sessiondataex1.htm')">following code</a> will print a list of all users viewing the current page. (Note that this code utilizes the Active Data Object [ADO] to search the Membership Directory.)
+
+<P>
+<h3>Types of User Session Properties
+</h3>
+<P>Using the built-in Session object, you can store any type of variable in a session entry, including String, Integer, and Object types. For example, suppose your ASP page creates a COM object that stores a list of the stocks the user has requested quotes for during the current session. Using the Session object, you can store this COM object for subsequent access in other pages.
+<P>
+<PRE class=clsCode>
+Set userQuotes= CreateObject("QuoteRequests")  ' create COM object
+userQuotes.addQuote("msft")   ' call methods on object
+userQuotes.addQuote("ibm")
+Session("Quotes") = userQuotes   ' store the object
+
+</PRE>
+<P>If you are using the Membership Directory for session state data, this is not quite as easy. The types of values you can store for user attributes depends on the syntax of these attributes, as defined in the Membership Directory schema. The Membership Directory supports five attribute syntaxes: UnicodeString, Integer, Date/Time, Binary, and DistinguishedName. (See the <i>Operations Guide</i> in the Personalization &amp; Membership [P&amp;M] section of the Site Server, Commerce Edition documentation for explanation of these syntaxes.) Typically, your session attributes will have UnicodeString or Integer syntax.
+<P><b>Note:</b> The following discussion assumes you are familiar with writing and extending COM objects. If you are not, ignore this section.
+<P>To store a COM object as a session attribute in the Membership Directory, it needs to be able to persist itself into a format suitable for storing as an attribute value in the Membership Directory, such as a String or Binary blob.
+<P>Taking the previous example, if you wanted to persist the <b>QuoteRequests</b> COM object in the Membership Directory, you could add a <b>Persist()</b> and <b>Unpersist()</b> method. The <b>Persist()</b> method would return a string that represents the current state of the object. The <b>Unpersist()</b> method would take as an argument a string generated by calling <b>Persist()</b> and restore the object back to the state represented by the string. This is a standard technique used to persist objects to external stores. Your COM classes may already have methods that perform such functions.
+<P>Once you have <b>Persist()</b> and <b>Unpersist()</b> methods, you can easily store a <b>QuoteRequests</b> object as a session attribute in the Membership Directory. Here is code that duplicates the previous example.
+<P><b>Note</b> Assume that an attribute named Quotes with UnicodeString syntax has been defined in the Membership Directory schema, and added to the SessionState class.)
+<P>
+<PRE class=clsCode>
+Set userQuotes = CreateObject("QuoteRequests")  ' create COM object
+userQuotes.addQuote("msft")  ' call methods on object
+userQuotes.addQuote("ibm")
+'additional operations on object...
+User("ILSsession").quotes = userQuotes.Persist()
+
+</PRE>
+<P>Now suppose a different ASP page needs to get the user's current <b>QuoteRequests</b> object. The following code illustrates how to do this:
+<P>
+<PRE class=clsCode>
+Set userQuotes= CreateObject("QuoteRequests")   ' create COM object
+userQuotes.Unpersist( User("ILSsession").quotes )
+' now you can perform operations on the UserPurchases object
+userQuotes.addQuote("nscp")
+userQuotes.listQuotes()
+....
+
+</PRE>
+<P> <A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<P>
+<h2><A NAME="topic7"></A>Load and Scaling Issues
+</h2>
+<P>When designing your site, you need to take into account issues of load and scaling. Your configuration needs to be such that the anticipated peak load on any one component will not overtax it. When using the Membership Directory to store session state data, the load levels of the LDAP Services will depend on a number of different factors, including:
+<UL>
+
+
+<LI> Number of Web servers whose AUO instance points to the LDAP Service.
+<LI> Average hits/second for the pages on these Web servers that use the AUO dynamic provider for session state data.
+<LI> Number of pages on these Web servers that use AUO for session state data.
+<LI> Average number of reads and writes to the AUO dynamic provider for these pages.
+
+</UL>It is recommended that you use a combination of empirical testing and analysis of existing and anticipated loads. For more guidance on configuring your site, consult the Microsoft BackOffice Web site for additional white papers and other information.
+
+<P>The basic approach for addressing session state load is to have multiple LDAP Services pointing to the same Membership Directory. The AUO instances associated with your Web servers should be balanced across these LDAP Services. You will most likely want to have multiple LDAP Services for other reasons as well; for example, to balance the load for authentication and personalization based on static attributes, fault tolerance, and so on.
+<P>Personalization &amp; Membership (P&amp;M) supports replication of dynamic data among LDAP Services that point to the same Membership Directory. Although a user may get bounced across Web servers through round-robining, all of the ASP pages on the Web servers will be able to access the user's session state data using AUO, so long as the AUO instances point to LDAP Services that access the same Membership Directory database. The following picture illustrates this:
+<P><img src="ses3459b.gif" WIDTH="440" HEIGHT="248" ALT="[SES3459B  5087 bytes ]">
+<P><b>Figure 1. ASP pages accessing session state data using AUO</b>
+<P>Besides load, you should also consider the anticipated peak number of concurrent sessions. This number translates to the maximum number of dynamic objects that the LDAP Service must store at any single time. Based on this number, you need to appropriately configure the maximum number of dynamic objects that the LDAP Service allows. You can set this property using Microsoft Site Server Service Administration (MMC), or using the P&amp;M Service Administration command-line interface.
+<P><P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg07346.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="sessiondata.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

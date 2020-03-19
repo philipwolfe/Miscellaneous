@@ -1,0 +1,1070 @@
+<?xml version="1.0"?>
+
+<TOC>
+	<TOCINFO>
+		<TITLE>Server Technologies</TITLE>
+		<HREF>/workshop/server/default.asp</HREF>
+		<ICON>/workshop/graphics/icons/server.gif</ICON>
+	</TOCINFO>
+
+
+
+	<SECTIONS>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+			<HREF>/workshop/server/nextgen/roadmap.asp</HREF>
+			<TITLE>Road Map of Server Technologies</TITLE>
+		</SECTIONINFO>
+	</SECTION>
+
+		<SECTION CONTRIBUTOR="SBN">
+			<SECTIONINFO>
+				<TITLE>Server Migration Lab</TITLE>
+			</SECTIONINFO>
+			<ARTICLES>
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/migrlab/whyto.asp</HREF>
+					<TITLE>Why Migrate to NT 4.0/IIS 4.0</TITLE>
+			    </ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/migrlab/howto.asp</HREF>
+					<TITLE>How to Migrate: Step-by-Step</TITLE>
+			    </ARTICLE>
+			</ARTICLES>
+		</SECTION>
+
+	<SECTION>
+
+		<SECTIONINFO>
+			<TITLE>Internet Information Server (IIS)</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/essentials/forstarters/starts031698.asp</HREF>
+				<TITLE>Introduction to IIS 4.0</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isn/techcenter/tuningIIS.asp</HREF>
+				<TITLE>Tuning IIS Performance</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/debug.asp</HREF>
+				<TITLE>Debugging with IIS 4.0</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isapi/goprem.asp?TARGET=/msdn/library/devprods/vc%2B%2B/vcmfc/d4/s534e.htm</HREF>
+				<TITLE>Debugging with IIS 3.0</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/tune.asp</HREF>
+				<TITLE>IIS 4.0 Tuning for High-Volume Sites</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/iismts.asp</HREF>
+				<TITLE>IIS 4.0 &amp; MTS 2.0</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isapi/goprem.asp?TARGET=/msdn/library/sdkdoc/iishelp/iis/htm/sdk/eadg_7f90.htm</HREF>
+				<TITLE>IIS 4.0 SDK</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isn/techcenter/unixnt/default.asp</HREF>
+				<TITLE>IIS 4.0 Unix Integration SDK</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isn/techcenter/IISManCom.asp</HREF>
+				<TITLE>IIS 4.0 Management Component</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/iis/customerr.asp</HREF>
+				<TITLE>IIS 4.0 Custom Error Messages</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/remoteadmin.asp</HREF>
+				<TITLE>Remote Admin from MMC</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/toolbox/wcat.asp</HREF>
+				<TITLE>IIS 4.0 WCAT download</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/seminar/98/iissecurity/portal.htm</HREF>
+				<TITLE>Security</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/seminar/98/iissupport/portal.htm</HREF>
+				<TITLE>Security Q &amp; A</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/security.asp</HREF>
+				<TITLE>Authentication &amp; Security</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/ntserver/nts/web/default.asp</HREF>
+				<TITLE>IIS 4.0/Windows NT Web Services</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/feature.asp</HREF>
+				<TITLE>Minimum Services for IIS 3.0</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/ntserver/nts/techdetails/default.asp</HREF>
+				<TITLE>Windows NT Server 4.0 Technical Papers</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/ntserver/windowsnt5/techdetails/default.asp</HREF>
+				<TITLE>Windows NT Server 5.0 Technical Papers</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/ntserver/nts/downloads/recommended/nt4svcpk4/default.asp</HREF>
+				<TITLE>Windows NT Option Pack</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/msj/</HREF>
+				<TITLE>Windows NT 5.0 Preview in MSJ</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Active Server Pages (ASP)</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/ASPover.asp</HREF>
+				<TITLE>Overview</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/aspfeat.asp</HREF>
+				<TITLE>Feature Overview</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/aspatoz.asp</HREF>
+				<TITLE>ASP from A to Z</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/aspconv.asp</HREF>
+				<TITLE>Programming Conventions</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/ASPtips.asp</HREF>
+				<TITLE>15 Top Tips</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/maxperf.asp</HREF>
+				<TITLE>Maximizing Performance</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isn/techcenter/security.asp</HREF>
+				<TITLE>Implement a Secure Site with ASP</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/nextgen.asp</HREF>
+				<TITLE>International ASP</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/site012198.asp</HREF>
+				<TITLE>Graphic Design w/ASP</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/database/datavis/datavis.asp</HREF>
+				<TITLE>Prepping Your Data with ASP</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/comtutorial.asp</HREF>
+				<TITLE>COM Objects in ASP</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://mspress.microsoft.com/prod/books/sampchap/1456.htm</HREF>
+				<TITLE>Programming ASP</TITLE>
+					<LINKTYPE>leave-sbn</LINKTYPE>
+					<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/active.asp</HREF>
+				<TITLE>Web Session Management &amp; ASP</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/toolbox/toolbox.asp</HREF>
+				<TITLE>IDC/HTX-to-ASP Converter</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/devnews/mayjun97/benasp.htm</HREF>
+				<TITLE>Building an ASP Application, Part I</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/devnews/sepoct97/apscale.htm</HREF>
+				<TITLE>Building an ASP Application, Part II</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/server062998.asp</HREF>
+				<TITLE>Q &amp; A</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.clbooks.com/partners/sitebuilder/1576102475-sbn.html</HREF>
+				<TITLE>ASP Black Book</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Active Server Components</TITLE>
+			<UPDATED>Nov 4 1998</UPDATED>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/sitebuilder/magazine/clientvserver.asp</HREF>
+				<TITLE>Intro to Client &amp; Server-Side Objects</TITLE>
+	            <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/components/activex/aspactx.asp</HREF>
+				<TITLE>Using ActiveX with ASP</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/aspvs97.asp</HREF>
+				<TITLE>Creating in Visual Studio 97</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/asp/comp.asp</HREF>
+				<TITLE>Developing with ATL</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/vbmtsiis.asp</HREF>
+				<TITLE>Developing in Visual Basic for IIS/MTS</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/com/wpaper/mts-ejb.asp</HREF>
+				<TITLE>MTS &amp; JavaBeans Comparison</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/agility.asp</HREF>
+				<TITLE>Threading Models &amp; Performance</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/components/com/comthread.asp</HREF>
+				<TITLE>COM Threading Models</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn.microsoft.com/developer/news/drgui/072798.htm</HREF>
+				<TITLE>Dr. GUI COM Series</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn/microsoft.com/developer/news/feature/duwamish2_5/d2dalatl.htm</HREF>
+				<TITLE>Migrating VB 5 to VC++ 5</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/daciisperf.asp</HREF>
+				<TITLE>Data Access Components with IIS 4.0</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/outproc.asp</HREF>
+				<TITLE>Enabling Out-of-Process Components</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/catalog.asp</HREF>
+				<TITLE>ASP Component Catalog</TITLE>
+				<UPDATED>Nov 4 1998</UPDATED>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/com/</HREF>
+				<TITLE>COM Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/server090198.asp</HREF>
+				<TITLE>Create and Debug Java COM Objects</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/components/server100198.asp</HREF>
+				<TITLE>Data Access Using WFC/ADO</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/components/default.asp</HREF>
+				<TITLE>See Also: Component Development</TITLE>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Site Server</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/nextgen/siteservfeat.asp</HREF>
+					<TITLE>Overview of SBN/MSDN Site Server Feature</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/msdn/news/feature/042798/ssintro.htm</HREF>
+					<TITLE>Introduction</TITLE>
+					<LINKTYPE>leave-sbn</LINKTYPE>
+					<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/searchcatalog.asp</HREF>
+				<TITLE>Creating a Search Catalog for Your Site</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn/microsoft.com/news/feature/042798/SSDatIdx.htm</HREF>
+				<TITLE>Search Database Indexing</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn.microsoft.com/news/feature/042798/ExtdSS30.htm</HREF>
+				<TITLE>Extending Search w/AUO Framework</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/siteserver/intranet/guide/index.asp</HREF>
+				<TITLE>Site Server Search &amp; Index Server</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+				</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/perstutor.asp</HREF>
+				<TITLE>Personalization &amp; Membership Tutorial</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn.microsoft.com/news/feature/042798/hostmulti.htm</HREF>
+				<TITLE>Hosting Multiple User Communities</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/sessiondata.asp</HREF>
+				<TITLE>Membership Dir &amp; AUO for Session State</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn.microsoft.com/news/feature/042798/memdirct.htm</HREF>
+				<TITLE>Membership Directory Config &amp; Tuning</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/kmpaper.asp</HREF>
+				<TITLE>Getting the Most Out of Knowledge Manager</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/siteserver/siteexch/exchss.asp</HREF>
+				<TITLE>Knowledge Mgmt with Exchange Server</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/mcis/reskit/rk_start.htm</HREF>
+				<TITLE>MCIS Resource Kit</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/siteserver/default.asp</HREF>
+				<TITLE>Site Server Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/siteserver/commerce/partners/proservices.asp</HREF>
+				<TITLE>Site Server Partners Page</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.SiteServer.com</HREF>
+				<TITLE>SiteServer.Com</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+     		</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+		<SECTION>
+			<SECTIONINFO>
+				<TITLE>Commerce</TITLE>
+			</SECTIONINFO>
+
+			<ARTICLES>
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/sitebuilder/magazine/starters.asp</HREF>
+					<TITLE>For $tarters</TITLE>
+					<TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/seminar/sbn_index.htm</HREF>
+					<TITLE>Online Training</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/siteserver/commerce/guide/site3white.asp</HREF>
+					<TITLE>Tech Papers</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/siteserver/commerce/update/tools.asp</HREF>
+					<TITLE>Tools, Performance Kit &amp; Samples</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/siteserver/commerce/update/css.asp</HREF>
+					<TITLE>Sample Sites</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>http://msdn.microsoft.com/developer/news/feature/duwamish3/default.htm</HREF>
+					<TITLE>Duwamish Bookstore Site</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/siteserver/intranet/Update/sdk.asp</HREF>
+					<TITLE>Commerce SDK</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/siteserver/commerce/update/enhancements.asp</HREF>
+					<TITLE>Interchange Pipeline (CIP) Manager Beta &amp; SDK</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/mcis/reskit/rk_start.htm</HREF>
+					<TITLE>MCIS Resource Kit</TITLE>
+				    <LINKTYPE>leave-sbn</LINKTYPE>
+			        <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/sbnmember/osig/default.asp</HREF>
+					<TITLE>Online Special-Interest Group: E-Commerce</TITLE>
+					<TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>http://www.sbnosig.com/gazette/</HREF>
+					<TITLE>OSIG Member Gazette Commerce topics</TITLE>
+					<TARGET>_top</TARGET>
+				</ARTICLE>
+			</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Microsoft Commercial Internet System</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isn/techcenter/proxyidsec.asp</HREF>
+				<TITLE>Membership Sysadmin &amp; Registration</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/mcis/reskit/rk_start.htm</HREF>
+				<TITLE>Resource Kit</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/mcis/default.asp</HREF>
+				<TITLE>MCIS Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>SQL Server</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/sql/beta/whtepprs.asp</HREF>
+				<TITLE>Version 7.0 Technical Papers</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/sql/beta/featexercises.asp</HREF>
+				<TITLE>Version 7.0 Samples &amp; Tutorials</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn.microsoft.com/developer/news/feature/duwamish2_5/d2upsize.htm</HREF>
+				<TITLE>Migrating a DB to SQL</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http:/isapi/gobackoffice.asp?TARGET=/downtrial/moreinfo/sqldrk.asp</HREF>
+				<TITLE>Developer's Resource Kit &amp; Tech Papers</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>FrontPage Server Extensions</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/languages/fp/fpovw.asp#hosting</HREF>
+				<TITLE>See: Server Extensions (in Languages &amp; Dev Tools)</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/frontpage/wpp/serk/default.htm</HREF>
+				<TITLE>Resource Kit</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/frontpage/hosting/hosting_faqs.htm</HREF>
+				<TITLE>FAQ</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Certificate Server</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/security/client/certsvr.asp</HREF>
+				<TITLE>Overview (in Security &amp; Cryptography)</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/security/products/certserver.asp</HREF>
+				<TITLE>Certificate Server Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>/workshop/server/nextgen/pws.asp</HREF>
+				<TITLE>Personal Web Server</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+		</SECTIONINFO>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Proxy Server</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/proxy/server072798.asp</HREF>
+				<TITLE>Fight Fire with Firewalls</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/proxy/guide/carpwp.asp</HREF>
+				<TITLE>Cache Array Routing Protocol</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/proxy/default.asp</HREF>
+				<TITLE>Proxy Server Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Systems Management Server</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/nextgen/smssec8.asp</HREF>
+				<TITLE>Reviewer's Guide</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/smsmgmt/support/whitepaper.asp</HREF>
+				<TITLE>SMS Tech Papers</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Site Administration &amp; Development</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://msdn.microsoft.com/developer/news/feature/visep98/videbug.htm</HREF>
+				<TITLE>Debugging with Visual InterDev</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/webfarm3.asp</HREF>
+				<TITLE>Managing Session State in a Web Farm</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/toolbox/cookie.asp</HREF>
+				<TITLE>Simulate Cookies with Cookie Munger</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/vpnovw.asp</HREF>
+				<TITLE>Virtual Private Networking Overview</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/feature/server033198.asp</HREF>
+				<TITLE>Basics of Security</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/mind/0398/Security/security.htm</HREF>
+				<TITLE>A Peek Inside Microsoft Security Products</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/security/</HREF>
+				<TITLE>Security Advisor Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/essentials/wteched98/dbwebapps.asp</HREF>
+				<TITLE>Data-Driven Web Applications</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/data/</HREF>
+				<TITLE>Universal Data Access Site</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.intel.com/solutions/tech/via.htm</HREF>
+				<TITLE>Virtual Interface Architecture</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+		<SECTION>
+			<SECTIONINFO>
+				<TITLE>Case Studies</TITLE>
+			</SECTIONINFO>
+
+			<ARTICLES>
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/serveroptms.asp</HREF>
+					<TITLE>Performance on Microsoft's Web Site</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/backstage/</HREF>
+					<TITLE>More on Microsoft's Web Site</TITLE>
+					<LINKTYPE>leave-sbn</LINKTYPE>
+				    <TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/sitebuilder/magazine/codeintro.asp</HREF>
+					<TITLE>SBN Redesign Code</TITLE>
+					<TARGET>_top</TARGET>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/personalize.asp</HREF>
+					<TITLE>Internet Start Site: Personalization</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/pull.asp</HREF>
+					<TITLE>Internet Start: Content from Web to Client</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/cache.asp</HREF>
+					<TITLE>Internet Start: Server Caching</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/server060198.asp</HREF>
+					<TITLE>Microsoft Investor Site: Overview</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/scenario/msi.asp</HREF>
+					<TITLE>Microsoft Investor Site: Technical Article</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/scenario/classovw.asp</HREF>
+					<TITLE>15 Seconds Job Classifieds</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/scenario/15seconds.asp</HREF>
+					<TITLE>15 Seconds Dynamic/Static Pages</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/acthoro.asp</HREF>
+					<TITLE>Daily Horoscope Application</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/scenario/awest.asp</HREF>
+					<TITLE>Effortless Ticketing Online with IIS</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/scenario/scene.asp</HREF>
+					<TITLE>Network Imaging Corp: 1View ASP Component</TITLE>
+				</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+		<SECTION>
+			<SECTIONINFO>
+				<TITLE>Tools</TITLE>
+			</SECTIONINFO>
+
+			<ARTICLES>
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/feature/server042798.asp</HREF>
+					<TITLE>INetMonitor</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/asp/inline.asp</HREF>
+					<TITLE>In-Line HTML Editor</TITLE>
+				</ARTICLE>
+
+				<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/isn/techcenter/SbsIsp/default.asp</HREF>
+					<TITLE>Small Business Server Tools for ISPs</TITLE>
+					<LINKTYPE>leave-sbn</LINKTYPE>
+				    <TARGET>_top</TARGET>
+				</ARTICLE>
+			</ARTICLES>
+	</SECTION>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>/sitebuilder/magazine/server.asp</HREF>
+				<TITLE>"Servin' It Up" Column</TITLE>
+				<TARGET>_top</TARGET>
+		</SECTIONINFO>
+	</SECTION>
+
+
+	<SECTION>
+		<SECTIONINFO>
+			<TITLE>Support</TITLE>
+		</SECTIONINFO>
+
+		<ARTICLES>
+			<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/isapi/gosupport.asp?TARGET=/support/iis/iisfixes.asp</HREF>
+					<TITLE>IIS Fixes/Updates</TITLE>
+					<LINKTYPE>leave-sbn</LINKTYPE>
+					<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+					<HREF>/workshop/server/bugzap/tshoot.asp</HREF>
+					<TITLE>ASP Troubleshooting Tips &amp; Techniques</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/bugzap/memory.asp</HREF>
+				<TITLE>ASP Memory Leak in IIS 3.0</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/isapi/gosupport.asp?TARGET=/support/kb/articles/q168/3/54.asp</HREF>
+				<TITLE>OLE &amp; OLEDB Provider Errors</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/bugzap/http11.asp</HREF>
+				<TITLE>IE 4.0 Preview 2 &amp; HTTP 1.1 Bug</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/bugzap/viewscript.asp</HREF>
+				<TITLE>Viewable Script Logic Bug</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/bugzap/vbscript.asp</HREF>
+				<TITLE>VBScript Memory Leaks &amp; Hotfix</TITLE>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>/workshop/server/support/server.asp</HREF>
+				<TITLE>KB Articles on WinInet</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.15seconds.com/</HREF>
+				<TITLE>15 Seconds</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.activeserverpages.com/</HREF>
+				<TITLE>ActiveServer Pages.Com</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.activeserverpages.ru/</HREF>
+				<TITLE>Russian ActiveServer Pages.Com</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://sweden.activeserverpages.com/</HREF>
+				<TITLE>Swedish ActiveServer Pages.Com</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.activeserverpages.com/japan/</HREF>
+				<TITLE>Japanese ActiveServer Pages.Com</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+
+			<ARTICLE CONTRIBUTOR="SBN">
+				<HREF>http://www.asphole.com/asphole/default.asp</HREF>
+				<TITLE>ASP Hole</TITLE>
+				<LINKTYPE>leave-ms</LINKTYPE>
+			    <TARGET>_top</TARGET>
+			</ARTICLE>
+		</ARTICLES>
+	</SECTION>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>/ntserver/nts/fileprint/exec/feature/IndexServerSummary.asp</HREF>
+				<TITLE>See Also: Index Server</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+		</SECTIONINFO>
+	</SECTION>
+
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>/netmeeting/ils/default.htm</HREF>
+				<TITLE>See Also: Internet Locator Server</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+		</SECTIONINFO>
+	</SECTION>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>/workshop/messaging/default.asp</HREF>
+				<TITLE>See Also: Exchange Server (in Messaging &amp; Collaboration)</TITLE>
+		</SECTIONINFO>
+	</SECTION>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>/ntserver/nts/appservice/exec/overview/Trans_Overview.asp</HREF>
+				<TITLE>See Also: Transaction Server</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+		</SECTIONINFO>
+	</SECTION>
+
+	<SECTION CONTRIBUTOR="SBN">
+		<SECTIONINFO>
+				<HREF>http://backoffice.microsoft.com/</HREF>
+				<TITLE>See Also: BackOffice Live</TITLE>
+				<LINKTYPE>leave-sbn</LINKTYPE>
+				<TARGET>_top</TARGET>
+		</SECTIONINFO>
+	</SECTION>
+
+	</SECTIONS>
+</TOC>

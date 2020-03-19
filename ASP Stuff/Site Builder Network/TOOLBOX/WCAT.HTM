@@ -1,0 +1,357 @@
+
+<HTML>
+<HEAD>
+
+
+<TITLE>SBN Server: Web Capacity Analysis Tool Download</TITLE>
+
+<META NAME="Description" CONTENT="IIS Resource Kit Preview and Free Web Capacity Analysis Tool Download" />
+<META NAME="Keywords" CONTENT="IIS, WCAT, resource kit" />
+<META NAME="Robots" CONTENT="All" />
+
+<META NAME="Author" CONTENT="Kathy Pelish" />
+<META NAME="Posted" CONTENT="" />
+<META NAME="Updated" CONTENT="07/27/1998" />
+
+<META NAME="MS.LOCALE" CONTENT="EN-US" />
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/navbar.css" />
+<LINK REL="stylesheet" TYPE="text/css" HREF="../../../sitebuilder/shared/css/ie4-wks.css" />
+
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+// -----------------------------------------------------------
+// Client-side BrowserData constructor
+// Populated using data from server-side oBD object to avoid redundancy
+// -----------------------------------------------------------
+
+function BrowserData()
+{
+this.userAgent = "Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)";
+this.browser = "MSIE";
+this.majorVer = "4";
+this.minorVer = "01";
+this.betaVer = 0;
+this.platform = "NT";
+this.getsNavBar = true;
+this.doesActiveX = true;
+
+}
+var oBD = new BrowserData();
+
+//--></SCRIPT>
+
+<SCRIPT LANGUAGE="Javascript"><!--
+
+// -----------------------------------------------------------
+// window_load()
+// Container function for load.
+// -----------------------------------------------------------
+
+function window_load()
+{
+if (oBD.getsNavBar)
+{
+if ("function" == typeof(InitNavLinks)) InitNavLinks();
+if ("function" == typeof(CheckToTop)) CheckToTop();
+}
+}
+window.onload = window_load;
+
+//--></SCRIPT>
+
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINHEIGHT="0" MARGINWIDTH="0" BGCOLOR="#FFFFFF">
+
+
+<TABLE WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD ROWSPAN="2" WIDTH="460" VALIGN="top"><NOBR><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/home.gif" WIDTH="103" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A><A HREF="http://www.microsoft.com/PRODUCTS/DEFAULT.asp?DIVISIONID="10"" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/prod.gif" WIDTH="81" HEIGHT="21" ALT="products" BORDER="0"></A><A HREF="http://www.microsoft.com/search/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/search.gif" WIDTH="68" HEIGHT="21" ALT="search" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOSUPPORT.asp?TARGET=/SUPPORT/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/support.gif" WIDTH="74" HEIGHT="21" ALT="support" BORDER="0"></A><A HREF="http://www.microsoft.com/referral/default.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/shop.gif" WIDTH="55" HEIGHT="21" ALT="shop" BORDER="0"></A><A HREF="http://www.microsoft.com/ISAPI/GOREGWIZ.asp?TARGET=/REGWIZ/REGWIZ.asp" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/write.gif" WIDTH="78" HEIGHT="21" ALT="Write Us" BORDER="0"></A><IMG SRC="../../../library/images/gifs/toolbar/spacer.gif" WIDTH="1" HEIGHT="21" ALT="" BORDER="0"></NOBR></TD>
+<TD BGCOLOR="#000000" WIDTH="100%" HEIGHT="20">&nbsp;</TD>
+<TD ROWSPAN="2" WIDTH="91" ALIGN="right" VALIGN="top"><A HREF="http://www.microsoft.com/" TARGET="_top"><IMG SRC="../../../library/images/gifs/toolbar/msft.gif" WIDTH="91" HEIGHT="21" ALT="Microsoft Home" BORDER="0"></A></TD>
+</TR>
+<TR>
+<TD COLSPAN="3" BGCOLOR="#FFFFFF" WIDTH="100%" HEIGHT="1"></TD>
+</TR>
+</TABLE>
+
+<TABLE ID="tblNavBar" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR VALIGN="top">
+<TD CLASS="clsSBNLogo" TITLE="SBN Home" HEIGHT="34" WIDTH="90"><A HREF="/sitebuilder/default.htm" TARGET="_top" expNoTOC="true"><IMG HEIGHT="34" WIDTH="90" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/sbnbrand2.gif" ALT="SBN Home" /></A></TD>
+<TD CLASS="clsNavBarItem" expItemNum="1">Magazine<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="2">Community<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="3">Workshop<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="4">Tools&nbsp;&amp;&nbsp;Samples<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="5">Training<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD>&nbsp;|&nbsp;</TD>
+<TD CLASS="clsNavBarItem" expItemNum="6">Site&nbsp;Info<BR><IMG HEIGHT="4" WIDTH="7" BORDER="0" SRC="../../../sitebuilder/shared/navbar/graphics/arrow.gif"></TD>
+<TD WIDTH="100%"></TD>
+</TR>
+</TABLE>
+
+
+<TABLE ID="tblNavLinks" CLASS="clsNavLinks" CELLPADDING="0" CELLSPACING="0" BORDER="0" WIDTH="100%">
+<TR>
+<TD COLSPAN="2" HEIGHT="8"><IMG WIDTH="1" HEIGHT="8" SRC="../../../sitebuilder/shared/graphics/trans.gif"></TD>
+<TD ROWSPAN="2"><A HREF="../../../workshop/default.htm" TARGET="_top"><IMG ALIGN="right" HEIGHT="30" WIDTH="106" BORDER="0" ALT="Click to return to the Workshop home page" SRC="../../../workshop/graphics/wrkbrand2.gif" /></A><BR /></TD>
+</TR>
+<TR>
+<TD ROWSPAN="2">
+<A HREF="../../../workshop/server/pg00164.htm"><IMG HEIGHT="32" WIDTH="31" HSPACE="25" BORDER="0" ALT="Click to return to the Server Technologies home page" SRC="../../../workshop/graphics/icons//server.gif" /></A>
+</TD>
+<TD>
+<TABLE CELLPADDING="3" CELLSPACING="0" BORDER="0">
+<TR>
+
+<TD><A ID="lnkShowImg" HREF="../../../workshop/server/toc.htm" TARGET="_top"><IMG ID="imgShow" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-show-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkShowText" CLASS="clsLeftMenu" HREF="../../../workshop/server/toc.htm" TARGET="_top">show toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSyncImg" HREF="../../../workshop/pg08561.htm#/workshop/server/toolbox/wcat.htm" TARGET="_top"><IMG ID="imgSync" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-sync-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSyncText" CLASS="clsLeftMenu" HREF="../../../workshop/pg08561.htm#/workshop/server/toolbox/wcat.htm" TARGET="_top">sync toc</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkSearchImg" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top"><IMG ID="imgSearch" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-search-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkSearchText" CLASS="clsLeftMenu" HREF="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp" TARGET="_top">search</A> &nbsp;&nbsp; </TD>
+
+<TD><A ID="lnkIndexImg" HREF="../../../workshop/index/pg00001.htm"><IMG ID="imgIndex" CLASS="clsLeftMenu" HEIGHT="15" WIDTH="18" BORDER="0" SRC="../../../workshop/graphics/icons/nl-index-0.gif" ALT="" /></A><BR></TD>
+<TD NOWRAP><A ID="lnkIndexText" CLASS="clsLeftMenu" HREF="../../../workshop/index/pg00001.htm">index</A> &nbsp;&nbsp; </TD>
+
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD COLSPAN="2" WIDTH="100%">
+<TABLE CELLPADDING="2" CELLSPACING="0" BORDER="0">
+<TR>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR CLEAR="all" />
+<DIV CLASS="clsBucketBranch"><A HREF="../../../workshop/pg00004.htm" TARGET="_top">Workshop</A>&nbsp;&nbsp;|&nbsp;&nbsp;<A HREF="../../../workshop/pg08560.htm#/workshop/server/pg00164.htm" TARGET="_top">Server Technologies</A></DIV>
+
+<DIV CLASS="clsDocBody">
+
+<!-- DOCUMENT CONTENT START -->
+
+<H1><A NAME="kit" IDX_TYPE="sbngen" IDX_CONCEPT="stopindex;IIS 4.0, resource kit preview">IIS 4.0 Resource Kit Preview with Free Web Capacity Analysis Tool Download</A></H1>
+<HR SIZE="1" />
+
+<!-- Insert Author's name here -->
+<p>
+Kathy Pelish<br>
+<!-- Insert date here -->
+January 23, 1998
+<P>
+<!-- Insert article here-->
+<P>
+<b>Contents</b><br>
+<a href="wcat.htm#intview">Interview with IIS Program Manager Jim Laurel</a><br>
+<a href="wcat.htm#preview">IIS Resource Kit Table of Contents Preview</a><br>
+<a href="wcat.htm#download">Web Capacity Analysis Tool Download</a>
+<p>
+<h2><A NAME="intview">Interview with IIS Program Manager Jim Laurel</a></h2>
+Jim Laurel is the Program Manager for Microsoft® Internet Information Server (IIS) 4.0. He supervised the production of the IIS Resource Kit, a book describing the installation and optimum use of IIS 4.0 and two accompanying CDs of code, utilities, and samples. Kathy Pelish, an IIS Editor, interviewed him for this article.
+<p>
+<b>Kathy Pelish</b>:  How did the Resource Kit come about, since there wasn't one for prior versions of IIS?
+<p>
+<b>Jim Laurel</b>:  We wanted to get the word out about IIS from Microsoft's point of view.  There is a growing body of excellent IIS-focused books, but we wanted to add the IIS development team's viewpoint and expertise.  IIS is used by a diverse audience:  Internet Service Providers (ISPs), content providers and managers, administrators, Web application developers, and IS professionals.
+<p>
+<b>KP</b>:  Is the Resource Kit meant as an overview of the product and its technologies, or is it more scenario-specific?
+<p>
+<b>JL</b>:  We've found that IIS is used in a range of situations, so the book is organized around specific audiences and scenarios rather than technologies.  For example, we devote an entire chapter to the issue of security.
+<p>
+<b>KP</b>:  Describe some of the Resource Kit's most useful software utilities...
+<p>
+<b>JL</b>:  Well, four utilities come immediately to mind:
+<UL>
+<LI><b>Web Capacity Analysis Tool</b> (WCAT) runs simulated workloads on client/server configurations. Using WCAT, you can test how IIS and your network configuration respond to a variety of different client requests. The results of these tests can be used to determine the optimal server and network configuration. WCAT is designed to evaluate how Internet servers running Windows NT® Server and IIS respond to various workload simulations. (Ed. note:  We're including WCAT with this article as a special <a href="wcat.htm#download">free download</a>.)
+<LI><b>HTTP Monitor</b> was originally developed by the MS.COM team (which knows a thing or two about operating a large Web farm!). It displays "health" statistics and performance metrics to help you determine which servers are running properly.
+<LI><b>Migration Wizard</b> helps users migrate their current Web-server configuration to IIS 4.0. It consists of a Perl module, the Scavenger, that runs on the source Web-server and creates data files of configuration and user information, Active Server Pages, and COM objects. The Migrator then takes the Scavenger's data files to configure IIS on the target machine.
+<LI><b>Sign Up Server</b> is a collection of ASP files that allow an ISP to offer unattended sign-up for services on their site.
+</UL>
+<p>
+<b>KP</b>:  When can the Web development community expect the book, and where can they obtain it?
+<p>
+<b>JL</b>:  The book will be out the first quarter of 1998.  The new <a href="http://mspress.microsoft.com/RESLINK" target="_top">Microsoft Press site</a> <IMG SRC="../../../sitebuilder/graphics/leave-site.gif" WIDTH="17" HEIGHT="11" BORDER="0" ALT="Non-SBN link"> has an entire section dedicated to Windows NT Resource Kits. Barnes and Noble will also carry it. <p>
+<b>KP</b>:  Will there be a Resource Kit for the next version of Internet Information Server?
+<p>
+<b>JL</b>:  Definitely, yes. We want to continue helping our customers get the best out of IIS.
+<p>
+<b>KP</b>:  Where can IIS developers send their feedback on the Resource Kit?
+<p>
+<b>JL</b>:    We'd like to hear from them at <a href="mailto:RKINPUT@microsoft.com">RKINPUT@microsoft.com</a>.
+<P> <A HREF="wcat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<p>
+<h2><A NAME="preview" IDX_TYPE="sbngen" IDX_CONCEPT="IIS 4.0, resource kit TOC preview">IIS Resource Kit Table of Contents Preview</A></h2>
+<p>
+<h3>1. Internet Information Server Overview</h3><p>
+The overview chapter describes what's new in IIS 4.0 and outlines the new features and products bundled with the option pack. It also includes a breakdown of the IIS 4.0 architecture and describes how IIS fits into the overall Microsoft Internet strategy.
+<h3>2. Managing Content </h3><p>
+This chapter focuses on the issue of content management. The discussion centers on ways to successfully manage the creation, staging, and deployment of content on intranets and the Internet.
+<p>Topics include an overview of content management and the content life cycle. A case study of Microsoft Investor  illustrates content-management practices in action.
+<p>
+<h3>3. Web Server Capacity Planning </h3><p>
+Capacity planning for a Web site involves trying to determine the future needs of the site and providing resources to meet those needs as they arise. Capacity planning is partly an exercise in flexibility, in configuring the site so that it can be expanded in whatever ways become necessary. (This chapter will not address the extensive mathematical modeling techniques that can be used to plan capacity.)
+<p>The following topics are covered: hardware and network options, determining your site's requirements, monitoring, scalability, and fault tolerance.
+<p>
+<h3>4. Performance Tuning and Optimization </h3><p>
+There are many ways to tune and optimize your server, and there are some ways to check (and occasionally even to optimize) the performance of network connections elsewhere that your server uses to provide data to clients.
+Chapter 4 discusses how to determine your site's needs by estimating, tracking, and testing its performance, and mentions some of the tools available to improve it. It also provides some guidelines to help you optimize your site's performance.
+<p>Topics covered in Chapter 4 include: process, memory, and network bottlenecks.
+<p>
+<h3>5. Developing Web Applications </h3><p>
+This chapter provides an outline of the technological advances that brought about a dramatic change in programming paradigms, how these advances are being applied to Web application development, and how the Web will shape the way you will build an application in the future.
+<p>The topics covered include: building on client/server, the role of the client, the role of the server, security ramifications of Web applications, and debugging your application.
+<p>
+<h3>6. Data Access and Transactions </h3><p>
+Builiding on the multi-tier application development model presented in Chapter 5, Chapter 6 describes how to use Active Server Pages to create dynamic content. This chapter builds on those concepts, introduces the key components of Web driven data access, and discusses how to harness the power of a data driven approach for Web content publishing.
+Specific topics include: data access using ASP, connecting to a database, and transactional Web applications.
+<p>
+<h3>7. IIS and ISPs</h3><p>
+Chapter 7 provides a guide for ISPs operating on the NT/IIS platform.
+Topics covered in Chapter 7 include:  remote and automated administration, resource allocation and control, and security.
+<p>
+<h3>8. Accessing Legacy Data and Applications </h3><p>
+This chapter discusses the development tools and production software packages available to access legacy data and use it in IIS-based Web applications.
+<p>
+<h3>9. Migrating to IIS </h3><p>
+Chapter 9 is divided into three sections, beginning with a discussion of  how to migrate CGI applications to IIS. Section two describes how to migrate a site to IIS from Netscape Enterprise Server, and section three examines the issues involved in migrating from Lotus Domino to IIS.
+<p>
+<h3>10. Corporate Standards Planning </h3><p>
+Once an enterprise establishes a new business strategy, such as broadening access to business information via an intranet or the Internet, more than powerful software tools will be required to succeed. The organization must establish new standards to ensure that enterprise-wide information sharing is consistent and cost-effective, and that applications are robust, efficient, and scalable.
+<p>This chapter discusses the following topics: defining goals for using Web-based technology (focusing on developing standards that support achieving those goals, planning software product standards using a scalable three-tier application architecture, and creating application development standards which promote efficiency, reliability, and consistency.
+<p>
+<h3>11. IIS Security </h3><p>
+This chapter focuses on the policy, physical, operating system, and IIS-specific levels of security on an IIS site. <br>
+Topics include: setting up corporate security policy, how to physically lock a server, Windows NT security issues, and securing active content such as ASP, ISAPI applications, and CGI applications.
+<P> <A HREF="wcat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif"  WIDTH="18" HEIGHT="8" BORDER="0" ALT="Top">Back to top</A>
+<p>
+<h2><A NAME="download" IDX_TYPE="sbngen" IDX_CONCEPT="WCAT, download; WCAT, documentation for">Web Capacity Analysis Tool Download Area</A></h2>
+ <a href="wcat.exe"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download the Web Capacity Analysis Tool (zipped, 1.3MB)</a>.<p>
+
+<a href="wcatdoc.zip"><IMG SRC="../../../sitebuilder/graphics/icodownl.gif" WIDTH=16 HEIGHT=20 BORDER=0 ALT="Download"> Download the Web Capacity Analysis Tool Documentation (zipped, 84.5K)</a><p>
+
+<P>
+<P><P>
+<P>
+
+
+
+
+
+
+
+<!-- DOCUMENT CONTENT END -->
+
+</DIV>
+
+<DIV CLASS="clsDocBody">
+<HR SIZE="1" />
+<P><I>Did you find this article useful? Gripes? Compliments? Suggestions for other articles? <A TITLE="Go ahead. Make our day! Send us your thoughts." HREF="../../../sitebuilder/pg08559.htm" TARGET="_top">Write us!</A></I></P>
+<P ID="pBackTop"><A HREF="wcat.htm#top" CLASS="clsBackTop"><IMG SRC="../../../workshop/graphics/top.gif" WIDTH="18" HEIGHT="8" BORDER="0" ALT="Back to top">Back to top</A></P>
+
+<P CLASS="clsIncCpyRt">
+
+</P>
+
+&copy; <A CLASS="clsIncCpyRt" HREF="http://www.microsoft.com/misc/cpyright.htm" TARGET="_top">1998 Microsoft Corporation. All rights reserved. Terms of use</A>.
+
+<P>&nbsp;</P>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript"><!--
+
+function CheckToTop()
+{
+var eBody = document.body;
+if (eBody.scrollHeight > eBody.offsetHeight) pBackTop.style.display = 'block';
+}
+
+//--></SCRIPT>
+
+<DIV ID="divMenu1" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/magazine/default.htm">Magazine Home</DIV>
+<DIV expURL="../../../sitebuilder/magazine/jane.htm">Ask Jane</DIV>
+<DIV expURL="../../../sitebuilder/magazine/dude.htm">DHTML Dude</DIV>
+<DIV expURL="../../../sitebuilder/magazine/xml.htm">Extreme XML</DIV>
+<DIV expURL="../../../sitebuilder/magazine/starters.htm">For Starters</DIV>
+<DIV expURL="../../../sitebuilder/magazine/hess.htm">More or Hess</DIV>
+<DIV expURL="../../../sitebuilder/magazine/server.htm">Servin' It Up</DIV>
+<DIV expURL="../../../sitebuilder/magazine/site.htm">Site Lights</DIV>
+<DIV expURL="../../../sitebuilder/magazine/webmen.htm">Web Men Talking</DIV>
+</DIV>
+<DIV ID="divMenu2" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="http://www.microsoft.com/sbnmember/default.asp">Member Community Home</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/default.asp">Benefits: Freebies &amp; Discounts</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/promote/default.asp">Benefits: Promote Your Site</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/connect/default.asp">Benefits: Connect with Your Peers</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/glance-lev.asp">Benefits at a Glance</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/osig/default.asp">Online Special-Interest Groups</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/levels/member.asp">Your Membership</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/freebies/stores.asp">SBN Stores</DIV>
+<DIV expURL="http://www.microsoft.com/sbnmember/apply/registration.asp">Join Now</DIV>
+</DIV>
+<DIV ID="divMenu3" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../workshop/default.htm">Workshop Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/essentials/default.htm">Essentials</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/delivery/default.htm">Content &amp; Component Delivery</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/components/default.htm">Component Development</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/database/default.htm">Data Access &amp; Databases</DIV>
+<DIV expURL="../../../workshop/design/default.htm">Design</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/author/default.htm">DHTML, HTML &amp; CSS</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/xml/default.htm">Extensible Markup Language (XML)</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/languages/default.htm">Languages &amp; Development Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/messaging/default.htm">Messaging &amp; Collaboration</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/networking/default.htm">Networking, Protocols &amp; Data Formats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/browser/default.htm">Reusing Browser Technology</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/security/default.htm">Security &amp; Cryptography</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/server/default.htm">Server Technologies</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/imedia/default.htm">Streaming &amp; Interactive Media</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/workshop/management/default.htm">Web Content Management</DIV>
+<DIV expURL="../../../workshop/index/default.htm">Workshop Index</DIV>
+</DIV>
+<DIV ID="divMenu4" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../gallery/default.htm">Tools &amp; Samples Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/tools/default.htm">Tools</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/samples/default.htm">Samples, Headers, Libs</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/images/default.htm">Images</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/sounds/default.htm">Sounds</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/gallery/stylesheets/default.htm">Style Sheets</DIV>
+<DIV expURL="http://www.microsoft.com/typography/fontpack/win.htm">Web Fonts</DIV>
+</DIV>
+<DIV ID="divMenu5" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../devtraining/default.htm">Training Home</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/seminars/default.htm">SBN Live Seminars</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/chat/default.htm">SBN Live Chats</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/atec.htm">Courses</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/peer/default.htm">Peer Support</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mastering.htm">CD-ROM Training</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/books_kits.htm">Books & Training Kits</DIV>
+<DIV expURL="../../../workshop/c-frame.htm#/devtraining/mscert/default.htm">Certification</DIV>
+</DIV>
+<DIV ID="divMenu6" CLASS="clsMenu" ONMOUSEOVER="Menu_hover();" ONMOUSEOUT="Menu_hover();" ONCLICK="Menu_click();">
+<DIV expURL="../../../sitebuilder/default.htm">SBN Home</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/newtosite.htm">New to SBN?</DIV>
+<DIV expURL="../../../sitebuilder/whatsnew.htm">What's New on SBN</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/sitemap.htm">Site Map</DIV>
+<DIV expURL="http://www.microsoft.com/isapi/gosearch.asp?TARGET=/dev/web/default.asp">Site Search</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/glossary/default.htm">Glossary</DIV>
+<DIV expURL="../../../sitebuilder/write-us.htm">Write Us</DIV>
+<DIV expURL="../../../sitebuilder/siteinfo/about.htm">About This Site</DIV>
+</DIV>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navbar.js"></SCRIPT> 
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../sitebuilder/shared/js/navlinks.js"></SCRIPT>
+
+
+</BODY>
+</HTML>

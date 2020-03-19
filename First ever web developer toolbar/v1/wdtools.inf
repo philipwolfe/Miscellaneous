@@ -1,0 +1,45 @@
+[version]
+signature	= "$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles 	= HtmFiles,InfFiles
+AddReg  	= MenuExtReg,UninstallReg
+
+[DefaultUninstall]
+DelFiles 	= HtmFiles,InfFiles,DefFiles
+DelReg   	= MenuExtReg,UninstallReg,UninstallKeys
+
+[DestinationDirs]
+HtmFiles    = 10,web
+InfFiles    = 10,inf
+DefFiles    = 10,inf
+
+[SourceDisksNames]
+55="Install Directory","",1
+
+[SourceDisksFiles]
+wdtools.htm=55
+wdtools.inf=55
+
+[HtmFiles]
+wdtools.htm
+
+[InfFiles]
+wdtools.inf
+
+[DefFiles]
+wdtools.pnf
+
+[MenuExtReg]
+HKCU,"Software\Microsoft\Internet Explorer\MenuExt\%MenuTitle%",,,"%10%\web\wdtools.htm"
+
+[UninstallReg]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\wdtools","DisplayName",,"%UninstallName%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\wdtools","UninstallString",,"rundll32.exe advpack.dll,LaunchINFSection %10%\inf\wdtools.inf,DefaultUninstall"
+
+[UninstallKeys]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\msxml_view"
+
+[Strings]
+MenuTitle = "Web Dev Tool Frame"
+UninstallName = "Web Developer Tool Frame"

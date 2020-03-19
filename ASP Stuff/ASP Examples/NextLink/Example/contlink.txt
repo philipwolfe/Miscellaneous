@@ -1,0 +1,7 @@
+Section1.asp	The ASP Intrinsic Objects
+Section2.asp	The Scripting Objects
+Section3.asp	Active Server Components
+Section4.asp	ActiveX Data Objects
+Section5.asp	Extending ASP
+Section6.asp	Performance and Security
+Section7.asp	Miscellaneous Reference

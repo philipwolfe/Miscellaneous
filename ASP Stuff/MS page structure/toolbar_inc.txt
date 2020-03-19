@@ -1,0 +1,125 @@
+<!-- START toolbar.inc-->
+<%
+	var aBannerFolders = new Array
+	(
+		"/osig/",
+		"/chats/",
+		"/community/benefits/",
+		"/community/freebies/",
+		"/community/gazette/",
+		"/community/mhm/",
+		"/community/stores/",
+		"/community/",
+
+		"/developer/",
+
+		"/downloads/images/",
+		"/downloads/samples/",
+		"/downloads/sounds/",
+		"/downloads/tools/",
+		"/downloads/sdks/",
+		"/downloads/spacks/",
+		"/downloads/betas/",
+		"/downloads/",
+
+		"/training/",
+		"/peerjournal/",
+		"/resources/usergroup/",
+
+		"/standards/",
+		"/workshop/standards/",
+		"/resources/",
+		"/siteguide/",
+		"/voices/",
+		"/xml/",
+		"/workshop/",
+
+		"/events/",
+		"/library/",
+		"/msdnmag",
+		"/students/",
+
+		"/programs/winlogo/",
+		"/programs/"
+	);
+
+	// ------------------------------------------------
+	// GetFolder()
+	// Returns the appropriate aFolders array element
+	// Determined by PATH_INFO of current document
+	// ------------------------------------------------
+
+	function GetFolder(sPath)
+	{
+		for (var i=0;i<aBannerFolders.length;i++)
+		{
+			if (-1 != sPath.indexOf(sFolder = aBannerFolders[i])) return sFolder.substring(1,sFolder.length-1);
+		}
+		return false;
+	}
+//	var sFolder = GetFolder(new String(Request.ServerVariables("PATH_INFO")).toLowerCase());
+// use oDD.pathname instead of another Request
+	var sFolder = GetFolder(oDD.pathname);
+
+	// ----------------------------------------------
+	// GetBanner()
+	// Called from within appropriate sub-include
+	// Returns full path to banner for calling page
+	// ----------------------------------------------
+
+	function GetBannerImage()
+	{
+		var sBannerPath = "/msdn-online/shared/graphics/banners/";
+
+// replace oDD.bucketRoot and indexOf calls with oDD.vroot comparison
+// remove /events/ condition; sFolder condition returns proper banner
+
+		if ("/workshop/" == oDD.vroot || "/msagent/" == oDD.vroot) sBannerPath += "workshop-banner.gif";
+		else if ("/xml/" == oDD.vroot ) sBannerPath += (oMD.bannerPath && oMD.bannerPath!="") ? oMD.bannerPath : "workshop-banner.gif";
+		else if ("/standards/" == oDD.vroot) sBannerPath += "standards-banner.gif";
+		else if (oMD.bannerPath && "" != oMD.bannerPath) sBannerPath += oMD.bannerPath;
+		else if (sFolder) sBannerPath += sFolder.substring(sFolder.lastIndexOf("/")).replace("/","") + "-banner.gif";
+		else sBannerPath += "msdn-online-banner.gif";
+
+		return sBannerPath;
+	}
+
+	// ----------------------------------------------
+	// GetAltText()
+	// Called from within appropriate sub-include
+	// Returns ALT text for banner graphic
+	// ----------------------------------------------
+
+
+// replace sBucketRoot and indexOf calls with straight sVRoot comparsion
+
+	function GetBannerAltText(sVRoot)
+	{
+		if ("/workshop/" == sVRoot || "/xml/"  == sVRoot || "/standards/" == sVRoot) return "Web Workshop";
+		else if ("/voices/" == sVRoot) return "Voices";
+		else if ("/downloads/" == sVRoot) return "Downloads";
+		else if ("/siteguide/" == sVRoot) return "Site Guide";
+		else if ("/training/" == sVRoot) return "Training";
+		else if ("/community/" == sVRoot) return "Member Community";
+		else if ("/osig/" == sVRoot) return "OSIGs";
+		else if (sFolder && (-1 != sFolder.indexOf("events"))) return "Events";
+		else return "";
+	}
+	var sBannerImage = GetBannerImage();
+	var sBannerAltText = GetBannerAltText(oDD.vroot);
+
+	if (oBD.getsNavBar)
+	{
+%>
+<!--#include virtual="/msdn-online/shared/inc/toolbar-uplevel.inc" -->
+<%
+	}
+	else
+	{
+%>
+<!--#include virtual="/msdn-online/shared/inc/toolbar-downlevel.inc" -->
+<%
+	}
+%>
+<!-- STOP toolbar.inc-->
+
