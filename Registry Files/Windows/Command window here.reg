@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\cmd]
+@="Open Command Window Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\cmd\command]
+@="cmd.exe /k \"cd %L\""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Drive\shell\cmd]
+@="Open Command Window Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Drive\shell\cmd\command]
+@="cmd.exe /k \"cd %L\""

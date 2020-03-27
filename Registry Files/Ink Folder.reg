@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\.NETFramework\AssemblyFolders\InkAssemblies]
+@="C:\\Program Files\\Microsoft Tablet PC Platform SDK\\Include\\"
+
+[HKEY_CURRENT_USER\Software\Microsoft\.NETFramework\AssemblyFolders\InkAssemblies]
+@="C:\\Program Files\\Microsoft Tablet PC Platform SDK\\Include\\"
