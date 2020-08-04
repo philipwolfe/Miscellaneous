@@ -1,0 +1,15 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\cmdHere]
+@="Cmd &Prompt Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\shell\cmdHere\command]
+@=hex(2):25,73,79,73,74,65,6d,72,6f,6f,74,25,5c,73,79,73,74,65,6d,33,32,5c,63,\
+  6d,64,2e,65,78,65,20,2f,6b,20,63,64,20,22,25,31,22,00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Drive\shell\cmdHere]
+@="Cmd &Prompt Here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Drive\shell\cmdHere\command]
+@=hex(2):25,73,79,73,74,65,6d,72,6f,6f,74,25,5c,73,79,73,74,65,6d,33,32,5c,63,\
+  6d,64,2e,65,78,65,20,2f,6b,20,63,64,20,22,25,31,22,00
