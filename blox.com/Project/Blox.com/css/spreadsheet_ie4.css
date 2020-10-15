@@ -1,0 +1,645 @@
+.body
+{
+	border-right: 0px;
+	border-top: 0px;
+	margin: 0px;
+	overflow: hidden;
+	border-left: 0px;
+	border-bottom: 0px;
+	background-color: white;
+	padding-width: 0;
+}
+.palette
+{
+	font-size: 8pt;
+	overflow: hidden;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+	height: 24px;
+	background-color: #c0c0c0;
+}
+.largeMenu
+{
+	border-right: #c0c0c0 1px solid;
+	padding-right: 5px;
+	border-top: #c0c0c0 1px solid;
+	margin-top: 1px;
+	padding-left: 5px;
+	visibility: hidden;
+	padding-bottom: 1px;
+	border-left: #c0c0c0 1px solid;
+	cursor: default;
+	padding-top: 2px;
+	border-bottom: #c0c0c0 1px solid;
+	white-space: nowrap;
+	position: absolute;
+	height: 21px;
+	background-color: #c0c0c0;
+}
+.largeSpot
+{
+	padding-right: 1px;
+	padding-left: 1px;
+	font-size: 8pt;
+	overflow: hidden;
+	cursor: default;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+}
+.largeList
+{
+	border-right: black 1px solid;
+	border-top: white 1px solid;
+	z-index: 1000;
+	left: 0px;
+	visibility: hidden;
+	overflow: hidden;
+	border-left: white 1px solid;
+	border-bottom: black 1px solid;
+	position: absolute;
+	top: 0px;
+	background-color: lightgrey;
+}
+.largeItem
+{
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 8pt;
+	padding-bottom: 1px;
+	clip: rect(0px 300px 16px 0px);
+	cursor: default;
+	color: black;
+	padding-top: 1px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	white-space: nowrap;
+	position: absolute;
+	background-color: lightgrey;
+}
+.separator
+{
+	background-image: url(../img/separator.gif);
+	width: 1000px;
+	background-repeat: repeat-x;
+	position: absolute;
+	height: 4px;
+}
+.popupWidget
+{
+	border-right: medium none;
+	border-top: medium none;
+	z-index: 500;
+	background-image: url(../img/popup.gif);
+	margin: 0px;
+	overflow: hidden;
+	border-left: medium none;
+	width: 13px;
+	border-bottom: medium none;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 1px;
+	height: 18px;
+}
+.popupWidgetRect
+{
+	border-right: gray 1px solid;
+	border-top: gray 1px solid;
+	z-index: -2;
+	left: 0px;
+	overflow: hidden;
+	border-left: gray 1px solid;
+	width: 100%;
+	border-bottom: gray 1px solid;
+	position: absolute;
+	top: 0px;
+	height: 0px;
+}
+.division
+{
+	background-image: url(../img/division.gif);
+	overflow: hidden;
+	width: 8000px;
+	background-repeat: repeat-x;
+	position: absolute;
+	height: 5px;
+	background-color: #c0c0c0;
+}
+.buttonText
+{
+	font-size: 8pt;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+	height: 24px;
+}
+.buttonTextColorless:visited
+{
+	font-size: 8pt;
+	color: black;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+	height: 24px;
+	text-decoration: none;
+}
+.buttonTextColorless:link
+{
+	font-size: 8pt;
+	color: black;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+	height: 24px;
+	text-decoration: none;
+}
+.button
+{
+	background-image: url(../img/button9.gif);
+	width: 24px;
+	clip: rect(0px 24px 24px 0px);
+	position: absolute;
+	height: 24px;
+}
+.bulbLogo
+{
+	background-position: 9px 3px;
+	left: 0px;
+	background-image: url(../img/blox_cube_28x44.gif);
+	visibility: visible;
+	width: 50px;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 0px;
+	height: 50px;
+	background-color: #c0c0c0;
+}
+.bulbLogoSmall
+{
+	left: 9px;
+	background-image: url(../img/blox_cube_16x26.gif);
+	width: 50px;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 2px;
+	height: 26px;
+}
+.break
+{
+	background-image: url(../img/break.gif);
+	width: 4px;
+	background-repeat: repeat-x;
+	position: absolute;
+	height: 24px;
+}
+.label
+{
+	padding-right: 4px;
+	padding-left: 4px;
+	font-size: 8pt;
+	padding-bottom: 0px;
+	overflow: hidden;
+	cursor: default;
+	padding-top: 0px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+	background-color: white;
+}
+.smallMenu
+{
+	background-image: url(../img/menu.gif);
+	position: absolute;
+	height: 24px;
+}
+.smallList
+{
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	z-index: 1000;
+	left: 0px;
+	visibility: hidden;
+	overflow: hidden;
+	border-left: black 1px solid;
+	border-bottom: black 1px solid;
+	position: absolute;
+	top: 0px;
+	background-color: white;
+}
+.smallSpot
+{
+	padding-right: 0px;
+	padding-left: 0px;
+	font-size: 8pt;
+	padding-bottom: 0px;
+	overflow: hidden;
+	cursor: default;
+	padding-top: 0px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+}
+.comboBox
+{
+	border-right: medium none;
+	padding-right: 0px;
+	border-top: medium none;
+	padding-left: 0px;
+	font-size: 8pt;
+	padding-bottom: 0px;
+	overflow: hidden;
+	border-left: medium none;
+	cursor: text;
+	padding-top: 0px;
+	border-bottom: medium none;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+}
+.smallItem
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-size: 8pt;
+	padding-bottom: 0px;
+	cursor: default;
+	color: black;
+	padding-top: 0px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	white-space: nowrap;
+	position: absolute;
+	background-color: white;
+}
+.heading
+{
+	font-size: 8pt;
+	left: 0px;
+	overflow: hidden;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	position: absolute;
+	top: 0px;
+	background-color: azure;
+	text-align: center;
+}
+.popup
+{
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	display: none;
+	z-index: 1000;
+	border-left: black 1px solid;
+	border-bottom: black 1px solid;
+	position: absolute;
+	background-color: white;
+}
+.menu
+{
+	background-image: url(../img/menu.gif);
+	visibility: hidden;
+	background-repeat: repeat-x;
+	position: absolute;
+	height: 24px;
+}
+.title
+{
+	font-size: 8pt;
+	left: 6px;
+	overflow: hidden;
+	cursor: default;
+	font-family: helvetica, arial, sans-serif;
+	position: relative;
+	top: 4px;
+}
+.item
+{
+	padding-right: 2px;
+	padding-left: 2px;
+	font-size: 8pt;
+	padding-bottom: 0px;
+	cursor: default;
+	color: black;
+	padding-top: 0px;
+	font-family: helvetica, arial, sans-serif;
+	position: absolute;
+	height: 8px;
+	background-color: white;
+}
+.frame
+{
+	background-image: url(../img/border.gif);
+	width: 24px;
+	background-repeat: repeat-x;
+	position: absolute;
+	height: 24px;
+}
+.color
+{
+	background-image: url(../img/color.gif);
+	width: 24px;
+	background-repeat: repeat-x;
+	height: 24px;
+}
+.modal
+{
+	border-right: black 2px solid;
+	border-top: black 1px solid;
+	font-size: 12px;
+	left: 0px;
+	visibility: hidden;
+	overflow: visible;
+	border-left: black 1px solid;
+	width: 1%;
+	cursor: default;
+	border-bottom: black 2px solid;
+	font-family: Verdana, sans-serif;
+	position: absolute;
+	top: 0px;
+	background-color: #ffffc2;
+}
+.modalTopLeftBox
+{
+	overflow: hidden;
+	width: 16pt;
+	cursor: move;
+	height: 16pt;
+	background-color: #ffcc00;
+}
+.modalTitle
+{
+	font-weight: bold;
+	font-size: 10pt;
+	margin-left: 10px;
+	color: #660066;
+	line-height: 15pt;
+	margin-right: 15px;
+	height: 16pt;
+}
+.modalDragger
+{
+	cursor: move;
+}
+.modalContent
+{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#modalMessage
+{
+	font-size: 12px;
+	margin: 5px 10px 5px 15px;
+	color: red;
+	font-family: Verdana, sans-serif;
+}
+#modalBottomBar
+{
+	margin-bottom: 10px;
+	margin-left: 20pt;
+	overflow: visible;
+	margin-right: 15px;
+	text-align: right;
+}
+#modalRect
+{
+	border-right: gray 2px solid;
+	border-top: gray 2px solid;
+	z-index: 99999;
+	visibility: hidden;
+	overflow: hidden;
+	border-left: gray 2px solid;
+	border-bottom: gray 2px solid;
+	position: absolute;
+}
+.modalLabel
+{
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.modalButton
+{
+	padding-right: 5px;
+	border-top: #000099 1px solid;
+	margin-top: 10px;
+	padding-left: 5px;
+	font-weight: bold;
+	font-size: 12px;
+	padding-bottom: 3pt;
+	overflow: visible;
+	border-left: #000099 1px solid;
+	width: 75px;
+	color: #000099;
+	padding-top: 2pt;
+	font-family: Verdana, sans-serif;
+	text-align: center;
+}
+.modalScrollable
+{
+	margin-top: 10px;
+	overflow: auto;
+	width: 400px;
+	height: 250px;
+	background-color: #ffffff;
+	layer-background-color: #FFFFFF;
+}
+.modalProgressBar
+{
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	margin-top: 15px;
+	overflow: hidden;
+	border-left: black 1px solid;
+	width: 320px;
+	border-bottom: black 1px solid;
+	height: 16px;
+	background-color: #666699;
+}
+.modalProgressWidget
+{
+	border-right: black 1px solid;
+	visibility: hidden;
+	overflow: hidden;
+	width: 1px;
+	height: 16px;
+	background-color: #ccccff;
+}
+.view
+{
+	visibility: hidden;
+	overflow: scroll;
+	position: absolute;
+	background-color: white;
+}
+.book
+{
+	cursor: default;
+	position: absolute;
+}
+.sheet
+{
+	border-right: darkgray 1px solid;
+	padding-right: 0px;
+	border-top: darkgray 1px solid;
+	display: none;
+	padding-left: 0px;
+	z-index: -1;
+	padding-bottom: 0px;
+	margin: 0px;
+	border-left: darkgray 1px solid;
+	padding-top: 0px;
+	border-bottom: darkgray 1px solid;
+	position: absolute;
+}
+.head
+{
+	border-right: lightgrey 1px solid;
+	padding-right: 1px;
+	border-top: lightgrey 0px solid;
+	padding-left: 1px;
+	font-size: 10pt;
+	padding-bottom: 1px;
+	margin: 0px;
+	overflow: hidden;
+	border-left: lightgrey 0px solid;
+	padding-top: 1px;
+	border-bottom: lightgrey 1px solid;
+	font-family: helvetica, arial, sans-serif;
+	position: absolute;
+	background-color: whitesmoke;
+	text-align: center;
+}
+.cell
+{
+	border-right: lightblue 1px solid;
+	padding-right: 1px;
+	border-top: lightblue 0px solid;
+	padding-left: 1px;
+	font-size: 10pt;
+	z-index: -2;
+	padding-bottom: 1px;
+	margin: 0px;
+	overflow: hidden;
+	border-left: lightblue 0px solid;
+	padding-top: 1px;
+	border-bottom: lightblue 1px solid;
+	background-repeat: no-repeat;
+	font-family: arial, helvetica, sans-serif;
+	position: absolute;
+	background-color: white;
+	text-align: right;
+}
+.rect
+{
+	border-right: gray 2px solid;
+	border-top: gray 2px solid;
+	display: none;
+	overflow: hidden;
+	border-left: gray 2px solid;
+	border-bottom: gray 2px solid;
+	position: absolute;
+}
+.cutcopyrect
+{
+	display: none;
+	overflow: hidden;
+	position: absolute;
+	background-color: rgb(51,51,51);
+}
+.columnResizer
+{
+	z-index: 100;
+	overflow: hidden;
+	width: 7px;
+	cursor: e-resize;
+	position: absolute;
+	height: 20px;
+}
+.rowResizer
+{
+	z-index: 100;
+	overflow: hidden;
+	width: 70px;
+	cursor: s-resize;
+	position: absolute;
+	height: 7px;
+}
+.text
+{
+	display: none;
+	font-size: 10pt;
+	font-family: arial, helvetica, sans-serif;
+}
+#foreView
+{
+	left: 4px;
+	width: 12px;
+	top: 4px;
+	height: 12px;
+}
+#backView
+{
+	left: 7px;
+	width: 12px;
+	top: 7px;
+	height: 12px;
+}
+.holder
+{
+	background-image: url(../img/smallholder.gif);
+	overflow: hidden;
+	width: 16px;
+	clip: rect(0px 16px 16px 0px);
+	cursor: default;
+	height: 16px;
+}
+.swatch
+{
+	left: 3px;
+	overflow: hidden;
+	width: 10px;
+	clip: rect(0px 10px 10px 0px);
+	cursor: default;
+	position: absolute;
+	top: 3px;
+	height: 10px;
+}
+.colorheader
+{
+	font-size: 8pt;
+	overflow: hidden;
+	width: 124px;
+	cursor: default;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	height: 16px;
+	background-color: white;
+	text-align: center;
+}
+.border
+{
+	left: 0px;
+	background-image: url(../img/border.gif);
+	overflow: hidden;
+	width: 24px;
+	clip: rect(0px 24px 24px 0px);
+	cursor: default;
+	position: absolute;
+	top: 0px;
+	height: 24px;
+}
+.inputButton
+{
+	font-size: 9pt;
+	position: absolute;
+}
+.buttonMenu
+{
+	background-image: url(../img/button9.gif);
+	width: 24px;
+	clip: rect(0px 24px 24px 0px);
+	position: absolute;
+	height: 24px;
+}
+.colorSpot
+{
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	left: 11px;
+	overflow: hidden;
+	border-left: black 1px solid;
+	width: 9px;
+	border-bottom: black 1px solid;
+	position: absolute;
+	top: 12px;
+	height: 9px;
+}

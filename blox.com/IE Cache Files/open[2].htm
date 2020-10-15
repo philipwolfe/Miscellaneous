@@ -1,0 +1,846 @@
+<html>
+  <head>
+	<TITLE>Balanced Scorecard - Shareholder Evalution - Blox.com Calculator</TITLE>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="/css/static/view_mode_ie_2468704650.css"/><link rel="stylesheet" type="text/css" href="/css/calculator_ie4_2f25ce2e.cssx"/>
+<link rel="stylesheet" type="text/css" href="/css/calculator_ie4_blox.css"/>
+
+		<style type="text/css">
+		/* /home/www/template/static/view_mode_en_ie.style.tpl */
+#buttonDivision {top: 30; left: 0;}
+#buttonPalette {top: 0; left: 0;height: 30;visibility: visible;}
+#topDivision {top: 0; left: 0;visibility: hidden;}
+
+		</style>
+
+
+		<script language="JavaScript">
+
+			var kTotalJSIncludes = 16;
+			var gNumJSIncludesLoaded = 0;
+			var gAppLocale = 'en';
+			var gEntryLocale	= 'en';
+			var kFromGallery = true;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var knoEmailBtn = 0;
+ 			if (knoEmailBtn)
+				suppressElements(['btnEmail','btnEmailText']);
+			// hide 'rate this calc' button if we're not opening from the gallery
+			if (!kFromGallery)
+				suppressElements(['btnRate','btnRateText','break5']);
+
+			function JSIncludeDoneLoading()
+			{
+				gNumJSIncludesLoaded++;
+				includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+			}
+			
+			// creates stylesheet rules to suppress the specified elements
+			function suppressElements(elemIdArray) {
+				if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+				for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+			}
+
+
+		</script>
+
+  </head>
+
+  <body class="body" scroll="no" onLoad="loadDocument()" onBeforeUnload="if(typeof unloadDocument != 'undefined')unloadDocument()" onUnload="if(typeof unloadDocument != 'undefined')unloadDocument()" onResize="resizeDocument()">
+
+	<span class='view' id='view' style="width: 100%; height: 100%;">
+		<!-- later write the contents of this span -->
+	</span>
+
+	<script language="JavaScript">
+
+		var content = '<div class="modalLabel">Please wait a moment (the first time you use the Calculator this may take a little longer).</div>'
+		+ '<div class="modalProgressBar">'
+		+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+		+ '</div></div>';
+
+		var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+		+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+		+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+		+ '<tr valign="middle">'
+		+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+		+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Calculator</span></td>'
+		+ '</tr>'
+		+ '<tr>'
+		+ '<td bgcolor="#999999"><br></td>'
+		+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+		+ '</tr>'
+		+ '</table>'
+		+ '</div></tr></td></table>';
+
+		document.write(progressDialog);
+
+	</script>
+
+	<script language="JavaScript">
+
+		// global mode flag (can be "design", "view", or "embed")
+		var kMode = "view";
+		var gInitDirtyCells = "";
+		var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+		var gRowCount, gColumnCount, gImported=0 , gOwnerId=0, gAppId='',gAppDescription='';
+		var gAppVersion = 1.0;
+		var gAppAuthor = 'ss';
+		var gMacroText = '';
+		var gPartnerMenu = null;
+		var gPopupMenu = null;
+		var gExtra = "";
+		var gIsMatterhorn = false;
+		var gDocumentTitleBase = " - Blox.com Calculator";
+
+		// relative to the root url (which includes a trailing slash):
+		var gOpenScript = "open";
+		var gSaveScript = "savebraincell";
+		var gSaveLifeboat = "lifeboat";
+		var gMyFilesScript = "myfiles";
+		var gExportExcelScript = "xls_convert";
+		var gImportExcelScript = "xls_upload";
+		var gSendMailScript = "email";
+		var gFileSummaryScript = "file_summary";
+		var gRatingScript = "rating";
+		var kImageDirectory = "img/";
+		var kServletPrefix = "";
+		var gHelpPath = "help";
+		var gPrintCSS = "css/calculator_ie4.css";
+
+		// relative to the root url (which includes a trailing slash):
+		var gCloseBoxFile = "modalclosebox_ie.html";
+		var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+		var gMacroFrameFile = "macroframe"; // NOTE reference to same string in IFRAME below!
+											// included for completeness & future compatibility with AlphaBlox
+
+		//
+gColumnCount = 11;gRowCount = 49;
+
+
+		// handlers should be placed on outermost control...
+		function GetColumnWidthsAndHeights(widths, heights)
+		{			
+			//
+widths[1] = 13;
+widths[2] = 104;
+widths[3] = 275;
+widths[4] = 60;
+
+		}
+
+		// after this comment, we add //init cells
+gAppId='002e669f_a1bc';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Balanced Scorecard - Shareholder Evalution';
+var gCellDataArray=[{entry:'Balanced Scorecard',textAlign:'left',viewSize:'12pt',foreColor:'navy',_fontWeight:'bold',m_row:1,m_col:1,i_nr:'Balanced Scorecard'},
+{entry:'Shareholder Scorecard',_widthClue:'148',foreColor:'gray',_fontWeight:'bold',_textAlign:'right',m_row:1,m_col:4,i_nr:'Shareholder Scorecard'},
+{entry:'Company Name',textAlign:'left',locked:'false',foreColor:'blue',bk_color:'white',_fontWeight:'bold',m_row:2,m_col:2,i_nr:'Company Name'},
+{bk_color:'navy',m_row:4,m_col:1},
+{entry:'Financial Perspective',textAlign:'left',locked:'false',viewSize:'11pt',foreColor:'white',bk_color:'navy',_fontWeight:'bold',m_row:4,m_col:2,i_nr:'Financial Perspective'},
+{bk_color:'navy',foreColor:'white',m_row:4,m_col:3},
+{_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:4,m_col:4},
+{entry:'Your Evaluation',_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:4,m_col:5,i_nr:'Your Evaluation'},
+{_viewFormat:'comma_2',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:4,m_col:6},
+{entry:'Your Expectation',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:4,m_col:7,i_nr:'Your Expectation'},
+{foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:4,m_col:8},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:4,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:4,m_col:10},
+{bk_color:'navy',m_row:5,m_col:1},
+{entry:'How much money can be earned from investing?',locked:'false',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:5,m_col:2,i_nr:'How much money can be earned from investing?'},
+{locked:'true',bk_color:'navy',foreColor:'white',m_row:5,m_col:3},
+{entry:'Weight',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:5,m_col:4,i_nr:'Weight'},
+{entry:'Your Score',locked:'true',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:5,m_col:5,i_nr:'Your Score'},
+{entry:'Total Score',_viewFormat:'comma_2',_widthClue:'66',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:5,m_col:6,i_nr:'Total Score'},
+{entry:'Your Score',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:5,m_col:7,i_nr:'Your Score'},
+{entry:'Total Score',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:5,m_col:8,i_nr:'Total Score'},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:5,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:5,m_col:10},
+{textAlign:'left',bk_color:'navy',m_row:6,m_col:1},
+{entry:'Considerations:',textAlign:'left',locked:'false',m_row:6,m_col:2,i_nr:'Considerations:'},
+{entry:'- amount of risk',textAlign:'left',locked:'false',foreColor:'maroon',m_row:6,m_col:3,i_nr:'- amount of risk'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:6,m_col:4,i_nr:'10'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[6][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:6,m_col:5,i_nr:'10'},
+{entry:'=(	D6	*	E6	)*(	D6	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r6c4s0\'	),_cel(	\'r6c5s0\'	)),_div(_cel(	\'r6c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[12][6]]',
+i_rt:'[e[6][4],e[6][5],e[7][4],e[8][4],e[9][4],e[10][4],e[11][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:6,m_col:6,i_nr:'33.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[6][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:6,m_col:7,i_nr:'10'},
+{entry:'=(	D6	*	G6	)*(	D6	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r6c4s0\'	),_cel(	\'r6c7s0\'	)),_div(_cel(	\'r6c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[12][8]]',
+i_rt:'[e[6][4],e[6][7],e[7][4],e[8][4],e[9][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:6,m_col:8,i_nr:'33.33'},
+{entry:'=(	D6	*10)*(	D6	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r6c4s0\'	),10),_div(_cel(	\'r6c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[12][9]]',
+i_rt:'[e[6][4],e[7][4],e[8][4],e[9][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:6,m_col:9,i_nr:'33.33'},
+{foreColor:'white',_textAlign:'left',m_row:6,m_col:10},
+{bk_color:'navy',m_row:7,m_col:1},
+{entry:'- amount of income',textAlign:'left',locked:'false',foreColor:'maroon',m_row:7,m_col:3,i_nr:'- amount of income'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:7,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[7][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:7,m_col:5,i_nr:'10'},
+{entry:'=(	D7	*	E7	)*(	D7	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r7c4s0\'	),_cel(	\'r7c5s0\'	)),_div(_cel(	\'r7c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[12][6]]',
+i_rt:'[e[7][4],e[7][5],e[6][4],e[8][4],e[9][4],e[10][4],e[11][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:7,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[7][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:7,m_col:7,i_nr:'10'},
+{entry:'=(	D7	*	G7	)*(	D7	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r7c4s0\'	),_cel(	\'r7c7s0\'	)),_div(_cel(	\'r7c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[12][8]]',
+i_rt:'[e[7][4],e[7][7],e[6][4],e[8][4],e[9][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:7,m_col:8,i_nr:'8.33'},
+{entry:'=(	D7	*10)*(	D7	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r7c4s0\'	),10),_div(_cel(	\'r7c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[12][9]]',
+i_rt:'[e[7][4],e[6][4],e[8][4],e[9][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:7,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:7,m_col:10},
+{bk_color:'navy',m_row:8,m_col:1},
+{entry:'- history of company',textAlign:'left',locked:'false',foreColor:'maroon',m_row:8,m_col:3,i_nr:'- history of company'},
+{entry:'8',dynamic:'8',derived:'8',
+i_tb:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:8,m_col:4,i_nr:'8'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[8][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:8,m_col:5,i_nr:'10'},
+{entry:'=(	D8	*	E8	)*(	D8	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r8c4s0\'	),_cel(	\'r8c5s0\'	)),_div(_cel(	\'r8c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[12][6]]',
+i_rt:'[e[8][4],e[8][5],e[6][4],e[7][4],e[9][4],e[10][4],e[11][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:8,m_col:6,i_nr:'21.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[8][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:8,m_col:7,i_nr:'10'},
+{entry:'=(	D8	*	G8	)*(	D8	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r8c4s0\'	),_cel(	\'r8c7s0\'	)),_div(_cel(	\'r8c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[12][8]]',
+i_rt:'[e[8][4],e[8][7],e[6][4],e[7][4],e[9][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:8,m_col:8,i_nr:'21.33'},
+{entry:'=(	D8	*10)*(	D8	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r8c4s0\'	),10),_div(_cel(	\'r8c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[12][9]]',
+i_rt:'[e[8][4],e[6][4],e[7][4],e[9][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:8,m_col:9,i_nr:'21.33'},
+{foreColor:'white',_textAlign:'left',m_row:8,m_col:10},
+{bk_color:'navy',m_row:9,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:9,m_col:3},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:9,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[9][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:9,m_col:5,i_nr:'10'},
+{entry:'=(	D9	*	E9	)*(	D9	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r9c4s0\'	),_cel(	\'r9c5s0\'	)),_div(_cel(	\'r9c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[12][6]]',
+i_rt:'[e[9][4],e[9][5],e[6][4],e[7][4],e[8][4],e[10][4],e[11][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:9,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[9][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:9,m_col:7,i_nr:'10'},
+{entry:'=(	D9	*	G9	)*(	D9	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r9c4s0\'	),_cel(	\'r9c7s0\'	)),_div(_cel(	\'r9c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[12][8]]',
+i_rt:'[e[9][4],e[9][7],e[6][4],e[7][4],e[8][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:9,m_col:8,i_nr:'8.33'},
+{entry:'=(	D9	*10)*(	D9	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r9c4s0\'	),10),_div(_cel(	\'r9c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[12][9]]',
+i_rt:'[e[9][4],e[6][4],e[7][4],e[8][4],e[10][4],e[11][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:9,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:9,m_col:10},
+{bk_color:'navy',m_row:10,m_col:1},
+{entry:'Measures:',textAlign:'left',locked:'false',m_row:10,m_col:2,i_nr:'Measures:'},
+{entry:'- cash flow',textAlign:'left',locked:'false',foreColor:'maroon',m_row:10,m_col:3,i_nr:'- cash flow'},
+{entry:'2',dynamic:'2',derived:'2',
+i_tb:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:10,m_col:4,i_nr:'2'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[10][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:10,m_col:5,i_nr:'10'},
+{entry:'=(	D10	*	E10	)*(	D10	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r10c4s0\'	),_cel(	\'r10c5s0\'	)),_div(_cel(	\'r10c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[12][6]]',
+i_rt:'[e[10][4],e[10][5],e[6][4],e[7][4],e[8][4],e[9][4],e[11][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:10,m_col:6,i_nr:'1.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[10][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:10,m_col:7,i_nr:'10'},
+{entry:'=(	D10	*	G10	)*(	D10	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r10c4s0\'	),_cel(	\'r10c7s0\'	)),_div(_cel(	\'r10c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[12][8]]',
+i_rt:'[e[10][4],e[10][7],e[6][4],e[7][4],e[8][4],e[9][4],e[11][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:10,m_col:8,i_nr:'1.33'},
+{entry:'=(	D10	*10)*(	D10	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r10c4s0\'	),10),_div(_cel(	\'r10c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[12][9]]',
+i_rt:'[e[10][4],e[6][4],e[7][4],e[8][4],e[9][4],e[11][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:10,m_col:9,i_nr:'1.33'},
+{foreColor:'white',_textAlign:'left',m_row:10,m_col:10},
+{bk_color:'navy',m_row:11,m_col:1},
+{entry:'- market shares',textAlign:'left',locked:'false',foreColor:'maroon',m_row:11,m_col:3,i_nr:'- market shares'},
+{entry:'00',dynamic:'0',
+i_tb:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:11,m_col:4,i_nr:'0'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[11][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:11,m_col:5,i_nr:'10'},
+{entry:'=(	D11	*	E11	)*(	D11	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r11c4s0\'	),_cel(	\'r11c5s0\'	)),_div(_cel(	\'r11c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',
+i_tb:'[e[12][6]]',
+i_rt:'[e[11][4],e[11][5],e[6][4],e[7][4],e[8][4],e[9][4],e[10][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:11,m_col:6,i_nr:'0.00'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[11][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:11,m_col:7,i_nr:'10'},
+{entry:'=(	D11	*	G11	)*(	D11	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r11c4s0\'	),_cel(	\'r11c7s0\'	)),_div(_cel(	\'r11c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',
+i_tb:'[e[12][8]]',
+i_rt:'[e[11][4],e[11][7],e[6][4],e[7][4],e[8][4],e[9][4],e[10][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:11,m_col:8,i_nr:'0.00'},
+{entry:'=(	D11	*10)*(	D11	/sum(	$D$6	:	$D$11	))',dynamic:'_mul(_mul(_cel(	\'r11c4s0\'	),10),_div(_cel(	\'r11c4s0\'	),__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	))))',
+i_tb:'[e[12][9]]',
+i_rt:'[e[11][4],e[6][4],e[7][4],e[8][4],e[9][4],e[10][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:11,m_col:9,i_nr:'0.00'},
+{entry:'=if(	I12	=0,0,(	H12	*(	D12	/	D40	))/	I12	)',dynamic:'(_eqr(_cel(	\'r12c9s0\'	),0)?0:_div(_mul(_cel(	\'r12c8s0\'	),_div(_cel(	\'r12c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r12c9s0\'	)))',derived:'0.5882352941176471',
+i_tb:'[e[40][8]]',
+i_rt:'[e[12][9],e[12][8],e[12][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:11,m_col:10,i_nr:'0.59'},
+{bk_color:'navy',m_row:12,m_col:1},
+{entry:'SUBTOTAL:',textAlign:'left',m_row:12,m_col:2,i_nr:'SUBTOTAL:'},
+{locked:'true',m_row:12,m_col:3},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[40][4],e[12][6],e[12][8],e[12][9],e[11][10],e[12][10]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:12,m_col:4,i_nr:'10'},
+{entry:'-',_borderLeft:'solid black 1px',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:12,m_col:5,i_nr:'-'},
+{entry:'=(sum(	F6	:	F11	)*	D12	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r6c6s0\'	),_cel(	\'r7c6s0\'	),_cel(	\'r8c6s0\'	),_cel(	\'r9c6s0\'	),_cel(	\'r10c6s0\'	),_cel(	\'r11c6s0\'	)),_cel(	\'r12c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'42.74509803921567',
+i_tb:'[e[12][10]]',
+i_rt:'[e[6][6],e[7][6],e[8][6],e[9][6],e[10][6],e[11][6],e[12][4],e[40][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:12,m_col:6,i_nr:'42.75'},
+{entry:'-',locked:'true',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:12,m_col:7,i_nr:'-'},
+{entry:'=(sum(	H6	:	H11	)*	D12	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r6c8s0\'	),_cel(	\'r7c8s0\'	),_cel(	\'r8c8s0\'	),_cel(	\'r9c8s0\'	),_cel(	\'r10c8s0\'	),_cel(	\'r11c8s0\'	)),_cel(	\'r12c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'42.74509803921567',
+i_tb:'[e[11][10]]',
+i_rt:'[e[6][8],e[7][8],e[8][8],e[9][8],e[10][8],e[11][8],e[12][4],e[40][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:12,m_col:8,i_nr:'42.75'},
+{entry:'=(sum(	I6	:	I11	)*	D12	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r6c9s0\'	),_cel(	\'r7c9s0\'	),_cel(	\'r8c9s0\'	),_cel(	\'r9c9s0\'	),_cel(	\'r10c9s0\'	),_cel(	\'r11c9s0\'	)),_cel(	\'r12c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'42.74509803921567',
+i_tb:'[e[11][10],e[12][10]]',
+i_rt:'[e[6][9],e[7][9],e[8][9],e[9][9],e[10][9],e[11][9],e[12][4],e[40][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:12,m_col:9,i_nr:'42.75'},
+{entry:'=if(	I12	=0,0,(	F12	*(	D12	/	D40	))/	I12	)',dynamic:'(_eqr(_cel(	\'r12c9s0\'	),0)?0:_div(_mul(_cel(	\'r12c6s0\'	),_div(_cel(	\'r12c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r12c9s0\'	)))',derived:'0.5882352941176471',
+i_tb:'[e[40][6]]',
+i_rt:'[e[12][9],e[12][6],e[12][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:12,m_col:10,i_nr:'0.59'},
+{bk_color:'navy',m_row:13,m_col:1},
+{entry:'Company Evaluation Perspective',textAlign:'left',locked:'false',viewSize:'11pt',foreColor:'white',bk_color:'navy',_fontWeight:'bold',m_row:13,m_col:2,i_nr:'Company Evaluation Perspective'},
+{bk_color:'navy',foreColor:'white',viewSize:'11pt',m_row:13,m_col:3},
+{viewSize:'11pt',_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:13,m_col:4},
+{entry:'Your Evaluation',_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:13,m_col:5,i_nr:'Your Evaluation'},
+{_viewFormat:'comma_2',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:13,m_col:6},
+{entry:'Your Expectation',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:13,m_col:7,i_nr:'Your Expectation'},
+{foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:13,m_col:8},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:13,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:13,m_col:10},
+{bk_color:'navy',m_row:14,m_col:1},
+{entry:'Does this company have a strategy to grow and profit?',textAlign:'left',locked:'false',foreColor:'white',bk_color:'navy',m_row:14,m_col:2,i_nr:'Does this company have a strategy to grow and profit?'},
+{bk_color:'navy',foreColor:'white',m_row:14,m_col:3},
+{entry:'Weight',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:14,m_col:4,i_nr:'Weight'},
+{entry:'Your Score',locked:'true',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:14,m_col:5,i_nr:'Your Score'},
+{entry:'Total Score',_viewFormat:'comma_2',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:14,m_col:6,i_nr:'Total Score'},
+{entry:'Your Score',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:14,m_col:7,i_nr:'Your Score'},
+{entry:'Total Score',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:14,m_col:8,i_nr:'Total Score'},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:14,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:14,m_col:10},
+{bk_color:'navy',m_row:15,m_col:1},
+{entry:'Considerations:',textAlign:'left',locked:'false',m_row:15,m_col:2,i_nr:'Considerations:'},
+{entry:'- good customer satisfaction',textAlign:'left',locked:'false',foreColor:'maroon',m_row:15,m_col:3,i_nr:'- good customer satisfaction'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:15,m_col:4,i_nr:'10'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[15][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:15,m_col:5,i_nr:'10'},
+{entry:'=(	D15	*	E15	)*(	D15	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r15c4s0\'	),_cel(	\'r15c5s0\'	)),_div(_cel(	\'r15c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[21][6]]',
+i_rt:'[e[15][4],e[15][5],e[16][4],e[17][4],e[18][4],e[19][4],e[20][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:15,m_col:6,i_nr:'33.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[15][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:15,m_col:7,i_nr:'10'},
+{entry:'=(	D15	*	G15	)*(	D15	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r15c4s0\'	),_cel(	\'r15c7s0\'	)),_div(_cel(	\'r15c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[21][8]]',
+i_rt:'[e[15][4],e[15][7],e[16][4],e[17][4],e[18][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:15,m_col:8,i_nr:'33.33'},
+{entry:'=(	D15	*10)*(	D15	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r15c4s0\'	),10),_div(_cel(	\'r15c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[21][9]]',
+i_rt:'[e[15][4],e[16][4],e[17][4],e[18][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:15,m_col:9,i_nr:'33.33'},
+{foreColor:'white',_textAlign:'left',m_row:15,m_col:10},
+{bk_color:'navy',m_row:16,m_col:1},
+{entry:'- good strategy / plan for future',textAlign:'left',locked:'false',foreColor:'maroon',m_row:16,m_col:3,i_nr:'- good strategy / plan for future'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:16,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[16][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:16,m_col:5,i_nr:'10'},
+{entry:'=(	D16	*	E16	)*(	D16	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r16c4s0\'	),_cel(	\'r16c5s0\'	)),_div(_cel(	\'r16c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[21][6]]',
+i_rt:'[e[16][4],e[16][5],e[15][4],e[17][4],e[18][4],e[19][4],e[20][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:16,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[16][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:16,m_col:7,i_nr:'10'},
+{entry:'=(	D16	*	G16	)*(	D16	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r16c4s0\'	),_cel(	\'r16c7s0\'	)),_div(_cel(	\'r16c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[21][8]]',
+i_rt:'[e[16][4],e[16][7],e[15][4],e[17][4],e[18][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:16,m_col:8,i_nr:'8.33'},
+{entry:'=(	D16	*10)*(	D16	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r16c4s0\'	),10),_div(_cel(	\'r16c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[21][9]]',
+i_rt:'[e[16][4],e[15][4],e[17][4],e[18][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:16,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:16,m_col:10},
+{bk_color:'navy',m_row:17,m_col:1},
+{entry:'- employee / production capacity',textAlign:'left',locked:'false',foreColor:'maroon',m_row:17,m_col:3,i_nr:'- employee / production capacity'},
+{entry:'8',dynamic:'8',derived:'8',
+i_tb:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:17,m_col:4,i_nr:'8'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[17][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:17,m_col:5,i_nr:'10'},
+{entry:'=(	D17	*	E17	)*(	D17	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r17c4s0\'	),_cel(	\'r17c5s0\'	)),_div(_cel(	\'r17c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[21][6]]',
+i_rt:'[e[17][4],e[17][5],e[15][4],e[16][4],e[18][4],e[19][4],e[20][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:17,m_col:6,i_nr:'21.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[17][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:17,m_col:7,i_nr:'10'},
+{entry:'=(	D17	*	G17	)*(	D17	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r17c4s0\'	),_cel(	\'r17c7s0\'	)),_div(_cel(	\'r17c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[21][8]]',
+i_rt:'[e[17][4],e[17][7],e[15][4],e[16][4],e[18][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:17,m_col:8,i_nr:'21.33'},
+{entry:'=(	D17	*10)*(	D17	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r17c4s0\'	),10),_div(_cel(	\'r17c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[21][9]]',
+i_rt:'[e[17][4],e[15][4],e[16][4],e[18][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:17,m_col:9,i_nr:'21.33'},
+{foreColor:'white',_textAlign:'left',m_row:17,m_col:10},
+{bk_color:'navy',m_row:18,m_col:1},
+{entry:'- ability to handle amount of traffic to company',textAlign:'left',locked:'false',foreColor:'maroon',m_row:18,m_col:3,i_nr:'- ability to handle amount of traffic to company'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:18,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[18][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:18,m_col:5,i_nr:'10'},
+{entry:'=(	D18	*	E18	)*(	D18	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	)),_div(_cel(	\'r18c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[21][6]]',
+i_rt:'[e[18][4],e[18][5],e[15][4],e[16][4],e[17][4],e[19][4],e[20][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:18,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[18][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:18,m_col:7,i_nr:'10'},
+{entry:'=(	D18	*	G18	)*(	D18	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r18c4s0\'	),_cel(	\'r18c7s0\'	)),_div(_cel(	\'r18c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[21][8]]',
+i_rt:'[e[18][4],e[18][7],e[15][4],e[16][4],e[17][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:18,m_col:8,i_nr:'8.33'},
+{entry:'=(	D18	*10)*(	D18	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r18c4s0\'	),10),_div(_cel(	\'r18c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[21][9]]',
+i_rt:'[e[18][4],e[15][4],e[16][4],e[17][4],e[19][4],e[20][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:18,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:18,m_col:10},
+{bk_color:'navy',m_row:19,m_col:1},
+{entry:'Measures:',textAlign:'left',locked:'false',m_row:19,m_col:2,i_nr:'Measures:'},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:19,m_col:3},
+{entry:'2',dynamic:'2',derived:'2',
+i_tb:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:19,m_col:4,i_nr:'2'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[19][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:19,m_col:5,i_nr:'10'},
+{entry:'=(	D19	*	E19	)*(	D19	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r19c4s0\'	),_cel(	\'r19c5s0\'	)),_div(_cel(	\'r19c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[21][6]]',
+i_rt:'[e[19][4],e[19][5],e[15][4],e[16][4],e[17][4],e[18][4],e[20][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:19,m_col:6,i_nr:'1.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[19][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:19,m_col:7,i_nr:'10'},
+{entry:'=(	D19	*	G19	)*(	D19	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r19c4s0\'	),_cel(	\'r19c7s0\'	)),_div(_cel(	\'r19c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[21][8]]',
+i_rt:'[e[19][4],e[19][7],e[15][4],e[16][4],e[17][4],e[18][4],e[20][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:19,m_col:8,i_nr:'1.33'},
+{entry:'=(	D19	*10)*(	D19	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r19c4s0\'	),10),_div(_cel(	\'r19c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[21][9]]',
+i_rt:'[e[19][4],e[15][4],e[16][4],e[17][4],e[18][4],e[20][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:19,m_col:9,i_nr:'1.33'},
+{foreColor:'white',_textAlign:'left',m_row:19,m_col:10},
+{bk_color:'navy',m_row:20,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:20,m_col:3},
+{entry:'00',dynamic:'0',
+i_tb:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:20,m_col:4,i_nr:'0'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[20][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:20,m_col:5,i_nr:'10'},
+{entry:'=(	D20	*	E20	)*(	D20	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r20c4s0\'	),_cel(	\'r20c5s0\'	)),_div(_cel(	\'r20c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',
+i_tb:'[e[21][6]]',
+i_rt:'[e[20][4],e[20][5],e[15][4],e[16][4],e[17][4],e[18][4],e[19][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:20,m_col:6,i_nr:'0.00'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[20][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:20,m_col:7,i_nr:'10'},
+{entry:'=(	D20	*	G20	)*(	D20	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r20c4s0\'	),_cel(	\'r20c7s0\'	)),_div(_cel(	\'r20c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',
+i_tb:'[e[21][8]]',
+i_rt:'[e[20][4],e[20][7],e[15][4],e[16][4],e[17][4],e[18][4],e[19][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:20,m_col:8,i_nr:'0.00'},
+{entry:'=(	D20	*10)*(	D20	/sum(	$D$15	:	$D$20	))',dynamic:'_mul(_mul(_cel(	\'r20c4s0\'	),10),_div(_cel(	\'r20c4s0\'	),__sum(_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r20c4s0\'	))))',
+i_tb:'[e[21][9]]',
+i_rt:'[e[20][4],e[15][4],e[16][4],e[17][4],e[18][4],e[19][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:20,m_col:9,i_nr:'0.00'},
+{entry:'=if(	I21	=0,0,(	$H21	*(	$D21	/	$D$40	))/	$I21	)',dynamic:'(_eqr(_cel(	\'r21c9s0\'	),0)?0:_div(_mul(_cel(	\'r21c8s0\'	),_div(_cel(	\'r21c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r21c9s0\'	)))',derived:'0.23529411764705882',
+i_tb:'[e[40][8]]',
+i_rt:'[e[21][9],e[21][8],e[21][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:20,m_col:10,i_nr:'0.24'},
+{_borderBottom:'solid black 1px',bk_color:'navy',m_row:21,m_col:1},
+{entry:'SUBTOTAL:',textAlign:'left',m_row:21,m_col:2,i_nr:'SUBTOTAL:'},
+{entry:'4',dynamic:'4',derived:'4',
+i_tb:'[e[40][4],e[21][6],e[21][8],e[21][9],e[20][10],e[21][10]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:21,m_col:4,i_nr:'4'},
+{entry:'-',_borderLeft:'solid black 1px',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:21,m_col:5,i_nr:'-'},
+{entry:'=(sum(	F15	:	F20	)*	D21	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r15c6s0\'	),_cel(	\'r16c6s0\'	),_cel(	\'r17c6s0\'	),_cel(	\'r18c6s0\'	),_cel(	\'r19c6s0\'	),_cel(	\'r20c6s0\'	)),_cel(	\'r21c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'17.09803921568627',
+i_tb:'[e[21][10]]',
+i_rt:'[e[15][6],e[16][6],e[17][6],e[18][6],e[19][6],e[20][6],e[21][4],e[40][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:21,m_col:6,i_nr:'17.10'},
+{entry:'-',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:21,m_col:7,i_nr:'-'},
+{entry:'=(sum(	H15	:	H20	)*	D21	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r15c8s0\'	),_cel(	\'r16c8s0\'	),_cel(	\'r17c8s0\'	),_cel(	\'r18c8s0\'	),_cel(	\'r19c8s0\'	),_cel(	\'r20c8s0\'	)),_cel(	\'r21c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'17.09803921568627',
+i_tb:'[e[20][10]]',
+i_rt:'[e[15][8],e[16][8],e[17][8],e[18][8],e[19][8],e[20][8],e[21][4],e[40][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:21,m_col:8,i_nr:'17.10'},
+{entry:'=(sum(	I15	:	I20	)*	D21	/	$D$40	)',dynamic:'_div(_mul(__sum(_cel(	\'r15c9s0\'	),_cel(	\'r16c9s0\'	),_cel(	\'r17c9s0\'	),_cel(	\'r18c9s0\'	),_cel(	\'r19c9s0\'	),_cel(	\'r20c9s0\'	)),_cel(	\'r21c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'17.09803921568627',
+i_tb:'[e[20][10],e[21][10]]',
+i_rt:'[e[15][9],e[16][9],e[17][9],e[18][9],e[19][9],e[20][9],e[21][4],e[40][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:21,m_col:9,i_nr:'17.10'},
+{entry:'=if(	I21	=0,0,(	F21	*(	D21	/	$D$40	))/	I21	)',dynamic:'(_eqr(_cel(	\'r21c9s0\'	),0)?0:_div(_mul(_cel(	\'r21c6s0\'	),_div(_cel(	\'r21c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r21c9s0\'	)))',derived:'0.23529411764705882',
+i_tb:'[e[40][6]]',
+i_rt:'[e[21][9],e[21][6],e[21][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:21,m_col:10,i_nr:'0.24'},
+{bk_color:'navy',m_row:22,m_col:1},
+{entry:'Economic Perspective',textAlign:'left',locked:'false',viewSize:'11pt',foreColor:'white',bk_color:'navy',_fontWeight:'bold',m_row:22,m_col:2,i_nr:'Economic Perspective'},
+{textAlign:'left',bk_color:'navy',foreColor:'white',m_row:22,m_col:3},
+{_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:22,m_col:4},
+{entry:'Your Evaluation',_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:22,m_col:5,i_nr:'Your Evaluation'},
+{_viewFormat:'comma_2',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:22,m_col:6},
+{entry:'Your Expectation',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:22,m_col:7,i_nr:'Your Expectation'},
+{foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:22,m_col:8},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:22,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:22,m_col:10},
+{bk_color:'navy',m_row:23,m_col:1},
+{entry:'Is this the right time to invest?',textAlign:'left',locked:'false',foreColor:'white',bk_color:'navy',m_row:23,m_col:2,i_nr:'Is this the right time to invest?'},
+{textAlign:'left',bk_color:'navy',foreColor:'white',m_row:23,m_col:3},
+{entry:'Weight',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:23,m_col:4,i_nr:'Weight'},
+{entry:'Your Score',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:23,m_col:5,i_nr:'Your Score'},
+{entry:'Total Score',_viewFormat:'comma_2',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:23,m_col:6,i_nr:'Total Score'},
+{entry:'Your Score',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:23,m_col:7,i_nr:'Your Score'},
+{entry:'Total Score',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:23,m_col:8,i_nr:'Total Score'},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:23,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:23,m_col:10},
+{bk_color:'navy',m_row:24,m_col:1},
+{entry:'Considerations:',textAlign:'left',locked:'false',m_row:24,m_col:2,i_nr:'Considerations:'},
+{entry:'- who is the president / how are his policies',textAlign:'left',locked:'false',foreColor:'maroon',m_row:24,m_col:3,i_nr:'- who is the president / how are his policies'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:24,m_col:4,i_nr:'10'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[24][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:24,m_col:5,i_nr:'10'},
+{entry:'=(	D24	*	E24	)*(	D24	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r24c4s0\'	),_cel(	\'r24c5s0\'	)),_div(_cel(	\'r24c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[30][6]]',
+i_rt:'[e[24][4],e[24][5],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:24,m_col:6,i_nr:'33.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[24][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:24,m_col:7,i_nr:'10'},
+{entry:'=(	D24	*	G24	)*(	D24	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r24c4s0\'	),_cel(	\'r24c7s0\'	)),_div(_cel(	\'r24c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[30][8]]',
+i_rt:'[e[24][4],e[24][7],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:24,m_col:8,i_nr:'33.33'},
+{entry:'=(	D24	*10)*(	D24	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r24c4s0\'	),10),_div(_cel(	\'r24c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[30][9]]',
+i_rt:'[e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:24,m_col:9,i_nr:'33.33'},
+{foreColor:'white',_textAlign:'left',m_row:24,m_col:10},
+{bk_color:'navy',m_row:25,m_col:1},
+{entry:'- general sway of economy',textAlign:'left',locked:'false',foreColor:'maroon',m_row:25,m_col:3,i_nr:'- general sway of economy'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:25,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[25][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:25,m_col:5,i_nr:'10'},
+{entry:'=(	D25	*	E25	)*(	D25	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r25c4s0\'	),_cel(	\'r25c5s0\'	)),_div(_cel(	\'r25c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[30][6]]',
+i_rt:'[e[25][4],e[25][5],e[24][4],e[26][4],e[27][4],e[28][4],e[29][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:25,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[25][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:25,m_col:7,i_nr:'10'},
+{entry:'=(	D25	*	G25	)*(	D25	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r25c4s0\'	),_cel(	\'r25c7s0\'	)),_div(_cel(	\'r25c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[30][8]]',
+i_rt:'[e[25][4],e[25][7],e[24][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:25,m_col:8,i_nr:'8.33'},
+{entry:'=(	D25	*10)*(	D25	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r25c4s0\'	),10),_div(_cel(	\'r25c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[30][9]]',
+i_rt:'[e[25][4],e[24][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:25,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:25,m_col:10},
+{bk_color:'navy',m_row:26,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:26,m_col:3},
+{entry:'8',dynamic:'8',derived:'8',
+i_tb:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:26,m_col:4,i_nr:'8'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[26][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:26,m_col:5,i_nr:'10'},
+{entry:'=(	D26	*	E26	)*(	D26	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r26c4s0\'	),_cel(	\'r26c5s0\'	)),_div(_cel(	\'r26c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[30][6]]',
+i_rt:'[e[26][4],e[26][5],e[24][4],e[25][4],e[27][4],e[28][4],e[29][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:26,m_col:6,i_nr:'21.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[26][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:26,m_col:7,i_nr:'10'},
+{entry:'=(	D26	*	G26	)*(	D26	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r26c4s0\'	),_cel(	\'r26c7s0\'	)),_div(_cel(	\'r26c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[30][8]]',
+i_rt:'[e[26][4],e[26][7],e[24][4],e[25][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:26,m_col:8,i_nr:'21.33'},
+{entry:'=(	D26	*10)*(	D26	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r26c4s0\'	),10),_div(_cel(	\'r26c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[30][9]]',
+i_rt:'[e[26][4],e[24][4],e[25][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:26,m_col:9,i_nr:'21.33'},
+{foreColor:'white',_textAlign:'left',m_row:26,m_col:10},
+{bk_color:'navy',m_row:27,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:27,m_col:3},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:27,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[27][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:27,m_col:5,i_nr:'10'},
+{entry:'=(	D27	*	E27	)*(	D27	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r27c4s0\'	),_cel(	\'r27c5s0\'	)),_div(_cel(	\'r27c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[30][6]]',
+i_rt:'[e[27][4],e[27][5],e[24][4],e[25][4],e[26][4],e[28][4],e[29][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:27,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[27][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:27,m_col:7,i_nr:'10'},
+{entry:'=(	D27	*	G27	)*(	D27	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r27c4s0\'	),_cel(	\'r27c7s0\'	)),_div(_cel(	\'r27c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[30][8]]',
+i_rt:'[e[27][4],e[27][7],e[24][4],e[25][4],e[26][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:27,m_col:8,i_nr:'8.33'},
+{entry:'=(	D27	*10)*(	D27	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r27c4s0\'	),10),_div(_cel(	\'r27c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[30][9]]',
+i_rt:'[e[27][4],e[24][4],e[25][4],e[26][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:27,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:27,m_col:10},
+{bk_color:'navy',m_row:28,m_col:1},
+{entry:'Measures:',textAlign:'left',locked:'false',m_row:28,m_col:2,i_nr:'Measures:'},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:28,m_col:3},
+{entry:'2',dynamic:'2',derived:'2',
+i_tb:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:28,m_col:4,i_nr:'2'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[28][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:28,m_col:5,i_nr:'10'},
+{entry:'=(	D28	*	E28	)*(	D28	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r28c4s0\'	),_cel(	\'r28c5s0\'	)),_div(_cel(	\'r28c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[30][6]]',
+i_rt:'[e[28][4],e[28][5],e[24][4],e[25][4],e[26][4],e[27][4],e[29][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:28,m_col:6,i_nr:'1.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[28][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:28,m_col:7,i_nr:'10'},
+{entry:'=(	D28	*	G28	)*(	D28	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r28c4s0\'	),_cel(	\'r28c7s0\'	)),_div(_cel(	\'r28c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[30][8]]',
+i_rt:'[e[28][4],e[28][7],e[24][4],e[25][4],e[26][4],e[27][4],e[29][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:28,m_col:8,i_nr:'1.33'},
+{entry:'=(	D28	*10)*(	D28	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r28c4s0\'	),10),_div(_cel(	\'r28c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[30][9]]',
+i_rt:'[e[28][4],e[24][4],e[25][4],e[26][4],e[27][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:28,m_col:9,i_nr:'1.33'},
+{foreColor:'white',_textAlign:'left',m_row:28,m_col:10},
+{bk_color:'navy',m_row:29,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:29,m_col:3},
+{entry:'00',dynamic:'0',
+i_tb:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:29,m_col:4,i_nr:'0'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[29][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:29,m_col:5,i_nr:'10'},
+{entry:'=(	D29	*	E29	)*(	D29	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r29c4s0\'	),_cel(	\'r29c5s0\'	)),_div(_cel(	\'r29c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',
+i_tb:'[e[30][6]]',
+i_rt:'[e[29][4],e[29][5],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:29,m_col:6,i_nr:'0.00'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[29][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:29,m_col:7,i_nr:'10'},
+{entry:'=(	D29	*	G29	)*(	D29	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r29c4s0\'	),_cel(	\'r29c7s0\'	)),_div(_cel(	\'r29c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',
+i_tb:'[e[30][8]]',
+i_rt:'[e[29][4],e[29][7],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:29,m_col:8,i_nr:'0.00'},
+{entry:'=(	D29	*10)*(	D29	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r29c4s0\'	),10),_div(_cel(	\'r29c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',
+i_tb:'[e[30][9]]',
+i_rt:'[e[29][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:29,m_col:9,i_nr:'0.00'},
+{entry:'=if(	I30	=0,0,(	$H30	*(	$D30	/	$D$40	))/	$I30	)',dynamic:'(_eqr(_cel(	\'r30c9s0\'	),0)?0:_div(_mul(_cel(	\'r30c8s0\'	),_div(_cel(	\'r30c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r30c9s0\'	)))',derived:'0.11764705882352941',
+i_tb:'[e[40][8]]',
+i_rt:'[e[30][9],e[30][8],e[30][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:29,m_col:10,i_nr:'0.12'},
+{bk_color:'navy',m_row:30,m_col:1},
+{entry:'SUBTOTAL:',textAlign:'left',locked:'true',m_row:30,m_col:2,i_nr:'SUBTOTAL:'},
+{entry:'2',dynamic:'2',derived:'2',
+i_tb:'[e[40][4],e[30][6],e[30][8],e[30][9],e[29][10],e[30][10]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:30,m_col:4,i_nr:'2'},
+{entry:'-',_borderLeft:'solid black 1px',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:30,m_col:5,i_nr:'-'},
+{entry:'=(sum(	F24	:	F29	)*	D30	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r24c6s0\'	),_cel(	\'r25c6s0\'	),_cel(	\'r26c6s0\'	),_cel(	\'r27c6s0\'	),_cel(	\'r28c6s0\'	),_cel(	\'r29c6s0\'	)),_cel(	\'r30c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'8.549019607843135',
+i_tb:'[e[30][10]]',
+i_rt:'[e[24][6],e[25][6],e[26][6],e[27][6],e[28][6],e[29][6],e[30][4],e[40][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:30,m_col:6,i_nr:'8.55'},
+{entry:'-',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:30,m_col:7,i_nr:'-'},
+{entry:'=(sum(	H24	:	H29	)*	D30	/	D40	)',dynamic:'_div(_mul(__sum(_cel(	\'r24c8s0\'	),_cel(	\'r25c8s0\'	),_cel(	\'r26c8s0\'	),_cel(	\'r27c8s0\'	),_cel(	\'r28c8s0\'	),_cel(	\'r29c8s0\'	)),_cel(	\'r30c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'8.549019607843135',
+i_tb:'[e[29][10]]',
+i_rt:'[e[24][8],e[25][8],e[26][8],e[27][8],e[28][8],e[29][8],e[30][4],e[40][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:30,m_col:8,i_nr:'8.55'},
+{entry:'=(sum(	I24	:	I29	)*	D30	/	$D$40	)',dynamic:'_div(_mul(__sum(_cel(	\'r24c9s0\'	),_cel(	\'r25c9s0\'	),_cel(	\'r26c9s0\'	),_cel(	\'r27c9s0\'	),_cel(	\'r28c9s0\'	),_cel(	\'r29c9s0\'	)),_cel(	\'r30c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'8.549019607843135',
+i_tb:'[e[29][10],e[30][10]]',
+i_rt:'[e[24][9],e[25][9],e[26][9],e[27][9],e[28][9],e[29][9],e[30][4],e[40][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:30,m_col:9,i_nr:'8.55'},
+{entry:'=if(	I30	=0,0,(	$F30	*(	$D30	/	$D$40	))/	$I30	)',dynamic:'(_eqr(_cel(	\'r30c9s0\'	),0)?0:_div(_mul(_cel(	\'r30c6s0\'	),_div(_cel(	\'r30c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r30c9s0\'	)))',derived:'0.11764705882352941',
+i_tb:'[e[40][6]]',
+i_rt:'[e[30][9],e[30][6],e[30][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:30,m_col:10,i_nr:'0.12'},
+{bk_color:'navy',m_row:31,m_col:1},
+{entry:'Moral and Belief Perspective',textAlign:'left',locked:'false',viewSize:'11pt',foreColor:'white',bk_color:'navy',_fontWeight:'bold',m_row:31,m_col:2,i_nr:'Moral and Belief Perspective'},
+{textAlign:'left',bk_color:'navy',foreColor:'white',m_row:31,m_col:3},
+{_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'center',m_row:31,m_col:4},
+{entry:'Your Evaluation',_borderLeft:'solid black 1px',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:31,m_col:5,i_nr:'Your Evaluation'},
+{_viewFormat:'comma_2',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:31,m_col:6},
+{entry:'Your Expectation',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:31,m_col:7,i_nr:'Your Expectation'},
+{foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:31,m_col:8},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:31,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:31,m_col:10},
+{bk_color:'navy',m_row:32,m_col:1},
+{entry:'Is this a company that I feel comfortable investing in?',locked:'false',foreColor:'white',bk_color:'navy',_textAlign:'left',m_row:32,m_col:2,i_nr:'Is this a company that I feel comfortable investing in?'},
+{textAlign:'left',bk_color:'navy',foreColor:'white',m_row:32,m_col:3},
+{entry:'Weight',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:32,m_col:4,i_nr:'Weight'},
+{entry:'Your Score',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:32,m_col:5,i_nr:'Your Score'},
+{entry:'Total Score',_viewFormat:'comma_2',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:32,m_col:6,i_nr:'Total Score'},
+{entry:'Your Score',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:32,m_col:7,i_nr:'Your Score'},
+{entry:'Total Score',_widthClue:'66',foreColor:'white',bk_color:'navy',_borderRight:'solid black 1px',_textAlign:'center',m_row:32,m_col:8,i_nr:'Total Score'},
+{_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:32,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:32,m_col:10},
+{bk_color:'navy',m_row:33,m_col:1},
+{entry:'Considerations:',textAlign:'left',locked:'false',m_row:33,m_col:2,i_nr:'Considerations:'},
+{entry:'- is this a green company?',textAlign:'left',locked:'false',foreColor:'maroon',m_row:33,m_col:3,i_nr:'- is this a green company?'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[33][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:33,m_col:4,i_nr:'10'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[33][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:33,m_col:5,i_nr:'10'},
+{entry:'=(	D33	*	E33	)*(	D33	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r33c4s0\'	),_cel(	\'r33c5s0\'	)),_div(_cel(	\'r33c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[39][6]]',
+i_rt:'[e[33][4],e[33][5],e[34][4],e[35][4],e[36][4],e[37][4],e[38][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:33,m_col:6,i_nr:'33.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[33][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:33,m_col:7,i_nr:'10'},
+{entry:'=(	D33	*	G33	)*(	D33	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r33c4s0\'	),_cel(	\'r33c7s0\'	)),_div(_cel(	\'r33c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[39][8]]',
+i_rt:'[e[33][4],e[33][7],e[34][4],e[35][4],e[36][4],e[37][4],e[38][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:33,m_col:8,i_nr:'33.33'},
+{entry:'=(	D33	*10)*(	D33	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r33c4s0\'	),10),_div(_cel(	\'r33c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'33.33333333333333',
+i_tb:'[e[39][9]]',
+i_rt:'[e[33][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:33,m_col:9,i_nr:'33.33'},
+{foreColor:'white',_textAlign:'left',m_row:33,m_col:10},
+{bk_color:'navy',m_row:34,m_col:1},
+{entry:'- does this company support my beliefs?',textAlign:'left',locked:'false',foreColor:'maroon',m_row:34,m_col:3,i_nr:'- does this company support my beliefs?'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[34][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:34,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[34][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:34,m_col:5,i_nr:'10'},
+{entry:'=(	D34	*	E34	)*(	D34	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r34c4s0\'	),_cel(	\'r34c5s0\'	)),_div(_cel(	\'r34c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[39][6]]',
+i_rt:'[e[34][4],e[34][5],e[33][4],e[35][4],e[36][4],e[37][4],e[38][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:34,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[34][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:34,m_col:7,i_nr:'10'},
+{entry:'=(	D34	*	G34	)*(	D34	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r34c4s0\'	),_cel(	\'r34c7s0\'	)),_div(_cel(	\'r34c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[39][8]]',
+i_rt:'[e[34][4],e[34][7],e[33][4],e[35][4],e[36][4],e[37][4],e[38][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:34,m_col:8,i_nr:'8.33'},
+{entry:'=(	D34	*10)*(	D34	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r34c4s0\'	),10),_div(_cel(	\'r34c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[39][9]]',
+i_rt:'[e[34][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:34,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:34,m_col:10},
+{bk_color:'navy',m_row:35,m_col:1},
+{entry:'- donations and economic aide',textAlign:'left',locked:'false',foreColor:'maroon',m_row:35,m_col:3,i_nr:'- donations and economic aide'},
+{entry:'8',dynamic:'8',derived:'8',
+i_tb:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[35][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:35,m_col:4,i_nr:'8'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[35][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:35,m_col:5,i_nr:'10'},
+{entry:'=(	D35	*	E35	)*(	D35	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r35c4s0\'	),_cel(	\'r35c5s0\'	)),_div(_cel(	\'r35c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[39][6]]',
+i_rt:'[e[35][4],e[35][5],e[33][4],e[34][4],e[36][4],e[37][4],e[38][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:35,m_col:6,i_nr:'21.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[35][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:35,m_col:7,i_nr:'10'},
+{entry:'=(	D35	*	G35	)*(	D35	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r35c4s0\'	),_cel(	\'r35c7s0\'	)),_div(_cel(	\'r35c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[39][8]]',
+i_rt:'[e[35][4],e[35][7],e[33][4],e[34][4],e[36][4],e[37][4],e[38][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:35,m_col:8,i_nr:'21.33'},
+{entry:'=(	D35	*10)*(	D35	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r35c4s0\'	),10),_div(_cel(	\'r35c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'21.333333333333332',
+i_tb:'[e[39][9]]',
+i_rt:'[e[35][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:35,m_col:9,i_nr:'21.33'},
+{foreColor:'white',_textAlign:'left',m_row:35,m_col:10},
+{bk_color:'navy',m_row:36,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:36,m_col:3},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[36][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:36,m_col:4,i_nr:'5'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[36][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:36,m_col:5,i_nr:'10'},
+{entry:'=(	D36	*	E36	)*(	D36	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r36c4s0\'	),_cel(	\'r36c5s0\'	)),_div(_cel(	\'r36c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[39][6]]',
+i_rt:'[e[36][4],e[36][5],e[33][4],e[34][4],e[35][4],e[37][4],e[38][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:36,m_col:6,i_nr:'8.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[36][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:36,m_col:7,i_nr:'10'},
+{entry:'=(	D36	*	G36	)*(	D36	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r36c4s0\'	),_cel(	\'r36c7s0\'	)),_div(_cel(	\'r36c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[39][8]]',
+i_rt:'[e[36][4],e[36][7],e[33][4],e[34][4],e[35][4],e[37][4],e[38][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:36,m_col:8,i_nr:'8.33'},
+{entry:'=(	D36	*10)*(	D36	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r36c4s0\'	),10),_div(_cel(	\'r36c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'8.333333333333332',
+i_tb:'[e[39][9]]',
+i_rt:'[e[36][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:36,m_col:9,i_nr:'8.33'},
+{foreColor:'white',_textAlign:'left',m_row:36,m_col:10},
+{bk_color:'navy',m_row:37,m_col:1},
+{entry:'Measures:',textAlign:'left',locked:'false',m_row:37,m_col:2,i_nr:'Measures:'},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:37,m_col:3},
+{entry:'2',dynamic:'2',derived:'2',
+i_tb:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[37][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:37,m_col:4,i_nr:'2'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[37][6]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:37,m_col:5,i_nr:'10'},
+{entry:'=(	D37	*	E37	)*(	D37	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r37c4s0\'	),_cel(	\'r37c5s0\'	)),_div(_cel(	\'r37c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[39][6]]',
+i_rt:'[e[37][4],e[37][5],e[33][4],e[34][4],e[35][4],e[36][4],e[38][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:37,m_col:6,i_nr:'1.33'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[37][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:37,m_col:7,i_nr:'10'},
+{entry:'=(	D37	*	G37	)*(	D37	/sum(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r37c4s0\'	),_cel(	\'r37c7s0\'	)),_div(_cel(	\'r37c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[39][8]]',
+i_rt:'[e[37][4],e[37][7],e[33][4],e[34][4],e[35][4],e[36][4],e[38][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:37,m_col:8,i_nr:'1.33'},
+{entry:'=(	D37	*10)*(	D37	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r37c4s0\'	),10),_div(_cel(	\'r37c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',derived:'1.3333333333333332',
+i_tb:'[e[39][9]]',
+i_rt:'[e[37][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:37,m_col:9,i_nr:'1.33'},
+{foreColor:'white',_textAlign:'left',m_row:37,m_col:10},
+{bk_color:'navy',m_row:38,m_col:1},
+{textAlign:'left',locked:'false',foreColor:'maroon',m_row:38,m_col:3},
+{entry:'00',dynamic:'0',
+i_tb:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[38][9]]',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',bk_color:'white',_textAlign:'center',m_row:38,m_col:4,i_nr:'0'},
+{entry:'0',dynamic:'0',
+i_tb:'[e[38][6]]',locked:'false',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:38,m_col:5,i_nr:'0'},
+{entry:'=(	D38	*	E38	)*(	D38	/(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r38c4s0\'	),_cel(	\'r38c5s0\'	)),_div(_cel(	\'r38c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',
+i_tb:'[e[39][6]]',
+i_rt:'[e[38][4],e[38][5],e[33][4],e[34][4],e[35][4],e[36][4],e[37][4]]',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:38,m_col:6,i_nr:'0.00'},
+{entry:'10',dynamic:'10',derived:'10',
+i_tb:'[e[38][8]]',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:38,m_col:7,i_nr:'10'},
+{entry:'=(	D38	*	G38	)*(	D38	/(	$D$33	:	$D$38	))',dynamic:'_mul(_mul(_cel(	\'r38c4s0\'	),_cel(	\'r38c7s0\'	)),_div(_cel(	\'r38c4s0\'	),__sum(_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r38c4s0\'	))))',
+i_tb:'[e[39][8]]',
+i_rt:'[e[38][4],e[38][7],e[33][4],e[34][4],e[35][4],e[36][4],e[37][4]]',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:38,m_col:8,i_nr:'0.00'},
+{entry:'=(	D38	*10)*(	D38	/sum(	$D$24	:	$D$29	))',dynamic:'_mul(_mul(_cel(	\'r38c4s0\'	),10),_div(_cel(	\'r38c4s0\'	),__sum(_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r27c4s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r29c4s0\'	))))',
+i_tb:'[e[39][9]]',
+i_rt:'[e[38][4],e[24][4],e[25][4],e[26][4],e[27][4],e[28][4],e[29][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:38,m_col:9,i_nr:'0.00'},
+{entry:'=if(	I39	=0,0,(	H39	*(	D39	/	$D$40	))/	I39	)',dynamic:'(_eqr(_cel(	\'r39c9s0\'	),0)?0:_div(_mul(_cel(	\'r39c8s0\'	),_div(_cel(	\'r39c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r39c9s0\'	)))',derived:'0.058823529411764705',
+i_tb:'[e[40][8]]',
+i_rt:'[e[39][9],e[39][8],e[39][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:38,m_col:10,i_nr:'0.06'},
+{textAlign:'left',_borderBottom:'solid black 1px',bk_color:'navy',m_row:39,m_col:1},
+{entry:'SUBTOTAL:',textAlign:'left',_borderBottom:'solid black 1px',_viewFormat:'general',m_row:39,m_col:2,i_nr:'SUBTOTAL:'},
+{textAlign:'left',_borderBottom:'solid black 1px',m_row:39,m_col:3},
+{entry:'1',dynamic:'1',derived:'1',
+i_tb:'[e[40][4],e[39][6],e[39][8],e[39][9],e[38][10],e[39][10]]',_borderBottom:'solid black 1px',locked:'false',_borderLeft:'solid black 1px',_widthClue:'56',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:39,m_col:4,i_nr:'1'},
+{entry:'-',_borderBottom:'solid black 1px',_borderLeft:'solid black 1px',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:39,m_col:5,i_nr:'-'},
+{entry:'=(	F33	:	F38	)*	D39	/	D40	',dynamic:'_div(_mul(__sum(_cel(	\'r33c6s0\'	),_cel(	\'r34c6s0\'	),_cel(	\'r35c6s0\'	),_cel(	\'r36c6s0\'	),_cel(	\'r37c6s0\'	),_cel(	\'r38c6s0\'	)),_cel(	\'r39c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'4.274509803921568',
+i_tb:'[e[39][10]]',
+i_rt:'[e[33][6],e[34][6],e[35][6],e[36][6],e[37][6],e[38][6],e[39][4],e[40][4]]',_borderBottom:'solid black 1px',locked:'true',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:39,m_col:6,i_nr:'4.27'},
+{entry:'-',_borderBottom:'solid black 1px',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:39,m_col:7,i_nr:'-'},
+{entry:'=(	H33	:	H38	)*	D39	/	D40	',dynamic:'_div(_mul(__sum(_cel(	\'r33c8s0\'	),_cel(	\'r34c8s0\'	),_cel(	\'r35c8s0\'	),_cel(	\'r36c8s0\'	),_cel(	\'r37c8s0\'	),_cel(	\'r38c8s0\'	)),_cel(	\'r39c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'4.274509803921568',
+i_tb:'[e[38][10]]',
+i_rt:'[e[33][8],e[34][8],e[35][8],e[36][8],e[37][8],e[38][8],e[39][4],e[40][4]]',_borderBottom:'solid black 1px',_viewFormat:'comma_2',_widthClue:'66',_borderRight:'solid black 1px',_textAlign:'center',m_row:39,m_col:8,i_nr:'4.27'},
+{entry:'=(sum(	I33	:	I38	)*	D39	/	$D$40	)',dynamic:'_div(_mul(__sum(_cel(	\'r33c9s0\'	),_cel(	\'r34c9s0\'	),_cel(	\'r35c9s0\'	),_cel(	\'r36c9s0\'	),_cel(	\'r37c9s0\'	),_cel(	\'r38c9s0\'	)),_cel(	\'r39c4s0\'	)),_cel(	\'r40c4s0\'	))',derived:'4.274509803921568',
+i_tb:'[e[38][10],e[39][10]]',
+i_rt:'[e[33][9],e[34][9],e[35][9],e[36][9],e[37][9],e[38][9],e[39][4],e[40][4]]',_viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:39,m_col:9,i_nr:'4.27'},
+{entry:'=if(	I39	=0,0,(	F39	*(	D39	/	$D$40	))/	I39	)',dynamic:'(_eqr(_cel(	\'r39c9s0\'	),0)?0:_div(_mul(_cel(	\'r39c6s0\'	),_div(_cel(	\'r39c4s0\'	),_cel(	\'r40c4s0\'	))),_cel(	\'r39c9s0\'	)))',derived:'0.058823529411764705',
+i_tb:'[e[40][6]]',
+i_rt:'[e[39][9],e[39][6],e[39][4],e[40][4]]',viewFormat:'comma_2',foreColor:'white',_textAlign:'left',m_row:39,m_col:10,i_nr:'0.06'},
+{_borderBottom:'solid black 1px',bk_color:'navy',m_row:40,m_col:1},
+{entry:'TOTALS:',textAlign:'left',_borderBottom:'solid black 1px',foreColor:'gray',_fontWeight:'bold',m_row:40,m_col:2,i_nr:'TOTALS:'},
+{_borderBottom:'solid black 1px',foreColor:'gray',_fontWeight:'bold',m_row:40,m_col:3},
+{entry:'=sum(	D12	, 	D21	, 	D30	, 	D39	)',dynamic:'__sum(_cel(	\'r12c4s0\'	),_cel(	\'r21c4s0\'	),_cel(	\'r30c4s0\'	),_cel(	\'r39c4s0\'	))',derived:'17',
+i_tb:'[e[12][6],e[21][6],e[30][6],e[39][6],e[12][8],e[21][8],e[30][8],e[39][8],e[12][9],e[21][9],e[30][9],e[39][9],e[11][10],e[12][10],e[20][10],e[21][10],e[29][10],e[30][10],e[38][10],e[39][10]]',
+i_rt:'[e[12][4],e[21][4],e[30][4],e[39][4]]',_borderBottom:'solid black 1px',_widthClue:'56',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:40,m_col:4,i_nr:'17'},
+{_borderBottom:'solid black 1px',foreColor:'gray',_fontWeight:'bold',_textAlign:'center',m_row:40,m_col:5},
+{entry:'=(	J12	+	J21	+	J30	+	J39	) * 100 ',dynamic:'_mul(_add(_add(_add(_cel(	\'r12c10s0\'	),_cel(	\'r21c10s0\'	)),_cel(	\'r30c10s0\'	)),_cel(	\'r39c10s0\'	)),100)',derived:'100',
+i_rt:'[e[12][10],e[21][10],e[30][10],e[39][10]]',_borderBottom:'solid black 1px',_viewFormat:'comma_2',_widthClue:'66',foreColor:'gray',_fontWeight:'bold',_textAlign:'center',m_row:40,m_col:6,i_nr:'100.00'},
+{_borderBottom:'solid black 1px',foreColor:'gray',_fontWeight:'bold',_textAlign:'center',m_row:40,m_col:7},
+{entry:'=(	J11	+	J20	+	J29	+	J38	) * 100',dynamic:'_mul(_add(_add(_add(_cel(	\'r11c10s0\'	),_cel(	\'r20c10s0\'	)),_cel(	\'r29c10s0\'	)),_cel(	\'r38c10s0\'	)),100)',derived:'100',
+i_rt:'[e[11][10],e[20][10],e[29][10],e[38][10]]',_borderBottom:'solid black 1px',_viewFormat:'comma_2',_widthClue:'66',foreColor:'gray',_borderRight:'solid black 1px',_fontWeight:'bold',_textAlign:'center',m_row:40,m_col:8,i_nr:'100.00'},
+{locked:'true',_viewFormat:'comma_2',_borderLeft:'solid black 1px',foreColor:'white',_textAlign:'left',m_row:40,m_col:9},
+{foreColor:'white',_textAlign:'left',m_row:40,m_col:10},
+{entry:'Balanced Scorecards are useful to incorporate different types of information into one cohessive sheet of data.',textAlign:'left',m_row:42,m_col:2,i_nr:'Balanced Scorecards are useful to incorporate different types of information into one cohessive sheet of data.'},
+{entry:'Weight: ',textAlign:'left',m_row:43,m_col:2,i_nr:'Weight: '},
+{entry:'Rate the importance of each characteristic - 1 (not important) - 10 (high importance).',textAlign:'left',m_row:43,m_col:3,i_nr:'Rate the importance of each characteristic - 1 (not important) - 10 (high importance).'},
+{entry:'Subtotal Weight:',textAlign:'left',m_row:44,m_col:2,i_nr:'Subtotal Weight:'},
+{entry:'Rate how important each section is in comparison to the others. The total of all section weights added together should be 10',textAlign:'left',m_row:44,m_col:3,i_nr:'Rate how important each section is in comparison to the others. The total of all section weights added together should be 10'},
+{entry:'Your Score:',textAlign:'left',m_row:45,m_col:2,i_nr:'Your Score:'},
+{entry:'Give an evaluation of how the company has done in this area and what you expect the company ',textAlign:'left',m_row:45,m_col:3,i_nr:'Give an evaluation of how the company has done in this area and what you expect the company '},
+{entry:'to improve on in the future. 1 (low score) - 10 (high score - doesn\'t need improvement)',textAlign:'left',m_row:46,m_col:3,i_nr:'to improve on in the future. 1 (low score) - 10 (high score - doesn\'t need improvement)'},
+{entry:'** Compare your evaluation and what you expect from a company. If they match up, then you\'re in good shape!',textAlign:'left',m_row:48,m_col:2,i_nr:'** Compare your evaluation and what you expect from a company. If they match up, then you\'re in good shape!'}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+
+
+	</script>
+
+	<script language="JavaScript" src="/lib/js/unicodeCharMap_ie_667e49f7.jsx" ></script><script language="JavaScript" src="/lib/js/strings_en_2491480284.jsx" ></script><script language="JavaScript" src="/lib/js/locale_ie_0d14744b.jsx" ></script><script language="JavaScript" src="/lib/js/utility_ie_dbd756c4.jsx" ></script><script language="JavaScript" src="/lib/js/dialog_ie_8cee673f.jsx" ></script><script language="JavaScript" src="/lib/js/browser_detect_ie_b85f83d9.jsx" ></script><script language="JavaScript" src="/lib/js/cookie_ie_0645e3cf.jsx" ></script><script language="JavaScript" src="/lib/js/gui_ie_cd85eb87.jsx" ></script><script language="JavaScript" src="/lib/js/document_ie_29b378dd.jsx" ></script><script language="JavaScript" src="/lib/js/calculator_ie_bd9fc80c.jsx" ></script><script language="JavaScript" src="/lib/js/interface_calculator_ie_44704f07.jsx" ></script><script language="JavaScript" src="/lib/js/runtime_ie_e7eb4a54.jsx" ></script><script language="JavaScript" src="/lib/js/cell_ie_b1477f2e.jsx" ></script><script language="JavaScript" src="/lib/js/compiler_ie_808fdc64.jsx" ></script><script language="JavaScript" src="/lib/js/platform_ie_bb68a125.jsx" ></script><script language="JavaScript" src="/lib/js/resource_ie_66434373.jsx" ></script>
+
+	
+				<script language="JavaScript">
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</script>
+			
+
+	<div id="topDivision" class="division"></div>
+<div id="buttonPalette" class="palette">
+<span id="bulbLogo" class="bulbLogoSmall"></span><div id="break0" class="break"></div>
+<div id="btnSave" class="button" title="Save"></div><div id="btnSaveText" class="buttonText">Save</div>
+<div id="break1" class="break"></div>
+<div id="btnPrint" class="button" title="Print"></div><div id="btnPrintText" class="buttonText">Print</div>
+<div id="break2" class="break"></div>
+<div id="btnInstruction" class="button" title="Instructions"></div><div id="btnInstructionText" class="buttonText">Instructions</div>
+<div id="break4" class="break"></div>
+<div id="btnEdit" class="button" title="Edit as spreadsheet"></div><div id="btnEditText" class="buttonText">Edit as spreadsheet</div>
+<div id="break5" class="break"></div>
+<div id="btnEmail" class="button" title="Email to others"></div><div id="btnEmailText" class="buttonText">Email to others</div>
+<div id="break6" class="break"></div>
+</div>
+<div id="buttonDivision" class="division"></div>
+<div id="footDivision" class="division"></div>
+<div id="footPalette" class="palette">
+<nobr>Copyright &copy; 1999-2001 <a href="http://www.alphablox.com" target="_blank">AlphaBlox Corporation.</a> All rights reserved.</nobr></div>
+
+	<div id="modalDialog" style="display:none"></div>
+	<div id = "modalShield" style="display:none"></div>
+	<div id="popupMenuList" class="smallList" style="width:100; height:1;"></div>
+
+	<script language="JavaScript">
+		includeProgressDialog.style.display = "none";
+	</script>
+
+	<iframe id=resource0 src="" style="display: none;"></iframe>
+	<iframe id=resource1 src="" style="display: none;"></iframe>
+	<iframe id=resource2 src="" style="display: none;"></iframe>
+	<iframe id=resource3 src="" style="display: none;"></iframe>
+
+	<iframe id="saveFrame" src="/saveframe.html" style="display: none;"></iframe>
+	<iframe id="macroFrame" src="/macroframe" style="display: none;"></iframe>
+	<iframe id="bugFrame" src="" style="display: none;"></iframe>
+	<iframe name="postFrame" src="" style="display: none;"></iframe>
+    <form id="postForm" method="POST"></form>
+</body>
+</html>
+
+
+

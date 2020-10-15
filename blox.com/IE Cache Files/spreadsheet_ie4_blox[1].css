@@ -1,0 +1,55 @@
+.palette {
+	background-color: #c0c0c0;
+	layer-background-color: #c0c0c0;
+}
+
+.modal {
+	background-color: #ffffff;
+	layer-background-color: #ffffff;
+}
+
+.modalTopLeftBox {
+	background-color: #000000;
+	layer-background-color: #000000;
+}
+
+.modalTitle {
+	color: #FFFFFF;
+}
+
+.modalButton {
+	color: #999999;
+}
+
+.modalProgressBar {
+	background-color: #669900;
+	layer-background-color: #669900;
+}
+
+.modalProgressWidget {
+	background-color: #99CC00;
+	layer-background-color: #99CC00;
+}
+
+
+#progressTitle { 
+	color: #000000;
+}
+
+#progressContent { 
+	layer-background-color: #ffffff;
+}
+
+#progressTopLeftBox { position: absolute;
+	top: 1; left: 1;
+	clip: rect( 0, 20, 20, 0 );
+	layer-background-color: #999999;
+}
+
+.bulbLogo { 
+	background-image: url( "/img/newimages/Logo_only_28x44.gif" );
+}
+
+.bulbLogoSmall { 
+	background-image: url( "/alphablox/InfoApps/internal/img/blox_cube_16x26.gif" );
+}

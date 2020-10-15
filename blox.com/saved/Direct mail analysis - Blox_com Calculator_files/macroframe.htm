@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0030)http://www.blox.com/macroframe -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<SCRIPT language=JavaScript>
+	
+		function doJavaScript(str) {
+			return eval( str );
+		}
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript>
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY></BODY></HTML>

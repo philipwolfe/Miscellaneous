@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>DHTML Menu 3 (WebFX)</title>
+
+<link type="text/css" rel="stylesheet" href="webfx.css">
+<link type="text/css" rel="stylesheet" href="menu.css">
+<script type="text/javascript" src="menu3.js"></script>
+</head>
+<body>
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("DHTML Menu 3", "dhtmlmenu3.zip");
+</script>
+
+<p>The most common question we get is about the old dhtml menu and how to use it with frames or how
+to modify it to work as a popup menu. Therefor I've created a new menu system from scratch that took
+these issues into account from the beginning.</p>
+
+<h2>The problems with frames</h2>
+
+<p>Frames are so called windowed controls and such are created in a new window object. These windows
+are opaque and can not be displayed below ordinary HTML elements. The only thing that can be displayed
+in front of a windowed control is another windowed control. I choose to use scriptlets because these allows
+a good abstraction and allows the author to assign methods and properties to them as well.</p>
+
+<h2>The theory</h2>
+
+<p>I will not explain in detail how this script is made but I will point out the basic idea. When a menu is
+going to be displayed a scriptlet is inserted dynamically with <code>insertAdjacentHTML</code> and once this
+scriptlet is loaded the content of the menu is copied into the scriptlet and the scriptlet is made visible.
+</p>
+
+<p>To make it work more like a popup menu the function that makes the menu visible takes a special object,
+<code>Boundaries</code>, as an argument. This object represents a box that the menu should be displayed relative to.
+(More about this <a href="#boundaries">later</a>.)
+
+<h2>Creating Menus</h2>
+
+<p>The menus are built with tables much like in the old menu but there are some small differences.
+The table should have the <code>class</code> set to <code>menu</code> and you should also set the
+<code>cellspacing</code> to <code>0</code>. Each row in the table is treated as a menu item. The attribute
+called <code>href</code> is used for the location that should be loaded when the item is clicked and
+<code>target</code> is for the name of the designated window to load the location in. Below is a simple menu:</p>
+
+<pre>
+&lt;table cellspacing="0" class="menu" id="testMenu1"&gt;
+&lt;tr href="javascript:alert('You clicked a menu item')"&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;td nowrap&gt;Menu Item 1&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr href="http://webfx.eae.net" target="_blank"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/favicon.gif"&gt;&lt;/td&gt;
+   &lt;td nowrap&gt;Menu Item 2&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<table cellspacing="0" class="menu" id="testMenu1">
+<tr href="javascript:alert('You clicked a menu item')">
+   <td></td>
+   <td nowrap>Menu Item 1</td>
+   <td></td>
+</tr>
+<tr href="http://webfx.eae.net" target="_blank">
+   <td class="icon"><img src="../../images/favicon.gif"></td>
+   <td nowrap>WebFX Home</td>
+   <td></td>
+</tr>
+</table>
+
+<p>Notice the <code>class</code> <code>icon</code> added to the <code>TD</code> containing the icon image.
+This menu looks like <a href="nop" onclick="showMenu(testMenu1, new Boundaries(this), 'vertical'); return false;">this</a>.</p>
+
+<h2>Sub Menus</h2>
+
+<p>Sub menus look exactly like normal subs. The difference is the menu item that associates the sub menu.
+The menu item should have the <code>class</code> name set to <code>sub</code> and you could either include a nested table
+or set an attribute called <code>menu</code> to the id of the sub menu. I'll show you how.</p>
+
+<pre>
+&lt;table class="menu" cellspacing="0" id="testMenu2"&gt;
+&lt;tr class="sub" menu="testMenu1"&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;td&gt;Menu with &lt;b&gt;menu&lt;/b&gt; attribute&lt;/td&gt;
+   &lt;td class="more"&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="sub"&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;td&gt;menu with nested table tags&lt;/td&gt;
+   &lt;td class="more"&gt;4
+
+      &lt;table class="menu" cellspacing="0"&gt;
+      &lt;tr&gt;
+         &lt;td&gt;&lt;/td&gt;
+         &lt;td&gt;Simple&lt;/td&gt;
+         &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;/table&gt;
+
+   &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<table class="menu" cellspacing="0" id="testMenu2">
+<tr class="sub" menu="testMenu1">
+	<td></td>
+	<td>Menu with <b>menu</b> attribute</td>
+	<td class="more">4</td>
+</tr>
+<tr class="sub">
+	<td></td>
+	<td>menu with nested table tags</td>
+	<td class="more">4
+	
+		<table class="menu" cellspacing="0">
+		<tr>
+			<td></td>
+			<td>Simple</td>
+			<td></td>
+		</tr>
+		</table>
+	
+	</td>
+</tr>
+</table>
+
+<p>Here I've added a <code>TD</code> with the <code>class</code> <code>more</code> to create a right arrow that indicates
+that there is a sub menu.
+This menu looks like <a href="nop" onclick="showMenu(testMenu2, new Boundaries(this), 'vertical'); return false;">this</a>.</p>
+
+<h2>Disabled and separators</h2>
+
+<p>To disable a menu item just set the class name to <code>disabled</code>. A separator is a little bit trickier but once you
+have made one you can just copy the code.</p>
+
+<pre>
+&lt;table cellspacing="0" class="menu" id="testMenu3"&gt;
+&lt;tr class="disabled"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/openfoldericon.gif"&gt;&lt;/td&gt;
+   &lt;td nowrap&gt;Disabled Menu Item&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="disabled"&gt;
+	&lt;td colspan="3" style="height: 10px; padding: 0;"&gt;&lt;div style="border: 1px inset ; height: 2; overflow: hidden;"&gt;&lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr title="You can also use tooltips easily"&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;td nowrap&gt;Above is a separator&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<table cellspacing="0" class="menu" id="testMenu3">
+<tr class="disabled">
+   <td class="icon"><img src="../../images/openfoldericon.gif"></td>
+   <td nowrap>Disabled Menu Item</td>
+   <td></td>
+</tr>
+<tr class="disabled">
+	<td colspan="3" style="height: 10px; padding: 0;"><div style="border: 1px inset ; height: 2; overflow: hidden;"></div></td>
+</tr>
+<tr title="You can also use tooltips easily">
+   <td></td>
+   <td nowrap>Above is a separator</td>
+   <td></td>
+</tr>
+</table>
+
+<p>The code for the separator is not as nice as I wish but at least it looks and behaves as it is supposed.
+The menu looks like <a href="nop" onclick="showMenu(testMenu3, new Boundaries(this), 'vertical'); return false;">this</a>.</p>
+
+<h2>Customizing the look</h2>
+
+<p>The only place that is responsible for the look of the menus is the <a href="menu.css">css file</a> so if you know CSS you can
+easily change the look and feel of the menus.</p>
+
+<h2 id="boundaries">Showing a Menu</h2>
+
+<p>To show a menu you just call a function called <code>showMenu</code> that takes three arguments. The first is a the table
+element that describes the menu. The second is a <code>Boundaries</code> object and the third (which is optional) is to describe
+wheter the menu should be displayed below (<code>"vertical"</code>) or besides (<code>"horizontal"</code>) the box definde by
+the boundaries. A <code>Boundaries</code> object can be created in three differnet ways. The first is to give it one argument that
+is an HTML element that the menu should be displayed around:</p>
+
+<pre>
+new Boundaries(htmlElement)
+</pre>
+
+<p>The second and third take either 2 or 4 arguments and the first two are the left and top position and the third and fourth
+arguments are the width and height of the boundaries. If the two last arguments are omitted the width and height is set to
+zero.</p>
+
+<pre>
+new Boundaries(left, top, width, height)
+new Boundaries(left, top) // equals new Boundaries(left, top, 0, 0)
+</pre>
+
+<p>Now you are ready to show your menu:</p>
+
+<pre>
+&lt;a href="" onclick="showMenu(testMenu3, new Boundaries(this), 'vertical'); return false;"&gt;this&lt;/a&gt;
+</pre>
+
+<p>Next I'll show you how to create a <a href="popup.shtml">popup menu</a> (IE5 only) and then I'll describe how to create a menu bar and last
+but not least I'll show you how to combine this with the dock bar.</p>
+
+<p>Creating menus<br>
+<a href="popup.shtml">Use menu as a popup menu</a><br>
+<a href="plain.shtml">Plain menu with a framed page</a><br>
+<a href="dockMenu.shtml">Dockable menu</a><br>
+<a href="skin.shtml">Customize the look</a><br>
+<a href="dhtmlmenu3.zip">Download this sample</a><br>
+<a href="http://webfx.eae.net/webboard/index.cgi?action=display&group=admin/artgroup&id=20" target="_top">Discuss this article</a></p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#exec cgi="/footer.cgi" -->
+
+</body>
+</html>
+

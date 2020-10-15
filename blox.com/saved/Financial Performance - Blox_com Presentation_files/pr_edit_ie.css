@@ -1,0 +1,495 @@
+#cmdMoveForward {
+	LEFT: 2px; TOP: 142px
+}
+#cmdSlideshow {
+	LEFT: 2px; TOP: 126px
+}
+#toolsMenu {
+	BACKGROUND-POSITION: -264px 0px; LEFT: 147px; WIDTH: 38px; TOP: 0px
+}
+#cmdUndo {
+	LEFT: 2px; TOP: 2px
+}
+#point30 {
+	LEFT: 2px; TOP: 82px
+}
+#slideList {
+	LEFT: 0px; WIDTH: 140px; TOP: 0px; HEIGHT: 112px
+}
+#cmdBugReport {
+	LEFT: 2px; TOP: 238px
+}
+#cmdCopy {
+	LEFT: 2px; TOP: 54px
+}
+#insertList {
+	LEFT: 0px; WIDTH: 100px; TOP: 0px; HEIGHT: 164px
+}
+#point36 {
+	LEFT: 2px; TOP: 98px
+}
+#separator30 {
+	LEFT: 2px; TOP: 34px
+}
+#separator31 {
+	LEFT: 2px; TOP: 70px
+}
+#fileMenu {
+	BACKGROUND-POSITION: -312px 0px; LEFT: 0px; WIDTH: 33px; TOP: 0px
+}
+#editMenu {
+	BACKGROUND-POSITION: -312px 0px; LEFT: 33px; WIDTH: 33px; TOP: 0px
+}
+#lineColorMenu {
+	BACKGROUND-POSITION: -888px 0px; LEFT: 552px; TOP: 0px
+}
+#cmdInsertRectangle {
+	LEFT: 2px; TOP: 122px
+}
+#cmdHelpIntroduction {
+	LEFT: 2px; TOP: 22px
+}
+#cmdInsertPicture {
+	LEFT: 2px; TOP: 18px
+}
+#cmdClose {
+	LEFT: 2px; TOP: 34px
+}
+#redo {
+	BACKGROUND-POSITION: -552px 0px; LEFT: 124px; TOP: 0px
+}
+#left {
+	BACKGROUND-POSITION: -312px 0px; LEFT: 676px; TOP: 0px
+}
+#point42 {
+	LEFT: 2px; TOP: 114px
+}
+#fontCourier {
+	LEFT: 2px; TOP: 50px
+}
+#separator40 {
+	LEFT: 2px; TOP: 34px
+}
+#point48 {
+	LEFT: 2px; TOP: 130px
+}
+#separator41 {
+	LEFT: 2px; TOP: 86px
+}
+#separator42 {
+	LEFT: 2px; TOP: 138px
+}
+#toolsSpot {
+	LEFT: 153px; WIDTH: 30px; TOP: 4px
+}
+#cmdDeleteSlide {
+	LEFT: 2px; TOP: 18px
+}
+#cmdInsertHLine {
+	LEFT: 2px; TOP: 90px
+}
+#fontBookman {
+	LEFT: 2px; TOP: 34px
+}
+#right {
+	BACKGROUND-POSITION: -336px 0px; LEFT: 724px; TOP: 0px
+}
+#cmdHelpEditing {
+	LEFT: 2px; TOP: 118px
+}
+#cmdSummary {
+	LEFT: 2px; TOP: 162px
+}
+#cmdSave {
+	LEFT: 2px; TOP: 54px
+}
+#fileSpot {
+	LEFT: 6px; WIDTH: 25px; TOP: 4px
+}
+#cmdInsertVLine {
+	LEFT: 2px; TOP: 106px
+}
+#fontColorMenu {
+	BACKGROUND-POSITION: -912px 0px; LEFT: 576px; TOP: 0px
+}
+#editSpot {
+	LEFT: 39px; WIDTH: 25px; TOP: 4px
+}
+#toolsList {
+	LEFT: 0px; WIDTH: 130px; TOP: 0px; HEIGHT: 92px
+}
+#bug1 {
+	LEFT: 324px; WIDTH: 100px; TOP: 4px
+}
+#cmdHelpInserting {
+	LEFT: 2px; TOP: 102px
+}
+#sizeMenu {
+	BACKGROUND-POSITION: -120px 0px; LEFT: 376px; WIDTH: 48px; CLIP: rect(0px 48px 24px 0px); TOP: 0px
+}
+#cmdInsertBody {
+	LEFT: 2px; TOP: 54px
+}
+#iconPalette {
+	LEFT: 50px; VISIBILITY: visible; TOP: 26px; HEIGHT: 24px
+}
+#cmdBuzzword {
+	LEFT: 2px; TOP: 2px
+}
+#cmdSetBullets {
+	LEFT: 2px; TOP: 54px
+}
+#cmdClear {
+	LEFT: 2px; TOP: 106px
+}
+#fileList {
+	LEFT: 0px; WIDTH: 160px; TOP: 0px; HEIGHT: 184px
+}
+#fontArialBlack {
+	LEFT: 2px; TOP: 18px
+}
+#helpMenu {
+	BACKGROUND-POSITION: -264px 0px; LEFT: 185px; WIDTH: 38px; TOP: 0px
+}
+#cmdNew {
+	LEFT: 2px; TOP: 2px
+}
+#fontArial {
+	LEFT: 2px; TOP: 2px
+}
+#cmdHelpMenuReference {
+	LEFT: 2px; TOP: 202px
+}
+#editList {
+	LEFT: 0px; WIDTH: 110px; TOP: 0px; HEIGHT: 180px
+}
+#cmdOpen {
+	LEFT: 2px; TOP: 18px
+}
+#footPalette {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 86px; HEIGHT: 24px
+}
+#fontConsole {
+	LEFT: 2px; TOP: 82px
+}
+#new {
+	BACKGROUND-POSITION: 0px 0px; LEFT: 0px; TOP: 0px
+}
+#fontMenu {
+	BACKGROUND-POSITION: 0px 0px; LEFT: 252px; WIDTH: 120px; CLIP: rect(0px 120px 24px 0px); TOP: 0px
+}
+#btnEmail {
+	BACKGROUND-POSITION: -432px 0px; LEFT: 400px; TOP: 0px
+}
+#point60 {
+	LEFT: 2px; TOP: 146px
+}
+#fontTahoma {
+	LEFT: 2px; TOP: 114px
+}
+#fontColorMenuSpot {
+	BACKGROUND-COLOR: white
+}
+#cmdHelpBasics {
+	LEFT: 2px; TOP: 38px
+}
+#separator60 {
+	LEFT: 2px; TOP: 18px
+}
+#fontVerdana {
+	LEFT: 2px; TOP: 162px
+}
+#separator61 {
+	LEFT: 2px; TOP: 198px
+}
+#separator62 {
+	LEFT: 2px; TOP: 234px
+}
+#fillColorMenu {
+	BACKGROUND-POSITION: -864px 0px; LEFT: 528px; TOP: 0px
+}
+#separator69 {
+	LEFT: 2px; TOP: 50px
+}
+#sizeSpot {
+	LEFT: 381px; WIDTH: 28px; TOP: 5px; HEIGHT: 13px
+}
+#ptsizeup {
+	BACKGROUND-POSITION: -1152px 0px; LEFT: 424px; TOP: 0px
+}
+#cmdHelpSharing {
+	LEFT: 2px; TOP: 182px
+}
+#cmdRevert {
+	LEFT: 2px; TOP: 90px
+}
+#helpSpot {
+	LEFT: 191px; WIDTH: 30px; TOP: 4px
+}
+#cmdInsertGrid {
+	LEFT: 2px; TOP: 142px
+}
+#cmdPasteSpecial {
+	LEFT: 2px; TOP: 86px
+}
+#point72 {
+	LEFT: 2px; TOP: 162px
+}
+#undo {
+	BACKGROUND-POSITION: -528px 0px; LEFT: 100px; TOP: 0px
+}
+#italic {
+	BACKGROUND-POSITION: -240px 0px; LEFT: 476px; TOP: 0px
+}
+#sizeList {
+	LEFT: 0px; WIDTH: 48px; TOP: 0px; HEIGHT: 230px
+}
+#ptsizedown {
+	BACKGROUND-POSITION: -1176px 0px; LEFT: 424px; TOP: 12px
+}
+#menuDivision {
+	LEFT: 50px; VISIBILITY: visible; TOP: 22px; HEIGHT: 4px
+}
+#copy {
+	BACKGROUND-POSITION: -120px 0px; LEFT: 176px; TOP: 0px
+}
+#point120 {
+	LEFT: 2px; TOP: 210px
+}
+#fontSpot {
+	LEFT: 257px; WIDTH: 100px; TOP: 5px; HEIGHT: 13px
+}
+#lineMenu {
+	BACKGROUND-POSITION: -408px 0px; LEFT: 600px; WIDTH: 72px; CLIP: rect(0px 72px 24px 0px); TOP: 0px
+}
+#footDivision {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 82px; HEIGHT: 4px
+}
+#cmdRedo {
+	LEFT: 2px; TOP: 18px
+}
+#fontTimesNewRoman {
+	LEFT: 2px; TOP: 130px
+}
+#fontGaramond {
+	LEFT: 2px; TOP: 66px
+}
+#cmdCut {
+	LEFT: 2px; TOP: 38px
+}
+#bold {
+	BACKGROUND-POSITION: -216px 0px; LEFT: 452px; TOP: 0px
+}
+#fillColorMenuSpot {
+	BACKGROUND-COLOR: white
+}
+#helpList {
+	LEFT: 0px; WIDTH: 165px; TOP: 0px; HEIGHT: 276px
+}
+#underline {
+	BACKGROUND-POSITION: -264px 0px; LEFT: 500px; TOP: 0px
+}
+#cmdMoveBackward {
+	LEFT: 2px; TOP: 158px
+}
+#cmdDictionary {
+	LEFT: 2px; TOP: 54px
+}
+#cmdHelpContents {
+	LEFT: 2px; TOP: 2px
+}
+#cut {
+	BACKGROUND-POSITION: -96px 0px; LEFT: 152px; TOP: 0px
+}
+#iconDivision {
+	LEFT: 0px; VISIBILITY: visible; TOP: 50px; HEIGHT: 4px
+}
+#cmdAbout {
+	LEFT: 2px; TOP: 254px
+}
+#cmdPaste {
+	LEFT: 2px; TOP: 70px
+}
+#cmdHelpFunctionReference {
+	LEFT: 2px; TOP: 218px
+}
+#fontList {
+	LEFT: 0px; WIDTH: 114px; TOP: 0px; HEIGHT: 182px
+}
+#cmdImportSlides {
+	LEFT: 2px; TOP: 90px
+}
+#btnBugs {
+	BACKGROUND-POSITION: -936px 0px; LEFT: 300px; TOP: 0px
+}
+#point84 {
+	LEFT: 2px; TOP: 178px
+}
+#paste {
+	BACKGROUND-POSITION: -144px 0px; LEFT: 200px; TOP: 0px
+}
+#cmdSetBackground {
+	LEFT: 2px; TOP: 38px
+}
+#center {
+	BACKGROUND-POSITION: -360px 0px; LEFT: 700px; TOP: 0px
+}
+#cmdHelpSlideshows {
+	LEFT: 2px; TOP: 166px
+}
+#lineColorMenuSpot {
+	BACKGROUND-COLOR: white
+}
+#menuPalette {
+	LEFT: 50px; VISIBILITY: visible; TOP: 0px; HEIGHT: 22px
+}
+#slideMenu {
+	BACKGROUND-POSITION: -264px 0px; LEFT: 66px; WIDTH: 38px; TOP: 0px
+}
+#cmdImportPowerPoint {
+	LEFT: 2px; TOP: 106px
+}
+#cmdChangeMaster {
+	LEFT: 2px; TOP: 74px
+}
+#insertMenu {
+	BACKGROUND-POSITION: -216px 0px; LEFT: 104px; WIDTH: 43px; TOP: 0px
+}
+#point10 {
+	LEFT: 2px; TOP: 2px
+}
+#cmdInsertTitle {
+	LEFT: 2px; TOP: 70px
+}
+#point12 {
+	LEFT: 2px; TOP: 18px
+}
+#fontSymbol {
+	LEFT: 2px; TOP: 98px
+}
+#lineSpot {
+	LEFT: 605px; WIDTH: 52px; TOP: 5px; HEIGHT: 13px
+}
+#point14 {
+	LEFT: 2px; TOP: 34px
+}
+#save {
+	BACKGROUND-POSITION: -48px 0px; LEFT: 48px; TOP: 0px
+}
+#cmdNewSlide {
+	LEFT: 2px; TOP: 2px
+}
+#point18 {
+	LEFT: 2px; TOP: 50px
+}
+#separator11 {
+	LEFT: 2px; TOP: 50px
+}
+#separator12 {
+	LEFT: 2px; TOP: 86px
+}
+#separator14 {
+	LEFT: 2px; TOP: 122px
+}
+#cmdSaveAs {
+	LEFT: 2px; TOP: 70px
+}
+#separator15 {
+	LEFT: 2px; TOP: 142px
+}
+#point96 {
+	LEFT: 2px; TOP: 194px
+}
+#cmdInsertStockQuote {
+	LEFT: 2px; TOP: 2px
+}
+#cmdCliche {
+	LEFT: 2px; TOP: 18px
+}
+#cmdBullet {
+	LEFT: 2px; TOP: 34px
+}
+#cmdPrint {
+	LEFT: 2px; TOP: 146px
+}
+#em1 {
+	LEFT: 424px; WIDTH: 150px; TOP: 4px
+}
+#format {
+	BACKGROUND-POSITION: -168px 0px; LEFT: 224px; TOP: 0px
+}
+#print {
+	BACKGROUND-POSITION: -72px 0px; LEFT: 72px; TOP: 0px
+}
+#cmdHelpTools {
+	LEFT: 2px; TOP: 134px
+}
+#cmdDuplicate {
+	LEFT: 2px; TOP: 122px
+}
+#point24 {
+	LEFT: 2px; TOP: 66px
+}
+#cmdHelpFiles {
+	LEFT: 2px; TOP: 54px
+}
+#open {
+	BACKGROUND-POSITION: -24px 0px; LEFT: 24px; TOP: 0px
+}
+#separator20 {
+	LEFT: 2px; TOP: 34px
+}
+#separator21 {
+	LEFT: 2px; TOP: 102px
+}
+#separator22 {
+	LEFT: 2px; TOP: 138px
+}
+#cmdHelpSlideEditor {
+	LEFT: 2px; TOP: 86px
+}
+#break1 {
+	LEFT: 96px; TOP: 1px
+}
+#break2 {
+	LEFT: 148px; TOP: 1px
+}
+#slideSpot {
+	LEFT: 72px; WIDTH: 30px; TOP: 4px
+}
+#cmdInsertTextBox {
+	LEFT: 2px; TOP: 38px
+}
+#break3 {
+	LEFT: 248px; TOP: 1px
+}
+#cmdThesaurus {
+	LEFT: 2px; TOP: 70px
+}
+#break4 {
+	LEFT: 372px; TOP: 1px
+}
+#break5 {
+	LEFT: 448px; TOP: 1px
+}
+#break6 {
+	LEFT: 524px; TOP: 1px
+}
+#insertSpot {
+	LEFT: 110px; WIDTH: 35px; TOP: 4px
+}
+#cmdHelpMasters {
+	LEFT: 2px; TOP: 150px
+}
+#break7 {
+	LEFT: 672px; TOP: 1px
+}
+#fontTrebuchet {
+	LEFT: 2px; TOP: 146px
+}
+#break8 {
+	LEFT: 748px; TOP: 1px
+}
+#cmdHelpOutline {
+	LEFT: 2px; TOP: 70px
+}

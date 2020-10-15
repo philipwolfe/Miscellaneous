@@ -1,0 +1,141 @@
+.body {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: white
+}
+.palette {
+	FONT-SIZE: 8pt; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; CLIP: rect(0px 2000px 2000px 0px); FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #c0c0c0; layer-background-color: #c0c0c0
+}
+.division {
+	LEFT: 0px; BACKGROUND-IMAGE: url(img/app/division.gif); OVERFLOW: hidden; CLIP: rect(0px 2000px 4px 0px); BACKGROUND-REPEAT: repeat-x; POSITION: absolute; TOP: 0px; layer-background-image: url( "img/app/division.gif" )
+}
+.bulbLogoTiny {
+	LEFT: 9px; CLIP: rect(0px 16px 26px 0px); POSITION: absolute; TOP: 2px; layer-background-image: url( "img/newimages/logo_alone_16x26.gif" )
+}
+.buttonText {
+	FONT-SIZE: 8pt; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; HEIGHT: 24px
+}
+.button {
+	BACKGROUND-IMAGE: url(img/app/button9.gif); WIDTH: 24px; CLIP: rect(0px 24px 24px 0px); POSITION: absolute; HEIGHT: 24px; layer-background-image: url( "img/app/button9.gif" )
+}
+.spinButton {
+	BACKGROUND-IMAGE: url(img/app/button9.gif); WIDTH: 24px; CLIP: rect(0px 24px 12px 0px); POSITION: absolute; HEIGHT: 12px; layer-background-image: url( "img/app/button9.gif" )
+}
+.buttonMenu {
+	BACKGROUND-IMAGE: url(img/app/button9.gif); WIDTH: 24px; CLIP: rect(0px 24px 24px 0px); POSITION: absolute; HEIGHT: 24px; layer-background-image: url( "img/app/button9.gif" )
+}
+.break {
+	BACKGROUND-IMAGE: url(img/app/break.gif); WIDTH: 4px; BACKGROUND-REPEAT: repeat-y; POSITION: absolute; HEIGHT: 22px; layer-background-image: url( "img/app/break.gif" )
+}
+.largeMenu {
+	BACKGROUND-IMAGE: url(img/app/menu.gif); CLIP: rect(0px 48px 24px 0px); POSITION: absolute; HEIGHT: 22px; layer-background-image: url( "img/app/menu.gif" )
+}
+.largeSpot {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-SIZE: 8pt; PADDING-BOTTOM: 0px; OVERFLOW: hidden; CURSOR: default; PADDING-TOP: 0px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute
+}
+.largeList {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: white 1px solid; Z-INDEX: 20000; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: black 1px solid; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: lightgrey; layer-background-color: lightgrey
+}
+.largeItem {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 8pt; PADDING-BOTTOM: 1px; CLIP: rect(0px 300px 16px 0px); CURSOR: default; COLOR: black; PADDING-TOP: 1px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; WHITE-SPACE: nowrap; POSITION: absolute; HEIGHT: 16px; BACKGROUND-COLOR: lightgrey; layer-background-color: lightgrey
+}
+.separator {
+	BACKGROUND-IMAGE: url(img/app/separator.gif); WIDTH: 1000px; CURSOR: default; BACKGROUND-REPEAT: repeat-x; POSITION: absolute; HEIGHT: 4px; layer-background-image: url( "img/app/separator.gif" )
+}
+.smallMenu {
+	BACKGROUND-IMAGE: url(img/app/menu.gif); POSITION: absolute; HEIGHT: 24px; layer-background-image: url( "img/app/menu.gif" )
+}
+.smallSpot {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 8pt; PADDING-BOTTOM: 0px; OVERFLOW: hidden; CURSOR: default; PADDING-TOP: 0px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute
+}
+.comboBox {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; PADDING-LEFT: 0px; FONT-SIZE: 8pt; PADDING-BOTTOM: 0px; OVERFLOW: hidden; BORDER-LEFT: medium none; CURSOR: text; PADDING-TOP: 0px; BORDER-BOTTOM: medium none; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute
+}
+.smallList {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; Z-INDEX: 20000; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BACKGROUND-COLOR: azure; layer-background-color: white
+}
+.smallItem {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 8pt; PADDING-BOTTOM: 0px; CURSOR: default; COLOR: black; PADDING-TOP: 0px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; BACKGROUND-COLOR: white; layer-background-color: white
+}
+.menuContainer {
+	OVERFLOW: scroll
+}
+.sorting {
+	DISPLAY: block; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: auto; CURSOR: default; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: white; layer-background-color: white
+}
+.showing {
+	DISPLAY: block; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; CURSOR: default; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: lightgrey; layer-background-color: lightgrey
+}
+.title {
+	DISPLAY: inline; FONT-SIZE: 8pt; OVERFLOW: hidden; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; HEIGHT: 16px; TEXT-ALIGN: center
+}
+.modal {
+	BORDER-RIGHT: black 2px solid; BORDER-TOP: black 1px solid; FONT-SIZE: 12px; Z-INDEX: 15000; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: visible; BORDER-LEFT: black 1px solid; WIDTH: 1%; CURSOR: default; BORDER-BOTTOM: black 2px solid; FONT-FAMILY: Verdana, sans-serif; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #ffffff; layer-background-color: #ffffff
+}
+.modalTopLeftBox {
+	OVERFLOW: hidden; WIDTH: 16pt; CURSOR: move; HEIGHT: 16pt; BACKGROUND-COLOR: #000000; layer-background-color: #000000
+}
+.modalTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-LEFT: 10px; COLOR: #ffffff; LINE-HEIGHT: 15pt; MARGIN-RIGHT: 15px; HEIGHT: 16pt
+}
+.modalDragger {
+	CURSOR: move
+}
+.modalContent {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px
+}
+#modalMessage {
+	FONT-SIZE: 12px; MARGIN: 5px 10px 5px 15px; COLOR: red; FONT-FAMILY: Verdana, sans-serif
+}
+#modalBottomBar {
+	MARGIN-BOTTOM: 10px; MARGIN-LEFT: 20pt; OVERFLOW: visible; MARGIN-RIGHT: 15px; TEXT-ALIGN: right
+}
+#modalRect {
+	BORDER-RIGHT: gray 2px solid; BORDER-TOP: gray 2px solid; Z-INDEX: 99999; VISIBILITY: hidden; OVERFLOW: hidden; BORDER-LEFT: gray 2px solid; BORDER-BOTTOM: gray 2px solid; POSITION: absolute
+}
+.modalLabel {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, sans-serif
+}
+.modalButton {
+	PADDING-RIGHT: 5px; BORDER-TOP: #000099 1px solid; MARGIN-TOP: 10px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; PADDING-BOTTOM: 3pt; OVERFLOW: visible; BORDER-LEFT: #000099 1px solid; WIDTH: 75px; COLOR: #999999; PADDING-TOP: 2pt; FONT-FAMILY: Verdana, sans-serif; TEXT-ALIGN: center
+}
+.modalProgressBar {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; MARGIN-TOP: 15px; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; WIDTH: 250px; BORDER-BOTTOM: black 1px solid; HEIGHT: 16px; BACKGROUND-COLOR: #669900; layer-background-color: #669900
+}
+.modalProgressWidget {
+	BORDER-RIGHT: black 1px solid; VISIBILITY: hidden; OVERFLOW: hidden; WIDTH: 1px; HEIGHT: 16px; BACKGROUND-COLOR: #99cc00; layer-background-color: #99CC00
+}
+.modalScrollable {
+	MARGIN-TOP: 10px; OVERFLOW: auto; WIDTH: 400px; HEIGHT: 250px; BACKGROUND-COLOR: #ffffff; layer-background-color: #FFFFFF
+}
+.modalBigContents {
+	MARGIN-LEFT: 5px; OVERFLOW: visible; WIDTH: 375px
+}
+.printIcons {
+	BACKGROUND-POSITION-X: 34px; LEFT: 5px; BACKGROUND-IMAGE: url(img/app/print.gif); WIDTH: 34px; CLIP: rect(0px 34px 34px 0px); POSITION: absolute; TOP: 2px; HEIGHT: 34px
+}
+#progressDialog {
+	FONT-SIZE: 12px; LEFT: 100px; VISIBILITY: hidden; CLIP: rect(0px 303px 118px 0px); FONT-FAMILY: Verdana, sans-serif; POSITION: absolute; TOP: 100px; layer-background-color: #000000
+}
+#progressTopLeftBox {
+	LEFT: 1px; CLIP: rect(0px 20px 20px 0px); POSITION: absolute; TOP: 1px; layer-background-color: #999966
+}
+#progressTopBar {
+	LEFT: 21px; CLIP: rect(0px 280px 20px 0px); POSITION: absolute; TOP: 1px; layer-background-color: #cccc99
+}
+#progressLeftBar {
+	LEFT: 1px; CLIP: rect(0px 20px 95px 0px); POSITION: absolute; TOP: 21px; layer-background-color: #cccc99
+}
+#progressTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; LEFT: 5px; CLIP: rect(0px 270px 18px 0px); COLOR: #000000; FONT-FAMILY: Verdana, sans-serif; POSITION: absolute; TOP: 1px
+}
+#progressContent {
+	LEFT: 21px; CLIP: rect(0px 280px 95px 0px); POSITION: absolute; TOP: 21px; layer-background-color: #ffffff
+}
+#progressMessage {
+	LEFT: 15px; CLIP: rect(0px 280px 40px 0px); POSITION: absolute; TOP: 20px
+}
+#progressBar {
+	LEFT: 15px; CLIP: rect(0px 250px 16px 0px); POSITION: absolute; TOP: 60px; layer-background-color: #666699
+}
+#progressWidget {
+	LEFT: 1px; CLIP: rect(0px 2px 14px 0px); POSITION: absolute; TOP: 1px; layer-background-color: #ccccff
+}

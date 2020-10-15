@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>DHTML Menu 3 (WebFX)</title>
+<link type="text/css" rel="stylesheet" href="menu.css">
+<link type="text/css" rel="stylesheet" href="webfx.css">
+
+<script type="text/javascript" src="dockbar.js"></script>
+<script type="text/javascript" src="menu3.js"></script>
+<style type="text/css"> 
+<!--
+
+.root, .rootHighlight, .rootActive	{position: relative; top: -1px;}
+
+-->
+</style>
+<script type="text/javascript">
+<!--
+
+var floatWidth = 127;
+var floatHeight = 23;    // extra 4 for the border
+
+var snapHorizSize = 50;  // This is how far from the edge the
+var snapVertSize = 20;   // the mouse is before the toolbar docks
+
+var horizDockWidth = 51; // When docked to the left or right
+var vertDockHeight = 19;
+
+var toolbarPos = "top";  // Start at this position
+
+var roots = new Array();
+
+function toolBarOnDock() {
+	if (roots.length == 0) {
+		var spans = document.all.tags("SPAN")
+		var j=0;
+		for (var i=0; i<spans.length; i++) {
+			if (spans[i].className == "root")
+				roots[j++] = spans[i];
+		}
+	}
+	switch (toolbarPos) {
+		case "top":
+		case "bottom":
+		case "float":
+			for (var i=0; i<roots.length; i++) {
+				roots[i].direction = "vertical";
+				roots[i].style.width = "";
+			}
+			break;
+
+		case "left":
+		case "right":
+			for (var i=0; i<roots.length; i++) {
+				roots[i].direction = "horizontal";
+				roots[i].style.width = "50px";
+			}
+			break;
+	}
+}
+
+
+//-->
+</script>
+
+</head>
+<body scroll="no" onselectstart="return false" >
+   <div id="toolbar" ondock="toolBarOnDock()"><span id="handle" onmousedown="hideAllMenuScriptlets()"></span>
+		<span class="menuBar" id="menuBar"
+			onmouseover="menuBarOver()"
+			onmouseout="menuBarOut()"
+			onclick="menuBarClick()">
+			<span class="root" menu="fileMenu">File</span
+			><span class="root" menu="editMenu">Edit</span
+			><span class="root" menu="WebFXMenu">WebFX</span>
+		</span>
+	</div>
+	
+<!-- Define the menus -->
+	
+<table cellspacing="0" class="menu" id="fileMenu" title="This menu has not been hooked up">
+<tr>
+	<td class="icon"><img src="../../images/new.gif"></td>
+	<td nowrap>New</td>
+	<td></td>
+</tr>
+<tr>
+	<td class="icon"><img src="../../images/openfoldericon.gif"></td>
+	<td nowrap>Open</td>
+	<td></td>
+</tr>
+<tr>
+	<td class="icon"><img src="../../images/driveicon.gif"></td>
+	<td nowrap>Save</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td nowrap>Save As...</td>
+	<td></td>
+</tr>
+<tr class="disabled">
+	<td nowrap colspan="3" style="height: 10px; padding: 0;"><div style="border: 1px inset ; height: 2; overflow: hidden;"></div></td>
+</tr>
+<tr>
+	<td></td>
+	<td nowrap>Close</td>
+	<td></td>
+</tr>
+</table>
+
+<table cellspacing="0" class="menu" id="editMenu">
+<tr class="disabled">
+	<td></td>
+	<td>Empty</td>
+	<td></td>
+</tr>
+</table>
+
+<table cellspacing="0" class="menu" id="WebFXMenu">
+<tr href="http://webfx.eae.net">
+	<td class="icon"><img src="../../images/favicon.gif"></td>
+	<td nowrap>WebFX Home</td>
+	<td></td>
+</tr>
+<tr href="mailto:erik@eae.net">
+	<td class="icon"><img src="../../images/mail.gif"></td>
+	<td nowrap>Mail Erik</td>
+	<td></td>
+</tr>
+<tr href="mailto:eae@eae.net">
+	<td class="icon"><img src="../../images/mail.gif"></td>
+	<td nowrap>Mail Emil</td>
+	<td></td>
+</tr>
+</table>
+
+<div id="contentDiv">   
+<script type="text/javascript">
+	fixSize();
+</script>
+
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("DHTML Menu 3", "dhtmlmenu3.zip");
+</script>
+
+<h2>Dockable Menu</h2>
+
+<p>This page descibes how to combine the dock bar script with the dhtml menu to create a
+dockable menu.</p>
+
+<h2>Setting up the page</h2>
+
+<p>The structure of the page is the same as for the dock bar script with a <code>menuBar</code>
+element inside the <code>toolBar</code>. You should imclude the following files in the normal way:
+<a href="../dockbar/dockbar.js">dockbar.js</a>, <a href="menu3.js">menu3.js</a> and
+<a href="menu.css">menu.css</a>. Note that the dockbar javascript file has been updated a little
+to add a needed feature for this page to work.</p>
+
+<p>The next step is to modify the stylesheet a little to fix a small bug in IE.</p>
+
+<pre>
+&lt;style type="text/css"&gt;
+
+.root, .rootHighlight, .rootActive	{position: relative; top: -1px;}
+
+&lt;/style&gt;
+</pre>
+
+<p>Next the constants for the dockbar are set in the same way as in the dock bar article. The dock
+bar script has been updated to generate a fake event when the tool bar is docked. This is needed
+to change the direction type of the root elements when the dock bar is changed between top/bottom
+and left/right position.</p>
+
+<pre>
+&lt;script type="text/javascript"&gt;
+
+var floatWidth = 127;
+var floatHeight = 23;
+
+var snapHorizSize = 50;
+var snapVertSize = 20;
+
+var horizDockWidth = 51;
+var vertDockHeight = 19;
+
+var toolbarPos = "top";
+
+
+var roots = new Array();
+
+function toolBarOnDock() {
+   if (roots.length == 0) { // Not initiated yet
+      var spans = document.all.tags("SPAN")
+      var j=0;
+      for (var i=0; i&lt;spans.length; i++) {
+         if (spans[i].className == "root")
+            roots[j++] = spans[i];
+      }
+   }
+   switch (toolbarPos) {
+      case "top":
+      case "bottom":
+      case "float":
+         for (var i=0; i&lt;roots.length; i++) {
+            roots[i].direction = "vertical";
+            roots[i].style.width = "10px";
+         }
+         break;
+
+      case "left":
+      case "right":
+         for (var i=0; i&lt;roots.length; i++) {
+            roots[i].direction = "horizontal";
+            roots[i].style.width = "50px";
+         }
+         break;
+   }
+}
+
+&lt;/script&gt;
+</pre>
+
+<p>Now you need to set up the dock bar, the menu bar, the menus and the contentDiv. This is
+very similar to what we have done before so I'll just show the code.</p>
+
+<pre>
+&lt;body scroll="no" onselectstart="return false" &gt;
+
+&lt;div id="toolbar" ondock="toolBarOnDock()"&gt;&lt;span id="handle" onmousedown="hideAllMenuScriptlets()"&gt;&lt;/span&gt;
+   &lt;span class="menuBar" id="menuBar"
+      onmouseover="menuBarOver()"
+      onmouseout="menuBarOut()"
+      onclick="menuBarClick()"&gt;
+      &lt;span class="root" menu="fileMenu"&gt;File&lt;/span
+      &gt;&lt;span class="root" menu="editMenu"&gt;Edit&lt;/span
+      &gt;&lt;span class="root" menu="WebFXMenu"&gt;WebFX&lt;/span&gt;
+   &lt;/span&gt;
+&lt;/div&gt;
+	
+&lt;!-- Define the menus --&gt;
+
+&lt;div id="contentDiv"&gt;   
+&lt;script type="text/javascript"&gt;
+   fixSize();
+&lt;/script&gt;
+
+&lt;!-- Content goes here --&gt;
+
+&lt;/div&gt;
+</pre>
+
+<p>Note that in this case the function <code>fixSize</code> is provided by the dock bar script.</p>
+
+<p><a href="menu.shtml">Creating menus</a><br>
+<a href="popup.shtml">Use menu as a popup menu</a><br>
+<a href="plain.shtml">Plain menu with a framed page</a><br>
+Dockable menu<br>
+<a href="skin.shtml">Customize the look</a><br>
+<a href="dhtmlmenu3.zip">Download this sample</a><br>
+<a href="http://webfx.eae.net/webboard/index.cgi?action=display&group=admin/artgroup&id=20" target="_top">Discuss this article</a></p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#exec cgi="/footer.cgi" -->
+
+</div>	
+</body>
+</html>

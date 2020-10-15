@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+"http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Custom SelectBox (WebFX)</title>
+<link rel="STYLESHEET" type="text/css" href="webfx.css">
+<link rel="STYLESHEET" type="text/css" href="classic.css">
+<script src="fade.js" type="text/javascript"></script>
+<script type="text/javascript" src="select.js"></script>
+<script type="text/javascript" src="writeSelect.js"></script>
+
+</HEAD>
+
+<BODY>
+
+<h1>Custom SelectBox</h1>
+
+<p>Added an <a href="objmodel.html">Object Model Reference</a> with an interactive test page.</p>
+
+<p>This sample creates a selectbox that works almost identically to the <code>&lt;SELECT&gt;</code> 
+block. The special about this is that it can contain HTML and you can set all attributes you like.</p>
+
+<script>
+
+topArray = new Array();
+topArray[0] = new Option('<nobr title="This takes you back to the main page"><img src="images/home.gif" width=16 height=17 border=0 align="absmiddle"> <span style="font-family: arial black; font-style: italic; font-weight: bold;">WebFX</span> Home</nobr>', "http://www.eae.net/webfx/");
+topArray[1] = new Option('<nobr><img src="images/htmlicon.gif" width=16 height=16 border=0 align="absmiddle"> EAE.net</nobr>', "http://www.eae.net/");
+topArray[2] = new Option('<nobr><img src="images/htmlicon.gif" width=16 height=16 border=0 align="absmiddle"> InsideDHTML</nobr>', "http://www.insideDHTML.com");
+
+writeSelectBox(topArray, "select2", 1, "window.open(this.options[this.selectedIndex].value, '_top')", "margin-left: 10; width: 140;");
+
+</script>
+<br>
+
+<P>          This was designed to be backward compatible with old
+browsers. If you dont have IE it writes out an ordinary select box.<p></p>
+
+<div style="BACKGROUND: white; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px; FLOAT: left; MARGIN: 10px; WIDTH: 200px">
+
+<table cellspacing="4">
+<tr><td>
+	<table cellspacing="4" style="BACKGROUND: #eeeeee; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px; WIDTH: 100%" 
+           >
+		<tr>
+			<td style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px; WIDTH: 170px" 
+                   >&nbsp;</td>
+			<td style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px; WIDTH: 20px" 
+                   >&nbsp;</td>
+		</tr>
+	</table>
+</td></tr>
+<tr><td>
+<table cellspacing="4" style="BACKGROUND: #eeeeee; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px; WIDTH: 100%" 
+           >
+	<tr><td colspan="2" style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px" 
+                   >&nbsp;</td></tr>
+	<tr><td colspan="2" style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px" 
+                   >&nbsp;</td></tr>
+	<tr><td colspan="2" style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px" 
+                   >&nbsp;</td></tr>
+	<tr><td colspan="2" style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px" 
+                   >&nbsp;</td></tr>
+	<tr><td colspan="2" style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px" 
+                   >&nbsp;</td></tr>
+	<tr><td colspan="2" style="BACKGROUND: #dddddd; BORDER-BOTTOM: black solid 1px; BORDER-LEFT: black solid 1px; BORDER-RIGHT: black solid 1px; BORDER-TOP: black solid 1px" 
+                   >&nbsp;</td></tr>
+	
+</table>
+
+</td></tr>
+
+</table>
+
+</div>
+
+
+<p>To the left there is an &quot;image&quot; showing how the selectbox was designed. Outmost there is a container that contains
+the two other containers. One is for the selected and the down button and the other contains the options.
+The lower one is hidden when the size of the select box isn't set (or set to 1) and is displayed when
+clicking the down button. If you set the size of the textbox to a larger value than 1 you'll only have
+the lower container.<p>
+
+<p>There are basically two ways of building the menu. First you can write all the containers by yourself
+or you can use the generator function (much easier but not as flexible).</p>
+
+<h2></h2>
+
+<p>Follow this <A href="selectCool.html">link</A>to view one with where all the containers are included. this also show some
+<A href="selectCool.html">alternativ layout</A></p>
+
+<h2>Generating the code</h2>
+
+<p>First of all (as allways) you need to include some javascript files and a css file.:</p>
+
+<pre>&lt;link type=&quot;text/css&quot; rel=&quot;STYLESHEET&quot; href=&quot;<A href="classic.css">classic.css</A>&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;<A href="fade.js">fade.js</A>&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;<A href="select.js">select.js</A>&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;<A href="writeSelect.js">writeSelect.js</A>&quot;&gt;&lt;/script&gt;
+</pre>
+
+<p>After this you create an array of options like this:</p>
+
+<pre>
+optionArray = new Array();
+optionArray[0] = new Option(&quot;Item 1&quot;, &quot;value 1&quot;, &quot;color: blue; text-decoration: underline;&quot;);
+optionArray[1] = new Option(&quot;Item &lt;b&gt;2&lt;/b&gt;&quot;, &quot;value 2&quot;);
+optionArray[2] = new Option(&quot;Item 3&quot;, &quot;value 3, &quot;color: red&quot;, &quot;selected&quot;&quot;);
+optionArray[3] = new Option(&quot;Item 4&quot;, &quot;value 4&quot;);
+optionArray[4] = new Option(&quot;Item 5&quot;, &quot;value 5&quot;);
+</pre>
+
+<p>Then you initiate the select box. It will be display at the current position so this shoul be
+done in the body:</p>
+
+<pre>
+writeSelectBox(optionArray, &quot;select1&quot;, 1, &quot;alert(this.options[this.selectedIndex].value)&quot;, &quot;margin-left: 10&quot;);
+</pre>
+
+<p>The first argument is the the list with options (this is the only needed argument).
+The second is the id the of the selectbox (this should be added for better performanc).
+The third is the size. Setting this to more than one results in another type of select box and
+The forth is the action to do on change. You can also add a fifth argument that si a string with
+CSS values (like this &quot;position: absolute; top: 100px;&quot;). I really recomend that you change in the
+css file instead because this allow you to edit all elements</p>
+
+<p>The above script result in the following selectbox.</p>
+
+
+<script type="text/javascript">
+<!--
+
+var optionArray = new Array();
+optionArray[0] = new Option("Item 1", "value 1", "color: blue; text-decoration: underline;");
+optionArray[1] = new Option("Item <b>2</b>", "value 2");
+optionArray[2] = new Option("Item 3", "value 3", "color: red;", "selected");
+optionArray[3] = new Option("Item 4", "value 4");
+optionArray[4] = new Option("Item 5", "value 5");
+
+writeSelectBox(optionArray, "select1", 1, "alert(this.options[this.selectedIndex].value)", "margin-left: 10;");
+
+//-->
+</script>
+
+<br>
+
+<p>Below is the same select box with size set to 3 </p>
+
+
+
+<script type="text/javascript">
+<!--
+
+writeSelectBox(optionArray, "select3", 3, "alert(this.options[this.selectedIndex].value)", "margin-left: 10;");
+
+//-->
+</script>
+
+<br>
+
+
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!-- Footer Starts here -->
+
+<style type="text/css">
+<!--
+.footer				{text-align: center;}
+.footer a			{color: navy; text-decoration: none;}
+.footer a:hover		{text-decoration: none;}
+.footer a:visited	{color: navy;}
+.footer a:active	{color: navy;}
+.footer hr			{width: 602px; height: 2px;color: navy;}
+
+#footerHR			{width: 605px; height: 4px; filter: dropshadow(color=deepskyblue, offx=2, offy=2);}
+
+#footerWebFX		{position: relative; top: 15px; font-size: 35px; font-style: italic; letter-spacing: -4px; width: 135px; color: deepskyblue;
+					font-family: Arial Black;
+					filter: mask(color=deepskyblue) glow(color=navy, strength=1) chroma(color=deepskyblue) dropshadow(color=deepskyblue, offx=2, offY=2)}
+				
+.footerLink			{position: relative; top: 3px; left: 3px; height: 15px;
+					filter: dropshadow(color=deepskyblue, offx=2, offy=2)}				
+-->
+</style>
+
+<script type="text/javascript">
+<!--
+
+var a = 1;
+
+function raise(el) {
+	el.filters.dropshadow.offx += a;
+	el.filters.dropshadow.offy += a;
+	el.style.pixelTop          -= a;
+	el.style.pixelLeft         -= a;
+}
+
+function restore(el) {
+	el.filters.dropshadow.offx -= a;
+	el.filters.dropshadow.offy -= a;
+	el.style.pixelTop          += a;
+	el.style.pixelLeft         += a;
+}
+//-->
+</script>
+
+
+<div class="footer">
+
+<a href="http://www.eae.net/webfx/" title="Back to WebFX" style="cursor: hand;" target="_top">
+<span id="footerWebFX" onmouseover="raise(this)" onmouseout="restore(this)">WebFX</span>
+</a>
+
+<div id="footerHR">
+<hr>
+</div>
+
+<p style="font-family: verdana; font-size: 12px; margin-top: 0px;">Page maintained and designed by
+<span class="footerLink" style="width: 90px;" onmouseover="raise(this)" onmouseout="restore(this)"><a href="mailto:eae@eae.net">Emil A. Eklund</a></span>
+and <span class="footerLink" style="width: 90px;" onmouseover="raise(this)" onmouseout="restore(this)"><a href="mailto:erik@eae.net">Erik Arvidsson</a></span>
+. (ICQ:<span class="footerLink" style="width: 60px;" onmouseover="raise(this)" onmouseout="restore(this)"><a href="http://www.eae.net/2473022.uin" title="EAE">2473022</a></span>
+/<span class="footerLink" style="width: 60px;" onmouseover="raise(this)" onmouseout="restore(this)"><a href="http://www.eae.net/webfx/2578925.uin" title="Erik">2578925</a></span>)
+</p>
+
+</div>
+
+<!-- Footer ends here -->
+
+</BODY>
+</HTML>

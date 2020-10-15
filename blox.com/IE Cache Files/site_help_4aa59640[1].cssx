@@ -1,0 +1,85 @@
+BODY {
+	background-image: none;
+	margin: 20px;
+}
+		
+P {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+H1 {
+	font-size: 13pt;
+	font-weight: bold;
+	color: #669900;
+}
+
+H2 {
+	font-size: 12pt;
+	font-weight: bold;
+	color: black;
+}
+
+H3 {
+	font-size: 10pt;
+	font-weight: bold;
+	color: black;
+}
+
+H4 {
+	font-size: 10pt;
+	color: black;
+}
+
+IMG { margin-top: 8px; }
+
+HR {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.helpSection {
+	font-size: 10pt;
+	font-weight: bold;
+	color: black;
+	margin-top: 8px;
+	margin-bottom: 7px;
+}
+
+.helpTopic {
+	font-size: 10pt;
+	margin-top: 2px;
+	margin-bottom: 3px;
+}
+
+.helpCaption {
+	font-size: 9pt;
+	font-style: italic;
+	margin-top: 3px;
+	margin-bottom: 6px;
+}
+
+.insetParagraph {
+	font-size: 8pt;
+	margin-left: 15px;
+	margin-right: 15px;
+	line-height: 10pt;
+}
+
+.code {
+	font-family: monospace;
+	color: #660099;
+}
+
+.innerList {
+	margin-top: 0; 
+	margin-bottom: 0; 
+	list-style-type: circle;
+}
+
+
+
+
+
+
+

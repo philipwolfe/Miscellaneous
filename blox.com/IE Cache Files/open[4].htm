@@ -1,0 +1,443 @@
+<html>
+  <head>
+	<TITLE>Life insurance records - Blox.com Spreadsheet</TITLE>
+	<meta http-equiv=content-type content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="/css/static/design_mode_ie_294536544.css"/><link rel="stylesheet" type="text/css" href="/css/spreadsheet_ie4_c96cba47.cssx"/>
+<link rel="stylesheet" type="text/css" href="/css/spreadsheet_ie4_blox.css"/>
+
+<style type="text/css">
+/* /home/www/template/static/design_mode_en_ie.style.tpl */
+
+</style>
+
+	<script language="JavaScript">
+
+		var kTotalJSIncludes = 17;
+		var gNumJSIncludesLoaded = 0;
+		var gMaximumCellCount = 3500;
+		var gAppLocale = 'en';
+		var gEntryLocale	= 'en';
+		var knoEmailBtn = 0;	
+ 		if (knoEmailBtn)
+			suppressElements(['btnEmail','em1']);
+		// knoSaveAs variable - used to dynamically create the file menu.
+		var knoSaveAs = 0;
+		function JSIncludeDoneLoading()
+		{
+			gNumJSIncludesLoaded++;
+			includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+		}
+			
+		// creates stylesheet rules to suppress the specified elements
+		function suppressElements(elemIdArray) {
+			if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+			for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+		}
+	</script>
+
+	
+				<script language="JavaScript">
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</script>
+			
+
+  </head>
+
+	<body class="body" scroll="no" oncontextmenu='return handleContextMenuEvent(window)' onLoad="loadDocument()" onBeforeUnload="if(typeof unloadDocument != 'undefined')unloadDocument()" onUnload="if(typeof unloadDocument != 'undefined')unloadDocument()" onResize="resizeDocument()">
+		<span class='view' id='view' style="width: 100%; height: 100%;">
+			<!-- later write the contents of this span -->
+		</span>
+
+		<script language="JavaScript">
+
+			var content = '<div class="modalLabel">Please wait a moment (the first time you use the Spreadsheet this may take a little longer).</div>'
+			+ '<div class="modalProgressBar">'
+			+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+			+ '</div></div>';
+
+			var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+			+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+			+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+			+ '<tr valign="middle">'
+			+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+			+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Spreadsheet</span></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td bgcolor="#999999"><br></td>'
+			+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+			+ '</tr>'
+			+ '</table>'
+			+ '</div></tr></td></table>';
+
+			document.write(progressDialog);
+
+		</script>
+
+		<script language="JavaScript">
+
+			// global mode flag (can be "design", "view", or "embed")
+			var kMode = "design";
+			var gInitDirtyCells = "";
+			var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+			var gRowCount, gColumnCount, gOwnerId=0, gAppId='',gAppDescription='';
+			var gImported = 0;
+			var gAppVersion = 1.0;
+			var gAppAuthor = 'ss';
+			var gMacroText = '';
+			var gPartnerMenu = null;
+			var gPopupMenu = null;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var gIsMatterhorn = false;
+			var gDocumentTitleBase = " - Blox.com Spreadsheet";
+
+			// relative to the root url (which includes a trailing slash):
+			var gOpenScript = "open";
+			var gSaveScript = "savebraincell";
+			var gSaveLifeboat = "lifeboat";
+			var gMyFilesScript = "myfiles";
+			var gExportExcelScript = "xls_convert";
+			var gImportExcelScript = "xls_upload";
+			var gSendMailScript = "email";
+			var gFileSummaryScript = "file_summary";
+			var gRatingScript = "rating"; // for completeness
+			var kImageDirectory = "img/";
+			var kServletPrefix = "";
+			var gPrintCSS = "css/calculator_ie4.css";
+
+			// relative to the root url (which includes a trailing slash):
+			var gCloseBoxFile = "modalclosebox_ie.html";
+			var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+			var gMacroFrameFile = "macroframe";  // NOTE reference to same string in IFRAME below!
+												  // included for completeness & future compatibility with AlphaBlox
+
+
+			//
+gColumnCount = 7;gRowCount = 21;
+
+
+			function GetColumnWidthsAndHeights(widths, heights)
+			{
+				//
+widths[1] = 258;
+widths[2] = 84;
+widths[3] = 84;
+widths[4] = 84;
+widths[5] = 84;
+widths[6] = 84;
+heights[7] = 34;
+
+			}
+
+			// after this comment, we add //init cells
+gAppId='000f4553_d094';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Life insurance records';
+var gCellDataArray=[{entry:'Life insurance tracker',viewSize:'12pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:1,m_col:1,i_nr:'Life insurance tracker'},
+{_borderBottom:'solid black 1pt',viewSize:'9pt',m_row:1,m_col:2},
+{_borderBottom:'solid black 1pt',viewSize:'9pt',m_row:1,m_col:3},
+{_borderBottom:'solid black 1pt',viewSize:'9pt',m_row:1,m_col:4},
+{_borderBottom:'solid black 1pt',viewSize:'9pt',m_row:1,m_col:5},
+{_borderBottom:'solid black 1pt',viewSize:'9pt',m_row:1,m_col:6},
+{_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:2,m_col:1},
+{entry:'Policy #1',_borderBottom:'solid black 1px',viewSize:'7pt',_fontStyle:'normal',_widthClue:'80',foreColor:'white',bk_color:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'center',m_row:2,m_col:2,i_nr:'Policy #1'},
+{entry:'Policy #2',_borderBottom:'solid black 1px',viewSize:'7pt',_fontStyle:'normal',_widthClue:'80',foreColor:'white',bk_color:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'center',m_row:2,m_col:3,i_nr:'Policy #2'},
+{entry:'Policy #3',_borderBottom:'solid black 1px',viewSize:'7pt',_fontStyle:'normal',_widthClue:'80',foreColor:'white',bk_color:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'center',m_row:2,m_col:4,i_nr:'Policy #3'},
+{entry:'Policy #4',_borderBottom:'solid black 1px',viewSize:'7pt',_fontStyle:'normal',_widthClue:'80',foreColor:'white',bk_color:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'center',m_row:2,m_col:5,i_nr:'Policy #4'},
+{entry:'Policy #5',_borderBottom:'solid black 1px',viewSize:'7pt',_fontStyle:'normal',_widthClue:'80',foreColor:'white',bk_color:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'center',m_row:2,m_col:6,i_nr:'Policy #5'},
+{entry:'Policy Owner',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:3,m_col:1,i_nr:'Policy Owner'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:3,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:3,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:3,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:3,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:3,m_col:6},
+{entry:'Policy Number',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:4,m_col:1,i_nr:'Policy Number'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:4,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:4,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:4,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:4,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:4,m_col:6},
+{entry:'Date Issued',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:5,m_col:1,i_nr:'Date Issued'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:5,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:5,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:5,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:5,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:5,m_col:6},
+{entry:'Insurance Company',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:6,m_col:1,i_nr:'Insurance Company'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:6,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:6,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:6,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:6,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:6,m_col:6},
+{entry:'Type of  policy (term, whole life, or universal life, etc)',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:7,m_col:1,i_nr:'Type of policy (term, whole life, or universal life, etc)'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:7,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:7,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:7,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:7,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:7,m_col:6},
+{entry:'Are    others insured on the same policy?',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:8,m_col:1,i_nr:'Are others insured on the same policy?'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:8,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:8,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:8,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:8,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:8,m_col:6},
+{entry:'Name(s) of Insured',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:9,m_col:1,i_nr:'Name(s) of Insured'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:9,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:9,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:9,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:9,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:9,m_col:6},
+{entry:'Employer-provided?',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:10,m_col:1,i_nr:'Employer-provided?'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:10,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:10,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:10,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:10,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:10,m_col:6},
+{locked:'true',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',m_row:11,m_col:1},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:11,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:11,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:11,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:11,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:11,m_col:6},
+{entry:'Annual premium',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:12,m_col:1,i_nr:'Annual premium'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:12,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:12,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:12,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:12,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:12,m_col:6},
+{entry:'Current face value',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:13,m_col:1,i_nr:'Current face value'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:13,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:13,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:13,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:13,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:13,m_col:6},
+{entry:'Approximate cash value',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:14,m_col:1,i_nr:'Approximate cash value'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:14,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:14,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:14,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:14,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:14,m_col:6},
+{entry:'Policy    loan (indicate if minimum deposit)',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:15,m_col:1,i_nr:'Policy loan (indicate if minimum deposit)'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:15,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:15,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:15,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:15,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:15,m_col:6},
+{entry:'Interest rate on loans',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:16,m_col:1,i_nr:'Interest rate on loans'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:16,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:16,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:16,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:16,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:16,m_col:6},
+{entry:'Benificiary designation',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:17,m_col:1,i_nr:'Benificiary designation'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:17,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:17,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:17,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:17,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:17,m_col:6},
+{entry:'Dividend option',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:18,m_col:1,i_nr:'Dividend option'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:18,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:18,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:18,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:18,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:18,m_col:6},
+{entry:'Settlement option(s)',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:19,m_col:1,i_nr:'Settlement option(s)'},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:19,m_col:2},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:19,m_col:3},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:19,m_col:4},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:19,m_col:5},
+{locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:19,m_col:6},
+{_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',m_row:20,m_col:1},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:20,m_col:2},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:20,m_col:3},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:20,m_col:4},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:20,m_col:5},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'7pt',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'left',m_row:20,m_col:6}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+		</script>
+
+		<script language="JavaScript" src="/lib/js/unicodeCharMap_ie_667e49f7.jsx" ></script><script language="JavaScript" src="/lib/js/strings_en_2491480284.jsx" ></script><script language="JavaScript" src="/lib/js/locale_ie_0d14744b.jsx" ></script><script language="JavaScript" src="/lib/js/utility_ie_dbd756c4.jsx" ></script><script language="JavaScript" src="/lib/js/dialog_ie_8cee673f.jsx" ></script><script language="JavaScript" src="/lib/js/gui_ie_cd85eb87.jsx" ></script><script language="JavaScript" src="/lib/js/document_ie_29b378dd.jsx" ></script><script language="JavaScript" src="/lib/js/browser_detect_ie_b85f83d9.jsx" ></script><script language="JavaScript" src="/lib/js/cookie_ie_0645e3cf.jsx" ></script><script language="JavaScript" src="/lib/js/spreadsheet_ie_13a32214.jsx" ></script><script language="JavaScript" src="/lib/js/rows_columns_ie_9e967a68.jsx" ></script><script language="JavaScript" src="/lib/js/interface_spreadsheet_ie_27500a8d.jsx" ></script><script language="JavaScript" src="/lib/js/runtime_ie_e7eb4a54.jsx" ></script><script language="JavaScript" src="/lib/js/cell_ie_b1477f2e.jsx" ></script><script language="JavaScript" src="/lib/js/compiler_ie_808fdc64.jsx" ></script><script language="JavaScript" src="/lib/js/platform_ie_bb68a125.jsx" ></script><script language="JavaScript" src="/lib/js/resource_ie_66434373.jsx" ></script>
+
+		<div id="bulbLogo" class="bulbLogo">	<div id="break2" class="break" style="position: absolute; top: 1; left: 47; height: 50; background-repeat: repeat-y;"></div>	</div><div id="menuPalette" class="palette">
+<div id="fileMenu" class="largeMenu">File</div>
+<div id="editMenu" class="largeMenu">Edit</div>
+<div id="toolsMenu" class="largeMenu">Tools</div>
+<div id="formatMenu" class="largeMenu">Format</div>
+<div id="helpMenu" class="largeMenu">Help</div>
+<div id="partnerMenu" class="largeMenu"></div>
+<div id="btnEmail" class="button" title="Email"></div><div id="em1" class="buttonText">email this page</div>
+</div>
+<div id="menuDivision" class="division"></div>
+<div id="iconPalette" class="palette">
+<div id="new" class="button" title="New File"></div><div id="open" class="button" title="Open File"></div><div id="save" class="button" title="Save File"></div><div id="print" class="button" title="Print"></div><div id="break1" class="break"></div>
+<div id="cut" class="button" title="Cut Cells"></div><div id="copy" class="button" title="Copy Cells"></div><div id="paste" class="button" title="Paste Cells"></div><div id="format" class="button" title="Copy Format of Selected Cells"></div><div id="break2" class="break"></div>
+<div id="sum" class="button" title="Automatic Sum"></div><div id="break3" class="break"></div>
+<div id="fontMenu" class="smallMenu"></div><input type="text" tabindex=-1 id="fontSpot" class="comboBox" hasFocus=0 onBlur="fontSpot.hasFocus=0">
+<div id="break4" class="break"></div>
+<div id="sizeMenu" class="smallMenu"></div><input type="text" tabindex=-1 id="sizeSpot" class="comboBox" hasFocus=0 onBlur="sizeSpot.hasFocus=0">
+<div id="break5" class="break"></div>
+<div id="bold" class="button" title="Bold"></div><div id="italic" class="button" title="Italic"></div><div id="underline" class="button" title="Underline"></div><div id="break6" class="break"></div>
+<div id="backgroundColorMenu" class="buttonMenu" title="Background Color"><div id="backgroundColorMenuSpot" class="colorSpot"></div></div><div id="textColorMenu" class="buttonMenu" title="Text Color"><div id="textColorMenuSpot" class="colorSpot"></div></div><div id="borderMenu" class="button" title="Cell border"></div><div id="break7" class="break"></div>
+<div id="left" class="button" title="Align Left"></div><div id="center" class="button" title="Center"></div><div id="right" class="button" title="Align Right"></div><div id="break8" class="break"></div>
+</div>
+<div id="iconDivision" class="division"></div>
+<div id="editPalette" class="palette">
+<div id="label" class="label" style="position: absolute; top: 4; left: 4; height: 15; width: 40;">A1</div><div id="functionMenu" class="smallMenu"></div><div id="functionSpot" class="smallSpot">f(x)</div>
+<div id="accept" class="button" title="Accept"></div><div id="cancel" class="button" title="Cancel"></div><div id="btnRevert" class="button" title="Revert Override"></div><div id="btnOverride" class="button" title="Show Formula (double-click to lock)"></div><div id="entryHolder" style="position: absolute; top: -1; left: 150; height: 22; z-index: 100;"><form name="entryForm" onSubmit="return false"><textarea id="entry" name="entry" tabindex=-1 style="font-family: arial, helvetica, sans-serif; font-size: 10pt; width: 100%; height: 22px; overflow: hidden;" onBlur="gEntryClickFocused=0" oncut='cutDocument()' onpaste='pasteDocument()' onkeydown="return keyDownDocument()" onkeyup="return keyUpDocument()"></textarea></form></div></div>
+<div id="editDivision" class="division"></div>
+<div id="previewPalette" class="palette">
+<div class="bulbLogoSmall"></div><div id="break10" class="break"></div>
+<div id="previewHolder" class="palette">
+<input class="inputButton" type="button" id="btnEndPreview" value="Exit Preview" onclick="ExitPreview()" title="Return to Spreadsheet mode">
+<div id="break11" class="break"></div>
+<div id="previewClue" class="buttonText">Click on a cell to toggle it from editable to non-editable</div>
+</div>
+</div>
+<div id="footDivision" class="division"></div>
+<div id="footPalette" class="palette">
+<div id="copyrightText" style="padding-left:10px; padding-top:4px; cursor:default;">Copyright &copy; 1999-2001 <A HREF="http://www.alphablox.com" target="_blank" tabIndex="-1" onFocus="this.blur()">AlphaBlox Corporation.</A> All rights reserved.</div></div>
+<div id="fileList" class="largeList">
+
+</div>
+<div id="editList" class="largeList">
+<div id="cmdCut" class="largeItem">Cut</div>
+<div id="cmdCopy" class="largeItem">Copy</div>
+<div id="cmdPaste" class="largeItem">Paste</div>
+<div id="cmdPasteSpecial" class="largeItem">Paste Values</div>
+<div id="cmdClear" class="largeItem">Clear</div>
+<div id="separator20" class="separator"></div>
+<div id="cmdFillDown" class="largeItem">Fill Down</div>
+<div id="cmdFillRight" class="largeItem">Fill Right</div>
+<div id="separator21" class="separator"></div>
+<div id="cmdMacros" class="largeItem">Macros...</div>
+
+</div>
+<div id="toolsList" class="largeList">
+<div id="cmdInsertRow" class="largeItem">Insert Row</div>
+<div id="cmdInsertColumn" class="largeItem">Insert Column</div>
+<div id="cmdDeleteRow" class="largeItem">Delete Row</div>
+<div id="cmdDeleteColumn" class="largeItem">Delete Column</div>
+<div id="separator30" class="separator"></div>
+<div id="cmdFitRow" class="largeItem">Autofit Row</div>
+<div id="cmdFitColumn" class="largeItem">Autofit Column</div>
+<div id="separator31" class="separator"></div>
+<div id="cmdRowHeight" class="largeItem">Row Height...</div>
+<div id="cmdColumnWidth" class="largeItem">Column Width...</div>
+<div id="separator32" class="separator"></div>
+<div id="cmdSortAscending" class="largeItem">Sort Ascending</div>
+<div id="cmdSortDescending" class="largeItem">Sort Descending</div>
+<div id="separator33" class="separator"></div>
+<div id="cmdToggleGrid" class="largeItem">Hide Grid</div>
+<div id="separator34" class="separator"></div>
+<div id="cmdPreview" class="largeItem">Calculator Preview</div>
+
+</div>
+<div id="formatList" class="largeList">
+<div id="cmdGeneral" class="largeItem">General</div>
+
+</div>
+<div id="helpList" class="largeList">
+<div id="cmdContents" class="largeItem">Contents...</div>
+<div id="separator60" class="separator"></div>
+<div id="cmdIntroduction" class="largeItem">Introduction</div>
+<div id="cmdBasics" class="largeItem">Basics</div>
+<div id="cmdFiles" class="largeItem">Files</div>
+<div id="cmdNavigating" class="largeItem">Navigating</div>
+<div id="cmdEditing" class="largeItem">Editing</div>
+<div id="cmdFormatting" class="largeItem">Formatting</div>
+<div id="cmdCalculators" class="largeItem">Calculators</div>
+<div id="cmdMacrosHelp" class="largeItem">Macros</div>
+<div id="separator61" class="separator"></div>
+<div id="cmdMenuReference" class="largeItem">Menu reference</div>
+<div id="cmdFunctionReference" class="largeItem">Function reference</div>
+<div id="separator62" class="separator"></div>
+<div id="cmdBugReport" class="largeItem">Report a bug</div>
+<div id="cmdAbout" class="largeItem">About...</div>
+
+</div>
+<div id="partnerList" class="largeList">
+
+</div>
+<div id="fontList" class="smallList">
+<div id="fontArial" class="smallItem">Arial</div>
+<div id="fontBookman" class="smallItem">Bookman Old Style</div>
+<div id="fontCourier" class="smallItem">Courier</div>
+<div id="fontGaramond" class="smallItem">Garamond</div>
+<div id="fontConsole" class="smallItem">Lucida Console</div>
+<div id="fontSymbol" class="smallItem">Symbol</div>
+<div id="fontTahoma" class="smallItem">Tahoma</div>
+<div id="fontTimesNewRoman" class="smallItem">Times New Roman</div>
+<div id="fontVerdana" class="smallItem">Verdana</div>
+
+</div>
+<div id="sizeList" class="smallList">
+<div id="point7" class="smallItem">7 pt</div>
+<div id="point8" class="smallItem">8 pt</div>
+<div id="point9" class="smallItem">9 pt</div>
+<div id="point10" class="smallItem">10 pt</div>
+<div id="point11" class="smallItem">11 pt</div>
+<div id="point12" class="smallItem">12 pt</div>
+<div id="point14" class="smallItem">14 pt</div>
+<div id="point18" class="smallItem">18 pt</div>
+<div id="point24" class="smallItem">24 pt</div>
+<div id="point36" class="smallItem">36 pt</div>
+<div id="point48" class="smallItem">48 pt</div>
+<div id="point72" class="smallItem">72 pt</div>
+
+</div>
+<div id="functionList" class="smallList">
+<div id="funcImageUrl" class="smallItem">Image URL</div>
+<div id="funcStockQuote" class="smallItem">Stock Quote</div>
+<div id="funcLinkUrl" class="smallItem">Web Link</div>
+<div id="funcCurrency" class="smallItem">Currency Quote</div>
+
+</div>
+<div id="textColorList" class="smallList" style="top:0; left:0; width:130; height:122; background-color: lightgrey;"></div>	<div id="backgroundColorList" class="smallList" style="top:0; left:0; width:130; height:122; background-color: lightgrey;"></div>	<div id="borderList" class="smallList" style="position: absolute; top: 0; left: 0; width: 98; height: 98;">	<div id="border10" class="border" style="position: absolute; top:  0; left:  0;" title="No border"></div>	<div id="border11" class="border" style="position: absolute; top:  0; left: 24;" title="Thick bottom"></div>	<div id="border12" class="border" style="position: absolute; top:  0; left: 48;" title="Double bottom"></div>	<div id="border13" class="border" style="position: absolute; top:  0; left: 72;" title="Top rule, double bottom"></div>	<div id="border14" class="border" style="position: absolute; top: 24; left:  0;" title="Bottom only"></div>	<div id="border15" class="border" style="position: absolute; top: 24; left: 24;" title="Left only"></div>	<div id="border16" class="border" style="position: absolute; top: 24; left: 48;" title="Right only"></div>	<div id="border17" class="border" style="position: absolute; top: 24; left: 72;" title="Top only"></div>	<div id="border18" class="border" style="position: absolute; top: 48; left:  0;" title="Left and right"></div>	<div id="border19" class="border" style="position: absolute; top: 48; left: 24;" title="Top and bottom"></div>	<div id="border20" class="border" style="position: absolute; top: 48; left: 48;" title="Columns"></div>	<div id="border21" class="border" style="position: absolute; top: 48; left: 72;" title="Rows"></div>	<div id="border22" class="border" style="position: absolute; top: 72; left:  0;" title="Box"></div>	<div id="border23" class="border" style="position: absolute; top: 72; left: 24;" title="Grid"></div>	<div id="border24" class="border" style="position: absolute; top: 72; left: 48;" title="Boxed columns"></div>	<div id="border25" class="border" style="position: absolute; top: 72; left: 72;" title="Boxed rows"></div>	</div>
+		<div id="modalDialog" style="display:none"></div>
+		<div id = "modalShield" style="display:none"></div>
+		<div id="popupMenuList" class="smallList" style="width:100; height:1;"></div>
+
+		<script language="JavaScript">
+			includeProgressDialog.style.display = "none";
+		</script>
+
+		<iframe id="resource0" src="" style="display: none;"></iframe>
+		<iframe id="resource1" src="" style="display: none;"></iframe>
+		<iframe id="resource2" src="" style="display: none;"></iframe>
+		<iframe id="resource3" src="" style="display: none;"></iframe>
+
+		<iframe id="saveFrame" src="/saveframe.html" style="display: none;"></iframe>
+		<iframe id="macroFrame" src="/macroframe" style="display: none;"></iframe>
+		<iframe id="bugFrame" src="" style="display: none;"></iframe>
+		<iframe name="postFrame" src="" style="display: none;"></iframe>
+		<form id="postForm" method="POST"></form>
+	</body>
+</html>
+

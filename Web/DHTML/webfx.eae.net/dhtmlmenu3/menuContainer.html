@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Menu Container</title>
+<link type="text/css" rel="StyleSheet" href="menu.css" id="menuStyleSheet">
+<script type="text/javascript">
+<!--
+
+var menuBorderWidth = 2;
+
+var tableMenu, objectMenu, openerDocument, openerWindow, currentSelected, activeSub, hideTimeoutHandle, tmpEl, tmpBound, hideAllSubsTimer;
+var tmpArray = new Array();
+var tmpCounter = 0;
+
+var menuShowPause = 50;
+
+function public_initiateMenu(tableEl, objectEl) {
+	tableMenu = tableEl;
+	objectMenu = objectEl;
+	
+	tableMenu.scriptlet = objectMenu;
+	
+	openerDocument = objectEl.document;
+	openerWindow = openerDocument.parentWindow;
+
+	// Load correct style sheet
+	if (openerWindow.document.all["menuStyleSheet"] != null)
+		menuStyleSheet.href = openerWindow.menuStyleSheet.href;
+	
+	document.body.innerHTML = tableEl.outerHTML;
+	
+	if (tableMenu.menuState == null)
+		tableMenu.menuState = "visible";
+	
+	objectMenu.style.visibility = tableMenu.menuState;
+//	tableMenu.style.visibility = "hidden";	//extra setting due to odd IE style bug
+	window.setTimeout("tableMenu.style.visibility='hidden'", 0);
+	
+	document.body.children[0].style.visibility = "visible";	// make sure the menu is visible inside the scriptlet
+															// this is needed after a rebuild
+	window.title = openerWindow.title;
+}
+
+
+function public_hideMenu() {
+	hideAllSubs();
+	objectMenu.style.visibility = "hidden";	
+	
+}
+
+function isRow(el) {
+	return el.tagName == "TR";
+}
+
+function isTable(el) {
+	return el.tagName == "TABLE";
+}
+
+function overRow() {
+	var fromEl = getParent(event.fromElement, isRow);
+	var toEl = getParent(event.toElement, isRow);
+	
+	if (fromEl == toEl || toEl == null || toEl == currentSelected) return;
+	
+	var el = toEl;
+	
+	hideAllSubs();
+	
+	if (el.className == "sub") {
+		if (el.menu == null) {
+			el.menu = el.all.tags("TABLE")[0];
+		}
+		else if (typeof(el.menu) == "string") {
+			el.menu = openerWindow.document.all[el.menu];
+		}
+
+		openerWindow.showMenu(el.menu, new Boundaries(el), "horizontal", openerWindow.pauseBeforeShow);
+		
+		activeSub = el.menu;
+		activeSub.menuItem = el;
+		
+		el.menu.menuState = "visible";
+	}
+	
+	el.oldClassName = el.className;
+	if (el.className == "disabled") {
+		currentSelected = el;
+		return;
+	}
+	el.className = "highlight";
+	currentSelected = el;
+	
+	if (el.title != null && el.title != "")
+		openerWindow.status = el.title;
+	else if (el.href != null && el.href != "")
+		openerWindow.status = el.href;
+}
+
+function outRow() {
+	var fromEl = getParent(event.fromElement, isRow);
+	var toEl = getParent(event.toElement, isRow);
+	
+	if (fromEl == toEl || fromEl == null) return;
+			
+	if ((fromEl.oldClassName == "sub" || fromEl.className == "sub") && toEl == null) {
+		return;
+	}
+	else if (toEl == null) {
+		currentSelected = null;
+	}
+	
+	fromEl.className = fromEl.oldClassName;
+	fromEl.oldClassName = null;
+	
+	openerWindow.status = "";
+
+}
+
+function clickRow() {
+	var el = getParent(event.srcElement, isRow);
+	
+	if (el == null) return;
+	
+	if (el.href != null && el.href != "") {
+		if (el.target)
+			openerWindow.open(el.href, el.target);
+		else if (openerWindow.document.all.tags("BASE").item(0) != null)
+			openerWindow.open(el.href, openerWindow.document.all.tags("BASE").item(0).target);
+		else
+			openerWindow.location = el.href;
+
+		openerWindow.hideAllMenuScriptlets();
+	}
+}
+
+function getParent(el, f) {
+	if (el == null) return null;
+	else if (f(el)) return el;
+	else return getParent(el.parentElement, f);
+}
+
+
+function hideAllSubs() {
+
+	if (activeSub != null) {
+		if (activeSub.scriptlet == null) {
+			activeSub.menuState = "hidden";
+		}
+		else {
+			if (activeSub.menuItem != null) {
+				activeSub.menuItem.className = "sub";
+				activeSub.menuItem.oldClassName = null;
+				currentSelected = null;
+				
+				openerWindow.clearTimeout(openerWindow.showTimeoutHandle);
+	
+				if (activeSub.scriptlet != null) {
+					// IE bug work around. Thank you Scott Isaacs once againg for help :-)
+					tmpArray[tmpCounter] = activeSub.scriptlet;
+					window.setTimeout("tmpArray[" + (tmpCounter++) + "].hideMenu()", 0);
+
+					activeSub = null;
+				}
+			}
+		}
+	}
+}
+
+function Boundaries(el) {
+	this.left = objectMenu.offsetLeft + el.offsetLeft;
+	this.top  = objectMenu.offsetTop + el.offsetTop;
+	this.height = el.offsetHeight;
+	this.width  = el.offsetWidth;
+}
+
+document.onmouseover = overRow;
+document.onmouseout = outRow;
+document.onclick = clickRow;
+
+//-->
+</script>
+
+</head>
+<body class="menuContainer">
+
+
+
+</body>
+</html>
+

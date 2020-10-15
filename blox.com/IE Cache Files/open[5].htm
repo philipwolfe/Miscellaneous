@@ -1,0 +1,902 @@
+<html>
+  <head>
+	<TITLE>Historical cash flow - Blox.com Spreadsheet</TITLE>
+	<meta http-equiv=content-type content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="/css/static/design_mode_ie_294536544.css"/><link rel="stylesheet" type="text/css" href="/css/spreadsheet_ie4_c96cba47.cssx"/>
+<link rel="stylesheet" type="text/css" href="/css/spreadsheet_ie4_blox.css"/>
+
+<style type="text/css">
+/* /home/www/template/static/design_mode_en_ie.style.tpl */
+
+</style>
+
+	<script language="JavaScript">
+
+		var kTotalJSIncludes = 17;
+		var gNumJSIncludesLoaded = 0;
+		var gMaximumCellCount = 3500;
+		var gAppLocale = 'en';
+		var gEntryLocale	= 'en';
+		var knoEmailBtn = 0;	
+ 		if (knoEmailBtn)
+			suppressElements(['btnEmail','em1']);
+		// knoSaveAs variable - used to dynamically create the file menu.
+		var knoSaveAs = 0;
+		function JSIncludeDoneLoading()
+		{
+			gNumJSIncludesLoaded++;
+			includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+		}
+			
+		// creates stylesheet rules to suppress the specified elements
+		function suppressElements(elemIdArray) {
+			if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+			for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+		}
+	</script>
+
+	
+				<script language="JavaScript">
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</script>
+			
+
+  </head>
+
+	<body class="body" scroll="no" oncontextmenu='return handleContextMenuEvent(window)' onLoad="loadDocument()" onBeforeUnload="if(typeof unloadDocument != 'undefined')unloadDocument()" onUnload="if(typeof unloadDocument != 'undefined')unloadDocument()" onResize="resizeDocument()">
+		<span class='view' id='view' style="width: 100%; height: 100%;">
+			<!-- later write the contents of this span -->
+		</span>
+
+		<script language="JavaScript">
+
+			var content = '<div class="modalLabel">Please wait a moment (the first time you use the Spreadsheet this may take a little longer).</div>'
+			+ '<div class="modalProgressBar">'
+			+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+			+ '</div></div>';
+
+			var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+			+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+			+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+			+ '<tr valign="middle">'
+			+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+			+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Spreadsheet</span></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td bgcolor="#999999"><br></td>'
+			+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+			+ '</tr>'
+			+ '</table>'
+			+ '</div></tr></td></table>';
+
+			document.write(progressDialog);
+
+		</script>
+
+		<script language="JavaScript">
+
+			// global mode flag (can be "design", "view", or "embed")
+			var kMode = "design";
+			var gInitDirtyCells = "";
+			var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+			var gRowCount, gColumnCount, gOwnerId=0, gAppId='',gAppDescription='';
+			var gImported = 0;
+			var gAppVersion = 1.0;
+			var gAppAuthor = 'ss';
+			var gMacroText = '';
+			var gPartnerMenu = null;
+			var gPopupMenu = null;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var gIsMatterhorn = false;
+			var gDocumentTitleBase = " - Blox.com Spreadsheet";
+
+			// relative to the root url (which includes a trailing slash):
+			var gOpenScript = "open";
+			var gSaveScript = "savebraincell";
+			var gSaveLifeboat = "lifeboat";
+			var gMyFilesScript = "myfiles";
+			var gExportExcelScript = "xls_convert";
+			var gImportExcelScript = "xls_upload";
+			var gSendMailScript = "email";
+			var gFileSummaryScript = "file_summary";
+			var gRatingScript = "rating"; // for completeness
+			var kImageDirectory = "img/";
+			var kServletPrefix = "";
+			var gPrintCSS = "css/calculator_ie4.css";
+
+			// relative to the root url (which includes a trailing slash):
+			var gCloseBoxFile = "modalclosebox_ie.html";
+			var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+			var gMacroFrameFile = "macroframe";  // NOTE reference to same string in IFRAME below!
+												  // included for completeness & future compatibility with AlphaBlox
+
+
+			//
+gColumnCount = 17;gRowCount = 42;
+
+
+			function GetColumnWidthsAndHeights(widths, heights)
+			{
+				//
+widths[1] = 85;
+widths[2] = 200;
+widths[3] = 49;
+widths[4] = 49;
+widths[5] = 49;
+widths[6] = 49;
+widths[7] = 49;
+widths[8] = 49;
+widths[9] = 49;
+widths[10] = 49;
+widths[11] = 49;
+widths[12] = 49;
+widths[13] = 49;
+widths[14] = 49;
+widths[15] = 49;
+heights[26] = 16;
+
+			}
+
+			// after this comment, we add //init cells
+gAppId='000f452c_8cf3';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Historical cash flow';
+var gCellDataArray=[{entry:'Historical Cash Flow',viewSize:'12 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:1,m_col:1,i_nr:'Historical Cash Flow'},
+{foreColor:'navy',viewFamily:'Verdana',viewSize:'9 pt',m_row:2,m_col:1},
+{foreColor:'navy',viewFamily:'Verdana',viewSize:'9 pt',_textAlign:'left',m_row:2,m_col:2},
+{entry:'Report Date',foreColor:'navy',_fontWeight:'bold',_textAlign:'left',m_row:2,m_col:11,i_nr:'Report Date'},
+{entry:'=TODAY()',dynamic:'__today()',derived:'10866',locked:'false',viewFormat:'dateMMDDYY',bk_color:'white',foreColor:'maroon',_fontWeight:'bold',_textAlign:'left',m_row:2,m_col:13,i_nr:'10/01/99'},
+{bk_color:'white',_textAlign:'left',m_row:2,m_col:16},
+{entry:'Cash at beginning of period:',_widthClue:'196',m_row:3,m_col:2,i_nr:'Cash at beginning of period:'},
+{entry:'500',dynamic:'500',derived:'500',
+i_tb:'[e[40][3]]',_widthClue:'45',m_row:3,m_col:3,i_nr:'500'},
+{foreColor:'navy',viewFamily:'Verdana',viewSize:'9 pt',m_row:4,m_col:1},
+{bk_color:'white',_textAlign:'left',m_row:4,m_col:16},
+{entry:'Cash from operations',viewSize:'9 pt',_fontStyle:'normal',bk_color:'navy',foreColor:'white',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:5,m_col:1,i_nr:'Cash from operations'},
+{bk_color:'navy',_borderRight:'solid black 1pt',foreColor:'white',_fontStyle:'normal',m_row:5,m_col:2},
+{entry:'Jan',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:3,i_nr:'Jan'},
+{entry:'Feb',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:4,i_nr:'Feb'},
+{entry:'Mar',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:5,i_nr:'Mar'},
+{entry:'Apr',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:6,i_nr:'Apr'},
+{entry:'May',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:7,i_nr:'May'},
+{entry:'Jun',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:8,i_nr:'Jun'},
+{entry:'Jul',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:9,i_nr:'Jul'},
+{entry:'Aug',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:10,i_nr:'Aug'},
+{entry:'Sep',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:11,i_nr:'Sep'},
+{entry:'Oct',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:12,i_nr:'Oct'},
+{entry:'Nov',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:13,i_nr:'Nov'},
+{entry:'Dec',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:14,i_nr:'Dec'},
+{entry:'Total',_borderBottom:'solid black 1px',viewFormat:'dateMMDDYY',_widthClue:'45',bk_color:'navy',foreColor:'white',_fontWeight:'bold',_textAlign:'center',m_row:5,m_col:15,i_nr:'Total'},
+{bk_color:'white',_textAlign:'left',m_row:5,m_col:16},
+{entry:'Net earnings (loss)',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:6,m_col:1,i_nr:'Net earnings (loss)'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:6,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:14},
+{entry:'=SUM(	C6	:	N6	)',dynamic:'__sum(_cel(	\'r6c3s0\'	),_cel(	\'r6c4s0\'	),_cel(	\'r6c5s0\'	),_cel(	\'r6c6s0\'	),_cel(	\'r6c7s0\'	),_cel(	\'r6c8s0\'	),_cel(	\'r6c9s0\'	),_cel(	\'r6c10s0\'	),_cel(	\'r6c11s0\'	),_cel(	\'r6c12s0\'	),_cel(	\'r6c13s0\'	),_cel(	\'r6c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:6,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:6,m_col:16},
+{entry:'Add depreciation and amortization',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:7,m_col:1,i_nr:'Add depreciation and amortization'},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'left',m_row:7,m_col:2},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:3},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:4},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:5},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:6},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:7},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:8},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:9},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:10},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:11},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:12},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:13},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:14},
+{entry:'=SUM(	C7	:	N7	)',dynamic:'__sum(_cel(	\'r7c3s0\'	),_cel(	\'r7c4s0\'	),_cel(	\'r7c5s0\'	),_cel(	\'r7c6s0\'	),_cel(	\'r7c7s0\'	),_cel(	\'r7c8s0\'	),_cel(	\'r7c9s0\'	),_cel(	\'r7c10s0\'	),_cel(	\'r7c11s0\'	),_cel(	\'r7c12s0\'	),_cel(	\'r7c13s0\'	),_cel(	\'r7c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:7,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:7,m_col:16},
+{entry:'Net cash from operations',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:8,m_col:1,i_nr:'Net cash from operations'},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1pt',_fontWeight:'bold',_textAlign:'left',m_row:8,m_col:2},
+{entry:'=SUM(	C6	:	C7	)',dynamic:'__sum(_cel(	\'r6c3s0\'	),_cel(	\'r7c3s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:3,i_nr:'0'},
+{entry:'=SUM(	D6	:	D7	)',dynamic:'__sum(_cel(	\'r6c4s0\'	),_cel(	\'r7c4s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:4,i_nr:'0'},
+{entry:'=SUM(	E6	:	E7	)',dynamic:'__sum(_cel(	\'r6c5s0\'	),_cel(	\'r7c5s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:5,i_nr:'0'},
+{entry:'=SUM(	F6	:	F7	)',dynamic:'__sum(_cel(	\'r6c6s0\'	),_cel(	\'r7c6s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:6,i_nr:'0'},
+{entry:'=SUM(	G6	:	G7	)',dynamic:'__sum(_cel(	\'r6c7s0\'	),_cel(	\'r7c7s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:7,i_nr:'0'},
+{entry:'=SUM(	H6	:	H7	)',dynamic:'__sum(_cel(	\'r6c8s0\'	),_cel(	\'r7c8s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:8,i_nr:'0'},
+{entry:'=SUM(	I6	:	I7	)',dynamic:'__sum(_cel(	\'r6c9s0\'	),_cel(	\'r7c9s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:9,i_nr:'0'},
+{entry:'=SUM(	J6	:	J7	)',dynamic:'__sum(_cel(	\'r6c10s0\'	),_cel(	\'r7c10s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:10,i_nr:'0'},
+{entry:'=SUM(	K6	:	K7	)',dynamic:'__sum(_cel(	\'r6c11s0\'	),_cel(	\'r7c11s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:11,i_nr:'0'},
+{entry:'=SUM(	L6	:	L7	)',dynamic:'__sum(_cel(	\'r6c12s0\'	),_cel(	\'r7c12s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:12,i_nr:'0'},
+{entry:'=SUM(	M6	:	M7	)',dynamic:'__sum(_cel(	\'r6c13s0\'	),_cel(	\'r7c13s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:13,i_nr:'0'},
+{entry:'=SUM(	N6	:	N7	)',dynamic:'__sum(_cel(	\'r6c14s0\'	),_cel(	\'r7c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:14,i_nr:'0'},
+{entry:'=SUM(	C8	:	N8	)',dynamic:'__sum(_cel(	\'r8c3s0\'	),_cel(	\'r8c4s0\'	),_cel(	\'r8c5s0\'	),_cel(	\'r8c6s0\'	),_cel(	\'r8c7s0\'	),_cel(	\'r8c8s0\'	),_cel(	\'r8c9s0\'	),_cel(	\'r8c10s0\'	),_cel(	\'r8c11s0\'	),_cel(	\'r8c12s0\'	),_cel(	\'r8c13s0\'	),_cel(	\'r8c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:8,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:8,m_col:16},
+{entry:'Cash provided (used) by    operating activities',viewSize:'9 pt',_fontStyle:'normal',bk_color:'navy',foreColor:'white',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:10,m_col:1,i_nr:'Cash provided (used) by operating activities'},
+{bk_color:'navy',foreColor:'white',_fontStyle:'normal',m_row:10,m_col:2},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:3},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:4},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:5},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:6},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:7},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:8},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:9},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:10},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:11},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:12},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:13},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:14},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:10,m_col:15},
+{bk_color:'white',_textAlign:'left',m_row:10,m_col:16},
+{entry:'Accounts receivable',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:11,m_col:1,i_nr:'Accounts receivable'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:11,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:14},
+{entry:'=SUM(	C11	:	N11	)',dynamic:'__sum(_cel(	\'r11c3s0\'	),_cel(	\'r11c4s0\'	),_cel(	\'r11c5s0\'	),_cel(	\'r11c6s0\'	),_cel(	\'r11c7s0\'	),_cel(	\'r11c8s0\'	),_cel(	\'r11c9s0\'	),_cel(	\'r11c10s0\'	),_cel(	\'r11c11s0\'	),_cel(	\'r11c12s0\'	),_cel(	\'r11c13s0\'	),_cel(	\'r11c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:11,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:11,m_col:16},
+{entry:'Inventory',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:12,m_col:1,i_nr:'Inventory'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:12,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:14},
+{entry:'=SUM(	C12	:	N12	)',dynamic:'__sum(_cel(	\'r12c3s0\'	),_cel(	\'r12c4s0\'	),_cel(	\'r12c5s0\'	),_cel(	\'r12c6s0\'	),_cel(	\'r12c7s0\'	),_cel(	\'r12c8s0\'	),_cel(	\'r12c9s0\'	),_cel(	\'r12c10s0\'	),_cel(	\'r12c11s0\'	),_cel(	\'r12c12s0\'	),_cel(	\'r12c13s0\'	),_cel(	\'r12c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:12,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:12,m_col:16},
+{entry:'Other assets',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:13,m_col:1,i_nr:'Other assets'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:13,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:14},
+{entry:'=SUM(	C13	:	N13	)',dynamic:'__sum(_cel(	\'r13c3s0\'	),_cel(	\'r13c4s0\'	),_cel(	\'r13c5s0\'	),_cel(	\'r13c6s0\'	),_cel(	\'r13c7s0\'	),_cel(	\'r13c8s0\'	),_cel(	\'r13c9s0\'	),_cel(	\'r13c10s0\'	),_cel(	\'r13c11s0\'	),_cel(	\'r13c12s0\'	),_cel(	\'r13c13s0\'	),_cel(	\'r13c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:13,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:13,m_col:16},
+{entry:'Accounts payable',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:14,m_col:1,i_nr:'Accounts payable'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:14,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:14},
+{entry:'=SUM(	C14	:	N14	)',dynamic:'__sum(_cel(	\'r14c3s0\'	),_cel(	\'r14c4s0\'	),_cel(	\'r14c5s0\'	),_cel(	\'r14c6s0\'	),_cel(	\'r14c7s0\'	),_cel(	\'r14c8s0\'	),_cel(	\'r14c9s0\'	),_cel(	\'r14c10s0\'	),_cel(	\'r14c11s0\'	),_cel(	\'r14c12s0\'	),_cel(	\'r14c13s0\'	),_cel(	\'r14c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:14,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:14,m_col:16},
+{entry:'Current portion of long-term debt',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:15,m_col:1,i_nr:'Current portion of long-term debt'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:15,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:14},
+{entry:'=SUM(	C15	:	N15	)',dynamic:'__sum(_cel(	\'r15c3s0\'	),_cel(	\'r15c4s0\'	),_cel(	\'r15c5s0\'	),_cel(	\'r15c6s0\'	),_cel(	\'r15c7s0\'	),_cel(	\'r15c8s0\'	),_cel(	\'r15c9s0\'	),_cel(	\'r15c10s0\'	),_cel(	\'r15c11s0\'	),_cel(	\'r15c12s0\'	),_cel(	\'r15c13s0\'	),_cel(	\'r15c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:15,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:15,m_col:16},
+{entry:'Income taxes',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:16,m_col:1,i_nr:'Income taxes'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:16,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:14},
+{entry:'=SUM(	C16	:	N16	)',dynamic:'__sum(_cel(	\'r16c3s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r16c5s0\'	),_cel(	\'r16c6s0\'	),_cel(	\'r16c7s0\'	),_cel(	\'r16c8s0\'	),_cel(	\'r16c9s0\'	),_cel(	\'r16c10s0\'	),_cel(	\'r16c11s0\'	),_cel(	\'r16c12s0\'	),_cel(	\'r16c13s0\'	),_cel(	\'r16c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:16,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:16,m_col:16},
+{entry:'Accrued expenses',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:17,m_col:1,i_nr:'Accrued expenses'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:17,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:14},
+{entry:'=SUM(	C17	:	N17	)',dynamic:'__sum(_cel(	\'r17c3s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r17c5s0\'	),_cel(	\'r17c6s0\'	),_cel(	\'r17c7s0\'	),_cel(	\'r17c8s0\'	),_cel(	\'r17c9s0\'	),_cel(	\'r17c10s0\'	),_cel(	\'r17c11s0\'	),_cel(	\'r17c12s0\'	),_cel(	\'r17c13s0\'	),_cel(	\'r17c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:17,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:17,m_col:16},
+{entry:'Other current liabilities',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:18,m_col:1,i_nr:'Other current liabilities'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:18,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:14},
+{entry:'=SUM(	C18	:	N18	)',dynamic:'__sum(_cel(	\'r18c3s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	),_cel(	\'r18c7s0\'	),_cel(	\'r18c8s0\'	),_cel(	\'r18c9s0\'	),_cel(	\'r18c10s0\'	),_cel(	\'r18c11s0\'	),_cel(	\'r18c12s0\'	),_cel(	\'r18c13s0\'	),_cel(	\'r18c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:18,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:18,m_col:16},
+{entry:'Dividends paid',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:19,m_col:1,i_nr:'Dividends paid'},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'left',m_row:19,m_col:2},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:3},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:4},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:5},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:6},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:7},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:8},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:9},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:10},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:11},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:12},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:13},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:14},
+{entry:'=SUM(	C19	:	N19	)',dynamic:'__sum(_cel(	\'r19c3s0\'	),_cel(	\'r19c4s0\'	),_cel(	\'r19c5s0\'	),_cel(	\'r19c6s0\'	),_cel(	\'r19c7s0\'	),_cel(	\'r19c8s0\'	),_cel(	\'r19c9s0\'	),_cel(	\'r19c10s0\'	),_cel(	\'r19c11s0\'	),_cel(	\'r19c12s0\'	),_cel(	\'r19c13s0\'	),_cel(	\'r19c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:19,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:19,m_col:16},
+{entry:'Net cash from operations',_borderBottom:'solid black 1px',viewSize:'9 pt',bk_color:'white',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:20,m_col:1,i_nr:'Net cash from operations'},
+{_borderBottom:'solid black 1px',bk_color:'white',foreColor:'black',_borderRight:'solid black 1pt',_fontWeight:'bold',_textAlign:'left',m_row:20,m_col:2},
+{entry:'=SUM(	C11	:	C19	)',dynamic:'__sum(_cel(	\'r11c3s0\'	),_cel(	\'r12c3s0\'	),_cel(	\'r13c3s0\'	),_cel(	\'r14c3s0\'	),_cel(	\'r15c3s0\'	),_cel(	\'r16c3s0\'	),_cel(	\'r17c3s0\'	),_cel(	\'r18c3s0\'	),_cel(	\'r19c3s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:3,i_nr:'0'},
+{entry:'=SUM(	D11	:	D19	)',dynamic:'__sum(_cel(	\'r11c4s0\'	),_cel(	\'r12c4s0\'	),_cel(	\'r13c4s0\'	),_cel(	\'r14c4s0\'	),_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	),_cel(	\'r17c4s0\'	),_cel(	\'r18c4s0\'	),_cel(	\'r19c4s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:4,i_nr:'0'},
+{entry:'=SUM(	E11	:	E19	)',dynamic:'__sum(_cel(	\'r11c5s0\'	),_cel(	\'r12c5s0\'	),_cel(	\'r13c5s0\'	),_cel(	\'r14c5s0\'	),_cel(	\'r15c5s0\'	),_cel(	\'r16c5s0\'	),_cel(	\'r17c5s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r19c5s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:5,i_nr:'0'},
+{entry:'=SUM(	F11	:	F19	)',dynamic:'__sum(_cel(	\'r11c6s0\'	),_cel(	\'r12c6s0\'	),_cel(	\'r13c6s0\'	),_cel(	\'r14c6s0\'	),_cel(	\'r15c6s0\'	),_cel(	\'r16c6s0\'	),_cel(	\'r17c6s0\'	),_cel(	\'r18c6s0\'	),_cel(	\'r19c6s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:6,i_nr:'0'},
+{entry:'=SUM(	G11	:	G19	)',dynamic:'__sum(_cel(	\'r11c7s0\'	),_cel(	\'r12c7s0\'	),_cel(	\'r13c7s0\'	),_cel(	\'r14c7s0\'	),_cel(	\'r15c7s0\'	),_cel(	\'r16c7s0\'	),_cel(	\'r17c7s0\'	),_cel(	\'r18c7s0\'	),_cel(	\'r19c7s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:7,i_nr:'0'},
+{entry:'=SUM(	H11	:	H19	)',dynamic:'__sum(_cel(	\'r11c8s0\'	),_cel(	\'r12c8s0\'	),_cel(	\'r13c8s0\'	),_cel(	\'r14c8s0\'	),_cel(	\'r15c8s0\'	),_cel(	\'r16c8s0\'	),_cel(	\'r17c8s0\'	),_cel(	\'r18c8s0\'	),_cel(	\'r19c8s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:8,i_nr:'0'},
+{entry:'=SUM(	I11	:	I19	)',dynamic:'__sum(_cel(	\'r11c9s0\'	),_cel(	\'r12c9s0\'	),_cel(	\'r13c9s0\'	),_cel(	\'r14c9s0\'	),_cel(	\'r15c9s0\'	),_cel(	\'r16c9s0\'	),_cel(	\'r17c9s0\'	),_cel(	\'r18c9s0\'	),_cel(	\'r19c9s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:9,i_nr:'0'},
+{entry:'=SUM(	J11	:	J19	)',dynamic:'__sum(_cel(	\'r11c10s0\'	),_cel(	\'r12c10s0\'	),_cel(	\'r13c10s0\'	),_cel(	\'r14c10s0\'	),_cel(	\'r15c10s0\'	),_cel(	\'r16c10s0\'	),_cel(	\'r17c10s0\'	),_cel(	\'r18c10s0\'	),_cel(	\'r19c10s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:10,i_nr:'0'},
+{entry:'=SUM(	K11	:	K19	)',dynamic:'__sum(_cel(	\'r11c11s0\'	),_cel(	\'r12c11s0\'	),_cel(	\'r13c11s0\'	),_cel(	\'r14c11s0\'	),_cel(	\'r15c11s0\'	),_cel(	\'r16c11s0\'	),_cel(	\'r17c11s0\'	),_cel(	\'r18c11s0\'	),_cel(	\'r19c11s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:11,i_nr:'0'},
+{entry:'=SUM(	L11	:	L19	)',dynamic:'__sum(_cel(	\'r11c12s0\'	),_cel(	\'r12c12s0\'	),_cel(	\'r13c12s0\'	),_cel(	\'r14c12s0\'	),_cel(	\'r15c12s0\'	),_cel(	\'r16c12s0\'	),_cel(	\'r17c12s0\'	),_cel(	\'r18c12s0\'	),_cel(	\'r19c12s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:12,i_nr:'0'},
+{entry:'=SUM(	M11	:	M19	)',dynamic:'__sum(_cel(	\'r11c13s0\'	),_cel(	\'r12c13s0\'	),_cel(	\'r13c13s0\'	),_cel(	\'r14c13s0\'	),_cel(	\'r15c13s0\'	),_cel(	\'r16c13s0\'	),_cel(	\'r17c13s0\'	),_cel(	\'r18c13s0\'	),_cel(	\'r19c13s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:13,i_nr:'0'},
+{entry:'=SUM(	N11	:	N19	)',dynamic:'__sum(_cel(	\'r11c14s0\'	),_cel(	\'r12c14s0\'	),_cel(	\'r13c14s0\'	),_cel(	\'r14c14s0\'	),_cel(	\'r15c14s0\'	),_cel(	\'r16c14s0\'	),_cel(	\'r17c14s0\'	),_cel(	\'r18c14s0\'	),_cel(	\'r19c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:14,i_nr:'0'},
+{entry:'=SUM(	C20	:	N20	)',dynamic:'__sum(_cel(	\'r20c3s0\'	),_cel(	\'r20c4s0\'	),_cel(	\'r20c5s0\'	),_cel(	\'r20c6s0\'	),_cel(	\'r20c7s0\'	),_cel(	\'r20c8s0\'	),_cel(	\'r20c9s0\'	),_cel(	\'r20c10s0\'	),_cel(	\'r20c11s0\'	),_cel(	\'r20c12s0\'	),_cel(	\'r20c13s0\'	),_cel(	\'r20c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:20,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:20,m_col:16},
+{entry:'Investment transactions    increases (decreases)',viewSize:'9 pt',_fontStyle:'normal',bk_color:'navy',foreColor:'white',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:22,m_col:1,i_nr:'Investment transactions increases (decreases)'},
+{bk_color:'navy',foreColor:'white',_fontStyle:'normal',m_row:22,m_col:2},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:3},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:4},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:5},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:6},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:7},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:8},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:9},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:10},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:11},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:12},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:13},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:14},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:22,m_col:15},
+{bk_color:'white',_textAlign:'left',m_row:22,m_col:16},
+{entry:' Land',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:23,m_col:1,i_nr:'Land'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:23,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:14},
+{entry:'=SUM(	C23	:	N23	)',dynamic:'__sum(_cel(	\'r23c3s0\'	),_cel(	\'r23c4s0\'	),_cel(	\'r23c5s0\'	),_cel(	\'r23c6s0\'	),_cel(	\'r23c7s0\'	),_cel(	\'r23c8s0\'	),_cel(	\'r23c9s0\'	),_cel(	\'r23c10s0\'	),_cel(	\'r23c11s0\'	),_cel(	\'r23c12s0\'	),_cel(	\'r23c13s0\'	),_cel(	\'r23c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:23,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:23,m_col:16},
+{entry:' Buildings and improvements',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:24,m_col:1,i_nr:'Buildings and improvements'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:24,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:14},
+{entry:'=SUM(	C24	:	N24	)',dynamic:'__sum(_cel(	\'r24c3s0\'	),_cel(	\'r24c4s0\'	),_cel(	\'r24c5s0\'	),_cel(	\'r24c6s0\'	),_cel(	\'r24c7s0\'	),_cel(	\'r24c8s0\'	),_cel(	\'r24c9s0\'	),_cel(	\'r24c10s0\'	),_cel(	\'r24c11s0\'	),_cel(	\'r24c12s0\'	),_cel(	\'r24c13s0\'	),_cel(	\'r24c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:24,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:24,m_col:16},
+{entry:' Equipment',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:25,m_col:1,i_nr:'Equipment'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:25,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:14},
+{entry:'=SUM(	C25	:	N25	)',dynamic:'__sum(_cel(	\'r25c3s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r25c5s0\'	),_cel(	\'r25c6s0\'	),_cel(	\'r25c7s0\'	),_cel(	\'r25c8s0\'	),_cel(	\'r25c9s0\'	),_cel(	\'r25c10s0\'	),_cel(	\'r25c11s0\'	),_cel(	\'r25c12s0\'	),_cel(	\'r25c13s0\'	),_cel(	\'r25c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:25,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:25,m_col:16},
+{entry:' Intangible assets',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:26,m_col:1,i_nr:'Intangible assets'},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'left',m_row:26,m_col:2},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:3},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:4},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:5},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:6},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:7},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:8},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:9},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:10},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:11},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:12},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:13},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:14},
+{entry:'=SUM(	C26	:	N26	)',dynamic:'__sum(_cel(	\'r26c3s0\'	),_cel(	\'r26c4s0\'	),_cel(	\'r26c5s0\'	),_cel(	\'r26c6s0\'	),_cel(	\'r26c7s0\'	),_cel(	\'r26c8s0\'	),_cel(	\'r26c9s0\'	),_cel(	\'r26c10s0\'	),_cel(	\'r26c11s0\'	),_cel(	\'r26c12s0\'	),_cel(	\'r26c13s0\'	),_cel(	\'r26c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:26,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:26,m_col:16},
+{_borderBottom:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',viewSize:'9 pt',m_row:27,m_col:1},
+{_borderBottom:'solid black 1px',m_row:27,m_col:2},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:3},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:4},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:5},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:6},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:7},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:8},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:9},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:10},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:11},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:12},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:13},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:14},
+{_borderBottom:'solid black 1pt',_textAlign:'right',m_row:27,m_col:15},
+{bk_color:'white',_textAlign:'left',m_row:27,m_col:16},
+{entry:'Net cash from investments',_borderBottom:'solid black 1px',viewSize:'9 pt',bk_color:'white',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:28,m_col:1,i_nr:'Net cash from investments'},
+{_borderBottom:'solid black 1px',bk_color:'white',foreColor:'black',_borderRight:'solid black 1pt',_fontWeight:'bold',_textAlign:'left',m_row:28,m_col:2},
+{entry:'=SUM(	C23	:	C26	)',dynamic:'__sum(_cel(	\'r23c3s0\'	),_cel(	\'r24c3s0\'	),_cel(	\'r25c3s0\'	),_cel(	\'r26c3s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:3,i_nr:'0'},
+{entry:'=SUM(	D23	:	D26	)',dynamic:'__sum(_cel(	\'r23c4s0\'	),_cel(	\'r24c4s0\'	),_cel(	\'r25c4s0\'	),_cel(	\'r26c4s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:4,i_nr:'0'},
+{entry:'=SUM(	E23	:	E26	)',dynamic:'__sum(_cel(	\'r23c5s0\'	),_cel(	\'r24c5s0\'	),_cel(	\'r25c5s0\'	),_cel(	\'r26c5s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:5,i_nr:'0'},
+{entry:'=SUM(	F23	:	F26	)',dynamic:'__sum(_cel(	\'r23c6s0\'	),_cel(	\'r24c6s0\'	),_cel(	\'r25c6s0\'	),_cel(	\'r26c6s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:6,i_nr:'0'},
+{entry:'=SUM(	G23	:	G26	)',dynamic:'__sum(_cel(	\'r23c7s0\'	),_cel(	\'r24c7s0\'	),_cel(	\'r25c7s0\'	),_cel(	\'r26c7s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:7,i_nr:'0'},
+{entry:'=SUM(	H23	:	H26	)',dynamic:'__sum(_cel(	\'r23c8s0\'	),_cel(	\'r24c8s0\'	),_cel(	\'r25c8s0\'	),_cel(	\'r26c8s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:8,i_nr:'0'},
+{entry:'=SUM(	I23	:	I26	)',dynamic:'__sum(_cel(	\'r23c9s0\'	),_cel(	\'r24c9s0\'	),_cel(	\'r25c9s0\'	),_cel(	\'r26c9s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:9,i_nr:'0'},
+{entry:'=SUM(	J23	:	J26	)',dynamic:'__sum(_cel(	\'r23c10s0\'	),_cel(	\'r24c10s0\'	),_cel(	\'r25c10s0\'	),_cel(	\'r26c10s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:10,i_nr:'0'},
+{entry:'=SUM(	K23	:	K26	)',dynamic:'__sum(_cel(	\'r23c11s0\'	),_cel(	\'r24c11s0\'	),_cel(	\'r25c11s0\'	),_cel(	\'r26c11s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:11,i_nr:'0'},
+{entry:'=SUM(	L23	:	L26	)',dynamic:'__sum(_cel(	\'r23c12s0\'	),_cel(	\'r24c12s0\'	),_cel(	\'r25c12s0\'	),_cel(	\'r26c12s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:12,i_nr:'0'},
+{entry:'=SUM(	M23	:	M26	)',dynamic:'__sum(_cel(	\'r23c13s0\'	),_cel(	\'r24c13s0\'	),_cel(	\'r25c13s0\'	),_cel(	\'r26c13s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:13,i_nr:'0'},
+{entry:'=SUM(	N23	:	N26	)',dynamic:'__sum(_cel(	\'r23c14s0\'	),_cel(	\'r24c14s0\'	),_cel(	\'r25c14s0\'	),_cel(	\'r26c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:14,i_nr:'0'},
+{entry:'=SUM(	C28	:	N28	)',dynamic:'__sum(_cel(	\'r28c3s0\'	),_cel(	\'r28c4s0\'	),_cel(	\'r28c5s0\'	),_cel(	\'r28c6s0\'	),_cel(	\'r28c7s0\'	),_cel(	\'r28c8s0\'	),_cel(	\'r28c9s0\'	),_cel(	\'r28c10s0\'	),_cel(	\'r28c11s0\'	),_cel(	\'r28c12s0\'	),_cel(	\'r28c13s0\'	),_cel(	\'r28c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:28,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:28,m_col:16},
+{_borderBottom:'solid black 1px',m_row:29,m_col:1},
+{_borderBottom:'solid black 1px',m_row:29,m_col:2},
+{_borderBottom:'solid black 1px',m_row:29,m_col:3},
+{_borderBottom:'solid black 1px',m_row:29,m_col:4},
+{_borderBottom:'solid black 1px',m_row:29,m_col:5},
+{_borderBottom:'solid black 1px',m_row:29,m_col:6},
+{_borderBottom:'solid black 1px',m_row:29,m_col:7},
+{_borderBottom:'solid black 1px',m_row:29,m_col:8},
+{_borderBottom:'solid black 1px',m_row:29,m_col:9},
+{_borderBottom:'solid black 1px',m_row:29,m_col:10},
+{_borderBottom:'solid black 1px',m_row:29,m_col:11},
+{_borderBottom:'solid black 1px',m_row:29,m_col:12},
+{_borderBottom:'solid black 1px',m_row:29,m_col:13},
+{_borderBottom:'solid black 1px',m_row:29,m_col:14},
+{_borderBottom:'solid black 1px',m_row:29,m_col:15},
+{entry:'Financing transactions    increases (decreases)',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'navy',foreColor:'white',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:30,m_col:1,i_nr:'Financing transactions increases (decreases)'},
+{_borderBottom:'solid black 1px',bk_color:'navy',foreColor:'white',_fontStyle:'normal',m_row:30,m_col:2},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:3},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:4},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:5},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:6},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:7},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:8},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:9},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:10},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:11},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:12},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:13},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:14},
+{_borderBottom:'solid black 1px',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_textAlign:'right',m_row:30,m_col:15},
+{bk_color:'white',_textAlign:'left',m_row:30,m_col:16},
+{entry:' Short-term notes payable',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:31,m_col:1,i_nr:'Short-term notes payable'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:31,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:14},
+{entry:'=SUM(	C31	:	N31	)',dynamic:'__sum(_cel(	\'r31c3s0\'	),_cel(	\'r31c4s0\'	),_cel(	\'r31c5s0\'	),_cel(	\'r31c6s0\'	),_cel(	\'r31c7s0\'	),_cel(	\'r31c8s0\'	),_cel(	\'r31c9s0\'	),_cel(	\'r31c10s0\'	),_cel(	\'r31c11s0\'	),_cel(	\'r31c12s0\'	),_cel(	\'r31c13s0\'	),_cel(	\'r31c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:31,m_col:15,i_nr:'0'},
+{entry:'=IF(	O32	<>"",	O31	-	O32	,0)',dynamic:'(_ner(_cel(	\'r32c15s0\'	),\'\')?_sub(_cel(	\'r31c15s0\'	),_cel(	\'r32c15s0\'	)):0)',_widthClue:'66',bk_color:'white',foreColor:'white',m_row:31,m_col:16,i_nr:'0'},
+{entry:' Long-term debt',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:32,m_col:1,i_nr:'Long-term debt'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:32,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:14},
+{entry:'=SUM(	C32	:	N32	)',dynamic:'__sum(_cel(	\'r32c3s0\'	),_cel(	\'r32c4s0\'	),_cel(	\'r32c5s0\'	),_cel(	\'r32c6s0\'	),_cel(	\'r32c7s0\'	),_cel(	\'r32c8s0\'	),_cel(	\'r32c9s0\'	),_cel(	\'r32c10s0\'	),_cel(	\'r32c11s0\'	),_cel(	\'r32c12s0\'	),_cel(	\'r32c13s0\'	),_cel(	\'r32c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:32,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:32,m_col:16},
+{entry:' Deferred income',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:33,m_col:1,i_nr:'Deferred income'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:33,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:14},
+{entry:'=SUM(	C33	:	N33	)',dynamic:'__sum(_cel(	\'r33c3s0\'	),_cel(	\'r33c4s0\'	),_cel(	\'r33c5s0\'	),_cel(	\'r33c6s0\'	),_cel(	\'r33c7s0\'	),_cel(	\'r33c8s0\'	),_cel(	\'r33c9s0\'	),_cel(	\'r33c10s0\'	),_cel(	\'r33c11s0\'	),_cel(	\'r33c12s0\'	),_cel(	\'r33c13s0\'	),_cel(	\'r33c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:33,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:33,m_col:16},
+{entry:' Deferred income taxes',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:34,m_col:1,i_nr:'Deferred income taxes'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:34,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:14},
+{entry:'=SUM(	C34	:	N34	)',dynamic:'__sum(_cel(	\'r34c3s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r34c5s0\'	),_cel(	\'r34c6s0\'	),_cel(	\'r34c7s0\'	),_cel(	\'r34c8s0\'	),_cel(	\'r34c9s0\'	),_cel(	\'r34c10s0\'	),_cel(	\'r34c11s0\'	),_cel(	\'r34c12s0\'	),_cel(	\'r34c13s0\'	),_cel(	\'r34c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:34,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:34,m_col:16},
+{entry:' Other long-term liabilities',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:35,m_col:1,i_nr:'Other long-term liabilities'},
+{_borderRight:'solid black 1px',_textAlign:'left',m_row:35,m_col:2},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:3},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:4},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:5},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:6},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:7},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:8},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:9},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:10},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:11},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:12},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:13},
+{_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:14},
+{entry:'=SUM(	C35	:	N35	)',dynamic:'__sum(_cel(	\'r35c3s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r35c5s0\'	),_cel(	\'r35c6s0\'	),_cel(	\'r35c7s0\'	),_cel(	\'r35c8s0\'	),_cel(	\'r35c9s0\'	),_cel(	\'r35c10s0\'	),_cel(	\'r35c11s0\'	),_cel(	\'r35c12s0\'	),_cel(	\'r35c13s0\'	),_cel(	\'r35c14s0\'	))',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:35,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:35,m_col:16},
+{entry:' Capital Stock and paid-in capital',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_textAlign:'left',m_row:36,m_col:1,i_nr:'Capital Stock and paid-in capital'},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'left',m_row:36,m_col:2},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:3},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:4},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:5},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:6},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:7},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:8},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:9},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:10},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:11},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:12},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:13},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:14},
+{entry:'=SUM(	C36	:	N36	)',dynamic:'__sum(_cel(	\'r36c3s0\'	),_cel(	\'r36c4s0\'	),_cel(	\'r36c5s0\'	),_cel(	\'r36c6s0\'	),_cel(	\'r36c7s0\'	),_cel(	\'r36c8s0\'	),_cel(	\'r36c9s0\'	),_cel(	\'r36c10s0\'	),_cel(	\'r36c11s0\'	),_cel(	\'r36c12s0\'	),_cel(	\'r36c13s0\'	),_cel(	\'r36c14s0\'	))',_borderBottom:'solid black 1px',_widthClue:'45',bk_color:'white',foreColor:'black',_borderRight:'solid black 1px',_textAlign:'right',m_row:36,m_col:15,i_nr:'0'},
+{bk_color:'white',_textAlign:'left',m_row:36,m_col:16},
+{entry:'Net cash from financing',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:37,m_col:1,i_nr:'Net cash from financing'},
+{_borderBottom:'solid black 1px',viewSize:'11 pt',_borderRight:'solid black 1pt',_fontWeight:'bold',_textAlign:'left',m_row:37,m_col:2},
+{entry:'0',dynamic:'0',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:3,i_nr:'0'},
+{entry:'=SUM(	D31	:	D36	)',dynamic:'__sum(_cel(	\'r31c4s0\'	),_cel(	\'r32c4s0\'	),_cel(	\'r33c4s0\'	),_cel(	\'r34c4s0\'	),_cel(	\'r35c4s0\'	),_cel(	\'r36c4s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:4,i_nr:'0'},
+{entry:'=SUM(	E31	:	E36	)',dynamic:'__sum(_cel(	\'r31c5s0\'	),_cel(	\'r32c5s0\'	),_cel(	\'r33c5s0\'	),_cel(	\'r34c5s0\'	),_cel(	\'r35c5s0\'	),_cel(	\'r36c5s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:5,i_nr:'0'},
+{entry:'=SUM(	F31	:	F36	)',dynamic:'__sum(_cel(	\'r31c6s0\'	),_cel(	\'r32c6s0\'	),_cel(	\'r33c6s0\'	),_cel(	\'r34c6s0\'	),_cel(	\'r35c6s0\'	),_cel(	\'r36c6s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:6,i_nr:'0'},
+{entry:'=SUM(	G31	:	G36	)',dynamic:'__sum(_cel(	\'r31c7s0\'	),_cel(	\'r32c7s0\'	),_cel(	\'r33c7s0\'	),_cel(	\'r34c7s0\'	),_cel(	\'r35c7s0\'	),_cel(	\'r36c7s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:7,i_nr:'0'},
+{entry:'=SUM(	H31	:	H36	)',dynamic:'__sum(_cel(	\'r31c8s0\'	),_cel(	\'r32c8s0\'	),_cel(	\'r33c8s0\'	),_cel(	\'r34c8s0\'	),_cel(	\'r35c8s0\'	),_cel(	\'r36c8s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:8,i_nr:'0'},
+{entry:'=SUM(	I31	:	I36	)',dynamic:'__sum(_cel(	\'r31c9s0\'	),_cel(	\'r32c9s0\'	),_cel(	\'r33c9s0\'	),_cel(	\'r34c9s0\'	),_cel(	\'r35c9s0\'	),_cel(	\'r36c9s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:9,i_nr:'0'},
+{entry:'=SUM(	J31	:	J36	)',dynamic:'__sum(_cel(	\'r31c10s0\'	),_cel(	\'r32c10s0\'	),_cel(	\'r33c10s0\'	),_cel(	\'r34c10s0\'	),_cel(	\'r35c10s0\'	),_cel(	\'r36c10s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:10,i_nr:'0'},
+{entry:'=SUM(	K31	:	K36	)',dynamic:'__sum(_cel(	\'r31c11s0\'	),_cel(	\'r32c11s0\'	),_cel(	\'r33c11s0\'	),_cel(	\'r34c11s0\'	),_cel(	\'r35c11s0\'	),_cel(	\'r36c11s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:11,i_nr:'0'},
+{entry:'=SUM(	L31	:	L36	)',dynamic:'__sum(_cel(	\'r31c12s0\'	),_cel(	\'r32c12s0\'	),_cel(	\'r33c12s0\'	),_cel(	\'r34c12s0\'	),_cel(	\'r35c12s0\'	),_cel(	\'r36c12s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:12,i_nr:'0'},
+{entry:'=SUM(	M31	:	M36	)',dynamic:'__sum(_cel(	\'r31c13s0\'	),_cel(	\'r32c13s0\'	),_cel(	\'r33c13s0\'	),_cel(	\'r34c13s0\'	),_cel(	\'r35c13s0\'	),_cel(	\'r36c13s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:13,i_nr:'0'},
+{entry:'=SUM(	N31	:	N36	)',dynamic:'__sum(_cel(	\'r31c14s0\'	),_cel(	\'r32c14s0\'	),_cel(	\'r33c14s0\'	),_cel(	\'r34c14s0\'	),_cel(	\'r35c14s0\'	),_cel(	\'r36c14s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:14,i_nr:'0'},
+{entry:'=SUM(	C37	:	N37	)',dynamic:'__sum(_cel(	\'r37c3s0\'	),_cel(	\'r37c4s0\'	),_cel(	\'r37c5s0\'	),_cel(	\'r37c6s0\'	),_cel(	\'r37c7s0\'	),_cel(	\'r37c8s0\'	),_cel(	\'r37c9s0\'	),_cel(	\'r37c10s0\'	),_cel(	\'r37c11s0\'	),_cel(	\'r37c12s0\'	),_cel(	\'r37c13s0\'	),_cel(	\'r37c14s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'white',_borderRight:'solid black 1px',foreColor:'black',_fontWeight:'bold',_textAlign:'right',m_row:37,m_col:15,i_nr:'0'},
+{viewSize:'11 pt',bk_color:'white',_textAlign:'left',m_row:37,m_col:16},
+{_borderBottom:'solid black 1px',m_row:38,m_col:1},
+{_borderBottom:'solid black 1px',m_row:38,m_col:2},
+{_borderBottom:'solid black 1px',m_row:38,m_col:3},
+{_borderBottom:'solid black 1px',m_row:38,m_col:4},
+{_borderBottom:'solid black 1px',m_row:38,m_col:5},
+{_borderBottom:'solid black 1px',m_row:38,m_col:6},
+{_borderBottom:'solid black 1px',m_row:38,m_col:7},
+{_borderBottom:'solid black 1px',m_row:38,m_col:8},
+{_borderBottom:'solid black 1px',m_row:38,m_col:9},
+{_borderBottom:'solid black 1px',m_row:38,m_col:10},
+{_borderBottom:'solid black 1px',m_row:38,m_col:11},
+{_borderBottom:'solid black 1px',m_row:38,m_col:12},
+{_borderBottom:'solid black 1px',m_row:38,m_col:13},
+{_borderBottom:'solid black 1px',m_row:38,m_col:14},
+{_borderBottom:'solid black 1px',m_row:38,m_col:15},
+{entry:'Net increase (decrease) in cash',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:39,m_col:1,i_nr:'Net increase (decrease) in cash'},
+{_borderRight:'solid black 1pt',_fontWeight:'bold',viewSize:'11 pt',_textAlign:'left',m_row:39,m_col:2},
+{entry:'=IF(	C8	<>"",	C8	+	C20	+	C28	+	C37	,0)',dynamic:'(_ner(_cel(	\'r8c3s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c3s0\'	),_cel(	\'r20c3s0\'	)),_cel(	\'r28c3s0\'	)),_cel(	\'r37c3s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:3,i_nr:'0'},
+{entry:'=IF(	D8	<>"",	D8	+	D20	+	D28	+	D37	,0)',dynamic:'(_ner(_cel(	\'r8c4s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c4s0\'	),_cel(	\'r20c4s0\'	)),_cel(	\'r28c4s0\'	)),_cel(	\'r37c4s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:4,i_nr:'0'},
+{entry:'=IF(	E8	<>"",	E8	+	E20	+	E28	+	E37	,0)',dynamic:'(_ner(_cel(	\'r8c5s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c5s0\'	),_cel(	\'r20c5s0\'	)),_cel(	\'r28c5s0\'	)),_cel(	\'r37c5s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:5,i_nr:'0'},
+{entry:'=IF(	F8	<>"",	F8	+	F20	+	F28	+	F37	,0)',dynamic:'(_ner(_cel(	\'r8c6s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c6s0\'	),_cel(	\'r20c6s0\'	)),_cel(	\'r28c6s0\'	)),_cel(	\'r37c6s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:6,i_nr:'0'},
+{entry:'=IF(	G8	<>"",	G8	+	G20	+	G28	+	G37	,0)',dynamic:'(_ner(_cel(	\'r8c7s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c7s0\'	),_cel(	\'r20c7s0\'	)),_cel(	\'r28c7s0\'	)),_cel(	\'r37c7s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:7,i_nr:'0'},
+{entry:'=IF(	H8	<>"",	H8	+	H20	+	H28	+	H37	,0)',dynamic:'(_ner(_cel(	\'r8c8s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c8s0\'	),_cel(	\'r20c8s0\'	)),_cel(	\'r28c8s0\'	)),_cel(	\'r37c8s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:8,i_nr:'0'},
+{entry:'=IF(	I8	<>"",	I8	+	I20	+	I28	+	I37	,0)',dynamic:'(_ner(_cel(	\'r8c9s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c9s0\'	),_cel(	\'r20c9s0\'	)),_cel(	\'r28c9s0\'	)),_cel(	\'r37c9s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:9,i_nr:'0'},
+{entry:'=IF(	J8	<>"",	J8	+	J20	+	J28	+	J37	,0)',dynamic:'(_ner(_cel(	\'r8c10s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c10s0\'	),_cel(	\'r20c10s0\'	)),_cel(	\'r28c10s0\'	)),_cel(	\'r37c10s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:10,i_nr:'0'},
+{entry:'=IF(	K8	<>"",	K8	+	K20	+	K28	+	K37	,0)',dynamic:'(_ner(_cel(	\'r8c11s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c11s0\'	),_cel(	\'r20c11s0\'	)),_cel(	\'r28c11s0\'	)),_cel(	\'r37c11s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:11,i_nr:'0'},
+{entry:'=IF(	L8	<>"",	L8	+	L20	+	L28	+	L37	,0)',dynamic:'(_ner(_cel(	\'r8c12s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c12s0\'	),_cel(	\'r20c12s0\'	)),_cel(	\'r28c12s0\'	)),_cel(	\'r37c12s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:12,i_nr:'0'},
+{entry:'=IF(	M8	<>"",	M8	+	M20	+	M28	+	M37	,0)',dynamic:'(_ner(_cel(	\'r8c13s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c13s0\'	),_cel(	\'r20c13s0\'	)),_cel(	\'r28c13s0\'	)),_cel(	\'r37c13s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:13,i_nr:'0'},
+{entry:'=IF(	N8	<>"",	N8	+	N20	+	N28	+	N37	,0)',dynamic:'(_ner(_cel(	\'r8c14s0\'	),\'\')?_add(_add(_add(_cel(	\'r8c14s0\'	),_cel(	\'r20c14s0\'	)),_cel(	\'r28c14s0\'	)),_cel(	\'r37c14s0\'	)):0)',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:14,i_nr:'0'},
+{entry:'=SUM(	C39	:	N39	)',dynamic:'__sum(_cel(	\'r39c3s0\'	),_cel(	\'r39c4s0\'	),_cel(	\'r39c5s0\'	),_cel(	\'r39c6s0\'	),_cel(	\'r39c7s0\'	),_cel(	\'r39c8s0\'	),_cel(	\'r39c9s0\'	),_cel(	\'r39c10s0\'	),_cel(	\'r39c11s0\'	),_cel(	\'r39c12s0\'	),_cel(	\'r39c13s0\'	),_cel(	\'r39c14s0\'	))',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:39,m_col:15,i_nr:'0'},
+{viewSize:'11 pt',bk_color:'white',_textAlign:'left',m_row:39,m_col:16},
+{entry:'Cash at beginning of period',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:40,m_col:1,i_nr:'Cash at beginning of period'},
+{_borderRight:'solid black 1pt',_fontWeight:'bold',viewSize:'11 pt',_textAlign:'left',m_row:40,m_col:2},
+{entry:'=	C3	',dynamic:'_cel(	\'r3c3s0\'	)',derived:'500',
+i_rt:'[e[3][3]]',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'45',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:3,i_nr:'500'},
+{entry:'=C37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:4,i_nr:'#parse!'},
+{entry:'=D37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:5,i_nr:'#parse!'},
+{entry:'=E37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:6,i_nr:'#parse!'},
+{entry:'=F37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:7,i_nr:'#parse!'},
+{entry:'=G37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:8,i_nr:'#parse!'},
+{entry:'=H37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:9,i_nr:'#parse!'},
+{entry:'=I37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:10,i_nr:'#parse!'},
+{entry:'=J37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:11,i_nr:'#parse!'},
+{entry:'=K37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:12,i_nr:'#parse!'},
+{entry:'=L37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:13,i_nr:'#parse!'},
+{entry:'=M37',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:14,i_nr:'#parse!'},
+{entry:'=SUM(C40:N40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:40,m_col:15,i_nr:'#parse!'},
+{viewSize:'11 pt',bk_color:'white',_textAlign:'left',m_row:40,m_col:16},
+{entry:'Cash at the end of period',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:41,m_col:1,i_nr:'Cash at the end of period'},
+{_borderBottom:'solid black 1px',viewSize:'11 pt',_borderRight:'solid black 1pt',_fontWeight:'bold',_textAlign:'left',m_row:41,m_col:2},
+{entry:'=SUM(C39,C40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:3,i_nr:'#parse!'},
+{entry:'=SUM(D39,D40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:4,i_nr:'#parse!'},
+{entry:'=SUM(E39,E40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:5,i_nr:'#parse!'},
+{entry:'=SUM(F39,F40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:6,i_nr:'#parse!'},
+{entry:'=SUM(G39,G40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:7,i_nr:'#parse!'},
+{entry:'=SUM(H39,H40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:8,i_nr:'#parse!'},
+{entry:'=SUM(I39,I40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:9,i_nr:'#parse!'},
+{entry:'=SUM(J39,J40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:10,i_nr:'#parse!'},
+{entry:'=SUM(K39,K40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:11,i_nr:'#parse!'},
+{entry:'=SUM(L39,L40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:12,i_nr:'#parse!'},
+{entry:'=SUM(M39,M40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:13,i_nr:'#parse!'},
+{entry:'=SUM(N39,N40)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:14,i_nr:'#parse!'},
+{entry:'=SUM(C37:N37)',dynamic:'__error("#parse!", "expected cell label, cell index, constant name, or function name");',_borderBottom:'solid black 1px',viewSize:'11 pt',_widthClue:'49',m_dirtyOnInit:'true',bk_color:'navy',_borderRight:'solid black 1px',foreColor:'white',_textAlign:'right',m_row:41,m_col:15,i_nr:'#parse!'},
+{viewSize:'11 pt',bk_color:'white',_textAlign:'left',m_row:41,m_col:16}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+		</script>
+
+		<script language="JavaScript" src="/lib/js/unicodeCharMap_ie_667e49f7.jsx" ></script><script language="JavaScript" src="/lib/js/strings_en_2491480284.jsx" ></script><script language="JavaScript" src="/lib/js/locale_ie_0d14744b.jsx" ></script><script language="JavaScript" src="/lib/js/utility_ie_dbd756c4.jsx" ></script><script language="JavaScript" src="/lib/js/dialog_ie_8cee673f.jsx" ></script><script language="JavaScript" src="/lib/js/gui_ie_cd85eb87.jsx" ></script><script language="JavaScript" src="/lib/js/document_ie_29b378dd.jsx" ></script><script language="JavaScript" src="/lib/js/browser_detect_ie_b85f83d9.jsx" ></script><script language="JavaScript" src="/lib/js/cookie_ie_0645e3cf.jsx" ></script><script language="JavaScript" src="/lib/js/spreadsheet_ie_13a32214.jsx" ></script><script language="JavaScript" src="/lib/js/rows_columns_ie_9e967a68.jsx" ></script><script language="JavaScript" src="/lib/js/interface_spreadsheet_ie_27500a8d.jsx" ></script><script language="JavaScript" src="/lib/js/runtime_ie_e7eb4a54.jsx" ></script><script language="JavaScript" src="/lib/js/cell_ie_b1477f2e.jsx" ></script><script language="JavaScript" src="/lib/js/compiler_ie_808fdc64.jsx" ></script><script language="JavaScript" src="/lib/js/platform_ie_bb68a125.jsx" ></script><script language="JavaScript" src="/lib/js/resource_ie_66434373.jsx" ></script>
+
+		<div id="bulbLogo" class="bulbLogo">	<div id="break2" class="break" style="position: absolute; top: 1; left: 47; height: 50; background-repeat: repeat-y;"></div>	</div><div id="menuPalette" class="palette">
+<div id="fileMenu" class="largeMenu">File</div>
+<div id="editMenu" class="largeMenu">Edit</div>
+<div id="toolsMenu" class="largeMenu">Tools</div>
+<div id="formatMenu" class="largeMenu">Format</div>
+<div id="helpMenu" class="largeMenu">Help</div>
+<div id="partnerMenu" class="largeMenu"></div>
+<div id="btnEmail" class="button" title="Email"></div><div id="em1" class="buttonText">email this page</div>
+</div>
+<div id="menuDivision" class="division"></div>
+<div id="iconPalette" class="palette">
+<div id="new" class="button" title="New File"></div><div id="open" class="button" title="Open File"></div><div id="save" class="button" title="Save File"></div><div id="print" class="button" title="Print"></div><div id="break1" class="break"></div>
+<div id="cut" class="button" title="Cut Cells"></div><div id="copy" class="button" title="Copy Cells"></div><div id="paste" class="button" title="Paste Cells"></div><div id="format" class="button" title="Copy Format of Selected Cells"></div><div id="break2" class="break"></div>
+<div id="sum" class="button" title="Automatic Sum"></div><div id="break3" class="break"></div>
+<div id="fontMenu" class="smallMenu"></div><input type="text" tabindex=-1 id="fontSpot" class="comboBox" hasFocus=0 onBlur="fontSpot.hasFocus=0">
+<div id="break4" class="break"></div>
+<div id="sizeMenu" class="smallMenu"></div><input type="text" tabindex=-1 id="sizeSpot" class="comboBox" hasFocus=0 onBlur="sizeSpot.hasFocus=0">
+<div id="break5" class="break"></div>
+<div id="bold" class="button" title="Bold"></div><div id="italic" class="button" title="Italic"></div><div id="underline" class="button" title="Underline"></div><div id="break6" class="break"></div>
+<div id="backgroundColorMenu" class="buttonMenu" title="Background Color"><div id="backgroundColorMenuSpot" class="colorSpot"></div></div><div id="textColorMenu" class="buttonMenu" title="Text Color"><div id="textColorMenuSpot" class="colorSpot"></div></div><div id="borderMenu" class="button" title="Cell border"></div><div id="break7" class="break"></div>
+<div id="left" class="button" title="Align Left"></div><div id="center" class="button" title="Center"></div><div id="right" class="button" title="Align Right"></div><div id="break8" class="break"></div>
+</div>
+<div id="iconDivision" class="division"></div>
+<div id="editPalette" class="palette">
+<div id="label" class="label" style="position: absolute; top: 4; left: 4; height: 15; width: 40;">A1</div><div id="functionMenu" class="smallMenu"></div><div id="functionSpot" class="smallSpot">f(x)</div>
+<div id="accept" class="button" title="Accept"></div><div id="cancel" class="button" title="Cancel"></div><div id="btnRevert" class="button" title="Revert Override"></div><div id="btnOverride" class="button" title="Show Formula (double-click to lock)"></div><div id="entryHolder" style="position: absolute; top: -1; left: 150; height: 22; z-index: 100;"><form name="entryForm" onSubmit="return false"><textarea id="entry" name="entry" tabindex=-1 style="font-family: arial, helvetica, sans-serif; font-size: 10pt; width: 100%; height: 22px; overflow: hidden;" onBlur="gEntryClickFocused=0" oncut='cutDocument()' onpaste='pasteDocument()' onkeydown="return keyDownDocument()" onkeyup="return keyUpDocument()"></textarea></form></div></div>
+<div id="editDivision" class="division"></div>
+<div id="previewPalette" class="palette">
+<div class="bulbLogoSmall"></div><div id="break10" class="break"></div>
+<div id="previewHolder" class="palette">
+<input class="inputButton" type="button" id="btnEndPreview" value="Exit Preview" onclick="ExitPreview()" title="Return to Spreadsheet mode">
+<div id="break11" class="break"></div>
+<div id="previewClue" class="buttonText">Click on a cell to toggle it from editable to non-editable</div>
+</div>
+</div>
+<div id="footDivision" class="division"></div>
+<div id="footPalette" class="palette">
+<div id="copyrightText" style="padding-left:10px; padding-top:4px; cursor:default;">Copyright &copy; 1999-2001 <A HREF="http://www.alphablox.com" target="_blank" tabIndex="-1" onFocus="this.blur()">AlphaBlox Corporation.</A> All rights reserved.</div></div>
+<div id="fileList" class="largeList">
+
+</div>
+<div id="editList" class="largeList">
+<div id="cmdCut" class="largeItem">Cut</div>
+<div id="cmdCopy" class="largeItem">Copy</div>
+<div id="cmdPaste" class="largeItem">Paste</div>
+<div id="cmdPasteSpecial" class="largeItem">Paste Values</div>
+<div id="cmdClear" class="largeItem">Clear</div>
+<div id="separator20" class="separator"></div>
+<div id="cmdFillDown" class="largeItem">Fill Down</div>
+<div id="cmdFillRight" class="largeItem">Fill Right</div>
+<div id="separator21" class="separator"></div>
+<div id="cmdMacros" class="largeItem">Macros...</div>
+
+</div>
+<div id="toolsList" class="largeList">
+<div id="cmdInsertRow" class="largeItem">Insert Row</div>
+<div id="cmdInsertColumn" class="largeItem">Insert Column</div>
+<div id="cmdDeleteRow" class="largeItem">Delete Row</div>
+<div id="cmdDeleteColumn" class="largeItem">Delete Column</div>
+<div id="separator30" class="separator"></div>
+<div id="cmdFitRow" class="largeItem">Autofit Row</div>
+<div id="cmdFitColumn" class="largeItem">Autofit Column</div>
+<div id="separator31" class="separator"></div>
+<div id="cmdRowHeight" class="largeItem">Row Height...</div>
+<div id="cmdColumnWidth" class="largeItem">Column Width...</div>
+<div id="separator32" class="separator"></div>
+<div id="cmdSortAscending" class="largeItem">Sort Ascending</div>
+<div id="cmdSortDescending" class="largeItem">Sort Descending</div>
+<div id="separator33" class="separator"></div>
+<div id="cmdToggleGrid" class="largeItem">Hide Grid</div>
+<div id="separator34" class="separator"></div>
+<div id="cmdPreview" class="largeItem">Calculator Preview</div>
+
+</div>
+<div id="formatList" class="largeList">
+<div id="cmdGeneral" class="largeItem">General</div>
+
+</div>
+<div id="helpList" class="largeList">
+<div id="cmdContents" class="largeItem">Contents...</div>
+<div id="separator60" class="separator"></div>
+<div id="cmdIntroduction" class="largeItem">Introduction</div>
+<div id="cmdBasics" class="largeItem">Basics</div>
+<div id="cmdFiles" class="largeItem">Files</div>
+<div id="cmdNavigating" class="largeItem">Navigating</div>
+<div id="cmdEditing" class="largeItem">Editing</div>
+<div id="cmdFormatting" class="largeItem">Formatting</div>
+<div id="cmdCalculators" class="largeItem">Calculators</div>
+<div id="cmdMacrosHelp" class="largeItem">Macros</div>
+<div id="separator61" class="separator"></div>
+<div id="cmdMenuReference" class="largeItem">Menu reference</div>
+<div id="cmdFunctionReference" class="largeItem">Function reference</div>
+<div id="separator62" class="separator"></div>
+<div id="cmdBugReport" class="largeItem">Report a bug</div>
+<div id="cmdAbout" class="largeItem">About...</div>
+
+</div>
+<div id="partnerList" class="largeList">
+
+</div>
+<div id="fontList" class="smallList">
+<div id="fontArial" class="smallItem">Arial</div>
+<div id="fontBookman" class="smallItem">Bookman Old Style</div>
+<div id="fontCourier" class="smallItem">Courier</div>
+<div id="fontGaramond" class="smallItem">Garamond</div>
+<div id="fontConsole" class="smallItem">Lucida Console</div>
+<div id="fontSymbol" class="smallItem">Symbol</div>
+<div id="fontTahoma" class="smallItem">Tahoma</div>
+<div id="fontTimesNewRoman" class="smallItem">Times New Roman</div>
+<div id="fontVerdana" class="smallItem">Verdana</div>
+
+</div>
+<div id="sizeList" class="smallList">
+<div id="point7" class="smallItem">7 pt</div>
+<div id="point8" class="smallItem">8 pt</div>
+<div id="point9" class="smallItem">9 pt</div>
+<div id="point10" class="smallItem">10 pt</div>
+<div id="point11" class="smallItem">11 pt</div>
+<div id="point12" class="smallItem">12 pt</div>
+<div id="point14" class="smallItem">14 pt</div>
+<div id="point18" class="smallItem">18 pt</div>
+<div id="point24" class="smallItem">24 pt</div>
+<div id="point36" class="smallItem">36 pt</div>
+<div id="point48" class="smallItem">48 pt</div>
+<div id="point72" class="smallItem">72 pt</div>
+
+</div>
+<div id="functionList" class="smallList">
+<div id="funcImageUrl" class="smallItem">Image URL</div>
+<div id="funcStockQuote" class="smallItem">Stock Quote</div>
+<div id="funcLinkUrl" class="smallItem">Web Link</div>
+<div id="funcCurrency" class="smallItem">Currency Quote</div>
+
+</div>
+<div id="textColorList" class="smallList" style="top:0; left:0; width:130; height:122; background-color: lightgrey;"></div>	<div id="backgroundColorList" class="smallList" style="top:0; left:0; width:130; height:122; background-color: lightgrey;"></div>	<div id="borderList" class="smallList" style="position: absolute; top: 0; left: 0; width: 98; height: 98;">	<div id="border10" class="border" style="position: absolute; top:  0; left:  0;" title="No border"></div>	<div id="border11" class="border" style="position: absolute; top:  0; left: 24;" title="Thick bottom"></div>	<div id="border12" class="border" style="position: absolute; top:  0; left: 48;" title="Double bottom"></div>	<div id="border13" class="border" style="position: absolute; top:  0; left: 72;" title="Top rule, double bottom"></div>	<div id="border14" class="border" style="position: absolute; top: 24; left:  0;" title="Bottom only"></div>	<div id="border15" class="border" style="position: absolute; top: 24; left: 24;" title="Left only"></div>	<div id="border16" class="border" style="position: absolute; top: 24; left: 48;" title="Right only"></div>	<div id="border17" class="border" style="position: absolute; top: 24; left: 72;" title="Top only"></div>	<div id="border18" class="border" style="position: absolute; top: 48; left:  0;" title="Left and right"></div>	<div id="border19" class="border" style="position: absolute; top: 48; left: 24;" title="Top and bottom"></div>	<div id="border20" class="border" style="position: absolute; top: 48; left: 48;" title="Columns"></div>	<div id="border21" class="border" style="position: absolute; top: 48; left: 72;" title="Rows"></div>	<div id="border22" class="border" style="position: absolute; top: 72; left:  0;" title="Box"></div>	<div id="border23" class="border" style="position: absolute; top: 72; left: 24;" title="Grid"></div>	<div id="border24" class="border" style="position: absolute; top: 72; left: 48;" title="Boxed columns"></div>	<div id="border25" class="border" style="position: absolute; top: 72; left: 72;" title="Boxed rows"></div>	</div>
+		<div id="modalDialog" style="display:none"></div>
+		<div id = "modalShield" style="display:none"></div>
+		<div id="popupMenuList" class="smallList" style="width:100; height:1;"></div>
+
+		<script language="JavaScript">
+			includeProgressDialog.style.display = "none";
+		</script>
+
+		<iframe id="resource0" src="" style="display: none;"></iframe>
+		<iframe id="resource1" src="" style="display: none;"></iframe>
+		<iframe id="resource2" src="" style="display: none;"></iframe>
+		<iframe id="resource3" src="" style="display: none;"></iframe>
+
+		<iframe id="saveFrame" src="/saveframe.html" style="display: none;"></iframe>
+		<iframe id="macroFrame" src="/macroframe" style="display: none;"></iframe>
+		<iframe id="bugFrame" src="" style="display: none;"></iframe>
+		<iframe name="postFrame" src="" style="display: none;"></iframe>
+		<form id="postForm" method="POST"></form>
+	</body>
+</html>
+

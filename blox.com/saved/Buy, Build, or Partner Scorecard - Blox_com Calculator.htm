@@ -1,0 +1,520 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.blox.com/open?topdiv=0&promo=0&id=001f3ed6_9127&new=ss -->
+<HTML><HEAD><TITLE>Buy, Build, or Partner Scorecard - Blox.com Calculator</TITLE>
+<META http-equiv=content-type content="text/html; charset=utf-8"><LINK 
+href="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/view_mode_ie_2468704650.css" 
+type=text/css rel=stylesheet><LINK 
+href="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/calculator_ie4_2f25ce2e.cssx" 
+type=text/css rel=stylesheet><LINK 
+href="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/calculator_ie4_blox.css" 
+type=text/css rel=stylesheet>
+<STYLE type=text/css>#buttonDivision {
+	LEFT: 0px; TOP: 30px
+}
+#buttonPalette {
+	LEFT: 0px; VISIBILITY: visible; TOP: 0px; HEIGHT: 30px
+}
+#topDivision {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 0px
+}
+</STYLE>
+
+<SCRIPT language=JavaScript>
+
+			var kTotalJSIncludes = 16;
+			var gNumJSIncludesLoaded = 0;
+			var gAppLocale = 'en';
+			var gEntryLocale	= 'en';
+			var kFromGallery = true;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var knoEmailBtn = 0;
+ 			if (knoEmailBtn)
+				suppressElements(['btnEmail','btnEmailText']);
+			// hide 'rate this calc' button if we're not opening from the gallery
+			if (!kFromGallery)
+				suppressElements(['btnRate','btnRateText','break5']);
+
+			function JSIncludeDoneLoading()
+			{
+				gNumJSIncludesLoaded++;
+				includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+			}
+			
+			// creates stylesheet rules to suppress the specified elements
+			function suppressElements(elemIdArray) {
+				if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+				for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+			}
+
+
+		</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY class=body onresize=resizeDocument() 
+onbeforeunload="if(typeof unloadDocument != 'undefined')unloadDocument()" 
+scroll=no onload=loadDocument() 
+onunload="if(typeof unloadDocument != 'undefined')unloadDocument()"><SPAN 
+class=view id=view style="WIDTH: 100%; HEIGHT: 100%"><!-- later write the contents of this span --></SPAN>
+<SCRIPT language=JavaScript>
+
+		var content = '<div class="modalLabel">Please wait a moment (the first time you use the Calculator this may take a little longer).</div>'
+		+ '<div class="modalProgressBar">'
+		+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+		+ '</div></div>';
+
+		var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+		+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+		+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+		+ '<tr valign="middle">'
+		+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+		+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Calculator</span></td>'
+		+ '</tr>'
+		+ '<tr>'
+		+ '<td bgcolor="#999999"><br></td>'
+		+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+		+ '</tr>'
+		+ '</table>'
+		+ '</div></tr></td></table>';
+
+		document.write(progressDialog);
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+		// global mode flag (can be "design", "view", or "embed")
+		var kMode = "view";
+		var gInitDirtyCells = "";
+		var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+		var gRowCount, gColumnCount, gImported=0 , gOwnerId=0, gAppId='',gAppDescription='';
+		var gAppVersion = 1.0;
+		var gAppAuthor = 'ss';
+		var gMacroText = '';
+		var gPartnerMenu = null;
+		var gPopupMenu = null;
+		var gExtra = "";
+		var gIsMatterhorn = false;
+		var gDocumentTitleBase = " - Blox.com Calculator";
+
+		// relative to the root url (which includes a trailing slash):
+		var gOpenScript = "open";
+		var gSaveScript = "savebraincell";
+		var gSaveLifeboat = "lifeboat";
+		var gMyFilesScript = "myfiles";
+		var gExportExcelScript = "xls_convert";
+		var gImportExcelScript = "xls_upload";
+		var gSendMailScript = "email";
+		var gFileSummaryScript = "file_summary";
+		var gRatingScript = "rating";
+		var kImageDirectory = "img/";
+		var kServletPrefix = "";
+		var gHelpPath = "help";
+		var gPrintCSS = "css/calculator_ie4.css";
+
+		// relative to the root url (which includes a trailing slash):
+		var gCloseBoxFile = "modalclosebox_ie.html";
+		var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+		var gMacroFrameFile = "macroframe"; // NOTE reference to same string in IFRAME below!
+											// included for completeness & future compatibility with AlphaBlox
+
+		//
+gColumnCount = 9;gRowCount = 23;
+
+
+		// handlers should be placed on outermost control...
+		function GetColumnWidthsAndHeights(widths, heights)
+		{			
+			//
+widths[1] = 401;
+widths[2] = 14;
+widths[3] = 94;
+widths[4] = 343;
+widths[5] = 19;
+widths[6] = 19;
+widths[7] = 19;
+widths[8] = 19;
+heights[1] = 21;
+heights[5] = 34;
+heights[9] = 34;
+heights[13] = 34;
+heights[14] = 34;
+heights[15] = 34;
+heights[16] = 34;
+heights[17] = 34;
+heights[20] = 87;
+heights[21] = 138;
+heights[22] = 19;
+
+		}
+
+		// after this comment, we add //init cells
+gAppId='001f3ed6_9127';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Buy, Build, or Partner Scorecard';
+var gCellDataArray=[{entry:'Buy, Build or Partner Scorecard',viewSize:'12pt',foreColor:'navy',_fontWeight:'bold',_wrapText:'true',_textAlign:'left',m_row:1,m_col:1,i_nr:'Buy, Build or Partner Scorecard'},
+{foreColor:'black',m_row:1,m_col:4},
+{foreColor:'black',m_row:1,m_col:5},
+{foreColor:'black',m_row:1,m_col:6},
+{foreColor:'black',m_row:1,m_col:7},
+{foreColor:'black',m_row:1,m_col:8},
+{foreColor:'black',m_row:2,m_col:4},
+{foreColor:'black',m_row:2,m_col:5},
+{foreColor:'black',m_row:2,m_col:6},
+{foreColor:'black',m_row:2,m_col:7},
+{foreColor:'black',m_row:2,m_col:8},
+{entry:'What problem are you trying to solve? ',_wrapText:'true',_textAlign:'left',m_row:3,m_col:1,i_nr:'What problem are you trying to solve? '},
+{entry:'Need a CRM solution integrated into our existing software.',locked:'false',foreColor:'maroon',_wrapText:'true',_textAlign:'left',m_row:3,m_col:4,i_nr:'Need a CRM solution integrated into our existing software.'},
+{foreColor:'black',m_row:3,m_col:5},
+{foreColor:'black',m_row:3,m_col:6},
+{foreColor:'black',m_row:3,m_col:7},
+{foreColor:'black',m_row:3,m_col:8},
+{entry:'What is the ideal solution?',_wrapText:'true',_textAlign:'left',m_row:4,m_col:1,i_nr:'What is the ideal solution?'},
+{entry:'A CRM application that can be embedded into our intranet that can also publish reports.',locked:'false',foreColor:'maroon',_wrapText:'true',_textAlign:'left',m_row:4,m_col:4,i_nr:'A CRM application that can be embedded into our intranet that can also publish reports.'},
+{foreColor:'black',m_row:4,m_col:5},
+{foreColor:'black',m_row:4,m_col:6},
+{foreColor:'black',m_row:4,m_col:7},
+{foreColor:'black',m_row:4,m_col:8},
+{entry:'What is the distinctive competence of your existing technology and development team?',_wrapText:'true',_textAlign:'left',m_row:5,m_col:1,i_nr:'What is the distinctive competence of your existing technology and development team?'},
+{entry:'Providing access to many data sources, providing embeddable "blox" containing business logic',locked:'false',foreColor:'maroon',_wrapText:'true',_textAlign:'left',m_row:5,m_col:4,i_nr:'Providing access to many data sources, providing embeddable "blox" containing business logic'},
+{foreColor:'black',m_row:5,m_col:5},
+{foreColor:'black',m_row:5,m_col:6},
+{foreColor:'black',m_row:5,m_col:7},
+{foreColor:'black',m_row:5,m_col:8},
+{foreColor:'black',m_row:6,m_col:4},
+{foreColor:'black',m_row:6,m_col:5},
+{foreColor:'black',m_row:6,m_col:6},
+{foreColor:'black',m_row:6,m_col:7},
+{foreColor:'black',m_row:6,m_col:8},
+{foreColor:'black',_textAlign:'center',m_row:7,m_col:4},
+{foreColor:'black',_textAlign:'center',m_row:7,m_col:5},
+{foreColor:'black',_textAlign:'center',m_row:7,m_col:6},
+{foreColor:'black',_textAlign:'center',m_row:7,m_col:7},
+{foreColor:'black',m_row:7,m_col:8},
+{entry:'Attributes',_borderBottom:'solid black 1pt',_fontWeight:'bold',_wrapText:'true',_textAlign:'left',m_row:8,m_col:1,i_nr:'Attributes'},
+{textAlign:'left',_borderBottom:'solid black 1pt',m_row:8,m_col:3},
+{entry:'build score',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:8,m_col:4,i_nr:'build score'},
+{entry:'buy score',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:8,m_col:5,i_nr:'buy score'},
+{entry:'partner score',_widthClue:'76',foreColor:'white',_textAlign:'center',m_row:8,m_col:6,i_nr:'partner score'},
+{foreColor:'white',_textAlign:'center',m_row:8,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:8,m_col:8},
+{_borderRight:'solid black 1pt',m_row:9,m_col:0},
+{entry:'Does the solution you need have a set of very flexible requirements?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:9,m_col:1,i_nr:'Does the solution you need have a set of very flexible requirements?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:9,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no", "mixed","mixed")',dynamic:'__menu("r9c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\',\'mixed\',\'mixed\')',derived:'-',
+i_tb:'[e[9][4],e[9][5],e[9][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:9,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C9	="no",1,0)',dynamic:'(_eqr(_cel(	\'r9c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][4]]',
+i_rt:'[e[9][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:9,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C9	="yes",1,0)',dynamic:'(_eqr(_cel(	\'r9c3s0\'	),\'yes\')?1:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[9][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:9,m_col:5,i_nr:'0'},
+{entry:'=IF(OR(	$C9	="no",	$C9	="mixed"),1,0)',dynamic:'(__ior(_eqr(_cel(	\'r9c3s0\'	),\'no\'),_eqr(_cel(	\'r9c3s0\'	),\'mixed\'))?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[9][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:9,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:9,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:9,m_col:8},
+{_borderRight:'solid black 1pt',m_row:10,m_col:0},
+{entry:'Can it be easily purchased?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:10,m_col:1,i_nr:'Can it be easily purchased?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:10,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no")',dynamic:'__menu("r10c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\')',derived:'-',
+i_tb:'[e[10][4],e[10][5],e[10][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:10,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C10	="no",1,0)',dynamic:'(_eqr(_cel(	\'r10c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][4]]',
+i_rt:'[e[10][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:10,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C10	="yes",2,0)',dynamic:'(_eqr(_cel(	\'r10c3s0\'	),\'yes\')?2:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[10][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:10,m_col:5,i_nr:'0'},
+{entry:'=IF(	$C10	="no",1,0)',dynamic:'(_eqr(_cel(	\'r10c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[10][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:10,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:10,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:10,m_col:8},
+{_borderRight:'solid black 1pt',m_row:11,m_col:0},
+{entry:'Is the solution a basic add-on utility or commodity?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:11,m_col:1,i_nr:'Is the solution a basic add-on utility or commodity?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:11,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no")',dynamic:'__menu("r11c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\')',derived:'-',
+i_tb:'[e[11][4],e[11][5],e[11][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:11,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C11	="no",1,0)',dynamic:'(_eqr(_cel(	\'r11c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][4]]',
+i_rt:'[e[11][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:11,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C11	="yes",2,0)',dynamic:'(_eqr(_cel(	\'r11c3s0\'	),\'yes\')?2:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[11][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:11,m_col:5,i_nr:'0'},
+{entry:'=IF(	$C11	="no",1,0)',dynamic:'(_eqr(_cel(	\'r11c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[11][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:11,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:11,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:11,m_col:8},
+{_borderRight:'solid black 1pt',m_row:12,m_col:0},
+{entry:'Can it be integrated easily with your existing structure?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:12,m_col:1,i_nr:'Can it be integrated easily with your existing structure?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:12,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no")',dynamic:'__menu("r12c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\')',derived:'-',
+i_tb:'[e[12][4],e[12][5],e[12][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:12,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C$12	="yes",1,0)',dynamic:'(_eqr(_cel(	\'r12c3s0\'	),\'yes\')?1:0)',
+i_tb:'[e[18][4]]',
+i_rt:'[e[12][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:12,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C$12	="yes",2,0)',dynamic:'(_eqr(_cel(	\'r12c3s0\'	),\'yes\')?2:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[12][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:12,m_col:5,i_nr:'0'},
+{entry:'=IF(	$C$12	="yes",2,0)',dynamic:'(_eqr(_cel(	\'r12c3s0\'	),\'yes\')?2:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[12][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:12,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:12,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:12,m_col:8},
+{_borderRight:'solid black 1pt',m_row:13,m_col:0},
+{entry:'Will the new technology be used occasionally or on a recurrent basis?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:13,m_col:1,i_nr:'Will the new technology be used occasionally or on a recurrent basis?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:13,m_col:2},
+{entry:'=menu("-","-","recurrent","recurrent", "occasionally","occasionally")',dynamic:'__menu("r13c3s0", \'-\',\'-\',\'recurrent\',\'recurrent\',\'occasionally\',\'occasionally\')',derived:'-',
+i_tb:'[e[13][4],e[13][5],e[13][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:13,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C13	="recurrent",2,0)',dynamic:'(_eqr(_cel(	\'r13c3s0\'	),\'recurrent\')?2:0)',
+i_tb:'[e[18][4]]',
+i_rt:'[e[13][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:13,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C13	="occasionally",1,0)',dynamic:'(_eqr(_cel(	\'r13c3s0\'	),\'occasionally\')?1:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[13][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:13,m_col:5,i_nr:'0'},
+{entry:'=IF(	$C13	="occasionally",1,0)',dynamic:'(_eqr(_cel(	\'r13c3s0\'	),\'occasionally\')?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[13][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:13,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:13,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:13,m_col:8},
+{_borderRight:'solid black 1pt',m_row:14,m_col:0},
+{entry:'Does the solution require a highly customized/specialized technology?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:14,m_col:1,i_nr:'Does the solution require a highly customized/specialized technology?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:14,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no", "mixed","mixed")',dynamic:'__menu("r14c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\',\'mixed\',\'mixed\')',derived:'-',
+i_tb:'[e[14][4],e[14][5],e[14][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:14,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C14	="yes",1,0)',dynamic:'(_eqr(_cel(	\'r14c3s0\'	),\'yes\')?1:0)',
+i_tb:'[e[18][4]]',
+i_rt:'[e[14][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:14,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C14	="no",1,0)',dynamic:'(_eqr(_cel(	\'r14c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[14][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:14,m_col:5,i_nr:'0'},
+{entry:'=IF(OR(	$C14	="yes",	$C14	="mixed"),1,0)',dynamic:'(__ior(_eqr(_cel(	\'r14c3s0\'	),\'yes\'),_eqr(_cel(	\'r14c3s0\'	),\'mixed\'))?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[14][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:14,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:14,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:14,m_col:8},
+{_borderRight:'solid black 1pt',m_row:15,m_col:0},
+{entry:'Is the solution directly related to your product or your company\'s distinctive competence?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:15,m_col:1,i_nr:'Is the solution directly related to your product or your company\'s distinctive competence?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:15,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no")',dynamic:'__menu("r15c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\')',derived:'-',
+i_tb:'[e[15][4],e[15][5],e[15][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:15,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C15	="yes",2,if(	$C15	="no",-.5,0))',dynamic:'(_eqr(_cel(	\'r15c3s0\'	),\'yes\')?2:(_eqr(_cel(	\'r15c3s0\'	),\'no\')?_neg(0.5):0))',
+i_tb:'[e[18][4]]',
+i_rt:'[e[15][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:15,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C15	="no",.5,0)',dynamic:'(_eqr(_cel(	\'r15c3s0\'	),\'no\')?0.5:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[15][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:15,m_col:5,i_nr:'0'},
+{entry:'=IF(OR(	$C15	="no",	$C15	="mixed"),1,0)',dynamic:'(__ior(_eqr(_cel(	\'r15c3s0\'	),\'no\'),_eqr(_cel(	\'r15c3s0\'	),\'mixed\'))?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[15][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:15,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:15,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:15,m_col:8},
+{_borderRight:'solid black 1pt',m_row:16,m_col:0},
+{entry:'Can the solution be easily manufactured by your development team with their existing base of knowledge and expertise?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:16,m_col:1,i_nr:'Can the solution be easily manufactured by your development team with their existing base of knowledge and expertise?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:16,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no")',dynamic:'__menu("r16c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\')',derived:'-',
+i_tb:'[e[16][4],e[16][5],e[16][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:16,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C16	="yes",2,if(	C16	="no",-.5,0))',dynamic:'(_eqr(_cel(	\'r16c3s0\'	),\'yes\')?2:(_eqr(_cel(	\'r16c3s0\'	),\'no\')?_neg(0.5):0))',
+i_tb:'[e[18][4]]',
+i_rt:'[e[16][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:16,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C16	="no",.5,0)',dynamic:'(_eqr(_cel(	\'r16c3s0\'	),\'no\')?0.5:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[16][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:16,m_col:5,i_nr:'0'},
+{entry:'=IF(OR(	$C16	="no",	$C16	="mixed"),1,0)',dynamic:'(__ior(_eqr(_cel(	\'r16c3s0\'	),\'no\'),_eqr(_cel(	\'r16c3s0\'	),\'mixed\'))?1:0)',
+i_tb:'[e[18][6]]',
+i_rt:'[e[16][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:16,m_col:6,i_nr:'0'},
+{foreColor:'white',_textAlign:'center',m_row:16,m_col:7},
+{textAlign:'left',foreColor:'black',m_row:16,m_col:8},
+{_borderRight:'solid black 1pt',m_row:17,m_col:0},
+{entry:'Could you enter into a mutually beneficial partnership with a company currently providing the solution you need?',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_textAlign:'left',m_row:17,m_col:1,i_nr:'Could you enter into a mutually beneficial partnership with a company currently providing the solution you need?'},
+{textAlign:'left',_borderRight:'solid black 1pt',m_row:17,m_col:2},
+{entry:'=menu("-","-","yes","yes", "no","no")',dynamic:'__menu("r17c3s0", \'-\',\'-\',\'yes\',\'yes\',\'no\',\'no\')',derived:'-',
+i_tb:'[e[17][4],e[17][5],e[17][6]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'-\'}',_borderBottom:'solid black 1px',locked:'true',_widthClue:'75',m_dirtyOnInit:'true',foreColor:'maroon',_borderRight:'solid black 1px',_textAlign:'center',m_row:17,m_col:3,i_nr:'-'},
+{entry:'=IF(	$C17	="no",1,0)',dynamic:'(_eqr(_cel(	\'r17c3s0\'	),\'no\')?1:0)',
+i_rt:'[e[17][3]]',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:17,m_col:4,i_nr:'0'},
+{entry:'=IF(	$C17	="no",1,0)',dynamic:'(_eqr(_cel(	\'r17c3s0\'	),\'no\')?1:0)',
+i_tb:'[e[18][5]]',
+i_rt:'[e[17][3]]',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:17,m_col:5,i_nr:'0'},
+{entry:'=IF(	$C17	="yes",2,0)',dynamic:'(_eqr(_cel(	\'r17c3s0\'	),\'yes\')?2:0)',
+i_rt:'[e[17][3]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:17,m_col:6,i_nr:'0'},
+{entry:'=IF(OR(	G18	="build1",	G18	="partner1"),1,0)',dynamic:'(__ior(_eqr(_cel(	\'r18c7s0\'	),\'build1\'),_eqr(_cel(	\'r18c7s0\'	),\'partner1\'))?1:0)',
+i_tb:'[e[21][1]]',
+i_rt:'[e[18][7]]',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:17,m_col:7,i_nr:'0'},
+{locked:'true',m_row:18,m_col:2},
+{locked:'true',m_row:18,m_col:3},
+{entry:'=SUM(	D9	:	D16	)',dynamic:'__sum(_cel(	\'r9c4s0\'	),_cel(	\'r10c4s0\'	),_cel(	\'r11c4s0\'	),_cel(	\'r12c4s0\'	),_cel(	\'r13c4s0\'	),_cel(	\'r14c4s0\'	),_cel(	\'r15c4s0\'	),_cel(	\'r16c4s0\'	))',
+i_tb:'[e[18][7]]',
+i_rt:'[e[9][4],e[10][4],e[11][4],e[12][4],e[13][4],e[14][4],e[15][4],e[16][4]]',locked:'true',_widthClue:'339',foreColor:'white',_textAlign:'center',m_row:18,m_col:4,i_nr:'0'},
+{entry:'=SUM(	E9	:	E17	)',dynamic:'__sum(_cel(	\'r9c5s0\'	),_cel(	\'r10c5s0\'	),_cel(	\'r11c5s0\'	),_cel(	\'r12c5s0\'	),_cel(	\'r13c5s0\'	),_cel(	\'r14c5s0\'	),_cel(	\'r15c5s0\'	),_cel(	\'r16c5s0\'	),_cel(	\'r17c5s0\'	))',
+i_tb:'[e[18][7]]',
+i_rt:'[e[9][5],e[10][5],e[11][5],e[12][5],e[13][5],e[14][5],e[15][5],e[16][5],e[17][5]]',locked:'true',_widthClue:'70',foreColor:'white',_textAlign:'center',m_row:18,m_col:5,i_nr:'0'},
+{entry:'=SUM(	F9	:	F16	)',dynamic:'__sum(_cel(	\'r9c6s0\'	),_cel(	\'r10c6s0\'	),_cel(	\'r11c6s0\'	),_cel(	\'r12c6s0\'	),_cel(	\'r13c6s0\'	),_cel(	\'r14c6s0\'	),_cel(	\'r15c6s0\'	),_cel(	\'r16c6s0\'	))',
+i_tb:'[e[18][7]]',
+i_rt:'[e[9][6],e[10][6],e[11][6],e[12][6],e[13][6],e[14][6],e[15][6],e[16][6]]',locked:'true',_widthClue:'66',foreColor:'white',_textAlign:'center',m_row:18,m_col:6,i_nr:'0'},
+{entry:'=IF(MAX(	D18	:	F18	)=0,"",IF(AND(	D18	=MAX(	D18	:	F18	),	D18	<>	E18	,	D18	<>	F18	),"build",IF(AND(	E18	=MAX(	D18	:	F18	),	E18	<>	D18	,	E18	<>	F18	),"buy",IF(AND(	F18	=MAX(	D18	:	F18	),	F18	<>	E18	,	F18	<>	D18	),"partner",IF(	D18	=	E18	,"build1",IF(	D18	=	F18	,"partner1",IF(	E18	=	F18	,"partner1","nothing")))))))',dynamic:'(_eqr(__max(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	)),0)?\'\':(__and(_eqr(_cel(	\'r18c4s0\'	),__max(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	))),_ner(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	)),_ner(_cel(	\'r18c4s0\'	),_cel(	\'r18c6s0\'	)))?\'build\':(__and(_eqr(_cel(	\'r18c5s0\'	),__max(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	))),_ner(_cel(	\'r18c5s0\'	),_cel(	\'r18c4s0\'	)),_ner(_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	)))?\'buy\':(__and(_eqr(_cel(	\'r18c6s0\'	),__max(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	))),_ner(_cel(	\'r18c6s0\'	),_cel(	\'r18c5s0\'	)),_ner(_cel(	\'r18c6s0\'	),_cel(	\'r18c4s0\'	)))?\'partner\':(_eqr(_cel(	\'r18c4s0\'	),_cel(	\'r18c5s0\'	))?\'build1\':(_eqr(_cel(	\'r18c4s0\'	),_cel(	\'r18c6s0\'	))?\'partner1\':(_eqr(_cel(	\'r18c5s0\'	),_cel(	\'r18c6s0\'	))?\'partner1\':\'nothing\')))))))',
+i_tb:'[e[17][7],e[19][7],e[19][1]]',
+i_rt:'[e[18][4],e[18][5],e[18][6]]',foreColor:'white',_textAlign:'center',m_row:18,m_col:7},
+{entry:'=IF(	G18	>"","You should probably "&	G19	&" your solution.","")',dynamic:'(_gtr(_cel(	\'r18c7s0\'	),\'\')?_concat(_concat(\'You should probably \',_cel(	\'r19c7s0\'	)),\' your solution.\'):\'\')',
+i_rt:'[e[18][7],e[19][7]]',_borderLeft:'solid black 1px',foreColor:'navy',bk_color:'silver',_textAlign:'left',_borderTop:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_fontWeight:'bold',m_row:19,m_col:1},
+{locked:'true',m_row:19,m_col:2},
+{locked:'true',m_row:19,m_col:3},
+{locked:'true',foreColor:'black',_textAlign:'center',m_row:19,m_col:4},
+{locked:'true',foreColor:'black',_textAlign:'center',m_row:19,m_col:5},
+{locked:'true',foreColor:'white',m_row:19,m_col:6},
+{entry:'=IF(	G18	="build1","build",IF(	G18	="partner2","partner",IF(	G18	="partner1","partner",	G18	)))',dynamic:'(_eqr(_cel(	\'r18c7s0\'	),\'build1\')?\'build\':(_eqr(_cel(	\'r18c7s0\'	),\'partner2\')?\'partner\':(_eqr(_cel(	\'r18c7s0\'	),\'partner1\')?\'partner\':_cel(	\'r18c7s0\'	))))',
+i_tb:'[e[20][1],e[21][1],e[19][1]]',
+i_rt:'[e[18][7]]',foreColor:'white',_textAlign:'center',m_row:19,m_col:7},
+{entry:'=IF(	G19	="build",	C20	, IF(	G19	="buy",	D20	, IF(	G19	="partner",	E20	,"")))',dynamic:'(_eqr(_cel(	\'r19c7s0\'	),\'build\')?_cel(	\'r20c3s0\'	):(_eqr(_cel(	\'r19c7s0\'	),\'buy\')?_cel(	\'r20c4s0\'	):(_eqr(_cel(	\'r19c7s0\'	),\'partner\')?_cel(	\'r20c5s0\'	):\'\')))',
+i_rt:'[e[19][7],e[20][3],e[20][4],e[20][5]]',_borderLeft:'solid black 1px',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_fontWeight:'bold',_wrapText:'true',_textAlign:'left',m_row:20,m_col:1},
+{locked:'true',foreColor:'black',m_row:20,m_col:2},
+{entry:'Most companies choose to build solutions rather than buy or partner when the solution falls in line with the existing strengths of their company. This way you can apply the existing knowledge of your development team and your existing technology to build the solution that you need.',
+i_tb:'[e[20][1]]',textAlign:'left',locked:'true',foreColor:'white',viewFamily:'Microsoft Sans Serif',_wrapText:'true',m_row:20,m_col:3,i_nr:'Most companies choose to build solutions rather than buy or partner when the solution falls in line with the existing strengths of their company. This way you can apply the existing knowledge of your development team and your existing technology to build the solution that you need.'},
+{entry:'Companies choose to buy solutions that are basic utilities that can be easily purchased and integrated into existing solutions. This is when it\'s too expensive or time-consuming to have your own development team learn the skills required to create your needed solution in-house.',
+i_tb:'[e[20][1]]',textAlign:'left',locked:'true',foreColor:'white',viewFamily:'Microsoft Sans Serif',_wrapText:'true',m_row:20,m_col:4,i_nr:'Companies choose to buy solutions that are basic utilities that can be easily purchased and integrated into existing solutions. This is when it\'s too expensive or time-consuming to have your own development team learn the skills required to create your needed solution in-house.'},
+{entry:'Companies should partner for technology solutions when there\'s a way to enter into a mutually beneficial relationship with another company, while solving their internal problem. This way, you can save on both development time and cost.',
+i_tb:'[e[20][1]]',textAlign:'left',locked:'true',foreColor:'white',viewFamily:'Microsoft Sans Serif',_wrapText:'true',m_row:20,m_col:5,i_nr:'Companies should partner for technology solutions when there\'s a way to enter into a mutually beneficial relationship with another company, while solving their internal problem. This way, you can save on both development time and cost.'},
+{textAlign:'left',foreColor:'black',viewFamily:'Microsoft Sans Serif',_wrapText:'true',m_row:20,m_col:6},
+{textAlign:'left',foreColor:'black',viewFamily:'Microsoft Sans Serif',_wrapText:'true',m_row:20,m_col:7},
+{textAlign:'left',foreColor:'black',viewFamily:'Microsoft Sans Serif',_wrapText:'true',m_row:20,m_col:8},
+{entry:'=IF(	G17	=1,"However, there are many factors involved. You might also want to consider your other alternatives. "&IF(	G19	="build1", 	C21	&	D21	, IF(	G19	="partner1",	D21	,"")),"")',dynamic:'(_eqr(_cel(	\'r17c7s0\'	),1)?_concat(\'However, there are many factors involved. You might also want to consider your other alternatives. \',(_eqr(_cel(	\'r19c7s0\'	),\'build1\')?_concat(_cel(	\'r21c3s0\'	),_cel(	\'r21c4s0\'	)):(_eqr(_cel(	\'r19c7s0\'	),\'partner1\')?_cel(	\'r21c4s0\'	):\'\'))):\'\')',
+i_rt:'[e[17][7],e[19][7],e[21][3],e[21][4]]',_borderLeft:'solid black 1px',foreColor:'navy',bk_color:'silver',_textAlign:'left',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_fontWeight:'bold',m_row:21,m_col:1},
+{foreColor:'black',m_row:21,m_col:2},
+{entry:'If you\'re trying to decide between building and buying, price, development time, and the frequency of use of your solution should affect your final decision. ',
+i_tb:'[e[21][1]]',textAlign:'left',locked:'true',foreColor:'white',_wrapText:'true',m_row:21,m_col:3,i_nr:'If you\'re trying to decide between building and buying, price, development time, and the frequency of use of your solution should affect your final decision. '},
+{entry:' If you\'re trying to decide whether or not to partner with another company, try to think about the intangible assets that can be gained through a partnership.',
+i_tb:'[e[21][1]]',textAlign:'left',locked:'true',foreColor:'white',_wrapText:'true',m_row:21,m_col:4,i_nr:'If you\'re trying to decide whether or not to partner with another company, try to think about the intangible assets that can be gained through a partnership.'},
+{textAlign:'left',locked:'true',foreColor:'white',_wrapText:'true',m_row:21,m_col:5},
+{textAlign:'left',foreColor:'black',_wrapText:'true',m_row:21,m_col:6},
+{textAlign:'left',foreColor:'black',_wrapText:'true',m_row:21,m_col:7},
+{textAlign:'left',foreColor:'black',_wrapText:'true',m_row:21,m_col:8},
+{foreColor:'black',m_row:22,m_col:4},
+{foreColor:'black',m_row:22,m_col:5},
+{foreColor:'black',m_row:22,m_col:6},
+{foreColor:'black',m_row:22,m_col:7},
+{foreColor:'black',m_row:22,m_col:8}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/unicodeCharMap_ie_667e49f7.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/strings_en_2491480284.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/locale_ie_0d14744b.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/utility_ie_dbd756c4.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/dialog_ie_8cee673f.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/browser_detect_ie_b85f83d9.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/cookie_ie_0645e3cf.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/gui_ie_cd85eb87.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/document_ie_29b378dd.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/calculator_ie_bd9fc80c.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/interface_calculator_ie_44704f07.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/runtime_ie_e7eb4a54.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/cell_ie_b1477f2e.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/compiler_ie_808fdc64.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/platform_ie_bb68a125.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/resource_ie_66434373.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</SCRIPT>
+
+<DIV class=division id=topDivision></DIV>
+<DIV class=palette id=buttonPalette><SPAN class=bulbLogoSmall 
+id=bulbLogo></SPAN>
+<DIV class=break id=break0></DIV>
+<DIV class=button id=btnSave title=Save></DIV>
+<DIV class=buttonText id=btnSaveText>Save</DIV>
+<DIV class=break id=break1></DIV>
+<DIV class=button id=btnPrint title=Print></DIV>
+<DIV class=buttonText id=btnPrintText>Print</DIV>
+<DIV class=break id=break2></DIV>
+<DIV class=button id=btnInstruction title=Instructions></DIV>
+<DIV class=buttonText id=btnInstructionText>Instructions</DIV>
+<DIV class=break id=break4></DIV>
+<DIV class=button id=btnEdit title="Edit as spreadsheet"></DIV>
+<DIV class=buttonText id=btnEditText>Edit as spreadsheet</DIV>
+<DIV class=break id=break5></DIV>
+<DIV class=button id=btnEmail title="Email to others"></DIV>
+<DIV class=buttonText id=btnEmailText>Email to others</DIV>
+<DIV class=break id=break6></DIV></DIV>
+<DIV class=division id=buttonDivision></DIV>
+<DIV class=division id=footDivision></DIV>
+<DIV class=palette id=footPalette><NOBR>Copyright © 1999-2001 <A 
+href="http://www.alphablox.com/" target=_blank>AlphaBlox Corporation.</A> All 
+rights reserved.</NOBR></DIV>
+<DIV id=modalDialog style="DISPLAY: none"></DIV>
+<DIV id=modalShield style="DISPLAY: none"></DIV>
+<DIV class=smallList id=popupMenuList style="WIDTH: 100px; HEIGHT: 1px"></DIV>
+<SCRIPT 
+language=JavaScript>
+		includeProgressDialog.style.display = "none";
+	</SCRIPT>
+<IFRAME id=resource0 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource1 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource2 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource3 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=saveFrame style="DISPLAY: none" 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/saveframe.htm"></IFRAME><IFRAME 
+id=macroFrame style="DISPLAY: none" 
+src="Buy, Build, or Partner Scorecard - Blox_com Calculator_files/macroframe.htm"></IFRAME><IFRAME 
+id=bugFrame style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+style="DISPLAY: none" name=postFrame src="about:blank"></IFRAME>
+<FORM id=postForm method=post></FORM></BODY></HTML>

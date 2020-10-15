@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+"http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>Custom SelectBox (WebFX)</title>
+<link rel="STYLESHEET" type="text/css" href="webfx.css">
+<link rel="STYLESHEET" type="text/css" href="classic.css">
+<script src="fade.js" type="text/javascript"></script>
+<script type="text/javascript" src="select.js"></script>
+<script type="text/javascript" src="writeSelect.js"></script>
+
+</HEAD>
+
+<BODY>
+
+<h1>Try it!</h1>
+
+<p>The below select box has the ID="s1"</p>
+
+<script>
+
+topArray = new Array();
+topArray[0] = new Option('<nobr title="This takes you back to the main page"><img src="images/home.gif" width=16 height=17 border=0 align="absmiddle"> <span style="font-family: arial black; font-style: italic; font-weight: bold;">WebFX</span> Home</nobr>', "http://www.eae.net/webfx/");
+topArray[1] = new Option('<nobr><img src="images/htmlicon.gif" width=16 height=16 border=0 align="absmiddle"> EAE.net</nobr>', "http://www.eae.net/");
+topArray[2] = new Option('<nobr><img src="images/htmlicon.gif" width=16 height=16 border=0 align="absmiddle"> InsideDHTML</nobr>', "http://www.insideDHTML.com");
+
+writeSelectBox(topArray, "s1", 1, "alert('The value is ' + this.options[this.selectedIndex].value)", "position: relative; top: 15; margin: 10; width: 140;");
+
+</script>
+
+<p><input type="button" onclick="eval(codeArea.value)" value="Evaluate"></p>
+
+<textarea id="codeArea" style="width: 90%; height: 200; margin: 10;">
+el = document.createElement("OPTION");
+el.text = "This is a new <b>option</b>";
+el.style.cssText = "border: 1px solid black";
+s1.add(el);
+
+//s1.remove(3)
+</textarea>
+
+
+
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!-- Footer Starts Here -->
+
+<style type="text/css">
+<!--
+
+.cromeFooter a			{font-weight: bold; color: navy; text-decoration: none;}
+.cromeFooter a:hover	{color: deepskyblue; text-decoration: underline;}
+
+-->
+</style>
+<script type="text/javascript">
+<!--
+
+function over() {
+	var toEl = getReal(chrome.event.toElement, "tagName", "GROUP3D");
+	var fromEl = getReal(chrome.event.fromElement, "tagName", "GROUP3D");
+	
+	if (toEl == fromEl) return;
+	
+	if (toEl.tagName == "GROUP3D") {
+			chrome.scene.all.zoomOut.stop();
+			chrome.scene.all.zoomIn.play();
+	}
+}
+
+function out() {
+	var toEl = getReal(chrome.event.toElement, "tagName", "GROUP3D");
+	var fromEl = getReal(chrome.event.fromElement, "tagName", "GROUP3D");
+	
+	if (toEl == fromEl) return;
+
+	if (fromEl.tagName == "GROUP3D") {
+			chrome.scene.all.zoomIn.stop();
+			chrome.scene.all.zoomOut.play();
+	}
+}
+
+function getReal(el, type, value) {
+	temp = el;
+	while ((temp != null) && (temp.tagName != "BODY")) {
+		if (eval("temp." + type) == value) {
+			el = temp;
+			return el;
+		}
+		temp = temp.parentElement;
+	}
+	return el;
+}
+
+//-->
+</script>
+
+<div class="cromeFooter" style="text-align: center; font-family: arial; color: gray; font-size: 12px;">
+
+<OBJECT ID="chrome" CLASSID="CLSID:8A2A7F99-09DA-11D1-B33A-00A0C90A8FB6"
+style="width: 150; height: 60;">
+<param name="url" value="http://www.eae.net/webfx/images/crfoot.xml">
+<param name="splashString" value="WebFX">
+
+<a href="http://www.eae.net/webfx/" target="_top" title="Since you don't have Chromeffects you'll only see a static image :-("><img src="http://www.eae.net/webfx/images/crfoot.gif" width=100 height=40 border=0></a>
+</OBJECT>
+
+<p style="margin-top: 0;">Page designed and maintained by <a href="mailto:erik@eae.net">Erik Arvidsson</a> and <a href="mailto:eae@eae.net">Emil A. Eklund</a></p>
+
+</div>
+
+<!-- Footer Ends Here -->
+
+</BODY>
+</HTML>

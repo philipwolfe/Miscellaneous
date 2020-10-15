@@ -1,0 +1,39 @@
+A:link {
+	COLOR: #0000cc
+}
+A:visited {
+	COLOR: #0000cc
+}
+A:active {
+	COLOR: #ff9900
+}
+A:hover {
+	COLOR: #ff9900
+}
+#footPalette {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 9pt; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+#break0 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break1 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break2 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break3 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break4 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break5 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break6 {
+	CLIP: rect(0px 4px 22px 0px)
+}
+#break100 {
+	CLIP: rect(0px 4px 22px 0px)
+}

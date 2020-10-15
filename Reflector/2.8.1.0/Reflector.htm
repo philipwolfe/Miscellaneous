@@ -1,0 +1,142 @@
+
+<html>
+<style>
+body { background: #002244; }
+td { font-family: Verdana, Arial, Helvetica; font-size: 70%; color: #999999; }
+a  { color: #999999; }
+a:hover { color: #EEEEEE; }
+b { color: #cccccc; font-weight: bold; }
+p { margin-top: "0.2em"; margin-bottom: "1.0em"; text-align: justify; }
+</style>
+
+<head>
+
+</head>
+
+<body>
+
+<center>
+<table width="600">
+<th>
+<td>
+
+<br>
+<br>
+
+<p>
+The following FAQ answers some of the most common questions about .NET Reflector.
+</p>
+
+<b>Does Reflector support XML documentation viewing?</b>
+<p>
+Reflector actually includes an XML documentation viewer.
+Select a type, constructor, method, property, field or event and hit the F1 key.
+The program will either find the documentation file automatically or it will ask for it.
+</p>
+
+<b>How can I easily figure out what I can possibly do with a selected item?</b>
+<p>
+Reflector supports context menus (which can be opened by right-clicking on a node in the browser window).
+This is often the quickest way to find out what you can do with that item.
+</p>
+
+<b>How can I view all the information organized by Namespace?</b>
+<p>
+Reflector supports a namespace-centric mode. 
+Here is the trick: Open the view menu, click the customize item and enable the "Flatten Namespaces" checkbox.
+</p>
+
+<b>Why does Reflector hold my file locked even after I close it from the file menu?</b>
+<p>
+This is a problem with the CLR, not with Reflector. 
+Right now, the CLR does not support an easy way to unload assemblies from memory. 
+Even after running "File\Close" the runtime still keeps the file in memory. 
+The only way to release the lock is to restart reflector.
+There are some workarounds for the CLR problem but they would all introduce other side effects.
+</p>
+
+<b>How come I can't find the methods in System.Reflection that let me get at the IL code?</b>
+<p>
+At the time of writing System.Reflection does not support methods for accessing IL code.
+Reflector uses its own hand-built EXE/DLL file reader to read the IL code.
+The routines are exposed in Reflector.Disassembler for those hard core programmers that want to play around with it.
+</p>
+
+<b>What is the difference between "File\Open" and "File\Open Name"?</b>
+<p>
+The "File\Open Name" menu allows you to quickly open files that are already loaded into the Global Assembly Cache (GAC). 
+However, when using this option you will find it harder to access the XML documentation that is often stored in the same directory as the original EXE/DLL. 
+The problem arises because the GAC does not provide functionality for navigating back to the original location of an assembly.
+To avoid that load the EXE/DLL from its original location.</p>
+
+<b>How do Bookmarks work?</b>
+<p>
+The Bookmarks tool only works for types, constructors, methods, fields, properties and events at the moment.
+You can add a selected node to the bookmarks list using the INS key and remove it by pressing DEL.
+</p>
+
+<b>How do I use the Type Search to find a particular type?</b>
+<p>
+Type Search (F3) shows you all the types available in the loaded assemblies
+(taking your visibilities settings into consideration).
+The tool works like a dictionary index and typing syllables
+in the header boxes is filtering the lower part. 
+Put quotes arround a word to only show those members which match the entire word. 
+The search stops after 1000 elements.
+You should already have an idea what you are looking for at that point - use filtering to get more.
+The progess bar at the bottom shows the percentage of the loaded assemblies that is already processed.
+</p>
+
+<b>How do I use the Member Search to find a particular member?</b>
+<p>
+Member Search (F4) works the same way as Type Search works. It is a bit slower and shows all members as well (types, constructors, methods, fields, properties, events).
+</p>
+
+<b>What is Member References Search and why is it so slow?</b>
+<p>
+The Member references (Shift-F4) tool searches through all of the IL code to find all the members that refer to the 
+node that was selected. The Member References Search tool is very slow at the moment so it can take 
+some time until the search finishes. The search scope is limited for private and internal members.
+The search can also be made quicker by using the filter and unloading large assemblies which you do not want to search.
+</p>
+
+<b>What is the difference between the Type Reference and Member Reference Search?</b>
+<p>
+The Type References Search shows all the members that refer to the selected type in their Meta Data. 
+The IL code is not searched. This will speed up the search, but may not give you all the results 
+you are looking for.
+</p>
+
+<b>How do I find out what the various IL op-codes do?</b>
+<p>
+Move your mouse cursor over the op-code in the Disassembler view and wait for the Tooltip.
+</p>
+
+<b>How do I get a call graph? What is the Call Tree?</b>
+<p>
+The call tree tool shows you a tree of methods that could possibly be called by the selected method.
+It stops on interfaces and delegates so it is like a compressed nested disassembler view.
+</p>
+
+<b>How can I view language-specific definitions?</b>
+<p>
+Reflector supports an outline view which shows the full definition of a selected assembly, module, namespace or type in your language of choice. 
+It might take a little while to compile this information for assemblies and modules.
+You have to close and restart the type view window after changing the language in the language menu.
+The view is designed for printing out type definitions (right-click to access the context menu).
+It can also be used to keep the type definition on the screen while performing additional member navigation.
+</p>
+
+<b>Can I get Tooltips based off of the XML documentation while browsing the hierarchy?</b>
+<p>
+No. This feature is not supported in Reflector currently, but might be in upcoming versions. 
+</p>
+
+</td>
+</th>
+</table>
+</center>
+
+</body>
+
+</html>

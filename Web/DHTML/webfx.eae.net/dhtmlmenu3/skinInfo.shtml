@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>DHTML Menu 3 (WebFX)</title>
+
+<link type="text/css" rel="stylesheet" href="webfx.css">
+<style type="text/css">
+body	{border: 2px inset;}
+</style>
+<script type="text/javascript">
+
+document.onclick = function() {
+	if (parent.hideAllMenuScriptlets)
+		parent.hideAllMenuScriptlets();
+}
+
+</script>
+
+<base target="_parent">
+
+</head>
+<body>
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("DHTML Menu 3", "dhtmlmenu3.zip");
+</script>
+
+<p>Since the menu is built up of plain HTML and all the style declaration is defined
+in the external CSS file this can be modified to create a custom look and feel of
+the DHTML menu.</p>
+
+<h2>Small Update</h2>
+
+<p>To allow skins to work both the current page and the scriptlet needs to load the same css file.
+I've changed the script to do this automatically but one needs to add the <code>id</code> 
+<code>menuStyleSheet</code> to the linked style sheet in the main page.</p>
+
+<pre>
+&lt;link type="text/css" rel="stylesheet" href="someMenu.css" id="<b>menuStyleSheet</b>"&gt;
+</pre>
+
+<h2>Customize the Look</h2>
+
+<p>The style changes are done by changing the <code>class</code> name. Note that the menu item
+gets the class name <code>highlight</code> when it is highlighted. By using the CSS selector rules
+one can change the style of the table cells and images inside the menu item.</p>
+
+<pre>
+table.menu tr           td   {}
+table.menu tr.highlight	td   {background: highlight; color: highlighttext;}
+</pre>
+
+<p>This would result in the standard Windows 95/98 look (Some padding needs to be added as well). To get the
+Office 97 look one needs mark the cells with icons with the <code>class</code> name <code>icon</code> so that
+one can create a special rule in the CSS.</p>
+
+<pre>
+table.menu tr           td.icon     {text-align: center;}
+table.menu tr.highlight td.icon     {background: transparent; text-align: center;}
+
+table.menu tr           td.icon img {border: 1px solid buttonface;}
+table.menu tr.highlight td.icon img {border-color: buttonhighlight buttonshadow buttonshadow buttonhighlight;}
+</pre>
+
+<p>The menu bar is built up using elements with the <code>class</code> name <code>root</code> and this is changed
+between <code>rootHighligh</code> and <code>rootActive</code> to represent the three modes
+
+<h2>Changing borders</h2>
+
+<p>Due to the fact that borders are not displayed when table cells are empty one need to add the entity &amp;nbsp;
+to all empty. To be able to pick out leftmost and rightmost cell in the table one need to add a class name to these
+as well and since the Office 97 style uses the special class <code>icon</code> to make the icon look raised I used
+the class names <code>left</code>, <code>middle</code> and <code>right</code>.</p>
+
+<pre>
+&lt;tr class="sub" menu="someMenu"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/driveicon.gif"&gt;&lt;/td&gt;
+   &lt;td class="middle"&gt;Save&lt;/td&gt;
+   &lt;td class="more"&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td class="left"&gt;&amp;nbsp;&lt;/td&gt;
+   &lt;td class="middle"&gt;Exit&lt;/td&gt;
+   &lt;td class="right"&gt;&amp;nbsp;&lt;/td&gt;
+&lt;/tr&gt;
+</pre>
+
+<p>Below is a snippet from the <a href="skin.shtml?smartFTPMenu.css">SmartFTP Skin</a> <a href="smartFTPMenu.css">CSS</a> file that shows how to define the rule for the left/icon
+table cell.</p>
+
+<pre>
+table.menu tr td.icon,
+table.menu tr td.left             {text-align: center; border: 1px solid buttonface; border-right: 0px;}
+table.menu tr.highlight	td.icon,
+table.menu tr.highlight	td.left   {border-left:  1px solid buttonshadow; border-top: 1px solid buttonshadow; border-bottom: 1px solid buttonhighlight;}
+</pre>
+
+<h2>Background Images</h2>
+
+<p>Background images can be done equally easy as well using the background css property. Below is a snippet from
+the <a href="skin.shtml?qnx/menu.css">QNX Skin</a>.</p>
+
+<pre>
+table.menu tr td.more,
+table.menu tr td.right             {font-family: webdings; width: 20px; text-align: right; padding: 1px;}
+table.menu tr.highlight	td.more,
+table.menu tr.highlight	td.right   {background: url('right.gif') repeat-x center right;}
+</pre>
+
+<h2>Customizing the Menu Bar</h2>
+
+<p>The menu bar is built up of elements with the class name root but it can be any type of element
+and I've used a table with three cells with the class names <code>left</code>, <code>middle</code>
+and <code>root</code> here as well to be able to set the styles accordingly. This can be a bit
+cumbersome soo if your skin only needs to modify colors or the borders then you should probable stay
+with span elements.</p>
+
+<p>Below is the HTML and CSS for the QNX Skin.</p>
+
+<pre>
+&lt;div id="menuBar"&gt;
+&lt;table class="menuBar"
+onmouseover="menuBarOver()"
+onmouseout="menuBarOut()"
+onclick="menuBarClick()"
+cellspacing="1" cellpadding="0"&gt;
+&lt;tr&gt;
+   ...
+   &lt;td&gt;
+      &lt;table cellspacing="0" cellpadding="0" class="root" menu="skinMenu"&gt;
+      &lt;tr&gt;
+         &lt;td class="left"&gt;&lt;/td&gt;
+         &lt;td class="middle"&gt;Skins&lt;/td&gt;
+         &lt;td class="right"&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;/table&gt;   
+   &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</pre>
+
+<pre>
+.root .left              {background: url('left.gif'); width: 7px;}
+.rootHighlight .left     {background: url('leftHighlight.gif'); width: 7px;}
+.rootActive .left        {background: url('leftActive.gif'); width: 7px;}
+
+.root .middle            {background: url('middle.gif'); text-align: center; font-family: tahoma; font-size: 11px; height: 19px; padding: 1px;}
+.rootHighlight .middle   {background: url('middle.gif'); text-align: center; font-family: tahoma; font-size: 11px; height: 19px; padding: 1px;}
+.rootActive .middle      {background: url('middleActive.gif'); text-align: center; font-family: tahoma; font-size: 11px; height: 19px; padding-left: 2px; padding-top: 2px; padding-right: 0; padding-bottom: 0;}
+
+.root .right             {background: url('right.gif') center right; width: 7px;}
+.rootHighlight .right    {background: url('right.gif') center right; width: 7px;}
+.rootActive .right       {background: url('rightActive.gif') center right; width: 7px;}
+</pre>
+
+<p>That's it. This technique works with the dock bar and the popup menu as well so start creating...</p>
+
+<p><a href="menu.shtml">Creating menus</a><br>
+<a href="popup.shtml">Use menu as a popup menu</a><br>
+<a href="plain.shtml">Plain menu with a framed page</a><br>
+<a href="dockMenu.shtml">Dockable menu</a><br>
+Customize the look<br>
+<a href="dhtmlmenu3.zip">Download this sample</a><br>
+<a href="http://webfx.eae.net/webboard/index.cgi?action=display&group=admin/artgroup&id=20" target="_top">Discuss this article</a></p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#exec cgi="/footer.cgi" -->
+
+</body>
+</html>
+

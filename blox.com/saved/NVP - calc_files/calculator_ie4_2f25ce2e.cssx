@@ -1,0 +1,117 @@
+.body {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: white; padding-width: 0
+}
+.palette {
+	FONT-SIZE: 8pt; OVERFLOW: hidden; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; HEIGHT: 24px; BACKGROUND-COLOR: #c0c0c0
+}
+.division {
+	BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/app/division.gif); OVERFLOW: hidden; WIDTH: 8000px; BACKGROUND-REPEAT: repeat-x; POSITION: absolute; HEIGHT: 4px; BACKGROUND-COLOR: #c0c0c0
+}
+.view {
+	VISIBILITY: hidden; OVERFLOW: scroll; POSITION: absolute; BACKGROUND-COLOR: white
+}
+.book {
+	CURSOR: default; POSITION: absolute
+}
+.sheet {
+	DISPLAY: none; POSITION: absolute
+}
+.head {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-SIZE: 10pt; PADDING-BOTTOM: 1px; MARGIN: 0px; OVERFLOW: hidden; PADDING-TOP: 1px; FONT-FAMILY: helvetica, arial, sans-serif; POSITION: absolute; BACKGROUND-COLOR: white; TEXT-ALIGN: center
+}
+.cell {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-SIZE: 10pt; Z-INDEX: -2; PADDING-BOTTOM: 1px; MARGIN: 0px; OVERFLOW: hidden; PADDING-TOP: 1px; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: arial, helvetica, sans-serif; POSITION: absolute; BACKGROUND-COLOR: white; TEXT-ALIGN: right
+}
+.unlockedCell {
+	BORDER-RIGHT: lightblue 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: lightblue 0px solid; PADDING-LEFT: 1px; FONT-SIZE: 10pt; PADDING-BOTTOM: 1px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: lightblue 0px solid; PADDING-TOP: 1px; BORDER-BOTTOM: lightblue 1px solid; FONT-FAMILY: arial, helvetica, sans-serif; POSITION: absolute; BACKGROUND-COLOR: white; TEXT-ALIGN: right
+}
+.rect {
+	DISPLAY: none; POSITION: absolute
+}
+.text {
+	DISPLAY: none; POSITION: absolute
+}
+.edit {
+	PADDING-RIGHT: 2px; DISPLAY: none; PADDING-LEFT: 2px; FONT-SIZE: 10pt; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: helvetica, arial, sans-serif; POSITION: absolute; TEXT-ALIGN: right
+}
+.buttonText {
+	FONT-SIZE: 8pt; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; WHITE-SPACE: nowrap; POSITION: absolute; HEIGHT: 24px
+}
+.button {
+	BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/app/button9.gif); WIDTH: 24px; CLIP: rect(0px 24px 24px 0px); POSITION: absolute; HEIGHT: 24px
+}
+.bulbLogo {
+	LEFT: 9px; BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/blox_cube_16x26.gif); WIDTH: 16px; BACKGROUND-REPEAT: no-repeat; POSITION: absolute; TOP: 2px; HEIGHT: 26px
+}
+.bulbLogoSmall {
+	LEFT: 9px; BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/blox_cube_16x26.gif); WIDTH: 28px; BACKGROUND-REPEAT: no-repeat; POSITION: absolute; TOP: 2px; HEIGHT: 26px
+}
+.break {
+	BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/app/break.gif); WIDTH: 3px; BACKGROUND-REPEAT: repeat-x; POSITION: absolute; HEIGHT: 24px
+}
+#footPalette {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 9pt; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: auto
+}
+A:link {
+	COLOR: #0000cc
+}
+A:visited {
+	COLOR: #0000cc
+}
+A:active {
+	COLOR: #ff9900
+}
+A:hover {
+	COLOR: #ff9900
+}
+.modal {
+	BORDER-RIGHT: black 2px solid; BORDER-TOP: black 1px solid; FONT-SIZE: 12px; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: visible; BORDER-LEFT: black 1px solid; WIDTH: 1%; CURSOR: default; BORDER-BOTTOM: black 2px solid; FONT-FAMILY: Verdana, sans-serif; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #ffffc2
+}
+.modalTopLeftBox {
+	OVERFLOW: hidden; WIDTH: 16pt; HEIGHT: 16pt; BACKGROUND-COLOR: #ffcc00
+}
+.modalTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-LEFT: 10px; COLOR: #660066; LINE-HEIGHT: 15pt; MARGIN-RIGHT: 15px; HEIGHT: 16pt
+}
+.modalContent {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px
+}
+#modalMessage {
+	FONT-SIZE: 12px; MARGIN: 5px 10px 5px 15px; COLOR: red; FONT-FAMILY: Verdana, sans-serif
+}
+#modalBottomBar {
+	MARGIN-BOTTOM: 10px; MARGIN-LEFT: 20pt; OVERFLOW: visible; MARGIN-RIGHT: 15px; TEXT-ALIGN: right
+}
+.modalLabel {
+	FONT-SIZE: 12px; FONT-FAMILY: Verdana, sans-serif
+}
+.modalButton {
+	PADDING-RIGHT: 5px; BORDER-TOP: #000099 1px solid; MARGIN-TOP: 10px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; PADDING-BOTTOM: 3pt; OVERFLOW: visible; BORDER-LEFT: #000099 1px solid; WIDTH: 75px; COLOR: #000099; PADDING-TOP: 2pt; FONT-FAMILY: Verdana, sans-serif; TEXT-ALIGN: center
+}
+.modalProgressBar {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; MARGIN-TOP: 15px; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; WIDTH: 320px; BORDER-BOTTOM: black 1px solid; HEIGHT: 16px; BACKGROUND-COLOR: #666699
+}
+.modalProgressWidget {
+	BORDER-RIGHT: black 1px solid; VISIBILITY: hidden; OVERFLOW: hidden; WIDTH: 1px; HEIGHT: 16px; BACKGROUND-COLOR: #ccccff
+}
+.popupWidget {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; Z-INDEX: 500; BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/app/popup.gif); MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: medium none; WIDTH: 13px; BORDER-BOTTOM: medium none; BACKGROUND-REPEAT: no-repeat; POSITION: absolute; TOP: 1px; HEIGHT: 18px
+}
+.popupWidgetRect {
+	BORDER-RIGHT: gray 1px solid; BORDER-TOP: gray 1px solid; Z-INDEX: -2; LEFT: 0px; OVERFLOW: hidden; BORDER-LEFT: gray 1px solid; WIDTH: 100%; BORDER-BOTTOM: gray 1px solid; POSITION: absolute; TOP: 0px; HEIGHT: 0px
+}
+.smallList {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; Z-INDEX: 1000; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: white
+}
+.smallItem {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 8pt; PADDING-BOTTOM: 0px; WIDTH: 1000px; CURSOR: default; COLOR: black; PADDING-TOP: 0px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; BACKGROUND-COLOR: white
+}
+.largeList {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: white 1px solid; Z-INDEX: 1000; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; BORDER-LEFT: white 1px solid; BORDER-BOTTOM: black 1px solid; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: lightgrey
+}
+.largeItem {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 8pt; PADDING-BOTTOM: 1px; CLIP: rect(0px 300px 16px 0px); CURSOR: default; COLOR: black; PADDING-TOP: 1px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; BACKGROUND-COLOR: lightgrey
+}
+.separator {
+	BACKGROUND-IMAGE: url(/alphablox/InfoApps/internal/img/app/separator.gif); WIDTH: 1000px; BACKGROUND-REPEAT: repeat-x; POSITION: absolute; HEIGHT: 4px
+}

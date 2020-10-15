@@ -1,0 +1,24 @@
+
+A:link, A:visited { color: #0000cc; }
+A:active { color: #ff9900; }
+A:hover { color: #ff9900;}
+
+#footPalette {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	padding: 5px;
+}
+
+
+/* a bunch of stuff here mostly for netscape's sake: */
+
+#break0 { clip:rect(0,4,22,0); }
+#break1 { clip:rect(0,4,22,0); }
+#break2 { clip:rect(0,4,22,0); }
+#break3 { clip:rect(0,4,22,0); }
+#break4 { clip:rect(0,4,22,0); }
+#break5 { clip:rect(0,4,22,0); }
+#break6 { clip:rect(0,4,22,0); }
+
+#break100 { clip:rect(0,4,22,0); }
+

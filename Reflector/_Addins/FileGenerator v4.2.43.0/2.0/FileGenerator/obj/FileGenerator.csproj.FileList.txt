@@ -1,0 +1,10 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\FileGenerator.AddIn.UI.FileGeneratorControl.resources
+obj\Debug\FileGenerator.csproj.GenerateResource.Cache
+bin\Debug\FileGenerator.dll
+bin\Debug\FileGenerator.pdb
+bin\Debug\ExceptionViews.dll
+bin\Debug\Reflector.exe
+obj\Debug\FileGenerator.dll
+obj\Debug\FileGenerator.pdb
+bin\Debug\FileGenerator.dll.config

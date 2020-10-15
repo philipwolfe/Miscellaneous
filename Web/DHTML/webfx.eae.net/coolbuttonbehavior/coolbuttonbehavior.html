@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+"http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<HTML>
+<HEAD>	
+<TITLE>Cool Button Behavior (WebFX)</title>
+<link rel="stylesheet" type="text/css" href="webfx.css">
+
+<style type="text/css">
+<!--
+
+.coolButton		{behavior: url('coolbutton.htc'); coolRadioBackgroundUrl: url('tileback.gif');
+				width: 100%; height: 1px; background: buttonface;
+				border: 1px solid buttonface; padding: 1px;
+				cursor: default; font: icon;}
+.coolButton img	{margin-right: 2px;}
+
+.coolBar		{background: buttonface; border-width: 1px; border-style: solid;
+				border-color: buttonhighlight buttonshadow buttonshadow buttonhighlight ;
+				width: 1px; height: 1px;
+				padding: 1px;}
+				
+-->
+</style>
+
+<script type="text/javascript">
+
+function toggleXMLProblems() {
+	if (xmlProblem.style.display == 'none') {
+		xmlProblem.style.display = 'inline';
+		xmlProblemsHotSpot.innerHTML = "[Hide details]";
+	}
+	else {
+		xmlProblem.style.display = 'none';
+		xmlProblemsHotSpot.innerHTML = "Show more";
+	}	
+}
+
+</script>
+
+</HEAD>
+
+<BODY>
+
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("Cool Button Behavior","coolbutton.htc");
+</script>
+
+<p>This behavior was based on the <a href="http://webfx.eae.net/dhtml/coolbuttons/cool.shtml">cool button script</a> but it has been rewritten to use the power of DHTML
+behaviors. Since I haven't explained much about behaviors before I think it is about time to do so now. if you don't want to
+read about how this behavior was made jump straight down to the
+<a href="#demo">demo section</a>.</p>
+
+<h2>Behavior pros and cons</h2>
+
+<p>The only real negative thing about behaviors is that it is an IE5 only technology but besides that it is all good. A
+very good thing about behaviors is that they are extremely easy to reuse and all you have to do is to add the behavior
+in the style declaration.</p>
+
+<h2>Creating your behavior</h2>
+
+<p>Behaviors are created in a special file type called HTML Components (.htc) (See the
+<a href="http://msdn.microsoft.com/workshop/components/htc/reference/htcref.asp" title="Go to MSDN">HTC Reference</a>
+for detailed info). The file format is XML with a script block
+but there are problems about the format
+(<a href="" onclick="toggleXMLProblems(); return false;" id="xmlProblemsHotSpot">See more</a><span
+id="xmlProblem" style="display: none;">
+XML is case sensitive but the htc file is not and in XML you need to enclose your scripts in a CDATA section
+but if you do this you'll get a syntax error. All attributes in XML needs to be enclosed in quotes but this isn't needed
+in the htc files. Another unclear thing is that Windows Scripting Host 2.0 uses htc
+files but in these (at least in the documentation) you need to use lower case tag names and enclose your script
+in a CDATA section.</span>) but these problems seldom leads to any problems.</p>
+
+<p>Below is the format for the htc used to create this behavior (notice that all tags needs to be closed in XML):</p>
+
+<pre>
+&lt;PUBLIC:COMPONENT&gt;
+   &lt;PUBLIC:ATTACH EVENT="onmousedown" ONEVENT="buttonMouseDown()"/&gt;
+   &lt;PUBLIC:ATTACH EVENT="onmouseup" ONEVENT="buttonMouseUp()"/&gt;
+   &lt;PUBLIC:ATTACH EVENT="onmouseout" ONEVENT="buttonMouseOut()"/&gt;
+   &lt;PUBLIC:ATTACH EVENT="onmouseover" ONEVENT="buttonMouseOver()"/&gt;
+   &lt;PUBLIC:ATTACH EVENT="ondblclick" ONEVENT="buttonDblClick()"/&gt;
+   &lt;PUBLIC:ATTACH EVENT="oncontentready" ONEVENT="buttonInit()"/&gt;
+   &lt;PUBLIC:ATTACH EVENT="onpropertychange" ONEVENT="buttonPropertyChange()"/&gt;
+
+   &lt;PUBLIC:PROPERTY NAME="buttontype"/&gt;
+   &lt;PUBLIC:PROPERTY NAME="value"/&gt;
+   &lt;PUBLIC:PROPERTY NAME="cooldisabled"/&gt;
+
+   &lt;SCRIPT&gt;
+   
+   // Code goes here
+   
+   &lt;/SCRIPT&gt;
+&lt;/PUBLIC:COMPONENT&gt;
+</pre>
+
+<p>First we have the <code>ATTACH</code> element that is used to hook up events. When the element that has this behavior
+assigned to it receives an <code>onmousedown</code> event the function <code>buttonOnMouseDown()</code> is called. The element
+called <code>PROPERTY</code> is used to assign a property to the element with this behavior (almost like an expando property).
+The name of the property <code>cooldisabled</code> was chosen because IE5 has already a property called disabled for all its
+HTML elements.</p>
+
+<p>There are two IE5 specific events attached as well. First is the <code>oncontentready</code> that is called when the entire content of the
+element has been loaded. This is really useful for behaviors since they can be initiated before the entire page has been loaded.
+The second new event is the onpropertychange and this is called as soon as a property (such as style, attribute or expando properties)
+has been changed. This is for example called when the user changes the <code>cooldisabled</code> property through scripting and this
+allows us to modify the look and feel of the button once this is changed.</p>
+
+<h2>Creating the code</h2>
+
+<p>The code is pretty basic and it is mostly style manipulations but there are some things worth mentioning. The first thing
+is that the current element is called <code>element</code> in the htc file and it is always in scope. This means that <code>element.getAttribute()</code> is equivalent to
+<code>getAttribute()</code> (just like the <code>window</code> element is in scope in a normal script tag. This can be though of like
+a global <code>with</code> statement). Another very important
+thing to remember is that <code>document</code> (<code>window.document</code>)refers to the XML document that builds up the htc file.
+To get the document that the element is included in use <code>element.document</code> (this is because <code>window</code> has higher priority
+than <code>element</code> in the scope.</p>
+
+<p>To create the look of the disabled buttons the filters Mask and DropShadow are used. When a button is set to disabled the old
+<code>onclick</code> handler is backed up and the <code>onclick</code> handler is set to <code>null</code>. With the radio/checkbox
+buttons there is a special function attached to the onclick handler as well.</p>
+
+<h3>Catching the property changes</h3>
+
+<p>To make the behavior easy to use I would like the user to be able to just set the <code>cooldisabled</code> property to
+<code>true</code> and then the button would become disabled. This was done like I said before by hooking up the
+<code>onpropertychange</code> event. Below is part of the code of the function</p>
+
+<pre>
+function buttonPropertyChange() {
+   var pName = event.propertyName;
+   if (pName == "cooldisabled") {
+      if (getBooleanCoolDisabled())
+         disable();
+      else
+         enable();
+   }
+   else if (pName == "value") {
+      // code for handling changed value
+   }
+   else if (pName == "buttontype") {
+      // code for handling changed buttontype
+   }
+}
+</pre>
+
+<h3>Custom style properties</h3>
+
+<p>IE5 allows the user to use custom style properties. To use them one just declares them in a normal way but when reading them
+you have to use the <code>currentStyle</code> object.
+(The <code>style</code> object only contains values directly assigned to an element.)</p>
+
+<pre>
+&lt;style type="text/css"&gt;
+&lt;!--
+
+#foo {customProperty: customValue}
+
+--&gt;
+&lt;/style&gt;
+</pre>
+
+<p>And then in the script...</p>
+
+<pre>
+alert("foo's customProperty = " + foo.currentStyle.customProperty);
+// will give "foo's customProperty = customValue"
+</pre>
+
+<p>This is really useful for behaviors since you can have global initiation variables declared in the style element.</p>
+
+<h2>Usage</h2>
+
+<p>To include the behavior you assign it through a style declaration. There is also a custom style property called
+<code>coolRadioBackgroundUrl</code> that is used to tell the behavior where to find the background image used for
+pressed radio buttons</p>
+
+<pre>
+&lt;style type="text/css"&gt;
+&lt;!--
+
+.coolButton {behavior: url('coolbutton.htc'); coolRadioBackgroundUrl: url('../../images/tileback.gif');
+            background: buttonface; cursor: default; font: icon;}
+.coolButton img	{margin-right: 2px;}
+
+--&gt;
+&lt;/style&gt;
+</pre>
+
+<p>There are three different types of buttons. The first and simplest is a plain button. The second one is a button with
+the <code>buttontype</code> attribute set to <code>radio</code> (and no <code>name</code> attribute defined). This button
+also has a property called value and when this is set to true the button is pressed down. The third type also uses the
+<code>buttontype="radio"</code> but this also needs a <code>name</code> attribute assigned. If there are more than one button
+with the same name only one of these can be selected at the same time (therefor the name radio). All buttons listen to the
+attribute <code>cooldisabled</code> and once this is true the button gets disabled.</p>
+
+<h2 id="demo">Demo</h2>
+
+<p>The first button is a simple button (no buttontype declared) that is disabled (by setting <code>cooldisabled="true"</code>). The
+second and third button changes the cooldisabled property of the first button.</p>
+
+
+<div class="coolBar" style="margin: 10px;" onselectstart="return false" ondragstart="return false">
+
+	<div class="coolButton" id="b1" onclick="alert('You clicked a button')" cooldisabled="true" nowrap>
+		<img src="../../images/foldericon.gif" align="absmiddle">
+		Button <b>Bold <i>Italic</i></b>
+	</div>
+	
+	<div class="coolButton" onclick="b1.cooldisabled = true" nowrap>
+		<img src="../../images/foldericon.gif" align="absmiddle">
+		Set <b>cooldisabled</b> to <b>true</b>
+	</div>
+	
+	<div class="coolButton" onclick="b1.setAttribute('cooldisabled','false')" nowrap>
+		<img src="../../images/foldericon.gif" align="absmiddle">
+		Set <b>cooldisabled</b> to <b>false</b>
+	</div>
+</div>
+
+<p>Below is two radio buttons (with no names) where one has <code>value="true"</code>. Notice that the <code>value</code> property is not updated
+until after the onclick handlers.</p>
+
+<div class="coolBar" style="margin: 10px;">
+	<table cellspacing="0" cellpadding="0" onselectstart="return false" ondragstart="return false">
+	<tr>
+		<td class="coolbutton" onclick="alert('Value was: ' +this.value)" id="b2" nowrap buttontype="radio" value="true">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Starting toggled
+		</td>
+	</tr>
+	<tr>
+		<td class="coolbutton" nowrap buttontype="radio" value="">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Starting not pressed
+		</td>
+	</tr>
+	<tr>
+		<td class="coolbutton" onclick="b2.value = true" nowrap>
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Set <b>value</b> to <b>true</b>
+		</td>
+	</tr>
+	<tr>
+		<td class="coolbutton" onclick="b2.value = false" nowrap>
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Set <b>value</b> to <b>false</b>
+		</td>
+	</tr>
+	<tr>
+		<td class="coolbutton" onclick="b2.cooldisabled = !this.value" nowrap buttontype="radio">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Toggle <b>cooldisabled</b>
+		</td>
+	</tr>
+	</table>
+</div>
+
+<p>You can also change the <code>buttontype</code> during runtime.</p>
+
+<div class="coolBar" style="margin: 10px;">
+	<table cellspacing="0" cellpadding="0" onselectstart="return false" ondragstart="return false">
+	<tr>
+		<td class="coolbutton" id="b3" nowrap>
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Starting normal
+		</td>
+		<td class="coolbutton" onclick="if (!this.value) {b3.buttontype = 'radio';} else b3.buttontype = '';" nowrap buttontype="radio">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			Toggle buttontype
+		</td>
+	</tr>
+	</table>
+</div>
+
+<p>And now some radio buttons with the same name
+
+<div class="coolBar" style="margin: 10px;">
+	<table cellspacing="0" cellpadding="0" onselectstart="return false" ondragstart="return false">
+	<tr>
+		<td class="coolbutton" name="r1" nowrap buttontype="radio">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			There can be only one
+		</td>
+		<td class="coolbutton" name="r1" nowrap buttontype="radio" value="true">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			There can be only one
+		</td>
+	</tr>
+	<tr>
+		<td class="coolbutton" name="r1" nowrap buttontype="radio" cooldisabled="true">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			There can be only one
+		</td>
+		<td class="coolbutton" name="r1" nowrap buttontype="radio">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			There can be only one
+		</td>
+	</tr>
+	<tr>
+		<td class="coolbutton" name="r1" nowrap buttontype="radio">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			There can be only one
+		</td>
+		<td class="coolbutton" name="r1" nowrap buttontype="radio">
+			<img src="../../images/foldericon.gif" align="absmiddle">
+			There can be only one
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#exec cgi="/footer.cgi" -->
+
+</BODY>
+</HTML>

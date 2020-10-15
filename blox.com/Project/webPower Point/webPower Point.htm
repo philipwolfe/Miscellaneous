@@ -1,0 +1,1054 @@
+<HTML>
+	<HEAD>
+		<TITLE>webPower Point</TITLE>
+		<LINK href="pr_edit_ie.css" type=text/css rel=stylesheet>
+		<LINK href="pr_common_ie4.cssx" type=text/css rel=stylesheet>
+		<LINK href="pr_edit_ie4.cssx" type=text/css rel=stylesheet>
+		<STYLE type="text/css"></STYLE>
+		<SCRIPT language="JavaScript">
+			var kTotalJSIncludes = 19;
+			var gNumJSIncludesLoaded = 0;
+			var gAppLocale = 'en';
+			function JSIncludeDoneLoading()
+			{
+				gNumJSIncludesLoaded++;
+				includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+			}
+		</SCRIPT>
+		<SCRIPT language="JavaScript">
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+		</SCRIPT>
+	</HEAD>
+	<BODY class=body 
+		  onresize=resizeDocument() 
+		  tabIndex=-1 
+		  onbeforeunload="if(typeof unloadDocument != 'undefined')unloadDocument()" 
+		  scroll=no 
+		  onload=loadDocument() 
+		  onunload="if(typeof unloadDocument != 'undefined')unloadDocument()">
+		<DIV class=outline id=outline></DIV>
+		<DIV class=drawing id=drawing></DIV>
+		<DIV class=handle id=handle>
+		<DIV class=frame id=frame></DIV>
+		<DIV class=anchor id=topcenter></DIV>
+		<DIV class=anchor id=topright></DIV>
+		<DIV class=anchor id=middleright></DIV>
+		<DIV class=anchor id=bottomright></DIV>
+		<DIV class=anchor id=bottomcenter></DIV>
+		<DIV class=anchor id=bottomleft></DIV>
+		<DIV class=anchor id=middleleft></DIV>
+		<DIV class=anchor id=topleft></DIV></DIV>
+		<DIV class=sorting id=sorting></DIV>
+		<DIV class=showing id=showing></DIV>
+		<DIV class=divider id=divider></DIV>
+		<DIV class=insert id=insert></DIV>
+		<TEXTAREA class=editor id=editor tabIndex=-1 rows="1" cols="20"></TEXTAREA>
+		<SCRIPT language="JavaScript">
+			var content = '<div class="modalLabel">Please wait a moment (the first time you use the presentation program this may take a little longer).</div>'
+			+ '<div class="modalProgressBar">'
+			+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+			+ '</div></div>';
+			
+			var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+			+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+			+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+			+ '<tr valign="middle">'
+			+ '<td bgcolor="#000000"><div class="modalTopLeftBox"></div></td>'
+			+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Presentation Program</span></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td bgcolor="#999999"><br></td>'
+			+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+			+ '</tr>'
+			+ '</table>'
+			+ '</div></tr></td></table>';
+
+			document.write(progressDialog);
+		</SCRIPT>
+		<SCRIPT language="JavaScript">
+
+			// global mode flag (can be "design", "view", or "embed")
+			var kMode = "design";
+			var gAppId = '';
+			var gOwnerId = 0;
+			var gImported = 0;
+			var gAppDescription = '';
+			var gAppVersion = 1.00;
+			var gAppAuthor = 'pr';
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var gUiMods = {'topDivision':'hidden'};
+			var gIsMatterhorn = false;
+			var gDocumentTitleBase = " - Blox.com Presentation";
+
+			// relative to the root url (which includes a trailing slash):
+			var gOpenScript = "open";
+			var gSaveScript = "savebrainstorm";
+			var gSaveLifeboat = "lifeboat";
+			var gMyFilesScript = "myfiles";
+			var gExportExcelScript = "xls_convert";
+			var gImportExcelScript = "xls_upload";
+			var gSendMailScript = "email";
+			var gFileSummaryScript = "file_summary";
+			var gRatingScript = "rating"; // completeness
+			var kImageDirectory = "img/";
+			var kServletPrefix = "";
+			var gHelpPath = "help";
+			var gPrintCSS = "css/pr_common_ie4.css";
+
+			// relative to the root url (which includes a trailing slash):
+			var gCloseBoxFile = "modalclosebox_ie.html";
+			var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+			var gMacroFrameFile = "macroframe"; // for completeness
+
+
+			// after this comment, we add //init cells
+			gAppId='';
+			gOwnerId='';
+			gAppDescription='';
+			kMode = 'design';
+			gSlideData = { kind:"root", opened:true, index:"x1", text:"root", child:[ 
+  { kind:"folder", opened:true, index:"x2", text:"Slides Folder", child:[ 
+    { kind:"slide", selected:true, opened:true, index:"x500", text:"", master:"x503", child:[ 
+      { kind:"frame", opened:true, index:"x501", text:"Title Frame", master:"x504", child:[  ] }, 
+      { kind:"frame", opened:true, index:"x502", text:"Items Frame", master:"x505", child:[  ] } ] } ] }, 
+  { kind:"folder", opened:true, index:"x3", text:"Masters Folder", child:[ 
+ 
+ { kind:"slide", opened:false, index:"x503", text:"AlphaBlox Master", child:[ 
+     { kind:"frame", opened:false, index:"x504", text:"Title Frame", child:[  ], style:
+      { bounds:
+       { top:520, left:396, bottom:1225, right:7592, height:705, width:7196 } } }, 
+     { kind:"frame", opened:true, index:"x505", text:"Items Frame", child:[ 
+       { kind:"text", opened:true, index:"x506", text:"style for level 1", child:[ 
+         { kind:"text", opened:true, index:"x507", text:"style for level 2", child:[ 
+           { kind:"text", opened:true, index:"x508", text:"style for level 3", child:[ 
+             { kind:"text", opened:true, index:"x509", text:"style for level 4", child:[ 
+               { kind:"text", opened:true, index:"x510", text:"style for level 5", child:[  ], style:
+                { fontSize:24, fontFamily:"arial" } } ], style:
+              { fontSize:24, fontFamily:"arial" } } ], style:
+            { fontSize:30, fontFamily:"arial" } } ], style:
+          { fontSize:30, fontFamily:"arial", fontWeight:"bold" } } ], style:
+        { fontSize:36, fontFamily:"arial", fontWeight:"bold" } } ], style:
+      { bounds:
+       { top:1930, left:396, bottom:5320, right:7592, height:3390, width:7196 }, bullets:[ "box", "dash", "bullet", "circle", "none" ] } }, 
+     { kind:"shape", opened:true, index:"x511", text:"Rectangle", child:[  ], style:
+      { backgroundColor:"#000000", bounds:
+       { top:0, left:0, bottom:1410, right:8000, height:1410, width:8000 } } }, 
+     { kind:"picture", opened:true, index:"x520", entry:"http://www.blox.com/open?id=001f469a_4d3b", text:"squares.gif", srcWidth:69, srcHeight:77, seenUrl:"http://www.blox.com/open?id=001f469a_4d3b", child:[  ], style:
+      { pictureMode:"scale", tiling:"no-repeat", bounds:
+       { top:1032, left:228, bottom:1662, right:788, height:630, width:560 }, fileInfo:
+       { id:"001f469a_4d3b", name:"squares.gif" } } }, 
+     { kind:"picture", opened:true, index:"x521", entry:"http://www.blox.com/open?id=001f469b_07ce", text:"newlogo.gif", srcWidth:142, srcHeight:51, seenUrl:"http://www.blox.com/open?id=001f469b_07ce", child:[  ], style:
+      { pictureMode:"scale", tiling:"repeat", bounds:
+       { top:5423, left:6460, bottom:5983, right:7983, height:560, width:1523 }, fileInfo:
+       { id:"001f469b_07ce", name:"newlogo.gif" } } } ], style:
+    { fontSize:"46", fontFamily:"arial", fontWeight:"bold", fontColor:"#FFFFFF", textAlign:"center" } },
+
+
+    { kind:"slide", opened:false, index:"x4", text:"Basic Master", child:[ 
+      { kind:"frame", opened:true, index:"x5", text:"Title Frame", child:[  ], style:
+       { fontSize:48, fontFamily:"verdana, helvetica, sans-serif", textAlign:"center", fontWeight:"bold", bounds:
+        { top:394, left:503, bottom:1602, right:7498, height:1208, width:6995 } } }, 
+      { kind:"frame", opened:true, index:"x6", text:"Items Frame", child:[ 
+        { kind:"text", index:"x7", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x8", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x9", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x10", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x11", text:"style for level 5", child:[  ], style:
+                 { fontSize:24, fontFamily:"tahoma, new york, times, serif" } } ], style:
+               { fontSize:24, fontFamily:"tahoma, new york, times, serif" } } ], style:
+             { fontSize:30, fontFamily:"times new roman, new york, times, serif" } } ], style:
+           { fontWeight:"bold", fontSize:30, fontFamily:"tahoma, new york, times, serif", fontStyle:"normal" } } ], style:
+         { fontWeight:"bold", fontSize:36, fontFamily:"tahoma, new york, times, serif" } } ], style:
+       { bounds:
+        { top:1846, left:530, bottom:5701, right:7525, height:3855, width:6995 }, bullets:[ "box", "square", "bullet", "dash", "none" ] } }, 
+      { kind:"shape", opened:true, index:"x53", text:"Rectangle", child:[  ], style:
+       { backgroundColor:"#FFFFFF", borderWidth:"4", borderStyle:"solid", color:"#003366", bounds:
+        { top:136, left:149, bottom:5865, right:7877, height:5729, width:7728 } } }, 
+      { kind:"shape", opened:true, index:"x52", text:"Horizontal Line", child:[  ], style:
+       { backgroundColor:"black", bounds:
+        { top:1670, left:516, bottom:1751, right:7497, height:81, width:6981 } } } ], style:
+     { background:"", backgroundColor:"#ffff99" } }, 
+    { kind:"slide", opened:true, index:"x36", text:"Title Master", child:[ 
+      { kind:"frame", opened:true, index:"x37", text:"Title Frame", child:[  ], style:
+       { fontSize:48, fontFamily:"arial black", textAlign:"center", borderWidth:"4", borderStyle:"solid", backgroundColor:"#FFFFFF", bounds:
+        { top:475, left:516, bottom:5484, right:7592, height:5009, width:7076 } } } ], style:
+     { background:"", backgroundColor:"#333399", fontFamily:"verdana, helvetica, sans-serif" } },
+    { kind:"slide", opened:false, index:"x20", text:"Ruled Master", child:[ 
+      { kind:"frame", opened:true, index:"x21", text:"Title Frame", child:[  ], style:
+       { fontSize:48, fontFamily:"tahoma, new york, times, serif", fontWeight:"bold", bounds:
+        { top:271, left:733, bottom:1574, right:7497, height:1303, width:6764 } } }, 
+      { kind:"shape", opened:true, index:"x54", text:"Vertical Line", child:[  ], style:
+       { backgroundColor:"black", bounds:
+        { top:258, left:530, bottom:1602, right:652, height:1344, width:122 } } }, 
+      { kind:"frame", opened:true, index:"x22", text:"Items Frame", child:[ 
+        { kind:"text", index:"x23", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x24", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x25", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x26", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x27", text:"style for level 5", child:[  ], style:
+                 { fontSize:24, fontFamily:"tahoma, new york, times, serif" } } ], style:
+               { fontSize:24, fontFamily:"tahoma, new york, times, serif" } } ], style:
+             { fontSize:"24", fontFamily:"tahoma, new york, times, serif" } } ], style:
+           { fontWeight:"bold", fontSize:30, fontFamily:"bookman old style, new york, times, serif", fontStyle:"italic" } } ], style:
+         { fontWeight:"bold", fontSize:36, fontFamily:"bookman old style, new york, times, serif" } } ], style:
+       { bounds:
+        { top:1697, left:706, bottom:5593, right:7524, height:3896, width:6818 }, bullets:[ "bullet", "bullet", "dash", "angle", "guillemet" ] } } ], style:
+     { background:"http://www.blox.com/open?id=002e1583_39c4" } }, 
+	 // ruledpaper.jpg
+    { kind:"slide", opened:false, index:"x28", text:"Wood Master", child:[ 
+      { kind:"frame", opened:true, index:"x29", text:"Title Frame", child:[  ], style:
+       { fontSize:48, fontFamily:"bookman old style, new york, times, serif", fontColor:"white", fontWeight:"bold", bounds:
+        { top:503, left:515, bottom:1828, right:7521, height:1325, width:7006 } } }, 
+      { kind:"frame", opened:true, index:"x30", text:"Items Frame", child:[ 
+        { kind:"text", index:"x31", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x32", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x33", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x34", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x35", text:"style for level 5", child:[  ], style:
+                 { fontSize:24, fontFamily:"trebuchet MS", fontColor:"white" } } ], style:
+               { fontSize:24, fontFamily:"trebuchet MS", fontColor:"white" } } ], style:
+             { fontSize:30, fontFamily:"trebuchet MS", fontColor:"white" } } ], style:
+           { fontWeight:"bold", fontSize:30, fontFamily:"trebuchet MS", fontColor:"white" } } ], style:
+         { fontWeight:"bold", fontSize:36, fontFamily:"trebuchet MS", fontColor:"white" } } ], style:
+       { color:"white", bounds:
+        { top:2000, left:500, bottom:5500, right:7500, height:3500, width:7000 }, bullets:[ "bullet", "bullet", "dash", "dash", "none" ] } } ], style:
+     { background:"http://www.blox.com/open?id=001eabc3_4c2c", fontFamily:"bookman old style, new york, times, serif" } },
+	 // woodpattern.jpg
+    { kind:"slide", index:"x55", text:"Brain Blocks", child:[ 
+      { kind:"frame", opened:true, index:"x56", text:"Title Frame", child:[  ], style:
+       { bounds:
+        { top:178, left:342, bottom:1472, right:7543, height:1294, width:7201 } } }, 
+      { kind:"frame", opened:true, index:"x57", text:"Items Frame", child:[ 
+        { kind:"text", index:"x58", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x59", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x60", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x61", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x62", text:"style for level 5", child:[  ], style:
+                 { fontSize:"14", fontFamily:"trebuchet MS, helvetica, sans-serif", fontColor:"#FF9900" } } ], style:
+               { fontSize:24, fontFamily:"trebuchet MS, helvetica, sans-serif", fontColor:"#FF9900" } } ], style:
+             { fontSize:"24", fontFamily:"trebuchet MS, helvetica, sans-serif", fontColor:"#FF9900" } } ], style:
+           { fontSize:"24", fontFamily:"trebuchet MS, helvetica, sans-serif", fontWeight:"bold", fontColor:"#FF9900" } } ], style:
+         { fontSize:"30", fontFamily:"trebuchet MS, helvetica, sans-serif", fontWeight:"bold", fontColor:"#FF6600" } } ], style:
+       { bounds:
+        { top:1738, left:393, bottom:5239, right:7480, height:3501, width:7087 }, bullets:[ "bullet", "box", "square", "dash", "none" ] } }, 
+      { kind:"picture", index:"x63", entry:"http://www.blox.com/open?id=002dee1e_028a", text:"brainblocks.gif", srcWidth:800, srcHeight:600, seenUrl:"http://www.blox.com/open?id=002dee1e_028a", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:0, left:0, bottom:6000, right:8000, height:6000, width:8000 }, fileInfo:
+        { id:"002dee1e_028a", name:"brainblocks.gif" } } } ], style:
+     { fontSize:"36", fontFamily:"arial, helvetica, sans-serif", fontWeight:"bold", background:"", backgroundColor:"#fefefe", fontColor:"#FFFFFF" } }, 
+    { kind:"slide", index:"x86", text:"Grandma's Garden", child:[ 
+      { kind:"frame", opened:true, index:"x87", text:"Title Frame", child:[  ], style:
+       { textAlign:"right", bounds:
+        { top:625, left:4137, bottom:1930, right:7923, height:1305, width:3786 } } }, 
+      { kind:"frame", opened:true, index:"x88", text:"Items Frame", child:[ 
+        { kind:"text", index:"x89", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x90", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x91", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x92", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x93", text:"style for level 5", child:[  ], style:
+                 { fontSize:"14", fontFamily:"arial" } } ], style:
+               { fontSize:"14", fontFamily:"arial", fontWeight:"bold", fontColor:"#990099" } } ], style:
+             { fontSize:"14", fontFamily:"lucida console, sans-serif", fontColor:"#990099", fontWeight:"bold" } } ], style:
+           { fontSize:"18", fontFamily:"lucida console, sans-serif", fontWeight:"bold", fontColor:"#CC99FF" } } ], style:
+         { fontSize:"24", fontFamily:"lucida console, sans-serif", fontWeight:"bold", fontColor:"#CC6699" } } ], style:
+       { bounds:
+        { top:2100, left:400, bottom:5600, right:7600, height:3500, width:7200 }, bullets:[ "asterisk", "dash", "bullet", "box", "none" ] } }, 
+      { kind:"picture", index:"x128", entry:"http://www.blox.com/open?id=003d3c05_a43b", text:"flowerstop.gif", srcWidth:414, srcHeight:162, seenUrl:"http://www.blox.com/open?id=003d3c05_a43b", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:0, left:0, bottom:1612, right:4192, height:1612, width:4192 }, fileInfo:
+        { id:"003d3c05_a43b", name:"flowerstop.gif" } } }, 
+      { kind:"picture", index:"x129", entry:"http://www.blox.com/open?id=001eabc1_81c9", text:"greenline.gif", srcWidth:457, srcHeight:39, seenUrl:"http://www.blox.com/open?id=001eabc1_81c9", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:1009, left:4104, bottom:1327, right:8000, height:318, width:3896 }, fileInfo:
+        { id:"001eabc1_81c9", name:"greenline.gif" } } }, 
+      { kind:"picture", index:"x130", entry:"http://www.blox.com/open?id=002dee1f_aa08", text:"flowersbottom.gif", srcWidth:800, srcHeight:116, seenUrl:"http://www.blox.com/open?id=002dee1f_aa08", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:4706, left:11, bottom:5989, right:8000, height:1283, width:7989 }, fileInfo:
+        { id:"002dee1f_aa08", name:"flowersbottom.gif" } } } ], style:
+     { fontSize:"30", fontFamily:"tahoma, new york, times, serif", fontWeight:"bold", background:"", backgroundColor:"#fefefe", fontColor:"#FF66CC", textDecoration:"none", fontStyle:"normal" } }, 
+    { kind:"slide", index:"x105", text:"Chocolate Bananas", child:[ 
+      { kind:"frame", opened:true, index:"x106", text:"Title Frame", child:[  ], style:
+       { textAlign:"right", bounds:
+        { top:746, left:2634, bottom:2051, right:7923, height:1305, width:5289 } } }, 
+      { kind:"frame", opened:true, index:"x107", text:"Items Frame", child:[ 
+        { kind:"text", index:"x108", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x109", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x110", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x111", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x112", text:"style for level 5", child:[  ], style:
+                 { fontSize:"12", fontFamily:"verdana, helvetica, sans-serif" } } ], style:
+               { fontSize:"14", fontFamily:"verdana, helvetica, sans-serif", fontColor:"#FFFF99" } } ], style:
+             { fontSize:"18", fontFamily:"verdana, helvetica, sans-serif", fontColor:"#993300" } } ], style:
+           { fontSize:"24", fontFamily:"verdana, helvetica, sans-serif", fontWeight:"normal", fontColor:"#FFFF99" } } ], style:
+         { fontSize:"30", fontFamily:"verdana, helvetica, sans-serif", fontWeight:"normal", fontColor:"#993300" } } ], style:
+       { textAlign:"left", bounds:
+        { top:2100, left:400, bottom:5600, right:7600, height:3500, width:7200 }, bullets:[ "bullet", "circle", "box", "dash", "none" ] } }, 
+      { kind:"picture", index:"x114", entry:"http://www.blox.com/open?id=002dee1d_8d92", text:"bananasback.gif", srcWidth:800, srcHeight:600, seenUrl:"http://www.blox.com/open?id=002dee1d_8d92", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:0, left:0, bottom:6000, right:8000, height:6000, width:8000 }, fileInfo:
+        { id:"002dee1d_8d92", name:"bananasback.gif" } } }, 
+      { kind:"picture", index:"x115", entry:"http://www.blox.com/open?id=001eabc0_765d", text:"bananasbar.gif", srcWidth:601, srcHeight:71, seenUrl:"http://www.blox.com/open?id=001eabc0_765d", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:186, left:2348, bottom:811, right:8000, height:625, width:5652 }, fileInfo:
+        { id:"001eabc0_765d", name:"bananasbar.gif" } } } ], style:
+     { fontSize:"42", fontFamily:"garamond, new york, times, serif", fontWeight:"bold", background:"", backgroundColor:"#fefefe", fontColor:"#660000", textDecoration:"none", fontStyle:"normal", color:"transparent" } }, 
+    { kind:"slide", index:"x145", text:"Lets watch TV", child:[ 
+      { kind:"frame", opened:true, index:"x146", text:"Title Frame", child:[  ], style:
+       { textAlign:"center", bounds:
+        { top:746, left:988, bottom:2051, right:7057, height:1305, width:6069 } } }, 
+      { kind:"frame", opened:true, index:"x147", text:"Items Frame", child:[ 
+        { kind:"text", index:"x148", text:"style for level 1", child:[ 
+          { kind:"text", opened:true, index:"x149", text:"style for level 2", child:[ 
+            { kind:"text", opened:true, index:"x150", text:"style for level 3", child:[ 
+              { kind:"text", opened:true, index:"x151", text:"style for level 4", child:[ 
+                { kind:"text", opened:true, index:"x152", text:"style for level 5", child:[  ], style:
+                 { fontSize:"14", fontFamily:"garamond, new york, times, serif", fontColor:"#FFCC00" } } ], style:
+               { fontSize:"18", fontFamily:"garamond, new york, times, serif", fontWeight:"bold", fontColor:"#CC0000" } } ], style:
+             { fontSize:"24", fontFamily:"garamond, new york, times, serif", fontWeight:"bold", fontColor:"#FF9900" } } ], style:
+           { fontSize:"30", fontFamily:"garamond, new york, times, serif", fontWeight:"bold", fontColor:"#FF0000" } } ], style:
+         { fontSize:36, fontFamily:"garamond, new york, times, serif", fontWeight:"bold", fontColor:"#FF6600" } } ], style:
+       { textAlign:"center", bounds:
+        { top:2100, left:400, bottom:5600, right:7600, height:3500, width:7200 }, bullets:[ "none", "none", "none", "none", "none" ] } }, 
+      { kind:"picture", index:"x153", entry:"http://www.blox.com/open?id=002dee22_a182", text:"tvframe.gif", srcWidth:800, srcHeight:600, seenUrl:"http://www.blox.com/open?id=002dee22_a182", child:[  ], style:
+       { pictureMode:"scale", tiling:"repeat", bounds:
+        { top:0, left:0, bottom:6000, right:8000, height:6000, width:8000 }, fileInfo:
+        { id:"002dee22_a182", name:"tvframe.gif" } } } ], style:
+     { fontSize:"42", fontFamily:"verdana, helvetica, sans-serif", fontWeight:"bold", background:"", backgroundColor:"#fefefe", fontColor:"#CC0000", textDecoration:"none", fontStyle:"normal", color:"transparent" } } ] }
+ ] };
+
+var needsRebuilding=true;
+var kSaveHostname = "";
+
+		</SCRIPT>
+
+<SCRIPT language=JavaScript src="strings_en.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="locale_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="utility_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="command_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="document_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="dialog_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="browser_detect_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="compiler_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="cookie_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="platform_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="runtime_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="resource_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prModel_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prDrawing_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prDocument_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prCommand_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prGui_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prOutline_ie.jsx"></SCRIPT>
+<SCRIPT language=JavaScript src="prUtility_ie.jsx"></SCRIPT>
+ 
+<DIV class=palette id=bulbLogo style="LEFT: 0px; VISIBILITY: visible; WIDTH: 50px; POSITION: absolute; TOP: 0px; HEIGHT: 50px">
+	<IMG height=44 alt="" hspace=9 src="images/Logo_only_28x44.gif" width=28 vspace=3 border=0> 
+	<DIV class=break id=break2 style="LEFT: 47px; BACKGROUND-REPEAT: repeat-y; POSITION: absolute; TOP: 1px; HEIGHT: 50px"></DIV>
+</DIV>
+<DIV class=palette id=menuPalette>
+	<DIV class=largeMenu id=fileMenu></DIV>
+	<DIV class=largeSpot id=fileSpot>File</DIV>
+	<DIV class=largeMenu id=editMenu></DIV>
+	<DIV class=largeSpot id=editSpot>Edit</DIV>
+	<DIV class=largeMenu id=slideMenu></DIV>
+	<DIV class=largeSpot id=slideSpot>Slide</DIV>
+	<DIV class=largeMenu id=insertMenu></DIV>
+	<DIV class=largeSpot id=insertSpot>Insert</DIV>
+	<DIV class=largeMenu id=toolsMenu></DIV>
+	<DIV class=largeSpot id=toolsSpot>Tools</DIV>
+	<DIV class=largeMenu id=helpMenu></DIV>
+	<DIV class=largeSpot id=helpSpot>Help</DIV>
+	<DIV class=button id=btnBugs title=Bugs></DIV>
+	<DIV class=buttonText id=bug1>report a bug</DIV>
+	<DIV class=button id=btnEmail title=Email></DIV>
+	<DIV class=buttonText id=em1>email this page</DIV>
+</DIV>
+<DIV class=division id=menuDivision></DIV>
+<DIV class=palette id=iconPalette>
+	<DIV class=button id=new title="New File"></DIV>
+	<DIV class=button id=open title="Open File"></DIV>
+	<DIV class=button id=save title="Save File"></DIV>
+	<DIV class=button id=print title=Print></DIV>
+	<DIV class=break id=break1></DIV>
+	<DIV class=button id=undo title="Nothing to Undo"></DIV>
+	<DIV class=button id=redo title="Nothing to Redo"></DIV>
+	<DIV class=break id=break2></DIV>
+	<DIV class=button id=cut title=Cut></DIV>
+	<DIV class=button id=copy title=Copy></DIV>
+	<DIV class=button id=paste title=Paste></DIV>
+	<DIV class=button id=format title="Copy Format"></DIV>
+	<DIV class=break id=break3></DIV>
+	<DIV class=smallMenu id=fontMenu></DIV>
+    <INPUT class=comboBox id=fontSpot 
+	onblur=fontSpot.hasFocus=0 tabIndex=-1 hasFocus="0" size="20"> 
+	<DIV class=break id=break4></DIV>
+	<DIV class=smallMenu id=sizeMenu></DIV>
+    <INPUT class=comboBox id=sizeSpot 
+	onblur=sizeSpot.hasFocus=0 tabIndex=-1 hasFocus="0" size="20"> 
+	<DIV class=spinButton id=ptsizeup title="Increase Font Size"></DIV>
+	<DIV class=spinButton id=ptsizedown title="Decrease Font Size"></DIV>
+	<DIV class=break id=break5></DIV>
+	<DIV class=button id=bold title=Bold></DIV>
+	<DIV class=button id=italic title=Italic></DIV>
+	<DIV class=button id=underline title=Underline></DIV>
+	<DIV class=break id=break6></DIV>
+	<DIV class=buttonMenu id=fillColorMenu title="Fill Color">
+		<DIV class=colorSpot id=fillColorMenuSpot></DIV>
+	</DIV>
+	<DIV class=buttonMenu id=lineColorMenu title="Line Color">
+		<DIV class=colorSpot id=lineColorMenuSpot></DIV>
+	</DIV>
+	<DIV class=buttonMenu id=fontColorMenu title="Font Color">
+		<DIV class=colorSpot id=fontColorMenuSpot></DIV>
+	</DIV>
+	<DIV class=smallMenu id=lineMenu></DIV>
+	<DIV class=smallSpot id=lineSpot></DIV>
+	<DIV class=break id=break7></DIV>
+	<DIV class=button id=left title="Align Left"></DIV>
+	<DIV class=button id=center title=Center></DIV>
+	<DIV class=button id=right title="Align Right"></DIV>
+	<DIV class=break id=break8></DIV>
+</DIV>
+<DIV class=division id=iconDivision></DIV>
+<DIV class=vpalette id=outlinePalette style="LEFT: 0px; POSITION: absolute; TOP: 54px; HEIGHT: 1000px">
+	<DIV class=button id=promote title=Promote style="BACKGROUND-POSITION: -672px 0px; LEFT: 0px; POSITION: absolute; TOP: 0px" value="promote"></DIV>
+	<DIV class=button id=demote title=Demote style="BACKGROUND-POSITION: -696px 0px; LEFT: 0px; POSITION: absolute; TOP: 24px" value="demote"></DIV>
+	<DIV class=division style="LEFT: 0px; POSITION: absolute; TOP: 48px; HEIGHT: 4px"></DIV>
+	<DIV class=button id=moveup title="Move Up" style="BACKGROUND-POSITION: -720px 0px; LEFT: 0px; POSITION: absolute; TOP: 52px" value="moveup"></DIV>
+	<DIV class=button id=movedown title="Move Down" style="BACKGROUND-POSITION: -744px 0px; LEFT: 0px; POSITION: absolute; TOP: 76px" value="movedown"></DIV>
+	<DIV class=division style="LEFT: 0px; POSITION: absolute; TOP: 100px; HEIGHT: 4px"></DIV>
+	<DIV class=button id=collapseone title=Collapse style="BACKGROUND-POSITION: -768px 0px; LEFT: 0px; POSITION: absolute; TOP: 104px" value="collapseone"></DIV>
+	<DIV class=button id=expandone title=Expand style="BACKGROUND-POSITION: -792px 0px; LEFT: 0px; POSITION: absolute; TOP: 128px" value="expandone"></DIV>
+	<DIV class=division style="LEFT: 0px; POSITION: absolute; TOP: 152px; HEIGHT: 4px"></DIV>
+	<DIV class=button id=collapseall title="Collapse All" style="BACKGROUND-POSITION: -816px 0px; LEFT: 0px; POSITION: absolute; TOP: 156px" value="collapseall"></DIV>
+	<DIV class=button id=expandall title="Expand All" style="BACKGROUND-POSITION: -840px 0px; LEFT: 0px; POSITION: absolute; TOP: 180px" value="expandall"></DIV>
+	<DIV class=division style="LEFT: 0px; POSITION: absolute; TOP: 204px; HEIGHT: 4px"></DIV>
+	<DIV class=break style="LEFT: 24px; POSITION: absolute; TOP: 0px; HEIGHT: 1000px"></DIV>
+</DIV>
+<DIV class=division id=footDivision></DIV>
+<DIV class=palette id=footPalette>
+	<DIV class=button id=edit title="View Outline" style="BACKGROUND-POSITION: -600px 0px; LEFT: 0px; POSITION: absolute; TOP: 0px" value="edit"></DIV>
+	<DIV class=button id=sort title="View Sorter" style="BACKGROUND-POSITION: -624px 0px; LEFT: 24px; POSITION: absolute; TOP: 0px" value="sort"></DIV>
+	<DIV class=button id=show title="View Show" style="BACKGROUND-POSITION: -648px 0px; LEFT: 48px; POSITION: absolute; TOP: 0px" value="show"></DIV>
+	<DIV class=break style="LEFT: 72px; POSITION: absolute; TOP: 1px"></DIV>
+	<DIV style="CURSOR: default; PADDING-TOP: 4px; TEXT-ALIGN: center">&nbsp;&nbsp;&nbsp;Copyright © 1999-2001 <A href="http://www.alphablox.com/" target=_blank>AlphaBlox Corporation.</A> All rights reserved.&nbsp;&nbsp;&nbsp;</DIV>
+	<DIV id=navcluster style="LEFT: 400px; WIDTH: 126px; POSITION: absolute; TOP: 0px">
+		<DIV class=break style="LEFT: 0px; POSITION: absolute; TOP: 1px"></DIV>
+		<DIV class=button id=btnStart title="First Slide" style="BACKGROUND-POSITION: -960px 0px; LEFT: 4px; POSITION: absolute" value="btnStart"></DIV>
+		<DIV class=button id=btnPrev title="Previous Slide" style="BACKGROUND-POSITION: -984px 0px; LEFT: 28px; POSITION: absolute" value="btnPrev"></DIV>
+		<DIV class=button id=btnNext title="Next Slide" style="BACKGROUND-POSITION: -1008px 0px; LEFT: 52px; POSITION: absolute" value="btnNext"></DIV>
+		<DIV class=button id=btnEnd title="Last Slide" style="BACKGROUND-POSITION: -1032px 0px; LEFT: 76px; POSITION: absolute" value="btnEnd"></DIV>
+		<DIV class=buttonMenu id=jumpMenu title="Jump to Slide..." style="BACKGROUND-POSITION: -1128px 0px; LEFT: 100px; POSITION: absolute" value="jumpMenu"></DIV>
+	</DIV>
+</DIV>
+<DIV class=largeList id=fileList>
+	<DIV class=largeItem id=cmdNew>New</DIV>
+	<DIV class=largeItem id=cmdOpen>Open...</DIV>
+	<DIV class=largeItem id=cmdClose>Close</DIV>
+	<DIV class=separator id=separator11></DIV>
+	<DIV class=largeItem id=cmdSave>Save</DIV>
+	<DIV class=largeItem id=cmdSaveAs>Save As...</DIV>
+	<DIV class=separator id=separator12></DIV>
+	<DIV class=largeItem id=cmdImportSlides>Import Masters &amp; Slides...</DIV>
+	<DIV class=largeItem id=cmdImportPowerPoint>Import PowerPoint file...</DIV>
+	<DIV class=separator id=separator14></DIV>
+	<DIV class=largeItem id=cmdSlideshow>Slideshow</DIV>
+	<DIV class=separator id=separator15></DIV>
+	<DIV class=largeItem id=cmdPrint>Print...</DIV>
+	<DIV class=largeItem id=cmdSummary>Summary...</DIV></DIV>
+	<DIV class=largeList id=editList>
+	<DIV class=largeItem id=cmdUndo>Undo</DIV>
+	<DIV class=largeItem id=cmdRedo>Redo</DIV>
+	<DIV class=separator id=separator20></DIV>
+	<DIV class=largeItem id=cmdCut>Cut</DIV>
+	<DIV class=largeItem id=cmdCopy>Copy</DIV>
+	<DIV class=largeItem id=cmdPaste>Paste</DIV>
+	<DIV class=largeItem id=cmdPasteSpecial>Paste Values</DIV>
+	<DIV class=separator id=separator21></DIV>
+	<DIV class=largeItem id=cmdClear>Clear</DIV>
+	<DIV class=largeItem id=cmdDuplicate>Duplicate</DIV>
+	<DIV class=separator id=separator22></DIV>
+	<DIV class=largeItem id=cmdMoveForward>Move to Front</DIV>
+	<DIV class=largeItem id=cmdMoveBackward>Move to Back</DIV>
+</DIV>
+<DIV class=largeList id=slideList>
+	<DIV class=largeItem id=cmdNewSlide>New Slide</DIV>
+	<DIV class=largeItem id=cmdDeleteSlide>Delete Slide</DIV>
+	<DIV class=separator id=separator30></DIV>
+	<DIV class=largeItem id=cmdSetBackground>Set Background...</DIV>
+	<DIV class=largeItem id=cmdSetBullets>Set Bullet Style...</DIV>
+	<DIV class=separator id=separator31></DIV>
+	<DIV class=largeItem id=cmdChangeMaster>Change Master...</DIV>
+	<DIV class=largeItem id=cmdRevert>Revert to Master Styles</DIV>
+</DIV>
+<DIV class=largeList id=insertList>
+	<DIV class=largeItem id=cmdInsertStockQuote>Stock Quote</DIV>
+	<DIV class=largeItem id=cmdInsertPicture>Picture...</DIV>
+	<DIV class=separator id=separator40></DIV>
+	<DIV class=largeItem id=cmdInsertTextBox>Text Box</DIV>
+	<DIV class=largeItem id=cmdInsertBody>Bullet Item List</DIV>
+	<DIV class=largeItem id=cmdInsertTitle>Title Frame</DIV>
+	<DIV class=separator id=separator41></DIV>
+	<DIV class=largeItem id=cmdInsertHLine>Horizontal Line</DIV>
+	<DIV class=largeItem id=cmdInsertVLine>Vertical Line</DIV>
+	<DIV class=largeItem id=cmdInsertRectangle>Rectangle</DIV>
+	<DIV class=separator id=separator42></DIV>
+	<DIV class=largeItem id=cmdInsertGrid>Spreadsheet...</DIV>
+</DIV>
+<DIV class=largeList id=toolsList>
+	<DIV class=largeItem id=cmdBuzzword>Find buzzword</DIV>
+	<DIV class=largeItem id=cmdCliche>Find cliché</DIV>
+	<DIV class=largeItem id=cmdBullet>Bullet point gallery</DIV>
+	<DIV class=separator id=separator69></DIV>
+	<DIV class=largeItem id=cmdDictionary>Dictionary lookup...</DIV>
+	<DIV class=largeItem id=cmdThesaurus>Thesaurus lookup...</DIV>
+</DIV>
+<DIV class=largeList id=helpList>
+	<DIV class=largeItem id=cmdHelpContents>Contents...</DIV>
+	<DIV class=separator id=separator60></DIV>
+	<DIV class=largeItem id=cmdHelpIntroduction>Introduction</DIV>
+	<DIV class=largeItem id=cmdHelpBasics>Basics</DIV>
+	<DIV class=largeItem id=cmdHelpFiles>Files</DIV>
+	<DIV class=largeItem id=cmdHelpOutline>Using the outline</DIV>
+	<DIV class=largeItem id=cmdHelpSlideEditor>Using the slide editor</DIV>
+	<DIV class=largeItem id=cmdHelpInserting>Inserting elements</DIV>
+	<DIV class=largeItem id=cmdHelpEditing>Editing and formatting</DIV>
+	<DIV class=largeItem id=cmdHelpTools>Using tools</DIV>
+	<DIV class=largeItem id=cmdHelpMasters>Working with masters</DIV>
+	<DIV class=largeItem id=cmdHelpSlideshows>Slide sorting and slideshows</DIV>
+	<DIV class=largeItem id=cmdHelpSharing>Sharing presentations</DIV>
+	<DIV class=separator id=separator61></DIV>
+	<DIV class=largeItem id=cmdHelpMenuReference>Menu reference</DIV>
+	<DIV class=largeItem id=cmdHelpFunctionReference>Function reference</DIV>
+	<DIV class=separator id=separator62></DIV>
+	<DIV class=largeItem id=cmdBugReport>Report a bug</DIV>
+	<DIV class=largeItem id=cmdAbout>About...</DIV>
+</DIV>
+<DIV class=smallList id=fontList>
+	<DIV class=smallItem id=fontArial>Arial</DIV>
+	<DIV class=smallItem id=fontArialBlack>Arial Black</DIV>
+	<DIV class=smallItem id=fontBookman>Bookman Old Style</DIV>
+	<DIV class=smallItem id=fontCourier>Courier</DIV>
+	<DIV class=smallItem id=fontGaramond>Garamond</DIV>
+	<DIV class=smallItem id=fontConsole>Lucida Console</DIV>
+	<DIV class=smallItem id=fontSymbol>Symbol</DIV>
+	<DIV class=smallItem id=fontTahoma>Tahoma</DIV>
+	<DIV class=smallItem id=fontTimesNewRoman>Times New Roman</DIV>
+	<DIV class=smallItem id=fontTrebuchet>Trebuchet MS</DIV>
+	<DIV class=smallItem id=fontVerdana>Verdana</DIV>
+</DIV>
+<DIV class=smallList id=sizeList>
+	<DIV class=smallItem id=point10>10 pt</DIV>
+	<DIV class=smallItem id=point12>12 pt</DIV>
+	<DIV class=smallItem id=point14>14 pt</DIV>
+	<DIV class=smallItem id=point18>18 pt</DIV>
+	<DIV class=smallItem id=point24>24 pt</DIV>
+	<DIV class=smallItem id=point30>30 pt</DIV>
+	<DIV class=smallItem id=point36>36 pt</DIV>
+	<DIV class=smallItem id=point42>42 pt</DIV>
+	<DIV class=smallItem id=point48>48 pt</DIV>
+	<DIV class=smallItem id=point60>60 pt</DIV>
+	<DIV class=smallItem id=point72>72 pt</DIV>
+	<DIV class=smallItem id=point84>84 pt</DIV>
+	<DIV class=smallItem id=point96>96 pt</DIV>
+	<DIV class=smallItem id=point120>120 pt</DIV>
+</DIV>
+<DIV class=smallList id=fillColorList style="LEFT: 0px; WIDTH: 130px; TOP: 0px; HEIGHT: 122px; BACKGROUND-COLOR: lightgrey">
+<DIV class=colorheader style="LEFT: 2px; POSITION: absolute; TOP: 4px" value="clear">No Fill</DIV>
+<DIV style="LEFT: 0px; WIDTH: 128px; POSITION: absolute; TOP: 24px">
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 0px" value="#660000">
+<DIV class=swatch style="BACKGROUND-COLOR: #660000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 16px" value="#CC0000">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc0000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 32px" value="#FF0000">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff0000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 48px" value="#FF00FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff00ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 64px" value="#FF66CC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff66cc"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 80px" value="#FF99CC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff99cc"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 0px" value="#993300">
+<DIV class=swatch style="BACKGROUND-COLOR: #993300"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 16px" value="#FF6600">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff6600"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 32px" value="#FF9900">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff9900"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 48px" value="#FFCC00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc00"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 64px" value="#FFCC33">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc33"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 80px" value="#FFCC99">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc99"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 0px" value="#336600">
+<DIV class=swatch style="BACKGROUND-COLOR: #336600"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 16px" value="#999900">
+<DIV class=swatch style="BACKGROUND-COLOR: #999900"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 32px" value="#99CC00">
+<DIV class=swatch style="BACKGROUND-COLOR: #99cc00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 48px" value="#CCFF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 64px" value="#FFFF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 80px" value="#FFFF99">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffff99"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 0px" value="#006633">
+<DIV class=swatch style="BACKGROUND-COLOR: #006633"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 16px" value="#009900">
+<DIV class=swatch style="BACKGROUND-COLOR: #009900"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 32px" value="#339966">
+<DIV class=swatch style="BACKGROUND-COLOR: #339966"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 48px" value="#00FF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #00ff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 64px" value="#66FF66">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ff66"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 80px" value="#CCFFCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccffcc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 0px" value="#003366">
+<DIV class=swatch style="BACKGROUND-COLOR: #003366"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 16px" value="#009999">
+<DIV class=swatch style="BACKGROUND-COLOR: #009999"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 32px" value="#33CCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #33cccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 48px" value="#66CCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #66cccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 64px" value="#66FFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ffff"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 80px" value="#CCFFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccffff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 0px" value="#000099">
+<DIV class=swatch style="BACKGROUND-COLOR: #000099"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 16px" value="#0000FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #0000ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 32px" value="#3366FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #3366ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 48px" 
+value="#00CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #00ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 64px" 
+value="#66CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 80px" 
+value="#99CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #99ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 0px" 
+value="#333399">
+<DIV class=swatch style="BACKGROUND-COLOR: #333399"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 16px" 
+value="#663399">
+<DIV class=swatch style="BACKGROUND-COLOR: #663399"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 32px" 
+value="#990099">
+<DIV class=swatch style="BACKGROUND-COLOR: #990099"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 48px" 
+value="#CC6699">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc6699"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 64px" 
+value="#CC66FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc66ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 80px" 
+value="#CC99FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc99ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 0px" 
+value="#000000">
+<DIV class=swatch style="BACKGROUND-COLOR: #000000"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 16px" 
+value="#333333">
+<DIV class=swatch style="BACKGROUND-COLOR: #333333"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 32px" 
+value="#666666">
+<DIV class=swatch style="BACKGROUND-COLOR: #666666"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 48px" 
+value="#999999">
+<DIV class=swatch style="BACKGROUND-COLOR: #999999"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 64px" 
+value="#CCCCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #cccccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 80px" 
+value="#FFFFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffffff"></DIV></DIV></DIV></DIV>
+<DIV class=smallList id=lineColorList 
+style="LEFT: 0px; WIDTH: 130px; TOP: 0px; HEIGHT: 122px; BACKGROUND-COLOR: lightgrey">
+<DIV class=colorheader style="LEFT: 2px; POSITION: absolute; TOP: 4px" 
+value="transparent">No Line</DIV>
+<DIV style="LEFT: 0px; WIDTH: 128px; POSITION: absolute; TOP: 24px">
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 0px" 
+value="#660000">
+<DIV class=swatch style="BACKGROUND-COLOR: #660000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 16px" 
+value="#CC0000">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc0000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 32px" 
+value="#FF0000">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff0000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 48px" 
+value="#FF00FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff00ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 64px" 
+value="#FF66CC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff66cc"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 80px" 
+value="#FF99CC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff99cc"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 0px" 
+value="#993300">
+<DIV class=swatch style="BACKGROUND-COLOR: #993300"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 16px" 
+value="#FF6600">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff6600"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 32px" 
+value="#FF9900">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff9900"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 48px" 
+value="#FFCC00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc00"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 64px" 
+value="#FFCC33">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc33"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 80px" 
+value="#FFCC99">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc99"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 0px" 
+value="#336600">
+<DIV class=swatch style="BACKGROUND-COLOR: #336600"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 16px" 
+value="#999900">
+<DIV class=swatch style="BACKGROUND-COLOR: #999900"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 32px" 
+value="#99CC00">
+<DIV class=swatch style="BACKGROUND-COLOR: #99cc00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 48px" 
+value="#CCFF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 64px" 
+value="#FFFF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 80px" 
+value="#FFFF99">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffff99"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 0px" 
+value="#006633">
+<DIV class=swatch style="BACKGROUND-COLOR: #006633"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 16px" 
+value="#009900">
+<DIV class=swatch style="BACKGROUND-COLOR: #009900"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 32px" 
+value="#339966">
+<DIV class=swatch style="BACKGROUND-COLOR: #339966"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 48px" 
+value="#00FF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #00ff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 64px" 
+value="#66FF66">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ff66"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 80px" 
+value="#CCFFCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccffcc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 0px" 
+value="#003366">
+<DIV class=swatch style="BACKGROUND-COLOR: #003366"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 16px" 
+value="#009999">
+<DIV class=swatch style="BACKGROUND-COLOR: #009999"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 32px" 
+value="#33CCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #33cccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 48px" 
+value="#66CCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #66cccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 64px" 
+value="#66FFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ffff"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 80px" 
+value="#CCFFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccffff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 0px" 
+value="#000099">
+<DIV class=swatch style="BACKGROUND-COLOR: #000099"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 16px" 
+value="#0000FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #0000ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 32px" 
+value="#3366FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #3366ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 48px" 
+value="#00CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #00ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 64px" 
+value="#66CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 80px" 
+value="#99CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #99ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 0px" 
+value="#333399">
+<DIV class=swatch style="BACKGROUND-COLOR: #333399"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 16px" 
+value="#663399">
+<DIV class=swatch style="BACKGROUND-COLOR: #663399"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 32px" 
+value="#990099">
+<DIV class=swatch style="BACKGROUND-COLOR: #990099"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 48px" 
+value="#CC6699">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc6699"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 64px" 
+value="#CC66FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc66ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 80px" 
+value="#CC99FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc99ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 0px" 
+value="#000000">
+<DIV class=swatch style="BACKGROUND-COLOR: #000000"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 16px" 
+value="#333333">
+<DIV class=swatch style="BACKGROUND-COLOR: #333333"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 32px" 
+value="#666666">
+<DIV class=swatch style="BACKGROUND-COLOR: #666666"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 48px" 
+value="#999999">
+<DIV class=swatch style="BACKGROUND-COLOR: #999999"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 64px" 
+value="#CCCCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #cccccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 80px" 
+value="#FFFFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffffff"></DIV></DIV></DIV></DIV>
+<DIV class=smallList id=fontColorList 
+style="LEFT: 0px; WIDTH: 130px; TOP: 0px; HEIGHT: 122px; BACKGROUND-COLOR: lightgrey">
+<DIV class=colorheader style="LEFT: 2px; POSITION: absolute; TOP: 4px" 
+value="none">No Color</DIV>
+<DIV style="LEFT: 0px; WIDTH: 128px; POSITION: absolute; TOP: 24px">
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 0px" 
+value="#660000">
+<DIV class=swatch style="BACKGROUND-COLOR: #660000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 16px" 
+value="#CC0000">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc0000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 32px" 
+value="#FF0000">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff0000"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 48px" 
+value="#FF00FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff00ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 64px" 
+value="#FF66CC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff66cc"></DIV></DIV>
+<DIV class=holder style="LEFT: 0px; POSITION: absolute; TOP: 80px" 
+value="#FF99CC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff99cc"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 0px" 
+value="#993300">
+<DIV class=swatch style="BACKGROUND-COLOR: #993300"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 16px" 
+value="#FF6600">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff6600"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 32px" 
+value="#FF9900">
+<DIV class=swatch style="BACKGROUND-COLOR: #ff9900"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 48px" 
+value="#FFCC00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc00"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 64px" 
+value="#FFCC33">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc33"></DIV></DIV>
+<DIV class=holder style="LEFT: 16px; POSITION: absolute; TOP: 80px" 
+value="#FFCC99">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffcc99"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 0px" 
+value="#336600">
+<DIV class=swatch style="BACKGROUND-COLOR: #336600"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 16px" 
+value="#999900">
+<DIV class=swatch style="BACKGROUND-COLOR: #999900"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 32px" 
+value="#99CC00">
+<DIV class=swatch style="BACKGROUND-COLOR: #99cc00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 48px" 
+value="#CCFF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 64px" 
+value="#FFFF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 32px; POSITION: absolute; TOP: 80px" 
+value="#FFFF99">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffff99"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 0px" 
+value="#006633">
+<DIV class=swatch style="BACKGROUND-COLOR: #006633"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 16px" 
+value="#009900">
+<DIV class=swatch style="BACKGROUND-COLOR: #009900"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 32px" 
+value="#339966">
+<DIV class=swatch style="BACKGROUND-COLOR: #339966"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 48px" 
+value="#00FF00">
+<DIV class=swatch style="BACKGROUND-COLOR: #00ff00"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 64px" 
+value="#66FF66">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ff66"></DIV></DIV>
+<DIV class=holder style="LEFT: 48px; POSITION: absolute; TOP: 80px" 
+value="#CCFFCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccffcc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 0px" 
+value="#003366">
+<DIV class=swatch style="BACKGROUND-COLOR: #003366"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 16px" 
+value="#009999">
+<DIV class=swatch style="BACKGROUND-COLOR: #009999"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 32px" 
+value="#33CCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #33cccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 48px" 
+value="#66CCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #66cccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 64px" 
+value="#66FFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ffff"></DIV></DIV>
+<DIV class=holder style="LEFT: 64px; POSITION: absolute; TOP: 80px" 
+value="#CCFFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ccffff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 0px" 
+value="#000099">
+<DIV class=swatch style="BACKGROUND-COLOR: #000099"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 16px" 
+value="#0000FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #0000ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 32px" 
+value="#3366FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #3366ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 48px" 
+value="#00CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #00ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 64px" 
+value="#66CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #66ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 80px; POSITION: absolute; TOP: 80px" 
+value="#99CCFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #99ccff"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 0px" 
+value="#333399">
+<DIV class=swatch style="BACKGROUND-COLOR: #333399"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 16px" 
+value="#663399">
+<DIV class=swatch style="BACKGROUND-COLOR: #663399"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 32px" 
+value="#990099">
+<DIV class=swatch style="BACKGROUND-COLOR: #990099"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 48px" 
+value="#CC6699">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc6699"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 64px" 
+value="#CC66FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc66ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 96px; POSITION: absolute; TOP: 80px" 
+value="#CC99FF">
+<DIV class=swatch style="BACKGROUND-COLOR: #cc99ff"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 0px" 
+value="#000000">
+<DIV class=swatch style="BACKGROUND-COLOR: #000000"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 16px" 
+value="#333333">
+<DIV class=swatch style="BACKGROUND-COLOR: #333333"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 32px" 
+value="#666666">
+<DIV class=swatch style="BACKGROUND-COLOR: #666666"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 48px" 
+value="#999999">
+<DIV class=swatch style="BACKGROUND-COLOR: #999999"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 64px" 
+value="#CCCCCC">
+<DIV class=swatch style="BACKGROUND-COLOR: #cccccc"></DIV></DIV>
+<DIV class=holder style="LEFT: 112px; POSITION: absolute; TOP: 80px" 
+value="#FFFFFF">
+<DIV class=swatch style="BACKGROUND-COLOR: #ffffff"></DIV></DIV></DIV></DIV>
+<DIV class=smallList id=lineList 
+style="LEFT: 0px; WIDTH: 66px; TOP: 0px; HEIGHT: 156px">
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 0px; HEIGHT: 14px" 
+value="null/solid">
+<DIV class=sample 
+style="TOP: 7px; HEIGHT: 1px; BACKGROUND-COLOR: lightgrey"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 14px; HEIGHT: 14px" 
+value="1/solid">
+<DIV class=sample style="TOP: 7px; HEIGHT: 1px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 28px; HEIGHT: 14px" 
+value="2/solid">
+<DIV class=sample style="TOP: 7px; HEIGHT: 2px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 42px; HEIGHT: 14px" 
+value="3/solid">
+<DIV class=sample style="TOP: 6px; HEIGHT: 3px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 56px; HEIGHT: 14px" 
+value="4/solid">
+<DIV class=sample style="TOP: 6px; HEIGHT: 4px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 70px; HEIGHT: 14px" 
+value="5/solid">
+<DIV class=sample style="TOP: 5px; HEIGHT: 5px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 84px; HEIGHT: 14px" 
+value="6/solid">
+<DIV class=sample style="TOP: 5px; HEIGHT: 6px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 98px; HEIGHT: 14px" 
+value="7/solid">
+<DIV class=sample style="TOP: 4px; HEIGHT: 7px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 112px; HEIGHT: 14px" 
+value="8/solid">
+<DIV class=sample style="TOP: 4px; HEIGHT: 8px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 126px; HEIGHT: 14px" 
+value="9/solid">
+<DIV class=sample style="TOP: 3px; HEIGHT: 9px"></DIV></DIV>
+<DIV class=smallItem 
+style="WIDTH: 64px; POSITION: absolute; TOP: 140px; HEIGHT: 14px" 
+value="10/solid">
+<DIV class=sample style="TOP: 3px; HEIGHT: 10px"></DIV></DIV></DIV>
+<DIV class=modal id=modalDialog style="DISPLAY: none"></DIV>
+<DIV id=modalShield style="DISPLAY: none"></DIV>
+<DIV class=smallList id=popupMenuList style="WIDTH: 100px; HEIGHT: 1px"></DIV>
+<DIV class=largeList id=jumpList style="WIDTH: 200px"></DIV>
+<SCRIPT language=JavaScript>
+	includeProgressDialog.style.display = "none";
+        </SCRIPT>
+<!-- precache the icon2.gif to avoid IE bug -->
+<IFRAME id=resource0 style="DISPLAY: none" tabIndex=-1 src="images/icon2.gif"></IFRAME>
+<IFRAME id=resource1 style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=resource2 style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=resource3 style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=saveFrame style="DISPLAY: none" tabIndex=-1 src="saveframe.htm"></IFRAME>
+<IFRAME id=bugFrame style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=ssFrame0 style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=ssFrame1 style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=fileListResource style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+<IFRAME id=buzzwordResource style="DISPLAY: none" tabIndex=-1 src="about:blank"></IFRAME>
+</BODY>
+</HTML>

@@ -1,0 +1,166 @@
+/* /home/www/htdoc/css/static/pr_edit_ie.css */
+#cmdMoveForward {top: 142; left: 2;}
+#cmdSlideshow {top: 126; left: 2;}
+#toolsMenu {top: 0; left: 147; width:38; background-position: -264 0;}
+#cmdUndo {top: 2; left: 2;}
+#point30 {top: 82; left: 2;}
+#slideList {top: 0; left: 0; width: 140; height: 112;}
+#cmdBugReport {top: 238; left: 2;}
+#cmdCopy {top: 54; left: 2;}
+#insertList {top: 0; left: 0; width: 100; height: 164;}
+#point36 {top: 98; left: 2;}
+#separator30 {top: 34; left: 2;}
+#separator31 {top: 70; left: 2;}
+#fileMenu {top: 0; left: 0; width:33; background-position: -312 0;}
+#editMenu {top: 0; left: 33; width:33; background-position: -312 0;}
+#lineColorMenu {top: 0px; left: 552px; background-position: -888 0;}
+#cmdInsertRectangle {top: 122; left: 2;}
+#cmdHelpIntroduction {top: 22; left: 2;}
+#cmdInsertPicture {top: 18; left: 2;}
+#cmdClose {top: 34; left: 2;}
+#redo {top: 0px; left: 124px; background-position: -552 0;}
+#left {top: 0px; left: 676px; background-position: -312 0;}
+#point42 {top: 114; left: 2;}
+#fontCourier {top: 50; left: 2;}
+#separator40 {top: 34; left: 2;}
+#point48 {top: 130; left: 2;}
+#separator41 {top: 86; left: 2;}
+#separator42 {top: 138; left: 2;}
+#toolsSpot {top: 4; left: 153; width: 30;}
+#cmdDeleteSlide {top: 18; left: 2;}
+#cmdInsertHLine {top: 90; left: 2;}
+#fontBookman {top: 34; left: 2;}
+#right {top: 0px; left: 724px; background-position: -336 0;}
+#cmdHelpEditing {top: 118; left: 2;}
+#cmdSummary {top: 162; left: 2;}
+#cmdSave {top: 54; left: 2;}
+#fileSpot {top: 4; left: 6; width: 25;}
+#cmdInsertVLine {top: 106; left: 2;}
+#fontColorMenu {top: 0px; left: 576px; background-position: -912 0;}
+#editSpot {top: 4; left: 39; width: 25;}
+#toolsList {top: 0; left: 0; width: 130; height: 92;}
+#bug1 {top: 4; left: 324; width: 100;}
+#cmdHelpInserting {top: 102; left: 2;}
+#sizeMenu {top: 0; left: 376; width: 48;  		clip: rect( 0, 48, 24, 0 ); background-position: -120 0;}
+#cmdInsertBody {top: 54; left: 2;}
+#iconPalette {top: 26; left: 50;height: 24;visibility: visible;}
+#cmdBuzzword {top: 2; left: 2;}
+#cmdSetBullets {top: 54; left: 2;}
+#cmdClear {top: 106; left: 2;}
+#fileList {top: 0; left: 0; width: 160; height: 184;}
+#fontArialBlack {top: 18; left: 2;}
+#helpMenu {top: 0; left: 185; width:38; background-position: -264 0;}
+#cmdNew {top: 2; left: 2;}
+#fontArial {top: 2; left: 2;}
+#cmdHelpMenuReference {top: 202; left: 2;}
+#editList {top: 0; left: 0; width: 110; height: 180;}
+#cmdOpen {top: 18; left: 2;}
+#footPalette {top: 86; left: 0;height: 24;visibility: hidden;}
+#fontConsole {top: 82; left: 2;}
+#new {top: 0px; left: 0px; background-position: -0 0;}
+#fontMenu {top: 0; left: 252; width: 120;  		clip: rect( 0, 120, 24, 0 ); background-position: -0 0;}
+#btnEmail {top: 0px; left: 400px; background-position: -432 0;}
+#point60 {top: 146; left: 2;}
+#fontTahoma {top: 114; left: 2;}
+#fontColorMenuSpot {background-color: white;}
+#cmdHelpBasics {top: 38; left: 2;}
+#separator60 {top: 18; left: 2;}
+#fontVerdana {top: 162; left: 2;}
+#separator61 {top: 198; left: 2;}
+#separator62 {top: 234; left: 2;}
+#fillColorMenu {top: 0px; left: 528px; background-position: -864 0;}
+#separator69 {top: 50; left: 2;}
+#sizeSpot {top: 5; left: 381; height: 13; width: 28;}
+#ptsizeup {top: 0px; left: 424px; background-position: -1152 0;}
+#cmdHelpSharing {top: 182; left: 2;}
+#cmdRevert {top: 90; left: 2;}
+#helpSpot {top: 4; left: 191; width: 30;}
+#cmdInsertGrid {top: 142; left: 2;}
+#cmdPasteSpecial {top: 86; left: 2;}
+#point72 {top: 162; left: 2;}
+#undo {top: 0px; left: 100px; background-position: -528 0;}
+#italic {top: 0px; left: 476px; background-position: -240 0;}
+#sizeList {top: 0; left: 0; width: 48; height: 230;}
+#ptsizedown {top: 12px; left: 424px; background-position: -1176 0;}
+#menuDivision {top: 22; left: 50;height: 4;visibility: visible;}
+#copy {top: 0px; left: 176px; background-position: -120 0;}
+#point120 {top: 210; left: 2;}
+#fontSpot {top: 5; left: 257; height: 13; width: 100;}
+#lineMenu {top: 0; left: 600; width: 72;  		clip: rect( 0, 72, 24, 0 ); background-position: -408 0;}
+#footDivision {top: 82; left: 0;height: 4;visibility: hidden;}
+#cmdRedo {top: 18; left: 2;}
+#fontTimesNewRoman {top: 130; left: 2;}
+#fontGaramond {top: 66; left: 2;}
+#cmdCut {top: 38; left: 2;}
+#bold {top: 0px; left: 452px; background-position: -216 0;}
+#fillColorMenuSpot {background-color: white;}
+#helpList {top: 0; left: 0; width: 165; height: 276;}
+#underline {top: 0px; left: 500px; background-position: -264 0;}
+#cmdMoveBackward {top: 158; left: 2;}
+#cmdDictionary {top: 54; left: 2;}
+#cmdHelpContents {top: 2; left: 2;}
+#cut {top: 0px; left: 152px; background-position: -96 0;}
+#iconDivision {top: 50; left: 0;height: 4;visibility: visible;}
+#cmdAbout {top: 254; left: 2;}
+#cmdPaste {top: 70; left: 2;}
+#cmdHelpFunctionReference {top: 218; left: 2;}
+#fontList {top: 0; left: 0; width: 114; height: 182;}
+#cmdImportSlides {top: 90; left: 2;}
+#btnBugs {top: 0px; left: 300px; background-position: -936 0;}
+#point84 {top: 178; left: 2;}
+#paste {top: 0px; left: 200px; background-position: -144 0;}
+#cmdSetBackground {top: 38; left: 2;}
+#center {top: 0px; left: 700px; background-position: -360 0;}
+#cmdHelpSlideshows {top: 166; left: 2;}
+#lineColorMenuSpot {background-color: white;}
+#menuPalette {top: 0; left: 50;height: 22;visibility: visible;}
+#slideMenu {top: 0; left: 66; width:38; background-position: -264 0;}
+#cmdImportPowerPoint {top: 106; left: 2;}
+#cmdChangeMaster {top: 74; left: 2;}
+#insertMenu {top: 0; left: 104; width:43; background-position: -216 0;}
+#point10 {top: 2; left: 2;}
+#cmdInsertTitle {top: 70; left: 2;}
+#point12 {top: 18; left: 2;}
+#fontSymbol {top: 98; left: 2;}
+#lineSpot {top: 5; left: 605; height: 13; width: 52;}
+#point14 {top: 34; left: 2;}
+#save {top: 0px; left: 48px; background-position: -48 0;}
+#cmdNewSlide {top: 2; left: 2;}
+#point18 {top: 50; left: 2;}
+#separator11 {top: 50; left: 2;}
+#separator12 {top: 86; left: 2;}
+#separator14 {top: 122; left: 2;}
+#cmdSaveAs {top: 70; left: 2;}
+#separator15 {top: 142; left: 2;}
+#point96 {top: 194; left: 2;}
+#cmdInsertStockQuote {top: 2; left: 2;}
+#cmdCliche {top: 18; left: 2;}
+#cmdBullet {top: 34; left: 2;}
+#cmdPrint {top: 146; left: 2;}
+#em1 {top: 4; left: 424; width: 150;}
+#format {top: 0px; left: 224px; background-position: -168 0;}
+#print {top: 0px; left: 72px; background-position: -72 0;}
+#cmdHelpTools {top: 134; left: 2;}
+#cmdDuplicate {top: 122; left: 2;}
+#point24 {top: 66; left: 2;}
+#cmdHelpFiles {top: 54; left: 2;}
+#open {top: 0px; left: 24px; background-position: -24 0;}
+#separator20 {top: 34; left: 2;}
+#separator21 {top: 102; left: 2;}
+#separator22 {top: 138; left: 2;}
+#cmdHelpSlideEditor {top: 86; left: 2;}
+#break1 {top: 1; left: 96;}
+#break2 {top: 1; left: 148;}
+#slideSpot {top: 4; left: 72; width: 30;}
+#cmdInsertTextBox {top: 38; left: 2;}
+#break3 {top: 1; left: 248;}
+#cmdThesaurus {top: 70; left: 2;}
+#break4 {top: 1; left: 372;}
+#break5 {top: 1; left: 448;}
+#break6 {top: 1; left: 524;}
+#insertSpot {top: 4; left: 110; width: 35;}
+#cmdHelpMasters {top: 150; left: 2;}
+#break7 {top: 1; left: 672;}
+#fontTrebuchet {top: 146; left: 2;}
+#break8 {top: 1; left: 748;}
+#cmdHelpOutline {top: 70; left: 2;}

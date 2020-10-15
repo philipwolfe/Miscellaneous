@@ -1,0 +1,523 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0072)http://www.blox.com/open?topdiv=0&promo=0&id=000f4502_93d4&new=ss&mode=d -->
+<HTML><HEAD><TITLE>Breakeven analysis - Blox.com Spreadsheet</TITLE>
+<META http-equiv=content-type content="text/html; charset=utf-8"><LINK 
+href="Breakeven analysis - Blox_com Spreadsheet_files/design_mode_ie_294536544.css" 
+type=text/css rel=stylesheet><LINK 
+href="Breakeven analysis - Blox_com Spreadsheet_files/spreadsheet_ie4_c96cba47.cssx" 
+type=text/css rel=stylesheet><LINK 
+href="Breakeven analysis - Blox_com Spreadsheet_files/spreadsheet_ie4_blox.css" 
+type=text/css rel=stylesheet>
+<STYLE type=text/css></STYLE>
+
+<SCRIPT language=JavaScript>
+
+		var kTotalJSIncludes = 17;
+		var gNumJSIncludesLoaded = 0;
+		var gMaximumCellCount = 3500;
+		var gAppLocale = 'en';
+		var gEntryLocale	= 'en';
+		var knoEmailBtn = 0;	
+ 		if (knoEmailBtn)
+			suppressElements(['btnEmail','em1']);
+		// knoSaveAs variable - used to dynamically create the file menu.
+		var knoSaveAs = 0;
+		function JSIncludeDoneLoading()
+		{
+			gNumJSIncludesLoaded++;
+			includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+		}
+			
+		// creates stylesheet rules to suppress the specified elements
+		function suppressElements(elemIdArray) {
+			if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+			for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+		}
+	</SCRIPT>
+
+<SCRIPT language=JavaScript>
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY class=body oncontextmenu="return handleContextMenuEvent(window)" 
+onresize=resizeDocument() 
+onbeforeunload="if(typeof unloadDocument != 'undefined')unloadDocument()" 
+scroll=no onload=loadDocument() 
+onunload="if(typeof unloadDocument != 'undefined')unloadDocument()"><SPAN 
+class=view id=view style="WIDTH: 100%; HEIGHT: 100%"><!-- later write the contents of this span --></SPAN>
+<SCRIPT language=JavaScript>
+
+			var content = '<div class="modalLabel">Please wait a moment (the first time you use the Spreadsheet this may take a little longer).</div>'
+			+ '<div class="modalProgressBar">'
+			+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+			+ '</div></div>';
+
+			var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+			+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+			+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+			+ '<tr valign="middle">'
+			+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+			+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Spreadsheet</span></td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td bgcolor="#999999"><br></td>'
+			+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+			+ '</tr>'
+			+ '</table>'
+			+ '</div></tr></td></table>';
+
+			document.write(progressDialog);
+
+		</SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+			// global mode flag (can be "design", "view", or "embed")
+			var kMode = "design";
+			var gInitDirtyCells = "";
+			var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+			var gRowCount, gColumnCount, gOwnerId=0, gAppId='',gAppDescription='';
+			var gImported = 0;
+			var gAppVersion = 1.0;
+			var gAppAuthor = 'ss';
+			var gMacroText = '';
+			var gPartnerMenu = null;
+			var gPopupMenu = null;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var gIsMatterhorn = false;
+			var gDocumentTitleBase = " - Blox.com Spreadsheet";
+
+			// relative to the root url (which includes a trailing slash):
+			var gOpenScript = "open";
+			var gSaveScript = "savebraincell";
+			var gSaveLifeboat = "lifeboat";
+			var gMyFilesScript = "myfiles";
+			var gExportExcelScript = "xls_convert";
+			var gImportExcelScript = "xls_upload";
+			var gSendMailScript = "email";
+			var gFileSummaryScript = "file_summary";
+			var gRatingScript = "rating"; // for completeness
+			var kImageDirectory = "img/";
+			var kServletPrefix = "";
+			var gPrintCSS = "css/calculator_ie4.css";
+
+			// relative to the root url (which includes a trailing slash):
+			var gCloseBoxFile = "modalclosebox_ie.html";
+			var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+			var gMacroFrameFile = "macroframe";  // NOTE reference to same string in IFRAME below!
+												  // included for completeness & future compatibility with AlphaBlox
+
+
+			//
+gColumnCount = 4;gRowCount = 21;
+
+
+			function GetColumnWidthsAndHeights(widths, heights)
+			{
+				//
+widths[1] = 327;
+widths[2] = 186;
+widths[3] = 79;
+heights[2] = 18;
+heights[5] = 34;
+heights[6] = 51;
+heights[7] = 18;
+heights[9] = 18;
+heights[11] = 34;
+heights[12] = 35;
+heights[13] = 18;
+heights[20] = 18;
+
+			}
+
+			// after this comment, we add //init cells
+gAppId='000f4502_93d4';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Breakeven analysis';
+var gCellDataArray=[{entry:'Breakeven Analysis',viewSize:'12 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:1,m_col:1,i_nr:'Breakeven Analysis'},
+{_borderBottom:'solid black 1px',_fontStyle:'italic',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:2,m_col:1},
+{_borderBottom:'solid black 1px',viewFamily:'Verdana',m_row:2,m_col:2},
+{_borderBottom:'solid black 1px',m_row:2,m_col:3},
+{_borderRight:'solid black 1px',m_row:3,m_col:0},
+{entry:'The price of each unit on the market',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:3,m_col:1,i_nr:'The price of each unit on the market'},
+{entry:'Unit Selling Price',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',_borderRight:'solid black 1pt',viewFamily:'Verdana',_textAlign:'left',m_row:3,m_col:2,i_nr:'Unit Selling Price'},
+{entry:'90',dynamic:'90',derived:'90',
+i_tb:'[e[10][3],e[14][3]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',foreColor:'maroon',m_row:3,m_col:3,i_nr:'$90.00'},
+{_borderRight:'solid black 1px',m_row:4,m_col:0},
+{entry:'The cost to produce each individual product',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:4,m_col:1,i_nr:'The cost to produce each individual product'},
+{entry:'Unit Variable Cost',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',_borderRight:'solid black 1pt',viewFamily:'Verdana',_textAlign:'left',m_row:4,m_col:2,i_nr:'Unit Variable Cost'},
+{entry:'20',dynamic:'20',derived:'20',
+i_tb:'[e[10][3],e[15][3]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',foreColor:'maroon',m_row:4,m_col:3,i_nr:'$20.00'},
+{_borderRight:'solid black 1px',m_row:5,m_col:0},
+{entry:'Total costs of production not included in variable costs: like rent, overhead, insurance, etc.',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:5,m_col:1,i_nr:'Total costs of production not included in variable costs: like rent, overhead, insurance, etc.'},
+{entry:'Total Fixed Costs',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',_borderRight:'solid black 1pt',viewFamily:'Verdana',_textAlign:'left',m_row:5,m_col:2,i_nr:'Total Fixed Costs'},
+{entry:'14000',dynamic:'14000',derived:'14000',
+i_tb:'[e[17][3],e[11][3],e[12][3]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',foreColor:'maroon',m_row:5,m_col:3,i_nr:'$14,000.00'},
+{_borderRight:'solid black 1px',m_row:6,m_col:0},
+{entry:'Do you have a target income in mind? If you just want to break-even and aren\'t looking for a profit, enter $0 here.',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:6,m_col:1,i_nr:'Do you have a target income in mind? If you just want to break-even and aren\'t looking for a profit, enter $0 here.'},
+{entry:'Target Operating Income?',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',_borderRight:'solid black 1px',viewFamily:'Verdana',_textAlign:'left',m_row:6,m_col:2,i_nr:'Target Operating Income?'},
+{entry:'7000',dynamic:'7000',derived:'7000',
+i_tb:'[e[12][1],e[12][3]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',foreColor:'maroon',m_row:6,m_col:3,i_nr:'$7,000.00'},
+{_borderRight:'solid black 1px',m_row:7,m_col:0},
+{entry:'Are you paying taxes on your income?',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:7,m_col:1,i_nr:'Are you paying taxes on your income?'},
+{entry:'Tax Rate',_borderBottom:'solid black 2px',viewSize:'9 pt',foreColor:'navy',_borderRight:'solid black 1pt',viewFamily:'Verdana',_textAlign:'left',m_row:7,m_col:2,i_nr:'Tax Rate'},
+{entry:'.05',dynamic:'0.05',derived:'0.05',
+i_tb:'[e[19][3]]',_borderBottom:'solid black 2px',locked:'false',viewFormat:'percentage',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',foreColor:'maroon',m_row:7,m_col:3,i_nr:'5%'},
+{_borderBottom:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',viewSize:'9 pt',m_row:8,m_col:2},
+{_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9 pt',_textAlign:'left',m_row:8,m_col:3},
+{_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_wrapText:'true',_fontStyle:'normal',m_row:9,m_col:1},
+{entry:'RESULTS:',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'navy',foreColor:'white',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:9,m_col:2,i_nr:'RESULTS:'},
+{_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'navy',foreColor:'white',_borderRight:'solid black 1px',m_row:9,m_col:3},
+{_borderRight:'solid black 1px',m_row:10,m_col:0},
+{entry:'Profit generated from a single product',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:10,m_col:1,i_nr:'Profit generated from a single product'},
+{entry:'Unit Contribution Margin:',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:10,m_col:2,i_nr:'Unit Contribution Margin:'},
+{entry:'=IF(ISBLANK(	C3	),"",IF(ISBLANK(	C4	),"",	C3	-	C4	))',dynamic:'(__isblank(_cel(	\'r3c3s0\'	))?\'\':(__isblank(_cel(	\'r4c3s0\'	))?\'\':_sub(_cel(	\'r3c3s0\'	),_cel(	\'r4c3s0\'	))))',derived:'70',
+i_tb:'[e[11][3],e[12][3]]',
+i_rt:'[e[3][3],e[4][3]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:10,m_col:3,i_nr:'$70.00'},
+{_borderRight:'solid black 1px',m_row:11,m_col:0},
+{entry:'Number of units which need to be sold to generate a total profit of $0',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:11,m_col:1,i_nr:'Number of units which need to be sold to generate a total profit of $0'},
+{entry:'Breakeven Quantity:',_borderBottom:'solid black 1px',viewSize:'9 pt',_fontStyle:'normal',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:11,m_col:2,i_nr:'Breakeven Quantity:'},
+{entry:'=IF(ISBLANK(	C10	),"",IF(	C10	=0,"",IF(	C10	="","",	C5	/	C10	)))',dynamic:'(__isblank(_cel(	\'r10c3s0\'	))?\'\':(_eqr(_cel(	\'r10c3s0\'	),0)?\'\':(_eqr(_cel(	\'r10c3s0\'	),\'\')?\'\':_div(_cel(	\'r5c3s0\'	),_cel(	\'r10c3s0\'	)))))',derived:'200',
+i_rt:'[e[10][3],e[5][3]]',_borderBottom:'solid black 1px',viewFormat:'comma',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:11,m_col:3,i_nr:'200'},
+{_borderRight:'solid black 1px',m_row:12,m_col:0},
+{entry:'="Number of units which need to be sold to generate the target operating income of $"&	C6	',dynamic:'_concat(\'Number of units which need to be sold to generate the target operating income of $\',_cel(	\'r6c3s0\'	))',derived:'Number of units which need to be sold to generate the target operating income of $7000',
+i_rt:'[e[6][3]]',_fontStyle:'normal',bk_color:'silver',foreColor:'navy',_textAlign:'left',_borderBottom:'solid black 1px',viewSize:'9 pt',_borderRight:'solid black 1px',viewFamily:'Verdana',_wrapText:'true',m_row:12,m_col:1,i_nr:'Number of units which need to be sold to generate the target operating income of $7000'},
+{entry:'Quantity to achieve TOI:',_borderBottom:'solid black 2px',viewSize:'9 pt',_fontStyle:'normal',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:12,m_col:2,i_nr:'Quantity to achieve TOI:'},
+{entry:'=IF(ISBLANK(	C10	),"",IF(	C10	=0,"",IF(	C10	="","",(	C5	+	C6	)/	C10	)))',dynamic:'(__isblank(_cel(	\'r10c3s0\'	))?\'\':(_eqr(_cel(	\'r10c3s0\'	),0)?\'\':(_eqr(_cel(	\'r10c3s0\'	),\'\')?\'\':_div(_add(_cel(	\'r5c3s0\'	),_cel(	\'r6c3s0\'	)),_cel(	\'r10c3s0\'	)))))',derived:'300',
+i_tb:'[e[14][3],e[15][3]]',
+i_rt:'[e[10][3],e[5][3],e[6][3]]',_borderBottom:'solid black 2px',viewFormat:'comma',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:12,m_col:3,i_nr:'300'},
+{_borderBottom:'solid black 1pt',viewSize:'9 pt',_fontStyle:'normal',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:13,m_col:1},
+{_borderBottom:'solid black 1pt',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',m_row:13,m_col:2},
+{_borderBottom:'solid black 1pt',_fontWeight:'normal',viewSize:'9 pt',m_row:13,m_col:3},
+{_borderRight:'solid black 1pt',m_row:14,m_col:0},
+{entry:'Total Revenues generated',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:14,m_col:1,i_nr:'Total Revenues generated'},
+{entry:'Revenues',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:14,m_col:2,i_nr:'Revenues'},
+{entry:'=IF(	C12	="","",	C12	*	C3	)',dynamic:'(_eqr(_cel(	\'r12c3s0\'	),\'\')?\'\':_mul(_cel(	\'r12c3s0\'	),_cel(	\'r3c3s0\'	)))',derived:'27000',
+i_tb:'[e[16][3]]',
+i_rt:'[e[12][3],e[3][3]]',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:14,m_col:3,i_nr:'$27,000.00'},
+{_borderRight:'solid black 1pt',m_row:15,m_col:0},
+{entry:'Total Variable Costs of Production',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:15,m_col:1,i_nr:'Total Variable Costs of Production'},
+{entry:'Variable Costs',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:15,m_col:2,i_nr:'Variable Costs'},
+{entry:'=IF(	C12	="","",	C12	*	C4	)',dynamic:'(_eqr(_cel(	\'r12c3s0\'	),\'\')?\'\':_mul(_cel(	\'r12c3s0\'	),_cel(	\'r4c3s0\'	)))',derived:'6000',
+i_tb:'[e[16][3]]',
+i_rt:'[e[12][3],e[4][3]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:15,m_col:3,i_nr:'$6,000.00'},
+{_borderRight:'solid black 1pt',m_row:16,m_col:0},
+{entry:'Revenues - Variable Costs',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:16,m_col:1,i_nr:'Revenues - Variable Costs'},
+{entry:'Contribution Margin',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:16,m_col:2,i_nr:'Contribution Margin'},
+{entry:'=IF(	C14	="","",IF(	C15	="","",	C14	-	C15	))',dynamic:'(_eqr(_cel(	\'r14c3s0\'	),\'\')?\'\':(_eqr(_cel(	\'r15c3s0\'	),\'\')?\'\':_sub(_cel(	\'r14c3s0\'	),_cel(	\'r15c3s0\'	))))',derived:'21000',
+i_tb:'[e[18][3]]',
+i_rt:'[e[14][3],e[15][3]]',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:16,m_col:3,i_nr:'$21,000.00'},
+{_borderRight:'solid black 1pt',m_row:17,m_col:0},
+{entry:'Total Fixed Costs of Production',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:17,m_col:1,i_nr:'Total Fixed Costs of Production'},
+{entry:'Fixed Costs',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:17,m_col:2,i_nr:'Fixed Costs'},
+{entry:'=	C5	',dynamic:'_cel(	\'r5c3s0\'	)',derived:'14000',
+i_tb:'[e[18][3]]',
+i_rt:'[e[5][3]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:17,m_col:3,i_nr:'$14,000.00'},
+{_borderRight:'solid black 1pt',m_row:18,m_col:0},
+{entry:'Contribution Margin - Fixed Costs',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:18,m_col:1,i_nr:'Contribution Margin - Fixed Costs'},
+{entry:'Operating Income',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:18,m_col:2,i_nr:'Operating Income'},
+{entry:'=IF(	C16	="","",IF(	C17	="","",	C16	-	C17	))',dynamic:'(_eqr(_cel(	\'r16c3s0\'	),\'\')?\'\':(_eqr(_cel(	\'r17c3s0\'	),\'\')?\'\':_sub(_cel(	\'r16c3s0\'	),_cel(	\'r17c3s0\'	))))',derived:'7000',
+i_tb:'[e[19][3],e[20][3]]',
+i_rt:'[e[16][3],e[17][3]]',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:18,m_col:3,i_nr:'$7,000.00'},
+{_borderRight:'solid black 1pt',m_row:19,m_col:0},
+{entry:'Taxes on Operating Income',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:19,m_col:1,i_nr:'Taxes on Operating Income'},
+{entry:'Income Taxes',_borderBottom:'solid black 1px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'normal',_textAlign:'left',m_row:19,m_col:2,i_nr:'Income Taxes'},
+{entry:'=IF(	C18	="","",IF(	C7	="","",	C18	*	C7	))',dynamic:'(_eqr(_cel(	\'r18c3s0\'	),\'\')?\'\':(_eqr(_cel(	\'r7c3s0\'	),\'\')?\'\':_mul(_cel(	\'r18c3s0\'	),_cel(	\'r7c3s0\'	))))',derived:'350',
+i_tb:'[e[20][3]]',
+i_rt:'[e[18][3],e[7][3]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:19,m_col:3,i_nr:'$350.00'},
+{_borderRight:'solid black 1pt',m_row:20,m_col:0},
+{entry:'Net Income',_borderBottom:'solid black 2px',viewSize:'9 pt',_fontStyle:'normal',bk_color:'silver',_borderRight:'solid black 1px',foreColor:'navy',viewFamily:'Verdana',_wrapText:'true',_textAlign:'left',m_row:20,m_col:1,i_nr:'Net Income'},
+{entry:'Net Income',_borderBottom:'solid black 2px',viewSize:'9 pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:20,m_col:2,i_nr:'Net Income'},
+{entry:'=IF(	C18	="","",IF(	C19	="","",	C18	-	C19	))',dynamic:'(_eqr(_cel(	\'r18c3s0\'	),\'\')?\'\':(_eqr(_cel(	\'r19c3s0\'	),\'\')?\'\':_sub(_cel(	\'r18c3s0\'	),_cel(	\'r19c3s0\'	))))',derived:'6650',
+i_rt:'[e[18][3],e[19][3]]',_borderBottom:'solid black 2px',viewFormat:'currency_2',viewSize:'9 pt',_widthClue:'75',_borderRight:'solid black 1px',_fontWeight:'bold',m_row:20,m_col:3,i_nr:'$6,650.00'}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+		</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/unicodeCharMap_ie_667e49f7.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/strings_en_2491480284.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/locale_ie_0d14744b.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/utility_ie_dbd756c4.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/dialog_ie_8cee673f.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/gui_ie_cd85eb87.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/document_ie_29b378dd.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/browser_detect_ie_b85f83d9.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/cookie_ie_0645e3cf.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/spreadsheet_ie_13a32214.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/rows_columns_ie_9e967a68.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/interface_spreadsheet_ie_27500a8d.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/runtime_ie_e7eb4a54.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/cell_ie_b1477f2e.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/compiler_ie_808fdc64.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/platform_ie_bb68a125.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Breakeven analysis - Blox_com Spreadsheet_files/resource_ie_66434373.jsx"></SCRIPT>
+
+<DIV class=bulbLogo id=bulbLogo>
+<DIV class=break id=break2 
+style="LEFT: 47px; BACKGROUND-REPEAT: repeat-y; POSITION: absolute; TOP: 1px; HEIGHT: 50px"></DIV></DIV>
+<DIV class=palette id=menuPalette>
+<DIV class=largeMenu id=fileMenu>File</DIV>
+<DIV class=largeMenu id=editMenu>Edit</DIV>
+<DIV class=largeMenu id=toolsMenu>Tools</DIV>
+<DIV class=largeMenu id=formatMenu>Format</DIV>
+<DIV class=largeMenu id=helpMenu>Help</DIV>
+<DIV class=largeMenu id=partnerMenu></DIV>
+<DIV class=button id=btnEmail title=Email></DIV>
+<DIV class=buttonText id=em1>email this page</DIV></DIV>
+<DIV class=division id=menuDivision></DIV>
+<DIV class=palette id=iconPalette>
+<DIV class=button id=new title="New File"></DIV>
+<DIV class=button id=open title="Open File"></DIV>
+<DIV class=button id=save title="Save File"></DIV>
+<DIV class=button id=print title=Print></DIV>
+<DIV class=break id=break1></DIV>
+<DIV class=button id=cut title="Cut Cells"></DIV>
+<DIV class=button id=copy title="Copy Cells"></DIV>
+<DIV class=button id=paste title="Paste Cells"></DIV>
+<DIV class=button id=format title="Copy Format of Selected Cells"></DIV>
+<DIV class=break id=break2></DIV>
+<DIV class=button id=sum title="Automatic Sum"></DIV>
+<DIV class=break id=break3></DIV>
+<DIV class=smallMenu id=fontMenu></DIV><INPUT class=comboBox id=fontSpot 
+onblur=fontSpot.hasFocus=0 tabIndex=-1 hasFocus="0"> 
+<DIV class=break id=break4></DIV>
+<DIV class=smallMenu id=sizeMenu></DIV><INPUT class=comboBox id=sizeSpot 
+onblur=sizeSpot.hasFocus=0 tabIndex=-1 hasFocus="0"> 
+<DIV class=break id=break5></DIV>
+<DIV class=button id=bold title=Bold></DIV>
+<DIV class=button id=italic title=Italic></DIV>
+<DIV class=button id=underline title=Underline></DIV>
+<DIV class=break id=break6></DIV>
+<DIV class=buttonMenu id=backgroundColorMenu title="Background Color">
+<DIV class=colorSpot id=backgroundColorMenuSpot></DIV></DIV>
+<DIV class=buttonMenu id=textColorMenu title="Text Color">
+<DIV class=colorSpot id=textColorMenuSpot></DIV></DIV>
+<DIV class=button id=borderMenu title="Cell border"></DIV>
+<DIV class=break id=break7></DIV>
+<DIV class=button id=left title="Align Left"></DIV>
+<DIV class=button id=center title=Center></DIV>
+<DIV class=button id=right title="Align Right"></DIV>
+<DIV class=break id=break8></DIV></DIV>
+<DIV class=division id=iconDivision></DIV>
+<DIV class=palette id=editPalette>
+<DIV class=label id=label 
+style="LEFT: 4px; WIDTH: 40px; POSITION: absolute; TOP: 4px; HEIGHT: 15px">A1</DIV>
+<DIV class=smallMenu id=functionMenu></DIV>
+<DIV class=smallSpot id=functionSpot>f(x)</DIV>
+<DIV class=button id=accept title=Accept></DIV>
+<DIV class=button id=cancel title=Cancel></DIV>
+<DIV class=button id=btnRevert title="Revert Override"></DIV>
+<DIV class=button id=btnOverride 
+title="Show Formula (double-click to lock)"></DIV>
+<DIV id=entryHolder 
+style="Z-INDEX: 100; LEFT: 150px; POSITION: absolute; TOP: -1px; HEIGHT: 22px">
+<FORM name=entryForm onsubmit="return false"><TEXTAREA oncut=cutDocument() onpaste=pasteDocument() id=entry onkeydown="return keyDownDocument()" onblur=gEntryClickFocused=0 onkeyup="return keyUpDocument()" style="FONT-SIZE: 10pt; OVERFLOW: hidden; WIDTH: 100%; FONT-FAMILY: arial, helvetica, sans-serif; HEIGHT: 22px" tabIndex=-1 name=entry></TEXTAREA></FORM></DIV></DIV>
+<DIV class=division id=editDivision></DIV>
+<DIV class=palette id=previewPalette>
+<DIV class=bulbLogoSmall></DIV>
+<DIV class=break id=break10></DIV>
+<DIV class=palette id=previewHolder><INPUT class=inputButton id=btnEndPreview title="Return to Spreadsheet mode" onclick=ExitPreview() type=button value="Exit Preview"> 
+
+<DIV class=break id=break11></DIV>
+<DIV class=buttonText id=previewClue>Click on a cell to toggle it from editable 
+to non-editable</DIV></DIV></DIV>
+<DIV class=division id=footDivision></DIV>
+<DIV class=palette id=footPalette>
+<DIV id=copyrightText 
+style="PADDING-LEFT: 10px; CURSOR: default; PADDING-TOP: 4px">Copyright © 
+1999-2001 <A onfocus=this.blur() tabIndex=-1 href="http://www.alphablox.com/" 
+target=_blank>AlphaBlox Corporation.</A> All rights reserved.</DIV></DIV>
+<DIV class=largeList id=fileList></DIV>
+<DIV class=largeList id=editList>
+<DIV class=largeItem id=cmdCut>Cut</DIV>
+<DIV class=largeItem id=cmdCopy>Copy</DIV>
+<DIV class=largeItem id=cmdPaste>Paste</DIV>
+<DIV class=largeItem id=cmdPasteSpecial>Paste Values</DIV>
+<DIV class=largeItem id=cmdClear>Clear</DIV>
+<DIV class=separator id=separator20></DIV>
+<DIV class=largeItem id=cmdFillDown>Fill Down</DIV>
+<DIV class=largeItem id=cmdFillRight>Fill Right</DIV>
+<DIV class=separator id=separator21></DIV>
+<DIV class=largeItem id=cmdMacros>Macros...</DIV></DIV>
+<DIV class=largeList id=toolsList>
+<DIV class=largeItem id=cmdInsertRow>Insert Row</DIV>
+<DIV class=largeItem id=cmdInsertColumn>Insert Column</DIV>
+<DIV class=largeItem id=cmdDeleteRow>Delete Row</DIV>
+<DIV class=largeItem id=cmdDeleteColumn>Delete Column</DIV>
+<DIV class=separator id=separator30></DIV>
+<DIV class=largeItem id=cmdFitRow>Autofit Row</DIV>
+<DIV class=largeItem id=cmdFitColumn>Autofit Column</DIV>
+<DIV class=separator id=separator31></DIV>
+<DIV class=largeItem id=cmdRowHeight>Row Height...</DIV>
+<DIV class=largeItem id=cmdColumnWidth>Column Width...</DIV>
+<DIV class=separator id=separator32></DIV>
+<DIV class=largeItem id=cmdSortAscending>Sort Ascending</DIV>
+<DIV class=largeItem id=cmdSortDescending>Sort Descending</DIV>
+<DIV class=separator id=separator33></DIV>
+<DIV class=largeItem id=cmdToggleGrid>Hide Grid</DIV>
+<DIV class=separator id=separator34></DIV>
+<DIV class=largeItem id=cmdPreview>Calculator Preview</DIV></DIV>
+<DIV class=largeList id=formatList>
+<DIV class=largeItem id=cmdGeneral>General</DIV></DIV>
+<DIV class=largeList id=helpList>
+<DIV class=largeItem id=cmdContents>Contents...</DIV>
+<DIV class=separator id=separator60></DIV>
+<DIV class=largeItem id=cmdIntroduction>Introduction</DIV>
+<DIV class=largeItem id=cmdBasics>Basics</DIV>
+<DIV class=largeItem id=cmdFiles>Files</DIV>
+<DIV class=largeItem id=cmdNavigating>Navigating</DIV>
+<DIV class=largeItem id=cmdEditing>Editing</DIV>
+<DIV class=largeItem id=cmdFormatting>Formatting</DIV>
+<DIV class=largeItem id=cmdCalculators>Calculators</DIV>
+<DIV class=largeItem id=cmdMacrosHelp>Macros</DIV>
+<DIV class=separator id=separator61></DIV>
+<DIV class=largeItem id=cmdMenuReference>Menu reference</DIV>
+<DIV class=largeItem id=cmdFunctionReference>Function reference</DIV>
+<DIV class=separator id=separator62></DIV>
+<DIV class=largeItem id=cmdBugReport>Report a bug</DIV>
+<DIV class=largeItem id=cmdAbout>About...</DIV></DIV>
+<DIV class=largeList id=partnerList></DIV>
+<DIV class=smallList id=fontList>
+<DIV class=smallItem id=fontArial>Arial</DIV>
+<DIV class=smallItem id=fontBookman>Bookman Old Style</DIV>
+<DIV class=smallItem id=fontCourier>Courier</DIV>
+<DIV class=smallItem id=fontGaramond>Garamond</DIV>
+<DIV class=smallItem id=fontConsole>Lucida Console</DIV>
+<DIV class=smallItem id=fontSymbol>Symbol</DIV>
+<DIV class=smallItem id=fontTahoma>Tahoma</DIV>
+<DIV class=smallItem id=fontTimesNewRoman>Times New Roman</DIV>
+<DIV class=smallItem id=fontVerdana>Verdana</DIV></DIV>
+<DIV class=smallList id=sizeList>
+<DIV class=smallItem id=point7>7 pt</DIV>
+<DIV class=smallItem id=point8>8 pt</DIV>
+<DIV class=smallItem id=point9>9 pt</DIV>
+<DIV class=smallItem id=point10>10 pt</DIV>
+<DIV class=smallItem id=point11>11 pt</DIV>
+<DIV class=smallItem id=point12>12 pt</DIV>
+<DIV class=smallItem id=point14>14 pt</DIV>
+<DIV class=smallItem id=point18>18 pt</DIV>
+<DIV class=smallItem id=point24>24 pt</DIV>
+<DIV class=smallItem id=point36>36 pt</DIV>
+<DIV class=smallItem id=point48>48 pt</DIV>
+<DIV class=smallItem id=point72>72 pt</DIV></DIV>
+<DIV class=smallList id=functionList>
+<DIV class=smallItem id=funcImageUrl>Image URL</DIV>
+<DIV class=smallItem id=funcStockQuote>Stock Quote</DIV>
+<DIV class=smallItem id=funcLinkUrl>Web Link</DIV>
+<DIV class=smallItem id=funcCurrency>Currency Quote</DIV></DIV>
+<DIV class=smallList id=textColorList 
+style="LEFT: 0px; WIDTH: 130px; TOP: 0px; HEIGHT: 122px; BACKGROUND-COLOR: lightgrey"></DIV>
+<DIV class=smallList id=backgroundColorList 
+style="LEFT: 0px; WIDTH: 130px; TOP: 0px; HEIGHT: 122px; BACKGROUND-COLOR: lightgrey"></DIV>
+<DIV class=smallList id=borderList 
+style="LEFT: 0px; WIDTH: 98px; POSITION: absolute; TOP: 0px; HEIGHT: 98px">
+<DIV class=border id=border10 title="No border" 
+style="LEFT: 0px; POSITION: absolute; TOP: 0px"></DIV>
+<DIV class=border id=border11 title="Thick bottom" 
+style="LEFT: 24px; POSITION: absolute; TOP: 0px"></DIV>
+<DIV class=border id=border12 title="Double bottom" 
+style="LEFT: 48px; POSITION: absolute; TOP: 0px"></DIV>
+<DIV class=border id=border13 title="Top rule, double bottom" 
+style="LEFT: 72px; POSITION: absolute; TOP: 0px"></DIV>
+<DIV class=border id=border14 title="Bottom only" 
+style="LEFT: 0px; POSITION: absolute; TOP: 24px"></DIV>
+<DIV class=border id=border15 title="Left only" 
+style="LEFT: 24px; POSITION: absolute; TOP: 24px"></DIV>
+<DIV class=border id=border16 title="Right only" 
+style="LEFT: 48px; POSITION: absolute; TOP: 24px"></DIV>
+<DIV class=border id=border17 title="Top only" 
+style="LEFT: 72px; POSITION: absolute; TOP: 24px"></DIV>
+<DIV class=border id=border18 title="Left and right" 
+style="LEFT: 0px; POSITION: absolute; TOP: 48px"></DIV>
+<DIV class=border id=border19 title="Top and bottom" 
+style="LEFT: 24px; POSITION: absolute; TOP: 48px"></DIV>
+<DIV class=border id=border20 title=Columns 
+style="LEFT: 48px; POSITION: absolute; TOP: 48px"></DIV>
+<DIV class=border id=border21 title=Rows 
+style="LEFT: 72px; POSITION: absolute; TOP: 48px"></DIV>
+<DIV class=border id=border22 title=Box 
+style="LEFT: 0px; POSITION: absolute; TOP: 72px"></DIV>
+<DIV class=border id=border23 title=Grid 
+style="LEFT: 24px; POSITION: absolute; TOP: 72px"></DIV>
+<DIV class=border id=border24 title="Boxed columns" 
+style="LEFT: 48px; POSITION: absolute; TOP: 72px"></DIV>
+<DIV class=border id=border25 title="Boxed rows" 
+style="LEFT: 72px; POSITION: absolute; TOP: 72px"></DIV></DIV>
+<DIV id=modalDialog style="DISPLAY: none"></DIV>
+<DIV id=modalShield style="DISPLAY: none"></DIV>
+<DIV class=smallList id=popupMenuList style="WIDTH: 100px; HEIGHT: 1px"></DIV>
+<SCRIPT 
+language=JavaScript>
+			includeProgressDialog.style.display = "none";
+		</SCRIPT>
+<IFRAME id=resource0 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource1 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource2 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource3 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=saveFrame style="DISPLAY: none" 
+src="Breakeven analysis - Blox_com Spreadsheet_files/saveframe.htm"></IFRAME><IFRAME 
+id=macroFrame style="DISPLAY: none" 
+src="Breakeven analysis - Blox_com Spreadsheet_files/macroframe.htm"></IFRAME><IFRAME 
+id=bugFrame style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+style="DISPLAY: none" name=postFrame src="about:blank"></IFRAME>
+<FORM id=postForm method=post></FORM></BODY></HTML>

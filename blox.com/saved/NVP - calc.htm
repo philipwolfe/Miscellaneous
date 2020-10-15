@@ -1,0 +1,471 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.blox.com/open?topdiv=0&promo=0&id=002e891d_2840&new=ss -->
+<HTML><HEAD><TITLE>NPV calculation - mofithree - Blox.com Calculator</TITLE>
+<META http-equiv=content-type content="text/html; charset=utf-8"><LINK 
+href="NVP - calc_files/view_mode_ie_2468704650.css" type=text/css 
+rel=stylesheet><LINK href="NVP - calc_files/calculator_ie4_2f25ce2e.cssx" 
+type=text/css rel=stylesheet><LINK 
+href="NVP - calc_files/calculator_ie4_blox.css" type=text/css rel=stylesheet>
+<STYLE type=text/css>#buttonDivision {
+	LEFT: 0px; TOP: 30px
+}
+#buttonPalette {
+	LEFT: 0px; VISIBILITY: visible; TOP: 0px; HEIGHT: 30px
+}
+#topDivision {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 0px
+}
+</STYLE>
+
+<SCRIPT language=JavaScript>
+
+			var kTotalJSIncludes = 16;
+			var gNumJSIncludesLoaded = 0;
+			var gAppLocale = 'en';
+			var gEntryLocale	= 'en';
+			var kFromGallery = true;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var knoEmailBtn = 0;
+ 			if (knoEmailBtn)
+				suppressElements(['btnEmail','btnEmailText']);
+			// hide 'rate this calc' button if we're not opening from the gallery
+			if (!kFromGallery)
+				suppressElements(['btnRate','btnRateText','break5']);
+
+			function JSIncludeDoneLoading()
+			{
+				gNumJSIncludesLoaded++;
+				includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+			}
+			
+			// creates stylesheet rules to suppress the specified elements
+			function suppressElements(elemIdArray) {
+				if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+				for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+			}
+
+
+		</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY class=body onresize=resizeDocument() 
+onbeforeunload="if(typeof unloadDocument != 'undefined')unloadDocument()" 
+scroll=no onload=loadDocument() 
+onunload="if(typeof unloadDocument != 'undefined')unloadDocument()"><SPAN 
+class=view id=view style="WIDTH: 100%; HEIGHT: 100%"><!-- later write the contents of this span --></SPAN>
+<SCRIPT language=JavaScript>
+
+		var content = '<div class="modalLabel">Please wait a moment (the first time you use the Calculator this may take a little longer).</div>'
+		+ '<div class="modalProgressBar">'
+		+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+		+ '</div></div>';
+
+		var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+		+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+		+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+		+ '<tr valign="middle">'
+		+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+		+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Calculator</span></td>'
+		+ '</tr>'
+		+ '<tr>'
+		+ '<td bgcolor="#999999"><br></td>'
+		+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+		+ '</tr>'
+		+ '</table>'
+		+ '</div></tr></td></table>';
+
+		document.write(progressDialog);
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+		// global mode flag (can be "design", "view", or "embed")
+		var kMode = "view";
+		var gInitDirtyCells = "";
+		var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+		var gRowCount, gColumnCount, gImported=0 , gOwnerId=0, gAppId='',gAppDescription='';
+		var gAppVersion = 1.0;
+		var gAppAuthor = 'ss';
+		var gMacroText = '';
+		var gPartnerMenu = null;
+		var gPopupMenu = null;
+		var gExtra = "";
+		var gIsMatterhorn = false;
+		var gDocumentTitleBase = " - Blox.com Calculator";
+
+		// relative to the root url (which includes a trailing slash):
+		var gOpenScript = "open";
+		var gSaveScript = "savebraincell";
+		var gSaveLifeboat = "lifeboat";
+		var gMyFilesScript = "myfiles";
+		var gExportExcelScript = "xls_convert";
+		var gImportExcelScript = "xls_upload";
+		var gSendMailScript = "email";
+		var gFileSummaryScript = "file_summary";
+		var gRatingScript = "rating";
+		var kImageDirectory = "img/";
+		var kServletPrefix = "";
+		var gHelpPath = "help";
+		var gPrintCSS = "css/calculator_ie4.css";
+
+		// relative to the root url (which includes a trailing slash):
+		var gCloseBoxFile = "modalclosebox_ie.html";
+		var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+		var gMacroFrameFile = "macroframe"; // NOTE reference to same string in IFRAME below!
+											// included for completeness & future compatibility with AlphaBlox
+
+		//
+gColumnCount = 13;gRowCount = 31;
+
+
+		// handlers should be placed on outermost control...
+		function GetColumnWidthsAndHeights(widths, heights)
+		{			
+			//
+widths[5] = 18;
+widths[12] = 28;
+heights[1] = 25;
+
+		}
+
+		// after this comment, we add //init cells
+gAppId='002e891d_2840';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='NPV calculation - mofithree';
+var gCellDataArray=[{entry:'Calculation of the net present value (NPV) of an investment',textAlign:'left',viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',_fontWeight:'bold',m_row:1,m_col:1,i_nr:'Calculation of the net present value (NPV) of an investment'},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:2},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:3},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:4},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:5},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:6},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:7},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:8},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:9},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:10},
+{viewSize:'12pt',foreColor:'white',bk_color:'navy',viewFamily:'fontVerdana',m_row:1,m_col:11},
+{entry:'Assumptions which have been considered to prepare the model:',textAlign:'left',foreColor:'navy',_textDecoration:'underline',_fontWeight:'bold',m_row:3,m_col:1,i_nr:'Assumptions which have been considered to prepare the model:'},
+{entry:'·In order to avoid a higher complication of the model, we assume a fixed term for the depreciation of five years ',textAlign:'left',m_row:4,m_col:1,i_nr:'·In order to avoid a higher complication of the model, we assume a fixed term for the depreciation of five years '},
+{entry:' and we don´t consider a residual value for the project.',textAlign:'left',m_row:5,m_col:1,i_nr:'and we don´t consider a residual value for the project.'},
+{entry:'·The project is financed only by own resources (no debt).',textAlign:'left',m_row:6,m_col:1,i_nr:'·The project is financed only by own resources (no debt).'},
+{entry:'1) Cash flow projections of the company for the following five years:',textAlign:'left',foreColor:'navy',_textDecoration:'underline',_fontWeight:'bold',m_row:8,m_col:1,i_nr:'1) Cash flow projections of the company for the following five years:'},
+{entry:'a) Positive cash flows:',textAlign:'left',_textDecoration:'underline',_fontWeight:'bold',m_row:10,m_col:1,i_nr:'a) Positive cash flows:'},
+{entry:'Year 1',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_textDecoration:'none',_textAlign:'center',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'bold',m_row:10,m_col:7,i_nr:'Year 1'},
+{entry:'Year 2',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:10,m_col:8,i_nr:'Year 2'},
+{entry:'Year 3',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:10,m_col:9,i_nr:'Year 3'},
+{entry:'Year 4',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:10,m_col:10,i_nr:'Year 4'},
+{entry:'Year 5',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:10,m_col:11,i_nr:'Year 5'},
+{entry:'Cash income related to the project',textAlign:'left',viewSize:'8pt',m_row:11,m_col:1,i_nr:'Cash income related to the project'},
+{entry:'1800',dynamic:'1800',derived:'1800',
+i_tb:'[e[14][7]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:11,m_col:7,i_nr:'$1,800.00'},
+{entry:'1852',dynamic:'1852',derived:'1852',
+i_tb:'[e[14][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:11,m_col:8,i_nr:'$1,852.00'},
+{entry:'1906',dynamic:'1906',derived:'1906',
+i_tb:'[e[14][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:11,m_col:9,i_nr:'$1,906.00'},
+{entry:'1961',dynamic:'1961',derived:'1961',
+i_tb:'[e[14][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:11,m_col:10,i_nr:'$1,961.00'},
+{entry:'2018',dynamic:'2018',derived:'2018',
+i_tb:'[e[14][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:11,m_col:11,i_nr:'$2,018.00'},
+{entry:'(Depreciation)',textAlign:'left',viewSize:'8pt',m_row:12,m_col:1,i_nr:'(Depreciation)'},
+{entry:'300',dynamic:'300',derived:'300',
+i_tb:'[e[13][7]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:12,m_col:7,i_nr:'$300.00'},
+{entry:'300',dynamic:'300',derived:'300',
+i_tb:'[e[13][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:12,m_col:8,i_nr:'$300.00'},
+{entry:'300',dynamic:'300',derived:'300',
+i_tb:'[e[13][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:12,m_col:9,i_nr:'$300.00'},
+{entry:'300',dynamic:'300',derived:'300',
+i_tb:'[e[13][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:12,m_col:10,i_nr:'$300.00'},
+{entry:'300',dynamic:'300',derived:'300',
+i_tb:'[e[13][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:12,m_col:11,i_nr:'$300.00'},
+{entry:'Tax savings related to the depreciation of the project',textAlign:'left',viewSize:'8pt',m_row:13,m_col:1,i_nr:'Tax savings related to the depreciation of the project'},
+{entry:'=	G12	*	G20	',dynamic:'_mul(_cel(	\'r12c7s0\'	),_cel(	\'r20c7s0\'	))',derived:'105',
+i_tb:'[e[14][7]]',
+i_rt:'[e[12][7],e[20][7]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'black',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:13,m_col:7,i_nr:'$105.00'},
+{entry:'=	H12	*	H20	',dynamic:'_mul(_cel(	\'r12c8s0\'	),_cel(	\'r20c8s0\'	))',derived:'105',
+i_tb:'[e[14][8]]',
+i_rt:'[e[12][8],e[20][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:13,m_col:8,i_nr:'$105.00'},
+{entry:'=	I12	*	I20	',dynamic:'_mul(_cel(	\'r12c9s0\'	),_cel(	\'r20c9s0\'	))',derived:'105',
+i_tb:'[e[14][9]]',
+i_rt:'[e[12][9],e[20][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:13,m_col:9,i_nr:'$105.00'},
+{entry:'=	J12	*	J20	',dynamic:'_mul(_cel(	\'r12c10s0\'	),_cel(	\'r20c10s0\'	))',derived:'105',
+i_tb:'[e[14][10]]',
+i_rt:'[e[12][10],e[20][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:13,m_col:10,i_nr:'$105.00'},
+{entry:'=	K12	*	K20	',dynamic:'_mul(_cel(	\'r12c11s0\'	),_cel(	\'r20c11s0\'	))',derived:'105',
+i_tb:'[e[14][11]]',
+i_rt:'[e[12][11],e[20][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:13,m_col:11,i_nr:'$105.00'},
+{entry:'TOTAL POSITIVE CASH FLOWS',textAlign:'left',_textDecoration:'underline',_fontWeight:'bold',m_row:14,m_col:1,i_nr:'TOTAL POSITIVE CASH FLOWS'},
+{entry:'=	G11	+	G13	',dynamic:'_add(_cel(	\'r11c7s0\'	),_cel(	\'r13c7s0\'	))',derived:'1905',
+i_tb:'[e[22][7]]',
+i_rt:'[e[11][7],e[13][7]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'black',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:14,m_col:7,i_nr:'$1,905.00'},
+{entry:'=	H11	+	H13	',dynamic:'_add(_cel(	\'r11c8s0\'	),_cel(	\'r13c8s0\'	))',derived:'1957',
+i_tb:'[e[22][8]]',
+i_rt:'[e[11][8],e[13][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:14,m_col:8,i_nr:'$1,957.00'},
+{entry:'=	I11	+	I13	',dynamic:'_add(_cel(	\'r11c9s0\'	),_cel(	\'r13c9s0\'	))',derived:'2011',
+i_tb:'[e[22][9]]',
+i_rt:'[e[11][9],e[13][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:14,m_col:9,i_nr:'$2,011.00'},
+{entry:'=	J11	+	J13	',dynamic:'_add(_cel(	\'r11c10s0\'	),_cel(	\'r13c10s0\'	))',derived:'2066',
+i_tb:'[e[22][10]]',
+i_rt:'[e[11][10],e[13][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:14,m_col:10,i_nr:'$2,066.00'},
+{entry:'=	K11	+	K13	',dynamic:'_add(_cel(	\'r11c11s0\'	),_cel(	\'r13c11s0\'	))',derived:'2123',
+i_tb:'[e[22][11]]',
+i_rt:'[e[11][11],e[13][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:14,m_col:11,i_nr:'$2,123.00'},
+{entry:'b) Negative cash flows:',textAlign:'left',_textDecoration:'underline',_fontWeight:'bold',m_row:16,m_col:1,i_nr:'b) Negative cash flows:'},
+{entry:'Year 0',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_textDecoration:'none',_textAlign:'center',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'bold',m_row:16,m_col:6,i_nr:'Year 0'},
+{entry:'Year 1',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_textDecoration:'none',_textAlign:'center',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'bold',m_row:16,m_col:7,i_nr:'Year 1'},
+{entry:'Year 2',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:16,m_col:8,i_nr:'Year 2'},
+{entry:'Year 3',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:16,m_col:9,i_nr:'Year 3'},
+{entry:'Year 4',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:16,m_col:10,i_nr:'Year 4'},
+{entry:'Year 5',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:16,m_col:11,i_nr:'Year 5'},
+{entry:'Initial investment',textAlign:'left',viewSize:'8pt',m_row:17,m_col:1,i_nr:'Initial investment'},
+{entry:'1500',dynamic:'1500',derived:'1500',
+i_tb:'[e[21][6]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:17,m_col:6,i_nr:'$1,500.00'},
+{_borderBottom:'solid black 1px',_viewFormat:'currency_2',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:17,m_col:7},
+{_borderBottom:'solid black 1px',_viewFormat:'currency_2',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:17,m_col:8},
+{_borderBottom:'solid black 1px',_viewFormat:'currency_2',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:17,m_col:9},
+{_borderBottom:'solid black 1px',_viewFormat:'currency_2',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:17,m_col:10},
+{_borderBottom:'solid black 1px',_viewFormat:'currency_2',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:17,m_col:11},
+{entry:'Investment in working capital',textAlign:'left',viewSize:'8pt',m_row:18,m_col:1,i_nr:'Investment in working capital'},
+{_borderBottom:'solid black 1px',_borderLeft:'solid black 1px',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:18,m_col:6},
+{entry:'50',dynamic:'50',derived:'50',
+i_tb:'[e[21][7]]',_borderBottom:'solid black 1px',_viewFormat:'comma',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:18,m_col:7,i_nr:'50'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[21][8]]',_borderBottom:'solid black 1px',_viewFormat:'comma',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:18,m_col:8,i_nr:'5'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[21][9]]',_borderBottom:'solid black 1px',_viewFormat:'comma',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:18,m_col:9,i_nr:'5'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[21][10]]',_borderBottom:'solid black 1px',_viewFormat:'comma',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:18,m_col:10,i_nr:'5'},
+{entry:'5',dynamic:'5',derived:'5',
+i_tb:'[e[21][11]]',_borderBottom:'solid black 1px',_viewFormat:'comma',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:18,m_col:11,i_nr:'5'},
+{entry:'Cash expense related to the project',textAlign:'left',viewSize:'8pt',m_row:19,m_col:1,i_nr:'Cash expense related to the project'},
+{_borderBottom:'solid black 1px',_borderLeft:'solid black 1px',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:19,m_col:6},
+{entry:'1062',dynamic:'1062',derived:'1062',
+i_tb:'[e[21][7]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:19,m_col:7,i_nr:'$1,062.00'},
+{entry:'1089',dynamic:'1089',derived:'1089',
+i_tb:'[e[21][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:19,m_col:8,i_nr:'$1,089.00'},
+{entry:'1117',dynamic:'1117',derived:'1117',
+i_tb:'[e[21][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:19,m_col:9,i_nr:'$1,117.00'},
+{entry:'1146',dynamic:'1146',derived:'1146',
+i_tb:'[e[21][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:19,m_col:10,i_nr:'$1,146.00'},
+{entry:'1175',dynamic:'1175',derived:'1175',
+i_tb:'[e[21][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:19,m_col:11,i_nr:'$1,175.00'},
+{entry:'(Income tax rate)',textAlign:'left',viewSize:'8pt',m_row:20,m_col:1,i_nr:'(Income tax rate)'},
+{_borderBottom:'solid black 1px',_borderLeft:'solid black 1px',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:20,m_col:6},
+{entry:'0.35',dynamic:'0.35',derived:'0.35',
+i_tb:'[e[13][7]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:20,m_col:7,i_nr:'35%'},
+{entry:'0.35',dynamic:'0.35',derived:'0.35',
+i_tb:'[e[13][8]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:20,m_col:8,i_nr:'35%'},
+{entry:'0.35',dynamic:'0.35',derived:'0.35',
+i_tb:'[e[13][9]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:20,m_col:9,i_nr:'35%'},
+{entry:'0.35',dynamic:'0.35',derived:'0.35',
+i_tb:'[e[13][10]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:20,m_col:10,i_nr:'35%'},
+{entry:'0.35',dynamic:'0.35',derived:'0.35',
+i_tb:'[e[13][11]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'maroon',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:20,m_col:11,i_nr:'35%'},
+{entry:'TOTAL NEGATIVE CASH FLOWS',textAlign:'left',_textDecoration:'underline',_fontWeight:'bold',m_row:21,m_col:1,i_nr:'TOTAL NEGATIVE CASH FLOWS'},
+{entry:'=	F17	',dynamic:'_cel(	\'r17c6s0\'	)',derived:'1500',
+i_tb:'[e[22][6]]',
+i_rt:'[e[17][6]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'black',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:21,m_col:6,i_nr:'$1,500.00'},
+{entry:'=	G18	+	G19	',dynamic:'_add(_cel(	\'r18c7s0\'	),_cel(	\'r19c7s0\'	))',derived:'1112',
+i_tb:'[e[22][7]]',
+i_rt:'[e[18][7],e[19][7]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:21,m_col:7,i_nr:'$1,112.00'},
+{entry:'=	H18	+	H19	',dynamic:'_add(_cel(	\'r18c8s0\'	),_cel(	\'r19c8s0\'	))',derived:'1094',
+i_tb:'[e[22][8]]',
+i_rt:'[e[18][8],e[19][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:21,m_col:8,i_nr:'$1,094.00'},
+{entry:'=	I18	+	I19	',dynamic:'_add(_cel(	\'r18c9s0\'	),_cel(	\'r19c9s0\'	))',derived:'1122',
+i_tb:'[e[22][9]]',
+i_rt:'[e[18][9],e[19][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:21,m_col:9,i_nr:'$1,122.00'},
+{entry:'=	J18	+	J19	',dynamic:'_add(_cel(	\'r18c10s0\'	),_cel(	\'r19c10s0\'	))',derived:'1151',
+i_tb:'[e[22][10]]',
+i_rt:'[e[18][10],e[19][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:21,m_col:10,i_nr:'$1,151.00'},
+{entry:'=	K18	+	K19	',dynamic:'_add(_cel(	\'r18c11s0\'	),_cel(	\'r19c11s0\'	))',derived:'1180',
+i_tb:'[e[22][11]]',
+i_rt:'[e[18][11],e[19][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:21,m_col:11,i_nr:'$1,180.00'},
+{entry:'TOTAL ANNUAL NET CASH FLOWS',textAlign:'left',_textDecoration:'underline',_fontWeight:'bold',m_row:22,m_col:1,i_nr:'TOTAL ANNUAL NET CASH FLOWS'},
+{entry:'=-	F21	',dynamic:'_neg(_cel(	\'r21c6s0\'	))',derived:'-1500',
+i_tb:'[e[29][6]]',
+i_rt:'[e[21][6]]',_viewFormat:'currency_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'black',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:22,m_col:6,i_nr:'($1,500.00)'},
+{entry:'=	G14	-	G21	',dynamic:'_sub(_cel(	\'r14c7s0\'	),_cel(	\'r21c7s0\'	))',derived:'793',
+i_tb:'[e[29][6]]',
+i_rt:'[e[14][7],e[21][7]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:22,m_col:7,i_nr:'$793.00'},
+{entry:'=	H14	-	H21	',dynamic:'_sub(_cel(	\'r14c8s0\'	),_cel(	\'r21c8s0\'	))',derived:'863',
+i_tb:'[e[29][6]]',
+i_rt:'[e[14][8],e[21][8]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:22,m_col:8,i_nr:'$863.00'},
+{entry:'=	I14	-	I21	',dynamic:'_sub(_cel(	\'r14c9s0\'	),_cel(	\'r21c9s0\'	))',derived:'889',
+i_tb:'[e[29][6]]',
+i_rt:'[e[14][9],e[21][9]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:22,m_col:9,i_nr:'$889.00'},
+{entry:'=	J14	-	J21	',dynamic:'_sub(_cel(	\'r14c10s0\'	),_cel(	\'r21c10s0\'	))',derived:'915',
+i_tb:'[e[29][6]]',
+i_rt:'[e[14][10],e[21][10]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:22,m_col:10,i_nr:'$915.00'},
+{entry:'=	K14	-	K21	',dynamic:'_sub(_cel(	\'r14c11s0\'	),_cel(	\'r21c11s0\'	))',derived:'943',
+i_tb:'[e[29][6]]',
+i_rt:'[e[14][11],e[21][11]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:22,m_col:11,i_nr:'$943.00'},
+{entry:'2) Calculation of NPV according to invested capital and annual net cash flows:',textAlign:'left',foreColor:'navy',_textDecoration:'underline',_fontWeight:'bold',m_row:24,m_col:1,i_nr:'2) Calculation of NPV according to invested capital and annual net cash flows:'},
+{entry:'Year 0',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_textDecoration:'none',_textAlign:'center',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'bold',m_row:26,m_col:6,i_nr:'Year 0'},
+{entry:'Year 1',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_textDecoration:'none',_textAlign:'center',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'bold',m_row:26,m_col:7,i_nr:'Year 1'},
+{entry:'Year 2',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:26,m_col:8,i_nr:'Year 2'},
+{entry:'Year 3',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:26,m_col:9,i_nr:'Year 3'},
+{entry:'Year 4',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:26,m_col:10,i_nr:'Year 4'},
+{entry:'Year 5',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_widthClue:'66',foreColor:'navy',bk_color:'silver',_borderRight:'solid black 1px',_textDecoration:'none',_fontWeight:'bold',_textAlign:'center',m_row:26,m_col:11,i_nr:'Year 5'},
+{entry:'Discounting rate to be applied for NPV calculation',textAlign:'left',m_row:27,m_col:1,i_nr:'Discounting rate to be applied for NPV calculation'},
+{entry:'0.1',dynamic:'0.1',derived:'0.1',
+i_tb:'[e[27][7],e[27][8],e[27][9],e[27][10],e[27][11],e[28][6]]',_viewFormat:'percentage',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'maroon',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:27,m_col:6,i_nr:'10%'},
+{entry:'=	F27	',dynamic:'_cel(	\'r27c6s0\'	)',derived:'0.1',
+i_tb:'[e[28][7]]',
+i_rt:'[e[27][6]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:27,m_col:7,i_nr:'10%'},
+{entry:'=	F27	',dynamic:'_cel(	\'r27c6s0\'	)',derived:'0.1',
+i_tb:'[e[28][8]]',
+i_rt:'[e[27][6]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:27,m_col:8,i_nr:'10%'},
+{entry:'=	F27	',dynamic:'_cel(	\'r27c6s0\'	)',derived:'0.1',
+i_tb:'[e[28][9]]',
+i_rt:'[e[27][6]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:27,m_col:9,i_nr:'10%'},
+{entry:'=	F27	',dynamic:'_cel(	\'r27c6s0\'	)',derived:'0.1',
+i_tb:'[e[28][10]]',
+i_rt:'[e[27][6]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:27,m_col:10,i_nr:'10%'},
+{entry:'=	F27	',dynamic:'_cel(	\'r27c6s0\'	)',derived:'0.1',
+i_tb:'[e[28][11]]',
+i_rt:'[e[27][6]]',_borderBottom:'solid black 1px',_viewFormat:'percentage',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:27,m_col:11,i_nr:'10%'},
+{entry:'Discounting factor for this rate',textAlign:'left',m_row:28,m_col:1,i_nr:'Discounting factor for this rate'},
+{entry:'=1/(1+	F27	)^0',dynamic:'_div(1,__pow(_add(1,_cel(	\'r27c6s0\'	)),0))',derived:'1',
+i_tb:'[e[29][6]]',
+i_rt:'[e[27][6]]',viewFormat:'comma_2',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'black',_textAlign:'center',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:28,m_col:6,i_nr:'1.00'},
+{entry:'=1/(1+	G27	)^1',dynamic:'_div(1,__pow(_add(1,_cel(	\'r27c7s0\'	)),1))',derived:'0.9090909090909091',
+i_tb:'[e[29][6]]',
+i_rt:'[e[27][7]]',_borderBottom:'solid black 1px',viewFormat:'comma_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:28,m_col:7,i_nr:'0.91'},
+{entry:'=1/(1+	H27	)^2',dynamic:'_div(1,__pow(_add(1,_cel(	\'r27c8s0\'	)),2))',derived:'0.8264462809917354',
+i_tb:'[e[29][6]]',
+i_rt:'[e[27][8]]',_borderBottom:'solid black 1px',viewFormat:'comma_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:28,m_col:8,i_nr:'0.83'},
+{entry:'=1/(1+	I27	)^3',dynamic:'_div(1,__pow(_add(1,_cel(	\'r27c9s0\'	)),3))',derived:'0.7513148009015775',
+i_tb:'[e[29][6]]',
+i_rt:'[e[27][9]]',_borderBottom:'solid black 1px',viewFormat:'comma_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:28,m_col:9,i_nr:'0.75'},
+{entry:'=1/(1+	J27	)^4',dynamic:'_div(1,__pow(_add(1,_cel(	\'r27c10s0\'	)),4))',derived:'0.6830134553650705',
+i_tb:'[e[29][6]]',
+i_rt:'[e[27][10]]',_borderBottom:'solid black 1px',viewFormat:'comma_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:28,m_col:10,i_nr:'0.68'},
+{entry:'=1/(1+	K27	)^5',dynamic:'_div(1,__pow(_add(1,_cel(	\'r27c11s0\'	)),5))',derived:'0.6209213230591549',
+i_tb:'[e[29][6]]',
+i_rt:'[e[27][11]]',_borderBottom:'solid black 1px',viewFormat:'comma_2',_widthClue:'66',foreColor:'black',_borderRight:'solid black 1px',_fontWeight:'normal',_textAlign:'center',m_row:28,m_col:11,i_nr:'0.62'},
+{entry:'NPV of the investment',textAlign:'left',foreColor:'red',_fontWeight:'bold',m_row:29,m_col:1,i_nr:'NPV of the investment'},
+{entry:'=(	F22	*	F28	)+(	G22	*	G28	)+(	H22	*	H28	)+(	I22	*	I28	)+(	J22	*	J28	)+(	K22	*	K28	)',dynamic:'_add(_add(_add(_add(_add(_mul(_cel(	\'r22c6s0\'	),_cel(	\'r28c6s0\'	)),_mul(_cel(	\'r22c7s0\'	),_cel(	\'r28c7s0\'	))),_mul(_cel(	\'r22c8s0\'	),_cel(	\'r28c8s0\'	))),_mul(_cel(	\'r22c9s0\'	),_cel(	\'r28c9s0\'	))),_mul(_cel(	\'r22c10s0\'	),_cel(	\'r28c10s0\'	))),_mul(_cel(	\'r22c11s0\'	),_cel(	\'r28c11s0\'	)))',derived:'1812.5372087102837',
+i_rt:'[e[22][6],e[28][6],e[22][7],e[28][7],e[22][8],e[28][8],e[22][9],e[28][9],e[22][10],e[28][10],e[22][11],e[28][11]]',_viewFormat:'comma',_borderLeft:'solid black 1px',_widthClue:'66',foreColor:'red',_textAlign:'center',_borderTop:'solid black 1px',_borderBottom:'solid black 1px',_borderRight:'solid black 1px',_fontWeight:'normal',m_row:29,m_col:6,i_nr:'1,813'}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/unicodeCharMap_ie_667e49f7.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/strings_en_2491480284.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/locale_ie_0d14744b.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/utility_ie_dbd756c4.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/dialog_ie_8cee673f.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/browser_detect_ie_b85f83d9.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/cookie_ie_0645e3cf.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript src="NVP - calc_files/gui_ie_cd85eb87.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/document_ie_29b378dd.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/calculator_ie_bd9fc80c.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/interface_calculator_ie_44704f07.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/runtime_ie_e7eb4a54.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/cell_ie_b1477f2e.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/compiler_ie_808fdc64.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/platform_ie_bb68a125.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="NVP - calc_files/resource_ie_66434373.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</SCRIPT>
+
+<DIV class=division id=topDivision></DIV>
+<DIV class=palette id=buttonPalette><SPAN class=bulbLogoSmall 
+id=bulbLogo></SPAN>
+<DIV class=break id=break0></DIV>
+<DIV class=button id=btnSave title=Save></DIV>
+<DIV class=buttonText id=btnSaveText>Save</DIV>
+<DIV class=break id=break1></DIV>
+<DIV class=button id=btnPrint title=Print></DIV>
+<DIV class=buttonText id=btnPrintText>Print</DIV>
+<DIV class=break id=break2></DIV>
+<DIV class=button id=btnInstruction title=Instructions></DIV>
+<DIV class=buttonText id=btnInstructionText>Instructions</DIV>
+<DIV class=break id=break4></DIV>
+<DIV class=button id=btnEdit title="Edit as spreadsheet"></DIV>
+<DIV class=buttonText id=btnEditText>Edit as spreadsheet</DIV>
+<DIV class=break id=break5></DIV>
+<DIV class=button id=btnEmail title="Email to others"></DIV>
+<DIV class=buttonText id=btnEmailText>Email to others</DIV>
+<DIV class=break id=break6></DIV></DIV>
+<DIV class=division id=buttonDivision></DIV>
+<DIV class=division id=footDivision></DIV>
+<DIV class=palette id=footPalette><NOBR>Copyright © 1999-2001 <A 
+href="http://www.alphablox.com/" target=_blank>AlphaBlox Corporation.</A> All 
+rights reserved.</NOBR></DIV>
+<DIV id=modalDialog style="DISPLAY: none"></DIV>
+<DIV id=modalShield style="DISPLAY: none"></DIV>
+<DIV class=smallList id=popupMenuList style="WIDTH: 100px; HEIGHT: 1px"></DIV>
+<SCRIPT 
+language=JavaScript>
+		includeProgressDialog.style.display = "none";
+	</SCRIPT>
+<IFRAME id=resource0 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource1 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource2 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource3 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=saveFrame style="DISPLAY: none" 
+src="NVP - calc_files/saveframe.htm"></IFRAME><IFRAME id=macroFrame 
+style="DISPLAY: none" src="NVP - calc_files/macroframe.htm"></IFRAME><IFRAME 
+id=bugFrame style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+style="DISPLAY: none" name=postFrame src="about:blank"></IFRAME>
+<FORM id=postForm method=post></FORM></BODY></HTML>

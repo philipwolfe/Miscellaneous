@@ -1,0 +1,319 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.blox.com/open?topdiv=0&promo=0&id=001e8900_91e6&new=ss -->
+<HTML><HEAD><TITLE>Capital gains calculator - Blox.com Calculator</TITLE>
+<META http-equiv=content-type content="text/html; charset=utf-8"><LINK 
+href="Capital gains calculator - Blox_com Calculator_files/view_mode_ie_2468704650.css" 
+type=text/css rel=stylesheet><LINK 
+href="Capital gains calculator - Blox_com Calculator_files/calculator_ie4_2f25ce2e.cssx" 
+type=text/css rel=stylesheet><LINK 
+href="Capital gains calculator - Blox_com Calculator_files/calculator_ie4_blox.css" 
+type=text/css rel=stylesheet>
+<STYLE type=text/css>#buttonDivision {
+	LEFT: 0px; TOP: 30px
+}
+#buttonPalette {
+	LEFT: 0px; VISIBILITY: visible; TOP: 0px; HEIGHT: 30px
+}
+#topDivision {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 0px
+}
+</STYLE>
+
+<SCRIPT language=JavaScript>
+
+			var kTotalJSIncludes = 16;
+			var gNumJSIncludesLoaded = 0;
+			var gAppLocale = 'en';
+			var gEntryLocale	= 'en';
+			var kFromGallery = true;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var knoEmailBtn = 0;
+ 			if (knoEmailBtn)
+				suppressElements(['btnEmail','btnEmailText']);
+			// hide 'rate this calc' button if we're not opening from the gallery
+			if (!kFromGallery)
+				suppressElements(['btnRate','btnRateText','break5']);
+
+			function JSIncludeDoneLoading()
+			{
+				gNumJSIncludesLoaded++;
+				includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+			}
+			
+			// creates stylesheet rules to suppress the specified elements
+			function suppressElements(elemIdArray) {
+				if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+				for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+			}
+
+
+		</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY class=body onresize=resizeDocument() 
+onbeforeunload="if(typeof unloadDocument != 'undefined')unloadDocument()" 
+scroll=no onload=loadDocument() 
+onunload="if(typeof unloadDocument != 'undefined')unloadDocument()"><SPAN 
+class=view id=view style="WIDTH: 100%; HEIGHT: 100%"><!-- later write the contents of this span --></SPAN>
+<SCRIPT language=JavaScript>
+
+		var content = '<div class="modalLabel">Please wait a moment (the first time you use the Calculator this may take a little longer).</div>'
+		+ '<div class="modalProgressBar">'
+		+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+		+ '</div></div>';
+
+		var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+		+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+		+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+		+ '<tr valign="middle">'
+		+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+		+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Calculator</span></td>'
+		+ '</tr>'
+		+ '<tr>'
+		+ '<td bgcolor="#999999"><br></td>'
+		+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+		+ '</tr>'
+		+ '</table>'
+		+ '</div></tr></td></table>';
+
+		document.write(progressDialog);
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+		// global mode flag (can be "design", "view", or "embed")
+		var kMode = "view";
+		var gInitDirtyCells = "";
+		var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+		var gRowCount, gColumnCount, gImported=0 , gOwnerId=0, gAppId='',gAppDescription='';
+		var gAppVersion = 1.0;
+		var gAppAuthor = 'ss';
+		var gMacroText = '';
+		var gPartnerMenu = null;
+		var gPopupMenu = null;
+		var gExtra = "";
+		var gIsMatterhorn = false;
+		var gDocumentTitleBase = " - Blox.com Calculator";
+
+		// relative to the root url (which includes a trailing slash):
+		var gOpenScript = "open";
+		var gSaveScript = "savebraincell";
+		var gSaveLifeboat = "lifeboat";
+		var gMyFilesScript = "myfiles";
+		var gExportExcelScript = "xls_convert";
+		var gImportExcelScript = "xls_upload";
+		var gSendMailScript = "email";
+		var gFileSummaryScript = "file_summary";
+		var gRatingScript = "rating";
+		var kImageDirectory = "img/";
+		var kServletPrefix = "";
+		var gHelpPath = "help";
+		var gPrintCSS = "css/calculator_ie4.css";
+
+		// relative to the root url (which includes a trailing slash):
+		var gCloseBoxFile = "modalclosebox_ie.html";
+		var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+		var gMacroFrameFile = "macroframe"; // NOTE reference to same string in IFRAME below!
+											// included for completeness & future compatibility with AlphaBlox
+
+		//
+gColumnCount = 7;gRowCount = 16;
+
+
+		// handlers should be placed on outermost control...
+		function GetColumnWidthsAndHeights(widths, heights)
+		{			
+			//
+widths[1] = 256;
+widths[2] = 112;
+widths[3] = 139;
+
+		}
+
+		// after this comment, we add //init cells
+gAppId='001e8900_91e6';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Capital gains calculator';
+var gCellDataArray=[{entry:'Capital Gains Calculator ',textAlign:'left',viewSize:'12pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',m_row:1,m_col:1,i_nr:'Capital Gains Calculator '},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:2,m_col:1},
+{entry:'Taxpayers can now benefit from new, lower capital gains taxes for stocks held longer than 12 months!',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:3,m_col:1,i_nr:'Taxpayers can now benefit from new, lower capital gains taxes for stocks held longer than 12 months!'},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:3,m_col:2},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:3,m_col:3},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:3,m_col:4},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:3,m_col:5},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:3,m_col:6},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:4,m_col:1},
+{entry:'Purchase Price of Stock',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:5,m_col:1,i_nr:'Purchase Price of Stock'},
+{entry:'8.63',dynamic:'8.63',derived:'8.63',
+i_tb:'[e[13][2],e[13][3]]',textAlign:'right',locked:'false',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'108',foreColor:'maroon',m_row:5,m_col:2,i_nr:'$8.63'},
+{textAlign:'left',foreColor:'maroon',viewSize:'9pt',m_row:5,m_col:3},
+{entry:'Federal Tax Bracket',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:6,m_col:1,i_nr:'Federal Tax Bracket'},
+{entry:'=menu("39.6%",.396,"36%",.36,"31%",.31,"28%",.28,"15%",.15)',dynamic:'__menu("r6c2s0", \'39.6%\',0.396,\'36%\',0.36,\'31%\',0.31,\'28%\',0.28,\'15%\',0.15)',derived:'0.396',
+i_tb:'[e[11][2],e[11][3]]',m_cellGUI:'{type:\'menu\', setting:0, label:\'39.6%\'}',locked:'true',_viewFormat:'general',viewSize:'9pt',_widthClue:'93',m_dirtyOnInit:'true',foreColor:'maroon',_textAlign:'right',m_row:6,m_col:2,i_nr:'39.6%'},
+{textAlign:'left',foreColor:'maroon',viewSize:'9pt',m_row:6,m_col:3},
+{textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:7,m_col:1},
+{textAlign:'left',foreColor:'maroon',viewSize:'9pt',m_row:7,m_col:2},
+{textAlign:'left',foreColor:'maroon',viewSize:'9pt',m_row:7,m_col:3},
+{entry:'Months from Purchase to Sale',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:8,m_col:1,i_nr:'Months from Purchase to Sale'},
+{entry:'fewer than 12',viewSize:'9pt',_widthClue:'108',foreColor:'navy',viewFamily:'Verdana',m_row:8,m_col:2,i_nr:'fewer than 12'},
+{entry:'more than 12',viewSize:'9pt',_widthClue:'135',foreColor:'navy',viewFamily:'Verdana',m_row:8,m_col:3,i_nr:'more than 12'},
+{entry:'Sale Price of Stock',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:9,m_col:1,i_nr:'Sale Price of Stock'},
+{entry:'45',dynamic:'45',derived:'45',
+i_tb:'[e[13][2],e[14][2]]',textAlign:'right',locked:'false',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'108',foreColor:'maroon',m_row:9,m_col:2,i_nr:'$45.00'},
+{entry:'45',dynamic:'45',derived:'45',
+i_tb:'[e[13][3],e[14][3]]',textAlign:'right',locked:'false',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'135',foreColor:'maroon',m_row:9,m_col:3,i_nr:'$45.00'},
+{entry:'State Tax Rate',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:10,m_col:1,i_nr:'State Tax Rate'},
+{entry:'00.08',dynamic:'0.08',derived:'0.08',
+i_tb:'[e[13][2]]',textAlign:'right',locked:'false',_viewFormat:'percentage',viewSize:'9pt',_widthClue:'108',foreColor:'maroon',m_row:10,m_col:2,i_nr:'8%'},
+{entry:'00.08',dynamic:'0.08',derived:'0.08',
+i_tb:'[e[13][3]]',textAlign:'right',locked:'false',_viewFormat:'percentage',viewSize:'9pt',_widthClue:'135',foreColor:'maroon',m_row:10,m_col:3,i_nr:'8%'},
+{entry:'Federal Tax Rate',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',m_row:11,m_col:1,i_nr:'Federal Tax Rate'},
+{entry:'=	B6	',dynamic:'_cel(	\'r6c2s0\'	)',derived:'0.396',
+i_tb:'[e[13][2]]',
+i_rt:'[e[6][2]]',_viewFormat:'percentage_1',viewSize:'9pt',_widthClue:'108',m_row:11,m_col:2,i_nr:'39.6%'},
+{entry:'=IF(	B6	<0.2,	B6	,0.2)',dynamic:'(_ltr(_cel(	\'r6c2s0\'	),0.2)?_cel(	\'r6c2s0\'	):0.2)',derived:'0.2',
+i_tb:'[e[13][3]]',
+i_rt:'[e[6][2]]',_viewFormat:'percentage',viewSize:'9pt',_widthClue:'135',m_row:11,m_col:3,i_nr:'20%'},
+{textAlign:'left',_borderBottom:'solid black 1pt',foreColor:'navy',m_row:12,m_col:1},
+{textAlign:'left',_borderBottom:'solid black 1pt',m_row:12,m_col:2},
+{textAlign:'left',_borderBottom:'solid black 1pt',m_row:12,m_col:3},
+{entry:'Total Tax',textAlign:'left',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',m_row:13,m_col:1,i_nr:'Total Tax'},
+{entry:'=(	B9	-	$B$5	)*(	B11	+	B10	)',dynamic:'_mul(_sub(_cel(	\'r9c2s0\'	),_cel(	\'r5c2s0\'	)),_add(_cel(	\'r11c2s0\'	),_cel(	\'r10c2s0\'	)))',derived:'17.31212',
+i_tb:'[e[14][2]]',
+i_rt:'[e[9][2],e[5][2],e[11][2],e[10][2]]',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'108',_fontWeight:'bold',m_row:13,m_col:2,i_nr:'$17.31'},
+{entry:'=(	C9	-	$B$5	)*(	C11	+	C10	)',dynamic:'_mul(_sub(_cel(	\'r9c3s0\'	),_cel(	\'r5c2s0\'	)),_add(_cel(	\'r11c3s0\'	),_cel(	\'r10c3s0\'	)))',derived:'10.1836',
+i_tb:'[e[14][3]]',
+i_rt:'[e[9][3],e[5][2],e[11][3],e[10][3]]',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'135',_fontWeight:'bold',m_row:13,m_col:3,i_nr:'$10.18'},
+{entry:'Net from Sale of Stock',textAlign:'left',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',m_row:14,m_col:1,i_nr:'Net from Sale of Stock'},
+{entry:'=	B9	-	B13	',dynamic:'_sub(_cel(	\'r9c2s0\'	),_cel(	\'r13c2s0\'	))',derived:'27.68788',
+i_rt:'[e[9][2],e[13][2]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'108',_fontWeight:'bold',m_row:14,m_col:2,i_nr:'$27.69'},
+{entry:'=	C9	-	C13	',dynamic:'_sub(_cel(	\'r9c3s0\'	),_cel(	\'r13c3s0\'	))',derived:'34.8164',
+i_rt:'[e[9][3],e[13][3]]',_borderBottom:'solid black 1px',_viewFormat:'currency_2',viewSize:'9pt',_widthClue:'135',_fontWeight:'bold',m_row:14,m_col:3,i_nr:'$34.82'},
+{textAlign:'left',foreColor:'navy',viewSize:'9pt',m_row:15,m_col:1}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/unicodeCharMap_ie_667e49f7.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/strings_en_2491480284.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/locale_ie_0d14744b.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/utility_ie_dbd756c4.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/dialog_ie_8cee673f.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/browser_detect_ie_b85f83d9.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/cookie_ie_0645e3cf.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/gui_ie_cd85eb87.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/document_ie_29b378dd.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/calculator_ie_bd9fc80c.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/interface_calculator_ie_44704f07.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/runtime_ie_e7eb4a54.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/cell_ie_b1477f2e.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/compiler_ie_808fdc64.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/platform_ie_bb68a125.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Capital gains calculator - Blox_com Calculator_files/resource_ie_66434373.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</SCRIPT>
+
+<DIV class=division id=topDivision></DIV>
+<DIV class=palette id=buttonPalette><SPAN class=bulbLogoSmall 
+id=bulbLogo></SPAN>
+<DIV class=break id=break0></DIV>
+<DIV class=button id=btnSave title=Save></DIV>
+<DIV class=buttonText id=btnSaveText>Save</DIV>
+<DIV class=break id=break1></DIV>
+<DIV class=button id=btnPrint title=Print></DIV>
+<DIV class=buttonText id=btnPrintText>Print</DIV>
+<DIV class=break id=break2></DIV>
+<DIV class=button id=btnInstruction title=Instructions></DIV>
+<DIV class=buttonText id=btnInstructionText>Instructions</DIV>
+<DIV class=break id=break4></DIV>
+<DIV class=button id=btnEdit title="Edit as spreadsheet"></DIV>
+<DIV class=buttonText id=btnEditText>Edit as spreadsheet</DIV>
+<DIV class=break id=break5></DIV>
+<DIV class=button id=btnEmail title="Email to others"></DIV>
+<DIV class=buttonText id=btnEmailText>Email to others</DIV>
+<DIV class=break id=break6></DIV></DIV>
+<DIV class=division id=buttonDivision></DIV>
+<DIV class=division id=footDivision></DIV>
+<DIV class=palette id=footPalette><NOBR>Copyright © 1999-2001 <A 
+href="http://www.alphablox.com/" target=_blank>AlphaBlox Corporation.</A> All 
+rights reserved.</NOBR></DIV>
+<DIV id=modalDialog style="DISPLAY: none"></DIV>
+<DIV id=modalShield style="DISPLAY: none"></DIV>
+<DIV class=smallList id=popupMenuList style="WIDTH: 100px; HEIGHT: 1px"></DIV>
+<SCRIPT 
+language=JavaScript>
+		includeProgressDialog.style.display = "none";
+	</SCRIPT>
+<IFRAME id=resource0 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource1 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource2 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource3 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=saveFrame style="DISPLAY: none" 
+src="Capital gains calculator - Blox_com Calculator_files/saveframe.htm"></IFRAME><IFRAME 
+id=macroFrame style="DISPLAY: none" 
+src="Capital gains calculator - Blox_com Calculator_files/macroframe.htm"></IFRAME><IFRAME 
+id=bugFrame style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+style="DISPLAY: none" name=postFrame src="about:blank"></IFRAME>
+<FORM id=postForm method=post></FORM></BODY></HTML>

@@ -1,0 +1,328 @@
+.body {
+	 margin: 0; border: 0; padding-width: 0;
+	 overflow: hidden;
+	 background-color: white;
+}
+
+.palette {
+	position: absolute;
+	height: 24;
+	background-color: #c0c0c0;
+	overflow: hidden;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+}
+
+.division {
+	position: absolute;
+	width: 8000; height: 4;	
+	background-color: #c0c0c0; 
+	background-image: url( "/alphablox/InfoApps/internal/img/app/division.gif" );
+	background-repeat: repeat-x;
+	overflow: hidden;
+}
+
+.view {
+	position: absolute;
+	overflow: scroll;
+	visibility: hidden;
+	background-color: white;
+}
+
+.book {
+	position: absolute;
+	cursor: default;
+}
+
+.sheet {
+	position: absolute;
+	display: none;
+}
+
+.head {
+	position: absolute;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 10pt;
+	text-align: center;
+	overflow: hidden;
+	margin: 0px;
+	padding: 1px;
+	background-color: white;
+}
+
+.cell {
+	position: absolute;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 10pt;
+	text-align: right;
+	overflow: hidden;
+	margin: 0px;
+	padding: 1px;
+	background-color: white;
+	background-repeat: no-repeat;
+	z-index: -2; /* This is an easy workaround to make new cells appear beneath the row/column adjustment rect.
+				  Of course, we could change the z of the adjustment rect instead. Whatever.*/
+}
+
+.unlockedCell {
+	position: absolute;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 10pt;
+	text-align: right;
+	overflow: hidden;
+	margin: 0px;
+	padding: 1px;
+	border-style: solid;
+	border-color: lightblue;
+	border-width: 0px 1px 1px 0px;
+	background-color: white;
+}
+
+.rect {
+	position: absolute;
+	display: none;
+}
+
+.text {
+	position: absolute;
+	display: none;
+}
+
+.edit {
+	position: absolute;
+	margin: 0; padding: 0 2px 0 2px;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 10pt;
+	text-align: right;
+	background-repeat: no-repeat;
+	display: none;
+}
+
+.buttonText {
+	position: absolute;
+	height: 24;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	white-space: nowrap;
+}
+
+.button {
+	position: absolute;
+	height: 24; width: 24;
+	clip: rect( 0, 24, 24, 0 );
+	background-image: url( "/alphablox/InfoApps/internal/img/app/button9.gif" );
+}
+
+.bulbLogo { 
+	position: absolute;
+	background-image: url( "/alphablox/InfoApps/internal/img/blox_cube_16x26.gif" );
+	background-repeat: no-repeat;
+	width: 16; height: 26;
+	top: 2; left: 9;
+}
+
+.bulbLogoSmall { 
+	position: absolute;
+	background-image: url( "/alphablox/InfoApps/internal/img/blox_cube_16x26.gif" );
+	background-repeat: no-repeat;
+	width: 28; height: 26;
+	top: 2; left: 9;
+}
+
+.break {
+	position: absolute;
+	width: 3; height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/break.gif" );
+	background-repeat: repeat-x;
+}
+
+#footPalette {
+	height: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	padding: 5px;
+}
+
+A:link, A:visited { color: #0000cc; }
+A:active { color: #ff9900; }
+A:hover { color: #ff9900;}
+
+.modal {
+	position: absolute;
+	top: 0; left: 0;
+	width: 1%;
+	overflow: visible;
+	background-color: #ffffc2;
+	border-top: 1 solid black;
+	border-left: 1 solid black;
+	border-right: 2 solid black;
+	border-bottom: 2 solid black;
+	visibility: hidden;
+	cursor: default;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+}
+
+.modalTopLeftBox {
+	width: 16pt; height: 16pt;
+	background-color: #ffcc00;
+	overflow: hidden;
+}
+
+.modalTitle {
+	height: 16pt;
+	margin-left: 10px;
+	margin-right: 15px;
+	font-size: 10pt;
+	font-weight: bold;
+	line-height: 15pt;
+	color: #660066;
+}
+
+.modalContent {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#modalMessage {
+	margin-left: 15px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+	color: red;
+}
+
+#modalBottomBar {
+	margin-left: 20pt;
+	margin-bottom: 10px;
+	margin-right: 15px;
+	text-align: right;
+	overflow: visible;
+}
+
+.modalLabel {
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+}
+
+.modalButton {
+	width: 75px;
+	margin-top: 10px;
+	border-top: solid #000099 1px;
+	border-left: solid #000099 1px;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	color: #000099;
+	overflow: visible;
+}
+
+.modalProgressBar {
+	width: 320px; height: 16px;
+	margin-top: 15px;
+	border: solid black 1px;
+	background-color: #666699;
+	overflow: hidden;
+}
+
+.modalProgressWidget {
+	width: 1px; height: 16px;
+	border-right: solid black 1px;
+	background-color: #ccccff;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+/* these classes are here for the popupmenu function */
+.popupWidget {
+	position: absolute;
+	top: 1;
+	border: none;
+	margin:0px;
+	height: 18;
+	width: 13;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/popup.gif" );
+	background-repeat: no-repeat;
+	overflow: hidden;
+	z-index: 500;
+}
+
+
+.popupWidgetRect {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	position: absolute;
+	overflow: hidden;
+	border: 1px solid gray;
+	overflow: hidden;
+	z-index: -2;
+}
+
+
+.smallList {
+	position: absolute;
+	top: 0; left: 0;
+	z-index: 1000;
+	border: 1px solid black;
+	background-color: white;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+
+.smallItem {
+	position: absolute;
+	width:1000;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	padding: 0px 2px;
+	color: black;
+	background-color: white;
+	cursor: default;
+	padding-left: 5;
+	padding-right: 5;
+}
+
+.largeList {
+	position: absolute;
+	top: 0; left: 0;
+	z-index: 1000;
+	border: 1px solid black;
+	border-top-color: white;
+	border-left-color: white;
+	background-color: lightgrey;	
+	overflow: hidden;
+	visibility: hidden;	
+}
+
+.largeItem {
+	position: absolute;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	padding: 1px 2px;
+	color: black;
+	background-color: lightgrey;
+	clip: rect( 0, 300, 16, 0 );
+	cursor: default;
+	padding-left: 10;
+	padding-right: 10;
+}
+
+.separator {
+	position: absolute;
+	height: 4;
+	width: 1000;	
+	background-image: url( "/alphablox/InfoApps/internal/img/app/separator.gif" );
+	background-repeat: repeat-x;	
+}
+

@@ -1,0 +1,445 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.blox.com/open?topdiv=0&promo=0&id=000f4521_0cb6&new=ss -->
+<HTML><HEAD><TITLE>Direct mail analysis - Blox.com Calculator</TITLE>
+<META http-equiv=content-type content="text/html; charset=utf-8"><LINK 
+href="Direct mail analysis - Blox_com Calculator_files/view_mode_ie_2468704650.css" 
+type=text/css rel=stylesheet><LINK 
+href="Direct mail analysis - Blox_com Calculator_files/calculator_ie4_2f25ce2e.cssx" 
+type=text/css rel=stylesheet><LINK 
+href="Direct mail analysis - Blox_com Calculator_files/calculator_ie4_blox.css" 
+type=text/css rel=stylesheet>
+<STYLE type=text/css>#buttonDivision {
+	LEFT: 0px; TOP: 30px
+}
+#buttonPalette {
+	LEFT: 0px; VISIBILITY: visible; TOP: 0px; HEIGHT: 30px
+}
+#topDivision {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 0px
+}
+</STYLE>
+
+<SCRIPT language=JavaScript>
+
+			var kTotalJSIncludes = 16;
+			var gNumJSIncludesLoaded = 0;
+			var gAppLocale = 'en';
+			var gEntryLocale	= 'en';
+			var kFromGallery = true;
+			var kDomain = "blox.com";
+			var kRootUrl = "http://www.blox.com/";
+			var knoEmailBtn = 0;
+ 			if (knoEmailBtn)
+				suppressElements(['btnEmail','btnEmailText']);
+			// hide 'rate this calc' button if we're not opening from the gallery
+			if (!kFromGallery)
+				suppressElements(['btnRate','btnRateText','break5']);
+
+			function JSIncludeDoneLoading()
+			{
+				gNumJSIncludesLoaded++;
+				includeModalProgressWidget.style.width = (gNumJSIncludesLoaded/kTotalJSIncludes)*250;
+			}
+			
+			// creates stylesheet rules to suppress the specified elements
+			function suppressElements(elemIdArray) {
+				if (!(document.styleSheets && document.styleSheets.length > 0)) return;
+				for (var i=0; i < elemIdArray.length; i++)
+					document.styleSheets[0].addRule('#' + elemIdArray[i], 'display:none');
+			}
+
+
+		</SCRIPT>
+
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY class=body onresize=resizeDocument() 
+onbeforeunload="if(typeof unloadDocument != 'undefined')unloadDocument()" 
+scroll=no onload=loadDocument() 
+onunload="if(typeof unloadDocument != 'undefined')unloadDocument()"><SPAN 
+class=view id=view style="WIDTH: 100%; HEIGHT: 100%"><!-- later write the contents of this span --></SPAN>
+<SCRIPT language=JavaScript>
+
+		var content = '<div class="modalLabel">Please wait a moment (the first time you use the Calculator this may take a little longer).</div>'
+		+ '<div class="modalProgressBar">'
+		+ '<div id="includeModalProgressWidget" class="modalProgressWidget" style="visibility: visible;">'
+		+ '</div></div>';
+
+		var progressDialog = '<table id="includeProgressDialog" width="100%" height="100%">'
+		+ '<tr valign="middle"><td align="center"><div class="modal" STYLE="visibility:visible; position:static;">'
+		+ '<table border="0" width="225" cellspacing="0" cellpadding="0">'
+		+ '<tr valign="middle">'
+		+ '<td bgcolor="#ffcc00"><div class="modalTopLeftBox"></div></td>'
+		+ '<td bgcolor="#999999" nowrap><span class="modalTitle">Loading Calculator</span></td>'
+		+ '</tr>'
+		+ '<tr>'
+		+ '<td bgcolor="#999999"><br></td>'
+		+ '<td><div class="modalContent">' + content + '</div><div id="modalBottomBar" style="height:10px; overflow:hidden"><BR></div></td>'
+		+ '</tr>'
+		+ '</table>'
+		+ '</div></tr></td></table>';
+
+		document.write(progressDialog);
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript>
+
+		// global mode flag (can be "design", "view", or "embed")
+		var kMode = "view";
+		var gInitDirtyCells = "";
+		var gCellElemMatrix; // 2-D array of the cell elements, use like: gCellElemMatrix[row][column]
+		var gRowCount, gColumnCount, gImported=0 , gOwnerId=0, gAppId='',gAppDescription='';
+		var gAppVersion = 1.0;
+		var gAppAuthor = 'ss';
+		var gMacroText = '';
+		var gPartnerMenu = null;
+		var gPopupMenu = null;
+		var gExtra = "";
+		var gIsMatterhorn = false;
+		var gDocumentTitleBase = " - Blox.com Calculator";
+
+		// relative to the root url (which includes a trailing slash):
+		var gOpenScript = "open";
+		var gSaveScript = "savebraincell";
+		var gSaveLifeboat = "lifeboat";
+		var gMyFilesScript = "myfiles";
+		var gExportExcelScript = "xls_convert";
+		var gImportExcelScript = "xls_upload";
+		var gSendMailScript = "email";
+		var gFileSummaryScript = "file_summary";
+		var gRatingScript = "rating";
+		var kImageDirectory = "img/";
+		var kServletPrefix = "";
+		var gHelpPath = "help";
+		var gPrintCSS = "css/calculator_ie4.css";
+
+		// relative to the root url (which includes a trailing slash):
+		var gCloseBoxFile = "modalclosebox_ie.html";
+		var gSaveFrameFile = "saveframe.html"; // NOTE reference to same string in IFRAME below!
+		var gMacroFrameFile = "macroframe"; // NOTE reference to same string in IFRAME below!
+											// included for completeness & future compatibility with AlphaBlox
+
+		//
+gColumnCount = 9;gRowCount = 28;
+
+
+		// handlers should be placed on outermost control...
+		function GetColumnWidthsAndHeights(widths, heights)
+		{			
+			//
+widths[1] = 176;
+widths[2] = 93;
+widths[3] = 33;
+widths[4] = 150;
+widths[5] = 74;
+widths[6] = 40;
+widths[7] = 146;
+widths[8] = 87;
+heights[1] = 23;
+heights[22] = 21;
+heights[23] = 34;
+heights[24] = 26;
+heights[27] = 19;
+
+		}
+
+		// after this comment, we add //init cells
+gAppId='000f4521_0cb6';
+ gOwnerId='000f431e_bdbe';
+ gAppDescription='Direct mail analysis';
+var gCellDataArray=[{entry:'Direct Mail Analysis',viewSize:'12pt',foreColor:'navy',viewFamily:'Verdana',_fontWeight:'bold',_textAlign:'left',m_row:1,m_col:1,i_nr:'Direct Mail Analysis'},
+{entry:'Promotion Name:',viewSize:'9pt',_widthClue:'172',viewFamily:'Verdana',_textAlign:'right',m_row:2,m_col:1,i_nr:'Promotion Name:'},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'9pt',foreColor:'maroon',_textAlign:'left',m_row:2,m_col:2},
+{entry:'Prepared by:',viewSize:'9pt',_widthClue:'146',viewFamily:'Verdana',_textAlign:'right',m_row:2,m_col:4,i_nr:'Prepared by:'},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'9pt',foreColor:'maroon',_textAlign:'left',m_row:2,m_col:5},
+{entry:'Start Date:',viewSize:'9pt',_widthClue:'142',viewFamily:'Verdana',_textAlign:'right',m_row:2,m_col:7,i_nr:'Start Date:'},
+{_borderBottom:'solid black 1pt',locked:'false',viewFormat:'dateMDYY',viewSize:'9pt',foreColor:'maroon',_textAlign:'left',m_row:2,m_col:8},
+{entry:'Mail Codes:',viewSize:'9pt',_widthClue:'172',viewFamily:'Verdana',_textAlign:'right',m_row:3,m_col:1,i_nr:'Mail Codes:'},
+{_borderBottom:'solid black 1px',locked:'false',viewSize:'9pt',foreColor:'maroon',_textAlign:'left',m_row:3,m_col:2},
+{locked:'true',viewSize:'9pt',m_row:3,m_col:3},
+{entry:'Date:',viewSize:'9pt',_widthClue:'146',viewFamily:'Verdana',_textAlign:'right',m_row:3,m_col:4,i_nr:'Date:'},
+{_borderBottom:'solid black 1px',locked:'false',_viewFormat:'dateMDYY',viewSize:'9pt',foreColor:'maroon',_textAlign:'left',m_row:3,m_col:5},
+{entry:'End Date:',viewSize:'9pt',_widthClue:'142',viewFamily:'Verdana',_textAlign:'right',m_row:3,m_col:7,i_nr:'End Date:'},
+{_borderBottom:'solid black 1px',locked:'false',viewFormat:'dateMDYY',viewSize:'9pt',foreColor:'maroon',_textAlign:'left',m_row:3,m_col:8},
+{entry:'Gross Margin Per Order',locked:'true',viewSize:'9pt',foreColor:'white',bk_color:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:6,m_col:1,i_nr:'Gross Margin Per Order'},
+{viewSize:'9pt',foreColor:'white',bk_color:'navy',viewFamily:'Arial',m_row:6,m_col:2},
+{entry:'Direct Marketing Cost Per Piece',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'white',bk_color:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:6,m_col:4,i_nr:'Direct Marketing Cost Per Piece'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',bk_color:'navy',viewFamily:'Arial',_textAlign:'right',m_row:6,m_col:5},
+{entry:'Breakeven Analysis',viewSize:'9pt',foreColor:'white',bk_color:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:6,m_col:7,i_nr:'Breakeven Analysis'},
+{viewSize:'9pt',foreColor:'white',bk_color:'navy',viewFamily:'Arial',m_row:6,m_col:8},
+{entry:'Est. Average Order Size',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:7,m_col:1,i_nr:'Est. Average Order Size'},
+{entry:'100',dynamic:'100',derived:'100',
+i_tb:'[e[9][2],e[20][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:7,m_col:2,i_nr:'$100.00'},
+{entry:'Materials',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:7,m_col:4,i_nr:'Materials'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',m_row:7,m_col:5},
+{entry:'Revenue',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:7,m_col:7,i_nr:'Revenue'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',m_row:7,m_col:8},
+{entry:'Handling Charge',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:8,m_col:1,i_nr:'Handling Charge'},
+{entry:'4.00',dynamic:'4',derived:'4',
+i_tb:'[e[9][2]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:8,m_col:2,i_nr:'$4.00'},
+{entry:'Catalogs',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:8,m_col:4,i_nr:'Catalogs'},
+{entry:'1.00',dynamic:'1',derived:'1',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:8,m_col:5,i_nr:'$1.00'},
+{entry:'Pieces Mailed',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:8,m_col:7,i_nr:'Pieces Mailed'},
+{entry:'100000',dynamic:'100000',derived:'100000',
+i_tb:'[e[10][8],e[15][8]]',locked:'false',viewFormat:'comma',viewSize:'9pt',_widthClue:'83',foreColor:'maroon',viewFamily:'Arial',m_row:8,m_col:8,i_nr:'100,000'},
+{entry:'Total Revenue Per Order',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:9,m_col:1,i_nr:'Total Revenue Per Order'},
+{entry:'=IF(OR(	B7	<>"",	B8	<>""),SUM(	B7	:	B8	),"")',dynamic:'(__ior(_ner(_cel(	\'r7c2s0\'	),\'\'),_ner(_cel(	\'r8c2s0\'	),\'\'))?__sum(_cel(	\'r7c2s0\'	),_cel(	\'r8c2s0\'	)):\'\')',derived:'104',
+i_tb:'[e[11][8]]',
+i_rt:'[e[7][2],e[8][2]]',viewFormat:'currency_2',_fontStyle:'normal',_widthClue:'89',foreColor:'black',bk_color:'white',_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',_fontWeight:'bold',m_row:9,m_col:2,i_nr:'$104.00'},
+{entry:'Circulars',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:9,m_col:4,i_nr:'Circulars'},
+{entry:'0.50',dynamic:'0.5',derived:'0.5',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:9,m_col:5,i_nr:'$0.50'},
+{entry:'Est. Response Rate',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:9,m_col:7,i_nr:'Est. Response Rate'},
+{entry:'.03',dynamic:'0.03',derived:'0.03',
+i_tb:'[e[10][8],e[26][8],e[27][8]]',locked:'false',viewFormat:'percentage_2',viewSize:'9pt',_widthClue:'83',foreColor:'maroon',viewFamily:'Arial',m_row:9,m_col:8,i_nr:'3.00%'},
+{viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',m_row:10,m_col:1},
+{entry:'Letters',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:10,m_col:4,i_nr:'Letters'},
+{entry:'.05',dynamic:'0.05',derived:'0.05',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:10,m_col:5,i_nr:'$0.05'},
+{entry:'No. of Orders',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:10,m_col:7,i_nr:'No. of Orders'},
+{entry:'=IF(	H9	*	H8	>0,	H9	*	H8	,"")',dynamic:'(_gtr(_mul(_cel(	\'r9c8s0\'	),_cel(	\'r8c8s0\'	)),0)?_mul(_cel(	\'r9c8s0\'	),_cel(	\'r8c8s0\'	)):\'\')',derived:'3000',
+i_tb:'[e[12][8]]',
+i_rt:'[e[9][8],e[8][8]]',viewFormat:'comma',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',m_row:10,m_col:8,i_nr:'3,000'},
+{entry:'Goods Per Order',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:11,m_col:1,i_nr:'Goods Per Order'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:11,m_col:2},
+{entry:'Inserts',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:11,m_col:4,i_nr:'Inserts'},
+{entry:'.2',dynamic:'0.2',derived:'0.2',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:11,m_col:5,i_nr:'$0.20'},
+{entry:'Revenue Per Order',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:11,m_col:7,i_nr:'Revenue Per Order'},
+{entry:'=IF(	B9	<>"",	B9	,0)',dynamic:'(_ner(_cel(	\'r9c2s0\'	),\'\')?_cel(	\'r9c2s0\'	):0)',derived:'104',
+i_tb:'[e[12][8],e[26][8]]',
+i_rt:'[e[9][2]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',m_row:11,m_col:8,i_nr:'$104.00'},
+{entry:'Freight & Shipping',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:12,m_col:1,i_nr:'Freight & Shipping'},
+{entry:'5.00',dynamic:'5',derived:'5',
+i_tb:'[e[19][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:12,m_col:2,i_nr:'$5.00'},
+{entry:'Lift Pieces',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:12,m_col:4,i_nr:'Lift Pieces'},
+{entry:'.05',dynamic:'0.05',derived:'0.05',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:12,m_col:5,i_nr:'$0.05'},
+{entry:'Total Revenue',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:12,m_col:7,i_nr:'Total Revenue'},
+{entry:'=IF(AND(	H10	>0,	H10	<>"",	H11	>0,	H11	<>""),	H10	*	H11	,0)',dynamic:'(__and(_gtr(_cel(	\'r10c8s0\'	),0),_ner(_cel(	\'r10c8s0\'	),\'\'),_gtr(_cel(	\'r11c8s0\'	),0),_ner(_cel(	\'r11c8s0\'	),\'\'))?_mul(_cel(	\'r10c8s0\'	),_cel(	\'r11c8s0\'	)):0)',derived:'312000',
+i_tb:'[e[25][8]]',
+i_rt:'[e[10][8],e[11][8]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:12,m_col:8,i_nr:'$312,000.00'},
+{entry:'Order Processing',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:13,m_col:1,i_nr:'Order Processing'},
+{entry:'1.00',dynamic:'1',derived:'1',
+i_tb:'[e[19][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:13,m_col:2,i_nr:'$1.00'},
+{entry:'Envelopes',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:13,m_col:4,i_nr:'Envelopes'},
+{entry:'.1',dynamic:'0.1',derived:'0.1',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:13,m_col:5,i_nr:'$0.10'},
+{viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',m_row:13,m_col:7},
+{entry:'Credit Checking',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:14,m_col:1,i_nr:'Credit Checking'},
+{entry:'1.00',dynamic:'1',derived:'1',
+i_tb:'[e[19][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:14,m_col:2,i_nr:'$1.00'},
+{entry:'Order Forms',viewFormat:'dateMMDDYY',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:14,m_col:4,i_nr:'Order Forms'},
+{entry:'.02',dynamic:'0.02',derived:'0.02',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',_textAlign:'right',m_row:14,m_col:5,i_nr:'$0.02'},
+{entry:'Variable Costs',_borderBottom:'solid black 1px',viewFormat:'dateMMDDYY',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:14,m_col:7,i_nr:'Variable Costs'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',m_row:14,m_col:8},
+{entry:'Returns Cost',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:15,m_col:1,i_nr:'Returns Cost'},
+{entry:'1.00',dynamic:'1',derived:'1',
+i_tb:'[e[19][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:15,m_col:2,i_nr:'$1.00'},
+{entry:'Other',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:15,m_col:4,i_nr:'Other'},
+{entry:'.5',dynamic:'0.5',derived:'0.5',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',m_row:15,m_col:5,i_nr:'$0.50'},
+{entry:'Pieces Mailed',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:15,m_col:7,i_nr:'Pieces Mailed'},
+{entry:'=IF(	H8	<>"",	H8	,"")',dynamic:'(_ner(_cel(	\'r8c8s0\'	),\'\')?_cel(	\'r8c8s0\'	):\'\')',derived:'100000',
+i_tb:'[e[17][8]]',
+i_rt:'[e[8][8]]',viewFormat:'comma',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',m_row:15,m_col:8,i_nr:'100,000'},
+{entry:'Bad Debt',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:16,m_col:1,i_nr:'Bad Debt'},
+{entry:'2.00',dynamic:'2',derived:'2',
+i_tb:'[e[19][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:16,m_col:2,i_nr:'$2.00'},
+{
+i_tb:'[e[23][5]]',locked:'true',viewFamily:'Arial',m_row:16,m_col:5},
+{entry:'Direct Mail Cost / Piece',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:16,m_col:7,i_nr:'Direct Mail Cost / Piece'},
+{entry:'=IF(	E23	<>"",	E23	,0)',dynamic:'(_ner(_cel(	\'r23c5s0\'	),\'\')?_cel(	\'r23c5s0\'	):0)',derived:'3.0700000000000003',
+i_tb:'[e[17][8],e[26][8]]',
+i_rt:'[e[23][5]]',_borderBottom:'solid black 1px',viewFormat:'comma',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',m_row:16,m_col:8,i_nr:'3'},
+{entry:'Collections',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:17,m_col:1,i_nr:'Collections'},
+{entry:'2.00',dynamic:'2',derived:'2',
+i_tb:'[e[19][2]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:17,m_col:2,i_nr:'$2.00'},
+{entry:'Mailing',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:17,m_col:4,i_nr:'Mailing'},
+{
+i_tb:'[e[23][5]]',_borderBottom:'solid black 1px',locked:'true',viewSize:'9pt',viewFamily:'Arial',m_row:17,m_col:5},
+{entry:'Total Variable Costs',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:17,m_col:7,i_nr:'Total Variable Costs'},
+{entry:'=IF(AND(	H15	<>"",	H16	<>"",	H15	>0,	H16	>0),	H15	*	H16	,0)',dynamic:'(__and(_ner(_cel(	\'r15c8s0\'	),\'\'),_ner(_cel(	\'r16c8s0\'	),\'\'),_gtr(_cel(	\'r15c8s0\'	),0),_gtr(_cel(	\'r16c8s0\'	),0))?_mul(_cel(	\'r15c8s0\'	),_cel(	\'r16c8s0\'	)):0)',derived:'307000',
+i_tb:'[e[25][8]]',
+i_rt:'[e[15][8],e[16][8]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:17,m_col:8,i_nr:'$307,000.00'},
+{entry:'Other',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:18,m_col:1,i_nr:'Other'},
+{entry:'1.00',dynamic:'1',derived:'1',
+i_tb:'[e[19][2],e[20][2]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'maroon',viewFamily:'Arial',m_row:18,m_col:2,i_nr:'$1.00'},
+{entry:'List Rental',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:18,m_col:4,i_nr:'List Rental'},
+{entry:'.1',dynamic:'0.1',derived:'0.1',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',m_row:18,m_col:5,i_nr:'$0.10'},
+{viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',m_row:18,m_col:7},
+{entry:'Costs Per Order',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:19,m_col:1,i_nr:'Costs Per Order'},
+{entry:'=IF(SUM(	B12	:	B18	)>0,SUM(	B12	:	B18	),"")',dynamic:'(_gtr(__sum(_cel(	\'r12c2s0\'	),_cel(	\'r13c2s0\'	),_cel(	\'r14c2s0\'	),_cel(	\'r15c2s0\'	),_cel(	\'r16c2s0\'	),_cel(	\'r17c2s0\'	),_cel(	\'r18c2s0\'	)),0)?__sum(_cel(	\'r12c2s0\'	),_cel(	\'r13c2s0\'	),_cel(	\'r14c2s0\'	),_cel(	\'r15c2s0\'	),_cel(	\'r16c2s0\'	),_cel(	\'r17c2s0\'	),_cel(	\'r18c2s0\'	)):\'\')',derived:'13',
+i_rt:'[e[12][2],e[13][2],e[14][2],e[15][2],e[16][2],e[17][2],e[18][2]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:19,m_col:2,i_nr:'$13.00'},
+{entry:'Assembly',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:19,m_col:4,i_nr:'Assembly'},
+{entry:'.25',dynamic:'0.25',derived:'0.25',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',m_row:19,m_col:5,i_nr:'$0.25'},
+{entry:'Fixed Costs',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:19,m_col:7,i_nr:'Fixed Costs'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',_textAlign:'left',m_row:19,m_col:8},
+{entry:'Gross Margin Per Order',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:20,m_col:1,i_nr:'Gross Margin Per Order'},
+{entry:'=IF(AND(	B7	<>"",	B18	<>""),	B7	-	B18	,"")',dynamic:'(__and(_ner(_cel(	\'r7c2s0\'	),\'\'),_ner(_cel(	\'r18c2s0\'	),\'\'))?_sub(_cel(	\'r7c2s0\'	),_cel(	\'r18c2s0\'	)):\'\')',derived:'99',
+i_rt:'[e[7][2],e[18][2]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'89',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:20,m_col:2,i_nr:'$99.00'},
+{entry:'Addressing',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:20,m_col:4,i_nr:'Addressing'},
+{entry:'.02',dynamic:'0.02',derived:'0.02',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',m_row:20,m_col:5,i_nr:'$0.02'},
+{entry:'Design Expenses',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:20,m_col:7,i_nr:'Design Expenses'},
+{entry:'1500',dynamic:'1500',derived:'1500',
+i_tb:'[e[23][8]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'83',foreColor:'maroon',viewFamily:'Arial',m_row:20,m_col:8,i_nr:'$1,500.00'},
+{entry:'Postage',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:21,m_col:4,i_nr:'Postage'},
+{entry:'.28',dynamic:'0.28',derived:'0.28',
+i_tb:'[e[23][5]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',m_row:21,m_col:5,i_nr:'$0.28'},
+{entry:'Allocations',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:21,m_col:7,i_nr:'Allocations'},
+{entry:'250.00',dynamic:'250',derived:'250',
+i_tb:'[e[23][8]]',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'83',foreColor:'maroon',viewFamily:'Arial',m_row:21,m_col:8,i_nr:'$250.00'},
+{entry:'Other',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:22,m_col:4,i_nr:'Other'},
+{entry:'.1',dynamic:'0.1',derived:'0.1',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'maroon',viewFamily:'Arial',m_row:22,m_col:5,i_nr:'$0.10'},
+{entry:'Other',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_textAlign:'left',m_row:22,m_col:7,i_nr:'Other'},
+{entry:'5.00',dynamic:'5',derived:'5',
+i_tb:'[e[23][8]]',_borderBottom:'solid black 1px',locked:'false',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'83',foreColor:'maroon',viewFamily:'Arial',m_row:22,m_col:8,i_nr:'$5.00'},
+{entry:'Direct Marketing Cost Per Piece',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',_wrapText:'true',_textAlign:'left',m_row:23,m_col:4,i_nr:'Direct Marketing Cost Per Piece'},
+{entry:'=IF(SUM(	E8	:	E21	)>0,SUM(	E8	:	E21	),"")',dynamic:'(_gtr(__sum(_cel(	\'r8c5s0\'	),_cel(	\'r9c5s0\'	),_cel(	\'r10c5s0\'	),_cel(	\'r11c5s0\'	),_cel(	\'r12c5s0\'	),_cel(	\'r13c5s0\'	),_cel(	\'r14c5s0\'	),_cel(	\'r15c5s0\'	),_cel(	\'r16c5s0\'	),_cel(	\'r17c5s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r19c5s0\'	),_cel(	\'r20c5s0\'	),_cel(	\'r21c5s0\'	)),0)?__sum(_cel(	\'r8c5s0\'	),_cel(	\'r9c5s0\'	),_cel(	\'r10c5s0\'	),_cel(	\'r11c5s0\'	),_cel(	\'r12c5s0\'	),_cel(	\'r13c5s0\'	),_cel(	\'r14c5s0\'	),_cel(	\'r15c5s0\'	),_cel(	\'r16c5s0\'	),_cel(	\'r17c5s0\'	),_cel(	\'r18c5s0\'	),_cel(	\'r19c5s0\'	),_cel(	\'r20c5s0\'	),_cel(	\'r21c5s0\'	)):\'\')',derived:'3.0700000000000003',
+i_tb:'[e[16][8]]',
+i_rt:'[e[8][5],e[9][5],e[10][5],e[11][5],e[12][5],e[13][5],e[14][5],e[15][5],e[16][5],e[17][5],e[18][5],e[19][5],e[20][5],e[21][5]]',_borderBottom:'solid black 1px',viewFormat:'currency_2',viewSize:'9pt',_widthClue:'70',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:23,m_col:5,i_nr:'$3.07'},
+{entry:'Total Fixed Costs',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:23,m_col:7,i_nr:'Total Fixed Costs'},
+{entry:'=SUM(	H20	:	H22	)',dynamic:'__sum(_cel(	\'r20c8s0\'	),_cel(	\'r21c8s0\'	),_cel(	\'r22c8s0\'	))',derived:'1755',
+i_tb:'[e[25][8],e[26][8]]',
+i_rt:'[e[20][8],e[21][8],e[22][8]]',viewFormat:'currency_2',_widthClue:'83',foreColor:'black',bk_color:'white',_textAlign:'right',_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',_fontWeight:'bold',m_row:23,m_col:8,i_nr:'$1,755.00'},
+{_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',m_row:24,m_col:7},
+{_borderBottom:'solid black 1px',viewSize:'9pt',viewFamily:'Arial',m_row:24,m_col:8},
+{entry:'Total Net Profit',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:25,m_col:7,i_nr:'Total Net Profit'},
+{entry:'=IF(	H12	-	H17	-	H23	>0,	H12	-	H17	-	H23	,"")',dynamic:'(_gtr(_sub(_sub(_cel(	\'r12c8s0\'	),_cel(	\'r17c8s0\'	)),_cel(	\'r23c8s0\'	)),0)?_sub(_sub(_cel(	\'r12c8s0\'	),_cel(	\'r17c8s0\'	)),_cel(	\'r23c8s0\'	)):\'\')',derived:'3245',
+i_rt:'[e[12][8],e[17][8],e[23][8]]',viewFormat:'currency_2',_widthClue:'83',foreColor:'black',bk_color:'white',_textAlign:'right',viewSize:'9pt',viewFamily:'Arial',_fontWeight:'bold',m_row:25,m_col:8,i_nr:'$3,245.00'},
+{entry:'Breakeven Unit Mailing',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:26,m_col:7,i_nr:'Breakeven Unit Mailing'},
+{entry:'=IF(AND(	H11	=0,	H9	=""),"",IF((	H11	*	H9	)-	H16	>0,	H23	/((	H11	*	H9	)-	H16	),"REV<COST!"))',dynamic:'(__and(_eqr(_cel(	\'r11c8s0\'	),0),_eqr(_cel(	\'r9c8s0\'	),\'\'))?\'\':(_gtr(_sub(_mul(_cel(	\'r11c8s0\'	),_cel(	\'r9c8s0\'	)),_cel(	\'r16c8s0\'	)),0)?_div(_cel(	\'r23c8s0\'	),_sub(_mul(_cel(	\'r11c8s0\'	),_cel(	\'r9c8s0\'	)),_cel(	\'r16c8s0\'	))):\'REV<COST!\'))',derived:'35100.000000000124',
+i_tb:'[e[27][8]]',
+i_rt:'[e[11][8],e[9][8],e[16][8],e[23][8]]',viewFormat:'comma_2',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:26,m_col:8,i_nr:'35,100.00'},
+{entry:'Breakeven Unit Sales',_borderBottom:'solid black 1px',viewSize:'9pt',foreColor:'navy',viewFamily:'Arial',_fontWeight:'bold',_textAlign:'left',m_row:27,m_col:7,i_nr:'Breakeven Unit Sales'},
+{entry:'=IF(AND(	H9	>0,	H26	<>"REV<COST!"),	H9	*	H26	,"")',dynamic:'(__and(_gtr(_cel(	\'r9c8s0\'	),0),_ner(_cel(	\'r26c8s0\'	),\'REV<COST!\'))?_mul(_cel(	\'r9c8s0\'	),_cel(	\'r26c8s0\'	)):\'\')',derived:'1053.0000000000036',
+i_rt:'[e[9][8],e[26][8]]',_borderBottom:'solid black 1px',viewFormat:'comma_2',viewSize:'9pt',_widthClue:'83',foreColor:'black',bk_color:'white',viewFamily:'Arial',_fontWeight:'bold',m_row:27,m_col:8,i_nr:'1,053.00'}];
+
+var needsRebuilding=false;
+var gDerivedFrom='';
+var kSaveHostname = "";
+gMacroText= "";
+
+
+
+
+	</SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/unicodeCharMap_ie_667e49f7.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/strings_en_2491480284.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/locale_ie_0d14744b.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/utility_ie_dbd756c4.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/dialog_ie_8cee673f.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/browser_detect_ie_b85f83d9.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/cookie_ie_0645e3cf.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/gui_ie_cd85eb87.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/document_ie_29b378dd.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/calculator_ie_bd9fc80c.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/interface_calculator_ie_44704f07.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/runtime_ie_e7eb4a54.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/cell_ie_b1477f2e.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/compiler_ie_808fdc64.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/platform_ie_bb68a125.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="Direct mail analysis - Blox_com Calculator_files/resource_ie_66434373.jsx"></SCRIPT>
+
+<SCRIPT language=JavaScript>
+			
+					function WindowIsValid(wnd) {
+						try {
+							var x = wnd.name;
+						}
+						catch (error) {
+							return 0;
+						}
+						return 1;
+					}
+			
+					function SafeEval(str) {
+						try {
+							eval( str );
+						}
+						catch (error) {
+							return error.description ? error.description : "unknown error";
+						}
+						return 0;
+					}
+				</SCRIPT>
+
+<DIV class=division id=topDivision></DIV>
+<DIV class=palette id=buttonPalette><SPAN class=bulbLogoSmall 
+id=bulbLogo></SPAN>
+<DIV class=break id=break0></DIV>
+<DIV class=button id=btnSave title=Save></DIV>
+<DIV class=buttonText id=btnSaveText>Save</DIV>
+<DIV class=break id=break1></DIV>
+<DIV class=button id=btnPrint title=Print></DIV>
+<DIV class=buttonText id=btnPrintText>Print</DIV>
+<DIV class=break id=break2></DIV>
+<DIV class=button id=btnInstruction title=Instructions></DIV>
+<DIV class=buttonText id=btnInstructionText>Instructions</DIV>
+<DIV class=break id=break4></DIV>
+<DIV class=button id=btnEdit title="Edit as spreadsheet"></DIV>
+<DIV class=buttonText id=btnEditText>Edit as spreadsheet</DIV>
+<DIV class=break id=break5></DIV>
+<DIV class=button id=btnEmail title="Email to others"></DIV>
+<DIV class=buttonText id=btnEmailText>Email to others</DIV>
+<DIV class=break id=break6></DIV></DIV>
+<DIV class=division id=buttonDivision></DIV>
+<DIV class=division id=footDivision></DIV>
+<DIV class=palette id=footPalette><NOBR>Copyright © 1999-2001 <A 
+href="http://www.alphablox.com/" target=_blank>AlphaBlox Corporation.</A> All 
+rights reserved.</NOBR></DIV>
+<DIV id=modalDialog style="DISPLAY: none"></DIV>
+<DIV id=modalShield style="DISPLAY: none"></DIV>
+<DIV class=smallList id=popupMenuList style="WIDTH: 100px; HEIGHT: 1px"></DIV>
+<SCRIPT 
+language=JavaScript>
+		includeProgressDialog.style.display = "none";
+	</SCRIPT>
+<IFRAME id=resource0 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource1 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource2 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=resource3 style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+id=saveFrame style="DISPLAY: none" 
+src="Direct mail analysis - Blox_com Calculator_files/saveframe.htm"></IFRAME><IFRAME 
+id=macroFrame style="DISPLAY: none" 
+src="Direct mail analysis - Blox_com Calculator_files/macroframe.htm"></IFRAME><IFRAME 
+id=bugFrame style="DISPLAY: none" src="about:blank"></IFRAME><IFRAME 
+style="DISPLAY: none" name=postFrame src="about:blank"></IFRAME>
+<FORM id=postForm method=post></FORM></BODY></HTML>

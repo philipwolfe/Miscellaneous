@@ -1,0 +1,309 @@
+
+
+
+
+ 
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+
+<!--
+	Blox.com
+	http://www.blox.com
+	Copyright (c) 1999-2001 AlphaBlox Corporation Inc. All rights reserved.
+-->
+
+<head>
+<title>Blox.com</title>
+
+
+<meta name="description" content="Blox.com - now a service of AlphaBlox. Blox.com is changing the face of the web with applications that live online. Create more intelligent web presentations, spreadsheets and online calculators.">
+<meta name="keywords" content="spreadsheet, documents, templates, Blox.com, Halfbrain, AlphaBlox, blox, analysis, stock options, presentation, program, tools, staroffice, mywebos, desktop.com, powerpoint, application, free, download, excel, starportal, bcentral, publishing, webtop, half brain, authoring, database, presentations, calculate, pre-designed, pre-programmed, html, cgi, OLAP, programming, calculator, office, BrainMatter, numbers, brainstorm, data, powerpoint, java, slides, slideshow, slide show, shareware, freeware, shareware, save, files, soho, business, javascript, dhtml, dynamic html">
+
+<script language="JavaScript" src="/lib/js/browser_detect_ie_b85f83d9.jsx" ></script><script language="JavaScript" src="/lib/js/site_master_ie_44685032.jsx" ></script>
+
+<script language="JavaScript">
+	<!--
+
+
+	
+	var imgArr = new Object();
+	// general-purpose image swap function
+	function imgSwap(imgName, state) {
+		if (document.images && imgArr[imgName + "_" + state])
+			document.images[imgName].src = imgArr[imgName + "_" + state].src;
+		return true;
+	}
+	imgArr["blx_hmpg_btn_hm_off"] = new Image(59,24);
+	imgArr["blx_hmpg_btn_hm_off"].src = "/img/newimages/blx_hmpg_btn_hm_off.gif";	
+	imgArr["blx_hmpg_btn_prod_off"] = new Image(77,24);
+	imgArr["blx_hmpg_btn_prod_off"].src = "/img/newimages/blx_hmpg_btn_prod_off.gif";
+	imgArr["blx_hmpg_btn_ser_off"] = new Image(72,24);
+	imgArr["blx_hmpg_btn_ser_off"].src = "/img/newimages/blx_hmpg_btn_ser_off.gif";
+	imgArr["blx_hmpg_btn_abt_off"] = new Image(77,24);
+	imgArr["blx_hmpg_btn_abt_off"].src = "/img/newimages/blx_hmpg_btn_abt_off.gif";
+	imgArr["blx_hmpg_btn_cont_off"] = new Image(87,24);
+	imgArr["blx_hmpg_btn_cont_off"].src = "/img/newimages/blx_hmpg_btn_cont_off.gif";
+	imgArr["new_blx_hmpg_btn_acct_off"] = new Image(87,24);
+	imgArr["new_blx_hmpg_btn_acct_off"].src = "/img/newimages/new_blx_hmpg_btn_acct_off.gif";
+
+	imgArr["blx_hmpg_btn_hm_ro"] = new Image(59,24);
+	imgArr["blx_hmpg_btn_hm_ro"].src = "/img/newimages/blx_hmpg_btn_hm_ro.gif";
+	imgArr["blx_hmpg_btn_prod_ro"] = new Image(77,24);
+	imgArr["blx_hmpg_btn_prod_ro"].src = "/img/newimages/blx_hmpg_btn_prod_ro.gif";
+	imgArr["blx_hmpg_btn_ser_ro"] = new Image(72,24);
+	imgArr["blx_hmpg_btn_ser_ro"].src = "/img/newimages/blx_hmpg_btn_ser_ro.gif";
+	imgArr["blx_hmpg_btn_abt_ro"] = new Image(77,24);
+	imgArr["blx_hmpg_btn_abt_ro"].src = "/img/newimages/blx_hmpg_btn_abt_ro.gif";
+	imgArr["blx_hmpg_btn_cont_ro"] = new Image(87,24);
+	imgArr["blx_hmpg_btn_cont_ro"].src = "/img/newimages/blx_hmpg_btn_cont_ro.gif";
+	imgArr["new_blx_hmpg_btn_acct_ro"] = new Image(87,24);
+	imgArr["new_blx_hmpg_btn_acct_ro"].src = "/img/newimages/new_blx_hmpg_btn_acct_ro.gif";
+
+
+	// -->
+</script>
+
+<script language="JavaScript" src="/lib/js/cookie_ie_0645e3cf.jsx" ></script>
+
+
+<script language="Javascript">
+<!-- Hide javascript from older browsers --
+
+	
+	// setup onLoad handlers
+	queueForPageLoad(PrefillForm);
+	queueForPageLoad(FocusField);
+	
+
+	function PrefillForm()
+	{
+		var theForm = document.loginForm;
+	
+		// if the login page was invoked by an attempt to save a file,
+		//   send that info to the server
+		if (window.name == "loginThenSave")
+			theForm.onLoginSuccess.value = 'resumeSave';
+	
+		// only continue if the form is new
+		if (false) return;
+		
+		var longTerm= new Cookie(document, "longTerm");
+		var checked = true;
+		if (longTerm.load())
+		{
+			if(longTerm.autoLogin == 0)
+				checked = false;			
+			if (!theForm.memberName.value && longTerm.mname)			
+				theForm.memberName.value = longTerm.mname;
+		}
+		theForm.autoLogin.checked = checked;
+	}
+
+	function FocusField()
+	{
+		var theForm = document.loginForm;
+		if (theForm.memberName.value == '')
+			theForm.memberName.focus();
+		else
+			theForm.password.focus();
+	}
+	
+	function Validate()
+	{
+		var theForm = document.loginForm;
+
+		if (theForm.memberName.value == '')
+		{
+			alert("Please provide your member name.");
+			theForm.memberName.focus();
+			return false;
+		}
+
+		if (theForm.password.value == '')
+		{
+			alert("Please provide your password.");
+			theForm.password.focus();
+			return false;
+		}
+
+		return true;
+	}
+
+	function submitForm() {
+		if (Validate()) document.loginForm.submit();
+	}
+	
+	// event handler for IE; submits the form when the Enter key is pressed
+	// in a form field
+	function catchEnter() {
+		if(window.event && window.event.keyCode == 13) {
+			submitForm();
+			return false;  // necessary to cancel the Enter key; IE beeps annoyingly otherwise
+		}
+		else
+			return true;
+	}
+	
+// end hide -->
+</script>
+
+
+<link rel="stylesheet" href="/css/new_style.css">
+</head>
+<body onLoad="_pageInit()" bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" link="#669900" alink="#669900" vlink="#669900" background="/img/newimages/greybar_background.gif">
+
+
+
+
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+	<!-- Login Box (1)-->
+	<td width="145" bgcolor="#FFFFFF"><img src="/img/newimages/spacer.gif" width=145 height=10 border=0 alt=""></td>
+	<!-- Content Area (4)-->
+	<td width="615"><img src="/img/newimages/spacer.gif" width=615 height=10 border=0 alt=""></td>
+	<td width="100%"><img src="/img/newimages/spacer.gif" width=2 height=10 border=0 alt=""></td>
+  </tr>
+  <tr>
+	<td rowspan="3" valign="bottom" bgcolor="#FFFFFF"
+	><img src="/img/newimages/blx_hmpg_logo.gif" width=145 height=57 border=0 alt="Blox.com"
+	></td>
+	<td colspan= "2" valign="top"
+	><img src="/img/newimages/blx_hmpg_topboxes.gif" width=523 height=44 border=0 alt="Select an Industry or Group" usemap="#blx_hmpg_topboxes.gif"
+	></td>
+  </tr>
+  <tr bgcolor="#333333">
+	<td colspan="2" valign="top"
+	><a href="/" onMouseOut="imgSwap('blx_hmpg_btn_hm','off')" onMouseOver="imgSwap('blx_hmpg_btn_hm','ro')"><img src="/img/newimages/blx_hmpg_btn_hm_off.gif" width=59 height=24 border=0 alt="Home" name="blx_hmpg_btn_hm"></a
+><a href="/products" onMouseOut="imgSwap('blx_hmpg_btn_prod','off')" onMouseOver="imgSwap('blx_hmpg_btn_prod','ro')"><img src="/img/newimages/blx_hmpg_btn_prod_off.gif" width=77 height=24 border=0 alt="Products" name="blx_hmpg_btn_prod"></a
+><a href="/services" onMouseOut="imgSwap('blx_hmpg_btn_ser','off')" onMouseOver="imgSwap('blx_hmpg_btn_ser','ro')"><img src="/img/newimages/blx_hmpg_btn_ser_off.gif" width=72 height=24 border=0 alt="Services" name="blx_hmpg_btn_ser"></a
+><a href="/about_us" onMouseOut="imgSwap('blx_hmpg_btn_abt','off')" onMouseOver="imgSwap('blx_hmpg_btn_abt','ro')"><img src="/img/newimages/blx_hmpg_btn_abt_off.gif" width=77 height=24 border=0 alt="About Us" name="blx_hmpg_btn_abt"></a
+><a href="/about_us?subsection=contact_us" onMouseOut="imgSwap('blx_hmpg_btn_cont','off')" onMouseOver="imgSwap('blx_hmpg_btn_cont','ro')"><img src="/img/newimages/blx_hmpg_btn_cont_off.gif" width=87 height=24 border=0 alt="Contact Us" name="blx_hmpg_btn_cont"></a
+><img src="/img/newimages/new_blx_hmpg_btn_acct_on.gif" width=87 height=24 border=0 alt="My Files" name="new_blx_hmpg_btn_acct"
+
+	></td>
+  </tr>
+  <tr bgcolor="#333333">
+	<td colspan="2"><img src="/img/newimages/spacer.gif" width=2 height=19 border=0 alt=""></td>
+  </tr>
+
+ <tr>
+    <td valign="top"> <!--Side navigation-->
+      <table width="100%" border="0">
+        <tr>
+          <td><img src="/img/newimages/spacer.gif" width=5 height=2 border=0 alt=""></td>
+          <td valign="bottom">
+            <p class="whitetext"><img src="/img/newimages/spacer.gif" width=30 height=50 border=0 alt="">
+				</p>
+          </td>
+          <td><img src="/img/newimages/spacer.gif" width=5 height=2 border=0 alt=""></td>
+        </tr>
+      </table>
+      <a href="http://www.alphablox.com"><img src="/img/newimages/blx_hmpg_logo_ablx.gif" width=144 height=35 border=0 alt=""></a></td>
+
+
+
+    <!--Content-->
+    <td valign="top" height="160">
+
+      <table width="500" cellspacing="0" cellpadding="0" border="0">
+        <tr> 
+          <td colspan="2"> <img src="/img/newimages/blx_blox_btm.gif" width=523 height=35 border=0 alt=""></td>
+        </tr>
+          <tr> 
+		  <td><img src="/img/newimages/spacer.gif" width=15 height=2 border=0 alt=""></td>
+          <td height="100%"> 
+            <p class="pbold">Login
+			
+			<form name="loginForm" action="/login" method="post" onKeyPress="return catchEnter();">
+
+			<input type="hidden" name="submitHappened" value="1">
+			<input type="hidden" name="onLoginSuccess" value="">
+
+              <p>Not a Member? <a href="/join">Join Today.</a><br>
+                <br>
+                User I.D.:<br>
+				<input type="text" name="memberName" value="" size="25" maxlength="20">
+                <br>
+                <br>
+                Password:<br>
+				<input type="password" name="password" value="" size="25" maxlength="20">
+                <br>
+                <br>
+  				<input type="checkbox" name="autoLogin" value="true"  >remember my password (auto-login)
+				<br>		
+				<br>
+				<br>
+                <input type="submit" name="Submit" value="Login">
+              </p>
+            </form>
+            <p><a href="/loginhelp">Password Reminder</a>
+            <p><a href="/about_us?subsection=contact_us">Contact Us</a>
+            <p>&nbsp;
+            <p>&nbsp;
+            <p>&nbsp;
+            <p>&nbsp; 
+           </td>
+        </tr>
+	</table>
+	</td>
+	<td>&nbsp;</td>
+</tr>
+
+
+  <tr> 
+	<td>&nbsp;</td>
+    <td valign="bottom" align="center">
+
+      <table border="0" align="center">
+        <tr >
+	  <td><img src="/img/newimages/spacer.gif" width=15 height=1 border=0></td>
+	  <td nowrap> 
+            <p><a href="/gallery">Gallery</a></p>
+          </td>
+			<td valign="top">
+            <p class="blackdot">&#149;</p>
+          </td>
+          <td nowrap> 
+            <p><a href="/about_us?subsection=contact_us">Contact Us</a></p>
+          </td>
+          <td valign="top">
+            <p class="blackdot">&#149;</p>
+          </td>
+          <td nowrap> 
+            <p><a href="/about_us?subsection=privacy">Privacy</a></p>
+          </td>
+          <td valign="top">
+            <p class="blackdot">&#149;</p>
+          </td>
+          <td nowrap> 
+            <p><a href="/about_us?subsection=tos">Terms of Service</a></p>
+          </td>
+		<td>&nbsp;</td><td>&nbsp;</td>
+        </tr>
+		<tr>
+			<td><img src="/img/newimages/spacer.gif" width=15 height=1 border=0></td>
+			<td colspan="9" valign="bottom"><div class="greyCopyright" align="center">Copyright © 1999-2001 AlphaBlox Corporation Inc. All rights reserved.</div></td>
+		</tr>
+      </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<!-- BEGIN WEBSIDESTORY CODE v5 -->
+<!-- COPYRIGHT 1998-1999 WEBSIDESTORY, INC. ALL RIGHTS RESERVED.  U.S. PATENT PENDING. -->
+<IMG SRC="http://hg1.hitbox.com/HG?hc=w124&l=y&hb=WE591015CIZB62EN3&l=e&cd=1&n=loginform" height=1 width=1 BORDER="0"> 
+<!-- END WEBSIDESTORY CODE  -->
+
+</body>
+</html>
+
+
+
+
+

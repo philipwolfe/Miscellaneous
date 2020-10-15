@@ -1,0 +1,240 @@
+.vpalette {
+	position: absolute;
+	width: 28;
+	background-color: #c0c0c0;
+	overflow: hidden;
+	visibility: visible;
+}
+.lineItem {
+	height: 14;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	padding: 0px 2px;
+	color: black;
+	background-color: white;
+	cursor: default;
+}
+
+#lineSpot {
+	position: absolute;
+	background-color: lightgrey;
+	height: 1;
+	width: 50;
+	top: 11;
+}
+
+.header {
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	width: 62; height: 16;
+	background-color: white;
+	text-align: center;6
+	overflow: hidden;
+	cursor: default;
+}
+.colorheader {
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	width: 124; height: 16;
+	background-color: white;
+	text-align: center;
+	overflow: hidden;
+	cursor: default;
+}
+.holder {
+	width: 16; height: 16;
+	background-image: url( "/img/app/smallholder.gif" );
+	clip: rect( 0, 16, 16, 0 );
+	overflow: hidden;
+	cursor: default;
+}
+.swatch {
+	position: absolute;
+	top: 3; left: 3;
+	width: 10; height: 10;
+	clip: rect( 0, 10, 10, 0 );
+	overflow: hidden;
+	cursor: default;
+}
+.largeswatch {
+	margin: 2px;
+	width: 20; height: 20;
+	clip: rect( 0, 20, 20, 0 );
+	border: 1px solid black;
+}
+.sample {
+	position: absolute;
+	top: 6; left: 4;
+	height: 1; width: 56;
+	background-color: #606060;
+	overflow: hidden;
+	cursor: default;
+}
+
+.outline {
+	position: absolute;
+	top: 0; left: 0;
+	height: 100; width: 100;
+	display: block;
+	overflow: scroll;
+	visibility: hidden;
+	cursor: default;
+	background-color: white;
+}
+.divider {
+	position: absolute;
+	top: 0; left: 0;
+	height: 100; width: 6;
+	background-image: url( "/img/app/divider.gif" );
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	cursor: move;
+	z-index: 2;
+}
+.drawing {
+	position: absolute;
+	top: 0; left: 0;
+	height: 100; width: 200;
+	background-color: lightgrey;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	cursor: default;
+}
+.insert {
+	position: absolute;
+	top: 0; left: 0;
+	height: 2;
+	background-color: lightblue;
+	display: none;
+	overflow: hidden;
+}
+.handle {
+	position: absolute;
+	top: 0; left: 0;
+	height: 0; width: 0;
+	display: none;
+	overflow: hidden;
+}
+.frame {
+	position: absolute;
+	top: 0; left: 0;
+	height: 0; width: 0;
+	border: 2 solid gray;
+	overflow: hidden;
+	cursor: move;
+}
+.anchor {
+	position: absolute;
+	top: 0; left: 0;
+	height: 0; width: 0;
+	border: 1 solid black;
+	background-color: white;
+	overflow: hidden;
+	cursor: hand;
+}
+.editor {
+	position: absolute;
+	top: 0; left: 0;
+	height: 16;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	display: none;
+	overflow: hidden;
+	z-index: 10000;
+	border: 0;
+	padding: 0 0 2 0;
+	margin: 0;
+	background-color: transparent;
+}
+
+.line {
+	height: 18;
+	display: inline;
+	overflow: visible;
+	padding: 0 0 2 0;
+}
+.lead {
+	height: 16;
+	display: inline;
+	overflow: hidden;
+}
+.spot {
+	height: 16; width: 16;
+	clip: rect( 0 16 16 0 );
+	background-position: 0 0;
+	background-image: url( "/img/app/icon2.gif" );
+	display: inline;
+	overflow: hidden;
+}
+.icon {
+	height: 16; width: 16;
+	clip: rect( 0 16 16 0 );
+	background-position: 0 0;
+	background-image: url( "/img/app/icon2.gif" );
+	display: inline;
+	overflow: hidden;
+}
+.text {
+	height: 16;
+	vertical-align: top;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	overflow: visible;
+	display: inline;
+	cursor: text;
+}
+
+.dialog {
+	position: absolute;
+	top: 0; left: 0;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 10pt;
+	border: 1 solid black;
+	background-color: lightgrey;
+	cursor: default;
+	visibility: hidden;
+	overflow: hidden;
+}
+.shadow {
+	position: absolute;
+	top: 0; left: 0;
+	background-color: black;
+	cursor: default;
+	visibility: hidden;
+	overflow: hidden;
+}
+.label {
+	position: absolute;
+}
+.field {
+	position: absolute;
+}
+.choice {
+	position: absolute;
+	height: 28; width: 100;
+}
+.optionMenu {
+	height: 200; width: 300;
+	border: 1 solid black;
+	background-color: white;
+	cursor: default;
+	overflow: scroll;
+}
+.optionItem {
+	padding-left: 3;
+	height: 16; width: 100%;
+	color: black;
+	background-color: white;
+}
+
+.colorSpot {
+	position: absolute;
+	top: 12px;
+	left: 11px;
+	width: 9px;
+	height: 9px;
+	overflow: hidden;
+	border: 1 solid black;
+}

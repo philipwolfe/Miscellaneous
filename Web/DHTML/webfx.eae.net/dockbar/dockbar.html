@@ -1,0 +1,142 @@
+
+<html>
+<head>	
+<title>Dock Bar (1/3) (WebFX)</title>
+<link rel="stylesheet" type="text/css" href="webfx.css">
+
+<style type="text/css">
+<!--
+
+#toolbar	{font-family: trebuchet ms; font-size: 13px; color: window-text;
+} /* vertical align bug in IE */
+
+-->
+</style>
+
+<script type="text/javascript" src="dockbar.js"></script>
+<script type="text/javascript">
+/*
+var floatWidth = 250;
+var floatHeight = 20;
+var snapSize = 30;
+var horizDockWidth = 62;
+var vertDockHeight = 20;
+var toolbarPos = "top";	// Start at this position
+*/
+</script>
+
+</head>
+
+<body scroll="no">
+
+<!-- the SUP is because IE can't layout spans correctly -->
+<div id="toolbar" onselectstart="return false"><span id="handle" title="Drag to move the container"></span><sup>This is just a plain dockable container</sup></div>
+
+
+<div id="contentDiv">
+
+<script language="Javascript">
+
+fixSize();
+
+</script>
+
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("Dock Bar","dockbar.zip");
+</script>
+
+<p>This was created by a request from one of our readers. It is basically the docking code
+extracted from the <a href="http://webfx.eae.net/dhtml/dhtmlmenu/menu.shtml">DHTML Menu</a> but I've cleaned up the code
+and added docking to the left and right as well. This script is basically a drag and drop script
+so I recommend that you read the article about <a href="http://webfx.eae.net/dhtml/genmove/genmove.shtml">Generic Move</a>
+first.</p>
+
+<h2>Docking</h2>
+
+<p>Docking is created by checking the position in the drag part of the drag and drop procedure. If it
+is close to the top I set a global variable called <code>toolbarPos</code> to <code>"top"</code>. Then
+I just call a function called <code>fixPos()</code> that fixes the size and position of the toolbar and
+the content area. Below is the code that test the position during the move.</p>
+
+<pre>
+function dockBarOnMouseMove() {
+   if(dragging) {
+      // Top
+      if((window.event.clientY) &lt;= snapVertSize
+         && toolbarPos != "left" && toolbarPos != "right") {
+         toolbarPos = "top";
+         fixSize();
+      }
+
+      // Bottom and Left...
+		
+      // Right
+      else if (window.event.clientX &gt;= document.body.clientWidth - snapHorizSize
+         && toolbarPos != "top" && toolbarPos != "bottom") {
+
+         toolbarPos = "right";
+         fixSize();	
+      }
+      else {	// Float
+         toolbar.style.left = window.event.clientX;
+         toolbar.style.top = window.event.clientY - ty;
+         toolbarPos = "float";
+         fixSize();
+      }
+
+      window.event.returnValue = false;
+      window.event.cancelBubble = true;
+   }
+}
+</pre>
+
+<p>Then the actual sizes of the toolbar is calculated in the <code>fixSize()</code> function.
+I'll only show part of this function because it is so easy</p>
+
+<pre>
+function fixSize() {
+   // Some error testing
+
+   switch (toolbarPos) {
+      case"top":
+      //...
+
+      case "right":
+      toolbar.style.border = "0 solid buttonface";
+      toolbar.style.width = horizDockWidth;
+      toolbar.style.height = "100%";
+      toolbar.style.top = 0;
+      toolbar.style.left = document.body.clientWidth - horizDockWidth;
+
+      contentDiv.style.top = 0;
+      contentDiv.style.left = 0;
+      contentDiv.style.height = "100%";
+      contentDiv.style.width = document.body.clientWidth - horizDockWidth;
+
+      handle.style.height = 3;
+      handle.style.width = horizDockWidth -2;
+      break;
+
+      case "float":
+      //...
+   }
+}
+</pre>
+
+<p>The next step is to set up the event handlers but this is nothing new so I'll
+jump directly to setting the page up.</p>
+
+<p>Docking<br>
+<a href="dockbar2.html">Set up the page</a><br>
+<a href="dockbar3.html">Combine it with Cool Buttons</a></p>
+
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#include virtual="/footer.html" -->
+
+</div>
+</body>
+</html>
+

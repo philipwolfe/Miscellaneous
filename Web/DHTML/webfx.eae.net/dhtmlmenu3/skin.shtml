@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Plain DHTML Menu with frame</title>
+
+<style type="text/css"> 
+<!--
+
+body	{margin: 0px; border: 0px;}
+#contentDiv	{width: 100%; height: 100%;}
+#contentFrame	{width: 100%; height: 100%;}
+
+-->
+</style>
+<script type="text/javascript">
+
+var currentSkinHref;
+
+if (document.location.search == "")
+	currentSkinHref = "qnx/menu.css";
+else
+	currentSkinHref = document.location.search.substr(1);
+	
+document.write('<link type="text/css" rel="stylesheet" href="' + currentSkinHref + '" id="menuStyleSheet">')
+
+</script>
+
+<script type="text/javascript" src="menu3.js"></script>
+<script type="text/javascript">
+<!--
+
+function fixSize() {
+	contentDiv.style.height = document.body.offsetHeight - menuBar.offsetHeight;
+}
+
+window.onload = fixSize;
+window.onresize = fixSize;
+
+function SkinInfo(name, href, downloadURI) {
+	this.name = name;
+	this.href = href;
+	this.downloadURI = (downloadURI) ? downloadURI : href;
+}
+
+var skins = new Array();
+skins[0] = new SkinInfo("Office 97 Look (Default)", "menu.css");
+skins[1] = new SkinInfo("QNX", "qnx/menu.css", "qnx.zip");
+skins[2] = new SkinInfo("SmartFTP", "smartFTPMenu.css");
+skins[3] = new SkinInfo("White &amp; Blue", "whiteAndBlue/menu.css", "whiteAndBlue.zip");
+skins[4] = new SkinInfo("Windows 95", "win95Menu.css");
+
+function generateSkinMenu(skins) {
+	var str = "<table cellspacing='0' class='menu' id='skinMenu'>";
+	
+	var currentIndex;
+
+	for (var i=0; i<skins.length; i++) {
+		if (currentSkinHref == skins[i].href)
+			currentIndex = i;
+	}
+	
+	for (var i=0; i<skins.length; i++) {
+		str += "<tr href='skin.shtml?" + skins[i].href + "'>";
+		str += "<td class='left'>&nbsp;</td>";
+		if (i == currentIndex)
+			str += "<td class='middle' nowrap style='font-weight: bold;'>" + skins[i].name + "</td>";
+		else
+			str += "<td class='middle' nowrap>" + skins[i].name + "</td>";
+		str += "<td class='right'>&nbsp;</td></tr>";
+	}
+	
+	str += "<tr class='disabled'><td nowrap colspan='3' style='height: 10px; padding: 0;'><div style='border: 1px inset ; height: 2; overflow: hidden;'></div></td></tr>";
+	str += "<tr href='" + skins[currentIndex].downloadURI + "'>"
+	str += "<td class='icon'><img src='http://webfx.eae.net/images/downloadicon.gif'></td><td class='middle' nowrap>Download this skin</td><td class='right'>&nbsp;</td></tr></table>";
+	
+	return str;
+}
+
+//-->
+</script>
+
+</head>
+<body scroll="no" onselectstart="return false">
+
+<!-- Menu bar starts here -->
+<div id="menuBar">
+<table class="menuBar"
+onmouseover="menuBarOver()"
+onmouseout="menuBarOut()"
+onclick="menuBarClick()"
+cellspacing="1" cellpadding="0">
+<tr>
+	<td>
+		<table cellspacing="0" cellpadding="0" class="root" menu="test">
+		<tr>
+			<td class="left"></td>
+			<td class="middle">File</td>
+			<td class="right"></td>
+		</tr>
+		</table>	
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" class="root" menu="webFXMenu">
+		<tr>
+			<td class="left"></td>
+			<td class="middle">WebFX</td>
+			<td class="right"></td>
+		</tr>
+		</table>	
+	</td>
+	<td>
+		<table cellspacing="0" cellpadding="0" class="root" menu="skinMenu">
+		<tr>
+			<td class="left"></td>
+			<td class="middle">Skins</td>
+			<td class="right"></td>
+		</tr>
+		</table>	
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- Menus starts here -->
+<table id="test" class="menu" cellspacing="0">
+<tr>
+	<td class="icon"><img src="http://webfx.eae.net/images/foldericon.gif"></td>
+	<td class="middle">Open</td>
+	<td class="right">&nbsp;</td>
+</tr>
+<tr class="sub">
+	<td class="left">&nbsp;</td>
+	<td class="middle">New</td>
+	<td class="more">4
+
+		<table id="" class="menu" cellspacing="0">
+		<tr>
+			<td class="icon"><img src="http://webfx.eae.net/images/foldericon.gif"></td>
+			<td class="middle">Open</td>
+			<td class="right">&nbsp;</td>
+		</tr>
+		<tr class="sub">
+			<td class="left">&nbsp;</td>
+			<td class="middle">New</td>
+			<td class="more">4
+		
+				<table cellspacing="0" class="menu">
+				<tr>
+					<td class="icon"><img src="http://webfx.eae.net/images/foldericon.gif"></td>
+					<td class="middle" nowrap>This should be a really long menu item so that the menu needs to be positioned wisely</td>
+					<td class="right">&nbsp;</td>
+				</tr>
+				
+				<tr href="javascript:alert('You clicked a menu item')">
+					<td class="icon"><img src="http://webfx.eae.net/images/favicon.gif"></td>
+					<td class="middle">Click to Alert</td>
+					<td class="right">&nbsp;</td>
+				</tr>
+				<tr title="This is the title" href="javascript:alert('There is also a href attribute present')">
+					<td class="icon"><img src="http://webfx.eae.net/images/favicon.gif"></td>
+					<td class="middle">This has a title assigned to it</td>
+					<td class="right">&nbsp;</td>
+				</tr>
+				</table>
+		
+			</td>
+		</tr>
+		<tr class="disabled">
+			<td class="icon"><img src="http://webfx.eae.net/images/driveicon.gif"></td>
+			<td class="middle">Disabled</td>
+			<td class="right">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="left">&nbsp;</td>
+			<td class="middle">Exit</td>
+			<td class="right">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="icon"><img src="http://webfx.eae.net/images/driveicon.gif"></td>
+			<td class="middle">Save</td>
+			<td class="right">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="left">&nbsp;</td>
+			<td class="middle">Exit</td>
+			<td class="right">&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="icon"><img src="http://webfx.eae.net/images/driveicon.gif"></td>
+			<td class="middle">Save</td>
+			<td class="right">&nbsp;</td>
+		</tr>
+		</table>
+
+	</td>
+</tr>
+<tr>
+	<td class="icon"><img src="http://webfx.eae.net/images/driveicon.gif"></td>
+	<td class="middle">Save</td>
+	<td class="right">&nbsp;</td>
+</tr>
+<tr>
+	<td class="left">&nbsp;</td>
+	<td class="middle">Exit</td>
+	<td class="right">&nbsp;</td>
+</tr>
+<tr>
+	<td class="icon"><img src="http://webfx.eae.net/images/driveicon.gif"></td>
+	<td class="middle">Save</td>
+	<td class="right">&nbsp;</td>
+</tr>
+<tr class="disabled">
+	<td nowrap colspan="3" style="height: 10px; padding: 0;"><div style="border: 1px inset ; height: 2; overflow: hidden;"></div></td>
+</tr>
+<tr>
+	<td class="left">&nbsp;</td>
+	<td class="middle">Exit</td>
+	<td class="right">&nbsp;</td>
+</tr>
+</table>
+
+
+<table cellspacing="0" cellpadding="0"  class="menu" id="webFXMenu">
+<tr href="http://webfx.eae.net">
+	<td class="icon"><img src="http://webfx.eae.net/images/favicon.gif"></td>
+	<td class="middle" nowrap>WebFX Home</td>
+	<td class="right">&nbsp;</td>
+</tr>
+<tr href="mailto:erik@eae.net">
+	<td class="icon"><img src="http://webfx.eae.net/images/mail.gif"></td>
+	<td class="middle" nowrap>Mail Erik</td>
+	<td class="right">&nbsp;</td>
+</tr>
+<tr href="mailto:eae@eae.net">
+	<td class="icon"><img src="http://webfx.eae.net/images/mail.gif"></td>
+	<td class="middle" nowrap>Mail Emil</td>
+	<td class="right">&nbsp;</td>
+</tr>
+</table>
+
+<script>
+document.write(generateSkinMenu(skins));
+</script>
+<!-- Menu declarations done -->
+
+<div id="contentDiv">
+
+<script>
+fixSize();
+</script>
+
+<iframe src="skinInfo.shtml" id="contentFrame"></iframe>
+
+</div>
+
+<!--#exec cgi="log.cgi" -->
+
+</body>
+</html>

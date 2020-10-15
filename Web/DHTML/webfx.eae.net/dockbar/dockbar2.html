@@ -1,0 +1,102 @@
+
+<html>
+<head>	
+<title>Dock Bar (2/3) (WebFX)</title>
+<link rel="stylesheet" type="text/css" href="webfx.css">
+
+<style type="text/css">
+<!--
+
+#toolbar	{font-family: trebuchet ms; font-size: 13px; color: window-text;} /* vertical align bug in IE */
+
+-->
+</style>
+
+<script type="text/javascript" src="dockbar.js"></script>
+
+</head>
+
+<body scroll="no">
+
+<!-- the SUP is because IE can't layout spans correctly -->
+<div id="toolbar" onselectstart="return false"><span id="handle" title="Drag to move the container"></span><sup>This is just a plain dockable container</sup></div>
+
+
+<div id="contentDiv">
+
+<script language="Javascript">
+
+fixSize();
+
+</script>
+
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("Dock Bar","dockbar.zip");
+</script>
+
+<h2>Set up the page</h2>
+
+<p>First you need to include the file <a href="dockbar.js">dockbar.js</a> like this:</p>
+
+<pre>
+&lt;script type="text/javascript" src="<a href="dockbar.js">dockbar.js</a>"&gt;&lt;/script&gt;
+</pre>
+
+<p>Then you should probably change some of the constants because most likely the default values
+wont fit your page. This should be added after the previous script tag.</p>
+
+<pre>
+&lt;script type="text/javascript"&gt;
+
+var floatWidth = 200;
+var floatHeight = 24;    // extra 4 for the border
+
+var snapHorizSize = 50;  // This is how far from the edge the
+var snapVertSize = 20;   // the mouse is before the toolbar docks
+
+var horizDockWidth = 50; // When docked to the left or right
+var vertDockHeight = 20;
+
+var toolbarPos = "top";  // Start at this position
+
+&lt;/script&gt;
+</pre>
+
+<p>There is no need to include a CSS file because I've added the style information in the
+javascript file. The js file changes the following elements: <code>BODY, #handle, #toolbar, #contentDiv</code>,
+so if you want to set the style for them make sure you do it after the script tags.</p>
+
+<p>The next step is to define the necessary HTML. First you need to add <code>scroll="no"</code> to the body tag.
+Then you should set up the toolbar and finally add the contentDiv. It should look something like this:</p>
+
+<pre>
+&lt;body scroll="no" ...&gt;
+   &lt;div id="toolbar"&gt;&lt;span id="handle"&gt;&lt;/span&gt;This is my toolbar content&lt;/div&gt;
+   
+   &lt;div id="contentDiv"&gt;   
+      &lt;!-- The following script tag isn't necessary but it speeds up the layout--&gt;
+      &lt;script type="text/javascript"&gt;
+         fixSize();
+      &lt;/script&gt;
+
+      ... Here goes my content
+   &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+
+<p>Next I'll show you how to combine this script with the Cool Buttons script to make a real toolbar</p>
+
+<p><a href="dockbar.html">Docking</a><br>
+Set up the page<br>
+<a href="dockbar3.html">Combine it with Cool Buttons</a></p>
+
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#include virtual="/footer.html" -->
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+
+.errorMsg {
+	color: red;
+	font-weight: bold;
+	background-color: yellow;
+	padding: 6px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.widgetLabelTiny {
+	font-size: 7pt;
+	line-height: 8pt;
+}
+
+.popUp {
+	font-size: 8pt;
+	margin-top: 4px;
+}
+
+.radioBtn {
+	height: 10pt;
+}
+
+.checkbox {
+	height: 10pt;
+}

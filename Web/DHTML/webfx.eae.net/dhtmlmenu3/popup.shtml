@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>DHTML Menu 3 (WebFX)</title>
+
+<link type="text/css" rel="stylesheet" href="webfx.css">
+<link type="text/css" rel="stylesheet" href="menu.css">
+<script type="text/javascript" src="menu3.js"></script>
+<script type="text/javascript">
+
+var anchorItemShown = true;
+
+function showPopupMenu() {
+	customizePopup();
+	hideAllMenuScriptlets();
+	showMenu(popupMenu,
+		new Boundaries(event.clientX + document.body.scrollLeft, event.clientY + document.body.scrollTop), "horizontal");
+	window.event.returnValue = false;	// disable the standard popup
+}
+
+function customizePopup() {
+	sourceItem.href = "view-source:" + window.location;
+
+	var aEl = getParent(event.srcElement, function(el) {return el.tagName == "A";});
+		
+	if (aEl == null) {
+		anchorItem.style.display = "none";
+		anchorSeparator.style.display = "none";
+		if (anchorItemShown)		// this prevents a few extra rebuilds
+			forceRebuild(popupMenu);
+		anchorItemShown = false
+	}
+	else {
+		anchorSeparator.style.display = "block";
+		anchorItem.style.display = "block";
+		if (!anchorItemShown)
+			forceRebuild(popupMenu);
+		anchorItemShown = true;
+	}
+}
+
+document.oncontextmenu = showPopupMenu;
+</script>
+
+
+</head>
+<body>
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("DHTML Menu 3", "dhtmlmenu3.zip");
+</script>
+
+<h2>Popup Menu</h2>
+
+<p>IE5 introduced a new event called <code>oncontextmenu</code> and this is called before the context
+menu is shown allowing the author to create his own menu. Once the event occurs all you have to do is
+to find the position where the mouse pointer is positioned and then show a menu at that point.</p>
+
+<p>First you have to include the javascript and style sheet files.</p>
+
+<pre>
+&lt;link type="text/css" rel="stylesheet" href="<a href="menu.css">menu.css</a>"&gt;
+&lt;script type="text/javascript" src="<a href="menu3.js">menu3.js</a>"&gt;&lt;/script&gt;
+</pre>
+
+<p>Note that you also need the file <a href="menuContainer.html">menuContainer.html</a> in the same
+directory (or you have to change the path inside menu3.js) as the current page and that
+menuContainer.html also needs to be in the same directory as menu.css (or you'll have to change
+this file as well).</p>
+
+<p>Below is the table that defines the popup menu</p>
+
+<pre>
+&lt;table cellspacing="0" class="menu" id="popupMenu"&gt;
+&lt;tr id="anchorItem"&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;td&gt;Open link&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="disabled" id="anchorSeparator"&gt;
+   &lt;td colspan="3" style="height: 10px; padding: 0;"&gt;&lt;div style="border: 1px inset ; height: 2; overflow: hidden;"&gt;&lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr href="javascript:history.back()"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/arrowleft.gif"&gt;&lt;/td&gt;
+   &lt;td&gt;Back&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr href="javascript:history.forward()"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/arrowright.gif"&gt;&lt;/td&gt;
+   &lt;td&gt;Forward&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr href="http://webfx.eae.net"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/favicon.gif"&gt;&lt;/td&gt;
+   &lt;td style="font-weight: bold;"&gt;WebFX Home&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="disabled"&gt;
+   &lt;td colspan="3" style="height: 10px; padding: 0;"&gt;&lt;div style="border: 1px inset ; height: 2; overflow: hidden;"&gt;&lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr id="sourceItem"&gt;
+   &lt;td class="icon"&gt;&lt;img src="../../images/notepad.gif"&gt;&lt;/td&gt;
+   &lt;td&gt;View Source&lt;/td&gt;
+   &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<table cellspacing="0" class="menu" id="popupMenu">
+<tr id="anchorItem">
+	<td></td>
+	<td style="font-weight: bold;">Open link</td>
+	<td></td>
+</tr>
+<tr class="disabled" id="anchorSeparator">
+	<td colspan="3" style="height: 10px; padding: 0;"><div style="border: 1px inset ; height: 2; overflow: hidden;"></div></td>
+</tr>
+
+<tr href="javascript:history.back()">
+	<td class="icon"><img src="../../images/arrowleft.gif"></td>
+	<td>Back</td>
+	<td></td>
+</tr>
+<tr href="javascript:history.forward()">
+	<td class="icon"><img src="../../images/arrowright.gif"></td>
+	<td>Forward</td>
+	<td></td>
+</tr>
+<tr href="http://webfx.eae.net">
+	<td class="icon"><img src="../../images/favicon.gif"></td>
+	<td>WebFX Home</td>
+	<td></td>
+</tr>
+<tr class="disabled">
+	<td colspan="3" style="height: 10px; padding: 0;"><div style="border: 1px inset ; height: 2; overflow: hidden;"></div></td>
+</tr>
+<tr id="sourceItem">
+	<td class="icon"><img src="../../images/notepad.gif"></td>
+	<td>View Source</td>
+	<td></td>
+</tr>
+</table>
+
+<p>Then we need to define a function to call when the event fires and assign this as an event handler.</p>
+
+<pre>
+function showPopupMenu() {
+   customizePopup();
+   hideAllMenuScriptlets();
+   // Note how the Boundaries object is initiated
+   showMenu(popupMenu, new Boundaries(event.clientX + document.body.scrollLeft, event.clientY + document.body.scrollTop));
+   window.event.returnValue = false; // disable the standard popup
+}
+
+document.oncontextmenu = showPopupMenu;
+</pre>
+
+<p>I've also made the popup a bit dynamic. Every time the popup is called the function <code>customizePopup</code>
+is called and this checks whether the target element was an anchor and if so the anchorItem is made visible.
+This also shows how important it is to remember that the actual menu inside the scriptlet is <strong>not</strong>
+the same as the table that defined the menu. After the table has been changed the function <code>forceRebuild</code> is
+called.</p>
+
+<pre>
+function customizePopup() {
+   sourceItem.href = "view-source:" + window.location;
+
+   // Returns the first parent with the tagName A
+   var aEl = getParent(event.srcElement, function(el) {return el.tagName == "A";});
+	
+   if (aEl == null) {
+      anchorItem.style.display = "none";
+      anchorSeparator.style.display = "none";
+      forceRebuild(popupMenu);
+   }
+   else {
+      anchorItem.style.display = "block";
+      anchorSeparator.style.display = "block";
+      forceRebuild(popupMenu);
+   }
+}
+</pre>
+
+<p><a href="plain.shtml">Next</a> I will show you how to create a menu bar at the top and have an iframe below.</p>
+
+<p><a href="menu.shtml">Creating menus</a><br>
+Use menu as a popup menu<br>
+<a href="plain.shtml">Plain menu with a framed page</a><br>
+<a href="dockMenu.shtml">Dockable menu</a><br>
+<a href="skin.shtml">Customize the look</a><br>
+<a href="dhtmlmenu3.zip">Download this sample</a><br>
+<a href="http://webfx.eae.net/webboard/index.cgi?action=display&group=admin/artgroup&id=20" target="_top">Discuss this article</a></p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#exec cgi="/footer.cgi" -->
+
+</body>
+</html>
+

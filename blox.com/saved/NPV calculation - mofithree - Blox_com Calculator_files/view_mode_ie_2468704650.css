@@ -1,0 +1,54 @@
+#btnInstruction {
+	BACKGROUND-POSITION: -480px 0px; LEFT: 105px; TOP: 4px
+}
+#footPalette {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 104px
+}
+#btnEdit {
+	BACKGROUND-POSITION: -456px 0px; LEFT: 135px; TOP: 4px
+}
+#btnInstructionText {
+	LEFT: 131px; TOP: 8px
+}
+#btnEmail {
+	BACKGROUND-POSITION: -432px 0px; LEFT: 168px; TOP: 4px
+}
+#btnEditText {
+	LEFT: 164px; TOP: 8px
+}
+#btnPrint {
+	BACKGROUND-POSITION: -72px 0px; LEFT: 72px; TOP: 4px
+}
+#btnEmailText {
+	LEFT: 192px; TOP: 8px
+}
+#btnSave {
+	BACKGROUND-POSITION: -48px 0px; LEFT: 42px; TOP: 4px
+}
+#break0 {
+	LEFT: 32px; TOP: 5px
+}
+#break1 {
+	LEFT: 68px; TOP: 5px
+}
+#btnPrintText {
+	LEFT: 101px; TOP: 8px
+}
+#break2 {
+	LEFT: 101px; TOP: 5px
+}
+#btnSaveText {
+	LEFT: 68px; TOP: 8px
+}
+#break4 {
+	LEFT: 131px; TOP: 5px
+}
+#break5 {
+	LEFT: 164px; TOP: 5px
+}
+#break6 {
+	LEFT: 192px; TOP: 5px
+}
+#footDivision {
+	LEFT: 0px; VISIBILITY: hidden; TOP: 100px
+}

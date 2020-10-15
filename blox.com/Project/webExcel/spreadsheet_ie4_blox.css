@@ -1,0 +1,36 @@
+.palette {
+	BACKGROUND-COLOR: #c0c0c0; layer-background-color: #c0c0c0
+}
+.modal {
+	BACKGROUND-COLOR: #ffffff; layer-background-color: #ffffff
+}
+.modalTopLeftBox {
+	BACKGROUND-COLOR: #000000; layer-background-color: #000000
+}
+.modalTitle {
+	COLOR: #ffffff
+}
+.modalButton {
+	COLOR: #999999
+}
+.modalProgressBar {
+	BACKGROUND-COLOR: #669900; layer-background-color: #669900
+}
+.modalProgressWidget {
+	BACKGROUND-COLOR: #99cc00; layer-background-color: #99CC00
+}
+#progressTitle {
+	COLOR: #000000
+}
+#progressContent {
+	layer-background-color: #ffffff
+}
+#progressTopLeftBox {
+	LEFT: 1px; CLIP: rect(0px 20px 20px 0px); POSITION: absolute; TOP: 1px; layer-background-color: #999999
+}
+.bulbLogo {
+	BACKGROUND-IMAGE: url(/img/newimages/Logo_only_28x44.gif)
+}
+.bulbLogoSmall {
+	BACKGROUND-IMAGE: url(img/blox_cube_16x26.gif)
+}

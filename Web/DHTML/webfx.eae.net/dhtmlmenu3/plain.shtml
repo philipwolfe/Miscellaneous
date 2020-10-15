@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Plain DHTML Menu with frame</title>
+
+<style type="text/css"> 
+<!--
+
+body	{margin: 0px; border: 0px;}
+#menuBar	{width: 100%; background: buttonface; padding: 1px;}
+#contentDiv	{width: 100%; height: 100%;}
+#contentFrame	{width: 100%; height: 100%;}
+
+-->
+</style>
+<link type="text/css" rel="stylesheet" href="menu.css">
+<script type="text/javascript" src="menu3.js"></script>
+<script type="text/javascript">
+<!--
+
+function fixSize() {
+	contentDiv.style.height = document.body.offsetHeight - menuBar.offsetHeight;
+}
+
+window.onload = fixSize;
+window.onresize = fixSize;
+
+//-->
+</script>
+
+</head>
+<body scroll="no" onselectstart="return false">
+
+<!-- Menu bar starts here -->
+<span class="menuBar" id="menuBar"
+onmouseover="menuBarOver()" onmouseout="menuBarOut()" onclick="menuBarClick()">
+	<span class="root" menu="fileMenu">
+		File
+	</span><span class="root">
+		Edit
+		
+		<table cellspacing="0" class="menu">
+		<tr class="disabled">
+			<td></td>
+			<td nowrap>Empty</td>
+			<td></td>
+		</tr>
+		</table>
+		
+	</span><span class="root" menu="WebFXMenu">
+		WebFX
+	</span>
+</span>
+
+<!-- Menus starts here -->
+<table cellspacing="0" class="menu" id="fileMenu" title="This menu has not been hooked up">
+<tr>
+	<td class="icon"><img src="../../images/new.gif"></td>
+	<td nowrap>New</td>
+	<td></td>
+</tr>
+<tr>
+	<td class="icon"><img src="../../images/openfoldericon.gif"></td>
+	<td nowrap>Open</td>
+	<td></td>
+</tr>
+<tr>
+	<td class="icon"><img src="../../images/driveicon.gif"></td>
+	<td nowrap>Save</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td nowrap>Save As...</td>
+	<td></td>
+</tr>
+<tr class="disabled">
+	<td nowrap colspan="3" style="height: 10px; padding: 0;"><div style="border: 1px inset ; height: 2; overflow: hidden;"></div></td>
+</tr>
+<tr>
+	<td></td>
+	<td nowrap>Close</td>
+	<td></td>
+</tr>
+</table>
+
+<table cellspacing="0" cellpadding="0"  class="menu" id="WebFXMenu">
+<tr href="http://webfx.eae.net">
+	<td class="icon"><img src="../../images/favicon.gif"></td>
+	<td nowrap>WebFX Home</td>
+	<td></td>
+</tr>
+<tr href="mailto:erik@eae.net">
+	<td class="icon"><img src="../../images/mail.gif"></td>
+	<td nowrap>Mail Erik</td>
+	<td></td>
+</tr>
+<tr href="mailto:eae@eae.net">
+	<td class="icon"><img src="../../images/mail.gif"></td>
+	<td nowrap>Mail Emil</td>
+	<td></td>
+</tr>
+</table>
+
+<!-- Menu declarations done -->
+
+<div id="contentDiv">
+
+<script>
+fixSize();
+</script>
+
+<iframe src="menuBarInfo.shtml" id="contentFrame"></iframe>
+
+</div>
+
+<!--#exec cgi="log.cgi" -->
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>DHTML Menu 3 (WebFX)</title>
+
+<link type="text/css" rel="stylesheet" href="webfx.css">
+<style type="text/css">
+body	{border: 2px inset;}
+</style>
+<script type="text/javascript">
+
+document.onclick = function() {
+	if (parent.hideAllMenuScriptlets)
+		parent.hideAllMenuScriptlets();
+}
+
+</script>
+
+<base target="_parent">
+
+</head>
+<body>
+<script type="text/javascript" src="includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("DHTML Menu 3", "dhtmlmenu3.zip");
+</script>
+
+<h2>Menu Bar</h2>
+
+<p>This page describes how to create a menu bar and then shows how to make it appear as it is a part of
+your browser interface.</p>
+
+<h2>Defining the Menu Bar</h2>
+
+<p>First you create a container (HTML element) with the class name set to <code>menuBar</code>.
+To this you should also add event handlers for <code>onmouseover</code>, <code>onmouseout</code>
+and <code>onclick</code>. Inside this element you add the root elements of the menus and these
+are any type of HTML element with the class set to <code>root</code>. Inside the root element you
+can either have a nested table that defines the menu or you can add the attribute <code>menu</code>
+to the root element. A simple menu bar looks like this:</p>
+
+<pre>
+&lt;span class="menuBar" id="menuBar"
+   onmouseover="menuBarOver()"
+   onmouseout="menuBarOut()"
+   onclick="menuBarClick()"&gt;
+   &lt;span class="root" menu="fileMenu"&gt;
+      File
+   &lt;/span&gt;&lt;span class="root"&gt;
+      Edit
+
+      &lt;table cellspacing="0" class="menu"&gt;
+      &lt;tr class="disabled"&gt;
+         &lt;td&gt;&lt;/td&gt;
+         &lt;td nowrap&gt;Empty&lt;/td&gt;
+         &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;/table&gt;
+	
+   &lt;/span&gt;&lt;span class="root" menu="WebFXMenu"&gt;
+      WebFX
+   &lt;/span&gt;
+&lt;/span&gt;
+</pre>
+
+<p>Note that you probably don't want any significant white spaces between your root items. The root
+items takes an optional attribute called <code>direction</code> that is either <code>horizontal</code>
+or <code>vertical</code> (default) that represents where to display the menus. This is useful if you
+want your menu bar on your left or right side.</p>
+
+<h2>Fix the layout</h2>
+
+<p>The menu bar above is functional as it is but to make it look more like the browser's menu bars
+you need to add some more code. The first step is add a container for the rest of the page. You
+should also remove the scroll bars from the body element and cancel the <code>onselectstart</code>
+event. Once this is defined it is safe to call a function that fixes the layout of the page.</p>
+
+<pre>
+&lt;body scroll="no" onselectstart="return false"&gt;
+
+   ...Define the menu bar...
+
+    &lt;div id="outerDiv"&gt;
+
+      &lt;script&gt;
+         fixSize();
+      &lt;/script&gt;
+
+      &lt;iframe src="menuBarInfo.shtml" id="contentFrame"&gt;&lt;/iframe&gt;
+
+   &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+
+<p>You should also edit the styles a little.</p>
+
+<pre>
+&lt;style type="text/css"&gt; 
+
+body		{margin: 0px; border: 0px;}
+#menuBar	{width: 100%; background: buttonface; padding: 1px;}
+#outerDiv	{width: 100%; height: 100%;}
+#contentFrame	{width: 100%; height: 100%;}
+
+&lt;/style&gt;
+</pre>
+
+<p>All that is left now is to define the <code>fixSize</code> function. This function calculates
+the height of the <code>outerDiv</code> to the height of the body element minus the height of the
+menu bar. This function is also assigned to the <code>window.onload</code> and <code>window.resize</code>
+events.
+
+<pre>
+&lt;script type="text/javascript"&gt;
+
+function fixSize() {
+   outerDiv.style.height = document.body.offsetHeight - menuBar.offsetHeight;
+}
+
+window.onload = fixSize;
+window.onresize = fixSize;
+
+&lt;/script&gt;
+</pre>
+
+<p>If you have control over the page that is loaded in the frame you should probably make
+the menu hide when the user clicks in the frame. This is done by hooking up the onclick event.</p>
+
+<pre>
+document.onclick = function() {
+   if (parent.hideAllMenuScriptlets)
+      parent.hideAllMenuScriptlets();
+}
+</pre>
+
+
+<p>Next I'll show you how to combine this with the dock bar script to create a <a href="dockMenu.shtml">dockable menu bar</a>.</p>
+
+<p><a href="menu.shtml">Creating menus</a><br>
+<a href="popup.shtml">Use menu as a popup menu</a><br>
+Plain menu with a framed page<br>
+<a href="dockMenu.shtml">Dockable menu</a><br>
+<a href="skin.shtml">Customize the look</a><br>
+<a href="dhtmlmenu3.zip">Download this sample</a><br>
+<a href="http://webfx.eae.net/webboard/index.cgi?action=display&group=admin/artgroup&id=20" target="_top">Discuss this article</a></p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#exec cgi="/footer.cgi" -->
+
+</body>
+</html>
+

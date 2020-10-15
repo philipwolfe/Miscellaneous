@@ -1,0 +1,58 @@
+body.menuContainer			{background: buttonface; border: 0px solid black; margin: 0;}
+
+table.menu					{position: absolute; visibility: hidden;
+							background: buttonface; font: menu; border: 2px outset white;}
+
+table.menu table.menu 		{display: none; visibility: hidden;}
+
+.menuContainer .menu		{visibility: visible;}
+.menuContainer .menu .menu	{visibility: hidden; display: block;}
+
+.menu tr					{height: 20px;}
+
+table.menu td.more			{font-family: webdings; width: 20px; text-align: right; padding-right: 1px;}
+table.menu td.keyshortcut	{font: menu;}
+table.menu tr.disabled		{color: buttonshadow;}
+
+table.menu tr.disabled td.icon img	{border: 0px solid buttonface; margin: 1px;
+									filter: alpha(opacity=50);}
+
+/* Highlighted cell formattings */
+table.menu tr           td			{padding-left: 3px; padding-right: 3px; padding-top: 1px; padding-bottom: 1px}
+table.menu tr.highlight	td			{background: highlight; color: highlighttext;}
+
+table.menu tr           td.icon		{text-align: center; padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;}
+table.menu tr.highlight td.icon		{background: transparent;}
+
+table.menu tr           td.icon img	{border: 1px solid buttonface;}
+table.menu tr.highlight td.icon img	{border: 1px solid; border-color: buttonhighlight buttonshadow buttonshadow buttonhighlight;}
+
+.root,
+.rootHighlight,
+.rootActive		{background: buttonface; width: 20px; font: menu; text-align: center; cursor: default;
+				border: 1px solid buttonface; padding: 1px; padding-left: 7px; padding-right: 7px;}
+
+.root			{}
+.rootHighlight	{border-color: buttonhighlight buttonshadow buttonshadow buttonhighlight;}
+.rootActive		{padding-bottom: 0px; padding-left: 8px; padding-right: 6px; padding-top: 2px;
+				border-color: buttonshadow buttonhighlight buttonhighlight buttonshadow;}
+
+.root .menu				{visibility: hidden;}
+.rootActive .menu		{visibility: hidden;}
+.rootHighlight .menu	{visibility: hidden;}
+
+/* The following is a special for the Skin page */
+#menuBar	{background: buttonface;}
+
+#menuBar .menuBar .root						{padding: 1px;}
+#menuBar .menuBar .root .middle				{padding-left: 7px; padding-right: 7px;}
+#menuBar .menuBar .rootHighlight .middle	{padding-left: 7px; padding-right: 7px;}
+#menuBar .menuBar .rootActive .middle		{padding-left: 7px; padding-right: 7px;}
+
+#menuBar .menuBar .root .left				{padding: 1px;}
+#menuBar .menuBar .rootHighlight .left		{padding: 1px;}
+#menuBar .menuBar .rootActive .left			{padding: 1px;}
+
+#menuBar .menuBar .root .right				{padding: 1px;}
+#menuBar .menuBar .rootHighlight .right		{padding: 1px;}
+#menuBar .menuBar .rootActive .right			{padding: 1px;}

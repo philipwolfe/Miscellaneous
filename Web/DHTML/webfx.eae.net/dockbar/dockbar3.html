@@ -1,0 +1,166 @@
+
+<html>
+<head>	
+<title>Dock Bar (3/3) (WebFX)</title>
+<link rel="stylesheet" type="text/css" href="webfx.css">
+
+<script type="text/javascript" src="coolbuttons.js"></script>
+<script type="text/javascript" src="dockbar.js"></script>
+<script type="text/javascript">
+
+var floatWidth = 97;
+var floatHeight = 26;    // extra 4 for the border
+
+var snapHorizSize = 22;  // This is how far from the edge the
+var snapVertSize = 22;   // the mouse is before the toolbar docks
+
+var horizDockWidth = 22; // When docked to the left or right
+var vertDockHeight = 22;
+
+var toolbarPos = "top";  // Start at this position
+
+</script>
+<script type="text/javascript">
+
+if (ie5) {
+	// Nothing needed since I allready used attachEvent in dockbar.js
+}
+else if (ie4) {
+	document.onmousedown = newDownHandler;
+	document.onmouseup = newUpHandler;
+	
+	function newDownHandler() {
+		doDown();
+		dockBarOnMouseDown();
+	}
+	
+	function newUpHandler() {
+		doUp();
+		dockBarOnMouseUp();
+	}
+}
+
+</script>
+
+<style type="text/css">
+<!--
+
+BODY		{margin: 0; border: 0}
+
+.coolButton	{width: 20; height: 20; margin: 1px;}
+
+-->
+</style>
+</head>
+
+<body scroll="no">
+
+<!-- I don't want any white space -->
+<div id="toolbar" onselectstart="return false"><span id="handle" title="Drag to move the container"></span
+><span class="coolButton" title="Previous" onclick="window.location='dockbar2.shtml'"><img src="http://webfx.eae.net/images/arrowleft.gif" align="absmiddle" width=16 height=16></span
+><span class="coolButton" title="Next" id="next"><img src="http://webfx.eae.net/images/arrowright.gif" align="absmiddle" width=16 height=16></span
+><span class="coolButton" title="Home" onclick="window.open('http://webfx.eae.net/','_top')"><img src="http://webfx.eae.net/images/favicon.gif" width=16 height=16 align="absmiddle"></span
+><span class="coolButton" title="Discuss this article"><img src="http://webfx.eae.net/images/desktop.gif" align="absmiddle" width=16 height=16></span
+></div>
+
+
+<div id="contentDiv">
+
+<script language="Javascript">
+
+fixSize();
+
+disable(next);
+</script>
+
+<script type="text/javascript" src="/includeHeading.js"></script>
+<script type="text/javascript">
+	includeHeading("Dock Bar","dockbar.zip");
+</script>
+
+<h2>Combining scripts</h2>
+
+<p>The first thing to do when combining scripts is to find the conflicts. These are most often
+event handling conflicts but there could be name conflicts and other conflicts as well.</p>
+
+<p>IE5 has added a really nice solution that will remove the event handling conflict and this
+is done with a special method called <code>attachEvent</code> that takes two arguments. The first
+is the event name and the second is the function to call when the event occurs. In IE4 (and Navigator)
+you have to create a special function that replaces the event handlers and this function then calls the
+separate event handlers. This is the method I'll use (so this will work in IE4). But first you need
+to include the scripts and set the variables for the dockbar.</p>
+
+<pre>
+&lt;script type="text/javascript" src="<a href="coolbuttons.js">coolbuttons.js</a>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="<a href="dockbar.js">dockbar.js</a>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+
+var floatWidth = 97;
+var floatHeight = 26;    // extra 4 for the border
+
+var snapHorizSize = 22;  // This is how far from the edge the
+var snapVertSize = 22;   // the mouse is before the toolbar docks
+
+var horizDockWidth = 22; // When docked to the left or right
+var vertDockHeight = 22;
+
+var toolbarPos = "top";  // Start at this position
+
+&lt;/script&gt;
+</pre>
+
+<h2>Defining new event handlers</h2>
+
+<p>When looking at the code for the two scripts I found that both scripts use the <code>document.onmousedown</code>
+and <code>document.onmouseup</code> events so I'll have to overload these event handlers.</p>
+
+<pre>
+document.onmousedown = newDownHandler;
+document.onmouseup = newUpHandler;
+
+function newDownHandler() {
+   doDown();
+   dockBarOnMouseDown();
+}
+
+function newUpHandler() {
+   doUp();
+   dockBarOnMouseUp();
+}
+</pre>
+
+<h2>Creating the toolbar</h2>
+
+<p>This is really simple. All you need to do is create some spans with <code>class</code> <code>coolButton</code>
+and remember to define the width or the borders wont show (IE bug). I set the following style declaration:</p>
+
+<pre>
+.coolButton	{width: 20; height: 20; margin: 1px;}
+</pre>
+
+<p>The html for the toolbar looks like this:</p>
+
+<pre>
+&lt;div id="toolbar" onselectstart="return false"&gt;&lt;span id="handle" title="Drag to move the container"&gt;&lt;/span
+&gt;&lt;span class="coolButton" title="Previous" onclick="window.location='dockbar2.shtml'"&gt;&lt;img src="/images/arrowleft.gif" align="absmiddle" width=16 height=16&gt;&lt;/span
+&gt;&lt;span class="coolButton" title="Next" id="next"&gt;&lt;img src="/images/arrowright.gif" align="absmiddle" width=16 height=16&gt;&lt;/span
+&gt;&lt;span class="coolButton" title="Home" onclick="window.open('http://webfx.eae.net/','_top')"&gt;&lt;img src="/favicon.gif" width=16 height=16 align="absmiddle"&gt;&lt;/span
+&gt;&lt;span class="coolButton" title="Discuss this article"&gt;&lt;img src="/images/desktop.gif" align="absmiddle" width=16 height=16&gt;&lt;/span
+&gt;&lt;/div&gt;
+</pre>
+
+<p>The reason for the compact code and the odd line breaks is that I don't want any white space between the buttons.</p>
+
+<p><a href="dockbar.html">Docking</a><br>
+<a href="dockbar2.html">Set up the page</a><br>
+Combine it with Cool Buttons</p>
+
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!--#include virtual="/footer.html" -->
+
+</div>
+</body>
+</html>
+

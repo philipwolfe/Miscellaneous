@@ -1,0 +1,19 @@
+/* ./build/gui/view_mode_ie.css */
+#btnInstruction {top: 4px; left: 105px; background-position: -480 0;}
+#footPalette {top: 104; left: 0;visibility: hidden;}
+#btnEdit {top: 4px; left: 135px; background-position: -456 0;}
+#btnInstructionText {top: 8; left: 131;}
+#btnEmail {top: 4px; left: 168px; background-position: -432 0;}
+#btnEditText {top: 8; left: 164;}
+#btnPrint {top: 4px; left: 72px; background-position: -72 0;}
+#btnEmailText {top: 8; left: 192;}
+#btnSave {top: 4px; left: 42px; background-position: -48 0;}
+#break0 {top: 5; left: 32;}
+#break1 {top: 5; left: 68;}
+#btnPrintText {top: 8; left: 101;}
+#break2 {top: 5; left: 101;}
+#btnSaveText {top: 8; left: 68;}
+#break4 {top: 5; left: 131;}
+#break5 {top: 5; left: 164;}
+#break6 {top: 5; left: 192;}
+#footDivision {top: 100; left: 0;visibility: hidden;}

@@ -1,0 +1,46 @@
+body		{background: white; color: black; font-family: verdana; margin: 0px; margin-bottom: 10px; font-size: 14px; border-width: 0px;}
+/*h1			{background: activecaption; color: captiontext; padding: 2; overflow: hidden; font-size: 30px;}*/
+
+
+/*h1			{behavior: url(gradient.sct);
+			color: Black;
+			background: #2984ff;
+			font-family: arial;
+			font-family: arial black;
+			font-size: 50px;
+			font-weight: bold;
+			font-style: italic;
+			letter-spacing: -3px;
+			margin: 0px;
+			padding-left: 0px;}*/
+			
+h1,h2,h3,h4,h5,h6	{color: navy; margin-left: 10px; margin-right: 10px;}
+h1,h2			{font-family: arial black; font-weight: normal;}
+h3,h4,h5,h6			{font-family: arial; font-weight: bold;}
+h1			{font-size: 50px;}
+h2			{font-size: 20px;}
+h3			{font-size: 15px;}
+p			{margin: 10px; font-size: 13px; color: black; width: 500px;}
+
+pre			{margin: 20px; background: #eeeeee; padding: 10px;
+			border: 1 solid #dddddd; color: black; width: 500px;}
+code		{background: #eeeeee; border: 1 solid #dddddd; color: black;}
+a			{text-decoration: underline; color: navy; font-weight: bold;}
+a:hover		{color: blue;}
+a:visited	{color: purple;}
+a:visited:hover	{color: blue;}
+hr			{margin-left: 10px; margin-right: 10px;}
+
+.adr a			{color: blue; text-decoration: underline;}
+.adr a:hover	{text-decoration: underline;}
+
+.author		{margin-top: 50px; font-style: italic;}
+.date			{color: blue;}
+
+.warning		{color: red;}
+
+.download				{position: absolute; z-index: 99; top: 10; left: 0; width: 100%; text-align: right; font: icon; padding-right: 10px;}
+.download a				{color: black;}
+.download a:active		{color: black;}
+.download a:visited		{color: black;}
+.download img			{border: 0; text-align: left; margin-right: 3;}

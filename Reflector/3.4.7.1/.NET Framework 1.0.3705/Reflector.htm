@@ -1,0 +1,151 @@
+
+<html>
+<style>
+td { font-family: Verdana, Arial, Helvetica; font-size: 80%; }
+h1 { color: #002850; font-size: 150% }
+a  { color: #999999; }
+a:hover { color: #eeeeee; }
+b { font-weight: bold; }
+p { margin-top: "0.2em"; margin-bottom: "1.0em"; }
+</style>
+
+<head>
+
+</head>
+
+<body>
+
+<table width="600"> 
+<th>
+<td>
+
+<br>
+
+<h1>.NET Reflector Frequently Asked Questions</h1>
+
+<p>
+The following FAQ answers some of the most common questions about .NET Reflector.
+</p>
+
+<b>How to load a type from command line?</b>
+<p>
+You can use the '/member' switch which takes a full XML doc member key to identify a type, method, field. For example: 'Reflector.exe /member:T:System.Object'.
+</p>
+
+
+<b>Where is the 'References' item gone?</b>
+<p>
+There is a 'Dependencies' item for each Module instead of one for the entire Assembly.
+The item also shows Navitve Win32 modules used by DllImport. 
+Furthermore you can get a list of all the referenced members for any referenced 
+assembly (right-click and call "Assembly Member Dependencies" or Ctrl-R).
+</p>
+
+<b>How to select from a search tool and copy to clipboard?</b>
+<p>
+This is supported in recent versions. All search windows all you multi-select members and copy their names to the clipboard (Ctrl-C).
+</p>
+
+<b>What is new to Call Tree?</b>
+<p>
+The call tree tool shows you a tree of methods that could possibly be called by the selected method.
+In newer versions of Reflector it also expands derived sub types so you can drill into interfaces
+and abstract members by looking at their implementation.
+</p>
+
+<b>How can I organize the main view by Namespace?</b>
+<p>
+Reflector supports a namespace-centric mode. 
+Here is the trick: Open the view menu, click the customize item and enable the "Flatten Namespaces" checkbox.
+</p>
+
+<b>Does Reflector support XML Documentation viewing?</b>
+<p>
+Reflector includes an XML documentation viewer.
+Select a type, constructor, method, property, field or event and hit the F1 key.
+The program will either find the documentation file automatically or it will ask for it.
+For .NET Framework APIs you can also use the MSDN Help lookup from the Tools menu.
+</p>
+
+<b>How can I figure out the action for a selected item?</b>
+<p>
+Reflector supports context menus (which can be opened by right-clicking on a node in the browser window).
+This is often the quickest way to find out what you can do with that item.
+</p>
+
+<b>Why does Reflector hold my file locked after "Close"?</b>
+<p>
+This is a problem with the CLR, not with Reflector. 
+Right now, the CLR does not support an easy way to unload assemblies from memory. 
+Even after running 'File\Close' the CLR still keeps the file in memory. 
+The only way to release the lock is to restart reflector.
+</p>
+
+<b>What is the difference between 'File\Open' and 'File\Open Name'?</b>
+<p>
+The "File\Open Name" menu allows you to open files that are already loaded into the Global Assembly Cache (GAC). 
+However, when using this option you will find it harder to access the XML documentation that is often stored in the same directory as the original EXE/DLL. 
+To avoid this load the EXE/DLL from its original location.</p>
+
+<b>How do Bookmarks work?</b>
+<p>
+The Bookmarks tool only works for types, constructors, methods, fields, properties and events at the moment.
+You can add a selected node to the bookmarks list using the INS key and remove it by pressing DEL.
+</p>
+
+<b>How do I search for a particular type?</b>
+<p>
+Type Search (F3) shows you all the types available in the loaded assemblies
+(taking your visibilities settings into consideration).
+The tool works like a dictionary index and typing syllables
+in the header boxes is filtering the lower part. 
+Put quotes arround a word to only show those members which match the entire word. 
+The search stops after 1000 elements.
+You should already have an idea what you are looking for at that point - use filtering to get more.
+The progess bar at the bottom shows the percentage of the loaded assemblies that is already processed.
+</p>
+
+<b>How do I use the Member Search to find a particular member?</b>
+<p>
+Member Search (F4) works the same way as Type Search works. It is a bit slower and shows all members as well (types, constructors, methods, fields, properties, events).
+</p>
+
+<b>What is Member References Search and why is it so slow?</b>
+<p>
+The Member references (Shift-F4) tool searches through all of the IL code to find all the members that refer to the 
+node that was selected. The Member References Search tool is very slow at the moment so it can take 
+some time until the search finishes. The search scope is limited for private and internal members.
+The search can also be made quicker by using the filter and unloading large assemblies which you do not want to search.
+</p>
+
+<b>What is Type Reference Search?</b>
+<p>
+The Type References Search shows all the members that refer to the selected type in their Meta Data. 
+The IL code is not searched. This will speed up the search, but may not give you all the results 
+you are looking for.
+</p>
+
+<b>How do I find out what the various IL op-codes do?</b>
+<p>
+Move your mouse cursor over the op-code in the Disassembler view and wait for the Tooltip.
+</p>
+
+<b>How can I view language-specific definitions?</b>
+<p>
+Reflector supports an outline view which shows the full definition of a selected assembly, module, namespace or type in your language of choice. 
+It might take a little while to compile this information for assemblies and modules.
+The Outline view supports printing (right-click to access Print in the context menu).
+</p>
+
+<b>Can I get Tooltips based off of the XML documentation?</b>
+<p>
+This feature is not supported in Reflector currently, but might be in upcoming versions. 
+</p>
+
+</td>
+</th>
+</table>
+
+</body>
+
+</html>

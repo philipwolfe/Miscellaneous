@@ -1,0 +1,67 @@
+body.menuContainer	{background: white; border: 0px solid black; margin: 0;}
+
+table.menu	{position: absolute; visibility: hidden;
+		background: white; font-family: verdana; font-size: 11px; border: 2px solid navy; border: 10px solid #eeeeee;}
+
+table.menu table.menu {display: none; visibility: hidden;}
+
+.menuContainer .menu		{visibility: visible;}
+.menuContainer .menu .menu	{visibility: hidden; display: block;}
+
+.menu tr	{height: 18;}
+
+/* Cell formattings*/
+.menu td					{padding-left: 3px; padding-right: 3px; padding-top: 0px; padding-bottom: 0px}
+table.menu td.icon			{text-align: center; padding-left: 1px; padding-right: 1px; padding-top: 0px; padding-bottom: 0px;}
+table.menu td.more			{font-family: webdings; width: 20px; text-align: right; padding-right: 1px;}
+table.menu td.keyshortcut	{font-family: tahoma; font-size: 12px; font-weight: bold;}
+table.menu tr.disabled		{color: buttonshadow;}
+
+table.menu tr.disabled td.icon img	{filter: alpha(opacity=50);}
+
+/* Highlighted cell formattings */
+
+table.menu tr td.icon,
+table.menu tr td.left				{padding-left: 6px;}
+table.menu tr.highlight	td.icon,
+table.menu tr.highlight	td.left		{background: url('left.gif') no-repeat center left;
+									color: navy;}
+
+table.menu tr td.icon img			{filter: gray();}
+table.menu tr.highlight td.icon img	{filter: default;}
+									
+table.menu tr td.middle				{}
+table.menu tr.highlight	td.middle		{background: url('middle.gif') repeat-x center;
+									color: navy;}
+
+table.menu tr td.more,
+table.menu tr td.right				{padding-right: 4px;}
+table.menu tr.highlight	td.more,
+table.menu tr.highlight	td.right	{background: url('right.gif') repeat-x center right;
+									color: navy;}
+
+.root			{background: white; cursor: default;}
+
+.rootHighlight	{background: white; cursor: default;}
+				
+.rootActive		{cursor: default;}
+
+
+.root .left				{background: white; width: 10px;}
+.rootHighlight .left	{background: white url('leftGray.gif') no-repeat center left; width: 10px;}
+.rootActive .left		{background: white url('left.gif') no-repeat center left; width: 10px;}
+
+.root .middle			{background: white; text-align: center; font-family: verdana; font-size: 11px; height: 18px;}
+.rootHighlight .middle	{background: white url('middleGray.gif') center repeat-x; text-align: center; font-family: verdana; font-size: 11px; height: 18px;}
+.rootActive .middle		{background: white url('middle.gif') center repeat-x; text-align: center; font-family: verdana; font-size: 11px; height: 18px; color: navy;}
+
+.root .right			{background: white; width: 10px;}
+.rootHighlight .right	{background: white url('rightGray.gif') no-repeat center right; width: 10px;}
+.rootActive .right		{background: white url('right.gif') no-repeat center right; width: 10px;}
+
+
+.root .menu				{visibility: hidden;}
+.rootActive .menu		{visibility: hidden;}
+.rootHighlight .menu	{visibility: hidden;}
+
+#menuBar	{background: white;}

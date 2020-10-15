@@ -1,0 +1,90 @@
+.vpalette {
+	VISIBILITY: visible; OVERFLOW: hidden; WIDTH: 28px; POSITION: absolute; BACKGROUND-COLOR: #c0c0c0
+}
+.lineItem {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 8pt; PADDING-BOTTOM: 0px; CURSOR: default; COLOR: black; PADDING-TOP: 0px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; HEIGHT: 14px; BACKGROUND-COLOR: white
+}
+#lineSpot {
+	WIDTH: 50px; POSITION: absolute; TOP: 11px; HEIGHT: 1px; BACKGROUND-COLOR: lightgrey
+}
+.header {
+	FONT-SIZE: 8pt; WIDTH: 62px; CURSOR: default; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; HEIGHT: 16px; BACKGROUND-COLOR: white; TEXT-ALIGN: center; 6: hidden
+}
+.colorheader {
+	FONT-SIZE: 8pt; OVERFLOW: hidden; WIDTH: 124px; CURSOR: default; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; HEIGHT: 16px; BACKGROUND-COLOR: white; TEXT-ALIGN: center
+}
+.holder {
+	BACKGROUND-IMAGE: url(../img/app/smallholder.gif); OVERFLOW: hidden; WIDTH: 16px; CLIP: rect(0px 16px 16px 0px); CURSOR: default; HEIGHT: 16px
+}
+.swatch {
+	LEFT: 3px; OVERFLOW: hidden; WIDTH: 10px; CLIP: rect(0px 10px 10px 0px); CURSOR: default; POSITION: absolute; TOP: 3px; HEIGHT: 10px
+}
+.largeswatch {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; MARGIN: 2px; BORDER-LEFT: black 1px solid; WIDTH: 20px; CLIP: rect(0px 20px 20px 0px); BORDER-BOTTOM: black 1px solid; HEIGHT: 20px
+}
+.sample {
+	LEFT: 4px; OVERFLOW: hidden; WIDTH: 56px; CURSOR: default; POSITION: absolute; TOP: 6px; HEIGHT: 1px; BACKGROUND-COLOR: #606060
+}
+.outline {
+	DISPLAY: block; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: scroll; WIDTH: 100px; CURSOR: default; POSITION: absolute; TOP: 0px; HEIGHT: 100px; BACKGROUND-COLOR: white
+}
+.divider {
+	DISPLAY: block; Z-INDEX: 2; LEFT: 0px; BACKGROUND-IMAGE: url(../img/app/divider.gif); VISIBILITY: hidden; OVERFLOW: hidden; WIDTH: 6px; CURSOR: move; POSITION: absolute; TOP: 0px; HEIGHT: 100px
+}
+.drawing {
+	DISPLAY: block; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; WIDTH: 200px; CURSOR: default; POSITION: absolute; TOP: 0px; HEIGHT: 100px; BACKGROUND-COLOR: lightgrey
+}
+.insert {
+	DISPLAY: none; LEFT: 0px; OVERFLOW: hidden; POSITION: absolute; TOP: 0px; HEIGHT: 2px; BACKGROUND-COLOR: lightblue
+}
+.handle {
+	DISPLAY: none; LEFT: 0px; OVERFLOW: hidden; WIDTH: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 0px
+}
+.frame {
+	BORDER-RIGHT: gray 2px solid; BORDER-TOP: gray 2px solid; LEFT: 0px; OVERFLOW: hidden; BORDER-LEFT: gray 2px solid; WIDTH: 0px; CURSOR: move; BORDER-BOTTOM: gray 2px solid; POSITION: absolute; TOP: 0px; HEIGHT: 0px
+}
+.anchor {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; LEFT: 0px; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; WIDTH: 0px; CURSOR: hand; BORDER-BOTTOM: black 1px solid; POSITION: absolute; TOP: 0px; HEIGHT: 0px; BACKGROUND-COLOR: white
+}
+.editor {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; DISPLAY: none; PADDING-LEFT: 0px; FONT-SIZE: 8pt; Z-INDEX: 10000; LEFT: 0px; PADDING-BOTTOM: 2px; MARGIN: 0px; OVERFLOW: hidden; BORDER-LEFT: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; TOP: 0px; HEIGHT: 16px; BACKGROUND-COLOR: transparent
+}
+.line {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 0px; PADDING-BOTTOM: 2px; OVERFLOW: visible; PADDING-TOP: 0px; HEIGHT: 18px
+}
+.lead {
+	DISPLAY: inline; OVERFLOW: hidden; HEIGHT: 16px
+}
+.spot {
+	BACKGROUND-POSITION: 0px 0px; DISPLAY: inline; BACKGROUND-IMAGE: url(../img/app/icon2.gif); OVERFLOW: hidden; WIDTH: 16px; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px
+}
+.icon {
+	BACKGROUND-POSITION: 0px 0px; DISPLAY: inline; BACKGROUND-IMAGE: url(../img/app/icon2.gif); OVERFLOW: hidden; WIDTH: 16px; CLIP: rect(0px 16px 16px 0px); HEIGHT: 16px
+}
+.text {
+	DISPLAY: inline; FONT-SIZE: 8pt; VERTICAL-ALIGN: top; OVERFLOW: visible; CURSOR: text; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; HEIGHT: 16px
+}
+.dialog {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; FONT-SIZE: 10pt; LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; CURSOR: default; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: tahoma, helvetica, arial, sans-serif; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: lightgrey
+}
+.shadow {
+	LEFT: 0px; VISIBILITY: hidden; OVERFLOW: hidden; CURSOR: default; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: black
+}
+.label {
+	POSITION: absolute
+}
+.field {
+	POSITION: absolute
+}
+.choice {
+	WIDTH: 100px; POSITION: absolute; HEIGHT: 28px
+}
+.optionMenu {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; OVERFLOW: scroll; BORDER-LEFT: black 1px solid; WIDTH: 300px; CURSOR: default; BORDER-BOTTOM: black 1px solid; HEIGHT: 200px; BACKGROUND-COLOR: white
+}
+.optionItem {
+	PADDING-LEFT: 3px; WIDTH: 100%; COLOR: black; HEIGHT: 16px; BACKGROUND-COLOR: white
+}
+.colorSpot {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; LEFT: 11px; OVERFLOW: hidden; BORDER-LEFT: black 1px solid; WIDTH: 9px; BORDER-BOTTOM: black 1px solid; POSITION: absolute; TOP: 12px; HEIGHT: 9px
+}

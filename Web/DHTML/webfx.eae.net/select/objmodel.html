@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+"http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<HTML>
+<HEAD>
+<TITLE>DHTML Select Object Model (WebFX)</TITLE>
+<link rel="STYLESHEET" type="text/css" href="webfx.css">
+
+</HEAD>
+
+<BODY>
+<h1>Object Model</h1>
+
+<p>I've tried to implement all the methods and properties that a normal SELECT object has. There
+are a few small differances and left outs...</p>
+
+<hr>
+
+<h2>Methods</h2>
+
+<hr>
+
+<h2>add</h2>
+
+<H4>Description</H4>
+
+<P>Adds an option to the select box.</p>
+
+<P>Before you can add an option to a selectbox, you must create it first by using the <a
+href="#createElement">createElement</A> method. (this is the standard method)</p>
+
+<H4>Syntax</H4>
+
+<P><code><I>object</I>.<B>add</B>(<i>element</i> [,<i>index</i>])</code></P>
+
+<p>The <code><i>element</i></code> is an element you just created using <a
+href="#createElement">createElement</A></p>
+
+<p><code><i>index</i></code> is where in the select box to insert the new option. If no
+<code><i>index</i></code> is given the option is placed at the end of the select box</p>
+
+<h4>Applies to</h4>
+
+<p>DHTML Select</p>
+
+<hr>
+
+<h2>remove</h2>
+
+<H4>Description</H4>
+
+<P>Removes an option from the select box.</p>
+
+<H4>Syntax</H4>
+
+<P><code><I>object</I>.<B>remove</B>(<i>index</i>)</code></P>
+
+<p><code><i>index</i></code> is the number or the string indicating which option to remove. If
+this is a string it represent the <code>NAME</code> or <code>ID</code> of the option to
+remove.</p>
+
+<h4>Applies to</h4>
+
+<p>DHTML Select</p>
+
+<hr>
+
+<h2>item</h2>
+
+<H4>Description</H4>
+
+<P>Retrieves an option from the given select box.</p>
+
+<H4>Syntax</H4>
+
+<P><code><I>object</I>.<B>item</B>(<i>index</i>)</code></P>
+
+<p><code><i>index</i></code> is the number or the string indicating which option to retrieve. If
+this is a string it represent the <code>NAME</code> or <code>ID</code> of the option to
+remove.</p>
+
+<h4>Return value</h4>
+
+<p>This returns an option, which is actually a DIV.</p>
+
+<h4>Remarks</h4>
+
+<p>This is actually not needed but is used for compability. You can just use indexing of the
+options <a href="#options">collection</a>.</p>
+
+<p>This differs from the original item method. The original method takes two arguments, the
+second is used if more than one option has the same name. If two or more divs have the same name
+their names ar invalid. Thus this has no need for two arguments.</p>
+
+<h4>Applies to</h4>
+
+<p>DHTML Select</p>
+
+<hr>
+
+<h2>Collections</h2>
+
+<hr>
+
+<h2><a name="options">options</a></h2>
+
+<h4>Description</h4>
+
+<p>Returns the collection/array of options.</p>
+
+<h4>Syntax</h4>
+
+<P><code><I>object</I>.<B>options</B>([<i>index</i>])</code></P>
+
+<p><code><i>index</i></code> is optional and if provided this returns an option element.
+Otherwise it returns the collection of options. If this is a string it represent the
+<code>NAME</code> or <code>ID</code> of the option.</p>
+
+<h4>Applies to</h4>
+
+<p>DHTML Select</p>
+
+<hr>
+
+<h2>Properties</h2>
+
+<hr>
+
+<h2><a name="options">selectedIndex</a></h2>
+
+<h4>Description</h4>
+
+<p>Retrieves an integer specifying the index of the selected option in a select object. </p>
+
+<h4>Syntax</h4>
+
+<P><code><I>object</I>.<B>selectedIndex</B></code></P>
+
+<p>This returns the index of the selected option (ranging from 0).</p>
+
+<h4>Remarks</h4>
+
+<p>The real select box has this value to read write but here it is currently read only.</p>
+
+<h4>Applies to</h4>
+
+<p>DHTML Select</p>
+
+<hr>
+
+<h2>selected</h2>
+
+<h4>Description</h4>
+
+<p>Shows if an option is selected.</p>
+
+<h4>Syntax</h4>
+
+<P><code><I>object</I>.<B>selected</B></code></P>
+
+<p>This returns <b>true</b> if the <code><i>object</i></code> (that is an option) is
+selected.</p>
+
+<h4>Remarks</h4>
+
+<p>If not selected it returns undefined which is treated as falls in tests.</p>
+
+<p>In the real option object this property has read write access but here it is currently read
+only.</p>
+
+<h4>Applies to</h4>
+
+<p>DHTML Option</p>
+
+<hr>
+
+<h2><a name="createElement">createElement</a></h2>
+
+<h4>Description</h4>
+
+<p>This method is the standard method to createElements. This can only create OPTIONS and IMG elements. I'll jsut show you a little example how to use it and then insert it inside a select box.</p>
+
+<pre>
+el = document.<b>createElement</b>("OPTION");
+el.text = "Test &lt;b&gt;X&lt;/b&gt;"; // Note that normal select boxes will not 
+                           // parse this and the text will be shown exactly
+                           // like it is entered	
+el.style.cssText = "background: red"; // This works on normal select boxes as well.
+                                      // The DHTML select checks for the cssText and
+                                      // applies it to the option. Note that other
+                                      // style declarations won't be applied
+select1.add(el,2); // select1 could be an ordinary select box as well
+</pre>
+
+<hr>
+
+<p>Below is a link that opens a new window with a select box and an inupt line where you can write code, no error checking though :-)</p>
+
+<p><a href="tryObjMod.html" target="_new">Try This!</a></p>
+
+<p class="author">Author: Erik Arvidsson</p>
+
+<!-- Footer Starts Here -->
+
+<style type="text/css">
+<!--
+
+.cromeFooter a			{font-weight: bold; color: navy; text-decoration: none;}
+.cromeFooter a:hover	{color: deepskyblue; text-decoration: underline;}
+
+-->
+</style>
+<script type="text/javascript">
+<!--
+
+function over() {
+	var toEl = getReal(chrome.event.toElement, "tagName", "GROUP3D");
+	var fromEl = getReal(chrome.event.fromElement, "tagName", "GROUP3D");
+	
+	if (toEl == fromEl) return;
+	
+	if (toEl.tagName == "GROUP3D") {
+			chrome.scene.all.zoomOut.stop();
+			chrome.scene.all.zoomIn.play();
+	}
+}
+
+function out() {
+	var toEl = getReal(chrome.event.toElement, "tagName", "GROUP3D");
+	var fromEl = getReal(chrome.event.fromElement, "tagName", "GROUP3D");
+	
+	if (toEl == fromEl) return;
+
+	if (fromEl.tagName == "GROUP3D") {
+			chrome.scene.all.zoomIn.stop();
+			chrome.scene.all.zoomOut.play();
+	}
+}
+
+function getReal(el, type, value) {
+	temp = el;
+	while ((temp != null) && (temp.tagName != "BODY")) {
+		if (eval("temp." + type) == value) {
+			el = temp;
+			return el;
+		}
+		temp = temp.parentElement;
+	}
+	return el;
+}
+
+//-->
+</script>
+
+<div class="cromeFooter" style="text-align: center; font-family: arial; color: gray; font-size: 12px;">
+
+<OBJECT ID="chrome" CLASSID="CLSID:8A2A7F99-09DA-11D1-B33A-00A0C90A8FB6"
+style="width: 150; height: 60;">
+<param name="url" value="http://www.eae.net/webfx/images/crfoot.xml">
+<param name="splashString" value="WebFX">
+
+<a href="http://www.eae.net/webfx/" target="_top" title="Since you don't have Chromeffects you'll only see a static image :-("><img src="http://www.eae.net/webfx/images/crfoot.gif" width=100 height=40 border=0></a>
+</OBJECT>
+
+<p style="margin-top: 0;">Page designed and maintained by <a href="mailto:erik@eae.net">Erik Arvidsson</a> and <a href="mailto:eae@eae.net">Emil A. Eklund</a></p>
+
+</div>
+
+<!-- Footer Ends Here -->
+
+</BODY>
+</HTML>

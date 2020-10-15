@@ -1,0 +1,588 @@
+.body {
+	 margin: 0; border: 0; padding-width: 0;
+	 overflow: hidden;
+	 background-color: white;
+}
+
+.palette {
+	position: absolute;
+	height: 24;
+	background-color: #c0c0c0;
+	overflow: hidden; 
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+}
+
+.largeMenu {
+	position: absolute;
+	height: 21;	
+	padding-top: 2px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: 1px;
+	border: solid #c0c0c0 1px;
+	cursor: default;
+	background-color: #c0c0c0;
+	white-space: nowrap;
+	visibility: hidden;
+}
+
+.largeSpot {
+	position: absolute;
+	padding-left: 1;
+	padding-right: 1;
+	position: absolute;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	overflow: hidden;
+	cursor: default;
+}
+
+.largeList {
+	position: absolute;
+	top: 0; left: 0;
+	z-index: 1000;
+	border: 1px solid black;
+	border-top-color: white;
+	border-left-color: white;
+	background-color: lightgrey;	
+	overflow: hidden;
+	visibility: hidden;	
+}
+
+.largeItem {
+	position: absolute;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	padding: 1px 2px;
+	color: black;
+	background-color: lightgrey;
+	clip: rect( 0, 300, 16, 0 );
+	cursor: default;
+	padding-left: 10;
+	padding-right: 10;
+	white-space: nowrap;
+}
+
+.separator {
+	position: absolute;
+	height: 4;
+	width: 1000;	
+	background-image: url( "/alphablox/InfoApps/internal/img/app/separator.gif" );
+	background-repeat: repeat-x;	
+}
+
+
+.popupWidget {
+	position: absolute;
+	top: 1;
+	border: none;
+	margin:0px;
+	height: 18;
+	width: 13;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/popup.gif" );
+	background-repeat: no-repeat;
+	overflow: hidden;
+	z-index: 500;
+}
+
+
+.popupWidgetRect {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	position: absolute;
+	overflow: hidden;
+	border: 1px solid gray;
+	overflow: hidden;
+	z-index: -2;
+}
+
+.division {	
+	position: absolute;
+	width: 8000; height: 5;	
+	background-color: #c0c0c0; 
+	background-image: url( "/alphablox/InfoApps/internal/img/app/division.gif" );
+	background-repeat: repeat-x;
+	overflow: hidden;
+}
+
+.buttonText{	
+	position: absolute;
+	height: 24; 
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+}
+
+.buttonTextColorless:visited{	
+	position: absolute;
+	height: 24; 
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	color: black;
+	text-decoration: none;
+}
+
+.buttonTextColorless:link{	
+	position: absolute;
+	height: 24; 
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	color: black;
+	text-decoration: none;
+}
+
+.button {
+	position: absolute;
+	height: 24; width: 24;
+	clip: rect( 0, 24, 24, 0 );
+	background-image: url( "/alphablox/InfoApps/internal/img/app/button9.gif" );
+}
+
+.bulbLogo { 
+	position: absolute;
+	background-image: url( "/alphablox/InfoApps/internal/img/blox_cube_28x44.gif" );
+	background-repeat: no-repeat;
+	background-position: 9px 3px;
+	background-color: #c0c0c0; 
+	top: 0; left: 0; 
+	width: 50; height: 50;
+	visibility: visible;
+}
+
+.bulbLogoSmall { 
+	position: absolute;
+	background-image: url( "/alphablox/InfoApps/internal/img/blox_cube_16x26.gif" );
+	background-repeat: no-repeat;
+	width: 50; height: 26;
+	top: 2; left: 9;
+}
+
+.break {
+	position: absolute;
+	width: 4; height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/break.gif" );
+	background-repeat: repeat-x;
+}
+						
+.label {
+	position: absolute;
+	padding: 0px 4px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	background-color: white;
+	overflow: hidden;
+	cursor: default;
+}
+
+.smallMenu {
+	position: absolute;
+	height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/menu.gif" );
+}
+
+.smallList {
+	position: absolute;
+	top: 0; left: 0;
+	z-index: 1000;
+	border: 1px solid black;
+	background-color: white;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+.smallSpot {
+	position: absolute;
+	padding: 0px 0px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	overflow: hidden;
+	cursor: default;
+}
+
+.comboBox {
+	position: absolute;
+	padding: 0px 0px;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	overflow: hidden;
+	cursor: text;
+	border: none;
+}
+
+.smallItem {
+	position: absolute;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	padding: 0px 2px;
+	color: black;
+	background-color: white;
+	cursor: default;
+	padding-left: 5;
+	padding-right: 5;
+	white-space: nowrap;
+}
+
+.heading {
+	position: absolute;
+	top: 0; left: 0;
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	background-color: azure;
+	text-align: center;
+	overflow: hidden;	
+}
+
+.popup {
+	position: absolute;
+	z-index: 1000;
+	border: 1px solid black;
+	background-color: white;
+	display: none;
+}
+
+.menu {
+	position: absolute;
+	height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/menu.gif" );
+	background-repeat: repeat-x;
+	visibility: hidden;
+}
+
+.title {
+	position: absolute;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 8pt;
+	position: relative;
+	top: 4; left: 6;
+	overflow: hidden;
+	cursor: default;
+}
+
+.item {
+	position: absolute;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 8pt;
+	height: 8;
+	padding: 0px 2px;
+	color: black; background-color: white;
+	cursor: default;
+}
+			
+.frame {
+	position: absolute;
+	width: 24; height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/border.gif");
+	background-repeat: repeat-x;
+}
+
+.color {
+	width: 24; height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/color.gif" );
+	background-repeat: repeat-x;
+}
+
+.modal {
+	position: absolute;
+	top: 0; left: 0;
+	width: 1%;	
+	overflow: visible;
+	background-color: #ffffc2;
+	border-top: 1 solid black;
+	border-left: 1 solid black;
+	border-right: 2 solid black;
+	border-bottom: 2 solid black;
+	visibility: hidden;
+	cursor: default;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+}
+
+.modalTopLeftBox {
+	width: 16pt; height: 16pt;
+	background-color: #ffcc00;
+	overflow: hidden;
+	cursor: move;
+}
+
+.modalTitle {
+	height: 16pt;
+	margin-left: 10px;
+	margin-right: 15px;
+	font-size: 10pt;
+	font-weight: bold;
+	line-height: 15pt;
+	color: #660066;
+}
+
+.modalDragger {
+	cursor: move;
+}
+
+.modalContent {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#modalMessage {
+	margin-left: 15px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+	color: red;
+}
+
+#modalBottomBar {
+	margin-left: 20pt;
+	margin-bottom: 10px;
+	margin-right: 15px;
+	text-align: right;
+	overflow: visible;
+}
+
+#modalRect {
+	position: absolute;
+	overflow: hidden;
+	visibility: hidden;
+	border: 2px solid gray;
+	z-index: 99999;
+}
+
+.modalLabel {
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+}
+
+.modalButton {
+	width: 75px;
+	margin-top: 10px;
+	border-top: solid #000099 1px;
+	border-left: solid #000099 1px;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: Verdana, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	color: #000099;
+	overflow: visible;
+}
+
+.modalScrollable {
+	width: 400px; height: 250px;
+	margin-top: 10px;
+	overflow: auto;
+	background-color: #FFFFFF;
+	layer-background-color: #FFFFFF;
+}
+
+.modalProgressBar {
+	width: 320px; height: 16px;
+	margin-top: 15px;
+	border: solid black 1px;
+	background-color: #666699;
+	overflow: hidden;
+}
+
+.modalProgressWidget {
+	width: 1px; height: 16px;
+	border-right: solid black 1px;
+	background-color: #ccccff;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+.view {
+	position: absolute; 
+	overflow: scroll;
+	visibility: hidden;
+	background-color: white;
+}
+
+.book {
+	position: absolute;
+	cursor: default;
+}
+
+.sheet {
+	position: absolute;
+	display: none;
+	border-style: solid;
+	border-color: darkgray;
+	border-width: 1px 1px 1px 1px;
+	margin: 0px;
+	padding: 0px;
+	z-index: -1;
+}
+
+.head {
+	position: absolute;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 10pt;
+	text-align: center;
+	overflow: hidden;
+	margin: 0px;
+	padding: 1px;
+	border-style: solid;
+	border-color: lightgrey;
+	border-width: 0px 1px 1px 0px;
+	background-color: whitesmoke;
+	z-index: 0;
+}
+
+.cell {
+	position: absolute;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 10pt;
+	text-align: right;
+	overflow: hidden;
+	margin: 0px;
+	padding: 1px;
+	border-style: solid;
+	border-color: lightblue;
+	border-width: 0px 1px 1px 0px;
+	background-color: white;
+	background-repeat: no-repeat;
+	z-index: -2;
+}
+
+.rect {
+	position: absolute;
+	display: none;
+	overflow: hidden;
+	border: 2px solid gray;
+}
+
+.cutcopyrect {
+	position: absolute;
+	display: none;
+	overflow: hidden;
+	background-color: rgb(51,51,51);
+}
+
+.columnResizer {
+	position: absolute;
+	cursor: e-resize;
+	width: 7px;
+	height: 20px;
+	z-index: 100;
+	overflow: hidden;
+}
+
+.rowResizer {
+	position: absolute;
+	cursor: s-resize;
+	width: 70px;
+	height: 7px;
+	z-index: 100;
+	overflow: hidden;
+}
+
+.text {
+	display: none;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 10pt;
+}
+						
+#foreView {
+	top: 4px; left: 4px;
+	width: 12px; height: 12px;
+}
+
+#backView {
+	top: 7px; left: 7px;
+	width: 12px; height: 12px;
+}
+
+/* 
+ *	old spreadsheet versions
+ *
+
+.holder {
+	position: absolute;
+	top: 0; left: 0;
+	width: 24; height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/holder.gif" );
+	clip: rect( 0, 24, 24, 0 );
+	overflow: hidden;
+	cursor: default;
+}
+
+.swatch {
+	position: relative;
+	top: 6px; left: 6px;
+	width: 12px; height: 12px;
+	overflow: hidden;
+	cursor: default;
+}
+
+
+*/ 
+
+.holder {
+	width: 16; height: 16;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/smallholder.gif" );
+	clip: rect( 0, 16, 16, 0 );
+	overflow: hidden;
+	cursor: default;
+}
+
+.swatch {
+	position: absolute;
+	top: 3; left: 3;
+	width: 10; height: 10;
+	clip: rect( 0, 10, 10, 0 );
+	overflow: hidden;
+	cursor: default;
+}
+
+.colorheader {
+	font-family: tahoma, helvetica, arial, sans-serif;
+	font-size: 8pt;
+	width: 124; height: 16;
+	background-color: white;
+	text-align: center;
+	overflow: hidden;
+	cursor: default;
+}
+
+
+.border {
+	position: absolute;
+	top: 0; left: 0;
+	width: 24; height: 24;
+	background-image: url( "/alphablox/InfoApps/internal/img/app/border.gif" );
+	clip: rect( 0, 24, 24, 0 );
+	overflow: hidden;
+	cursor: default;
+}
+
+.inputButton {
+	position: absolute;
+	font-size: 9pt;
+}
+
+.buttonMenu {
+	position: absolute;
+	height: 24; width: 24;
+	clip: rect( 0, 24, 24, 0 );
+	background-image: url( "/alphablox/InfoApps/internal/img/app/button9.gif" );
+}
+
+.colorSpot {
+	position: absolute;
+	top: 12px;
+	left: 11px;
+	width: 9px;
+	height: 9px;
+	overflow: hidden;
+	border: 1 solid black;
+}
+

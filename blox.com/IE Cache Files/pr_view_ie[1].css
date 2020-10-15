@@ -1,0 +1,31 @@
+/* /home/www/htdoc/css/static/pr_view_ie.css */
+#btnPrev {top: 4px; left: 60px; background-position: -984 0;}
+#btnNext {top: 4px; left: 84px; background-position: -1008 0;}
+#btnInstruction {top: 4px; left: 307px; background-position: -480 0;}
+#footPalette {top: 104; left: 0;height: auto;visibility: hidden;}
+#btnEdit {top: 4px; left: 402px; background-position: -1104 0;}
+#btnInstructionText {top: 8; left: 333; width: 65;}
+#btnEmail {top: 4px; left: 460px; background-position: -432 0;}
+#iconDivision {top: 30; left: 0;height: 4;visibility: hidden;}
+#btnEditText {top: 8; left: 431; width: 25;}
+#btnRate {top: 4px; left: 518px; background-position: -576 0;}
+#btnEmailText {top: 8; left: 484; width: 30;}
+#jumpMenu {top: 4px; left: 156px; background-position: -1128 0;}
+#btnPrint {top: 4px; left: 244px; background-position: -72 0;}
+#btnStart {top: 4px; left: 36px; background-position: -960 0;}
+#btnSave {top: 4px; left: 184px; background-position: -48 0;}
+#btnRateText {top: 8; left: 543; width: 30;}
+#break0 {top: 5; left: 180;}
+#break100 {top: 5; left: 32;}
+#break1 {top: 5; left: 240;}
+#btnPrintText {top: 8; left: 273; width: 30;}
+#break2 {top: 5; left: 303;}
+#iconPalette {top: 0; left: 0;height: 30;}
+#topDivision {top: 0; left: 0;height: 4;visibility: hidden;}
+#btnSaveText {top: 8; left: 210; width: 30;}
+#break3 {top: 5; left: 398;}
+#break4 {top: 5; left: 456;}
+#break5 {top: 5; left: 514;}
+#btnOverview {top: 4px; left: 132px; background-position: -624 0;}
+#btnEnd {top: 4px; left: 108px; background-position: -1032 0;}
+#footDivision {top: 100; left: 0;height: 4;visibility: hidden;}
