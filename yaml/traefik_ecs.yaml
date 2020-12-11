@@ -1,0 +1,26 @@
+api:
+  insecure: true
+  dashboard: true
+
+entryPoints:
+  web:
+    address: ":80"
+
+providers:
+#  ecs:
+#    exposedByDefault: false
+#    autoDiscoverClusters: false
+#    clusters:
+#      - review-apps-windows-cluster2
+#    region: "us-east-1"
+  docker:
+    exposedbydefault: false
+    endpoint: "npipe:////./pipe/docker_engine"
+
+log:
+  filePath: "/traefik.log"
+  level: DEBUG
+
+accessLog:
+  filePath: "/access.log"
+  bufferingSize: 0
