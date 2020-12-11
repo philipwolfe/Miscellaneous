@@ -1,0 +1,83 @@
+name: Traefik Build
+
+trigger:
+  paths:
+    include:
+    - path/traefik
+
+pool:
+  name: Default
+  demands:
+  - docker
+  #- aws #need to add aws
+
+variables:
+  AWS_ID: '000000000000'
+  AWS_REGION: us-east-1
+  ECS_REPOSITORY_NAME: review-apps
+  ECS_REPOSITORY: ${{ format('{0}.dkr.ecr.{1}.amazonaws.com/{2}', variables.AWS_ID, variables.AWS_REGION, variables.ECS_REPOSITORY_NAME) }}
+  ECS_CLUSTER: review-apps-windows-cluster3
+  TRAEFIK_TAG: traefik
+  IMAGE: ${{ format('{0}:{1}', variables.ECS_REPOSITORY, variables.TRAEFIK_TAG) }}
+
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build_Image
+    displayName: Build Image
+    steps:
+    - powershell: |
+       $dockerpath = 'C:\Program Files\Docker\Docker\resources'
+       if(-not($env:Path.contains($dockerpath)))
+       {
+           Write-Host '##vso[task.prependpath]$dockerpath'
+           Write-Host 'Path updated with Docker'
+       }
+       else
+       {
+           Write-Host 'Path update not needed'
+       }
+      displayName: 'Set Docker Path'
+    - powershell: 'docker version'
+      displayName: 'Test Docker'
+    - task: Docker@2
+      displayName: 'Build Traefik'
+      inputs:
+        repository: '$(ECS_REPOSITORY)'
+        command: build
+        Dockerfile: path/traefik/Dockerfile
+        tags: '$(TRAEFIK_TAG)'
+        arguments: '--build-arg file=traefik_ecs.yaml'
+        addPipelineData: false
+    - task: AmazonWebServices.aws-vsts-tools.ECRPushImage.ECRPushImage@1
+      displayName: 'Push Traefik'
+      inputs:
+        awsCredentials: awsCredentials
+        regionName: $(AWS_REGION)
+        sourceImageName: $(ECS_REPOSITORY)
+        sourceImageTag: $(TRAEFIK_TAG)
+        repositoryName: $(ECS_REPOSITORY_NAME)
+        pushTag: '$(TRAEFIK_TAG)'
+        
+    - powershell: |
+        docker rmi -f $(IMAGE)
+      displayName: 'Remove image from Build Server'
+    - task: AmazonWebServices.aws-vsts-tools.AWSCLI.AWSCLI@1
+      displayName: 'AWS CLI: Create Task'
+      inputs:
+        awsCredentials: awsCredentials
+        regionName: $(AWS_REGION)
+        awsCommand: ecs
+        awsSubCommand: 'register-task-definition'
+        awsArguments: '--cli-input-json "{ \"family\": \"task-traefik\", \"taskRoleArn\": \"arn:aws:iam::0000000000000:role/review-apps-ingress-role\", \"containerDefinitions\": [ { \"name\": \"container-traefik\", \"image\": \"$(IMAGE)\", \"portMappings\": [ { \"protocol\": \"tcp\", \"containerPort\": 80, \"hostPort\": 81 }, { \"protocol\": \"tcp\", \"containerPort\": 8080, \"hostPort\": 8080 } ], \"essential\": true, \"memory\": 1024, \"cpu\": 1024, \"dnsServers\":[ \"192.168.0.0\", \"192.168.0.1\"], \"dnsSearchDomains\": [\"domain.local\"], \"mountPoints\": [ { \"sourceVolume\": \"docker-comms\", \"containerPath\": \"\\\\.\\pipe\\docker_engine\", \"readOnly\": false } ] } ], \"volumes\": [ { \"name\": \"docker-comms\", \"host\": { \"sourcePath\": \"\\\\.\\pipe\\docker_engine\" } } ] }"'
+        failOnStandardError: false
+    - task: AmazonWebServices.aws-vsts-tools.AWSCLI.AWSCLI@1
+      displayName: 'AWS CLI: Create Service'
+      inputs:
+        awsCredentials: awsCredentials
+        regionName: $(AWS_REGION)
+        awsCommand: ecs
+        awsSubCommand: 'create-service'
+        awsArguments: '--cli-input-json "{ \"cluster\": \"$(ECS_CLUSTER)\", \"taskDefinition\": \"arn:aws:ecs:us-east-1:0000000000000:task-definition/task-traefik\", \"serviceName\": \"service-traefik\", \"launchType\": \"EC2\", \"schedulingStrategy\": \"REPLICA\", \"desiredCount\": 1, \"deploymentConfiguration\": { \"maximumPercent\": 200, \"minimumHealthyPercent\": 100 }, \"deploymentController\": { \"type\": \"ECS\" }, \"placementStrategy\": [ { \"type\": \"spread\", \"field\": \"instanceId\" } ], \"enableECSManagedTags\": false }"'
+        failOnStandardError: false
