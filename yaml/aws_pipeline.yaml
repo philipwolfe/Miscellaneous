@@ -1,4 +1,5 @@
-name: Review Apps Build
+#name: Review Apps Build
+#name: $(SourceBranchName)_$(date:yyyyMMdd)$(rev:.r)
 
 parameters:
 - name: configuration
@@ -102,7 +103,7 @@ stages:
         command: build
         Dockerfile: path/Dockerfile
         tags: '$(IMAGE_TAG)-webapi'
-        arguments: '--build-arg host=$(IMAGE_TAG).sandbox.local --build-arg servicename=container-$(IMAGE_TAG)-webapi'
+        arguments: '--build-arg host=$(APP_REVIEW_ID).review.app --build-arg servicename=container-$(IMAGE_TAG)-webapi'
         addPipelineData: false
     
     - task: ECRPushImage@1
@@ -125,7 +126,7 @@ stages:
         command: build
         Dockerfile: path/Dockerfile
         tags: '$(IMAGE_TAG)-connect'
-        arguments: '--build-arg host=$(IMAGE_TAG).sandbox.local --build-arg servicename=container-$(IMAGE_TAG)-connect'
+        arguments: '--build-arg host=$(APP_REVIEW_ID).review.app --build-arg servicename=container-$(IMAGE_TAG)-connect'
         addPipelineData: false
     
     - task: ECRPushImage@1
@@ -234,3 +235,42 @@ stages:
           \"field\": \"instanceId\" } ], \"enableECSManagedTags\": false }"
          
         failOnStandardError: false
+
+    - task: PowerShell@2
+      displayName: Publish URL for Pull Requests
+      condition: and(succeeded(), eq( variables['Build.Reason'], 'PullRequest' ) )
+      env:
+        SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      inputs:
+        targetType: inline
+        script: |
+          $teamprojectid = "OAT" #$env:SYSTEM_TEAMPROJECTID
+          $repositoryId = "OAT"
+  
+          $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$teamprojectid/_apis/git/repositories/$repositoryId/pullRequests/$(System.PullRequest.PullRequestId)/statuses?api-version=6.0-  preview.1"
+          Write-Host "URL: $url"
+  
+          $body = @{
+              iterationId = 1
+              state = "succeeded"
+              description = "URL: https://$(APP_REVIEW_ID).review.apps"
+              context = @{
+              name = "Ready"
+              genre = "Review-App-Pipeline"
+              }
+              targetUrl = "https://$(APP_REVIEW_ID).review.apps"
+          }
+  
+          $headers = @{ Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN" }
+  
+          $params = @{
+              Uri = $url
+              Headers = $headers
+              Method = "POST"
+              Body = $body | ConvertTo-JSON
+              ContentType = "application/json"
+          }
+  
+          #Invoke REST API
+          Write-Host Invoke REST API
+          Invoke-RestMethod @params -Verbose
