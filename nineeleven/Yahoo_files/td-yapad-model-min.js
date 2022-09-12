@@ -1,0 +1,1 @@
+YUI.add("td-yapad-model",function(a){a.namespace("TD.YapAd").Model=a.Base.create("TDYapAdModel",a.Model,[a.Af.Sync],{resource:"yapad",readonly:!0,consolidate:!1,initializer:function(a){},loadAds:function(a,e){var d={params:a};this.sync("read",d,function(a,d){e(!a&&d?null:a,d)})}})},"@VERSION@",{requires:["af-sync","base-build","model","af-beacon"]});

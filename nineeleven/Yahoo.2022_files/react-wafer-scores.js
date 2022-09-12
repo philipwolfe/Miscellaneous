@@ -1,0 +1,1 @@
+"use strict";window.wafer.ready((function(){const e=document.getElementById("league-select");e&&window.wafer.on("form:submit",(t=>{const{elem:n={}}=t;n&&n.getAttribute("data-test-leagueselect")&&window.rapidInstance&&window.rapidInstance.beaconClick("app-scor",e.value||"",0,{elm:"dropdown",itc:1},"")}))}));

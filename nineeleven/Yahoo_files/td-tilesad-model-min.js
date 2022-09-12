@@ -1,0 +1,1 @@
+YUI.add("td-tilesad-model",function(e){e.namespace("TD.TilesAd").Model=e.Base.create("TDTilesAdModel",e.Model,[e.Af.Sync],{resource:"tileadstore",readonly:!0,consolidate:!1,initializer:function(e){},loadTextTile:function(e,a){var d={params:e};this.sync("read",d,function(e,d){!e&&d&&a(null,d)})}})},"@VERSION@",{requires:["af-sync","base-build","model","af-beacon"]});
